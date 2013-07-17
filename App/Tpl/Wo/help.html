@@ -1,0 +1,96 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <div class="wo_main">
+  <div class="wo_main_ul_p_top">
+    <?php if (!isset($_GET['win'])) { ?> 
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" class="a_select"><span class="ico_help"></span>求助的</a>
+    <?php } else { ?>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>"><span class="ico_help"></span>求助的</a>
+    <?php } ?>
+    <?php if (isset($_GET['win'])) { ?> 
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win" class="a_select"><span class="ico_expert"></span>被采纳</a>
+    <?php } else { ?>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win"><span class="ico_expert"></span>被采纳</a>
+    <?php } ?>
+    
+    <span class="wo_main_ul_p_top_span fi black_l">
+    <?php if (!isset($_GET['win'])) { ?>
+      <span class="f16 fb green"><?php echo $totalRecords ?></span>条求助
+    <?php } else { ?>
+      <span class="f16 fb orange"><?php echo $totalRecords ?></span>条被选为最佳帮助
+    <?php } ?>
+    </span>
+  </div>
+  <ul class="wo_main_ul">
+  <?php
+  foreach ($recordSayHelp as $record): ?>
+  <li>
+    <p class="wo_li_p_icon">
+      <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank">
+        <img src='<?php echo i_icon_check("$record[uid]", "$record[icon_url]", "s"); ?>' width="68" height="51" class="radius3"/>
+      </a>
+    </p>
+    <div class="wo_li_p_user f12">
+      <?php echo " <a href='".__ROOT__."/stream/u/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?><br /> 
+      <span class="black_l">
+        <?php echo " ".i_grade($record['enteryear']) ?>
+        <?php echo i_constellation($record['birthday']),i_sex($record['sex']) ?>
+      </span>
+    </div>
+    <p class="wo_li_p_content_help lh13">
+      <?php echo $record['content']; ?>
+      <?php echo "<a href='".__ROOT__."/item/help/".$record['sid']."' class='f12'>详情</a>"; ?>
+    </p>
+    <span class="wo_li_s_time f12 gray">
+      <?php echo i_time($record['time']) ?>
+      <?php
+      if (!empty($record['from'])) {
+          if ("2" == $record['from']) {
+          	  echo "来自我帮圈圈抓取程序";
+          } else if ("3" == $record['from']) {
+          	  echo "来自我帮圈圈Andriod客户端";
+          } else {
+          	  echo "来自".$record['from'];
+          }
+      }
+      ?>
+    </span>
+    
+    <span class="wo_li_s_comment f12 black_l">
+      <?php echo "<span class='gray' title='状态'>状态:".i_helpstatus($record['status'])."</span> "; ?>
+      <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>">帮助</a>
+      <?php if (!empty($record['comment_co'])) echo "(".$record['comment_co'].")" ?> | 扩散 <?php echo $record['diffusion_co'] ?> | 浏览 <?php echo $record['hit_co'] ?>°
+    </span>
+    
+    <?php if (isset($_GET['win'])) { ?>
+    <p class="ico_star_answer ico_channel_user_position"></p>
+    <?php } ?>
+    
+  </li>
+  <?php endforeach; ?>
+  </ul>
+  
+  <div class="wo_right">
+    <a class="wo_right_a" href="__ROOT__/stream">求帮助</a>
+  </div>
+  
+  <div class="wo_paging">
+    <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条帮助 <?php echo $totalPages ?>页</p>
+    <span>
+    <?php
+    if ($totalPages > 1) {
+        i_page_show("wo/help/".$userLogin['uid'], $totalPages);
+    }
+    ?>
+    </span>
+  </div>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

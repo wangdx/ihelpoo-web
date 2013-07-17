@@ -1,0 +1,132 @@
+<include file="Public:headermall" />
+<?php
+    Vendor('Ihelpoo.Ofunction'); 
+    $ofunction = new Ofunction();
+?>
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+	<div class="mall_category_nav">
+		<p class="mall_category_nav_p">
+			<a href="__ROOT__/mall" class="gray">逛街首页</a> - 
+			<a href="__ROOT__/mall/category/<?php echo $parentRecordCommoditycategory['cate_id'] ?>/time" class="">
+				{$parentRecordCommoditycategory['cate_name']}
+			</a>
+		</p>
+		<ul class="mall_category_nav_ul">
+			<?php foreach($chlidrenRecordCommoditycategory as $category) { ?>
+				<li>
+					<?php if ($nowcategory['cate_id'] == $category['cate_id']) { ?>
+					<a href="__ROOT__/mall/category/<?php echo $category['cate_id'] ?>/{$order}/{$goodtype}" class="bg_red">
+						{$category['cate_name']}
+					</a>
+					<?php } else { ?>
+					<a href="__ROOT__/mall/category/<?php echo $category['cate_id'] ?>/{$order}/{$goodtype}" class="black_l">
+						{$category['cate_name']}
+					</a>
+					<?php } ?>
+				</li>
+			<?php } ?>
+		</ul>
+	</div>
+	<div class="mall_category_main">
+		<p class="mall_category_sort f12">成色:
+			<?php if ($goodtype == 'all') { ?> 
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/all" class="bg_red">全部</a>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/new">全新</a>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/secondhand">二手</a>
+			<?php } else if ($goodtype == 'new') { ?>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/all">全部</a>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/new" class="bg_red">全新</a>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/secondhand">二手</a>
+			<?php } else if ($goodtype == 'secondhand') { ?>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/all">全部</a>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/new">全新</a>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/{$order}/secondhand"class="bg_red">二手</a>
+			<?php } ?>
+		</p>
+		<p class="mall_category_sort f12">排序:
+			<?php if ($order == 'time') { ?> 
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/time/{$goodtype}" class="bg_red">时间</a>
+			<?php } else { ?>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/time/{$goodtype}">时间</a>
+			<?php } ?>
+			<?php if ($order == 'hit') { ?> 
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/hit/{$goodtype}" class="bg_red">人气</a>
+			<?php } else { ?>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/hit/{$goodtype}">人气</a>
+			<?php } ?>
+			<?php if ($order == 'sales') { ?> 
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/sales/{$goodtype}" class="bg_red">销量</a>
+			<?php } else { ?>
+				<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/sales/{$goodtype}">销量</a>
+			<?php } ?>
+			<a href="__ROOT__/mall/category/{$nowcategory['cate_id']}/-{$order}/{$goodtype}" class="f12 gray"><span class="icon_recycle"></span>逆序</a>
+		</p>
+		<?php if (!empty($joinResultsRecordCommodity)) { ?>
+			<ul class="mall_category_ul f12">
+				<?php foreach($joinResultsRecordCommodity as $commodity) { ?>
+				<li>
+					<p class="mall_category_ul_li_p">
+						<a href="__ROOT__/mall/item/<?php echo $commodity['cid'] ?>" class="" target="_blank">
+							<img src="<?php echo i_goods_thumbnail($commodity['image']) ?>" />
+							<?php if (empty($commodity['good_nums'])) { ?>
+								<span class="itemstatus_sold"></span>
+							<?php } else if ($commodity['good_type'] == '1') { ?>
+								<span class="itemstatus_new"></span>
+							<?php } else if ($commodity['good_type'] == '2') { ?>
+								<span class="itemstatus_secondhand"></span>
+							<?php } ?>
+						</a>
+					</p>
+					<a href="__ROOT__/mall/item/<?php echo $commodity['cid'] ?>" class="black_l" target="_blank">
+						<?php echo $ofunction->cut_str($commodity['name'],20); ?>
+				    </a>
+					<p class="mall_category_ul_li_price gray">
+						￥<span class="fb red f14"><?php echo $commodity['price'] ?></span> 
+						<span class="black_l f12"><?php if ($commodity['good_type'] == '2') { echo "[二手]"; } else { echo "[全新]"; } ?></span>
+						
+						<span class="gray f12">
+						<?php if ($order == 'time') { ?>
+							<?php echo i_time($commodity['time']); ?>
+						<?php } else if ($order == 'sales') { ?>
+							销量:<?php echo $commodity['sales_co']; ?>
+						<?php } else if ($order == 'hit') { ?>
+							人气:<?php echo $commodity['hit']; ?>
+						<?php } ?>
+						</span>
+					</p>
+					<p class="mall_category_ul_li_shoper gray">
+						店主:<a href="__ROOT__/stream/u/<?php echo $commodity['uid'] ?>" class="black_l" target="_blank">
+							<?php echo $ofunction->cut_str($commodity['nickname'],10); ?>
+					    </a> 
+					    <?php echo $ofunction->cut_str($commodity['address'],20); ?>
+				    </p>
+				</li>
+				<?php } ?>
+			</ul>
+		<?php } else { ?>
+			<div class="mall_category_info_none red">
+				<span class="icon_pump"></span> 这个分类暂时没有商品 :(
+			</div>
+		<?php } ?>
+		<p class="i_paging_p f12 gray">共<?php echo $totalRecordNums ?>件商品 <?php echo $totalPages ?>页</p>
+  		<div class="i_paging_div">
+  			<?php if ($totalPages > 1) { i_page_show("mall/category/".$nowcategory['cate_id']."/".$order."/".$goodtype, $totalPages); } ?>
+  		</div>
+	</div>
+	<div class="mall_category_right">
+	<script type="text/javascript">
+     document.write('<a style="display:none!important" id="tanx-a-mm_12471997_4022398_13066845"></a>');
+     tanx_s = document.createElement("script");
+     tanx_s.type = "text/javascript";
+     tanx_s.charset = "gbk";
+     tanx_s.id = "tanx-s-mm_12471997_4022398_13066845";
+     tanx_s.async = true;
+     tanx_s.src = "http://p.tanx.com/ex?i=mm_12471997_4022398_13066845";
+     tanx_h = document.getElementsByTagName("head")[0];
+     if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+	</script>
+	</div>
+</div>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/mall/"></script> -->
+<include file="Public:footermall" />

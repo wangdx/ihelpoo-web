@@ -1,0 +1,10 @@
+<?php
+    Vendor('Ihelpoo.Emotion'); 
+    $emotion = new Emotion();
+	if (empty($_GET['page'])) {
+		$page = 1;
+	} else {
+		$page = $_GET['page'];
+	}
+    echo $emotion->loadEmotion($page);
+?>

@@ -1,0 +1,93 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">我的交易</div>
+	<div class="mallset_left f12">
+		<ul class="mallset_left_ul">
+			<li><a href="__ROOT__/mallset/seller?step=needsure"><span class="icon_plus"></span>我要卖</a></li>
+		</ul>
+		<ul class="mallset_left_ul">
+			<li><a href="__ROOT__/mallset/buyer" class="bg_red"><span class="icon_plus"></span>我要买</a></li>
+			<li><a href="__ROOT__/mallset/buyer?step=ontrade">交易中&#12288; <?php if ($_GET['step'] == 'ontrade') { ?> <span class="dot_choose"></span> <?php } ?></a></li>
+			<li><a href="__ROOT__/mallset/buyer?step=needsure">确认收货 <?php if ($_GET['step'] == 'needsure') { ?> <span class="dot_choose"></span> <?php } ?></a></li>
+			<li><a href="__ROOT__/mallset/buyer?step=needassess">需要评价 <?php if ($_GET['step'] == 'needassess') { ?> <span class="dot_choose"></span> <?php } ?></a></li>
+			<li><a href="__ROOT__/mallset/buyer?step=finish">历史交易 <?php if ($_GET['step'] == 'finish') { ?> <span class="dot_choose"></span> <?php } ?></a></li>
+		</ul>
+		<ul class="mallset_left_ul">
+			<li><a href="__ROOT__/mallset/shoppingcart">购物车</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<ul class="mallset_seller_ul f12">
+			<?php foreach($joinResultsRecordCommodityassess as $result) { ?>
+			<li>
+				<p class="mallset_seller_li_info_p">
+					订单编号: <?php echo $result['start_ti']."-".$result['id'] ?>
+					<?php if($result['status'] == '1') { ?>
+					状态: <span class="fb reb_back">等待店主确认</span>
+					<?php } else if ($result['status'] == '2') { ?>
+						状态: <span class="fb reb_back">店主已经确认交易</span>
+					<?php } else if ($result['status'] == '3') { ?>
+					状态: <span class="fb reb_back">已确认收货,待您评价</span>
+					<?php } else if ($result['status'] == '5') { ?>
+						<?php if (!empty($result['refusereason'])) { ?>
+							状态: <span class="fb reb_back">已完成交易, 店主已经拒绝交易</span>
+						<?php } else { ?>
+							状态: <span class="fb red"><span class="icon_right"></span>已完成交易</span>
+						<?php } ?>
+					<?php } ?>
+					<span class="fr red">时间:<?php echo i_time($result['start_ti']) ?></span>
+				</p>
+				<?php if ($result['status'] == 5) {
+						if (!empty($result['refusereason'])) { ?>
+						<p class="mallset_seller_li_reason_no_p f12"><span class="icon_attention"></span>已拒绝交易,拒绝理由: <?php echo $result['refusereason'] ?></p>
+				<?php } } ?>
+				<p class="mallset_seller_li_item_p f14">
+					<a href="__ROOT__/mall/item/<?php echo $result['cid'] ?>" target="_blank" class="mallset_seller_li_item_p_img">
+						<img src="<?php echo i_goods_thumbnail($result['image']) ?>" width="50"/>
+					</a>
+					<a href="__ROOT__/mall/item/<?php echo $result['cid'] ?>" target="_blank" class="mallset_seller_li_item_p_link">
+						名称:<?php echo $result['name'] ?>
+					</a>
+					<span class="mallset_seller_li_item_p_info">
+						售价:<span class="fb red"><?php echo $result['buyprice'] ?></span>
+						购买数量:<?php echo $result['buynums'] ?>
+					</span>
+				</p>
+				<p class="mallset_seller_li_user_p f14">
+					交易方式:
+					<?php if($result['buyway'] == '1') {
+						echo "免费送货上门";
+					} else if ($result['buyway'] == '2') { 
+						echo "+1元送货上门";
+					} else if ($result['buyway'] == '3') {
+						echo "自己来取";
+					} ?>
+					<?php if(!empty($result['remarks'])) { ?>
+						<span class="mallset_seller_li_user_p_remarks f12 black_l">备注:<?php echo $result['remarks'] ?></span>
+					<?php } ?>
+				</p>
+				<div class="mallset_seller_li_btn_p">
+					<?php if ($result['status'] == 3) { ?>
+						<a class="btn_brown" href="__ROOT__/mallset/buyassess/<?php echo $result['id'] ?>" target="_blank">评价</a> 
+					<?php } else if($result['status'] == 5)  { ?>
+						<a class="btn_brown" href="__ROOT__/mallset/buyassess/<?php echo $result['id'] ?>" target="_blank">详情</a> 
+					<?php } else { ?>
+						<a class="btn_brown" href="__ROOT__/mallset/buysure/<?php echo $result['id'] ?>" target="_blank">交易详情</a> 
+					<?php } ?>
+					<?php if ($result['status'] == 2) { ?>
+						<a href="__ROOT__/mallset/buysure/<?php echo $result['id'] ?>" target="_blank" class="btn_red">确认收货</a>
+					<?php } ?>
+				</div>
+			</li>
+			<?php } ?>
+		</ul>
+		<p class="i_paging_p f12 gray">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+  		<div class="i_paging_div">
+  			<?php if ($totalPages > 1) { i_page_show("mallset/buyer?step=".$_GET['step'], $totalPages, '&'); } ?>
+  		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/mallset/buyer.js"></script>
+<include file="Public:footermall" />

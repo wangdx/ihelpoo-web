@@ -1,0 +1,54 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">店铺设置</div>
+	<div class="mallset_left f12">
+		<ul>
+			<li><a href="__ROOT__/mallset" class="bg_red">店铺设置</a></li>
+			<li><a href="__ROOT__/mallset/logo">店铺logo</a></li>
+			<li><a href="__ROOT__/mallset/cate">分类管理</a></li>
+			<li><a href="__ROOT__/mallset/add">发布商品</a></li>
+			<li><a href="__ROOT__/mallset/commodity">商品管理</a></li>
+			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的店铺</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<form action="__ROOT__/mallset" method="post" id="settingform">
+		<ul class="mallset_index_ul">
+			<li>
+				<span class="mallset_index_ul_title_span" title="用户名">店铺名称:</span> {$userloginedrecord['nickname']} <a href="__ROOT__/setting" class="f12 gray">修改</a> 
+				<span class="f12 gray">状态: <?php if($recordUserShop['status'] == '1'){ echo "<span class='red_l'>审核中</span>"; } else { echo "<span class='green'>正常</span>"; } ?></span>
+				<span class="f12 gray">店铺类型: <?php if($recordUserShop['shop_type'] == '1'){ echo "学生二手"; } else if ($recordUserShop['shop_type'] == '2') { echo "学生经商"; } else if ($recordUserShop['shop_type'] == '3'){ echo "商家"; } ?></span>
+			</li>
+			<li><span class="mallset_index_ul_title_span">店铺分类:</span> 
+				<select id="shopcategory" name="shopcategory" class="mallset_index_ul_li_select">
+				<?php foreach($resultRecordCommoditycategory as $Commoditycategory) { 
+				if ($Commoditycategory['cate_id'] == $recordUserShop['category']) { ?>
+				<option value={$Commoditycategory['cate_id']} selected>{$Commoditycategory['cate_name']}</option>
+				<?php } else { ?>
+				<option value={$Commoditycategory['cate_id']}>{$Commoditycategory['cate_name']}</option>
+				<?php } } ?>
+				</select>
+			</li>
+			<li><span class="mallset_index_ul_title_span">身份认证:</span> <a href="<?php echo $recordUserShop['idcard']; ?>" target="_blank" class="f12">查看已上传资料</a> <a href="__ROOT__/mall/newshop" class="f12"><span class="icon_recycle"></span>重新认证</a></li>
+			<li><span class="mallset_index_ul_title_span">阿里旺旺:</span> <input name="imww" type="text" class="mallset_index_ul_li_input" value="{$recordUserShop['imww']}" /></li>
+			<li><span class="mallset_index_ul_title_span">地&#12288;&#12288;址:</span> <input name="address" type="text" class="mallset_index_ul_li_input" value="{$recordUserShop['address']}" /></li>
+			<li><span class="mallset_index_ul_title_span">简&#12288;&#12288;介:</span> <span class="gray f14">{$recordUserInfo['introduction']}</span> <a href="__ROOT__/setting" class="f12 gray">修改</a></li>
+			<li><input type="submit" value="保存" class="mallset_index_ul_submit" /></li>
+			<li></li>
+			<li><p class="moreinfo f12">更多信息</p></li>
+			<li><span class="mallset_index_ul_title_span_sub">好评:</span> {$recordUserShop['assess_good']}</li>
+			<li><span class="mallset_index_ul_title_span_sub">中评:</span> {$recordUserShop['assess_middle']}</li>
+			<li><span class="mallset_index_ul_title_span_sub">差评:</span> {$recordUserShop['assess_bad']}</li>
+			<li></li>
+			<li><span class="mallset_index_ul_title_span_sub">等&#12288;&#12288;级:</span> {$recordUserShop['degree']}</li>
+			<li><span class="mallset_index_ul_title_span_sub">商品总数:</span> {$recordUserShop['commodity_co']}</li>
+			<li><span class="mallset_index_ul_title_span_sub">交易笔数:</span> {$recordUserShop['sales_co']}</li>
+			<li><span class="mallset_index_ul_title_span_sub">总收入:</span> {$recordUserShop['revenue_co']}</li>
+			<li><span class="mallset_index_ul_title_span_sub">开店时间:</span> <?php echo i_time($recordUserShop['time']) ?></li>
+			<li><span class="mallset_index_ul_title_span_sub">活跃:</span> {$userloginedrecord['active']}</li>
+		</ul>
+		</form>
+	</div>
+</div>
+<include file="Public:footermall" />

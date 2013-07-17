@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>{$title} - 我帮圈圈逛街</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="__PUBLIC__/css/ihelpoo.css?id=5" media="screen" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/public/commonother.js?id=1"></script>
+</head>
+<body>
+<div class="headermall f14 gray_l">
+  <div class="header_main">
+  <a href="__ROOT__/stream" class="header_logo" title="我帮圈圈3 Pollen Plan"></a>
+  <p class="header_left fl">
+    <a href="__ROOT__/index/mate">大家</a>
+    <a href="__ROOT__/mall">逛街<span class="icon_new"></span></a>
+    <a href="__ROOT__/activity">活动<span class="icon_new"></span></a>
+    <a href="__ROOT__/help">帮助</a>
+    <a href="__ROOT__/index/hot">排行</a>
+  </p>
+  <p class="header_right fr f12">
+  	<?php if (!empty($userloginedrecord['uid'])) { ?>
+    	<span class="icon_pump"></span><a href="__ROOT__/stream">圈圈个人中心</a> | <a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a><?php if (!empty($userloginedrecordUserShop['uid'])) { ?> <a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">店铺首页</a><?php } ?>
+    	<?php if (!empty($userloginedrecordUserShop['uid'])) { ?>
+    		<a href="__ROOT__/mallset/seller">买卖交易</a>
+    	<?php } else { ?>
+    		<a href="__ROOT__/mallset/buyer?step=ontrade">买卖交易</a>
+    	<?php } ?>
+    	<?php if (!empty($userloginedrecordUserShop['uid'])) { ?><a href="__ROOT__/mallset">设置管理</a><?php } ?>
+    	<a href="__ROOT__/message/system">消息</a>
+    	<a href="__ROOT__/message/system" title="帮助与系统消息" id="message_system_nums_a" style="display:none"><span class='message_green message_shine'></span></a>
+	    <a href="__ROOT__/message/comment" title="评论回复" id="message_comment_nums_a" style="display:none"><span class='message message_shine'></span></a>
+	    <a href="__ROOT__/message/at" title="@我的消息" id="message_at_nums_a" style="display:none"><span class='message_blue message_shine'></span></a>
+	    <a href="__ROOT__/message/coin" title="RBM管理记录" id="message_cion_nums_a" style="display:none"><span class='message_yellow message_shine'></span></a>
+    	<a href="__ROOT__/user/quit">退出<span class="icon_quit"></span></a>
+  	<?php } else { ?>
+    	<a href="__ROOT__/">登录</a>
+    	<a href="__ROOT__/user/register">注册</a>
+  	<?php } ?>
+  </p>
+  </div>
+</div>
+<div id='message_talk_nums_div'>
+	<a href='' target='_blank' class='message_talk_to_url'><img id="message_talk_nums_img_icon" src='' title='' width='50' class='radius3 pointer' style='vertical-align:bottom' /></a>
+	<a href='' target='_blank' class='message_talk_to_url'><span id="message_talk_nums_span_content" class="black_l"></span></a>
+	<p id="message_talk_nums_p_content_info" class="f10 gray"></p>
+	<span id="message_talk_nums_span_close" class="icon_index_wrong pointer" title="关闭" style="position:absolute; right:5px; top:5px;"></span>
+</div>

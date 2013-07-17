@@ -1,0 +1,13 @@
+<include file="Public:headerrooter" />
+  <ul class="para_right_ul">
+    <?php foreach ($sysParameterRecords as $para) : ?>
+    <li><?php echo $para['parameter']; ?> - <?php echo $para['caption']; ?> - <?php echo $para['value']; ?>
+    <form method="post">
+    <input type="hidden" name="parameter" value="<?php echo $para['parameter']; ?>" />
+    <input type="text" name="paravalue" />
+    <input type="submit" value="change" />
+    </form>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+<include file="Public:footerrooter" />

@@ -1,0 +1,23 @@
+.main_lab_connect{
+    margin: 10px 15px;
+    background: #9C0;
+    padding: 5px 20px;
+    text-align: center;
+    color: #FFF;
+    position: relative;
+}
+.lab_div{
+     margin: 15px;
+     border: 1px solid #CCC;
+     padding: 5px 10px;
+}
+.lab_div_p{
+    border-bottom: 1px solid #EEE;
+    padding: 10px;
+}
+.lab_div_ul{
+    margin: 10px 20px;
+}
+.lab_div_ul li{
+    padding: 3px 0;
+}

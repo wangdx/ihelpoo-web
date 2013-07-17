@@ -1,0 +1,48 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$().ready(function(){
+    $('.msg_notread').css('background', '#FFFA85');
+});
+</script>
+<div class="main">
+<div class="s_left f12">
+  <ul class="s_left_category">
+    <li><a href="__ROOT__/message/system">帮助与系统 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/comment">评论与回复 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/at">@提到我的 <span class="icon_n_msg"></span></a></li>
+    <!-- <li><a href="__ROOT__/message/coin">RMB记录 <span class="icon_n_msg"></span></a></li> -->
+    <li><a href="__ROOT__/message/active" class="bg_orange">活跃记录 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/talk">悄悄话Talk <span class="icon_n_msg"></span></a></li>
+  </ul>
+</div>
+<div class="msg_right">
+  <p class="msg_explain f12 black_l">活跃记录信息 <a href="__ROOT__/wo/honor">等级荣誉</a> &nbsp;&nbsp;&nbsp;<a href="__ROOT__/support?level" class="f12 fb gray"><span class="icon_sigh"></span>升级规则</a></p>
+  <ul class="msg_ul f12 gray">
+  <?php
+  	if (!empty($recordsMsgActive)) {
+  	foreach($recordsMsgActive as $msgActive) {
+	if ($msgActive['deliver'] == 1) {
+		echo "<li>";
+	} else {
+		echo "<li class='msg_notread'>";
+	}?>
+  		活跃:<span class="f14 fb black_l pointer" title="上次活跃总数 <?php echo $msgActive['total'] ?>">
+  			<?php echo $msgActive['way'] == 'min' ? $msgActive['total'] - $msgActive['change'] :  $msgActive['total'] + $msgActive['change']; ?>
+  			</span>
+  		详细: <?php echo $msgActive['way'] == 'min' ? "<span class='fb 16 blue pointer' title='惩罚'>-<span class='f14'>".$msgActive['change']."</span></span>" : "<span class='fb 16 red pointer' title='奖励'>+<span class='f14'>".$msgActive['change']."</span></span>"; ?> 
+  		<?php echo $msgActive['reason']; ?> 
+  		<?php echo i_time($msgActive['time']); ?>
+  	</li>
+  <?php } } else { ?>
+  	<li>暂时没有活跃详细记录</li>
+  <?php } ?>
+  </ul>
+  <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条记录  {$totalpages}页</p>
+  <div class="i_comment_list_link">
+  <?php i_page_show("message/active", $totalpages); ?>
+  </div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/"></script>
+<include file="Public:footer" />

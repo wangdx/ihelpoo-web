@@ -1,0 +1,31 @@
+<include file="Public:headerabout" />
+<div class="main">
+	<?php if (!empty($cmsArticalRecords)){ ?>
+	<div class="about_left">
+		<ul class="about_left_ul">
+			<li><a href="__ROOT__/about">关于首页</a></li>
+			<li><a href="__ROOT__/about/artical" class="fb">更多文档</a></li>
+		</ul>
+	</div>
+	<div class="about_right">
+		<ul class="about_right_ul">
+			<?php foreach($cmsArticalRecords as $artical) { ?>
+			<li>
+				<a href="__ROOT__/about/artical/<?php echo $artical['id'] ?>" target="_balnk" ><?php echo $artical['title'] ?></a> 
+				<span class="f12 gray">浏览: <?php echo $artical['hit'] ?></span> <span class="f12 gray fr">发布时间: <?php echo i_time($artical['time']); ?></span>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+	<?php } else { ?>
+		<div class="about_right_back_div"><a href="__ROOT__/about/artical" class="f12 gray">返回</a></div>
+		<div class="about_right_title_div">
+			<p align="center" class="f14 fb"><?php echo $cmsArticalRecord['title']; ?></p>
+			<p align="center" class="f12 gray">发布时间:<?php echo i_time($cmsArticalRecord['time']); ?> 浏览:<?php echo $cmsArticalRecord['hit']; ?></p>
+		</div>
+		<div class="about_right_content_div">
+			<?php echo $cmsArticalRecord['content']; ?>
+		</div>
+	<?php } ?>
+</div>
+<include file="Public:footer" />

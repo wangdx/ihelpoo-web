@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<script type="text/javascript">
+$().ready(function(){
+    $('.main_group_connect').delay(500).fadeIn('slow');
+    $('.icon_index_wrong').click(function(){
+        $('.main_group_connect').slideUp('fast');
+    });
+});
+</script>
+<div>
+  <div class="main_group_connect f12"><span class="icon_pump"></span> <a href="__ROOT__/about">联系</a>我帮圈圈, 申请商家用户! <a href="__ROOT__/support?user" target="_blank" class="white"><span class="icon_plus"></span>查看商家用户特权</a><span class="icon_index_wrong" title="关闭"></span></div>
+  <ul class="main_group_ul">
+  <?php foreach ($groupList as $group) :?>
+    <li>
+    <p class="main_group_img_p">
+    <a href="__ROOT__/stream/u/<?php echo $group['uid'] ?>" title="<?php echo $group['nickname'] ?>">
+        <img src="<?php echo i_icon_check($group['uid'], $group['icon_url']) ?>" width="180" height="135" class="radius5"/>
+        <span class="grades"></span>
+    </a>
+    </p>
+    <div class="group_introduction">
+      <a href="__ROOT__/stream/u/<?php echo $group['uid'] ?>" title="<?php echo $group['nickname'] ?>">
+        <?php echo $group['nickname'] ?>
+      </a> 
+      <span class="fb black_l f14">商家简介:</span> <span class="black_l fi gray"><?php echo $group['introduction']?></span>
+      <p><a href="__ROOT__/wo/<?php echo $group['uid'] ?>" class="f12 gray">查看信息流</a></p>
+    </div>
+    </li>
+  <?php endforeach; ?>
+  </ul>
+  <p class="main_mate_list_num f12 gray">共<?php echo $totalrecords; ?>个组织 <?php echo $totalPages; ?>页</p>
+  <div class="main_mate_list_link">
+  	<?php if ($totalPages > 1) { i_page_show("index/business", $totalPages); } ?>
+  </div>
+</div>
+
+</div>
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

@@ -1,0 +1,105 @@
+<include file="Public:headermall" />
+<?php
+    Vendor('Ihelpoo.Ofunction'); 
+    $ofunction = new Ofunction();
+?>
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+	<div class="mall_category_nav">
+		<p class="mall_category_nav_p">
+			<a href="__ROOT__/mall" class="gray">逛街首页</a> - 店铺列表
+		</p>
+		<ul class="mall_category_nav_ul">
+			<?php if (empty($shopcategoryString)) { ?>
+				<li><a href="__ROOT__/mall/shoplist" class="bg_red">全部</a></li>
+			<?php } else { ?>
+				<li><a href="__ROOT__/mall/shoplist">全部</a></li>
+			<?php } ?>
+			<?php if ($shopcategoryString == 't_1') { ?>
+				<li><a href="__ROOT__/mall/shoplist/t_1" class="bg_red">学生二手</a></li>
+			<?php } else { ?>
+				<li><a href="__ROOT__/mall/shoplist/t_1">学生二手</a></li>
+			<?php } ?>
+			<?php if ($shopcategoryString == 't_2') { ?>
+				<li><a href="__ROOT__/mall/shoplist/t_2" class="bg_red">学生经商</a></li>
+			<?php } else { ?>
+				<li><a href="__ROOT__/mall/shoplist/t_2">学生经商</a></li>
+			<?php } ?>
+			<?php if ($shopcategoryString == 't_3') { ?>
+				<li><a href="__ROOT__/mall/shoplist/t_3" class="bg_red">商家</a></li>
+			<?php } else { ?>
+				<li><a href="__ROOT__/mall/shoplist/t_3">商家</a></li>
+			<?php } ?>
+		</ul>
+	</div>
+	<div class="mall_shoplist_main">
+		<?php if (!empty($recordsUserShop)) { ?>
+			<ul class="mall_shoplist_ul f12">
+				<?php foreach($recordsUserShop as $userShop) { ?>
+				<li>
+					<a href="__ROOT__/mall/shop/<?php echo $userShop['uid'] ?>" class="" target="_blank">
+						<img src="<?php echo i_icon_check($userShop['uid'], $userShop['icon_url'], 's'); ?>" width="68" height="50" class="radius3" />
+					</a>
+					<p class="black_l mall_shoplist_ul_li_p">
+						<span class="f14">
+							店主:<a href="__ROOT__/stream/u/<?php echo $userShop['uid'] ?>" target="_blank" title="开店时间: <?php echo i_time($userShop['time']); ?>">
+							<?php echo $userShop['nickname']; ?>
+					    	</a> 
+					    </span>
+					    <?php if ($userShop['shop_type'] == '1') { ?>
+					    	<span title="店铺类型:学生二手" class="gray">学生二手</span> 
+					    <?php } else if ($userShop['shop_type'] == '2') { ?>
+					    	<span title="店铺类型:学生经商" class="orange">学生经商</span> 
+					    <?php } else if ($userShop['shop_type'] == '3') { ?>
+					   		<span title="店铺类型:商家" class="red">商家</span> 
+					    <?php } ?>
+					    <?php if (!empty($userShop['address'])) { ?>
+					    地址: <?php echo $userShop['address']; ?> 
+					    <?php } ?>
+					    <?php echo $ofunction->cut_str($userShop['introduction'], 80); ?>
+					    <?php if (!empty($userShop['qq'])) { ?>
+						<a href="http://wpa.qq.com/msgrd?v=3&uin={$userShop['qq']}&site=qq&menu=yes" target="_blank">
+							<img border="0" title="点击这里给我发消息" alt="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:{$userShop['qq']}:46">
+						</a>
+						<?php } ?>
+						<?php if (!empty($userShop['imww'])) { ?>
+						<a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$userShop['imww']}&siteid=cntaobao&status=2&charset=utf-8">
+							<img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid=店小二&site=cntaobao&s=2&charset=utf-8" alt="点击这里给我发送消息" />
+						</a>
+						<?php } ?>
+						<?php if (!empty($userShop['weibo'])) { ?>
+						<a target="_blank" href="{$userShop['weibo']}">
+							<img src="/Public/image/common/sina.png" height="20" width="20">
+						</a>
+						<?php } ?>
+						<a href="__ROOT__/mall/shop/<?php echo $userShop['uid'] ?>" class="bg_red f12 radius3" style="padding:2px 3px;" target="_blank">进入店铺</a>
+				    </p>
+				</li>
+				<?php } ?>
+			</ul>
+		<?php } else { ?>
+			<div class="mall_category_info_none red">
+				<span class="icon_pump"></span> 这个分类暂时没有店铺 :(
+			</div>
+		<?php } ?>
+		<p class="i_paging_p f12 gray">共<?php echo $totalRecordNums ?>个店铺 <?php echo $totalPages ?>页</p>
+  		<div class="i_paging_div">
+  			<?php if ($totalPages > 1) { i_page_show("mall/shoplist/", $totalPages); } ?>
+  		</div>
+	</div>
+	<div class="mall_category_right">
+	<script type="text/javascript">
+     document.write('<a style="display:none!important" id="tanx-a-mm_12471997_4022398_13066845"></a>');
+     tanx_s = document.createElement("script");
+     tanx_s.type = "text/javascript";
+     tanx_s.charset = "gbk";
+     tanx_s.id = "tanx-s-mm_12471997_4022398_13066845";
+     tanx_s.async = true;
+     tanx_s.src = "http://p.tanx.com/ex?i=mm_12471997_4022398_13066845";
+     tanx_h = document.getElementsByTagName("head")[0];
+     if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+	</script>
+	</div>
+</div>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/mall/"></script> -->
+<include file="Public:footermall" />

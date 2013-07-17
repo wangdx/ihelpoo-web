@@ -1,0 +1,119 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">
+    	<?php if(!empty($_GET['succ'])) { ?>
+    		<span class="icon_right"></span>发布商品成功... <a href="__ROOT__/mall/item/<?php echo $_GET['succ'] ?>" target="_blank">查看</a> | <a href="__ROOT__/mallset/add/<?php echo $_GET['succ'] ?>">重新编辑</a>
+    	<?php } else { ?>
+    		卖东西 发布商品
+    		<?php if (!empty($resultRecordCommodity['cid']) && empty($resultRecordCommodity['status'])) { ?>
+    			<span class="red f12"><span class="icon_attention"></span> 这件商品违规被禁售了，请重新编辑发布.</span>
+    		<?php } ?>
+    	<?php } ?>
+    </div>
+	<div class="mallset_left f12">
+		<ul>
+			<li><a href="__ROOT__/mallset">店铺设置</a></li>
+			<li><a href="__ROOT__/mallset/logo">店铺logo</a></li>
+			<li><a href="__ROOT__/mallset/cate">分类管理</a></li>
+			<li><a href="__ROOT__/mallset/add" class="bg_red">发布商品</a></li>
+			<li><a href="__ROOT__/mallset/commodity">商品管理</a></li>
+			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的店铺</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<div class="mallset_add_image_div">
+		   <span class="mallset_add_ul_title_span">商品缩略图:</span><span class="red_l f12">(必须)</span> 
+		    <form enctype="multipart/form-data" action="__ROOT__/mallset/add" method="post" id="addimageform">
+				<ul>
+					<li><p><img id="uploadedimagefileshow" src="<?php echo i_goods_thumbnail($resultRecordCommodity['image']) ?>" width="150"  /></p></li>
+					<li><input id="addimagefile" name="uploadedimg" type="file" />
+						<span class="f12 gray">最小尺寸310px * 310px</span>
+						<span class="image_handle_info"></span>
+				    </li>
+					<li><input type="button" id="addimagesubmit" value="上传" />
+					</li>
+				</ul>
+			</form>
+		</div>
+		<form action="__ROOT__/mallset/add" method="post" id="settingform">
+		    <ul class="mallset_add_div_ul">
+			    <li><span class="mallset_add_ul_title_span">名&#12288;&#12288;称:</span> <input class="mallset_index_ul_li_input" name="name" type="text" value="{$resultRecordCommodity['name']}" /></li>
+			    <li><span class="mallset_add_ul_title_span">价&#12288;&#12288;格:</span> <input class="mallset_index_ul_li_input" name="price" type="text" value="{$resultRecordCommodity['price']}" /> <span class="f12 gray">必须填整数</span></li>
+			    <li><span class="mallset_add_ul_title_span">成&#12288;&#12288;色:</span> 
+			    	<select id="" name="good_type" class="mallset_index_ul_li_select" >
+			    		<?php if ($recordUserShop['shop_type'] == '1') { ?>
+			    			<option value="2">二手</option>
+			    		<?php } else { ?>
+				    		<option value="1">全新</option>
+				    		<option value="2">二手</option>
+			    		<?php } ?>
+			    	</select>
+			    	<span class="f12 gray">学生二手类店铺只能选择“二手”</span>
+			    </li>
+			    <li><span class="mallset_add_ul_title_span">数&#12288;&#12288;量:</span>
+			    	<select id="" name="good_nums" class="mallset_index_ul_li_select" >
+			    		<?php if (!empty($resultRecordCommodity['cid'])) { ?>
+				    		<?php for($i = 0; $i <= 100; $i++) { ?>
+				    			<?php if ($i == $resultRecordCommodity['good_nums']) { ?>
+				    				<option value="<?php echo $i; ?>" selected><?php echo $i; ?></option>
+				    			<?php } else { ?>
+				    				<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				    			<?php } ?>
+				    		<?php } ?>
+			    		<?php } else { ?>
+			    			<option value="0">0</option>
+			    			<option value="1" selected>1</option>
+				    		<?php for($i = 2; $i <= 100; $i++) { ?>
+				    			<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+				    		<?php } ?>
+			    		<?php } ?>
+			    	</select>
+			    </li>
+				<li><span class="mallset_add_ul_title_span">分&#12288;&#12288;类:</span>
+					<select id="category_id" name="category_id" class="mallset_index_ul_li_select" >
+					<?php foreach($selectCategoryArray as $commoditycategory) { 
+					if ($commoditycategory['id'] == $resultRecordCommodity['category_id']) { ?>
+					<option value="<?php echo $commoditycategory['id'] ?>" selected><?php echo $commoditycategory['name'] ?></option>
+					<?php } else {?>
+					<option value="<?php echo $commoditycategory['id'] ?>"><?php echo $commoditycategory['name'] ?></option>
+					<?php }
+					if (!empty($commoditycategory['children'])) {
+						foreach($commoditycategory['children'] as $childrencommoditycategory) { 
+							if ($childrencommoditycategory['id'] == $resultRecordCommodity['category_id']) { ?>
+								<option value="<?php echo $childrencommoditycategory['id'] ?>" selected>-<?php echo $childrencommoditycategory['name'] ?></option>
+							<?php } else {?>
+								<option value="<?php echo $childrencommoditycategory['id'] ?>">-<?php echo $childrencommoditycategory['name'] ?></option>
+							<?php } 
+						}
+					}
+					} ?>
+					</select>
+				</li>
+				<li><span class="mallset_add_ul_title_span">交易方式:</span> 
+					<input type="checkbox" name="buyway1" value="buyway1" id="buyway1" checked>
+					<label class="black_l">免费送货上门</label>
+					<input type="checkbox" name="buyway2" value="buyway2" id="buyway2">
+					<label class="black_l">+1元送货上门</label>
+					<input type="checkbox" name="buyway3" value="buyway3" id="buyway3">
+					<label class="black_l">自己来取</label>
+				</li>
+				<li>
+					<input id="image" name="image" type="hidden" value="{$resultRecordCommodity['image']}" />
+					<input id="cid" name="cid" type="hidden" value="{$resultRecordCommodity['cid']}" />
+				</li>
+				<li>
+					<span class="mallset_add_ul_title_span">详细描述:</span><br /><br /> 
+					<textarea id="detail" name="detail"><?php echo stripslashes($resultRecordCommodity['detail']); ?></textarea>
+				</li>
+				<li><input type="submit" value="发布商品" /></li>
+			</ul>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plugin/editor/kindeditor-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plugin/editor/lang/zh_CN.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mallset/add.js"></script>
+<include file="Public:footermall" />

@@ -1,0 +1,81 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <?php
+  if ($userloginedrecord['uid']) {
+  Vendor('Ihelpoo.Intersection');
+  $intersection = new Intersection();
+  $intersectionResult = $intersection->compare($userFirst, $userSecond);
+  ?>
+  <div class="wo_main">
+    <p class="wo_main_ul_p_top_intersection"><span class="fb"><?php echo $userSecond['nickname'] ?></span><span class="sex<?php echo $userSecond['sex']  ?>"></span> 和 <span class="fb">您</span><span class="sex<?php echo $userFirst['sex']  ?>"></span> 的交集</p>
+    <ul class="wo_main_intersection">
+      <li class="wo_ma_i_li_title"><span class="icon_n_color"></span>根据个人信息：</li>
+      <li><?php echo $intersectionResult['sex']['text'] ?></li>
+      <li><?php echo $intersectionResult['birthday']['text'];
+        if (i_constellation($userFirst['birthday']) == i_constellation($userSecond['birthday'])) {
+    	    echo "你们是同一样的星座哦";
+        } ?>
+      </li>
+      <li><?php echo $intersectionResult['enteryear']['text'] ?></li>
+      <li class="wo_ma_i_li_title"><span class="icon_n_msg"></span>根据学院等信息：</li>
+      <li><?php echo $intersectionResult['academy_op']['text'] ?></li>
+      <li><?php echo $intersectionResult['specialty_op']['text'] ?></li>
+      <li class="wo_ma_i_li_title"><span class="icon_star"></span>根据住址信息：</li>
+      <li><?php echo $intersectionResult['dormitory_op']['text'] ?></li>
+      <li><?php echo $intersectionResult['city_op']['text'] ?></li>
+      <li class="wo_ma_i_li_title"><span class="icon_pump"></span>根据其他：</li>
+      <li><?php echo $intersectionResult['active']['text'] ?></li>
+      <li><?php echo $intersectionResult['logintime']['text'] ?></li>
+      <li><?php echo $intersectionResult['online']['text'] ?></li>
+      <?php if ($userFirst['uid'] == $userSecond['uid']) {
+          echo "<li>晕! 你们是同一个人嘛</li>";
+      }?>
+    </ul>
+    <?php if ($userFirst['uid'] != $userSecond['uid']) { ?>
+    <div class="wo_intersection_quan">
+      <div>
+      <p class="f12">他们都 圈了 <?php echo $userSecond['nickname'] ?> 和你</p>
+      <?php
+      foreach ($userPrioritys as $userPriority){
+       if (in_array($userPriority['uid'], $userProArray)) {
+           ?>
+           <a href="__ROOT__/stream/u/<?php echo $userPriority['uid'] ?>">
+           <img src='<?php echo i_icon_check("$userPriority[uid]", "$userPriority[icon_url]", "s"); ?>' width="68" height="51" />
+           </a>
+           <?php
+       }
+       $userProArray[] = $userPriority['uid'];
+      }
+      ?>
+      </div>
+      <div>
+      <p class="f12">你们都圈了</p>
+      <?php
+      foreach ($userPrioritieds as $userPrioritied){
+       if (in_array($userPrioritied['pid'], $userProedArray)) {
+           ?>
+           <a href="__ROOT__/stream/u/<?php echo $userPrioritied['pid'] ?>">
+           <img src='<?php echo i_icon_check("$userPrioritied[pid]", "$userPrioritied[icon_url]", "s"); ?>' width="68" height="51" />
+           </a>
+           <?php
+       }
+       $userProedArray[] = $userPrioritied['pid'];
+      }
+      ?>
+      </div>
+    </div>
+    <?php } ?>
+  </div>
+  <?php } else { ?>
+  <div class="wo_main f12 black_l">
+    <span class="icon_pump"></span> 登录以后才能计算你们的交集!
+  </div>
+  <?php } ?>
+</div>
+
+</div>
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

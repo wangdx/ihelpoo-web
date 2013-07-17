@@ -1,0 +1,78 @@
+<include file="Public:headerrooter" />
+<div>
+	<form method="post">
+	  <span class="fb blue f14">1</span>.按等级查找用户ids:<br /><br />
+	  <select name="get_user_level">
+	    <option value="1">level1</option>
+	    <option value="2">level2</option>
+	    <option value="3">level3</option>
+	    <option value="4">level4</option>
+	    <option value="5">level5</option>
+	    <option value="6">level6</option>
+	    <option value="7">level7</option>
+	    <option value="8">level8</option>
+	    <option value="9">level9</option>
+	  </select>
+	  <input type="submit" value="查找" />
+	  <span title="<?php echo $userStrings; ?>"><?php echo $totalUserNums ?></span>
+	</form>
+	<br /><br />
+	<hr />
+	<br /><br />
+	<form method="post">
+	  <span class="fb blue f14">2</span>.授予用户荣誉:<br /><br />
+	  <p>用户uids:<input type="text" name="user_ids" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)<br /><br /></p>
+	  <p>荣誉内容:<textarea name="honor_content" rows="5" cols="70"></textarea></p>
+	  <p><br />&#12288;&#12288;&#12288;&#12288; <input type="submit" value="授予" /></p>
+	</form>
+	<br /><br />
+	<hr />
+	<br /><br />
+	<form method="post">
+	  <span class="fb blue f14">3</span>.奖励用户活跃:<br /><br />
+	  <p>用户uids:<input type="text" name="user_ids" value="<?php echo $userStrings ?>" /> (格式:10000;10001;10002)<br /><br /></p>
+	  <p>活跃数量:<input type="text" name="active_nums" /></p>
+	  <p>活跃原因:<input type="text" name="active_reason" />(奖励活跃原因)</p>
+	  <p><br />&#12288;&#12288;&#12288;&#12288; <input type="submit" value="奖励活跃" /></p>
+	</form>
+</div>
+<br /><br />
+<hr />
+<br /><br />
+<form method="post">
+<span class="fb blue f14">4</span>.查找用户详细信息:<br /><br />
+<p>用户uids:<input type="text" name="get_user_info" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)</p>
+<p><br />&#12288;&#12288;&#12288;&#12288; <input type="submit" value="查找" /></p>
+</form>
+<?php if (!empty($userList)) { ?>
+<br /><br />
+<hr />
+<br /><br />
+<ul><?php 
+foreach ($userList as $user) {
+	echo "<li>";
+	echo "<a href='".__ROOT__."/stream/u/".$user['uid']."' target='_blank'>".$user['nickname']."</a>";
+	echo " <span title='真实姓名'>(".$user['realname'].")</span>";
+	echo " " . i_sex($user['sex']);
+	echo " 生日: " . $user['birthday'];
+	
+	echo "<br />";
+	echo "学院: " . $user['nameacademy'];
+	echo " 专业: " . $user['namespecialty'];
+	echo " 寝室: " . $user['namedormitory'];
+	echo " 入学年份: " . $user['enteryear'];
+	echo "家乡: " . $user['namecity'];
+
+	echo "<br />";
+	echo " mobile: " . $user['mobile'];
+	echo " qq: " . $user['qq'];
+	echo " weibo: " . $user['weibo'];
+	echo " email: " . $user['email'];
+
+	echo "<br />";
+	echo "<span class='gray f10'>ip: ".$user['ip']." logintime: ".i_time($user['logintime'])."</span>";
+	echo "<br /><br /></li>";
+}
+?></ul>
+<?php } ?>
+<include file="Public:footerrooter" />

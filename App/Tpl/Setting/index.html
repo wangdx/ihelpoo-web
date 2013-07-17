@@ -1,0 +1,198 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="s_left f12">
+  <ul>
+    <li><a href="__ROOT__/setting" class="bg_orange"><span class="icon_text"></span> 个人资料</a></li>
+    <li><a href="__ROOT__/setting/ps"><span class="icon_write"></span> 修改密码</a></li>
+    <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
+    <li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li>
+  </ul>
+</div>
+<div class="s_right">
+  <form action="__ROOT__/setting" method="post" id="settingform">
+  <ul class="setindex">
+    <li class="black_l">
+      <span class="settitle">登录名:</span> 
+      <p class="accountinfo">{$recorduserlogin['email']}</p>
+      <span class="f12 gray">
+        <if condition="$recorduserlogin['status'] eq 2">已验证<else />未验证</if> 
+        <if condition="$recorduserlogin['type'] eq 1">个人用户
+        <elseif condition="$recorduserlogin['type'] eq 2"/>组织
+        <elseif condition="$recorduserlogin['type'] eq 3"/>商家
+        </if>
+        <a href="__ROOT__/mallset/deliveryaddress">收货地址</a>
+       </span>
+    </li>
+    <li>
+      <span class="settitle">昵称:</span>
+      <input id="nickname" type="text" name="nickname" value="{$recorduserlogin['nickname']}" />
+      <span id="nicknameinfo"></span>
+    </li>
+    <li>
+      <span class="settitle">性别:</span>
+      <p class="sex_part">
+      	<if condition="$recorduserlogin['sex'] eq 1">
+            <input type="radio" name="sex" value="1" checked /><label for="man">男</label>
+        	<input type="radio" name="sex" value="2" /><label for="woman">女</label>  		
+      	<else />
+			<input type="radio" name="sex" value="1" /><label for="man">男</label>
+        	<input type="radio" name="sex" value="2" checked /><label for="woman">女</label>  	
+		</if>
+      </p>
+    </li>
+    <li>
+      <span class="settitle">入学年份:</span>
+      <select id="enteryear" name="enteryear">
+        <for start="2012" end="1930" step="-1" comparison="gt">
+	        <if condition="$i eq $recorduserlogin['enteryear']"> 
+	        	<option value='{$i}' selected>{$i}</option>
+			<else />
+				<option value='{$i}'>{$i}</option>
+			</if>
+        </for>
+      </select>
+    </li>
+    <li>
+      <span class="settitle">学院:</span>
+      <select id="academy" name="academy">
+         <foreach name="listopacademy" item="academy">
+         	<if condition="$academy.number eq $recorduserinfo['academy_op']"> 
+	        	<option value='{$academy.number}' selected>{$academy.name}</option>
+			<else />
+				<option value='{$academy.number}'>{$academy.name}</option>
+			</if>
+		</foreach>
+      </select>
+    </li>
+    <li>
+      <span class="settitle">专业:</span>
+      <select id="specialty" name="specialty">
+        <foreach name="listopspecialty" item="specialty">
+         	<if condition="$specialty.id eq $recorduserinfo['specialty_op']"> 
+	        	<option value='{$specialty.id}' selected>{$specialty.name}</option>
+			<else />
+				<option value='{$specialty.id}'>{$specialty.name}</option>
+			</if>
+		</foreach>
+      </select>
+    </li>
+    <li>
+      <span class="settitle">寝室楼栋:</span>
+      <select id="dormitorytype" name="dormitorytype">
+        <if condition="$dormitorytype eq 1">
+            <option value="1" selected>男生寝室</option>
+	        <option value="2">女生寝室</option>
+	        <option value="3">其他</option>	
+        <elseif condition="$dormitorytype eq 2"/>
+	        <option value="1">男生寝室</option>
+	        <option value="2" selected>女生寝室</option>
+	        <option value="3">其他</option>	
+      	<else />
+	        <option value="1">男生寝室</option>
+	        <option value="2">女生寝室</option>
+	        <option value="3" selected>其他</option>	
+		</if>
+      </select>
+      <select id="dormitory" name="dormitory">
+        <foreach name="listopdormitory" item="dormitory">
+         	<if condition="$dormitory.id eq $recorduserinfo['dormitory_op']"> 
+	        	<option value='{$dormitory.id}' selected>{$dormitory.name}</option>
+			<else />
+				<option value='{$dormitory.id}'>{$dormitory.name}</option>
+			</if>
+		</foreach>
+      </select>
+      
+    </li>
+    <!-- <li>
+      <span class="settitle">收货地址:</span>
+      <input id="room" type="text" name="room" value="{$recorduserinfo['room']}" />
+      <span class="explaininfo f12 gray">填房间号 例如:509 (用于送东西交易等,不会展示)</span>
+    </li>
+     -->
+    <li>
+      <span class="intro_title settitle">自我简介:</span>
+      <textarea id="introduction" name="introduction">{$recorduserinfo['introduction']}</textarea>
+      <span id="introductioninfo" class="f12 gray"></span>
+    </li>
+    <li><p class="moreinfo f12">更多个人信息</p></li>
+    <li>
+      <span class="settitle">我的生日:</span>
+      <p class="birthday_part">
+      <select id="year" name="year">
+        <for start="2010" end="1910" step="-1" comparison="gt">
+	        <if condition="$i eq $birthyear"> 
+	        	<option value='{$i}' selected>{$i}</option>
+			<else />
+				<option value='{$i}'>{$i}</option>
+			</if>
+        </for>
+      </select>年
+      <select id="month" name="month">
+        <for start="1" end="13">
+	        <if condition="$i eq $birthmonth"> 
+	        	<option value='{$i}' selected>{$i}</option>
+			<else />
+				<option value='{$i}'>{$i}</option>
+			</if>
+        </for>
+      </select>月
+      <select id="day" name="day">
+        <for start="1" end="32">
+	        <if condition="$i eq $birthdate"> 
+	        	<option value='{$i}' selected>{$i}</option>
+			<else />
+				<option value='{$i}'>{$i}</option>
+			</if>
+        </for>
+      </select>
+      </p>
+    </li>
+    <li>
+      <span class="settitle">家乡:</span>
+      <p class="hometown_part">
+      <select id="province" name="province">
+         <foreach name="listopprovince" item="province">
+         	<if condition="$province.id eq $recorduserinfo['province_op']"> 
+	        	<option value='{$province.id}' selected>{$province.name}</option>
+			<else />
+				<option value='{$province.id}'>{$province.name}</option>
+			</if>
+		</foreach>
+      </select>
+      <select id="city" name="city">
+        <foreach name="listopcity" item="city">
+         	<if condition="$city.id eq $recorduserinfo['city_op']"> 
+	        	<option value='{$city.id}' selected>{$city.name}</option>
+			<else />
+				<option value='{$city.id}'>{$city.name}</option>
+			</if>
+		</foreach>
+      </select>
+    </li>
+    <li><span class="settitle">QQ:</span><input id="qq" type="text" name="qq" value="{$recorduserinfo['qq']}" /></li>
+    <li><span class="settitle">微博:</span><input id="weibo" type="text" name="weibo" value="{$recorduserinfo['weibo']}" /> <span class="explaininfo f12 gray">填网址 例如 http://weibo.com/ihelpoo</span></li>
+    <li><p class="moreinfo f12">实名个人信息 (不公开,只有得到您同意后才显示给请求人!)</p></li>
+    <li>
+    	<span class="settitle">真实姓名:</span> 
+    	<span class="realname">{$recorduserinfo['realname']} 
+    	<?php
+    	if ($recorduserinfo['realname_re'] == 2) {
+			echo "<span class='f12 gray'>已验证</span>";
+		} else if ($recorduserinfo['realname_re'] == 1) {
+			echo "<span class='f12 gray'>已填写，未验证</span>";
+		} else {
+			echo "<span class='f12 gray'>可修改</span>";
+		} ?>
+    	<a href="__ROOT__/setting/realfirst?step=1" class="f12">详情</a></span>
+    </li>
+    <li><span class="settitle">手机:</span><input id="mobile" type="text" name="mobile" value="{$recorduserinfo['mobile']}" /></li>
+    <li><a id="set_submit" class="btn f12">保存</a></li>
+  </ul>
+  </form>
+</div>
+<div id="ajaxprogressbar"></div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/setting/index.js?id=1"></script>
+<include file="Public:footer" />

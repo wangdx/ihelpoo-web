@@ -1,0 +1,36 @@
+.main{
+    position: relative;
+}
+.support_nav{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    border-right: 1px solid #EEE;
+    width: 150px;
+    padding: 10px;
+}
+.support_nav li{
+    padding: 5px;
+    border-bottom: 1px dotted #EEE;
+}
+.support_content{
+    margin-left: 190px;
+    padding: 10px 0;
+}
+.support_content ul{
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #CCC;
+}
+.support_content ul li{
+    padding: 5px 8px;
+}
+.support_content ul .fb{
+    padding: 0 0 10px 0;
+}
+.level_active_num{
+    font-size: 12px;
+    font-weight: bold;
+    color: #2A78C8;
+    font-style: italic;
+}

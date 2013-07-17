@@ -1,0 +1,14 @@
+<include file="Public:headerrooter" />
+  <?php
+  if (!empty($emailsended)) { 
+	echo $emailsended;
+  } else { ?>
+  <form action="" method="post">
+    <textarea rows="20" cols="30" name="emails"></textarea>
+    <input type="submit" value="send">
+  </form>
+  <span>
+    以“;”分隔，一次发送不要太多
+  </span>
+  <?php } ?>
+<include file="Public:footerrooter" />

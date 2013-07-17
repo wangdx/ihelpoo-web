@@ -1,0 +1,57 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<?php
+    Vendor('Ihelpoo.Ofunction'); 
+    $ofunction = new Ofunction();
+?>
+<div class="main black_l">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity" class="a_select" >活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<ul class="activity_index_left_ul f12 gray">
+		<li>共 <span class="f14 fb fi blue"><?php echo $totalActivityNums; ?></span> 个活动</li>
+		<li>审核通过 <span class="f14 fb fi green"><?php echo $totalOkActivityNums; ?></span> 个活动</li>
+		<li>将要或正在举行 <span class="f14 fb fi orange"><?php echo $beforeActivityNums; ?></span> 个活动</li>
+		<li>已经举行 <span class="f14 fb fi gray"><?php echo $afterActivityNums; ?></span> 个活动</li>
+	</ul>
+	<div class="activity_index_intro_div">
+		<?php if (!empty($recordActivityItem['subject'])) { ?>
+		<ul class="activity_index_intro_div_ul">
+			<li class="fb f14 fi gray">即将或正在举办的活动...</li>
+			<li><span class="fb f12 gray">主&#12288;&#12288;题:</span> <?php echo $recordActivityItem['subject']; ?> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="f12 gray" title="说两句"><span class="icon_write"></span></a></li>
+			<li><span class="fb f12 gray">主&#12288;&#12288;办:</span> <a href="__ROOT__/stream/u/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> <a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12 gray"><span class="icon_text"></span></a></li>
+			<li>
+				<span class="fb f12 gray">活动时间:</span> 
+				<span class="f12 fb black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span>
+				<?php $dayGap = date('z', $recordActivityItem['activity_ti']) - date('z', time()); ?>
+				<span class="f14 fb blue fi"><?php if ($dayGap == 0) { echo "今天"; } else if ($dayGap > 0) { echo $dayGap."天后"; } ?></span>
+				<span class="f12 gray">(星期<?php echo date('N', $recordActivityItem['activity_ti']); ?>)</span>
+			</li>
+			<li><span class="fb f12 gray">参加人数:</span> <span class="f14 fb black_l"><?php echo $recordActivityItem['join_num']; ?></span> <span class="gray f12">人气: </span><span class="f14 fb gray"><?php echo $recordActivityItem['hit']; ?></span></li>
+			<li><span class="fb f12 gray">大致内容:</span> <?php echo $ofunction->cut_str(strip_tags($recordActivityItem['content']), 200); ?></li>
+			<?php if (!empty($recordsActivityUser)) { ?>
+				<li><span class="f12 gray">他们参加了:</span>
+				<ul class="activity_index_user_ul">
+					<?php foreach ($recordsActivityUser as $activityUser) { ?>
+					<li>
+					<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?> 参加时间 <?php echo i_time($activityUser['time']); ?>">
+				    	<img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="30" class="i_c_l_u_li_img radius3" />
+					</a>
+					</li>
+					<?php } ?>
+				</ul>
+				</li>
+			<?php } ?>
+			<li><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">更多详情</a> <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn f12">我要参加</a></li>
+		</ul>
+		<?php } else { ?>
+		<ul class="activity_index_intro_div_ul">
+			<li class="fb f14 fi gray">目前没有能参加的活动 :( ...</li>
+		</ul>
+		<?php } ?>
+	</div>
+</div>
+<include file="Public:footer" />

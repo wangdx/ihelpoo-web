@@ -1,0 +1,91 @@
+<?php $DaQcode = M("DaQcode"); ?>
+<include file="Public:headerrooter" />
+	<?php if (!empty($userShopRecord)) { ?>
+	<ul class="user_ul">
+	<li>
+		<form method="post">
+		    <input type="hidden" name="uid" value="<?php echo $userShopRecord['uid']; ?>" />
+		    <p>
+		    	<?php if ($userShopRecord['status'] == '2') { ?>
+		    		<span class="icon_right"></span>
+		    	<?php } else { ?>
+		    		<span class="icon_attention"></span>
+		    	<?php } ?>
+		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['uid']; ?></a> - <a href="<?php echo $userShopRecord['idcard']; ?>" target="_blank">证件</a>
+		    	<?php
+		    	$recordDaQcode = $DaQcode->where("uid = $userShopRecord[uid]")->find();
+				if (!empty($recordDaQcode['id'])) {
+					echo "圈圈码:".$recordDaQcode['qcode'];
+				} ?>
+		    </p>
+		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">店铺</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
+		    <p>
+		    	状态: <input type="text" name="status" value="<?php echo $userShopRecord['status']; ?>" />
+		    </p>
+		    <p>
+		    	类型: <input type="text" name="shop_type" value="<?php echo $userShopRecord['shop_type']; ?>" />
+		    	<?php if ($userShopRecord['shop_type'] == '1') { ?>
+		    		<span class="gray f12">(<span class="red">1.学生二手</span> 2.学生经商 3.商家)</span>
+		    	<?php } else if ($userShopRecord['shop_type'] == '2') { ?>
+		    		<span class="gray f12">(1.学生二手 <span class="red">2.学生经商</span> 3.商家)</span>
+		    	<?php } else if ($userShopRecord['shop_type'] == '3') { ?>
+		    		<span class="gray f12">(1.学生二手 2.学生经商 <span class="red">3.商家</span>)</span>
+		    	<?php } ?>
+		    </p>
+		    <p><input type="submit" value="修改" /></p>
+		    <p>Record: <span class="f12 gray"><?php var_dump($userShopRecord); ?></p>
+		</form>
+	</li>
+	</ul>
+	<?php } ?>
+	<?php if (!empty($userShopRecords)) { ?>
+	<ul class="user_ul">
+	<li>
+		<form method="get">
+			<input type="text" name="searchuid" value="" />
+			<input type="submit" value="查询" />
+		</form>
+	</li>
+	<?php foreach($userShopRecords as $userShops) { ?>
+	<li>
+		<form method="post">
+		    <input type="hidden" name="uid" value="<?php echo $userShops['uid']; ?>" />
+		    <p>
+		    	<?php if ($userShops['status'] == '2') { ?>
+		    		<span class="icon_right"></span>
+		    	<?php } else { ?>
+		    		<span class="icon_attention"></span>
+		    	<?php } ?>
+		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['uid']; ?></a> - <a href="<?php echo $userShops['idcard']; ?>" target="_blank">证件</a>
+		    	<?php
+		    	$recordDaQcode = $DaQcode->where("uid = $userShops[uid]")->find();
+				if (!empty($recordDaQcode['id'])) {
+					echo "圈圈码:".$recordDaQcode['qcode'];
+				} ?>
+		    </p>
+		    <p><a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">店铺</a> 开店时间:<?php echo i_time($userShops['time']); ?></span></p>
+		    <p>
+		    	状态: <input type="text" name="status" value="<?php echo $userShops['status']; ?>" />
+		    </p>
+		    <p>
+		    	类型: <input type="text" name="shop_type" value="<?php echo $userShops['shop_type']; ?>" />
+		    	<?php if ($userShops['shop_type'] == '1') { ?>
+		    		<span class="gray f12">(<span class="red">1.学生二手</span> 2.学生经商 3.商家)</span>
+		    	<?php } else if ($userShops['shop_type'] == '2') { ?>
+		    		<span class="gray f12">(1.学生二手 <span class="red">2.学生经商</span> 3.商家)</span>
+		    	<?php } else if ($userShops['shop_type'] == '3') { ?>
+		    		<span class="gray f12">(1.学生二手 2.学生经商 <span class="red">3.商家</span>)</span>
+		    	<?php } ?>
+		    </p>
+		    <p><input type="submit" value="修改" /></p>
+		    <p>Record: <span class="f12 gray"><?php var_dump($userShops); ?></p>
+    	</form>
+	</li>
+	<?php }	?>
+	</ul>
+	<p class="f12 gray paging_p">共<?php echo $totalshops ?>个店铺 <?php echo $totalPages ?>页</p>
+	<div class="paging_div">
+	  <?php if ($totalPages > 1) { i_page_show("rooter/mallshop", $totalPages); } ?>
+	</div>
+	<?php } ?>
+<include file="Public:footerrooter" />

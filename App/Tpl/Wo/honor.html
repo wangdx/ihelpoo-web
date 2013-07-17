@@ -1,0 +1,47 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <?php
+  $userLever = i_degree($userStatus['active']);
+  $degreeArray = i_degreeRatio($userStatus['active']);
+  ?>
+  <div class="wo_main">
+    <ul class="wo_main_honor">
+      <li><span class="icon_star"></span> 活跃: <span class="fb f14 fi"><?php echo $userStatus['active'] ?></span></li>
+      <li>
+        <span class="ico_channel_user"></span> 等级:<?php
+           $degreeRatio = floor($degreeArray['ratio'] * 100)."%";
+        ?>
+        level<?php echo $userLever ?>
+        <span class="f12 gray">(<?php echo $degreeArray['start'] ?> ~ <?php echo $degreeArray['end'] ?>) 升级进度 <span class="f14 black_l fi"><?php echo $degreeRatio ?></span></span>
+        <div class="degree_ratio">
+          <p class="degree_ratio_in" style="width:<?php echo $degreeRatio?>"></p>
+        </div>
+      </li>
+    </ul>
+    <ul class="wo_main_honor">
+      <?php if ($userLever >= 2) { ?><li><span class="level2"></span>&nbsp; 特权: 扩散、评论、帮助后，你操作的信息可以在社区中置顶!  <span class="ico_post_due"></span></li><?php } ?>
+      <?php if ($userLever >= 3) { ?><li><span class="level3"></span>&nbsp; 特权: 查看社区用户QQ在线状态(在线区域位置QQ)，点击直接QQ聊天。切换皮肤。<span class="ico_post_due"></span></li><?php } ?>
+      <?php if ($userLever >= 4) { ?><li><span class="level4"></span>&nbsp; 特权: 我帮圈圈免费装系统。相册扩容至1g。<span class="ico_post_due"></span></li><?php } ?>
+      <?php if ($userLever >= 5) { ?><li><span class="level5"></span>&nbsp; 特权: 我帮圈圈解决手机刷机等硬件维护问题。<span class="ico_post_due"></span></li><?php } ?>
+	  <?php if ($userLever >= 6) { ?><li><span class="level6"></span>&nbsp; 特权: 超权限共享我帮圈圈社区、微博资源。困难优先得到解决。<span class="ico_post_due"></span></li><?php } ?>
+	  <?php if ($userLever >= 7) { ?><li><span class="level7"></span>&nbsp; 特权: 等级特权: 送伞。。。相册扩容至4g。 <span class="ico_post_due"></span></li><?php } ?>
+    </ul>
+    <ul class="wo_main_honor">
+      <?php
+          if (!empty($userHonors)) {
+              foreach ($userHonors as $userHonor): ?>
+                  <li><span class="icon_star"></span>&nbsp; <?php echo $userHonor['content']; ?> <span class="f12 gray">授予时间 <?php echo i_time($userHonor['time']); ?></span></li>
+                  <?php
+              endforeach;
+          }
+      ?>
+    </ul>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

@@ -1,0 +1,4 @@
+<appwizard><introduction><name></name><author>ihelpoo</author><icon></icon><homepage></homepage><description><![CDATA[]]></description></introduction><platform><services><service></service><service name="public"  params="数据存储">Storage</service><service size="50M">Memcache</service><service>Mysql</service><service>kvdb</service></services><appconfig><tpl><![CDATA[
+name: <<appname>>
+version: <<version>>
+]]></tpl></appconfig></platform><code><initScript>123</initScript></code></appwizard>

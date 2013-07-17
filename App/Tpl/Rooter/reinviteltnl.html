@@ -1,0 +1,18 @@
+<include file="Public:headerrooter" />
+   <p>
+     rules:
+     <br />1).if the user did not login ihelpoo > 7 days && they had new message;then send an reinvite email to her
+     <br />2).suggest run this function once per week <br />
+   </p>
+   <br />
+   <p><a href="?autorun">autorun</a></p>
+   <ul>
+   <?php
+      if (!empty($sendReinviteArray)) {
+          foreach ($sendReinviteArray as $sendReinviteArray) :
+              echo "<li>已发送 ".$sendReinviteArray['nickname']." ".$sendReinviteArray['email']."</li>";
+          endforeach;
+      }
+   ?>
+   </ul>
+<include file="Public:footerrooter" />

@@ -1,0 +1,483 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
+?>
+<include file="Public:header" />
+<link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#s_t_textarea {
+	font-family: Tahoma, Arial;
+	resize: none;
+	line-height: 21px;
+	margin: 4px 0 0 4px;
+	padding: 3px 5px;
+	overflow-y: auto;
+	font-size: 14px;
+	border: 1px solid #D0D0D0;
+	word-wrap: break-word;
+	word-break: break-all;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	transition: border linear .2s, box-shadow linear .2s;
+	-moz-transition: border linear .2s, -moz-box-shadow linear .2s;
+	-webkit-transition: border linear .2s, -webkit-box-shadow linear .2s;
+	outline: none;
+}
+#s_t_textarea:focus {
+	border-color: #7BD6F6;
+	-moz-outline: 4px solid #E2F5FB;
+	-moz-outline-radius: 8px;
+	-webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+	box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+}
+#cursorfocus {
+	position: absolute;
+	z-index: 9;
+	color: #15B6D7;
+	font-size: 14px;
+	opacity: 0.8;
+}
+</style>
+<div class="main">
+<!-- left -->
+<div class="stream_right">
+  <p class="img_part">
+    <a href="__ROOT__/setting/icon">
+      <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url'], 's') ?>" width="68" height="51" class="radius3" />
+    </a>
+    <span class="img_part_name">
+      <a href="__ROOT__/stream/u/<?php echo $userloginedrecord['uid']; ?>" class="f12 fb">
+        <?php echo $userloginedrecord['nickname'] ?>
+      </a>
+    </span>
+    <span class="f12 black_l">
+      <?php echo i_grade($userloginedrecord['enteryear']) ?>
+      <?php echo i_constellation($userloginedrecord['birthday']),i_sex($userloginedrecord['sex']) ?>
+    </span>
+    <br />
+    <a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">等级: <span class="level<?php echo i_degree($userloginedrecord['active']) ?>"></span></a>
+    <?php if (!empty($totalUserHonorNums)) { ?>
+    	<br />
+		<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">荣誉:
+		<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
+		</a>
+	<?php } ?>
+  </p>
+  <ul class="s_r_ul_priority">
+    <li><a href="__ROOT__/wo/quan/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">我圈</a> <span class="num f16 fb"><a href="__ROOT__/wo/quan/<?php echo $userloginedrecord['uid']; ?>">{$recordUserInfo['follow']}</a></span></li>
+    <li><a href="__ROOT__/wo/quaned/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">圈子</a> <span class="num f16 fb"><a href="__ROOT__/wo/quaned/<?php echo $userloginedrecord['uid']; ?>">{$recordUserInfo['fans']}</a></span></li>
+  </ul>
+  <ul class="s_r_ul">
+    <li><a href="__ROOT__/stream/"><span class="icon_recycle"></span>信息流<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/index/priority"><span class="icon_up"></span>只看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/index/help"><span class="icon_plus"></span>只看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
+  </ul>
+  <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] != '1') { ?>
+  <ul class="s_r_ul">
+  	<?php if($userloginedrecord['type'] != '1') { ?>
+  		<li>
+  			<a href="__ROOT__/stream/index/group/<?php echo $userloginedrecord['uid']; ?>" title="<?php echo $userloginedrecord['nickname']; ?>">
+  				<span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($userloginedrecord['nickname'], 5); ?>
+  				<?php if ($groupUserRecord['uid'] == $userloginedrecord['uid']) { ?>
+  				<span class="dot_choose"></span>
+  				<?php } ?>
+  			</a>
+  		</li>
+  	<?php } ?>
+  	<?php foreach ($pidGroupArray as $pidGroup) { ?>
+	  	<?php if ($groupUserRecord['uid'] == $pidGroup['uid']) { ?>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?><span class="dot_choose"></span></a></li>
+	  	<?php } else {?>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?></a></li>
+	  	<?php } ?>
+  	<?php } ?>
+  </ul>
+  <?php } ?>
+  <ul class="s_r_ul">
+    <li><a href="__ROOT__/wo"><span class="icon_write"></span>我的小窝</a></li>
+    <li><a href="__ROOT__/talk"><span class="icon_words"></span> 悄悄话</a></li>
+    <li><a href="__ROOT__/stream/fav"><span class="icon_heart"></span>我的收藏</a></li>
+    <li><a href="__ROOT__/mutual/shield?list"><span class="icon_attention"></span>我的屏蔽</a></li>
+  </ul>
+  <ul class="s_r_ul_sub f12">
+     <li><a href="__ROOT__/help">帮助广场</a></li>
+     <li><a href="__ROOT__/index/mate?w=academy&n=1">大家(学院)</a></li>
+     <li><a href="__ROOT__/index/hot">热门排行</a></li>
+     <li><a href="__ROOT__/lab">实验室</a></li>
+  </ul>
+</div>
+<!-- /left -->
+
+<!-- right -->
+<div class="stream_left">
+  <!-- stream box -->
+  <div class="stream_left_form_div">
+  	<p class="s_t_send_info">
+		<img src="__PUBLIC__/image/common/send_info.png" />
+		<span class="s_l_textarea_info f12 gray">还能输入<span class="blue">222</span>个字</span>
+	</p>
+	<!-- publish form -->
+    <form action="__ROOT__/stream" method="post" id="s_t_form">
+	    <ul class="stream_textbox_ul">
+	    <li>
+		  <div id="s_t_textarea_div">
+		      <textarea id="s_t_textarea" name="content"></textarea>
+		      <ul id="s_t_textarea_div_at"></ul>
+		  </div>
+	      <input type="hidden" name="authority" id="authority" value="0">
+	      <span class="f12 gray" id="quietlyreleased" title="不出现在我帮圈圈信息流，只显示在你的小窝"><input type="checkbox" name="quietlyreleased"> 悄悄发布</span>
+	      <a id="s_t_submit" class="btn f12">发布</a>
+	      <p class="verification_code_p">
+	        <img id="verification_code_img" src="" />
+	        <input type="text" name="verificationcode" value="999" id="verification_code"/>
+	      </p>
+	    </li>
+	    <li class="s_t_option">
+	      <span class="post_icon" id="textareaicon" title="表情"></span>
+	      <span class="post_img" id="textareaimg" title="图片"></span>
+	      <span class="post_video" id="textarealink" title="视频"></span>
+	      <?php if ($userloginedrecord['type'] != '1' ) { ?>
+	      <span class="post_appendix" id="textareagroupmsgpush" title="组织信息推送"></span>
+	      <?php } ?>
+	      <span class="helpleaf s_t_option_help" id="textareahelp" title="点击求帮助"></span>
+	      <?php if (!empty($isAlreadyBind['switch'])) {?>
+	      	<span class="btn_weibo_select" id="weibo_sdk_btn" title="同步到新浪微博"></span>
+	      	<input type="hidden" id="weibo_is_publish" value="on" />
+	      <?php } else { ?>
+	      	<span class="btn_weibo" id="weibo_sdk_btn" title="同步到新浪微博"></span>
+	      	<input type="hidden" id="weibo_is_publish" />
+	      <?php } ?>
+	      <ul class="weibo_sdk_message f12 black_l">
+	        <span class="icon_quit" title="关闭"></span>
+	      </ul>
+	      <!-- data storage -->
+	      <input type="hidden" name="help_is" id="help_is_input" value="0"/>
+	      <input type="hidden" name="imageurls" id="imageurls" />
+	      <input type="hidden" name="atusers" id="atusers" />
+	      <input type="hidden" name="textareacontent" id="textareacontent" />
+	      <!-- emotionbox hide -->
+	      <div id="emotionbox">
+			  <p class="emotionbox_close_p">
+				  <a class="emotionbox_change_page bg_gray gray" title="基本表情">1</a><a class="emotionbox_change_page gray" title="兔斯基 淘小二">2</a>
+				  <span id="emotionbox_close" class="icon_quit" title="关闭"></span>
+			  </p>
+		  	  <ul class="emotionbox_show_ul"></ul>
+		  </div>
+		  <!-- /emotionbox -->
+	    </li>
+	    <li id="post_link_li" class="f12 gray">
+	      视频 <input type="text" id="videourl" name="videourl" value="" /> <a id="url_video_btn" class="btn">确定</a>
+	      <div class="post_link_li_info"></div>
+	    </li>
+	    <li id="post_help_reword" class="f12 gray">
+	      活跃悬赏: <select id="reward_coins" name="reward_coins">
+	        <option value="0">0</option>
+	        <option value="10">10</option>
+	        <option value="20">20</option>
+	        <option value="30">30</option>
+	        <option value="50">50</option>
+	        <option value="80">80</option>
+	        <option value="100">100</option>
+	        <option value="200">200</option>
+	        <option value="500">500</option>
+	      </select>
+	      &nbsp;&nbsp;
+	      <span class="f12" id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
+	    </li>
+	    <li class="f12 gray" id="weibo_publish_li"><span class="icon_pump"></span>
+	      <?php if (!empty($isAlreadyBind['uid'])) {?>
+	            同步到新浪微博 <a id="standardSelector" title="弹出发布"><span class="icon_function"></span><span class="icon_write"></span></a>
+	      <?php } else { ?>
+	            <a href="__ROOT__/setting/bind" class="black_l"><span class="red_l">需绑定微博</span></a> <a id="standardSelector"></a>
+	      <?php } ?>
+	    </li>
+	    <?php if ($userloginedrecord['type'] != '1' ) { ?>
+	    <li class="f12 gray" id="post_groupmsgpush_li">
+	   		<span class="f12 gray" title="给你的组织内用户发送系统消息通知"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
+	   		<span class="f12 gray" title="给你的组织内用户发送邮件消息通知"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
+	   		<span class="icon_pump"></span> <a href="__ROOT__/activity/add" class="f12 gray">举办活动?</a>
+	    </li>
+	    <?php } ?>
+	    </ul>
+    </form>
+    <!-- /publish form -->
+
+    <!-- image upload hide -->
+    <div class="img_upload_form_div">
+      <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+        <input id="upload_form_img_file" name="uploadedimg" type="file" />
+        <a class="btn f12" id="img_upload_btn">上传</a>
+        <span class="imgajaxloading_span"></span>
+      </form>
+      <p class="img_upload_form_div_p f12 black_l">网络图片地址 <input id="img_upload_net" type="text" /> <a id="img_upload_net_btn" class="btn f12">确定</a></p>
+      <ul id="image_upload_list_ul"></ul>
+    </div>
+    <!-- /image upload -->
+  </div>
+  <!-- /stream box -->
+
+  <!-- stream list -->
+  <?php if($streamway == "time" || $streamway == "default") { ?>
+  	<p class="f12 black_l stream_list_ul_sort">
+  		<?php if (!empty($indexSpreadInfoVaule)) { echo $indexSpreadInfoVaule; } ?>
+        排序
+    	<a href="__ROOT__/stream" class='<?php if($streamway == "default") { echo "bg_blue"; } ?>' style="padding: 1px 2px; border-radius: 3px;">默认</a>
+    	<a href="__ROOT__/stream/index/time" class='<?php if($streamway == "time") { echo "bg_blue"; } ?>' style="padding: 1px 2px; border-radius: 3px;">按时间</a>
+  	</p>
+  <?php } else if ($streamway == "priority") { ?>
+  	<p class="f12 black_l stream_list_ul_sort">
+  		仅显示我圈的
+  	</p>
+  <?php } else if ($streamway == "help") { ?>
+  	<p class="f12 black_l stream_list_ul_sort">
+  		仅显示帮助
+  	</p>
+  <?php } else if ($streamway == "group") { ?>
+  	<p class="f12 black_l stream_list_ul_sort">
+  		显示 <a href="__ROOT__/stream/u/<?php echo $groupUserRecord['uid']; ?>"><?php echo $groupUserRecord['nickname']; ?></a> <a href="__ROOT__/index/group">组织</a>中的成员信息流 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
+  	</p>
+  <?php } ?>
+  <ul class="stream_list_ul">
+  <?php foreach ($recordSay as $record):
+  if ($record['repatenums'] == 1 && $streamway == "default") { ?>
+  	<li class="steam_repate_li">
+  <?php } else { ?>
+    <li>
+  <?php } ?>
+    <p class="s_li_p_icon">
+      <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>">
+        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 'm') ?>" width="100" height="75" class="radius5 getuserinfo" userid="<?php echo $record['uid'] ?>" />
+        <?php if ($record['type'] == '3') { ?>
+          <span class="grades"></span>
+        <?php } else if ($record['type'] == '2') { ?>
+          <span class="gradeg"></span>
+        <?php } else { ?>
+          <span class="grade<?php echo i_gradeNum($record['enteryear']) ?>"></span>
+        <?php }
+        if ($record['online'] == 1) { ?>
+		<span class="online_dot_status" title="在线"></span>
+		<?php } ?>
+      </a>
+    </p>
+    <div class="s_li_user_constellation f12 black_l">
+        <?php echo i_constellation($record['birthday']),i_sex($record['sex']) ?>
+    </div>
+    <div class="s_li_p_user f12">
+      <?php echo " <a href='".__ROOT__."/wo/".$record['uid']."' class='fb f14 getuserinfo' userid='".$record['uid']."'>".$record['nickname']."</a>" ?>
+      <?php if (i_degree($record['active']) > 4) { ?>
+      <span class="level<?php echo i_degree($record['active']) ?>" title="等级:<?php echo i_degree($record['active']) ?>"></span>
+      <?php } else if (i_degree($record['active']) < 2) { ?>
+      <span class="red_l f10" title="欢迎新童鞋:D">新童鞋</span>
+      <?php } ?>
+      <?php if ($record['type'] == '1') { ?>
+      	<?php if (!empty($record['name'])) { ?>
+      		<a href="__ROOT__/index/mate?w=academy&n={$record['academy']}&specialty={$record['specialty_op']}" target="_blank" class="gray f12" title="ta的专业">[{$record['name']}]</a>
+      	<?php } else { ?>
+      		<?php if ($record['school'] == 'zzuli') { ?>
+      			<a href="http://zzuli.ihelpoo.com/" class="gray f12" title="来自我帮圈圈郑州轻工业学院">[郑州轻工业学院]</a>
+      		<?php } ?>
+      	<?php } ?>
+      <?php } else if ($record['type'] == '2') { ?>
+      	<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织?</a>
+      <?php } else if ($record['type'] == '3') { ?>
+      	<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
+      <?php } ?>
+    </div>
+    <p class="s_li_p_content lh15">
+      <?php
+          echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
+		  if (!empty($record['url'])) {
+              echo "<a href='".$record['url']."' target='_blank'><span class='post_video'></span></a>";
+          }
+          if ($record['say_type'] == '1') {
+              echo " <a href='".__ROOT__."/item/help/".$record['sid']."' title='详情' target='_blank'><span class='btn_more'></span></a>";
+          } else {
+              echo " <a href='".__ROOT__."/item/say/".$record['sid']."' title='详情' target='_blank'><span class='btn_more'></span></a>";
+          }
+      ?>
+      <?php
+      if (!empty($record['image'])) {
+          $imageRecordArray = i_get_image($record['image'],'s');
+    	  echo '<p class="s_li_p_content_image">';
+		  foreach($imageRecordArray as $imageRecord) {
+             echo "<img src='".$imageRecord."' style='max-height:120px;' title='查看大图' />";
+          }
+          echo '</p>';
+      }
+      ?>
+
+      <?php if (!empty($record['url'])) {
+    	$videoResult = VideoUrlParser::parse($record['url']);
+		if (!empty($videoResult)) {
+		?>
+		<div class="s_li_p_content_mv">
+		    <p class="s_li_p_content_mv_img_p" title="<?php echo $videoResult['title']; ?>">
+				<span class="s_li_p_content_video_icon"></span>
+				<img src="<?php echo $videoResult['img']; ?>" class="s_li_p_content_mv_img"/>
+			</p>
+			<p class="s_li_p_content_mv_object_p" style="display:none">
+				<a class="s_li_p_content_mv_object_up f12"><span class="icon_up"></span>收起</a>
+				<?php echo $videoResult['object']; ?>
+			</p>
+		</div>
+	  <?php } } ?>
+
+    </p>
+    <span class="s_li_s_time f12 gray">
+      <?php if( $streamway == "default") {
+      	 if ($record['last_comment_ti'] != $record['time']) {
+             echo "<span title='发布时间:".i_time($record['time'])." 最新回应时间:".i_time($record['last_comment_ti'])."'>新回应:".i_time($record['last_comment_ti'])."<span class='icon_new'></span></span>";
+      	 } else {
+			 echo i_time($record['time']);
+		 }
+      } else {
+      	echo i_time($record['time']);
+      }?>
+      <?php
+      if (!empty($record['from'])) {
+          if ("2" == $record['from']) {
+          	  echo "来自我帮圈圈抓取程序";
+          } else if ("3" == $record['from']) {
+          	  echo "来自我帮圈圈Andriod客户端";
+          } else {
+          	  echo "来自<span title='".$record['from']."'>".$ofunction->cut_str($record['from'],10)."...</span>";
+          }
+      }
+      ?>
+    </span>
+    <span class="s_li_s_comment f12 black_l">
+      <span class="priority_shield"><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈<?php echo $record['sex'] == '1' ? '他' : '她' ?> or 屏蔽<?php echo $record['sex'] == '1' ? '他' : '她' ?></a></span>
+      <?php
+        if ($record['say_type'] == '1') {
+            echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'><span class='helpleaf'></span></a>";
+            if (!empty($record['comment_co'])) {
+                echo "(".$record['comment_co'].")";
+            }
+            echo " <a class='gray diffusion' value='ih-".$record['sid']."'>扩散".$record['diffusion_co']."</a>";
+        } else {
+        	echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>评论</a>";
+            if (!empty($record['comment_co'])) {
+                echo "(".$record['comment_co'].")";
+            }
+            echo " <a class='gray diffusion' value='i-".$record['sid']."'>扩散".$record['diffusion_co']."</a>";
+        }
+      ?>
+    </span>
+  </li>
+  <?php endforeach; ?>
+  </ul>
+  <div class="stream_list_link">
+  <?php i_page_show("stream/index/".$streamway."/".$groupUserRecord['uid'], 200); ?>
+  </div>
+  <!-- /stream list -->
+</div>
+<!-- right/ -->
+<!-- right_add -->
+<div class="stream_right_add">
+	<div class="stream_right_add_userinfo">
+		<?php if (empty($userloginedrecord['icon_url'])) { ?>
+			<p class="s_r_a_info_p">还没有上传头像呢 <a href="__ROOT__/setting/icon" class="fb">上传</a></p>
+		<?php } ?>
+	    <?php if ($userloginedrecord['status'] < 2) { ?>
+			<p class="s_r_a_info_p">邮箱没有验证呢 <a href="__ROOT__/user/emailaffirm?new=mail" class="fb">验证</a></p>
+		<?php } ?>
+		<?php if (empty($recordUserInfo['realname_re'])) { ?>
+			<p class="s_r_a_info_p">未实名呢 <a href="__ROOT__/setting/realfirst?step=1" class="fb">修改</a></p>
+		<?php } ?>
+		<a href="__ROOT__/lab/maponline" class="s_r_a_online_a f12" title="在线区域位置 人数">
+			<span class="online_dot"></span> 在线人数 <span class="fb">{$onlineUserNums}</span>
+		</a>
+		<ul class="stream_right_add_ul f12 black_l">
+			<li>
+				<a href="__ROOT__/message/active">
+					<span class="fb black_l">活跃:</span> <span class="fb f14 orange">{$userloginedrecord['active']}</span>
+					<?php if ($msgActiveNewNums) { echo "<span class='stream_new_active_nums_span'>".$msgActiveNewNums."</span> <span class='icon_new'></span>"; } ?>
+				</a>
+			</li>
+			<li>
+				<a  class="gray f10" href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>">
+					<?php
+						$degreeRatioArray = i_degreeRatio($userloginedrecord['active']);
+						$degreeRatio = floor($degreeRatioArray['ratio'] * 100)."%";
+						echo "升级".$degreeRatio;
+					?>
+				</a>
+				<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>">
+					<div style="background:#DDD; width:100%; height:4px;" title="<?php echo $degreeRatioArray['start'].'~'.$degreeRatioArray['end'].' 升级进度'.$degreeRatio; ?>">
+			      		<div style="background:#09F; height:4px; float:left; width:<?php echo $degreeRatio; ?>"></div>
+			    	</div>
+		    	</a>
+			</li>
+			<li>今日在线时长: <span class="fb f14 gray"><?php echo floor($recordUserStatus['total_active_ti']/60) ?></span>min</li>
+			<li>连续登录: <span class="fb f14 gray">{$userloginedrecord['login_days_co']}</span>天</li>
+		</ul>
+	</div>
+	<div class="stream_right_add_userinfo">
+		<ul class="stream_right_add_ul black_l f12">
+			<!-- <li><a href="__ROOT__/message/coin"><span class="fb black_l">钱包RMB:</span> <span class="fb f14 red">{$userloginedrecord['coins']}</span><span class="black_l">元</span></a></li> -->
+			<li>
+				<a href="__ROOT__/mallset/buyer?step=ontrade">交易中<span class="fb orange">({$goodOnCommodity})</span></a>
+				<a href="__ROOT__/mallset/buyer?step=needsure">待确认收货<span class="fb orange">({$goodOnNeedsure})</span></a>
+			</li>
+			<li><a href="__ROOT__/mallset/buyer?step=needassess">待评价<span class="fb orange">({$goodOnAssess})</span></a> | <a href="__ROOT__/mallset/shoppingcart">购物车</a></li>
+		</ul>
+	</div>
+	<div class="stream_right_add_userinfo">
+		<ul class="stream_right_add_ul black_l f12">
+			<?php if (empty($recordUserShop['uid'])) { ?>
+			<li><a class="btn_red f12" href="__ROOT__/mall/newshop?agreement=read">我要开店</a></li>
+			<?php } else { ?>
+			<li><a href="__ROOT__/mall/shop/<?php echo $userloginedrecord['uid']; ?>" class="f12">进入我的店铺</a></li>
+			<?php } ?>
+		</ul>
+	</div>
+	<div class="stream_right_add_userinfo">
+		<ul class="stream_right_add_ul black_l f12">
+			<li class="red_l">我帮圈圈需要您的支持!</li>
+			<li><a href="__ROOT__/mutual/invite"><span class="icon_heart"></span> 邀请好友加入</a></li>
+		</ul>
+	</div>
+	<!--
+	<div class="stream_right_add_userinfo">
+		<ul class="stream_right_add_ul black_l f12">
+			<li class="red_l">新版迁移内测稳定期，欢迎各种意见。<a href="__ROOT__/about" class="f10">联系方式</a></li>
+			<li class="red_l">数据部署稳定后，我帮圈圈将于4月初举行相关上线活动，希望大家到时多多关注，帮助宣传 :)</li>
+		</ul>
+	</div>
+	 -->
+	 <!--
+	 <div class="stream_right_add_userinfo">
+		 <ul class="stream_right_add_ul black_l f12">
+		 	<li><img src="__PUBLIC__/image/common/siyuan.jpg" width="160" /></li>
+		 </ul>
+	 </div>
+	 -->
+</div>
+<!-- right_add/ -->
+<div id="infotextareacheck"></div>
+
+</div>
+<div class="auto_load_div"></div>
+<div id="cursorfocus" style="display:none">⇧</div>
+<div class="user_info_div f12"></div>
+<div class="scroll_float_div">
+	<?php if ($userloginedrecord['uid'] == 10001 || $userloginedrecord['uid'] == 11402) {?>
+	<a id="scroll_top_btn" title="爬爬 爬回顶端:D" style="display:none;border-radius: 3px;padding: 3px;">
+	<img src="__PUBLIC__/image/common/gotop.gif" id="scroll_top_btn_img"/>
+	</a>
+	<?php } else { ?>
+	<a id="scroll_top_btn" title="返回顶端" style="display:none;">
+		<span class="back_top_img"></span>
+	</a>
+	<?php } ?>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/public/textareatools.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/stream/index.js?id=1"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/stream/weibo.js"></script>
+<include file="Public:footer" />

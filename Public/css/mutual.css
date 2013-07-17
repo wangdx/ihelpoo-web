@@ -1,0 +1,158 @@
+.mutual_rc{
+    margin: 50px auto;
+    padding: 10px;
+    width: 500px;
+    min-height: 300px;
+    border: 10px solid #DDD;
+    position: relative;
+    background: #FFFFFF url('../image/common/postmark.jpg') no-repeat right bottom;
+}
+.mutual_rc_img_p{
+    border-bottom: 3px dotted #EEE;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    position: relative;
+}
+.mutual_rc_img_p img{
+    border: 3px solid #CCC;
+}
+.mutual_rc_img_p_span{
+    position: absolute;
+    top: 15px;
+    left: 70px;
+}
+.mutual_rc_img_p_hometown{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.mutual_rc_div{
+    margin: 90px 0;
+    text-align: center;
+}
+.mutual_rc_ul{
+    margin: 40px 80px;
+}
+.mutual_rc_ul li{
+    padding: 5px 0;
+}
+.mutual_rc_please_div{
+    background: #FFFA85;
+    padding: 10px 20px;
+}
+.mutual_rc_please_div form{
+    display: inline;
+}
+.mutual_rc_please_div_submit{
+	padding: 1px 3px;
+	font-size: 12px;
+}
+/*--- find ---*/
+.find{
+    margin: 0 10px;
+}
+.find_info{
+    border-bottom: 3px solid #15B6D7;
+    padding: 10px 5px;
+}
+.find_ul{
+    padding: 10px 5px;
+}
+.find_ul li{
+    padding: 10px 5px;
+    position: relative;
+    border-bottom: 1px solid #EEE;
+}
+.find_ul li img{
+    vertical-align: bottom;
+}
+.i_list_link{
+    margin: 0 10px
+}
+.i_list_num{
+    margin: 10px 0;
+}
+.s_l_l_a{
+    display: inline-block;
+    padding: 3px 0;
+    width: 30px;
+    text-align: center;
+    border: 1px solid #CCC;
+    color: #999;
+    font-size: 12px;
+}
+.s_l_l_a:hover{
+    background: #999;
+    color: #FFF;
+}
+.s_l_l_a_select{
+    display: inline-block;
+    padding: 3px 0;
+    width: 30px;
+    text-align: center;
+    border: 1px solid #6ccacd;
+    font-size: 12px;
+    font-weight: bold;
+    background: #6ccacd;
+    color: #FFF;
+}
+.find_form{
+    width: 400px;
+    margin: 30px auto 20px auto;
+}
+.find_input{
+    width: 200px;
+    padding: 3px 2px;
+    color: #666;
+    font-size: 14px;
+	vertical-align: baseline;
+}
+.find_submit{
+    padding: 2px 2px;
+    color: #666;
+    font-size: 14px;
+    margin-left: 10px;
+}
+.find_p_searchmore{
+    margin: 60px auto 0 auto;
+    text-align: center;
+    width: 400px;
+}
+.find_p_searchmore img{
+    border: 3px solid #EEE;
+}
+/*--- priority.phtml ---*/
+.explain_info_ul{
+    background: #FFFA85;
+    padding: 10px 20px;
+    position: relative;
+}
+.explain_info_ul li{
+    padding: 5px 0;
+}
+.explain_info_ul .icon_index_wrong{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+/*--- ie7 ---*/
+*+html .find_info{
+	display:inline-block;
+}
+*+html .find_ul li{
+    display:inline-block;
+}
+*+html .mutual_rc_ul li{
+	display:inline-block;
+}
+/*--- ie6 ---*/
+*html .find_info{
+	display:inline-block;
+}
+*html .find_ul li{
+    display:inline-block;
+}
+*html .mutual_rc_ul li{
+	display:inline-block;
+}

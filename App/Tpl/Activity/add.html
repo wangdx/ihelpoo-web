@@ -1,0 +1,54 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add" class="a_select">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+<div class="activity_add_info_div">
+	添加新活动 <a href="__ROOT__/support?activity" class="gray f12">组织活动规范</a><span class="icon_sigh"></span>
+	<?php if (!empty($editActivityItem['aid'])) { ?>
+	 <span class="f12 red">编辑修改提交后，该活动将暂停，重新进入审核流程...</span>
+	<?php } ?>
+</div>
+<form action="__ROOT__/activity/add" method="post">
+<ul class="activity_add_ul">
+	<li>
+      <span class="activity_add_title">主&#12288;&#12288;题:</span>
+      <input type="hidden" name="aid" value="{$editActivityItem['aid']}" />
+      <input id="subject" class="activity_add_input" type="text" name="subject" value="{$editActivityItem['subject']}" />
+    </li>
+    <li>
+      <span class="activity_add_title">活动时间:</span>
+      <input id="activity_ti" class="activity_add_input" type="text" name="activity_ti" value="<?php echo $editActivityItem['activity_ti'] == NULL ? date('Y-m-d', time()) : date('Y-m-d', $editActivityItem['activity_ti']); ?>" />
+      <span class="gray f12">格式时间事例 2012-03-01</span>
+    </li>
+    <li>
+      <span class="activity_add_title">活动模式:</span>
+      <select id="run_type" name="run_type" class="activity_add_select">
+      	<?php if ($editActivityItem['run_type'] == '2') { ?>
+			<option value='1'>正常模式</option>
+			<option value='2' selected>Partner模式</option>
+		<?php } else { ?>
+			<option value='1' selected>正常模式</option>
+			<option value='2'>Partner模式</option>
+		<?php } ?>
+      </select>
+      <a href="__ROOT__/support?activity" class="gray f12">关于活动模式</a> <span class="icon_sigh"></span>
+    </li>
+    <li>
+      <span class="activity_add_title">内&#12288;&#12288;容:</span>
+      <div class="textarea_content_div">
+      	<textarea id="content" name="content"><?php echo stripslashes($editActivityItem['content']); ?></textarea>
+      </div>
+      <input id="submit" class="activity_add_submit" type="submit" value="确定" />
+    </li>
+</ul>
+</form>
+</div>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plugin/editor/kindeditor-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/plugin/editor/lang/zh_CN.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/activity/add.js"></script>
+<include file="Public:footer" />

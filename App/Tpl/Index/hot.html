@@ -1,0 +1,84 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<?php
+    Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
+    $i = 1;
+?>
+<div class="main">
+<div class="main_mate">
+  <div class="main_mate_info f12">
+    <p class="main_mate_info_hot">
+    <a href="?w=<?php echo $_GET['w'] ?>&t=day" {$_GET['t'] == 'day' ? "class = 'fb'" : NULL}><span class="icon_plus"></span>每天</a>
+    <a href="?w=<?php echo $_GET['w'] ?>&t=week" {$_GET['t'] == 'week' ? "class = 'fb'" : NULL}><span class="icon_plus"></span>一周</a>
+    <a href="?w=<?php echo $_GET['w'] ?>&t=all" {$_GET['t'] == 'all' ? "class = 'fb'" : NULL}><span class="icon_plus"></span>全部</a>
+    </p>
+  </div>
+  <div class="main_hot">
+  <ul class="hot_left_ul">
+    <li><a href="__ROOT__/index/hot?w=hit&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'hit' ? "class = 'hot_left_ul_li_a_select'":NULL}>最多浏览</a></li>
+    <li><a href="__ROOT__/index/hot?w=comment&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'comment' ? "class = 'hot_left_ul_li_a_select'":NULL}>最多评论</a></li>
+    <li><a href="__ROOT__/index/hot?w=diffusion&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'diffusion' ? "class = 'hot_left_ul_li_a_select'":NULL}>最多扩散</a></li>
+    <li>&nbsp;</li>
+    <li><a href="__ROOT__/index/hot?w=help&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'help' ? "class = 'hot_left_ul_li_a_select'":NULL}>热门帮助</a></li>
+    <li><a href="__ROOT__/index/hot?w=helpreply&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'helpreply' ? "class = 'hot_left_ul_li_a_select'":NULL}>最多帮助</a></li>
+    <li>&nbsp;</li>
+    <li><a href="__ROOT__/index/hot?w=useractive&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'useractive' ? "class = 'hot_left_ul_li_a_select'":NULL}><span class="icon_star"></span> 最活跃</a></li>
+    <!-- <li><a href="__ROOT__/index/hot?w=usercoins&t=<?php echo $_GET['t'] ?>" {$_GET['w'] == 'usercoins' ? "class = 'hot_left_ul_li_a_select'":NULL}>帮助币</a></li> -->
+  </ul>
+  <ul class="hot_right_ul">
+    <?php foreach ($recordList as $record) : ?>
+    <li>
+      <?php if ($i <= 3) { ?>
+      	  <span class="h_r_ul_li_num reb_back">
+      <?php } else if ($i <= 10) {?>
+      	  <span class="h_r_ul_li_num blue_l">
+      <?php } else {?>
+          <span class="h_r_ul_li_num gray">
+      <?php }
+          echo $i++;
+      ?>
+      </span>
+      <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img">
+        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="30" />
+      </a>
+      <p class="h_r_ul_li_comtent">
+        <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank">
+          <?php echo $record['nickname'] ?>
+          <?php if (!empty($record['active'])) { echo "<span class='level".i_degree($record['active'])."'></span>"; } ?>
+        </a>
+        <?php echo $ofunction->cut_str(strip_tags($record['content']), 20); ?>
+
+        <?php if ($_GET['w'] == 'help' || $_GET['w'] == 'helpreply') { ?>
+          <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_blank">详情</a>
+        <?php } else if ($_GET['w'] == 'useractive' || $_GET['w'] == 'usercoins') { ?>
+        <?php } else { ?>
+          <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_blank">详情</a>
+        <?php } ?>
+      </p>
+
+      <?php if ($_GET['w'] == 'comment') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['comment_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'helpreply') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['comment_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'diffusion') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['diffusion_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'useractive' || $_GET['w'] == 'usercoins') { ?>
+        <span class="red_l h_r_ul_li_time"><span class="icon_star"></span><span class="f12 black_l"> 活跃: </span><?php echo $record['active'] ?>
+        &nbsp;&nbsp;&nbsp;<span class="ico_reward"></span><span class="f12 black_l">帮助币: </span><?php echo $record['coins'] ?></span>
+      <?php } else { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['hit_co'] ?></span>
+      <?php } ?>
+      <?php if ($_GET['w'] == 'useractive' || $_GET['w'] == 'usercoins') { ?>
+      <?php } else { ?>
+        <span class="f12 gray h_r_ul_li_time"><?php echo i_time($record['time']) ?></span>
+      <?php } ?>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  </div>
+</div>
+
+</div>
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

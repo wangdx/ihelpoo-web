@@ -1,0 +1,72 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/help.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/help_bg.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<?php
+    Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
+?>
+<include file="Help:help_nav" />
+<div class="main_help">
+<div class="m_h_left_div">
+<h4><a href="__ROOT__/support?coins">规则</a> <span class="icon_sigh"></span></h4>
+<p>被选为最佳 帮助 <span class="f14 fb orange">+n</span> 活跃</p>
+<p>求助一次 帮助 <span class="f14 fb blue_m">-n</span>(n>=0)</p>
+</div>
+<div class="m_h_middle_div">
+  <h4 class="ico_pending">需要帮助 <a href="__ROOT__/help/need" class="m_h_m_div_h4_more">更多...</a></h4>
+  <ul class="m_h_middle_ul question_list">
+    <?php foreach ($recordHelpGoonList as $recordHelp): ?>
+    <li>
+      <a href="__ROOT__/item/help/<?php echo $recordHelp['sid'] ?>"><?php echo $ofunction->cut_str(stripslashes(strip_tags($recordHelp['content'])), 27) ?></a>
+      <span class="black_l f12"><?php echo $recordHelp['comment_co'] == NULL ? 0 : $recordHelp['comment_co'] ?>帮助</span>
+      <?php if (!empty($recordHelp['reward_coins'])) { ?>
+        <span class="ico_reward"></span><span class="f12 black_l fi"><?php echo $recordHelp['reward_coins'] ?></span>
+      <?php } ?>
+      <span class="ul_li_time f12 gray"><?php echo i_time($recordHelp['time']) ?></span>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
+
+<div class="m_h_middle_sub_div">
+  <h4 class="ico_baike">最佳帮助 <a href="__ROOT__/help/well" class="m_h_m_div_h4_more">更多...</a></h4>
+  <ul class="m_h_middle_sub_ul question_list">
+    <?php foreach ($recordHelpFinishList as $recordHelp): ?>
+    <li>
+      <a href="__ROOT__/item/help/<?php echo $recordHelp['sid'] ?>"><?php echo $ofunction->cut_str(stripslashes(strip_tags($recordHelp['content'])), 28) ?></a>
+      <?php if (!empty($recordHelp['reward_coins'])) { ?>
+        <span class="ico_reward"></span><span class="f12 black_l"><?php echo $recordHelp['reward_coins'] ?></span>
+      <?php } ?>
+      <span class="ul_li_time f12 gray"><?php echo i_time($recordHelp['time']) ?></span>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
+
+<div class="m_h_suer_sub_div">
+  <h4><span class="icon_star"></span> <a href="__ROOT__/index/hot?w=useractive&t=all">活跃排行</a></h4>
+  <ul class="m_h_suer_sub_ul">
+    <?php
+    $i = 1;
+    foreach ($recordUserActiveList as $userStatus): ?>
+    <li>
+      <?php if ($i <= 3) { ?>
+          <span class="h_r_ul_li_num fb fi f14 reb_back">
+      <?php } else if ($i <= 6) { ?>
+          <span class="h_r_ul_li_num fb fi f14 blue_l">
+      <?php } else { ?>
+          <span class="h_r_ul_li_num fb fi f14 gray">
+      <?php } ?>
+         <?php echo $i++ ?>.
+      </span>
+      <a href="/wo/honor/<?php echo $userStatus['uid'] ?>">
+        <?php echo $ofunction->cut_str($userStatus['nickname'], 8) ?>
+      </a>
+      <span class="ul_li_time f12 fb gray"><?php echo $userStatus['active'] ?></span></li>
+    <?php endforeach; ?>
+  </ul>
+</div>
+
+
+</div>
+<include file="Public:footer" />

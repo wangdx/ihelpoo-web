@@ -1,0 +1,40 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="s_left f12">
+  <ul>
+    <li><a href="__ROOT__/setting"><span class="icon_text"></span> 个人资料</a></li>
+    <li><a href="__ROOT__/setting/ps"><span class="icon_write"></span> 修改密码</a></li>
+    <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
+    <li><a href="__ROOT__/setting/bind" class="bg_orange"><span class="icon_plus"></span> 绑定微博</a></li>
+  </ul>
+</div>
+<div class="s_right">
+<ul class="s_bind_ul f12 black_l">
+  <li class="fb black">说明</li>
+  <li>1. 绑定成功后，可以用你的微博直接登录我帮圈圈。 (登录微博 = 登录我帮圈圈)</li>
+  <li>2. 在我帮圈圈中可以直接查看你的微博信息。 例如：新@数，新评论，新粉丝等等。</li>
+  <li>3. 你的信息可以同步到你的微博。</li>
+</ul>
+<ul class="s_bind_ul f12 black_l">
+  <li class="fb black">步骤</li>
+  <li>1. 先登录你想绑定的微博。</li>
+  <li>2. 点击“确认绑定”。</li>
+  <li>3. 绑定成功。</li>
+</ul>
+<div class="s_bind_div">
+<?php if (!empty($isAlreadyBind)) { ?>
+  <span class="icon_right"></span> 你已经绑定了微博 <a href="http://www.weibo.com/u/<?php echo $isAlreadyBind; ?>"><span class="f12 gray">http://www.weibo.com/u/<?php echo $isAlreadyBind; ?></span> 查看</a>
+<?php } else { ?>
+  <p class="fb bind_title">开始绑定微博</p>
+  <a id="wb_connect_btn"></a>
+  <p class="bind_info"></p>
+  <input id="weibo_user_id" type="hidden" />
+  <a class="btn f12" id="bind_weibo_btn">确认绑定</a>
+<?php } ?>
+</div>
+</div>
+</div>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/setting/weibo.js"></script>
+<include file="Public:footer" />

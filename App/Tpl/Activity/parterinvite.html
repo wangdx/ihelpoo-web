@@ -1,0 +1,43 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<div class="activity_itemnotice_info_div">
+		关于活动 <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>">“<?php echo $recordActivityItem['subject']; ?>”</a>(<?php echo $recordActivityItem['tun_type'] == '1' ? '正常模式' : 'Parter模式'; ?>) 你收到的邀请
+	</div>
+	<?php if ($_GET['action'] == 'accept') { ?>
+	<div class="activity_item_notive">
+		<p>你将接受 “<?php echo $_GET['nickname'] ?>” 的请求，成为此次活动的Partner :)</p>
+		<p>
+			<br /><a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?acceptid=<?php echo $_GET['id'] ?>" class="btn_red f12">确定</a>
+			<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>" class="btn f12">取消</a>
+		</p>
+	</div>
+	<?php } ?>
+	
+	<?php if (!empty($recordsActivityUserinvite)) { ?>
+	<div class="f12"><span class="icon_pump"></span>邀请列表，请选择其中一位作为Partner</div>
+	<ul class="activity_itemnotice_list_div_ul">
+	<?php foreach($recordsActivityUserinvite as $activityUserinvite) { ?>
+		<li>
+			<a href="__ROOT__/stream/u/<?php echo $activityUserinvite['invite_uid']; ?>">
+				<img src="<?php echo i_icon_check($activityUserinvite['invite_uid'], $activityUserinvite['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" />
+			</a>	
+			<a href="__ROOT__/stream/u/<?php echo $activityUserinvite['invite_uid']; ?>" class="f12">
+				<?php echo $activityUserinvite['nickname']; ?>
+			</a>
+			<span class="f12 gray" title="邀请时间"><?php i_time($activityUserinvite['time']); ?></span>
+			<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?action=accept&id=<?php echo $activityUserinvite['id']; ?>&nickname=<?php echo $activityUserinvite['nickname']; ?>">接受请求</a>
+		</li>
+	<?php } ?>
+	</ul>
+	<?php } else { ?>
+	<div><span class="icon_pump"></span> :( 你还没有收到此次活动的邀请...</div>
+	<?php } ?>
+</div>
+<include file="Public:footer" />

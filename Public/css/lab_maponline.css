@@ -1,0 +1,317 @@
+.btn {
+    padding: 2px 7px;
+}
+.header{
+	width:100%;
+}
+.main{
+    width: 80%;
+    border: 0px;
+}
+*+html .main{
+    width: 100%;
+}
+*html .main{
+    width: 100%;
+}
+.main_scorll_div{
+    overflow: scroll;
+    height: 500px;
+    width: 100%;
+    background: #eae6db;
+    margin: 10px 0;
+}
+*+html .main_scorll_div{
+	overflow:visible;
+	height: 1120px;
+}
+*html .main_scorll_div{
+	overflow:visible;
+}
+.footer{
+    width: 100%;
+}
+.maponline_main_div{
+    width: 1800px;
+    height: 1180px;
+    position: relative;
+    background: url(../image/common/hbmymap3d_work.jpg) no-repeat;
+}
+.user_show_p{
+    z-index: 1111;
+}
+.dormitoryinfo{
+    padding: 5px 8px;
+    border: 1px solid #EEE;
+    background: #FFFA85;
+    color: #999;
+    font-size: 12px;
+    border-radius: 5px;
+    z-index: 1111;
+}
+#d_0{
+    position: absolute;
+    left: 20px;
+    top: 120px;
+    color: #fff;
+}
+#d_31{
+    position: absolute;
+    left: 500px;
+    top: 880px;
+    color: #fff;
+}
+/*k1~k3*/
+#d_36{
+    position: absolute;
+    left: 1250px;
+    top: 120px;
+    color: #fff;
+}
+#d_37{
+   position: absolute;
+   left: 1290px;
+   top: 70px;
+   color: #fff;
+}
+#d_38{
+   position: absolute;
+   left: 1330px;
+   top: 30px;
+   color: #fff;
+}
+/*1~7*/
+#d_1{
+    position: absolute;
+    left: 480px;
+    top: 430px;
+    color: #fff;
+}
+#d_2{
+    position: absolute;
+    left: 530px;
+    top: 360px;
+    color: #fff;
+}
+#d_3{
+    position: absolute;
+    left: 590px;
+    top: 400px;
+    color: #fff;
+}
+#d_4{
+    position: absolute;
+    left: 620px;
+    top: 330px;
+    color: #fff;
+}
+#d_5{
+    position: absolute;
+    left: 690px;
+    top: 380px;
+    color: #fff;
+}
+#d_6{
+    position: absolute;
+    left: 740px;
+    top: 300px;
+    color: #fff;
+}
+#d_7{
+    position: absolute;
+    left: 760px;;
+    top: 410px;
+    color: #fff;
+}
+
+
+/*8~17*/
+#d_8{
+   position: absolute;
+   left: 840px;
+   top: 320px;
+   color: #fff;
+}
+#d_10{
+   position: absolute;
+   left: 950px;
+   top: 300px;
+   color: #fff;
+}
+#d_11{
+   position: absolute;
+   left: 980px;
+   top: 250px;
+   color: #fff;
+}
+#d_12{
+   position: absolute;
+   left: 1050px;
+   top: 270px;
+   color: #fff;
+}
+#d_13{
+   position: absolute;
+   left: 1060px;
+   top: 200px;
+   color: #fff;
+}
+#d_14{
+   position: absolute;
+   left: 1130px;
+   top: 230px;
+   color: #fff;
+}
+#d_15{
+   position: absolute;
+   left: 1130px;
+   top: 150px;
+   color: #fff;
+}
+#d_16{
+   position: absolute;
+   left: 1190px;
+   top: 180px;
+   color: #fff;
+}
+#d_17{
+   position: absolute;
+   left: 1180px;
+   top: 100px;
+   color: #fff;
+}
+#d_18{
+   position: absolute;
+   left: 1210px;
+   top: 80px;
+   color: #fff;
+}
+/*k4~k11*/
+#d_18{
+   position: absolute;
+   left: 1620px;
+   top: 30px;
+   color: #fff;
+}
+#d_19{
+    position: absolute;
+    left: 1620px;
+    top: 80px;
+    color: #fff;
+}
+#d_20{
+    position: absolute;
+    left: 1630px;
+    top: 110px;
+    color: #fff;
+}
+#d_21{
+    position: absolute;
+    left: 1640px;
+    top: 160px;
+    color: #fff;
+}
+#d_22{
+   position: absolute;
+   left: 1640px;
+   top: 220px;
+   color: #fff;
+}
+#d_23{
+    position: absolute;
+    left: 1650px;
+    top: 265px;
+    color: #fff;
+}
+#d_24{
+    position: absolute;
+    left: 1660px;
+    top: 315px;
+    color: #fff;
+}
+#d_25{
+    position: absolute;
+    left: 1670px;
+    top: 370px;
+    color: #fff;
+}
+/*sanwa18~23*/
+#d_26{
+    position: absolute;
+    left: 1230px;
+    top: 690px;
+    color: #fff;
+}
+#d_27{
+    position: absolute;
+    left: 1130px;
+    top: 730px;
+    color: #fff;
+}
+#d_28{
+    position: absolute;
+    left: 1150px;
+    top: 860px;
+    color: #fff;
+}
+#d_29{
+    position: absolute;
+    left: 1250px;
+    top: 830px;
+    color: #fff;
+}
+#d_39{
+    position: absolute;
+    left: 1330px;
+    top: 780px;
+    color: #fff;
+}
+#d_35{
+    position: absolute;
+    left: 1060px;
+    top: 780px;
+    color: #fff;
+}
+#d_43{
+    position: absolute;
+    left: 1050px;
+    top: 865px;
+    color: #fff;
+}
+/*other*/
+#d_40{
+    position: absolute;
+    left: 810px;
+    top: 970px;
+    color: #fff;
+}
+#d_41{
+    position: absolute;
+    left: 260px;
+    top: 850px;
+    color: #fff;
+}
+#d_42{
+    position: absolute;
+    left: 130px;
+    top: 670px;
+    color: #fff;
+}
+#d_34{
+    position: absolute;
+    left: 300px;
+    top: 180px;
+    color: #fff;
+}
+#d_33{
+    position: absolute;
+    left: 530px;
+    top: 700px;
+    color: #fff;
+}
+#d_30{
+    position: absolute;
+    left: 160px;
+    top: 780px;
+    color: #fff;
+}

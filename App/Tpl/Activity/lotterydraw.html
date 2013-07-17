@@ -1,0 +1,53 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<div class="activity_itemnotice_info_div">
+		关于活动 <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>">“<?php echo $recordActivityItem['subject']; ?>”</a> 的抽奖
+	</div>
+	<?php if ($recordActivityItem['sponsor_uid'] == $userloginedrecord['uid']) { ?>
+	<form action="" method="post" class="activity_itemnotice_form">
+		<input type="hidden" name="aid" value="<?php echo $recordActivityItem['aid']; ?>" />
+		抽取人数 
+		<select id="usernumbers" name="usernumbers">
+	        <for start="1" end="10">
+				<option value='{$i}'>{$i}</option>
+	        </for>
+      	</select>
+		<input type="submit" value="开始抽奖" class="activity_itemnotice_submit" /> 
+	</form>
+	<p class="f12 gray"><br /><span class="icon_pump"></span>选择抽取人数，点击开始抽奖，抽奖结果将会显示在抽奖记录中 ...</p>
+	<?php } ?>
+	
+	<div class="activity_itemnotice_list_div">
+		<p class="activity_itemnotice_list_div_p f12">抽奖记录:</p>
+		<ul class="activity_itemnotice_list_div_ul">
+		<?php if (!empty($recordsActivityLotterydraw)) { 
+		foreach ($recordsActivityLotterydraw as $activityLotterydraw) { ?>
+			<li>
+				<?php echo $activityLotterydraw['userids']; ?> <span class="f12 gray">时间 <?php echo i_time($activityLotterydraw['time']); ?></span> 
+			</li>
+		<?php } } ?>
+		</ul>
+	</div>
+	
+	<div class="activity_itemnotice_userlist_div">
+		<p class="activity_itemnotice_userlist_div_p f12">当前有 <?php echo $recordActivityItem['join_num']; ?> 人加入该活动，是抽奖的对象。</p>
+		<ul class="activity_itemnotice_userlist_div_ul">
+		<?php if (!empty($recordsActivityUser)) { 
+		foreach ($recordsActivityUser as $activityUser) { ?>
+			<li>
+				<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?>">
+				    <img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="30" class="i_c_l_u_li_img radius3" />
+				</a>
+			</li>
+		<?php } } ?>
+		</ul>
+	</div>
+</div>
+<include file="Public:footer" />

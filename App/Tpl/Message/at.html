@@ -1,0 +1,55 @@
+<?php
+	Vendor('Ihelpoo.Emotion'); 
+	$emotion = new Emotion();
+?>
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="s_left f12">
+  <ul class="s_left_category">
+    <li><a href="__ROOT__/message/system">帮助与系统 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/comment">评论与回复 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/at" class="bg_orange">@提到我的 <span class="icon_n_msg"></span></a></li>
+    <!-- <li><a href="__ROOT__/message/coin">RMB记录 <span class="icon_n_msg"></span></a></li> -->
+    <li><a href="__ROOT__/message/active">活跃记录 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/talk">悄悄话Talk <span class="icon_n_msg"></span></a></li>
+  </ul>
+</div>
+<div class="msg_right">
+  <?php if (isset($_GET['delat'])) { ?>
+  <div class="msg_div_del radius3">
+    <p class="f12 black_l"><span class="icon_attention"></span> 将会删除最近15条@消息</p> 
+    <p class="msg_div_del_sure"><a href="__ROOT__/message/at?suredel" class="btn_yes radius3">继续删除</a> <a href="__ROOT__/message/at" class="btn_no radius3">取消</a></p>
+  </div>
+  <?php } ?>
+  <?php if (isset($_GET['suredel']) || isset($_GET['suredel'])) { ?>
+  <div class="msg_div_del">
+    <p class="f12 black_l"><span class="icon_sigh"></span> 已经删除消息</p> 
+  </div>
+  <?php } ?>
+  <p class="msg_explain f12 black_l">@我的信息 <a href="__ROOT__/message/at?delat" class="fr white icon_garbage_del"><span class="icon_garbage" title="删除@消息"></span></a></p>
+  <ul class="msg_com_ul">
+  <?php
+	  foreach ($msgarray as $msg):
+	  echo "<li ";
+      echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
+      echo ">";
+      echo "<a href='".__ROOT__."/stream/u/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
+      echo "<p class='msg_info f12'>";
+      echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <span class='gray'>".$msg['info']."</span> <a href='".__ROOT__."/item/say/".$msg['sid']."' target='_blank' class='a_view_info'>查看</a></p>";
+      echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
+      echo "<span class='msg_li_time'>".$msg['time']."</span>";
+      echo "</li>";
+      endforeach;
+    ?>
+  </ul>
+  <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
+  <div class="i_comment_list_link">
+  <?php i_page_show("message/at", $totalpages); ?>
+  </div>
+</div>
+</div>
+<div class="user_info_div f12"></div>
+<script type="text/javascript" src="__PUBLIC__/js/message/default.js"></script>
+<include file="Public:footer" />

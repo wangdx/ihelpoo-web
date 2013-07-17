@@ -1,0 +1,82 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <div class="wo_main">
+    <div class="wo_main_other_top">
+      <?php if (isset($_GET['image'])) { ?> 
+      <a href="__ROOT__/wo/other/<?php echo $userLogin['uid'] ?>?image" class="a_select">图片</a> 
+      <?php } else { ?>
+      <a href="__ROOT__/wo/other/<?php echo $userLogin['uid'] ?>?image">图片</a> 
+      <?php } ?>
+      <?php if (isset($_GET['video'])) { ?>
+      <a href="__ROOT__/wo/other/<?php echo $userLogin['uid'] ?>?video" class="a_select">视频</a>
+      <?php } else { ?>
+      <a href="__ROOT__/wo/other/<?php echo $userLogin['uid'] ?>?video">视频</a>
+      <?php } ?>
+      <?php if (isset($_GET['music'])) { ?>
+      <a href="__ROOT__/wo/other/<?php echo $userLogin['uid'] ?>?music" class="a_select">音乐</a>
+      <?php } else { ?>
+      <a href="__ROOT__/wo/other/<?php echo $userLogin['uid'] ?>?music">音乐</a>
+      <?php } ?>
+    </div>
+    
+    <div class="wo_main_other_middle">
+    <?php foreach ($recordOthers as $record): ?>
+    <?php 
+    if (!empty($record['image']) && isset($_GET['image'])) {
+    	if ($record['say_type'] == 1) {
+    		echo "<a href='".__ROOT__."/item/help/".$record['sid']."'>";
+    	} else {
+    		echo "<a href='".__ROOT__."/item/say/".$record['sid']."'>";
+    	}
+  	    $imageRecordArray = i_get_image($record['image']);
+    		foreach($imageRecordArray as $imageRecord) {
+    	    	echo "<img src='".$imageRecord."' height='120' />";
+    		}
+        echo "</a>";
+    }
+    ?>
+    <?php 
+      if (!empty($record['url']) && isset($_GET['video'])) {
+       if (preg_match('#\.swf#i', $record['url']) && !preg_match('#box\.baidu\.com#i', $record['url'])) {
+		?>
+		<p class="s_li_p_content_mv">
+		<embed src="<?php echo $record['url'] ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"></embed>
+		<?php 
+        if ($record->say_type == 1) {
+    		echo "<a href='".__ROOT__."/stream/ih/".$record['sid']."'>原记录</a>";
+    	} else {
+    		echo "<a href='".__ROOT__."/stream/i/".$record['sid']."'>原记录</a>";
+    	}
+    	?>
+		</p>
+		<?php
+		}
+      }
+      if (!empty($record['url']) && isset($_GET['music'])) {
+       if (preg_match('#box\.baidu\.com#i', $record['url'])) {
+		?>
+		<p class="s_li_p_content_mv">
+		<embed src="<?php echo $record['url'] ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="200"></embed>
+		<?php 
+        if ($record->say_type == 1) {
+    		echo "<a href='".__ROOT__."/item/help/".$record['sid']."'>原记录</a>";
+    	} else {
+    		echo "<a href='".__ROOT__."/item/say/".$record['sid']."'>原记录</a>";
+    	}
+    	?>
+		</p>
+		<?php
+		}
+      }
+    ?>
+    <?php endforeach; ?>
+    </div>
+  </div>
+</div>
+
+</div>
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

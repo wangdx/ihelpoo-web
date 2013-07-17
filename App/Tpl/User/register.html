@@ -1,0 +1,72 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/user.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+
+<div class="registe_main">
+  
+  <?php if (empty($inviteUser['uid'])){ ?>
+  <div class="registe_toptext">
+    <p class="f16 black_l"><span class="icon_n_color" title="ihelpoo Beta3 换肤啦 买东西..."></span> 欢迎加入我帮圈圈 校园帮助主题社交网站 ~ 湖北民族学院</p>
+    <ul class="f12 gray">
+      <li>希望大家一起能帮您解决一些问题...</li>
+      <li>希望您找到需要的讯息...</li>
+      <li>希望您找到幸福... </li>
+    </ul>
+  </div>
+  <?php } else { ?>
+    <div class="registe_toptext_user">
+    	<p class="registe_toptext_user_p">
+	    	<a href="__ROOT__/wo/<?php echo $inviteUser['uid']; ?>" target="_blank" title="<?php echo $inviteUser['nickname']; ?> 的更多信息"><img src="<?php echo i_icon_check($inviteUser['uid'], $inviteUser['icon_url']); ?>" width="120" height="90" class="registe_toptext_user_p_a_img" />
+	    	<?php if ($inviteUser['type'] == 2) { ?>
+          		<span class="gradeg"></span>
+        	<?php } else { ?>
+          		<span class="grade<?php echo i_gradeNum($inviteUser['enteryear']) ?>"></span>
+        	<?php } 
+        		if ($inviteUser['online'] == 1) { ?>
+				<span class="online_dot_status" title="在线"></span>
+			<?php } ?>
+	    	</a>
+    	</p>
+    	<p class="registe_toptext_info_p">
+    		<a href="__ROOT__/wo/<?php echo $inviteUser['uid']; ?>" target="_blank" title="<?php echo $inviteUser['nickname']; ?>"><?php echo $inviteUser['nickname']; ?></a>
+    		 邀请你加入我帮圈圈 :)
+    		<br />
+    		<span class="black_l f12">Hi，赶快注册圈我吧，记录、分享、方便我的大学生活！让信息有真实的价值。</span>
+    		<span class="registe_toptext_info_p_academy f12 gray">
+    			<?php echo $inviteUser['nickname']; ?> <?php echo i_constellation($inviteUser['birthday']),i_sex($inviteUser['sex']) ?> 等级<?php echo i_degree($inviteUser['active']) ?> , 来自 <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['number'] ?>" target="_blank"><?php echo $userAcademy['name'] ?></a> 
+    			<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['number'] ?>&specialty=<?php echo $userSpecialty['id'] ?>" target="_blank" ><?php echo $userSpecialty['name'] ?></a>
+    		</span>
+    	</p>
+    </div>
+  <?php } ?>
+  <form action="__ROOT__/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
+  <ul class="registe_ul black_l">
+    <li>邮&#12288;&#12288;箱<input id="email" type="text" name="email" /><span id="emailinfo" class="f12 red_l"></span></li>
+    <li>创建密码<input id="password" type="password" name="password" /><span id="passwordinfo" class="f12 red_l"></span></li>
+    <li>密码重复<input id="passwordrepeat" type="password" name="passwordrepeat" /><span id="passwordrepeatinfo" class="f12 red_l"></span></li>
+    <li>昵&#12288;&#12288;称<input id="nickname" type="text" name="nickname" /><span id="nicknameinfo" class="f12 red_l"></span></li>
+    <li>性&#12288;&#12288;别<p class="sex_part"><input type="radio" name="sex" value="1" checked="checked" /><label for="man">男</label> <input type="radio" name="sex" value="2"/><label for="woman">女</label></p></li>
+    <li>
+      学&#12288;&#12288;院      
+      <select id="academy" name="academy">
+      <?php foreach ($listOpAcademy as $academy) : ?>
+        <option value="<?php echo $academy['number']; ?>"><?php echo $academy['name']; ?></option>
+      <?php endforeach; ?>
+      </select>
+    </li>
+    <li class="enteryear_li">
+      入学年份
+      <select id="enteryear" name="enteryear">
+        <?php $i = 2012; while ($i >= 1930) { ?>
+        <option value="<?php echo $i;?>"><?php echo $i;?></option>
+        <?php $i--; } ?>
+      </select>
+    </li>
+    <li><a id="registe_submit" class="radius3" >注册</a> <span id="registeinfo" class="f12 red_l"></span></li>
+  </ul>
+  </form>
+</div>
+
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/user/register.js?id=1"></script>
+<include file="Public:footer" />

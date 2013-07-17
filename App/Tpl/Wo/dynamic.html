@@ -1,0 +1,100 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+?>
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <div class="wo_main">
+    <p class="wo_main_ul_p_top black_l">
+    	<a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>">记录</a>
+    	<a href="__ROOT__/wo/dynamic/<?php echo $userLogin['uid'] ?>" class="a_select">动态</a>
+		<span class="fr fi">共<span class="green f16 fb"><?php echo $totalRecords ?></span>条动态</span>
+    </p>
+    <ul class="wo_main_dynamic_ul">
+    <?php foreach ($sayRecord as $record):?>
+      <li>
+        <p class="wo_li_p_icon">
+          <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="getuserinfo" userid="<?php echo $record['uid'] ?>">
+            <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" width="68" height="51" class="radius3" />
+          </a>
+        </p>
+        <div class="wo_li_p_content lh13">
+          <?php echo "<a href='".__ROOT__."/wo/".$record['uid']."' target='_blank' class='fb getuserinfo' userid='".$record['uid']."' title=".i_grade($record['enteryear']),i_constellation($record['birthday']),i_sex($record['sex']).">".$record['nickname']."</a>" ?>
+          <?php echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
+          if (!empty($record['url'])) {
+              echo "<a href='".$record['url']."' target='_blank'><span class='post_video'></span></a>";
+          }?>
+		  <?php
+      		if (!empty($record['image'])) {
+          		$imageRecordArray = i_get_image($record['image'],'s');
+    	 		 echo '<p class="s_li_p_content_image">';
+				 foreach($imageRecordArray as $imageRecord) {
+        		     echo "<img src='".$imageRecord."' height='120' title='查看大图' />";
+        		 }
+        		 echo '</p>';
+     		 }
+		    if (!empty($record['url'])) {
+    		$videoResult = VideoUrlParser::parse($record['url']);
+			if (!empty($videoResult)) {
+			?>
+			<div class="s_li_p_content_mv">
+			    <p class="s_li_p_content_mv_img_p" title="<?php echo $videoResult['title']; ?>">
+					<span class="s_li_p_content_video_icon"></span>
+					<img src="<?php echo $videoResult['img']; ?>" class="s_li_p_content_mv_img"/>
+				</p>
+				<p class="s_li_p_content_mv_object_p" style="display:none">
+					<a class="s_li_p_content_mv_object_up f12"><span class="icon_up"></span>收起</a>
+					<?php echo $videoResult['object']; ?>
+				</p>
+			</div>
+		  <?php } } ?>
+		  <p class="f12 gray">
+	          <?php echo i_time($record['time']) ?>
+	          <?php
+	          	if (!empty($record['from'])) {
+              		if ("2" == $record['from']) {
+              	 	 echo "来自我帮圈圈抓取程序";
+            	  } else if ("3" == $record['from']) {
+             	 	  echo "来自我帮圈圈Andriod客户端";
+             	  } else {
+             		  echo "来自".$record['from'];
+            	  }
+        	 	}
+          	  ?>
+          </p>
+		  <p class="f12 gray">
+          <?php if ($record['say_type'] == '0' || $record['say_type'] == '2' || $record['say_type'] == '9') { ?>
+          	<a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_blank" class="black_l">回应</a>
+          <?php } else if ($record['say_type'] == '1') { ?>
+          	<a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_blank" class="black_l">回应</a>
+          <?php } ?>
+          <?php echo $record['comment_co'] == NULL ? "(0)" : "($record[comment_co])"; ?>
+          扩散<?php echo $record['diffusion_co'] == NULL ? "(0)" : "($record[diffusion_co])"; ?>
+          浏览<?php echo $record['hit_co'] == NULL ? "(0)" : "($record[hit_co])"; ?>
+          </p>
+        </div>
+      </li>
+    <?php endforeach; ?>
+    </ul>
+
+    <div class="wo_right">
+        <a class="wo_right_a" href="__ROOT__/stream/index/newreply">写记录</a>
+    </div>
+
+    <div class="wo_paging">
+      <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条记录 <?php echo $totalPages ?>页</p>
+      <span>
+      <?php if ($totalPages > 1) { i_page_show("wo/dynamic/".$userLogin['uid'], $totalPages); } ?>
+      </span>
+    </div>
+  </div>
+</div>
+</div>
+<div class="user_info_div f12"></div>
+
+<script type="text/javascript" src="__PUBLIC__/js/wo/index.js?id=1"></script>
+<include file="Public:footer" />

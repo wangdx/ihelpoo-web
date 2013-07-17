@@ -1,0 +1,240 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/support.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<ul class="support_nav">
+	<?php if (isset($_GET['play'])) { ?>
+		<li><a href="__ROOT__/support?play" class="fb">怎么玩我帮圈圈？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?play">怎么玩我帮圈圈？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['level'])) { ?>
+		<li><a href="__ROOT__/support?level" class="fb">如何升级？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?level">如何升级？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['coins'])) { ?>
+		<li><a href="__ROOT__/support?coins" class="fb">如何获得帮助币？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?coins">如何获得帮助币？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['honor'])) { ?>
+		<li><a href="__ROOT__/support?honor" class="fb">如何获得荣誉？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?honor">如何获得荣誉？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['bind'])) { ?>
+		<li><a href="__ROOT__/support?bind" class="fb">如何绑定微博？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?bind">如何绑定微博？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['quan'])) { ?>
+		<li><a href="__ROOT__/support?quan" class="fb">什么是圈子？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?quan">什么是圈子？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['deffusion'])) { ?>
+		<li><a href="__ROOT__/support?deffusion" class="fb">什么是扩散？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?deffusion">什么是扩散？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['lab'])) { ?>
+		<li><a href="__ROOT__/support?lab" class="fb">实验室是干什么的？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?lab">实验室是干什么的？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['user'])) { ?>
+		<li><a href="__ROOT__/support?user" class="fb">用户类型区别？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?user">用户类型区别？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['activity'])) { ?>
+		<li><a href="__ROOT__/support?activity" class="fb">活动模式及规范？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?activity">活动模式及规范？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['lastweibo'])) { ?>
+		<li><a href="__ROOT__/support?lastweibo" class="fb">上一版weibo绑定？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?lastweibo">上一版weibo绑定？</a></li>
+	<?php } ?>
+	<?php if (isset($_GET['changedns'])) { ?>
+		<li><a href="__ROOT__/support?changedns" class="fb">偶尔不能访问圈圈？</a></li>
+	<?php } else { ?>
+		<li><a href="__ROOT__/support?changedns">偶尔不能访问圈圈？</a></li>
+	<?php } ?>
+</ul>
+<div class="support_content f12">
+<?php if (isset($_GET['level'])) { ?>
+  <ul>
+    <li class="fb">活跃(单位:活跃)</li>
+    <li>每天在线时长</li>
+    <li>在线 0.5h~2h <span class="level_active_num">+5</span> <span class="gray f12">(h = hour 小时)</span></li>
+    <li>在线 大于 2h <span class="level_active_num">+10</span></li>
+  </ul>
+  <ul>
+    <li class="fb">操作部分:</li>
+    <li>发记录 <span class="level_active_num">+3</span> <span class="gray f12">每天最多加3 * 3</span> <span class="icon_new"></span></li>
+    <li>评论回复 <span class="level_active_num">+1</span> <span class="gray f12">每天最多加15 * 1</span></li>
+    <li>求帮助 <span class="level_active_num">+3</span></li>
+    <li>帮助追问 <span class="level_active_num">+1</span></li>
+    <li>被采纳 <span class="level_active_num">+5</span> <span class="icon_new"></span></li>
+  </ul>
+  <ul>
+    <li class="fb">连续登录: </li>
+    <li>登录 <span class="level_active_num">+2</span> <span class="icon_new"></span></li>
+    <li>3d <span class="level_active_num">+5</span> <span class="gray f12">(d = day 天)</span></li>
+    <li>5d <span class="level_active_num">+10</span></li>
+    <li>10d <span class="level_active_num">+25</span></li>
+    <li>20d <span class="level_active_num">+50</span></li>
+    <li>30d <span class="level_active_num">+75</span></li>
+    <li>每10d <span class="level_active_num">+75</span> <span class="icon_new"></span></li>
+  </ul>
+  <ul>
+    <li class="fb">扣分: <span class="icon_new"></span></li>
+    <li>被他人屏蔽(每天扣除上线5) <span class="level_active_num"><span class="red">-5</span></span></li>
+  </ul>
+  <ul>
+    <li class="fb">等级说明:</li>
+    <li><span class="level1"></span> lever1 <span class="level_active_num">0~30</span></li>
+    <li><span class="level2"></span> lever2 <span class="level_active_num">30~120</span> <span class="f12 gray">等级特权: 扩散、评论、帮助后，你操作的信息可以在社区中置顶!</span></li>
+    <li><span class="level3"></span> lever3 <span class="level_active_num">120~330</span> <span class="f12 gray">等级特权: 查看社区用户QQ在线状态(在线区域位置QQ)，点击即可直接QQ聊天。切换皮肤。</span> <span class="icon_new"></span></li>
+    <li><span class="level4"></span> lever4 <span class="level_active_num">330~720</span> <span class="f12 gray">等级特权: 我帮圈圈免费装系统，解决各种软件问题。相册扩容至1g</span> <span class="icon_new"></span></li>
+    <li><span class="level5"></span> lever5 <span class="level_active_num">720~1350</span> <span class="f12 gray">等级特权: 我帮圈圈解决手机刷机等硬件维护问题。</span></li>
+    <li><span class="level6"></span> lever6 <span class="level_active_num">1350~3990</span> <span class="f12 gray">等级特权: 超权限共享我帮圈圈社区、微博资源。困难优先得到解决。</span></li>
+    <li><span class="level7"></span> lever7 <span class="level_active_num">3990~10200</span> <span class="f12 gray">等级特权: 搬东西。。。相册扩容至4g</span> <span class="icon_new"></span></li>
+    <li><span class="level8"></span> lever8 <span class="level_active_num">10200~22230</span> <span class="f12 gray">等级特权: 思考中，等你想象，欢迎<a href="__ROOT__/about">意见</a>。。。</span></li>
+    <li><span class="level9"></span> lever9 <span class="level_active_num">22230~41280</span> <span class="f12 gray">同上</span></li>
+    <li><span class="level10"></span> lever10 <span class="level_active_num">41280~80400</span> <span class="f12 gray">同上</span></li>
+    　<li><span class="f12 gray">我帮圈圈更乐意帮助乐于助人的活跃的童鞋！</span></li>
+  </ul>
+  <ul>
+    <li class="fb">等级特权:</li>
+    <li>更多等级特权待完善，目前显示在你小窝的 <a href="__ROOT__/wo/honor/">等级荣誉</a> 页面。</li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['coins'])) { ?>
+  <ul>
+    <li class="fb f14">如何获得帮助币？<span class="red_l f12">第三版用“活跃”代替了帮助币</span></li>
+    <li>帮助(单位:RMB)</li>
+    <li>求助一次 <span class="level_active_num">-n</span> <span class="f12 gray">(n为你悬赏的RMB)</span></li>
+    <li>被采纳  <span class="level_active_num">＋n</span> <span class="f12 gray">(n为悬赏的RMB)</span></li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['quan'])) { ?>
+  <ul>
+    <li class="fb f14">什么是 "圈子" ?</li>
+    <li>当 他/她 圈你时，表示加入了你的圈子。</li>
+    <li>1. 你可以扩散消息给你圈子里的人。</li>
+    <li>2. 你有困难请求帮助时，系统提示你圈子里的人。</li>
+    <li>PS: 圈子越大，你的困难越容易的到解决，你扩散的消息越有影响力。</li>
+  </ul>
+  <ul>
+    <li class="fb f14">什么是 "我圈的" (圈他/她)?</li>
+    <li>1. 当 他/她 有困难时，系统自动提示你。</li>
+    <li>2. 他/她 可以扩散消息给你。</li>
+    <li>3. 单独列表 他/她 的信息。</li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['deffusion'])) { ?>
+  <ul>
+    <li class="fb f14">什么是扩散？</li>
+    <li>扩散是我帮圈圈筛选传递有价值信息的一种机制，类似于微博转发，但也有区别。</li>
+    <li>1. 你只可以扩散消息给你圈子里的人。你圈子越大，你扩散的消息越有影响力。</li>
+    <li>2. 根据六度人脉理论，好的消息便可以以此传递给社区中所有的人。并且消息越受关注，你收到的扩散也会越多。</li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['bind'])) { ?>
+  <ul>
+    <li class="fb f14">如何绑定微博？</li>
+    <li>绑定微博是我帮圈圈实行多平台登录的一种方式。以后还会支持QQ等主流web产品的登录</li>
+    <li>说明</li>
+    <li>1. 绑定成功后，可以用你的微博直接登录我帮圈圈。 (登录微博 = 登录我帮圈圈)</li>
+    <li>2. 在我帮圈圈中可以直接查看你的微博信息。 例如：新@数，新评论，新粉丝等等。</li>
+    <li>3. 你的信息可以同步到你的微博。</li>
+    <li>步骤</li>
+    <li>1. 先登录你想绑定的微博。</li>
+    <li>2. 点击“确认绑定”。</li>
+    <li>3. 绑定成功。</li>
+    <li><a href="__ROOT__/setting/bind" class="f12">开始绑定</a></li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['lab'])) { ?>
+  <ul>
+    <li class="fb f14"><a href="__ROOT__/lab" >实验室</a> 是干什么的？</li>
+    <li>实验室是我帮圈圈实践idea的一个平台。在这里我们希望灵感带来创举。实践获得真知。</li>
+    <li>你可以联系我帮圈圈, 共建实验室。结合社区、校园共同开发有意义的作品。你出点子, 我们写代码, 贴你的名字, 实现你idea。</li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['play'])) { ?>
+  <ul class="f12 black_l">
+    <li class="fb f14 black">怎么玩我帮圈圈？</li>
+    <li>我帮圈圈是一个针对民院，完全自主设计开发的以帮助为中心的社交网站。</li>
+    <li>加入我帮圈圈，你可以及时获得校园里大大小小的有趣的消息。</li>
+    <li>加入我帮圈圈，你能认识更多有趣的好玩的校友。</li>
+    <li>加入我帮圈圈，你有困难，大家都会出点子。</li>
+    <li>加入我帮圈圈，<span class="fb f14 black">记录你的大学生活，吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，联系你欢喜联系的，交往你感觉对头的，请教该请教的。就这么简单~~~ </span>学长学姐学弟学妹都在这里。</li>
+    <li>我帮圈圈更乐意帮助乐于助人的童鞋！</li>
+    <li>“雷锋”童鞋的困难必须得到解决，这是我们全力以赴的方向。</li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['honor'])) { ?>
+  <ul class="f12 black_l">
+    <li class="fb f14 black">如何获得荣誉？</li>
+    <li>记录你的大学生活，吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，联系你欢喜联系的，交往你感觉对头的，请教该请教的。<span class="fb f14 black">总之，活跃起来，积极帮助别人就对了。</span></li>
+    <li>我帮圈圈更乐意帮助乐于助人的童鞋！<span class="fb f14 black">我们会定期根据活跃程度(等级)，帮助积极程度 授予荣誉并送上小礼物。详细制度待完善。</span></li>
+    <li><span class="fb f14 black">当你获得荣誉时，系统消息会通知你。我帮圈圈也会主动联系你并在社区公示。</span></li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['user'])) { ?>
+  <ul class="black_l">
+    <li class="fb f14 black">用户类型区别？</li>
+    <li class="f14">1.普通个人。<span class="f12 gray">注册后默认为“普通个人”用户类型。</span></li>
+    <li class="f14">2.组织。<span class="f12 gray">组织圈子里的人，表示加入组织。特权:组织特殊标志; 组织账号能向圈自己的用户发布“系统通知”和“邮件通知”; 组织社区活动; 组织内的用户能够查看圈子内的单独信息分类。</span></li>
+    <li class="f14">3.商家。<span class="f12 gray">商家是有“组织”功能的商业用户，特权与组织相同。商家特殊标志。</span></li>
+    <li><span class="f12 gray">PS: “组织” “商家” 用户类型需要联系我帮圈圈申请使用. <a href="__ROOT__/about">联系</a></span></li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['activity'])) { ?>
+  <ul class="black_l">
+    <li class="fb f14 black">活动模式</li>
+    <li class="f14">1.正常模式。<span class="f12 gray">活动参与者之间不能两两配对参与活动。</span></li>
+    <li class="f14">2.Partner模式。<span class="f12 gray">默认为“Partner”活动模式。活动参与者之间能够互相选择，经过双方同意后形成两两配对参与活动。</span></li>
+    <li><br /></li>
+    <li class="fb f14 black">组织活动规范 <span class="f12 gray">(待完善)</span></li>
+    <li class="f12">1.遵守相关法律法规。合符道德。</li>
+    <li class="f12">2.能保证活动及参与者各方的安全。</li>
+    <li class="f12">3.准备充分，有趣味，有一定的影响力，健康积极向上，主题与大学生相关。</li>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['lastweibo'])) { ?>
+  <ul class="black_l">
+    <li class="fb f14 red_l">&nbsp;&nbsp;上一版本微博绑定，针对仅仅使用新浪微博登录，没有我帮圈圈社区账号的用户。</li>
+    <li class="f12">1. 微博登录后，请完善账号资料。</li>
+    <!-- <li class="f12">2. <a href="__ROOT__/about">联系</a>我帮圈圈或者新浪微博私信@我帮圈圈 “我只用微博登录我帮圈圈，现在没有微博登录按钮了，我要设置绑定账号: 昵称 + uid”。</li>
+    <li class="f12">3. 我帮圈圈收到消息后会及时回复，发送给你带有密钥的网址，您通过该网址自行设置账号密码，就能重新登录我帮圈圈了 :)</li>
+    <li class="f12"><br /><br /></li>
+     -->
+    <li class="f14">目前还涉及以下仅微博登录没有我帮圈圈独立账号的用户.</li>
+    <?php
+    $UserLogin = M("UserLogin");
+    $recordsUserLogin = $UserLogin->where("email = ''")->select();
+    foreach ($recordsUserLogin as $UserLogin) {
+    ?>
+    <li class="f12"><a href="__ROOT__/wo/<?php echo $UserLogin['uid']; ?>"><?php echo $UserLogin['nickname']; ?></a> uid:<?php echo $UserLogin['uid']; ?></li>
+    <?php } ?>
+  </ul>
+<?php } ?>
+<?php if (isset($_GET['changedns'])) { ?>
+  <ul class="black_l">
+    <li class="fb f14">偶尔不能访问我帮圈圈？</li>
+    <li class="f12">由于SAE电信DNS解析的问题，校园内部分用户访问我帮圈圈网站时会出现偶尔不能访问的问题。</li>
+    <li class="f12">(1). windows用户直接下载我们提供的<a href="__PUBLIC__/other/ihelpooDNS.zip">“我帮圈圈ihelpoo稳定加速访问补丁”</a>，一键运行就可以了。<span class="red_l">(杀毒软件会提示这是木马程序，请点击“允许访问”)</span></li>
+	<li class="f12">(2). 其他系统如Mac，Linux请手动将DNS设置为<a href="http://baike.baidu.com/view/5971613.htm" target="_blank">8.8.8.8</a> （Google提供的免费DNS服务器的IP地址），当然windows用户也可以自己手动设置DNS 8.8.8.8</li>
+	<li class="f12">这样就能解决访问掉包问题，让速度飞起来 :)</li>
+  </ul>
+<?php } ?>
+</div>
+</div>
+
+
+<include file="Public:footer" />

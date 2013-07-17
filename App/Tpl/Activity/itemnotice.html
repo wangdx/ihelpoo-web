@@ -1,0 +1,48 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<div class="activity_itemnotice_info_div">
+		关于活动 <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>">“<?php echo $recordActivityItem['subject']; ?>”</a> 的通知消息
+	</div>
+	<?php if ($recordActivityItem['sponsor_uid'] == $userloginedrecord['uid']) { ?>
+	<form action="" method="post" class="activity_itemnotice_form">
+		<input type="hidden" name="aid" value="<?php echo $recordActivityItem['aid']; ?>" />
+		<textarea name="activitynotice" class="activity_itemnotice_textarea"></textarea>
+		<input type="submit" value="发布通知" class="activity_itemnotice_submit" /> 
+	</form>
+	<p class="f12 gray"><span class="icon_pump"></span> 通知通过站内悄悄话(对方可以直接回复) 和 站外邮件两种方式同时发送...</p>
+	<?php } ?>
+	
+	<div class="activity_itemnotice_list_div">
+		<p class="activity_itemnotice_list_div_p f12">已经发送的通知:</p>
+		<ul class="activity_itemnotice_list_div_ul">
+		<?php if (!empty($recordsActivityNotice)) { 
+		foreach ($recordsActivityNotice as $activityNotice) { ?>
+			<li>
+				<?php echo $activityNotice['content']; ?> <span class="f12 gray">通知收到人数<?php echo $activityNotice['number']; ?> (<?php echo i_time($activityNotice['time']); ?>)</span> 
+			</li>
+		<?php } } ?>
+		</ul>
+	</div>
+	
+	<div class="activity_itemnotice_userlist_div">
+		<p class="activity_itemnotice_userlist_div_p f12">当前有 <?php echo $recordActivityItem['join_num']; ?> 人加入该活动，能接受到相关通知。</p>
+		<ul class="activity_itemnotice_userlist_div_ul">
+		<?php if (!empty($recordsActivityUser)) { 
+		foreach ($recordsActivityUser as $activityUser) { ?>
+			<li>
+				<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?>">
+				    <img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="30" class="i_c_l_u_li_img radius3" />
+				</a>
+			</li>
+		<?php } } ?>
+		</ul>
+	</div>
+</div>
+<include file="Public:footer" />

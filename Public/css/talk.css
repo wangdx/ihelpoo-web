@@ -1,0 +1,318 @@
+.main{
+    position: relative;
+}
+.user_list_ul{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width:185px;
+    height:480px;
+    overflow-y:scroll;
+    border:3px solid #DDD;
+    padding:10px;
+    background: #EEE;
+    border-radius: 3px;
+}
+.user_list_ul li{
+    padding: 5px 0;
+    position: relative;
+    height: 50px;
+}
+.user_list_a{
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.user_list_nickname{
+    position: absolute;
+    left: 66px;
+    top: 3px;
+	width: 110px;
+}
+.user_list_nickname span{
+    vertical-align: text-bottom;
+}
+.talk_index_left{
+    width: 760px;
+}
+.talk_index_sexnums{
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+.talk_index_sextext{
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+.talk_index_logo{
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+.new_talk_nums{
+    position: absolute;
+    top: 100px;
+    left: 130px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFA85;
+}
+.talk_index_history{
+    border-top: 3px dotted #CCC;
+    padding: 5px;
+    margin-top: 20px;
+}
+.talk_index_history_p{
+    margin: 5px 0 10px 0;
+}
+.talk_index_history_ul{
+    width: 770px;
+}
+.talk_index_history_ul li{
+	display: inline-block;
+}
+.random_user_show_box{
+    margin: 0 auto;
+    width: 400px;
+    display: none;
+    position: absolute;
+    left: 200px;
+    top: 100px;
+    text-align: right;
+}
+#random_user_show{
+    text-align: left;
+    background-color: #6ccacd;
+    padding: 10px 10px;
+    color: #FFF;
+    border: 0px solid #EEE;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+.ajax_random_u_s_text{
+    margin: 10px 0;
+}
+
+/*---to.phtml---*/
+.user_talk_info{
+    width: 150px;
+    position: absolute;
+    left: 30px;
+    top: 40px;
+}
+.user_talk_info_ul li{
+    padding-bottom: 5px;
+}
+.user_talk_main_box{
+    width: 510px;
+    position: absolute;
+    left: 200px;
+    top: 40px;
+}
+.u_t_m_b_talkto{
+    position: absolute;
+    left: 0;
+    top: -20px;
+}
+.u_t_m_b_more{
+    position: absolute;
+    right: 5px;
+    top: -20px;
+}
+#show_message_div_outer{
+    width:500px;
+    height:300px;
+    border:3px solid #AAA;
+    overflow-y:scroll;
+    border-radius:3px;
+}
+#show_message_div{
+    width:450px;
+    padding: 10px;
+}
+.send_message_textarea_div{
+    margin: 10px 0 0 0;
+}
+#send_message_textarea{
+     width: 430px;
+     height: 90px;     
+     font-family: Tahoma, Arial;
+     resize: none;
+     line-height: 21px;
+     margin: 4px 0 0 4px;
+     padding: 3px 5px;
+     overflow-y: auto;
+     font-size: 14px;
+     border: 1px solid #D0D0D0;
+     word-wrap: break-word;
+     word-break: break-all;
+     border-radius: 6px;
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     transition: border linear .2s, box-shadow linear .2s;
+     -moz-transition: border linear .2s, -moz-box-shadow linear .2s;
+     -webkit-transition: border linear .2s, -webkit-box-shadow linear .2s;
+     outline: none;
+}
+#send_message_textarea:focus {
+	border-color: #7BD6F6;
+	-moz-outline: 4px solid #E2F5FB;
+	-moz-outline-radius: 8px;
+	-webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+	box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+}
+#send_message{
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+}
+.send_message_info_span{
+    position: absolute;
+    right: -13px;
+    bottom: 40px;
+    cursor: pointer;
+}
+.user_talk_ad{
+    position: absolute;
+    bottom: 125px;
+    left: 30px;
+}
+#emotionbox_item{
+    position: absolute;
+    left: 0px;
+    top: 340px;
+    z-index: 1111;
+    background: #FFF;
+    border: 3px solid #CCC;
+    display: none;
+    border-radius: 3px;
+    min-height: 160px;
+    min-width: 300px;
+}
+.emotionbox_show_ul li{
+    padding: 3px 8px;
+}
+.emotionbox_show_ul li img{
+    cursor: pointer;
+    padding: 1px;
+}
+.emotionbox_close_p{
+    background: #EEE;
+    padding: 0 0 2px 3px;
+}
+.emotionbox_close_p .emotionbox_change_page{
+    padding: 0 8px;
+    font-size: 12px;
+}
+#emotionbox_close{
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
+.img_upload_comment_form_div{
+    background: #FFFFFF;
+    border: 3px solid #CCCCCC;
+    border-radius: 3px;
+    display: none;
+    left: 0;
+    min-height: 25px;
+    min-width: 200px;
+    padding: 20px;
+    position: absolute;
+    bottom: 105px;
+    left: 60px;
+    z-index: 1111;
+}
+#img_upload_comment_form_div_close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+/*---history.phtml---*/
+.talk_history_top{
+    border-bottom: 3px solid #666;
+    height: 25px;
+    position: relative;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+.talk_history_top_delete{
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+}
+.talk_history_ul{
+    margin: 0 20px;
+}
+.talk_history_ul li{
+    padding: 5px 0;
+}
+.talk_history_ul_li_p{
+    margin: 5px 0;
+}
+.talk_delete{
+    border: 3px solid #EEE;
+    background: #FFFA85;
+    padding: 20px 10px 10px 10px;
+}
+.talk_delete_sure{
+    margin: 15px 0 10px 20px;
+}
+.talk_delete_sure a{
+    margin-right: 10px;
+}
+
+/*--- list.phtml ---*/
+.talk_list_ul{
+    margin: 10px 20px;
+}
+.talk_list_ul li{
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
+}
+.talk_list_ul_sub{
+    margin: 10px 20px;
+}
+
+.i_comment_list_link{
+    margin: 0 10px
+}
+.i_comment_list_num{
+    margin: 10px;
+}
+.s_l_l_a{
+    display: inline-block;
+    padding: 3px 0;
+    width: 30px;
+    text-align: center;
+    border: 1px solid #CCC;
+    color: #999;
+    font-size: 12px;
+}
+.s_l_l_a:hover{
+    background: #999;
+    color: #FFF;
+}
+.s_l_l_a_select{
+    display: inline-block;
+    padding: 3px 0;
+    width: 30px;
+    text-align: center;
+    border: 1px solid #6ccacd;
+    font-size: 12px;
+    font-weight: bold;
+    background: #6ccacd;
+    color: #FFF;
+}
+/*ie7*/
+*+html .talk_index_history_ul li{
+    display:inline;
+	width:50px;
+}
+/*ie6*/
+*html .talk_index_history_ul li{
+    display:inline;
+	width:50px;
+}

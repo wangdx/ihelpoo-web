@@ -1,0 +1,75 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<?php if ($getSelf != 'empty') { ?>
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine" class="a_select">我的活动</a></li>
+	</ul>
+	<?php } else { ?>
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists" class="a_select">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<?php } ?>
+	<div class="activity_lists_mine_nav">
+		<?php if ($getSelf == 'sponsor') { ?>
+			<a href="__ROOT__/activity/lists?self=sponsor" class="fb f12 btn">我主办的</a> <a href="__ROOT__/activity/lists?self=mine">我参与的</a>
+		<?php } else if ($getSelf == 'mine') { ?>
+			<a href="__ROOT__/activity/lists?self=sponsor">我主办的</a> <a href="__ROOT__/activity/lists?self=mine" class="fb f12 btn">我参与的</a>
+		<?php } ?>
+	</div>
+	<?php if (!empty($recordsActivityItem)) { ?>
+	<ul class="activity_lists_ul black_l">
+		<?php foreach($recordsActivityItem as $activityItem) { ?>
+			<?php $dayGap = date('z', $activityItem['activity_ti']) - date('z', time()); ?>
+			<?php if ($dayGap == 0) { ?>
+			<li class="f12 bg_bluelight">
+			<?php } else if ($dayGap > 0) { ?>
+			<li class="f12 bg_bluelight">
+			<?php } else { ?>
+			<li class="f12">
+			<?php } ?>
+				<span class="f14">主题:</span>
+				<a href="__ROOT__/activity/item/<?php echo $activityItem['aid']; ?>" class="f14">
+					<?php echo $activityItem['subject']; ?>
+				</a> 
+				<?php if (empty($_GET['self'])) { ?>
+				主办方:
+				<a href="__ROOT__/stream/u/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
+					<?php echo $activityItem['nickname']; ?>
+				</a>
+				<?php } ?>
+				时间: <?php echo date('Y-m-d', $activityItem['activity_ti']); ?> <span class="f12 gray">(星期<?php echo date('N', $activityItem['activity_ti']); ?>)</span>
+				参加人数:<?php echo $activityItem['join_num']; ?>
+				<span class="f12 gray">人气:<?php echo $activityItem['hit']; ?></span>
+				<?php if ($getSelf == 'sponsor') { ?>
+					<span class="f12 gray">
+					状态:
+					<?php
+					if ($activityItem['status'] == 0) {
+						echo "<span class='icon_pump'></span> 待审核";
+					} else if ($activityItem['status'] == 1) {
+						echo "<span class='icon_right'></span> 审核通过";
+					} else {
+						echo "<span class='icon_attention'></span> 未通过";
+					}?>
+					</span>
+					<a href="__ROOT__/activity/add/<?php echo $activityItem['aid']; ?> " class="f12">编辑</a> 
+					<span class="gray f12">最后编辑:<?php echo i_time($activityItem['time']); ?> </span>
+				<?php } ?>
+				<span class="gray f14 fb"><?php if ($dayGap == 0) { echo "<span class='orange fi'>今天</span>"; } else if ($dayGap > 0) { echo "<span class='blue f16 fi'>".$dayGap."</span> 天后"; } ?></span>
+			</li>
+		<?php } ?>
+	</ul>
+	<?php } ?>
+	<p class="paging_p f12 gray">共{$totalRecordsNums}条信息  {$totalpages}页</p>
+	<div class="paging_div">
+	<?php i_page_show("activity/lists", $totalpages); ?>
+	</div>
+</div>
+<include file="Public:footer" />

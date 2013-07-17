@@ -1,0 +1,11 @@
+<include file="Public:headerrooter" />
+<ul class="user_ul">
+<?php foreach($recordsUserLogin as $UserLogin) { ?>
+	<li>
+		<span class="black_l fb"><?php echo $UserLogin['nickname']; ?></span>
+		<span class="f12 gray">uid:</span> <span class="black_l"><?php echo $UserLogin['uid']; ?></span>
+		<span class="f12 gray">url:</span> <span class="red_l">http://www.ihelpoo.com/support/fillaccount/<?php echo $UserLogin['uid']; ?>/<?php echo md5($UserLogin['uid']*2); ?></span>
+	</li>
+<?php } ?>
+</ul>
+<include file="Public:footerrooter" />

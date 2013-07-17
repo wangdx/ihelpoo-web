@@ -1,0 +1,33 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">
+    	<span class="icon_function"></span>管理收货信息</a>
+    </div>
+	<div class="mallset_shop f12">
+		<ul class="mallset_add_address_ul">
+			<?php foreach($resultsUserDeliveryaddress as $deliveryaddress) { ?>
+			<li>
+				<?php if (!empty($_GET['edit']) && $_GET['edit'] == $deliveryaddress['id']) { ?>
+					<form action="" method="post">
+						<input type="text" value="<?php echo $deliveryaddress['address']; ?>" name="editdeliveryaddress" class="editdeliveryaddress" >
+						<input type="hidden" value="<?php echo $deliveryaddress['id']; ?>" name="deliveryaddressid" >
+						<input type="submit" value="保存">
+					</form>
+				<?php } else { ?>
+					<?php echo $deliveryaddress['address']; ?> <span class="f12 gray">(添加时间:<?php echo i_time($deliveryaddress['time']) ?>)</span>
+					<a href="?edit=<?php echo $deliveryaddress['id'] ?>">修改</a> | <a href="?del=<?php echo $deliveryaddress['id'] ?>">删除</a>
+				<?php } ?>
+			</li>
+			<?php } ?>
+		</ul>
+		<?php if (!empty($_GET['del'])) { ?>
+		<p class="mallset_buy_commodity_del">
+			<a href="__ROOT__/mallset/deliveryaddress?p=<?php echo $_GET['p'] ?>&suredel=<?php echo $_GET['del'] ?>" class="btn_red f12">确定删除</a> 
+			<a href="__ROOT__/mallset/deliveryaddress" class="btn_brown f12">取消</a>
+		</p>
+		<?php } ?>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mallset/"></script>
+<include file="Public:footermall" />

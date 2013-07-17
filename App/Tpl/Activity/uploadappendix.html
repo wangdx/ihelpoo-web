@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<div class="activity_itemnotice_info_div">
+		上传关于活动 <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>">“<?php echo $recordActivityItem['subject']; ?>”</a> 的附件
+	</div>
+	<form enctype="multipart/form-data" action="__ROOT__/activity/uploadappendix" method="post" id="settingform">
+		<ul class="mallset_index_ul">
+			<li><input id="upload_appendix_file" name="uploadappendix" type="file" /> <a class="btn f12" id="appendix_submit">上传</a> <span class="f12 gray">上传大小不能超过10M</span> <input id="activity_id" type="hidden" value="<?php echo $recordActivityItem['aid']; ?>" /> </li>
+			<li><span class="f12 red_l" id="appendix_submit_info"></span></li>
+		</ul>
+	</form>
+	<p class="f12 gray"><br /><span class="icon_pump"></span>上传活动附件，参赛作品等...</p>
+	<div class="activity_itemnotice_list_div">
+		<p class="activity_itemnotice_list_div_p f12">上传记录:</p>
+		<ul class="activity_itemnotice_list_div_ul">
+		<?php if (!empty($recordsActivityAppendix)) { 
+		foreach ($recordsActivityAppendix as $activityAppendix) { ?>
+			<li>
+				<a href="__ROOT__/stream/u/<?php echo $activityAppendix['uid']; ?>" target="_blank"><?php echo $activityAppendix['nickname']; ?></a>
+				附件URL:<a href="<?php echo $activityAppendix['url']; ?>" target="_blank" class="f10"><?php echo $activityAppendix['url']; ?></a> 
+				<span class="f12 gray">时间<?php echo i_time($activityAppendix['time']); ?></span> 
+			</li>
+		<?php } } ?>
+		</ul>
+	</div>
+	
+	<!-- <div class="activity_itemnotice_userlist_div">
+		<p class="activity_itemnotice_userlist_div_p f12"></p>
+		<ul class="activity_itemnotice_userlist_div_ul">
+			<li>
+			</li>
+		</ul>
+	</div>
+	 -->
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/activity/uploadappendix.js?id=1"></script>
+<include file="Public:footer" />

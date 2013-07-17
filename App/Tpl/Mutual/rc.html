@@ -1,0 +1,71 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/mutual.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="mutual_rc">
+  <?php if (!empty($userInfoconn)) { ?>
+  <p class="mutual_rc_img_p">
+    <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>">
+      <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 's') ?>" width="50" />
+    </a>
+    <span class="mutual_rc_img_p_span"><a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 的真实联系方式</span>
+    <span class="mutual_rc_img_p_hometown gray">HOMETOWN <?php echo $province." ".$city ?></span>
+  </p>
+  <?php if(isset($_GET['please'])) { ?>
+  <div class="mutual_rc_please_div f12">
+    是否给 <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 我的真实联系信息?
+    <form action="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>" method="post" >
+      <input type="hidden" name="withid" value="<?php echo $userLogin['uid'] ?>" />
+      <input type="hidden" name="way" value="single" />
+      <input type="hidden" name="option" value="yes" />
+      <input class="mutual_rc_please_div_submit" type="submit" value="接受" />
+    </form>
+    <form action="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>" method="post" >
+      <input type="hidden" name="withid" value="<?php echo $userLogin['uid'] ?>" />
+      <input type="hidden" name="way" value="single" />
+      <input type="hidden" name="option" value="no" />
+      <input class="mutual_rc_please_div_submit" type="submit" value="拒接" />
+    </form>
+  </div>
+  <?php } ?>
+  <ul class="mutual_rc_ul">
+    <li>真实姓名: <?php echo $userInfoconn['realname'] ?></li>
+    <li>手机: <?php echo $userInfoconn['mobile'] ?></li>
+    <li>QQ: <?php echo $userInfoconn['qq'] ?></li>
+    <li>微博: <?php echo $userInfoconn['weibo'] ?></li>
+    <li>寝室楼栋: <?php echo $dormitory ?></li>
+  </ul>
+  <?php } else { ?>
+  <p class="mutual_rc_img_p">
+    <img src="<?php echo i_icon_check($userLogin['uid'],$userLogin['icon_url'],'s') ?>" width="50" />
+    <span class="mutual_rc_img_p_span"><a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 的真实联系方式</span>
+  </p>
+  <?php if(isset($_GET['please'])) { ?>
+  <div class="mutual_rc_please_div f12">
+    是否给 <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 我的真实联系信息?
+    <form action="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>" method="post" >
+      <input type="hidden" name="withid" value="<?php echo $userLogin['uid'] ?>" />
+      <input type="hidden" name="way" value="single" />
+      <input type="hidden" name="option" value="yes" />
+      <input class="mutual_rc_please_div_submit" type="submit" value="接受" />
+    </form>
+    <form action="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>" method="post" >
+      <input type="hidden" name="withid" value="<?php echo $userLogin['uid'] ?>" />
+      <input type="hidden" name="way" value="single" />
+      <input type="hidden" name="option" value="no" />
+      <input class="mutual_rc_please_div_submit" type="submit" value="拒接" />
+    </form>
+  </div>
+  <?php } ?>
+  <div class="mutual_rc_div">
+    <?php if (isset($_GET['require'])) { ?>
+      已经发出查看请求
+    <?php } else { ?>
+      <p class="f12 gray"><span class="icon_pump"></span> 个人真实联系方式需要对方同意后才能查看</p>
+      <br />
+      <p><a href="?require" class="btn f12">请求查看</a></p>
+    <?php } ?>
+  </div>
+  <?php } ?>
+</div>
+</div>
+<include file="Public:footer" />

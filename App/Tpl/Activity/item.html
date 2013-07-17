@@ -1,0 +1,128 @@
+<include file="Public:header" />
+<?php if ($recordActivityItem['run_type'] == '2' ) { $UserLogin = M("UserLogin"); } ?>
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<ul class="activity_nav_ul">
+		<li><a href="__ROOT__/activity">活动首页</a></li>
+		<li><a href="__ROOT__/activity/lists">活动列表</a></li>
+		<li><a href="__ROOT__/activity/add">我要举办</a></li>
+		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
+	</ul>
+	<?php if ($_GET['action'] == 'jion') { ?>
+	<div class="activity_item_notive">
+		<p>1. 注意人身财产安全。</p>
+		<p>2. 遵守活动规则，遵纪守法，行为合符道德。</p>
+		<p>3. 需要提供您的真实联系方式，例如QQ、手机号等。</p>
+		<p><span class="red">是否同意?</span> <span class="icon_write"></span></p>
+		<p><br /><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jionagree" class="btn_red f12">是</a> <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">否</a></p>
+	</div>
+	<?php } ?>
+
+	<?php if ($userinfolack) { ?>
+	<div class="activity_item_notive">
+		<span class="red fb">你的个人资料不完善，请填写完整手机号和QQ号码，再参与活动:)<span class="icon_write"></span></span>
+		<a href="__ROOT__/setting/" class="f12">马上填写</a> 
+	</div>
+	<?php } ?>
+
+	<?php if ($_GET['action'] == 'select') { ?>
+	<div class="activity_item_notive">
+		<p>你将请求与 <a href="__ROOT__/stream/u/<?php echo $_GET['parter']; ?>" target="_blank"><?php echo $_GET['nickname']; ?></a> 成为Parter</p>
+		<p>1. 只能挑选一人为Parter，确定即视作你将放弃与其他参与者成为Parter的机会</p>
+		<p>2. 等待对方同意，如果同意则你们成为此次活动的Parter，如果对方拒绝你可以再请求与其他参与者成为Parter</p>
+		<p></p>
+		<p>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12">确定</a>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
+		</p>
+	</div>
+	<?php } ?>
+	
+	<ul class="activity_item_ul">
+		<?php if ($recordActivityItem['status'] == 0) { ?>
+			<li class="f12 red"><span class="icon_pump"></span> 状态:等待审核</li>
+		<?php } else if ($recordActivityItem['status'] == 2) { ?>
+			<li class="f12 red"><span class="icon_attention"></span> 状态:审核未通过</li>
+		<?php } ?>
+		<li>
+			<span class="black_l">主&#12288;&#12288;题:</span> <span class="fb"><?php echo $recordActivityItem['subject']; ?></span> 
+			<?php if ($userloginedrecord['uid'] == $recordActivityItem['sponsor_uid']) { ?>
+				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>" title="给活动参与者发布通知">发布通知</a> 
+			<?php } else { ?>
+				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>">查看活动通知</a> 
+			<?php } ?>
+			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>">抽奖</a>
+		</li>
+		<li>
+			<span class="black_l">主&#12288;&#12288;办:</span> <a href="__ROOT__/stream/u/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
+			<a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
+		</li>
+		<li><span class="black_l">活动时间:</span> <span class="black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span> <span class="blue fb">星期<?php echo date('N', $recordActivityItem['activity_ti']); ?></span></li>
+		<li><span class="black_l">其&#12288;&#12288;它:</span> <span class="f12 gray">参加人数:</span><span class="f14 fb orange"><?php echo $recordActivityItem['join_num']; ?></span> <span class="f12 gray">人气:<span class="fb"><?php echo $recordActivityItem['hit']; ?></span></span></li>
+		<li><div class="activity_item_ul_content_div"><?php echo stripslashes($recordActivityItem['content']); ?></div></li>
+		<?php if (empty($_GET['action'])) { ?>
+		<li><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn f12">我要参加</a> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn f12">评论</a></li>
+		<?php } ?>
+	</ul>
+	
+	<?php if (!empty($recordsActivityUser)) { ?>
+	<div class="activity_item_join_div">
+		<?php if ($recordActivityItem['run_type'] == '2' && !empty($parterUserArray)) { ?>
+		<p class="f12"><span class="icon_heart"></span> 已经拥有Partner :)</p>
+		<ul class="activity_item_join_div_pater_ul">
+			<?php foreach ($parterUserArray as $parterUser) { ?>
+			<?php $uidUserLogin = $UserLogin->find($parterUser['uid']); ?>
+			<?php $partneruidUserLogin = $UserLogin->find($parterUser['partner_uid']); ?>
+			<li>
+				<a href="__ROOT__/stream/u/<?php echo $uidUserLogin['uid']; ?>">
+					<img src="<?php echo i_icon_check($uidUserLogin['uid'], $uidUserLogin['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" title="<?php echo $uidUserLogin['nickname']; ?>" />
+				</a>
+				<span class="icon_plus"></span>
+				<a href="__ROOT__/stream/u/<?php echo $partneruidUserLogin['uid']; ?>">
+					<img src="<?php echo i_icon_check($partneruidUserLogin['uid'], $partneruidUserLogin['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" title="<?php echo $partneruidUserLogin['nickname']; ?>" />
+				</a>
+			<?php } ?>
+		</ul>
+		<?php } ?>
+		<p class="f12"><span class="icon_pump"></span> 他们参加了这个活动，快来加入吧 :)</p>
+		<ul class="activity_item_join_ul">
+		<?php foreach ($recordsActivityUser as $activityUser) { ?>
+			<li>
+			<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" >
+			    <img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="40" class="i_c_l_u_li_img radius3" />
+			    <?php echo $activityUser['nickname']; ?> <span class="sex<?php echo $activityUser['sex'] ?>"></span>
+			</a>
+			<span class="f12 gray">
+				(<a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="真实联系方式" class="f12">联系方式</a> | <a href="__ROOT__/talk/to/<?php echo $activityUser['uid']; ?>" class="悄悄话聊天" class="f12">悄悄话</a>)
+			</span>
+			<span class="f12 gray">
+			<?php
+			 if ($recordActivityItem['run_type'] == '2' ) {
+			 if ($activityUser['invite_status'] == '1') { ?>
+				<span class="icon_pump"></span>已收到Partner邀请
+			<?php } else if ($activityUser['invite_status'] == '2') { ?>
+				<span class="icon_right"></span>已有Partner
+			<?php } else { ?>
+				<span class="icon_heart"></span>等待此次活动Partner 
+			<?php } ?>
+			</span>
+			<?php if ($activityUser['uid'] == $userloginedrecord['uid']) { ?>
+				<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
+			<?php } else { ?>
+				<?php if ($activityUser['invite_status'] != 2) { ?>
+				<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=select&parter=<?php echo $activityUser['uid']; ?>&nickname=<?php echo $activityUser['nickname']; ?>">选他为Partner</a>
+				<?php } ?>
+			<?php } ?>
+			<?php } ?>
+			<span class="gray f12 fr"><?php echo i_time($activityUser['time']); ?></span>
+			</li>
+		<?php } ?>
+		</ul>
+		<p class="paging_p f12 gray">共{$totalRecordsNums}个人  {$totalpages}页</p>
+		<div class="paging_div">
+		<?php i_page_show("activity/item/".$recordActivityItem['aid'], $totalpages); ?>
+		</div>
+	</div>
+	<?php } ?>
+</div>
+<include file="Public:footer" />

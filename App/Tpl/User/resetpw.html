@@ -1,0 +1,64 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/user.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<div class="registe_main">
+		<?php if (!empty($resetsuccess)) { ?>
+	    	<div class="black_l"><span class="icon_right"></span> <?php echo $resetsuccess; ?></div>
+	    <?php } else { ?>
+		<div class="resetpw_div">
+		<?php if (!empty($userLogin['uid'])) {?>
+			<form action="__ROOT__/user/resetpw" method="post">
+			<ul class="resetpw_div_ul f12 black_l">
+		        <li>你要找回的密码的用户是 <span class="f14 fb"><?php echo $userLogin['email']; ?></span> , 昵称: <span class="f14 fb"><?php echo $userLogin['nickname']; ?></span>
+			        <input type="hidden" name="email" value="<?php echo $userLogin['email']; ?>" />
+			       	<input type="hidden" name="nickname" value="<?php echo $userLogin['nickname']; ?>" />
+			        <input type="submit" value="确定" />
+		        </li>
+		        <li class="gray"><?php if ($userLogin['status'] != 2) { echo "<span class='icon_attention'></span> PS:您的邮箱还没有验证，我们尝试发送邮件，实在不能找回密码，请联系我帮圈圈人工找回..."; } ?></li>
+	        </ul>
+	        </form>
+		<?php } else if (!empty($userLoginNickname['uid'])) { ?>
+			<ul class="resetpw_div_ul f12 black_l">
+		        <li>你要找回的密码的用户登录邮箱是 <span class="f14 fb">...<?php echo substr($userLoginNickname['email'],6); ?></span> , 昵称:  <span class="f14 fb"><?php echo $userLoginNickname['nickname']; ?></span>, 请补全登录邮箱
+		        <br /><br />
+		        <form action="__ROOT__/user/resetpw" method="post">
+			        完整邮箱<input type="text" name="email" value="" />
+			       	<input type="hidden" name="nickname" value="<?php echo $userLoginNickname['nickname']; ?>" />
+			        <input type="submit" value="确定" class="resetpw_submit" />
+		    	</form>
+		        </li>
+		        <li class="gray"><?php if ($userLoginNickname['status'] != 2) { echo "<span class='icon_attention'></span> PS:您的邮箱还没有验证，我们尝试发送邮件，实在不能找回密码，请联系我帮圈圈人工找回..."; } ?></li>
+	        </ul>
+		<?php } else { ?>
+		<?php if ($_GET['way'] == 'email') { ?>
+		    <p class="resetpw_p_info black_l"><a href="__ROOT__/user/resetpw" class="f12">返回上一步</a> <span class="icon_pump"></span> 找回密码 <br /></p>
+		    <p class="resetpw_p_main black_l">
+		      <form action="__ROOT__/user/resetpw" method="post" class="resetpw_form">
+		        <ul>
+		        <li class="gray">登录邮箱: <input type="text" name="email" class="resetpw_input" /> <input type="submit" value="确定" class="resetpw_submit" /></li>
+		        </ul>
+		      </form>
+		    </p>
+	    <?php } else if ($_GET['way'] == 'nickname') { ?>
+	    	<p class="resetpw_p_info black_l"><a href="__ROOT__/user/resetpw" class="f12">返回上一步</a> <span class="icon_pump"></span> 通过昵称查找登录邮箱 <br /></p>
+		    <p class="resetpw_p_main black_l">
+		      <form action="__ROOT__/user/resetpw" method="post" class="resetpw_form">
+		        <ul>
+		        <li class="gray">您的昵称: <input type="text" name="nickname" class="resetpw_input" /> <input type="submit" value="确定" class="resetpw_submit" /></li>
+		        </ul>
+		      </form>
+		    </p>
+	    <?php } else { ?>
+	    	<ul class="resetpw_div_ul black_l">
+		        <li><span class="gray fb">1.</span> 通过登录邮箱, <a href="__ROOT__/user/resetpw?way=email" class="fb">开始</a></li>
+		        <li><span class="gray fb">2.</span> 忘了登录邮箱？通过昵称查找提示登录邮箱, <a href="__ROOT__/user/resetpw?way=nickname" class="fb">开始</a></li>
+		        <li><span class="gray fb">3.</span> 都忘了？<a href="__ROOT__/about" class="fb">联系</a> 我帮圈圈, 人工帮你重置密码:)</li>
+	        </ul>
+	    <?php } ?>
+	    <?php } ?>
+	    </div>
+	    <?php } ?>
+	</div>
+
+</div>
+<include file="Public:footer" />

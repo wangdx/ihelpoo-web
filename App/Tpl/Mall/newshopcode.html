@@ -1,0 +1,30 @@
+<?php $title = "输入圈圈码"; ?>
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+	<div class="mallset_top">
+		<span class="red fb">输入您的圈圈码，免交500元交易保证金 <span class="f12 gray">(一个圈圈码只能使用一次)</span><span class="icon_write"></span></span>
+	</div>
+	<div class="mallset_shop f12">
+		<div class="mall_newshop_info_div">
+			<ul class="mall_newshop_shoptype_ul">
+				<li class="mall_newshop_shoptype_ul_li">
+					<ul class="mall_newshop_shoptype_ul_in">
+						<li>
+						<form action="newshop">
+						输入圈圈码 
+						<input type="text" name="qcode" /> 
+						<input type="hidden" name="agreement" value="<?php echo (int)$_GET['agreement']; ?>" /> 
+						<input type="submit" value="确定">
+						</form>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<p class="f12 gray">
+			我帮圈圈逛街5月份第一期发放100个圈圈码，在宣传手册上。如果你是民院学生想开店经商，可以向<a href="__ROOT__/talk/to/12921">我帮圈圈逛街</a>免费索要。
+			</p>
+		</div>
+	</div>
+</div>
+<include file="Public:footermall" />

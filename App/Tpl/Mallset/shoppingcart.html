@@ -1,0 +1,52 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">我的购物车</div>
+	<div class="mallset_left f12">
+		<ul class="mallset_left_ul">
+			<li><a href="__ROOT__/mallset/seller?step=needsure"><span class="icon_plus"></span>我要卖</a></li>
+		</ul>
+		<ul class="mallset_left_ul">
+			<li><a href="__ROOT__/mallset/buyer"><span class="icon_plus"></span>我要买</a></li>
+		</ul>
+		<ul class="mallset_left_ul">
+			<li><a href="__ROOT__/mallset/shoppingcart" class="bg_red">购物车</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<?php if (!empty($_GET['del'])) { ?>
+		<div class="shoppingcart_delinfo_div">
+			<p class="f12 black_l"><span class="icon_attention"></span> 你将删除购物车中的 <?php echo $_GET['name']; ?> ?</p>
+			<p><a href="__ROOT__/mallset/shoppingcart?suredel=<?php echo $_GET['del']; ?>">确定</a> <a href="__ROOT__/mallset/shoppingcart">取消</a></p>
+		</div>
+		<?php } ?>
+		<ul class="mallset_seller_ul f12">
+			<?php foreach($joinResultsShopcartCommodity as $result) {?>
+			<li>
+				<p class="mallset_seller_li_info_p">
+					<span class="icon_star"></span> <span class="gray">收藏时间:<?php echo i_time($result['time']) ?></span>
+				</p>
+				<p class="mallset_seller_li_item_p f14">
+					<a href="__ROOT__/mall/item/<?php echo $result['cid'] ?>" target="_blank" class="mallset_seller_li_item_p_img">
+						<img src="<?php echo i_goods_thumbnail($result['image']) ?>" width="50"/>
+					</a>
+					<a href="__ROOT__/mall/item/<?php echo $result['cid'] ?>" target="_blank" class="mallset_seller_li_item_p_link">
+						名称:<?php echo $result['name'] ?>
+					</a>
+					<span class="mallset_seller_li_item_p_info">
+						售价:<span class="fb red"><?php echo $result['price'] ?></span>
+					</span>
+					<a href="__ROOT__/mallset/shoppingcart?del=<?php echo $result['id'] ?>&name=<?php echo $result['name'] ?>" class="fr">删除</a>
+				</p>
+			</li>
+			<?php } ?>
+		</ul>
+		<p class="i_paging_p f12 gray">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+  		<div class="i_paging_div">
+  			<?php if ($totalPages > 1) { i_page_show("mallset/shoppingcart", $totalPages); } ?>
+  		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/mallset/"></script>
+<include file="Public:footermall" />

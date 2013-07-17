@@ -1,0 +1,56 @@
+.ico_solved,.ico_official,.ioc_pending,.ico_closed,.ico_post_due,.ico_jing,.ico_reward,.ico_urgent,.ico_mobile,.ico_help,.ico_channel_user,.ico_admin,.ico_expert,.ico_police,.ico_weibo2,.ico_open,.ico_councillor,.ico_top5,.ico_top20,.ico_top50,.ico_top100,.ico_group_top5,.ico_group_top20,.ico_group_top50,.ico_group_top100,.ico_grouplv1_1,.ico_grouplv2_1,.ico_grouplv3_1,.ico_grouplv4_1,.ico_official_answer,.ico_star_answer,.ico_recommend_answer,.ico_expert_answer,.ico_complete_answer,.ico_collect,.ico_collected,.ico_qzone,.ico_weibo,.ico_star,.ico_gray_star,.seekHelpButton,.ask_bt2,.search_bt2,.answer_operate button,.answer_operate a,.submit_bt,.submit_bt2,.submit_bt3,.submit_bt4,.answer_bt2,.tips,.tips .close,.answer_tips2,.field_err,.asker_says,.answer_wrap h4,.similar_wrap h4,.more_question{background:url(../image/common/question_bg.png) no-repeat;}
+.ico_jing{background-position:0 2px;}
+.ico_solved{background-position:-130px 2px;}
+.ioc_pending{background-position:-260px 0;height:12px;padding:1px 0 0 18px;display:inline-block;vertical-align:middle;}
+.ico_official{width:13px;height:13px;background-position:0 -52px;display:inline-block;vertical-align:middle;}
+.ico_closed{background-position:0 -25px;height:12px;padding:1px 0 0 18px;display:inline-block;vertical-align:middle;}
+.ico_post_due{background-position:-130px -25px;height:12px;padding:1px 0 0 18px;display:inline-block;vertical-align:baseline;}
+.ico_reward{height:13px;padding-left:20px;background-position:-43px -52px;display:inline-block;vertical-align:middle;}
+.ico_urgent{height:12px;background-position:-88px -52px;padding:1px 0 0 18px;display:inline-block;vertical-align:middle;}
+.ico_mobile{width:13px;height:15px;background-position:-131px -50px;display:inline-block;vertical-align:middle;}
+.ico_help{background-position:-293px -52px;width:12px;height:12px;display:inline-block;ertical-align:middle;cursor:pointer;}
+.ico_channel_user{width:15px;height:16px;background-position:-94px -96px;display:inline-block;vertical-align:middle;cursor:pointer;}
+.ico_admin{width:15px;height:14px;background-position:-119px -96px;display:inline-block;vertical-align:middle;cursor:pointer;}
+.ico_expert{width:15px;height:14px;background-position:-144px -96px;display:inline-block;vertical-align:middle;cursor:pointer;}
+.ico_police{width:14px;height:15px;background-position:-169px -96px;display:inline-block;vertical-align:middle;cursor:pointer;}
+.ico_weibo2{width:12px;height:12px;background-position:-193px -96px;display:inline-block;vertical-align:middle;}
+.ico_open{width:13px;height:13px;background-position:-284px -96px;display:inline-block;vertical-align:middle;}
+.ico_councillor{width:16px;height:13px;background-position:-260px -25px;display:inline-block;vertical-align:middle;cursor:pointer;}
+.ico_top5,.ico_top20,.ico_top50,.ico_top100,.ico_group_top5,.ico_group_top20,.ico_group_top50,.ico_group_top100{height:11px;display:inline-block;vertical-align:middle;text-indent:-9999px;cursor:pointer;}
+.ico_top5{width:25px;background-position:-157px -75px;}
+.ico_top20{width:30px;background-position:-192px -75px;}
+.ico_top50{width:30px;background-position:-232px -75px;}
+.ico_top100{width:32px;background-position:-272px -75px;}
+.ico_group_top5{width:25px;background-position:0 -75px;}
+.ico_group_top20{width:30px;background-position:-35px -75px;}
+.ico_group_top50{width:30px;background-position:-75px -75px;}
+.ico_group_top100{width:32px;background-position:-115px -75px;}
+.ico_grouplv1_1{width:12px;height:16px;background-position:0 -96px;display:inline-block;vertical-align:middle;text-indent:-9999px;cursor:pointer;}
+.ico_grouplv2_1{width:12px;height:16px;background-position:-23px -96px;display:inline-block;vertical-align:middle;text-indent:-9999px;cursor:pointer;}
+.ico_grouplv3_1{width:14px;height:17px;background-position:-46px -96px;display:inline-block;vertical-align:middle;text-indent:-9999px;cursor:pointer;}
+.ico_grouplv4_1{width:16px;height:16px;background-position:-68px -96px;display:inline-block;vertical-align:middle;text-indent:-9999px;cursor:pointer;}
+.ico_official_answer{background-position:17px -133px; width:90px; height:60px; }
+.ico_star_answer{background-position:17px -202px; width:90px; height:60px; }
+.ico_recommend_answer{background-position:17px -718px; width:90px; height:60px; }
+.ico_expert_answer{background-position:20px -270px; width:90px; height:60px; }
+.ico_complete_answer{background-position:17px -650px; width:90px; height:60px; }
+
+#categoryWrap h3,.ico_category,#categoryWrap dd,#recommend_nav a,.recommend_info li,.question_list li,.top_list span,.last,.next,.ico_pending,.ico_official,.ico_baike,.ico_channel_user
+{background:url(../image/common/home_bg.png) no-repeat;}
+.ico_category{width:15px;height:16px;display:inline-block;background-position:0 -40px;margin-right:9px;}
+.ico_pending{background-position:0 -66px;}
+.ico_official{background-position:0 -140px;}
+.ico_baike{background-position:0 -178px;}
+.ico_channel_user{width:15px;height:16px;display:inline-block;margin-left:5px;background-position:-25px -40px;}
+
+.container{width:980px;border-bottom:1px solid #ddd;padding-bottom:20px;zoom:1;}
+.container:after{content:"";display:block;height:0;line-height:0;clear:both;visibility:hidden;}
+.container h3{font-size:14px;color:#383838;}
+.w_info{height:33px;*height:31px;line-height:33px;*line-height:31px;padding:0 10px;color:#383838;}
+.user_num li{float:left;margin-right:13px;}
+.about_wenwen{float:right;color:#06c;font-family:simsun;position:relative;padding-right:40px;}
+.about_wenwen span{display:none;padding-top:1px;}
+.last,.next{position:absolute;overflow:hidden;width:14px;*width:15px;height:14px;*height:15px;border-width:1px;border-style:solid;border-color:#dedce1 #bbbdba #bbbdba #dedce1;margin-left:3px;vertical-align:middle;text-indent:-9999px;overflow:hidden;cursor:pointer;}
+.last{background-position:-33px -215px;right:19px;top:10px;}
+.next{background-position:-46px -215px;right:0;top:10px;}
+.question_list li{background-position:-140px -30px;padding-left:18px;overflow:hidden;zoom:1;}

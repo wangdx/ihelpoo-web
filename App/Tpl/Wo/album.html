@@ -1,0 +1,156 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <div class="wo_main">
+  <?php if (!empty($imageItem)) { ?>
+  	<div class="black_l">
+  		<span class="fl">
+		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> -
+		<?php if ($imageItem['type'] == 1) { ?>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册">头像相册</a>
+		<?php } else if ($imageItem['type'] == 2) { ?>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" title="信息流配图">信息流配图</a>
+		<?php } else if ($imageItem['type'] == 3) { ?>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="店铺图片">店铺图片</a>
+		<?php } else if ($imageItem['type'] == 4) { ?>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" title="店铺图片">悄悄话聊天</a>
+		<?php } ?>
+		 - 图片详情
+		</span>
+		<span class="f12 fr gray">
+			<a href="<?php echo $imageItem['url']; ?>" target="_blank" class="f12"><span class="icon_search"></span>查看原图</a>
+			上传时间:<?php echo i_time($imageItem['time']); ?> 大小:<?php echo round($imageItem['size']/1024); ?>KB 浏览:<?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?>
+			<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
+				<a id="set_default_icon" href="__ROOT__/setting/icon?img=<?php echo urlencode($imageItem['url']); ?>">设为头像</a> | <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">删除</a>
+			<?php } ?>
+		</span>
+		<br /><br />
+	</div>
+	<div class="album_image_content">
+		<p class="album_image_content_p">
+  			<img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" />
+  			<?php if (!empty($imageItemPrivious['id'])) { ?>
+  				<a class="privious_photo_part" title="上一张" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemPrivious['id'] ?>"></a>
+  				<span class="privious_img f16 fb">&lt;</span>
+  				<a title="上一张" class="privious_photo_part_text f12" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemPrivious['id'] ?>">上一张</a>
+  			<?php } else { ?>
+  				<a class="privious_photo_part" title="已经是第一张了"></a>
+  				<a title="已经是第一张了" class="privious_photo_part_text f12 gray">已经是第一张了</a>
+  			<?php } ?>
+  			<?php if (!empty($imageItemNext['id'])) { ?>
+  				<a class="next_photo_part" title="下一张" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemNext['id'] ?>"></a>
+  				<span class="next_img f16 fb">&gt;</span>
+  				<a title="下一张" class="next_photo_part_text f12" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemNext['id'] ?>">下一张</a>
+  			<?php } else { ?>
+  				<a class="next_photo_part" title="已经是最后一张了"></a>
+  				<a title="已经是最后一张了" class="next_photo_part_text f12 gray">已经是最后一张了</a>
+  			<?php } ?>
+  		</p>
+  		<div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
+  	</div>
+  <?php } else if (!empty($resultsUserAlbum)) { ?>
+	<div class="black_l">
+		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> -
+		<?php if ($albumId == 1) { ?>
+			头像相册
+		<?php } else if ($albumId == 2) { ?>
+			信息流配图
+		<?php } else if ($albumId == 3) { ?>
+			店铺图片
+		<?php } else if ($albumId == 4) { ?>
+			悄悄话聊天
+		<?php }
+			echo "<span class='f12 gray'>共".round($totalAlbumSize/(1024*1024),2)."MB</span>";
+		?>
+	</div>
+	<ul class="album_list_ul">
+		<?php foreach($resultsUserAlbum as $resultAlbum) { ?>
+			<li>
+				<p class="album_list_ul_p">
+				<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $resultAlbum['id'] ?>" title="查看大图">
+					<img src="<?php echo i_image_thumbnail($resultAlbum['url']); ?>" class="album_list_ul_img" />
+				</a>
+				</p>
+				<span class="f12 black_l">
+					浏览: <?php echo $resultAlbum['hit'] == NULL ? "0" : $resultAlbum['hit']; ?> 大小: <?php echo round($resultAlbum['size']/1024); ?>KB
+					<br /><span class="gray">上传时间 <?php echo i_time($resultAlbum['time']); ?></span>
+					<?php if ($albumId == 1) { ?>
+						<br /><span class="icon_plus"></span><a id="set_default_icon" href="__ROOT__/setting/icon?img=<?php echo urlencode($resultAlbum['url']); ?>" class="f12 gray">设为头像</a>
+					<?php } ?>
+				</span>
+			</li>
+		<?php } ?>
+	</ul>
+	<div class="wo_paging">
+      <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>张 <?php echo $totalPages ?>页</p>
+      <?php if ($totalPages > 1) { i_page_show("wo/album/".$userLogin['uid']."/".$albumId, $totalPages); } ?>
+    </div>
+  <?php } else { ?>
+	<div class="black_l">
+		共 <span class="orange fb"><?php echo $totalImages; ?></span> 张图片
+		<span class="f12 gray">共<?php echo round($totalAlbumSize/(1024*1024),2); ?>MB | <?php echo round($totalAlbumDefaultSize/(1024*1024*1024),1); ?>GB[<?php echo i_degree($userLogin['active']); ?>级]</span>
+		<span class="f12 gray">使用率:<?php echo round(($totalAlbumSize/$totalAlbumDefaultSize)*100, 2); ?>%</span>
+	</div>
+	<ul class="user_album_ul">
+		<?php if (!empty($iconUserAlbum)) {?>
+	  	<li>
+	  		<div class="user_album_ul_div">
+	  		<p class="user_album_ul_div_p">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册" class="user_album_ul_div_p_a">
+	  			<img src="<?php echo i_image_thumbnail($iconUserAlbum['url']); ?>" />
+	  		</a>
+	  		</p>
+	  		</div>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册">头像相册</a>
+	  		<span class="f12"><?php echo $totalIconImages ?>张</span>
+	  	</li>
+	  	<?php } ?>
+	  	<?php if (!empty($recordUserAlbum)) {?>
+	  	<li>
+	  		<div class="user_album_ul_div">
+	  		<p class="user_album_ul_div_p">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" title="信息流配图" class="user_album_ul_div_p_a">
+	  			<img src="<?php echo i_image_thumbnail($recordUserAlbum['url']); ?>" />
+	  		</a>
+	  		</p>
+	  		</div>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" title="信息流配图">信息流配图</a>
+	  		<span class="f12"><?php echo $totalRecordImages ?>张</span>
+	  	</li>
+	  	<?php } ?>
+	  	<?php if (!empty($shopUserAlbum)) {?>
+	  	<li>
+	  		<div class="user_album_ul_div">
+	  		<p class="user_album_ul_div_p">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="店铺图片" class="user_album_ul_div_p_a">
+	  			<img src="<?php echo i_image_thumbnail($shopUserAlbum['url']); ?>" />
+	  		</a>
+	  		</p>
+	  		</div>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="店铺图片">店铺图片</a>
+	  		<span class="f12"><?php echo $totalShopImages ?>张</span>
+	  	</li>
+	  	<?php } ?>
+	  	<?php if (!empty($talkUserAlbum) && $userLogin['uid'] == $userloginedrecord['uid']) {?>
+	  	<li>
+	  		<div class="user_album_ul_div">
+	  		<p class="user_album_ul_div_p">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" title="悄悄话聊天配图" class="user_album_ul_div_p_a">
+	  			<img src="<?php echo i_image_thumbnail($talkUserAlbum['url']); ?>" />
+	  		</a>
+	  		</p>
+	  		</div>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="悄悄话聊天配图">悄悄话聊天<span class="f10 red_l">(仅自己可见)</span></a>
+	  		<span class="f12"><?php echo $totalTalkImages ?>张</span>
+	  	</li>
+	  	<?php } ?>
+	 </ul>
+  <?php } ?>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/wo/album.js"></script>
+<include file="Public:footer" />

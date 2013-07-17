@@ -1,0 +1,33 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div>
+  <div class="main_invite_info_div black_l"><span class="icon_pump"></span> 邀请人数排行... <a href="__ROOT__/mutual/invite" class="f12">我的邀请</a></div>
+  <ul class="main_invite_ul">
+  	<?php
+    $i = 1;
+  	foreach ($resultUserInvite as $result) { ?>
+    <li>
+    <?php if ($i <= 3) { ?>
+      	  <span class="f16 fb fi reb_back">
+      <?php } else if ($i <= 10) {?>
+      	  <span class="f16 fb fi blue_l">
+      <?php } else {?>
+          <span class="f16 fb fi gray">
+      <?php }
+          echo $i++; ?>.
+    </span>
+    &nbsp;
+    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>" title="<?php echo $result['nickname'] ?>...">
+        <img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" class="radius3" height="30"/>
+        <?php echo $result['nickname'] ?>
+     </a>
+    有效邀请 <span class="fb orange f14"><?php echo $result['invite_nums'] ?></span> 人
+    </li>
+  <?php } ?>
+  </ul>
+</div>
+
+</div>
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

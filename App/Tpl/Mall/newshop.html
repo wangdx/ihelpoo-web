@@ -1,0 +1,131 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+	<div class="mallset_top">
+		<?php if ($_GET['agreement'] == 'read') { ?>
+		<span class="red fb">1.选择相关店铺类型<span class="icon_write"></span></span>&#12288;&#12288;
+		2.上传证件 &#12288;&#12288;
+		3.等待审核 &#12288;&#12288;
+		4.开通店铺
+		<?php } else if (empty($recordUserShop['status'])) { ?>
+		1.选择相关店铺类型 &#12288;&#12288;
+		<span class="red fb">2.上传证件<span class="icon_write"></span></span>&#12288;&#12288;
+		3.等待审核 &#12288;&#12288;
+		4.开通店铺
+		<?php } else if ($recordUserShop['status'] == '1') { ?>
+		1.选择相关店铺类型 &#12288;&#12288;
+		2.上传证件 &#12288;&#12288;
+		<span class="red fb">3.等待审核<span class="icon_write"></span></span> &#12288;&#12288;
+		4.开通店铺
+		<?php } else if ($recordUserShop['status'] == '2') { ?>
+		1.选择相关店铺类型 &#12288;&#12288;
+		2.上传证件 &#12288;&#12288;
+		3.等待审核 &#12288;&#12288;
+		<span class="red fb">4.开通店铺<span class="icon_write"></span></span>
+		<?php } ?>
+	</div>
+	<div class="mallset_shop f12">
+	<?php if ($_GET['agreement'] == 'read') { ?>
+		<div class="mall_newshop_info_div">
+			<ul class="mall_newshop_shoptype_ul">
+				<li class="mall_newshop_shoptype_ul_li">
+					<p align="center" class="f14 black_l">请先阅读 <a href="__ROOT__/mall/explanation" target="_balnk" class="fb red">我帮圈圈逛街相关规定及说明</a></p>
+				</li>
+				<li class="mall_newshop_shoptype_ul_li">
+					<p class="mall_newshop_shoptype_ul_p">1. 学生二手</p>
+					<ul class="mall_newshop_shoptype_ul_in">
+						<li>对象: 针对学生买卖交易二手和闲置的店铺</li>
+						<li>资费: 免费</li>
+					</ul>
+					<p class="mall_newshop_shoptype_ul_p_sub"><a href="__ROOT__/mall/newshop?agreement=1" class="f12 btn_red">选择</a></p>
+				</li>
+				
+				<li class="mall_newshop_shoptype_ul_li">
+					<p class="mall_newshop_shoptype_ul_p">2. 学生经商 <span class="f12 gray">(商家标志)</span></p>
+					<ul class="mall_newshop_shoptype_ul_in">
+						<li>对象: 针对学生主办的经营性质的店铺</li>
+						<li>资费: 500元交易保证金 <a href="__ROOT__/mall/newshopcode?agreement=2" class="red">输入圈圈码(免交保证金)</a></li>
+						<li>能享受的服务与优势: 与商家相同</li>
+					</ul>
+					<p class="mall_newshop_shoptype_ul_p_sub"><a href="__ROOT__/mall/newshop?agreement=2" class="f12 btn_red">选择</a></p>
+				</li>
+				
+				<li class="mall_newshop_shoptype_ul_li">
+					<p class="mall_newshop_shoptype_ul_p">3. 商家 <span class="f12 gray">(商家标志)</span></p>
+					<ul class="mall_newshop_shoptype_ul_in">
+						<li>对象: 针对校园周边经营性质的商家</li>
+						<li>资费: 500元交易保证金，每月300元开店费用 <a href="__ROOT__/mall/newshopcode?agreement=3" class="red">输入圈圈码(免交保证金)</a></li>
+						<li>
+							能享受的服务与优势: 
+							<ul class="mall_newshop_shoptype_ul_list">
+							<li>我帮圈圈社区“商家”标志</li>
+							<li>我帮圈圈社区“组织”特权: 向圈子内的人推送消息(站内系统消息 站外邮件)</li>
+							<li>在我帮圈圈社区宣传产品，促销，招聘兼职，扩散消息</li>
+							<li>共享我帮圈圈社区、微博、邮件系统等相关资源</li>
+							<li>在我帮圈圈社区“活动”栏目中组织相关活动，扩大品牌影响力</li>
+							<li>其他合作帮助</li>
+							<li>…</li>
+							</ul>
+						</li>
+					</ul>
+					<p class="mall_newshop_shoptype_ul_p_sub"><a href="__ROOT__/mall/newshop?agreement=3" class="f12 btn_red">选择</a></p>
+				</li>
+			</ul>
+			
+			<ul class="mall_newshop_rule_ul">
+				<li>约法三章</li>
+				<li>1.诚信经验，不得损害学生利益。</li>
+				<li>2.遵守相关法律法规。</li>
+				<li>3.遵守我帮圈圈 “逛街” 相关规定。</li>
+			</ul>
+			
+			<p class="f12 gray">
+				交易保证金用来保证买家的利益，如果商家做出对用户利益损害的事情，我帮圈圈核实后，将从“交易保证金”中扣除用来弥补用户损失，视情况关停店铺并勒令整改。情节严重, 不足弥补损失的将通过相关法律途径解决。
+				交易保证金缴纳后，从开始经营计时三个月后才能申请退还。
+			</p>
+		</div>
+	<?php } else { ?>
+		<?php if(empty($recordUserShop['status']) || !empty($_GET['idcard'])){ ?>
+		<div class="mall_newshop_div">
+			<form enctype="multipart/form-data" action="__ROOT__/mall/newshop" method="post">
+				<ul class="mall_newshop_div_ul">
+					<?php if ($_GET['agreement'] == '1') { ?>
+						<li>您选择的店铺类型是: 1.学生二手 <a href="__ROOT__/mall/newshop?agreement=read">(重选)</a></li>
+					<?php } else if ($_GET['agreement'] == '2') { ?>
+						<li>您选择的店铺类型是: 2.学生经商 <a href="__ROOT__/mall/newshop?agreement=read">(重选)</a></li>
+					<?php } else if ($_GET['agreement'] == '3') { ?>
+						<li>您选择的店铺类型是: 3.商家 <a href="__ROOT__/mall/newshop?agreement=read">(重选)</a></li>
+					<?php } ?>
+					<li>上传身份证 或 企业相关证件</li>
+					<?php if (!empty($qcode)) { ?>
+					<li>圈圈码: <span class="f14 orange fb">{$qcode}</span></li>
+					<?php } ?>
+					<li>
+						<input type="hidden" name="shoptype" value="<?php echo $_GET['agreement']; ?>" />
+						<input id="upload_logo_file" name="uploadidcard" type="file" /> <span class="f12 gray">建议像素大于500px * 500px</span>
+					</li>
+					
+					<li><input type="submit" value="上传" /></li>
+				</ul>
+			</form>
+		</div>
+		<?php } ?>
+		<?php if (!empty($recordUserShop['idcard']) || !empty($recordUserShop['status'])) { ?>
+		<div class="mall_newshop_info_div">
+			<?php if (!empty($recordUserShop['idcard'])) { ?>
+				<a href="{$recordUserShop['idcard']}" target="_blank">查看已上传证件</a> <a href="__ROOT__/mall/newshop?idcard=new" class="f12"><span class="icon_recycle"></span>重新上传</a>
+			<p class="mall_newshop_info_div_p">
+			<?php }
+			if ($recordUserShop['status'] == '1') {
+				echo "<span class='icon_pump'></span>您已经上传了证件，资料审核中...";
+			} else if ($recordUserShop['status'] == '2') {
+				echo "<span class='icon_right'></span> 审核通过，你的<a href='__ROOT__/mall/shop/".$recordUserShop['uid']."'>店铺</a>已经开通，完善店铺资料。<a href='".__ROOT__."/mallset'>完善</a> 开始交易吧:)";
+			} ?>
+			</p>
+		</div>
+		<?php } ?>
+	<?php } ?>
+	</div>
+</div>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/mall/"></script> -->
+<include file="Public:footermall" />

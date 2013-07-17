@@ -1,0 +1,27 @@
+<div class="help_nav">
+   <p class="help_nav_p">
+   </p>
+   <ul class="help_nav_ul">
+     <?php if ("/help" == $_SERVER["REQUEST_URI"]) { ?>
+     <li><a href="__ROOT__/help" class="a_select">首页</a></li>
+     <?php } else { ?>
+     <li><a href="__ROOT__/help">首页</a></li>
+     <?php } ?>
+     <?php if ("/help/lists" == $_SERVER["REQUEST_URI"]) { ?>
+     <li><a href="__ROOT__/help/lists" class="a_select">帮助列表</a></li>
+     <?php } else { ?>
+     <li><a href="__ROOT__/help/lists">帮助列表</a></li>
+     <?php } ?>
+     <?php if ("/help/need" == $_SERVER["REQUEST_URI"]) { ?>
+     <li><a href="__ROOT__/help/need" class="a_select">需要帮助</a></li>
+     <?php } else { ?>
+     <li><a href="__ROOT__/help/need">需要帮助</a></li>
+     <?php } ?>
+     <?php if ("/help/well" == $_SERVER["REQUEST_URI"]) { ?>
+     <li><a href="__ROOT__/help/well" class="a_select">最佳帮助</a></li>
+     <?php } else { ?>
+     <li><a href="__ROOT__/help/well">最佳帮助</a></li>
+     <?php } ?>
+     <li><a href="__ROOT__/index/hot?w=help&t=all">排行</a></li>
+   </ul>
+</div>

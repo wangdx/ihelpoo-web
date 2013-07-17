@@ -1,0 +1,12 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/user.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<div class="registe_main">
+		<?php if (!empty($resetsuccess)) { ?>
+	    	<div class="black_l"><span class="icon_right"></span> <?php echo $resetsuccess; ?></div>
+	    <?php } else { ?>
+	    	<div class="black_l"><span class="icon_right"></span> 昵称:<?php echo $recordUserLogin['nickname']; ?> email:<?php echo $recordUserLogin['email']; ?> <a href="?action=sure" class="f12 btn">开始重置密码</a></div>
+	    <?php } ?>
+	</div>
+</div>
+<include file="Public:footer" />

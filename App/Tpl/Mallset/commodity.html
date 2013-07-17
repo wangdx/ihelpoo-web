@@ -1,0 +1,66 @@
+<?php
+    Vendor('Ihelpoo.Ofunction'); 
+    $ofunction = new Ofunction();
+?>
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">
+	    商品管理
+	    <?php if (!empty($_GET['del'])) { ?>
+		<span class="icon_attention"></span><a href="__ROOT__/mallset/commodity?p=<?php echo $_GET['p'] ?>&suredel=<?php echo $_GET['del'] ?>">确定删除</a> 
+		<a href="__ROOT__/mallset/commodity?p=<?php echo $_GET['p'] ?>">取消</a>
+		<?php } ?>
+    </div>
+	<div class="mallset_left f12">
+		<ul>
+			<li><a href="__ROOT__/mallset">店铺设置</a></li>
+			<li><a href="__ROOT__/mallset/logo">店铺logo</a></li>
+			<li><a href="__ROOT__/mallset/cate">分类管理</a></li>
+			<li><a href="__ROOT__/mallset/add">发布商品</a></li>
+			<li><a href="__ROOT__/mallset/commodity" class="bg_red">商品管理</a></li>
+			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的店铺</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<ul class="mallset_commodity_ul black_l">
+			<li>
+				<span class="mallset_commodity_li1 fb">名称</span>
+				<span class="mallset_commodity_li2 fb">价格</span>
+				<span class="mallset_commodity_li3 fb">数量</span>
+				<span class="mallset_commodity_li4 fb">销量</span>
+				<span class="mallset_commodity_li5 fb">评价数</span>
+				<span class="mallset_commodity_li6 fb">浏览</span>
+				<span class="mallset_commodity_li7 fb">&nbsp;发布时间</span>
+			</li>
+			<?php foreach($resultsRecordCommodity as $commodity) { ?>
+			<li>
+				<?php if ($commodity['status'] == 1) { ?>
+					<span class="icon_right" title="正常"></span>
+				<?php } else { ?>
+					<span class="icon_attention" title="这件商品被禁卖了"></span>
+				<?php } ?>
+				<a class="mallset_commodity_li1" href="__ROOT__/mall/item/<?php echo $commodity['cid'] ?>" target="_blank">
+					<?php echo $ofunction->cut_str($commodity['name'],20); ?>
+					<span class="f12 gray">[<?php if ($commodity['good_type'] == '2') { echo "二手"; } else { echo "全新"; } ?>]</span>
+				</a> 
+				<span class="mallset_commodity_li2 red"><?php echo $commodity['price']; ?></span>
+				<span class="mallset_commodity_li3 f12"><?php echo $commodity['good_nums']; ?></span> 
+				<span class="mallset_commodity_li4 f12"><?php echo $commodity['sales_co']; ?></span> 
+				<span class="mallset_commodity_li5 f12"><?php echo $commodity['assess_co']; ?></span>
+				<span class="mallset_commodity_li6 f12 gray"><?php echo $commodity['hit']; ?></span> 
+				<span class="mallset_commodity_li7 f12 gray"><?php echo i_time($commodity['time']); ?></span>
+				<span class="mallset_commodity_li8 f12">
+					<a href="__ROOT__/mallset/add/<?php echo $commodity['cid'] ?>" title="更新">编辑</a> 
+					<a href="__ROOT__/mallset/commodity?p=<?php echo $_GET['p'] ?>&del=<?php echo $commodity['cid'] ?>">删除</a>
+				</span>
+			</li>
+			<?php } ?>
+		</ul>
+		<div>
+			<p class="f12 gray">共<?php echo $totalRecordNums ?>件商品 <?php echo $totalPages ?>页</p>
+			<?php if ($totalPages > 1) { i_page_show("mallset/commodity", $totalPages); } ?>
+		</div>
+	</div>
+</div>
+<include file="Public:footermall" />

@@ -1,0 +1,244 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	$UserLogin = M("UserLogin");
+	if ($sayRecord['from']) {
+		$sayRecordFromArray = explode("-", $sayRecord['from']);
+		if ($sayRecordFromArray['1'] > 0) {
+			$weiboswitch = $sayRecordFromArray['1'];
+		} else {
+			$weiboswitch = false;
+		}
+	}
+	$findReplyPlace = false;
+?>
+<include file="Public:header" />
+<link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+	<div class="main_item">
+		<!-- content  -->
+		<div class="i_content">
+			<span class="i_content_img">
+		    	<?php echo "<a href='".__ROOT__."/stream/u/".$sayRecord['uid']."'><img src='".i_icon_check($itemUserLogin['uid'], $itemUserLogin['icon_url'], 's')."' height='30' class='radius3'  /></a>"; ?>
+		  	</span>
+			<span class="i_content_span_user">
+		    	<?php echo "<a href='".__ROOT__."/stream/u/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
+		    	<span class="f12 black_l">发布于
+		    		<?php echo i_time($sayRecord['time']);
+    				if (!empty($sayRecord['from'])) {
+          				if ("2" == $sayRecord['from']) {
+          	  				echo " 来自我帮圈圈抓取程序";
+          				} else if ("3" == $sayRecord['from']) {
+          	  				echo " 来自我帮圈圈Andriod客户端";
+          				} else {
+          	 				echo " 来自".$sayRecord['from'];
+          				}
+    				} ?>
+		  		</span>
+			</span>
+			<span class="fr f12 black_l i_content_span_info">
+			  	<?php echo "<span class='icon_words'></span> 评论".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?>°
+				<?php if (!empty($userloginedrecord['uid'])) { ?>
+				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo $recordDiffusionNums ?>)
+				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
+				<?php } ?>
+		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
+		    	<a class="black_l" id="del_record_btn"><span class="icon_garbage"></span>删除</a>
+		    	<?php } ?>
+		  	</span>
+		  	<input type="hidden" name="sid" id="recordsid" value="<?php echo $sayRecord['sid'] ?>"/>
+			<div class="i_content_p lh15">
+		    	<?php echo $emotion->transEmotion(i_content(strip_tags($sayRecord['content'],"<a><span>"))); ?>
+				<?php
+			  		if (!empty($sayRecord['url'])) {
+          				echo "<a href='".$sayRecord['url']."' target='_blank'><span class='post_video'></span></a>";
+    	 				$videoResult = VideoUrlParser::parse($sayRecord['url']);
+		  				if (!empty($videoResult)) {
+			  				echo "<p>".$videoResult['object']."</p>";
+		  				}
+	 				}?>
+		    	<p>
+		    		<?php
+					if (!empty($imageRecordArray)) {
+        				foreach($imageRecordArray as $imageRecord) {
+        					$imageResize = getimagesize($imageRecord);
+       						$imageWidth = $imageResize['0'];
+       						if ($imageWidth > 800) {
+          	    				echo "<img src='".$imageRecord."' width='800' style='border:6px solid #EEE' />";
+         					} else {
+          	   					echo "<img src='".$imageRecord."' style='border:6px solid #EEE' />";
+          					}
+        				}
+    				}?>
+				</p>
+			</div>
+
+			<?php if (!empty($recordDiffusionNums)) {?>
+			<ul class="i_record_diffusion black_l f12">
+				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
+				<li>
+		        	<a href="__ROOT__/stream/u/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
+		        	扩散了这条信息.
+		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
+		    	<?php endforeach; ?>
+			</ul>
+			<?php } ?>
+		</div>
+		<!-- /content -->
+
+		<!-- comment -->
+		<div class="i_comment_box f12">
+		  <form action="" method="post" id="i_c_b_form">
+		    <input type="hidden" id="sayid" name="sid" value="<?php echo $sayRecord['sid'] ?>"/>
+		    <input type="hidden" name="imageurl" id="imageurl" />
+		    <input type="hidden" name="atusers" id="atusers" />
+		    <input type="hidden" name="textareacontent" id="textareacontent" />
+		    <textarea name="comment" id="i_comment_textarea"></textarea>
+		    <span class="i_c_b_verification">
+		        <img id="i_c_b_verification_code_img" src="" />
+		        <input class="i_c_b_verificationcode" id="verificationcode" type="text" name="verificationcode" value="999"/>
+		    </span>
+		    <a id="i_c_b_submit" class="btn">评论</a>
+		    <span class="i_comment_textarea_info"></span>
+		    <p class="i_c_b_form_icon_p">
+		    	<span class="post_icon" id="textareaicon" title="表情"></span>
+		    	<span class="post_img" id="textareaimg" title="图片"></span>
+		    </p>
+		  </form>
+		  <!-- emotionbox hide -->
+	      <div id="emotionbox_item">
+			  <p class="emotionbox_close_p">
+				  <a class="emotionbox_change_page bg_gray gray" title="基本表情">1</a><a class="emotionbox_change_page gray" title="兔斯基 淘小二">2</a>
+				  <span id="emotionbox_close" class="icon_quit" title="关闭"></span>
+			  </p>
+		  	  <ul class="emotionbox_show_ul"></ul>
+		  </div>
+		  <!-- /emotionbox -->
+		  <!-- image upload hide -->
+		  <div class="img_upload_comment_form_div">
+		      <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+		        <input id="upload_form_img_file" name="uploadedimg" type="file" />
+		        <a class="btn f12" id="img_upload_btn">上传</a>
+		        <span class="imgajaxloading_span"></span>
+		      </form>
+		      <ul id="image_upload_list_ul"></ul>
+		  </div>
+		  <!-- /image upload -->
+		</div>
+		<!-- /comment -->
+
+		<!-- comment_list -->
+		<div class="i_comment_list">
+		  <ul class="i_comment_list_ul">
+		  <?php
+			if (!empty($_GET['p'])) {
+          		$p = $_GET['p'];
+				$i = (($p - 1) * $pageCount) + 1;
+			} else {
+				$i = 1;
+			}
+      		foreach ($sayComment as $comment):
+      	  ?>
+      	  <?php if ($_GET['ncid'] == $comment['cid']) {
+      	  $findReplyPlace = true;
+      	  ?>
+		  <li class="now_reply_this_id">
+		  <?php } else { ?>
+		  <li>
+		  <?php } ?>
+		    <span class="i_c_l_u_li_spannum gray"><?php echo $i ?></span>
+		    <a href="__ROOT__/stream/u/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
+		    	<img src="<?php echo i_icon_check($comment['uid'], $comment['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
+		    </a>
+		    <div class="i_c_l_u_li_div black_l">
+		    	<a href="__ROOT__/stream/u/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
+		    	<span class="f12 gray fb">
+		    	<?php
+		      		if (!empty($comment['toid'])) {
+		  				$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
+         		 		echo "[回复:".$commentReplyUser['nickname']."]";
+					} ?>
+		    	</span>
+		    	<?php echo $emotion->transEmotion(stripslashes($comment['content']));
+					if (!empty($comment['image'])) {
+				?>
+				<p class="i_c_l_u_li_div_img_p">
+					<a href="<?php echo $comment['image']; ?>" title="点击查看原图" target="_blank">
+						<img src="<?php echo i_image_thumbnail($comment['image']); ?>" class="" />
+					</a>
+				</p>
+				<?php } ?>
+		    	<span class="i_c_l_u_li_div_time f12 gray"><?php echo i_time($comment['time']) ?></span>
+		    	<span class="f12 fr">
+			      	<?php if (!empty($comment['uid']) && $comment['uid'] != $userloginedrecord['uid']) { ?>
+			        	<a class="reply_box_btn">回复</a> <span class="icon_plus"></span>
+			      	<?php } ?>
+			      	<?php if ($comment['uid'] == $userloginedrecord['uid'] || $userloginedrecord['uid']== $sayRecord['uid']) { ?>
+			      		<input type="hidden" class="reply_delete_cid" name="delcomment" value="<?php echo $comment['cid'] ?>" />
+			      		<a class="reply_delete_btn red_l">删除</a>
+			      	<?php } ?>
+		    	</span>
+		    </div>
+		    <!-- replybox -->
+		    <?php if (!empty($comment['uid']) && $comment['uid'] != $userloginedrecord['uid']) { ?>
+		    <div class="comment_reply_div_box">
+		      <form action="" method="post" class="comment_reply_form">
+		        <input type="hidden" name="sid" value="<?php echo $sayRecord['sid'] ?>"/>
+		        <input type="hidden" name="toid" value="<?php echo $comment['uid'] ?>" />
+		        <input type="hidden" name="cid" value="<?php echo $comment['cid'] ?>" />
+		        <input type="hidden" name="atusers" class="reply_atusers" />
+		        <input type="hidden" name="textareacontent" class="reply_textareacontent" />
+		        <textarea class="comment_reply_textarea" name="comment"></textarea>
+		        <span class="comment_reply_verification">
+		        	<img class="comment_reply_verification_code_img" src="" />
+		        	<input class="comment_reply_verificationcode" type="text" name="verificationcode" value="999"/>
+		    	</span>
+		        <input type="button" class="comment_reply_btn" value="回复" />
+				<p style="padding-left:290px;"><span class="post_icon reply_emotionbox_icon"></span></p>
+		      </form>
+		    </div>
+		    <?php } ?>
+		    <!-- /replybox -->
+		  </li>
+		  <?php
+		    $i++;
+    		endforeach; ?>
+		  </ul>
+		  <p class="i_comment_list_num f12 gray">共<?php echo $sayRecord['comment_co'] ?>条评论 <?php echo $totalPages ?>页</p>
+		  <div class="i_comment_list_link">
+		  <?php i_page_show("item/say/".$sayRecord['sid'], $totalPages); ?>
+		  </div>
+		</div>
+		<!-- /comment_list -->
+	    <div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
+	</div>
+</div>
+<?php 
+if (!$findReplyPlace && !empty($_GET['ncid']) && $pagenow < $totalPages) {
+	redirect('/item/say/'.$sayRecord['sid'].'?ncid='.$_GET['ncid'].'&p='.$totalPages, 0, '跳转查找记录页面中...');
+}
+?>
+
+<!-- reply_emotionbox hide -->
+<div id="reply_emotionbox">
+	<p class="reply_emotionbox_close_p">
+		<a class="reply_emotionbox_change_page bg_gray gray" title="基本表情">1</a><a class="reply_emotionbox_change_page gray" title="兔斯基 淘小二">2</a>
+		<span id="reply_emotionbox_close" class="icon_quit" title="关闭"></span>
+	</p>
+	<ul class="reply_emotionbox_show_ul"></ul>
+</div>
+<!-- /reply_emotionbox -->
+<div class="auto_load_div"></div>
+<div id="cursorfocus" style="display:none"></div>
+<div class="user_info_div f12"></div>
+<script type="text/javascript" src="__PUBLIC__/js/public/textareatools.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
+<?php if ($weiboswitch) { ?>
+<input type="hidden" id="weiboswitchjs" value="on" weiboid="<?php echo $weiboswitch; ?>"/>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
+<?php } else { ?>
+<input type="hidden" id="weiboswitchjs" value="off" />
+<?php } ?>
+<script type="text/javascript" src="__PUBLIC__/js/item/say.js?id=1"></script>
+<include file="Public:footer" />

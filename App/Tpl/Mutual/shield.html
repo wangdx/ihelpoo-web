@@ -1,0 +1,36 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/mutual.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+
+<div class="find">
+  <p class="find_info">
+    <a href="__ROOT__/mutual/shield?list">我屏蔽的(<?php echo $userShieldNums ?>)</a> <span class="black_l"> <span class="icon_attention"></span>我被<?php echo $beShieldedNums ?>人屏蔽了</span>
+  </p>
+  <ul class="find_ul">
+  <?php
+      foreach ($userShielded as $userShield) :
+  ?>
+  <li>
+    <a href="__ROOT__/stream/u/<?php echo $userShield['sid'] ?>">
+      <img src="<?php echo i_icon_check($userShield['sid'], $userShield['icon_url'], 's') ?>" width="50" />
+    </a>
+    <a href="__ROOT__/stream/u/<?php echo $userShield['sid'] ?>"><?php echo $userShield['nickname'] ?></a>
+    <span class="gray f12">时间: <?php echo i_time($userShield['time']) ?></span>
+    <?php if (isset($_GET['list'])) {?>
+      <a href="__ROOT__/mutual/shield/<?php echo $userShield['sid']; ?>?del" class="f12">取消屏蔽</a>
+    <?php } ?>
+  </li>
+  <?php endforeach ?>
+  </ul>
+  <div class="i_list_link">
+    <p class="i_list_num f12 gray">共<?php echo $totalPages ?>页</p>
+    <?php
+    if ($totalPages > 1) {
+        i_page_show("mutual/shield?list", $totalPages, "&");
+    }
+    ?>
+  </div>
+</div>
+
+</div>
+<include file="Public:footer" />

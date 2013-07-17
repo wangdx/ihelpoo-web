@@ -1,0 +1,144 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/lab.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/lab_maponline.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div>
+	<span class="online1"></span> <span class="black_l f12">在线人数 <span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
+	<?php if (!empty($hiddenUserNums)) { ?>
+		(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)
+	<?php } ?></span> |
+	<a href="__ROOT__/lab/maponline">我帮圈圈在线</a> | <a href="__ROOT__/lab/maponline?qq">QQ在线</a>
+	<span class="f12 gray">
+	<?php
+	if (isset($_GET['qq']) && empty($userloginedrecord['uid'])) {
+  	  	echo "<span class='icon_wrong'></span>登录后才能查看QQ在线状态";
+ 	}
+  	if (isset($_GET['qq']) && i_degree($userloginedrecord['active']) < 3 && !empty($userloginedrecord['uid'])) {
+    	echo "<span class='icon_wrong'></span>等级>=3,才能查看QQ在线状态。&nbsp;<a href='".__ROOT__."/support?level' class='f12 fb gray'><span class='icon_sigh'></span>升级规则</a>";
+  	}?></span>
+	<p class="fr f12 gray">
+		<span class="icon_search"></span>快速定位
+		<a class="fast_move_map" value="1">男寝+校外</a>
+		<a class="fast_move_map" value="2">女寝+K栋</a>
+		<a class="fast_move_map" value="3">三洼</a>
+		<a class="fast_move_map" value="4">其他</a>
+	</p>
+</div>
+<div class="main_scorll_div">
+<div class="maponline_main_div">
+<p class="maponline_main_div_p">
+</p>
+<?php
+	$dormitoryArray = array();
+    if(isset($_GET['qq'])) {
+    if (!empty($userloginedrecord['uid']) && i_degree($userloginedrecord['active']) >= 3) {
+    $UserInfo = M("UserInfo");
+    $qqOnlineStatus = $UserInfo->where("qq != ''")->join("i_user_login ON i_user_info.uid = i_user_login.uid")->select();
+    foreach ($qqOnlineStatus as $qqOnline):
+        if (!empty($qqOnline['dormitory_op']) && is_numeric($qqOnline['qq'])) {
+            if (in_array($qqOnline['dormitory_op'], $dormitoryArray)) {
+                $positionXToRight[$qqOnline['dormitory_op']] -= 25;
+				$dormitoryNumbers[$qqOnline['dormitory_op']]++;
+            } else {
+                $dormitoryArray[] = $qqOnline['dormitory_op'];
+                $positionXToRight[$qqOnline['dormitory_op']] = 0;
+            }
+			if ($dormitoryNumbers[$qqOnline['dormitory_op']] <=5 ) {
+        ?>
+        <script type="text/javascript">
+        $().ready(function(){
+            var d_user = $('#d_<?php echo $qqOnline['dormitory_op'] ?>').position();
+            $('#<?php echo $qqOnline[uid] ?>').css({left:d_user.left - <?php echo $positionXToRight[$qqOnline[dormitory_op]] ?>, top:d_user.top - 30});
+        });
+        </script>
+        <p id="<?php echo $qqOnline['uid'] ?>" style="position: absolute;" class="user_show_p">
+          <a href="__ROOT__/talk/to/<?php echo $qqOnline['uid'] ?>" title="<?php echo $qqOnline['nickname'] ?> <?php echo i_grade($qqOnline['enteryear']) ?> <?php echo i_constellation($qqOnline['birthday']),i_sex($qqOnline['sex']) ?>" style="display: inline-block; position: relative; width: 50px; height: 40px">
+            <img src="<?php echo i_icon_check($qqOnline['uid'], $qqOnline['icon_url'], 's') ?>" height="30" />
+          </a>
+          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $qqOnline['qq'] ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $qqOnline['qq'] ?>:46"></a>
+        </p>
+        <?php } }
+    endforeach;
+    }
+    } else {
+    foreach ($userOnlineObject as $userOnline):
+		if ($userOnline['online'] == '1') {
+        if (in_array($userOnline['dormitory_op'], $dormitoryArray)) {
+            $positionXToRight[$userOnline['dormitory_op']] -= 25;
+			$dormitoryNumbers[$qqOnline['dormitory_op']]++;
+        } else {
+            $dormitoryArray[] = $userOnline['dormitory_op'];
+            $positionXToRight[$userOnline['dormitory_op']] = 0;
+        }
+        if (true) {
+    ?>
+        <script type="text/javascript">
+        $().ready(function(){
+        	<?php if (!empty($userOnline['dormitory_op'])) { ?>
+            var d_user = $('#d_<?php echo $userOnline[dormitory_op] ?>').position();
+            <?php } else { ?>
+            var d_user = $('#d_0').position();
+            <?php } ?>
+            $('#<?php echo $userOnline[uid] ?>').css({left:d_user.left - <?php echo $positionXToRight[$userOnline['dormitory_op']] ?>, top:d_user.top - 30});
+        });
+        </script>
+        <p id="<?php echo $userOnline['uid'] ?>" style="position: absolute;" class="user_show_p">
+          <a href="__ROOT__/talk/to/<?php echo $userOnline['uid'] ?>" title="<?php echo $userOnline['nickname'] ?> <?php echo i_grade($userOnline['enteryear']) ?> <?php echo i_constellation($userOnline['birthday']),i_sex($userOnline['sex']) ?>" style="display:inline-block; position: relative; width: 50px; height: 40px">
+            <img src="<?php echo i_icon_check($userOnline['uid'], $userOnline['icon_url'], 's') ?>" height="30" />
+            <span class="online1" style="position: absolute; top: -7px; left: 0;"></span>
+          </a>
+        </p>
+    <?php } } endforeach; ?>
+<?php } ?>
+  <span id="d_0"><span class="icon_pump"></span><span class="gray f12">未知寝室楼栋</span></span>
+  <span id="d_1"><a href="__ROOT__/index/mate?w=dormitory&n=1" class="white">男寝 1栋<span class="sex1"></span></a></span>
+  <span id="d_2"><a href="__ROOT__/index/mate?w=dormitory&n=2" class="white">男寝 2栋<span class="sex1"></span></a></span>
+  <span id="d_3"><a href="__ROOT__/index/mate?w=dormitory&n=3" class="white">男寝 3栋<span class="sex1"></span></a></span>
+  <span id="d_4"><a href="__ROOT__/index/mate?w=dormitory&n=4" class="white">男寝 4栋<span class="sex1"></span></a></span>
+  <span id="d_5"><a href="__ROOT__/index/mate?w=dormitory&n=5" class="white">男寝 5栋<span class="sex1"></span></a></span>
+  <span id="d_6"><a href="__ROOT__/index/mate?w=dormitory&n=6" class="white">男寝 6栋<span class="sex1"></span></a></span>
+  <span id="d_7"><a href="__ROOT__/index/mate?w=dormitory&n=7" class="white">男寝 7-7栋<span class="sex1"></span></a></span>
+
+  <span id="d_8"><a href="__ROOT__/index/mate?w=dormitory&n=8" class="white">女寝 8栋<span class="sex2"></span></a></span>
+  <span id="d_10"><a href="__ROOT__/index/mate?w=dormitory&n=10" class="white">女寝 10栋<span class="sex2"></span></a></span>
+  <span id="d_11"><a href="__ROOT__/index/mate?w=dormitory&n=11" class="white">女寝 11栋<span class="sex2"></span></a></span>
+  <span id="d_12"><a href="__ROOT__/index/mate?w=dormitory&n=12" class="white">女寝 12栋<span class="sex2"></span></a></span>
+  <span id="d_13"><a href="__ROOT__/index/mate?w=dormitory&n=13" class="white">女寝 13栋<span class="sex2"></span></a></span>
+  <span id="d_14"><a href="__ROOT__/index/mate?w=dormitory&n=14" class="white">女寝 14栋<span class="sex2"></span></a></span>
+  <span id="d_15"><a href="__ROOT__/index/mate?w=dormitory&n=15" class="white">男寝 15栋<span class="sex1"></span></a></span>
+  <span id="d_16"><a href="__ROOT__/index/mate?w=dormitory&n=16" class="white">女寝 16栋<span class="sex2"></span></a></span>
+  <span id="d_17"><a href="__ROOT__/index/mate?w=dormitory&n=17" class="white">女寝 17栋<span class="sex2"></span></a></span>
+
+  <span id="d_36"><a href="__ROOT__/index/mate?w=dormitory&n=36" class="white">女寝 K1<span class="sex2"></span></a></span>
+  <span id="d_37"><a href="__ROOT__/index/mate?w=dormitory&n=37" class="white">女寝 K2<span class="sex2"></span></a></span>
+  <span id="d_38"><a href="__ROOT__/index/mate?w=dormitory&n=38" class="white">女寝 K3<span class="sex2"></span></a></span>
+
+  <span id="d_18"><a href="__ROOT__/index/mate?w=dormitory&n=18" class="white">男寝 A栋(K4)<span class="sex1"></span></a></span>
+  <span id="d_19"><a href="__ROOT__/index/mate?w=dormitory&n=19" class="white">男寝 B栋(K5)<span class="sex1"></span></a></span>
+  <span id="d_20"><a href="__ROOT__/index/mate?w=dormitory&n=20" class="white">男寝 C栋(K6)<span class="sex1"></span></a></span>
+  <span id="d_21"><a href="__ROOT__/index/mate?w=dormitory&n=21" class="white">男寝 D栋(K7)<span class="sex1"></span></a></span>
+  <span id="d_22"><a href="__ROOT__/index/mate?w=dormitory&n=22" class="white">女寝 E栋(K8)<span class="sex2"></span></a></span>
+  <span id="d_23"><a href="__ROOT__/index/mate?w=dormitory&n=23" class="white">女寝 F栋(K9)<span class="sex2"></span></a></span>
+  <span id="d_24"><a href="__ROOT__/index/mate?w=dormitory&n=24" class="white">女寝 G栋(K10)<span class="sex2"></span></a></span>
+  <span id="d_25"><a href="__ROOT__/index/mate?w=dormitory&n=25" class="white">女寝 H栋(K11)<span class="sex2"></span></a></span>
+
+  <span id="d_26"><a href="__ROOT__/index/mate?w=dormitory&n=26" class="white">男寝 三洼18栋<span class="sex1"></span></a></span>
+  <span id="d_27"><a href="__ROOT__/index/mate?w=dormitory&n=27" class="white">男寝 三洼19栋<span class="sex1"></span></a></span>
+  <span id="d_28"><a href="__ROOT__/index/mate?w=dormitory&n=28" class="white">女寝 三洼20栋<span class="sex2"></span></a></span>
+  <span id="d_29"><a href="__ROOT__/index/mate?w=dormitory&n=29" class="white">女寝 三洼21栋<span class="sex2"></span></a></span>
+  <span id="d_39"><a href="__ROOT__/index/mate?w=dormitory&n=39" class="white">男寝 三洼22栋<span class="sex1"></span></a></span>
+  <span id="d_35"><a href="__ROOT__/index/mate?w=dormitory&n=35" class="white">女寝 三洼23栋<span class="sex2"></span></a></span>
+  <span id="d_43"><a href="__ROOT__/index/mate?w=dormitory&n=43" class="white">女寝 三洼24栋<span class="sex2"></span></a></span>
+
+  <span id="d_31"><a href="__ROOT__/index/mate?w=dormitory&n=31" class="white">教工宿舍区<span class="icon_pump"></span></a></span>
+  <span id="d_40"><a href="__ROOT__/index/mate?w=dormitory&n=40" class="white">松林湾<span class="icon_pump"></span></a></span>
+  <span id="d_41"><a href="__ROOT__/index/mate?w=dormitory&n=41" class="white">三小<span class="sex2"></span></a></span>
+  <span id="d_42"><a href="__ROOT__/index/mate?w=dormitory&n=42" class="white">木子潭<span class="sex1"></span></a></span>
+  <span id="d_34"><a href="__ROOT__/index/mate?w=dormitory&n=34" class="white">校外<span class="icon_pump"></span></a></span>
+  <span id="d_33"><a href="__ROOT__/index/mate?w=dormitory&n=33" class="white">校内其他<span class="icon_pump"></span></a></span>
+  <span id="d_30"><a href="__ROOT__/index/mate?w=dormitory&n=30" class="white">26栋<span class="sex1"></span></a></span>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/lab/maponline.js"></script>
+<include file="Public:footer" />

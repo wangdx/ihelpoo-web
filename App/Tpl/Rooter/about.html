@@ -1,0 +1,46 @@
+<include file="Public:headerrooter" />
+<?php if ($_GET['artical'] == 'new') { ?>
+	<div>
+		 <a href="__ROOT__/rooter/about">返回列表</a>
+		 <form method="post">
+		 	<p>标题: <input type="text" name="title" id="cms_title_input" /></p>
+		 	<p>内容: <textarea rows="30" cols="100" name="content" id="cms_content_taxtarea"></textarea></p>
+		 	<p>&#12288;&#12288;&#12288;<input type="submit" value="发布" /></p>
+		 </form>
+	</div>
+<?php } else if ($_GET['artical'] == 'edit') { ?>
+	<div>
+		 <a href="__ROOT__/rooter/about">返回列表</a>
+		 <form method="post">
+		 	<p>
+		 		<input type="hidden" name="id" value="<?php echo $cmsArticalRecord['id']; ?>" />
+		 		标题: <input type="text" name="title" value="<?php echo $cmsArticalRecord['title']; ?>" id="cms_title_input"/>
+		 		admin id: <?php echo $cmsArticalRecord['uid']; ?> 
+		 		发布时间: <?php echo i_time($cmsArticalRecord['time']); ?> 
+		 		hit: <?php echo $cmsArticalRecord['hit']; ?> 
+		 	</p>
+		 	<p>内容: <textarea rows="30" cols="100" name="content" id="cms_content_taxtarea"><?php echo $cmsArticalRecord['content']; ?></textarea></p>
+		 	<p>&#12288;&#12288;&#12288;<input type="submit" value="修改" /></p>
+		 </form>
+	</div>
+<?php } else if ($_GET['artical'] == 'delete') { ?>
+	是否删除?
+	<a href="__ROOT__/rooter/about/<?php echo $cmsArticalRecord['id']; ?>?artical=suredelete">确定</a>
+	<a href="__ROOT__/rooter/about">取消</a>
+	标题: <?php echo $cmsArticalRecord['title']; ?>
+<?php } else { ?>
+	<div>
+		 <a href="__ROOT__/rooter/about?artical=new">发布新文章</a>
+	</div>
+  <ul class="para_right_ul">
+    <?php foreach ($cmsArticalRecords as $cms) : ?>
+    <li>
+    	<a href="__ROOT__/about/artical/<?php echo $cms['id']; ?>" target="_blank"><?php echo $cms['title']; ?></a>
+    	 hit:<?php echo $cms['hit']; ?> <?php echo i_time($cms['time']); ?>  
+    	<a href="__ROOT__/rooter/about/<?php echo $cms['id']; ?>?artical=edit">编辑</a> / 
+    	<a href="__ROOT__/rooter/about/<?php echo $cms['id']; ?>?artical=delete">删除</a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+<?php } ?>
+<include file="Public:footerrooter" />

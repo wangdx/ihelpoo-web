@@ -1,0 +1,45 @@
+<include file="Public:headerrooter" />
+	<?php if (!empty($_GET['del'])) { ?>
+		<div><span class="icon_attention"></span><a href="__ROOT__/rooter/mallindex?suredel=<?php echo $_GET['del']; ?>">确认</a> <a href="__ROOT__/rooter/mallindex">取消</a></div>
+	<?php } ?>
+	<form enctype="multipart/form-data" action="__ROOT__/rooter/mallindeximg" method="post" id="settingform">
+		<ul class="mallset_index_ul">
+			<li><span class="f12 gray">选择图片:</span> <input id="upload_image_file" name="uploadimage" type="file" /></li>
+			<li>
+				<span class="f12 gray">图片形式:</span> 
+				<select name="image_type" >
+					<option value="middlie3" selected>600px * 270px middlie3</option>
+					<option value="right2">165px * 130px right2</option>
+					<option value="center1">225px * 310px center1</option>
+				</select>
+			</li>
+			<li><input type="submit" value="上传" /></li>
+		</ul>
+	</form>
+	<ul>
+	<?php if (!empty($resultsMallIndeximg)) {
+		foreach($resultsMallIndeximg as $resultsMallimg) {
+	?>
+	<li>
+		<form method="post">
+		    <input type="hidden" name="id" value="<?php echo $resultsMallimg['id']; ?>" />
+		    <?php if (!empty($resultsMallimg['middle_img'])){; ?>
+		    	middle3: <a href="<?php echo $resultsMallimg['middle_img']; ?>" target="_blank">查看图片</a>
+		    	url:<input type="text" name="middle_url" value="<?php echo $resultsMallimg['middle_url']; ?>"/>
+		    <?php } else if (!empty($resultsMallimg['right_img'])) { ?>
+		    	right2: <a href="<?php echo $resultsMallimg['right_img']; ?>" target="_blank">查看图片</a> 
+		    	url:<input type="text" name="right_url" value="<?php echo $resultsMallimg['right_url']; ?>"/>
+		    <?php } else if (!empty($resultsMallimg['center_img'])) { ?>
+		    	center1: <a href="<?php echo $resultsMallimg['center_img']; ?>" target="_blank">查看图片</a> 
+		    	url:<input type="text" name="center_url" value="<?php echo $resultsMallimg['center_url']; ?>"/>
+		    <?php } ?>
+		    order:<input type="text" name="order" value="<?php echo $resultsMallimg['order']; ?>" />
+		    <input type="submit" value="修改" /> 
+		    <a href="__ROOT__/rooter/mallindex?del=<?php echo $resultsMallimg['id']; ?>">删除</a>
+		    <span class="gray f12"><?php echo i_time($resultsMallimg['time']); ?></span> 
+    	</form>
+	</li>
+	<?php }	
+	} ?>
+	</ul>
+<include file="Public:footerrooter" />

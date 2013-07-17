@@ -1,0 +1,71 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">1.确认购买信息 &#12288;&#12288;<span class="red fb">2.选择交易(付款)方式<span class="icon_write"></span></span> &#12288;&#12288;3.确认收货 &#12288;&#12288;4.评价</div>
+	<div class="mallset_shop f12">
+		<?php if($showRecordCommodityassess['status'] >= '1') { ?>
+		<div class="mallset_buypay_div">
+			<p class="mallset_buypay_div_p">
+				交易详情, 开始时间 <span class="fb reb_back"><?php echo i_time($showRecordCommodityassess['start_ti']) ?></span>
+				<?php if($showRecordCommodityassess['status'] == '1') { ?>
+				 状态: <span class="fb reb_back">等待店主确认</span>
+				<?php } else if ($showRecordCommodityassess['status'] == '2') { 
+			      if (!empty($showRecordCommodityassess['refusereason'])) { ?>
+			 			状态: <span class="fb reb_back">店主已经拒绝交易</span> 拒绝原因:<?php echo $showRecordCommodityassess['refusereason']; ?>
+				  <?php } else { ?>
+						状态: <span class="fb reb_back">店主已经确认</span> 快快联系完成交易,然后评价拿返利吧:)
+				<?php } } ?>
+			</p>
+			<ul class="mallset_buypay_div_ul">
+				<li>
+					<a href="__ROOT__/mall/item/{$showRecordCommodity['cid']}" target="_blank">
+						<img src="<?php echo i_goods_thumbnail($showRecordCommodity['image'], 's') ?>" width="100" />
+					</a>
+					<a href="__ROOT__/mall/item/{$showRecordCommodity['cid']}" target="_blank">{$showRecordCommodity['name']}</a>
+				</li>
+				<li>
+					价格￥<span class="f14 fb red">{$showRecordCommodityassess['buyprice']}</span>
+					<span class="f12 gray">(购买数量{$showRecordCommodityassess['buynums']})</span>
+				</li>
+				<li>
+					返利￥<span class="f14 fb red"><?php echo ($showRecordCommodityassess['buyprice'] * $showRecordCommodityassess['buynums'] * $showRecordCommodity['rebate'])/100 ?></span> 
+					<span class="f12 gray">({$showRecordCommodity['rebate']}%)</span>
+				</li>
+				<li>备注: {$showRecordCommodityassess['remarks']}</li>
+			</ul>
+		</div>
+		<?php } ?>
+		<div class="mallset_buypay_sub_div">
+			店主信息:{$shoperUserInfo['realname']} 手机{$shoperUserInfo['mobile']} QQ:{$shoperUserInfo['qq']} 地址:{$shoperUserShop['address']}
+		</div>
+		<?php if(!$showRecordCommodityassess['status']) { ?>
+		<div class="mallset_buypay_btn_div f12">
+			<p class="fb gray">交易方式</p>
+			<p>
+				1.线下交易(货到付款):
+				<?php 
+				$showRecordCommodityBuyway = explode(";",$showRecordCommodity['buyway']);
+				foreach($showRecordCommodityBuyway as $buyway) {
+				if ($buyway == 1) { ?>
+				<input type="radio" name="buyway" value="1" /> 免费送货上门
+				<?php } else if ($buyway == 2) { ?>
+				<input type="radio" name="buyway" value="2" /> +1元送货上门
+				<?php } else if ($buyway == 3) { ?>
+				<input type="radio" name="buyway" value="3" /> 自己来取
+				<?php }} ?>
+			</p>
+			<p>2.支付宝接口后期开发...</p>
+			<p>
+				<input type="hidden" value="{$showRecordCommodityassess['id']}" id="commodityassessid" />
+				<a class="btn_red" id="pay_btn">确定</a>
+			</p>
+		</div>
+		<?php } else if($showRecordCommodityassess['status'] == '1') { ?>
+			<div class="mallset_buypay_btn_div f12">
+				<p><a href="__ROOT__/mallset/buyer" class="btn_brown">返回购物主页</a></p>
+			</div>
+		<?php } ?>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mallset/buypay.js"></script>
+<include file="Public:footermall" />

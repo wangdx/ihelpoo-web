@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="realfirst">
+  <p class="real_explain f12 black_l"><span class="icon_pump"></span> 填写真实姓名 快速填充个人信息 <?php if ($_GET['step'] == 1) { ?>(真实姓名不会公布,我们会在收集的数据库中查找您的真实姓名,以此帮您快速填充相关个人资料!)<?php } ?></p>
+    <?php
+        if ($_GET['step'] == 1) {
+        	echo "<form action='".__ROOT__."/setting/realfirst?step=2' method='post'>";
+            if (!empty($recordUserInfo['realname_re'])) { 
+                echo "<ul><li>已经匹配真实姓名: ".$recordUserInfo['realname']." <a href='".__ROOT__."/user/realnamemf' class='f12'>申请修改</a></li>";
+            } else {
+                echo "<li class='realfirst_first_li'>真实姓名:<input type='text' name='realname' value='".$recordUserInfo['realname']."' /><input type='submit' value='确定' /></li></ul>";
+            }
+            echo "</form>";
+        } else if ($_GET['step'] == 2) {
+        	echo "<form action='".__ROOT__."/setting/realfirst?step=3' method='post'>";
+            if (!empty($student)) {
+			    //echo "<p class='realfirst_second_else_p'>:( 数据库中未找到您的个人信息, 未匹配成功! 下一步吧 <a href='".__ROOT__."/setting/realfirst?step=3'>确定</a></p>";
+                echo "<div class='realfirst_second_div'><ul>";
+                foreach ($student as $stu){
+                	echo "<li class='balck_l'><input type='radio' name='student' value='".$stu['id']."' ";
+                	echo $stu['total'] == 1 ? "checked='checked'" : NULL;
+                	echo "/>";
+                	echo " ".trim($stu['name'])." ".$stu['sex']." ";
+                	if (empty($stu['specialty'])) {
+                    	echo "生日".$stu['birthday']." ";
+                	}
+               		echo " - ".$stu['academy']." ".$stu['specialty']." ".$stu['grade']."</li>\n";
+                }
+                echo "</ul>";
+                echo "<input type='hidden' name='realname' value='".$realnametemp."' />";
+                echo "<input class='realfirst_second_submit' type='submit' value='确定' />";
+                echo "</form>";
+                echo "</div>";
+                echo "<p class='realfirst_second_p'><a href='".__ROOT__."/setting/realfirst?step=1' class='btn f12' title='上一步'>重新填</a> <a href='".__ROOT__."/setting/realfirst?step=3' class='btn f12' title='下一步'>都不是</a></p>";
+            } else {
+                echo "<p class='realfirst_second_else_p'>:( 数据库中未找到您的个人信息, 未匹配成功! 下一步吧 <a href='".__ROOT__."/setting/realfirst?step=3'>确定</a></p>";
+            }
+        } else if ($_GET['step'] == 3) {
+            echo "<p class='realfirst_second_else_p'>";
+            if($info == "ok") {
+                echo "匹配个人信息成功:) 涉及性别、学院、专业、家乡等部分信息。<br /><br />";
+                echo "请继续填写您的联系方式等信息 <a href='".__ROOT__."/setting'>确定</a></p>";
+            } else {
+                echo "未能自动填充个人信息:( 需要手工填写您的个人基本信息 <a href='".__ROOT__."/setting'>确定</a>";
+            }
+        }
+    ?>
+</div>
+</div>
+<include file="Public:footer" />

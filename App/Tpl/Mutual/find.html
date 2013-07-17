@@ -1,0 +1,50 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/mutual.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="find">
+  <p class="find_info black_l"><span class="icon_search"></span>我帮圈圈 - 找人 找校友</p>
+  <form method="get" class="find_form">
+    <span class="black_l">请输入用户昵称</span>
+    <input class="find_input" type="text" name="username" />
+    <input type="hidden" name="p" value="1" />
+    <input class="find_submit" type="submit" value="搜索">
+  </form>
+  <?php if($searchResult) { ?>
+  <ul class="find_ul">
+  <?php foreach ($searchResult as $result) : ?>
+  <li>
+    <a href="__ROOT__/stream/u/<?php echo $result['uid'] ?>" ><?php echo $result['nickname'] ?></a>
+  </li>
+  <?php endforeach; ?>
+  <?php if ($searchNameNums == '0') {?>
+  <li><span class="icon_pump"></span> sorry! 没有找到相关用户 :( </li>
+  <?php } ?>
+  </ul>
+  <?php } else { ?>
+  <p class="find_p_searchmore">
+    <a href="__ROOT__/index/mate" title="更多好玩的人点这里">
+      <img src="__PUBLIC__/image/common/search_more.jpg" />
+    </a>
+  </p>
+  <?php } ?>
+  <?php if($searchResult) { ?>
+  <div class="i_list_link">
+    <p class="i_list_num f12 gray">搜索到<?php echo $searchNameNums ?>条结果 共<?php echo $totalPages ?>页</p>
+    <?php
+    if ($totalPages > 1) {
+        $i = 1;
+        while ($i <= $totalPages) {
+            if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i){
+                echo "<a href='".__ROOT__."/mutual/find?username=".$_GET[username]."&p=".$i."' class='s_l_l_a_select'>".$i."</a> ";
+            } else {
+                echo "<a href='".__ROOT__."/mutual/find?username=".$_GET[username]."&p=".$i."' class='s_l_l_a'>".$i."</a> ";
+            }
+            $i++;
+        }
+    }
+    ?>
+  </div>
+  <?php } ?>
+</div>
+</div>
+<include file="Public:footer" />

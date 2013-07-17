@@ -1,0 +1,73 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="s_left f12">
+  <ul>
+    <li><a id="invite_one_a">邀请好友</a></li>
+    <li><a id="invite_two_a">邀请规则</a></li>
+    <li><a id="invite_three_a">我邀请的</a></li>
+    <li><a href="__ROOT__/index/invitenums">邀请排行</a></li>
+  </ul>
+</div>
+<div class="s_right">
+<ul class="s_bind_ul f12 black_l" id="invite_one_part">
+  <li class="fb black">邀请好友</li>
+  <li>请复制下面内容到论坛，QQ群，微博...或者直接点击分享按钮:)</li>
+  <li><textarea class="invite_textarea_word">湖北民族学院专属社交网站 我帮圈圈 新版本上线啦，欢迎大家加入我帮圈圈。吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，交往你感觉对头的，学长学姐学弟学妹都会在这里，还差你呢~  http://www.ihelpoo.com/user/register/<?php echo $userloginedrecord['uid']; ?></textarea></li>
+  <li>
+   	<div class="invite_share_btn_div">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32">
+		<a class="jiathis_button_qzone"></a>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_tqq"></a>
+		<a class="jiathis_button_renren"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+		</div>
+		<script type="text/javascript" >
+		var jiathis_config={
+			url:"http://www.ihelpoo.com/user/register/<?php echo $userloginedrecord['uid']; ?>",
+			summary:"",
+			title:"湖北民族学院专属社交网站 我帮圈圈 新版本上线啦，欢迎大家加入我帮圈圈。吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，交往你感觉对头的，学长学姐学弟学妹都会在这里，还差你呢~ ",
+			hideMore:false
+		}
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+	</div>
+  </li>
+</ul>
+<ul class="s_bind_ul f12 black_l" id="invite_two_part">
+  <li class="fb black">邀请规则</li>
+  <li>1. 每成功邀请一位好友加入，系统认定注册有效后，我帮圈圈将奖励你50活跃。</li>
+  <li>2. 你邀请的好友，会自动圈你，加入你的圈子。</li>
+</ul>
+	<div class="s_bind_div" id="invite_three_part">
+	  <p class="s_bind_div_info_p black_l"><span class="icon_search"></span>我邀请的好友 - 共邀请了 <span class="fb blue"><?php echo $totalInviteUserNums ?></span> 位好友</p>
+	  <?php if($totalInviteUserNums) { ?>
+	  <ul class="s_bind_div_ul">
+	  <?php foreach ($recordsUserInvite as $result) : ?>
+	  <li>
+	  	<a href="__ROOT__/stream/u/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a>
+	    <a href="__ROOT__/stream/u/<?php echo $result['uid'] ?>" target="_blank"><?php echo $result['nickname'] ?></a>
+	    <span class="sex<?php echo $result['sex'] ?>"></span>
+	    <span class="black_l"><?php echo i_constellation($result['birthday']),i_sex($result['sex']) ?> <?php echo i_grade($result['enteryear']) ?> <span class="gray">入学年份<?php echo $result['enteryear'] ?></span></span>
+	    <span title="等级 level<?php echo i_degree($result['active']) ?>" class="level<?php echo i_degree($result['active']) ?>"></span>
+	    <span class="f12 gray">邀请时间: <?php echo i_time($result['time']); ?>
+	    <?php if ($result['award'] == 1) { ?>
+	    	<span class="icon_right"></span>已经奖励50活跃.
+	    <?php } else if ($result['award'] == 2) { ?>
+	    	<span class="icon_attention"></span>邀请无效.
+	    <?php } else { ?>
+	    	<span class="icon_attention"></span>等待认定注册是否有效.
+	    <?php } ?>
+	    </span>
+	  </li>
+	  <?php endforeach; ?>
+	  </ul>
+	  <?php } ?>
+	</div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mutual/invite.js"></script>
+<include file="Public:footer" />

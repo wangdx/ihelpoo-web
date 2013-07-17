@@ -1,0 +1,139 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+	<div class="shop_logo">
+		<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}"><img src="<?php echo i_logo_shop($recordUserShop['uid'],$recordUserShop['shop_banner']); ?>" /></a>
+	</div>
+	<div class="shop_left">
+		<ul class="shop_info_ul f12 black_l">
+			<li class="shop_info_ul_title">&#12288;<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}" class="white">店铺首页</a></li>
+		    <li>
+		    	<a href="__ROOT__/stream/u/{$shopUserLogin['uid']}">
+					<img src="<?php echo i_icon_check($shopUserLogin['uid'], $shopUserLogin['icon_url'], 's') ?>" class="radius3" width="68" height="51" />
+				</a>
+			</li>
+			<li>
+				店铺: <a href="__ROOT__/mall/shop/{$shopUserLogin['uid']}">{$shopUserLogin['nickname']}</a> 已认证
+			</li>
+			<li>地址: <?php echo $recordUserShop['address'] ?></li>
+			<li>电话: {$shopUserInfo['mobile']}</li>
+			<li><a href="__ROOT__/talk/to/<?php echo $shopUserLogin['uid']; ?>"><span class="icon_pump"></span> 悄悄话咨询</a></li>
+			<li>
+				<?php if (!empty($shopUserInfo['qq'])) { ?>
+				<a href="http://wpa.qq.com/msgrd?v=3&uin={$shopUserInfo['qq']}&site=qq&menu=yes" target="_blank">
+					<img border="0" title="点击这里给我发消息" alt="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:{$shopUserInfo['qq']}:46">
+				</a>
+				<?php } ?>
+				<?php if (!empty($shopUserInfo['imww'])) { ?>
+				<a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$recordUserShop['imww']}&siteid=cntaobao&status=2&charset=utf-8">
+					<img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid=店小二&site=cntaobao&s=2&charset=utf-8" alt="点击这里给我发送消息" />
+				</a>
+				<?php } ?>
+				<?php if (!empty($shopUserInfo['weibo'])) { ?>
+				<a target="_blank" href="{$shopUserInfo['weibo']}">
+					<img src="/Public/image/common/sina.png" height="20" width="20">
+				</a>
+				<?php } ?>
+			</li>
+			<?php if ($userloginedrecord['uid'] == $shopUserLogin['uid']) { ?>
+			<li>
+				<a href="__ROOT__/mallset">店铺管理</a>
+			</li>
+			<?php } ?>
+		</ul>
+		<ul class="shop_info_ul f12 black_l">
+			<li class="shop_info_ul_title">&#12288;交易概况</li>
+			<li>商品总数: <?php echo $recordUserShop['commodity_co'] ?></li>
+			<li>总交易数: <?php echo $recordUserShop['sales_co'] ?></li>
+			<li>好评率: <?php echo ($recordUserShop['assess_good'] / ($recordUserShop['assess_good'] + $recordUserShop['assess_middle'] + $recordUserShop['assess_bad'])) * 100 ?>%</li>		</ul>
+		<ul class="shop_info_ul f12 black_l">
+			<li class="shop_info_ul_title">&#12288;其他</li>
+			<li>简介: {$shopUserInfo['introduction']}</li>
+			<li>开店时间: <?php echo i_time($recordUserShop['time']) ?></li>
+		</ul>
+	</div>
+	<div class="shop_right">
+		<?php if (!empty($singleRecordCommoditycategory['cate_id'])) { ?>
+			<div class="shop_right_category f12">
+				<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}">店铺首页</a>
+				<?php if (!empty($parentRecordCommoditycategory['cate_id'])) { ?>
+				 - <a href="__ROOT__/mall/shop/{$recordUserShop['uid']}/{$parentRecordCommoditycategory['cate_id']}">{$parentRecordCommoditycategory['cate_name']}</a>
+				<?php } ?>
+				 - {$singleRecordCommoditycategory['cate_name']}
+				 <?php if ($userloginedrecord['uid'] == $shopUserLogin['uid']) { ?><span class="fr"><a href="__ROOT__/mallset/add/{$resultRecordCommodity['cid']}">编辑</a> | <a href="__ROOT__/mallset/add">发布新商品</a></span><?php } ?>
+			</div>
+		<?php } ?>
+		<div class="shop_right_item">
+			<div class="shop_item_intro">
+			    <p class="shop_item_intro_img_p">
+			    	<img src="<?php echo i_goods_thumbnail($resultRecordCommodity['image'], 'l') ?>" width="310" />
+			    	<?php if (empty($resultRecordCommodity['good_nums'])) { ?>
+						<span class="itemstatus_sold"></span>
+					<?php } else if ($resultRecordCommodity['good_type'] == '1') { ?>
+						<span class="itemstatus_new"></span>
+					<?php } else if ($resultRecordCommodity['good_type'] == '2') { ?>
+						<span class="itemstatus_secondhand"></span>
+					<?php } ?>
+			    </p>
+				<ul class="shop_item_intro_ul">
+					<li>名称: <span class="fb">{$resultRecordCommodity['name']}</span></li>
+					<li>价格: ￥<span class="fb red">{$resultRecordCommodity['price']}</span> <span class="fb"><?php if ($resultRecordCommodity['good_type'] == '2') { echo "二手"; } else { echo "全新"; } ?></span></li>
+					<li>数量: <span class="fb black_l">{$resultRecordCommodity['good_nums']}</span></li>
+					<li>
+						运送:
+						<?php 
+						$resultRecordCommodityBuyway = explode(";",$resultRecordCommodity['buyway']);
+						foreach($resultRecordCommodityBuyway as $buyway) {
+							if ($buyway == 1) { ?>
+							<span class="icon_plus"></span>免费送货上门
+							<?php } else if ($buyway == 2) { ?>
+							<span class="icon_plus"></span>1元送货上门
+							<?php } else if ($buyway == 3) { ?>
+							<span class="icon_plus"></span>自己来取
+						<?php }} ?>
+					</li>
+					<li><span class="f12 black_l">人气: {$resultRecordCommodity['hit']} 更新时间: <?php echo i_time($resultRecordCommodity['update_ti']) ?></span></li>
+					<li>
+						购买数量 <input class="shop_item_buynums_input" type="text" value="1" />
+					</li>
+					<li>
+						<p class="shop_item_buy_btm_p">
+							<?php if (empty($resultRecordCommodity['good_nums'])) { ?><a class="f12 btn_brown">已经卖光了</a><?php } else { ?><a id="buynow" class="f12 btn_brown">立即购买</a><?php } ?> 
+							<a id="addshoppingcart" class="f12 btn_red">加入购物车</a>
+						</p>
+						<input id="shop_item_id" type="hidden" value="{$resultRecordCommodity['cid']}" />
+					</li>
+					<li>
+						<!-- JiaThis Button BEGIN -->
+						<div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+						<a class="jiathis_button_qzone"></a>
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_renren"></a>
+						<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+						</div>
+						<script type="text/javascript" >
+						var jiathis_config={
+							url:"http://www.ihelpoo.com/mall/item/<?php echo $resultRecordCommodity['cid']; ?>",
+							summary:"",
+							title:"我帮圈圈逛街 我小店里的这个东西不错噢 “{$resultRecordCommodity['name']}” 快来看看",
+							hideMore:false
+						}
+						</script>
+						<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+						<!-- JiaThis Button END -->
+					</li>
+				</ul>
+			</div>
+			<div class="shop_item_nav f12">
+				<a id="postdetail_btn" class="bg_red">商品详情</a> 
+				<a id="postassess_btn">评价({$resultRecordCommodity['assess_co'] == NULL ? '0' : $resultRecordCommodity['assess_co']})</a>
+				<a id="postsalesrecord_btn">销售记录({$resultRecordCommodity['sales_co'] == NULL ? '0' : $resultRecordCommodity['sales_co']})</a>
+			</div>
+			<div class="shop_item_detail">
+			<?php echo stripslashes($resultRecordCommodity['detail']); ?>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mall/item.js"></script>
+<include file="Public:footermall" />

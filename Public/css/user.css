@@ -1,0 +1,266 @@
+.stream_top_notice_info{
+    margin: -10px -10px 10px -10px;
+    padding: 5px 10px;
+    background: #FFFA85;
+    text-align: center;
+    color: #666;
+    position: relative;
+	font-size: 12px;
+}
+.stream_top_notice_info .icon_index_wrong{
+    cursor: pointer;
+	z-index: 1111;
+}
+.registe_main{
+    margin: 15px auto;
+    width: 600px;
+    min-height: 300px;
+    position: relative;
+}
+.registe_toptext{
+    margin-bottom: 20px;
+}
+.registe_toptext p{
+    text-align: center;
+}
+.registe_toptext p .icon_n_color{
+    vertical-align: baseline;
+    cursor: pointer;
+}
+.registe_toptext ul{
+    margin: 10px 0 0 200px;
+}
+.registe_toptext ul li{
+    padding: 2px;
+}
+.registe_toptext_user{
+    margin-bottom: 20px;
+    position: relative;
+    height: 90px;
+}
+*html .registe_toptext_user{
+    margin-top: 20px;
+	padding:10px 0;
+}
+.registe_toptext_user_p{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.registe_toptext_user_p_a_img{
+    border: 3px solid #DDD;
+    border-radius: 3px;
+}
+.registe_toptext_info_p{
+    margin-left: 150px;
+    position: relative;
+    height: 93px;
+}
+.registe_toptext_info_p_academy{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.online_dot_status{
+    background: none repeat scroll 0 0 #99CC00;
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    right: 5px;
+    bottom: 8px;
+    border-radius: 2px;
+    border: 1px solid #EEEEEE;
+}
+.registe_ul{
+    margin: 20px auto;
+    border: 5px solid #CCC;
+    padding: 20px;
+    border-radius: 3px;
+    background: url("../image/common/goodluck.jpg") no-repeat scroll 460px 280px transparent;
+}
+.registe_ul li{
+    padding: 8px;
+    position: relative;
+    padding: 10px 10px 10px 100px;
+}
+input{
+    padding: 3px 2px;
+    font-size: 14px;
+    color: #666;
+}
+#email, #nickname{
+    width: 200px;
+    position: relative;
+    left: 20px;
+}
+#emailinfo{
+    position: absolute;
+    left: 400px;
+    top: 18px;
+}
+#password, #passwordrepeat{
+    width: 200px;
+    position: relative;
+    left: 20px;
+}
+#passwordinfo{
+    position: absolute;
+    left: 400px;
+    top: 18px;
+}
+#passwordrepeatinfo{
+    position: absolute;
+    left: 400px;
+    top: 18px;
+}
+#nicknameinfo{
+    position: absolute;
+    left: 400px;
+    top: 18px;
+}
+.sex_part{
+    display: inline-block;
+    position: absolute;
+    left: 180px;
+	top: 10px;
+}
+#academy{
+    color: #666;
+    position: relative;
+    left: 15px;
+	font-size: 12px;
+}
+#enteryear{
+    color: #666;
+    position: relative;
+    left: 15px;
+	font-size: 12px;
+}
+#registe_submit{
+    position: relative;
+    left: 75px;
+    padding: 5px 15px;
+    color: #FFF;
+    background-color: #6ccacd;
+}
+#registe_submit:hover{
+    background-color: #FE6600;
+}
+#registeinfo{
+    position: absolute;
+    left: 260px;
+    top: 10px;
+}
+/*---login.html---*/
+#login_status{
+    left: 50px;
+    position: relative;
+    cursor: pointer;
+}
+/*---quit.phtml---*/
+.quit{
+    width: 300px;
+    margin: 20px auto;
+}
+.quit p{
+    margin: 20px auto;
+    text-align: center;
+}
+.quit ul{
+    margin: 30px 0 0 0;
+}
+.quit ul li{
+    padding: 3px;
+}
+/*--- user login ---*/
+.userlogin_error{
+    text-align: center;
+    width: 300px;
+}
+.userlogin_ul{
+    margin: 20px auto;
+    padding: 20px;
+    background: url("../image/common/goodluck.jpg") no-repeat scroll right top transparent;
+}
+.userlogin_ul li{
+    padding: 8px;
+    position: relative;
+    padding: 10px 10px 10px 130px;
+}
+.userlogin_ul li #login_submit{
+    position: relative;
+    left: 50px;
+}
+.userlogin_ul li #logininfo{
+    position: relative;
+    left: 70px;
+}
+.userlogin_sub{
+    width: 980px;
+    height: 150px;
+    overflow: hidden;
+}
+/*--- resetpw.phtml ---*/
+.resetpw_div{
+    margin: 20px;
+}
+.resetpw_div_ul{
+    padding: 10px;
+}
+.resetpw_div_ul li{
+    padding: 5px;
+}
+.resetpw_p_info{
+    height: 30px;
+    padding: 10px;
+}
+.resetpw_form ul li{
+    position: relative;
+    padding: 10px;
+}
+.resetpw_submit{
+	height: 28px;
+	width: 80px;
+	color: #666;
+	padding: 3px 0 3px 0;
+}
+.resetpw_input{
+    width: 180px;
+}
+
+
+/*--- ie7 ---*/
+*+html .registe_ul li{
+    padding: 5px;
+    padding: 10px 10px 10px 100px;
+	display: inline-block;
+}
+/*--- ie6 ---*/
+*html .sex_part{
+    left: 80px;
+	top: 10px;
+}
+*html #emailinfo{
+    left: 300px;
+    top: 18px;
+}
+*html #passwordinfo{
+    left: 300px;
+    top: 18px;
+}
+*html #passwordrepeatinfo{
+    left: 300px;
+    top: 18px;
+}
+*html #nicknameinfo{
+    left: 300px;
+    top: 18px;
+}
+*html #registeinfo{
+    left: 160px;
+    top: 15px;
+}
+*html .resetpw_submit{
+    left: -60px;
+}

@@ -1,0 +1,60 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">
+    	<span class="red fb">1.确认购买信息<span class="icon_write"></span></span> &#12288;&#12288;2.选择交易(付款)方式 &#12288;&#12288;3.确认收货 &#12288;&#12288;4.评价
+    </div>
+	<div class="mallset_shop f12">
+		<ul class="mallset_add_address_ul">
+			<li class="mallset_add_address_li_title">收货信息: <a href="__ROOT__/mallset/deliveryaddress" class="fr" target="_blank"><span class="icon_function"></span>管理收货信息</a></li>
+			<?php if (empty($resultsUserDeliveryaddress)) {?>
+				<li>
+					你还没有设定收货信息:
+					<input id="newaddressinput" type="text" value="湖北民族学院寝室<?php echo $tempDeliveryaddress ?>" /> 
+					<a id="newaddressbtn"><span class="icon_plus"></span>新增</a>
+				</li>
+			<?php } else { ?>
+				<li><a id="showliaddressbtn"><span class="icon_plus"></span>新增收货信息</a></li>
+				<li class="newnewaddressli">
+					<input id="newaddressinput" type="text" value="" /> 
+					<a id="newaddressbtn"><span class="icon_plus"></span>确定</a>
+				</li>
+				<?php
+					foreach($resultsUserDeliveryaddress as $deliveryaddress) {
+				?>
+					<li>
+						<input type="radio" id="deliveryaddressid" name="deliveryaddressid" value="<?php echo $deliveryaddress['id']; ?>" />
+						<?php echo $deliveryaddress['address']; ?>
+					</li>
+				<?php } } ?>
+		</ul>
+		<ul class="mallset_buy_commodity_ul">
+			<li>
+				<a href="__ROOT__/mall/item/{$resultRecordCommodity['cid']}" target="_blank"><img src="<?php echo i_goods_thumbnail($resultRecordCommodity['image'], 's') ?>" width="100" /></a>
+			</li>
+			<li>名&#12288;&#12288;称: {$resultRecordCommodity['name']}</li>
+			<li>价&#12288;&#12288;格: ￥<span class="fb f14">{$resultRecordCommodity['price']}</span></li>
+			<li>购买数量: <span class="fb f14">{$buynums}</span></li>
+			<li>
+				实际支付: ￥<span class="fb f14 red" id="now_price" value="{$resultRecordCommodity['price'] * $buynums}">{$resultRecordCommodity['price'] * $buynums}</span> 
+			</li>
+			<!-- <li>圈圈钱包: ￥ <span class="fb" id="my_coins" value="{$userloginedrecord['coins']}">{$userloginedrecord['coins']}</span>
+				<a id="use_coins_other_show">使用</a> 
+				<span id="use_coins_other_box_span">
+					<input type="text" id="use_coins_other_input" value="{$resultRecordCommodity['price'] * $buynums}" /> 
+					<input type="hidden" id="new_use_coins_other_input" value="" /> 
+					<a id="use_coins_other_btn" >确定</a>
+				</span>
+			</li>
+			 -->
+			<li>备&#12288;&#12288;注: <textarea id="remarks"></textarea></li>
+		</ul>
+		<p class="mallset_buy_commodity_p">
+			<input type="hidden" id="buynums" value="{$buynums}" />
+			<input type="hidden" id="cid" value="{$resultRecordCommodity['cid']}" />
+			<a class="btn_red" id="buy_button">确定购买</a>
+		</p>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mallset/buynow.js"></script>
+<include file="Public:footermall" />

@@ -1,0 +1,42 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="wo">
+<include file="Wo:wo_top" />
+  <div class="wo_main">
+  <ul class="explain_info_ul f12 black_l">
+        <li class="fb"><span class="icon_sigh"></span> 什么是 "圈子" ? 谁在 <?php echo $userLogin['nickname'] ?> 的圈子里面。</li>
+        <li> 当你圈 <?php echo $userLogin['nickname'] ?> 时，表示你加入了 <?php echo $userLogin['nickname'] ?> 的圈子。</li>
+        <li> 1. <?php echo $userLogin['nickname'] ?> 可以扩散消息给圈子里的人。</li>
+        <li> 2. <?php echo $userLogin['nickname'] ?> 有困难请求帮助时，系统提示圈子里的人。</li>
+        <li> 3. “组织”“商家”用户可以给圈子内的人发布站外邮件通知和社区系统消息通知。<span class="icon_new"></span></li>
+        <li class="fi"> PS: 圈子越大，困难越容易的到解决，扩散的消息越有影响力。</li>
+  </ul>
+  <ul class="quan_ul">
+  <?php foreach ($userPriorityeds as $userPriority) : ?>
+  <li>
+      <a href="__ROOT__/stream/u/<?php echo $userPriority['uid'] ?>">
+        <img src="<?php echo i_icon_check($userPriority['uid'], $userPriority['icon_url'], 's'); ?>" width="68" class="radius3" />
+      </a>
+      <a href="__ROOT__/stream/u/<?php echo $userPriority['uid'] ?>"><?php echo $userPriority['nickname'] ?></a>
+      <span class="sex<?php echo $userPriority['sex'] ?>"></span>
+      <span class="f12 gray"><?php echo i_grade($userPriority['enteryear']) ?></span>
+      <span class="level<?php echo i_degree($userPriority['active']) ?>" title="等级: level<?php echo i_degree($userPriority['active']) ?>"></span> &nbsp;
+      <span class="gray f12"><?php echo $sexname ?>圈的时间: <?php echo i_time($userPriority['time']) ?></span>
+  </li>
+  <?php endforeach ?>
+  </ul>
+  <div class="i_list_link">
+    <p class="i_list_num f12 gray">共<?php echo $totalPages ?>页 <?php echo $userPrioritiedNums; ?>人</p>
+    <?php
+    if ($totalPages > 1) {
+        i_page_show("wo/quaned/".$userLogin['uid'], $totalPages);
+    }
+    ?>
+  </div>
+  </div>
+</div>
+
+</div>
+<script type="text/javascript" src=""></script>
+<include file="Public:footer" />

@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/help.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/help_bg.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<?php
+    Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
+?>
+<include file="Help:help_nav" />
+<div class="main_help">
+<div class="h_l_left_div">
+  <ul class="h_l_right_ul">
+    <?php foreach ($recordHelpWellList as $recordHelp): ?>
+    <li>
+    <a href="__ROOT__/stream/u/<?php echo $recordHelp['uid'] ?>" title="<?php echo $recordHelp['nickname'] ?>">
+      <img src="<?php echo i_icon_check($recordHelp['uid'], $recordHelp['icon_url'], 's') ?>" width="50" class="radius3" />
+    </a>
+    <p class="h_l_r_u_li_content">
+      <a href="__ROOT__/item/help/<?php echo $recordHelp['sid'] ?>">
+        <?php echo $ofunction->cut_str(strip_tags(stripslashes($recordHelp['content'])), 30) ?> <span class="ico_channel_user"></span>
+      </a>
+      <?php if (!empty($recordHelp['reward_coins'])) { ?>
+        <span class="icon_plus"></span><span class="f12 black_l fi"><?php echo $recordHelp['reward_coins'] ?></span>
+      <?php } ?>
+    </p>
+    <span class="h_l_r_u_li_count f12 gray">
+      帮助(<?php echo $recordHelp['comment_co'] == NULL ? 0 : $recordHelp['comment_co'] ?>)
+      扩散(<?php echo $recordHelp['diffusion_co'] == NULL ? 0 : $recordHelp['diffusion_co'] ?>)
+      浏览(<?php echo $recordHelp['hit_co'] == NULL ? 0 : $recordHelp['hit_co'] ?>)
+    </span>
+    <span class="h_l_r_u_li_time f12 gray"><?php echo i_time($recordHelp['time']) ?></span>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+
+  <div class="help_paging">
+    <p class="help_paging_p f12 gray">共<?php echo $totalHelpNums ?>条帮助 <?php echo $totalPages ?>页</p>
+    <span>
+      <?php
+      if ($totalPages > 1) {
+          i_page_show("help/well", $totalPages);
+      }
+      ?>
+    </span>
+  </div>
+</div>
+<div class="h_l_right_div">
+  <a class="h_l_right_div_a" href="__ROOT__/stream/index/newreply">求帮助</a>
+</div>
+
+</div>
+<include file="Public:footer" />

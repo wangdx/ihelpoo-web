@@ -1,0 +1,28 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="s_left f12">
+	设置绑定前一版本weibo登录账号
+</div>
+<div class="s_right">
+  <div class="moreinfo f12">
+  	<div class="black_l f14 fb"><?php echo $recordUserLogin['nickname']; ?> 您好!</div>
+  	<span class="red_l">请设置您的登录账号信息！提示成功后，请用您设置的账号密码登录我帮圈圈，就能完成绑定前一版weibo账号了:)</span>
+  </div>
+  <form action="__ROOT__/setting/fillaccount" method="post" id="fillaccountform">
+  <ul class="real">
+    <li><span class="settitle">登录邮箱:</span><input id="fillaccountemail" type="text" name="email" /></li>
+    <li><span class="settitle">密&#12288;&#12288;码:</span><input id="password" type="password" name="password" /></li>
+    <li><span class="settitle">密码重复:</span><input id="passwordrepeat" type="password" name="passwordrepeat" /></li>
+    <li>
+    	<input type="hidden" name="userId" value="{$userId}" />
+    	<input type="hidden" name="userHash" value="{$userHash}" />
+    	<a id="fillaccountsubmit" class="btn">确定</a>
+    </li>
+  </ul>
+  </form>
+</div>
+<div id="ajaxprogressbar"></div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/support/fillaccount.js?id=1"></script>
+<include file="Public:footer" />

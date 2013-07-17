@@ -1,0 +1,118 @@
+<?php
+    $sexname = $userLogin['sex'] == 1 ? "他" : "她";
+    $selectHelp = NULL;
+    $selectDiffusion = NULL;
+    $selectIntersection = NULL;
+    $selectHonor = NULL;
+    $selectAlbum = NULL;
+    $selectQuaned = NULL;
+    $selectQuan = NULL;
+    $selectIndex = NULL;
+    if (preg_match("/wo\/help/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectHelp = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/diffusion/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectDiffusion = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/intersection/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectIntersection = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/honor/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectHonor = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/album/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectAlbum = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/quaned/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectQuaned = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/quan/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectQuan = 'class="wo_user_nav_ul_li_select"';
+    } else {
+    	$selectIndex = 'class="wo_user_nav_ul_li_select"';
+    }
+?>
+  <div class="wo_top">
+    <p class="img_part_me">
+      <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>">
+        <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url']) ?>" width="180" height="135" class="radius5" />
+        <?php if ($userLogin['type'] == '3') { ?>
+          <span class="grades"></span>
+        <?php } else if ($userLogin['type'] == '2') { ?>
+          <span class="gradeg"></span>
+        <?php } else { ?>
+          <span class="grade<?php echo i_gradeNum($userLogin['enteryear']) ?>"></span>
+        <?php } ?>
+      </a>
+    </p>
+    <p>
+    </p>
+    <p class="wo_top_p black_l">
+      <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 小窝
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a>
+      <br />
+      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
+      <span class="sex<?php echo $userLogin['sex'] ?>"></span>
+      <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12">等级 <span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
+      &nbsp;&nbsp;&nbsp;<a href="__ROOT__/support?level" class="f12 fb gray"><span class="icon_sigh"></span>升级规则</a>
+      <br /><br />
+      <?php if($priorityExist) { ?>
+    	<span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
+      <?php } else if ($shieldExist) { ?>
+    	<span class="f12 gray"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
+      <?php } else { ?>
+      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
+      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
+      <?php } ?>
+    </p>
+    <ul class="wo_top_p_ul f12 blaxk_l">
+      <li>
+        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_p_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
+        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
+      </li>
+      <li>
+        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_p_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
+        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
+      </li>
+      <!-- <li>
+        <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win">
+          <span class="wo_top_p_ul_num f16 fb">x</span> 被采纳
+        </a>
+      </li> -->
+    </ul>
+    <div class="wo_user_label f12">
+    </div>
+  </div>
+  <ul class="wo_user_nav_ul">
+    <li><a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" {$selectIndex}>信息流</a></li>
+    <li><a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" {$selectHelp}>帮助</a></li>
+    <li><a href="__ROOT__/wo/diffusion/<?php echo $userLogin['uid'] ?>" {$selectDiffusion}>扩散</a></li>
+    <li><a href="__ROOT__/wo/intersection/<?php echo $userLogin['uid'] ?>" {$selectIntersection}>交集</a></li>
+    <li><a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" {$selectHonor}>等级荣誉</a></li>
+    <li><a href="__ROOT__/wo/album/<?php echo $userLogin['uid'] ?>" {$selectAlbum}>相册</a></li>
+    <?php if (!empty($recordUserShop['uid'])){ ?>
+    <li><a href="__ROOT__/mall/shop/<?php echo $recordUserShop['uid'] ?>">小店</a></li>
+    <?php } ?>
+  </ul>
+  <div class="say_hello f12">
+    <span id="say_hello_close" class="icon_quit" title="关闭"></span>
+    <script type="text/javascript">
+    $().ready(function(){
+        $('#say_hello_close').click(function(){
+            $(this).parent().hide();
+        });
+    });
+    </script>
+    <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a>
+    <?php
+        if ($userLogin['online'] == 0) {
+        	echo "不在线, 有事留言哦!";
+        } else {
+        	echo "在线哦, 打个招呼吧!";
+        }
+    ?>
+    <?php if ($userLogin['online'] != 0) { ?>
+    <p class="say_hello_p">
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=1" title="害羞"><img src="__PUBLIC__/image/emotion/q1.gif" title="害羞" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=2" title="吐舌头"><img src="__PUBLIC__/image/emotion/q11.gif" title="吐舌头" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=3" title="鲜花"><img src="__PUBLIC__/image/emotion/g1.gif" title="鲜花" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=4" title="太阳"><img src="__PUBLIC__/image/emotion/g3.gif" title="太阳" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=5" title="月亮"><img src="__PUBLIC__/image/emotion/g2.gif" title="月亮" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=6" title="猪头"><img src="__PUBLIC__/image/emotion/g4.gif" title="猪头" height="24" width="24" /></a>
+    </p>
+    <?php } ?>
+  </div>

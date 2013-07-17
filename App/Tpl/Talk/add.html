@@ -1,0 +1,16 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/talk.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div style="margin: 10px;">
+    <?php if ($addStatus == 'true') { ?>
+    <span class="icon_right"></span> 成功添加 <?php echo $addUserLoginRecord['nickname'] ?> 到你的悄悄话聊天列表
+    <?php } else { ?>
+        <span class="icon_pump"></span> <?php echo $addUserLoginRecord['nickname'] ?> 已经在你悄悄话聊天列表中了
+    <?php } ?>
+</div>
+<div style="margin: 20px;">
+  <a href="__ROOT__/talk/" title="返回悄悄话首页"><span class="btn_back"></span>返回</a>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/talk/"></script>
+<include file="Public:footer" />

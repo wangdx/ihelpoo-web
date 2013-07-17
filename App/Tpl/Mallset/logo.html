@@ -1,0 +1,28 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">店铺Logo修改</div>
+	<div class="mallset_left f12">
+		<ul>
+			<li><a href="__ROOT__/mallset">店铺设置</a></li>
+			<li><a href="__ROOT__/mallset/logo" class="bg_red">店铺logo</a></li>
+			<li><a href="__ROOT__/mallset/cate">分类管理</a></li>
+			<li><a href="__ROOT__/mallset/add">发布商品</a></li>
+			<li><a href="__ROOT__/mallset/commodity">商品管理</a></li>
+			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的店铺</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<form enctype="multipart/form-data" action="__ROOT__/mallset/logo" method="post" id="settingform">
+		<ul class="mallset_index_ul">
+			<li><p class="mallset_logo_p"><img class="mallset_logo_p_img" src="<?php echo i_logo_shop($recordUserShop['uid'],$recordUserShop['shop_banner']); ?>" /></p></li>
+			<li><input id="upload_logo_file" name="uploadlogo" type="file" /> <span class="f12 gray">建议像素1000px * 120px</span></li>
+			<li><a class="btn f12" id="logo_submit">上传</a></li>
+			<li><span class="f12 red_l" id="logo_submit_info"></span></li>
+		</ul>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mallset/logo.js?id=1"></script>
+<include file="Public:footermall" />

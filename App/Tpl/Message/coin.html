@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$().ready(function(){
+    $('.msg_notread').css('background', '#FFFA85');
+});
+</script>
+<div class="main">
+<div class="s_left f12">
+  <ul class="s_left_category">
+    <li><a href="__ROOT__/message/system">帮助与系统 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/comment">评论与回复 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/at">@提到我的 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/coin" class="bg_orange">RMB记录 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/message/active">活跃记录 <span class="icon_n_msg"></span></a></li>
+    <li><a href="__ROOT__/talk">悄悄话Talk <span class="icon_n_msg"></span></a></li>
+  </ul>
+</div>
+<div class="msg_right">
+  <p class="msg_explain f12 black_l">RMB收支记录信息</p>
+  <ul class="msg_ul f12 gray">
+  <?php
+  	if (!empty($recordsUserCoins)) {
+  	foreach($recordsUserCoins as $userCoins) {
+	if ($userCoins['deliver'] == 1) {
+		echo "<li>";
+	} else {
+		echo "<li class='msg_notread'>";
+	} ?>
+  		余额: <span class="f14 fb black_l pointer" title="上次余额: <?php echo $userCoins['total']; ?>￥">
+  		<?php echo $userCoins['way'] == 'min' ? $userCoins['total'] - $userCoins['use'] :  $userCoins['total'] + $userCoins['use']; ?>
+  		</span>￥
+  		收支详细: <?php echo $userCoins['way'] == 'min' ? "<span class='fb 16 blue pointer' title='支出'>-<span class='f14'>".$userCoins['use']."</span></span>" : "<span class='fb 16 red pointer' title='收入'>+<span class='f14'>".$userCoins['use']."</span></span>"; ?>￥
+  		成因:<?php echo $userCoins['reason']; ?>
+  		使用密钥:<?php echo substr($userCoins['hash'],0,-10); ?>...
+  		<?php echo $userCoins['status'] == 1 ? "<span class='icon_right pointer' title='状态正常，hash密钥已验证'></span>" : "<span class='icon_wrong' title='状态错误，记录出现问题，hash密钥不匹配'></span>"; ?>
+  		<?php echo i_time($userCoins['check_ti']); ?>
+  		(查账时间:<?php echo i_time($userCoins['time']); ?>)
+  	</li>
+  <?php } } else { ?>
+  	<li>暂时没有RMB记录</li>
+  <?php } ?>
+  </ul>
+  <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条记录  {$totalpages}页</p>
+  <div class="i_comment_list_link">
+  <?php i_page_show("message/system", $totalpages); ?>
+  </div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/"></script>
+<include file="Public:footer" />

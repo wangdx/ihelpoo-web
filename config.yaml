@@ -1,0 +1,9 @@
+name: ihelpoo
+version: 1
+handle:
+- rewrite: if(!is_dir() && !is_file() && path~"^(.*)$") goto "index.php/$1"
+- compress:  if ( out_header["Content-Length"]>=300 ) compress
+cron:
+- description: cron sendnotreadmsgemail
+  url: auto/reinviteltnl
+  schedule: every day of month 21:57

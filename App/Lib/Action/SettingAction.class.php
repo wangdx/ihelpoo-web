@@ -1,0 +1,690 @@
+<?php
+
+/**
+ *
+ * @author cho
+ * @email admin@tvery.com 121670155@qq.com
+ *
+ */
+class SettingAction extends Action {
+
+    protected function _initialize()
+    {
+    	$userloginid = session('userloginid');
+    	if (!empty($userloginid)) {
+    		i_db_update_activetime($userloginid);
+    		$IUserLogin = D("IUserLogin");
+    		$userloginedrecord = $IUserLogin->userExists($userloginid);
+    		$this->assign('userloginedrecord',$userloginedrecord);
+    	} else {
+    		redirect('/user/notlogin', 0, '你还没有登录呢...');
+    	}
+        header("Content-Type:text/html; charset=utf-8");
+    }
+
+    public function index()
+    {
+    	$this->assign('title','账号资料设置');
+    	$userloginid = session('userloginid');
+    	$UserLogin = M("UserLogin");
+    	$recordUserLogin = $UserLogin->find($userloginid);
+    	$UserInfo = M("UserInfo");
+    	$recordUserInfo = $UserInfo->find($userloginid);
+
+    	/**
+    	 * show user info
+    	 */
+    	$OpAcademy = M("OpAcademy");
+        $listOpAcademy = $OpAcademy->select();
+        $OpSpecialty = M("OpSpecialty");
+
+        if (!empty($recordUserInfo['academy_op'])) {
+        	$listOpSpecialty = $OpSpecialty->where("academy = $recordUserInfo[academy_op]")->select();
+        } else {
+        	$listOpSpecialty = $OpSpecialty->where("academy = 1")->select();
+        }
+
+        $OpDormitory = M("OpDormitory");
+        $listOpDormitory = $OpDormitory->select();
+        $OpProvince = M("OpProvince");
+        $listOpProvince = $OpProvince->select();
+        $OpCity = M("OpCity");
+
+        if (!empty($recordUserInfo['province_op'])) {
+        	$listOpCity = $OpCity->where("prov_id = $recordUserInfo[province_op]")->select();
+        } else {
+        	$listOpCity = $OpCity->where("prov_id = 27")->select();
+        }
+
+        if (!empty($recordUserLogin['birthday'])) {
+        	$birthstring = $recordUserLogin['birthday'];
+        	$birtharray = explode("-", $birthstring);
+        	$birthyear = $birtharray[0];
+        	$birthmonth = $birtharray[1];
+        	$birthdate = $birtharray[2];
+        }
+
+        if (!empty($recordUserInfo['dormitory_op'])) {
+        	$recordDormitory = $OpDormitory->where("id = $recordUserInfo[dormitory_op]")->find();
+        }
+
+        /**
+         * view
+         */
+        $this->assign('title','账号设置');
+        $this->assign('recorduserlogin',$recordUserLogin);
+        $this->assign('recorduserinfo',$recordUserInfo);
+        $this->assign('listopacademy',$listOpAcademy);
+        $this->assign('listopspecialty',$listOpSpecialty);
+        $this->assign('listopdormitory',$listOpDormitory);
+        $this->assign('listopprovince',$listOpProvince);
+        $this->assign('listopcity',$listOpCity);
+        $this->assign('birthyear',$birthyear);
+        $this->assign('birthmonth',$birthmonth);
+        $this->assign('birthdate',$birthdate);
+        $this->assign('dormitorytype',$recordDormitory['type']);
+
+        /**
+         * post data
+         */
+    	if ($this->isPost()) {
+    		$validate = array(
+	    		array('nickname', 'require', '昵称不能为空'),
+	            array('sex', 'number', 'sex格式错误'),
+	            array('enteryear', 'number', 'enteryear格式错误'),
+	            array('academy', 'number', 'academy格式错误'),
+	            array('specialty', 'number', 'specialty格式错误'),
+	            array('year', 'number', 'year格式错误'),
+	            array('month', 'number', 'month格式错误'),
+	            array('day', 'number', 'day格式错误'),
+	            array('dormitory', 'number', 'dormitory格式错误'),
+	            array('province', 'number', 'province格式错误'),
+	            array('city', 'number', 'city格式错误'),
+	            array('qq', 'number', 'qq格式错误', 2),
+	            array('weibo', 'url', 'weibo格式错误 必须是url', 2),
+	            array('mobile', 'number', 'mobile格式错误', 2),
+    		);
+    		$UserLogin->setProperty("_validate", $validate);
+    		$result = $UserLogin->create();
+    		if (!$result) {
+    			$errorinfo = $UserLogin->getError();
+    			$this->ajaxReturn(0,$errorinfo,'wrong');
+    		} else {
+    			$nickname = trim(addslashes(htmlspecialchars(strip_tags($_POST["nickname"]))));
+    			$nickname = str_ireplace(' ','',$nickname);
+    			$sex = trim(htmlspecialchars(strip_tags($_POST["sex"])));
+    			$enteryear = trim(htmlspecialchars(strip_tags($_POST["enteryear"])));
+    			$year = trim(htmlspecialchars(strip_tags($_POST["year"])));
+    			$month = trim(htmlspecialchars(strip_tags($_POST["month"])));
+    			$day = trim(htmlspecialchars(strip_tags($_POST["day"])));
+    			//db seperater
+    			$academy = trim(htmlspecialchars(strip_tags($_POST["academy"])));
+    			$specialty = trim(htmlspecialchars(strip_tags($_POST["specialty"])));
+    			$dormitory = trim(htmlspecialchars(strip_tags($_POST["dormitory"])));
+    			$introduction = trim(addslashes(htmlspecialchars(strip_tags($_POST["introduction"]))));
+    			//seperater
+    			$province = trim(htmlspecialchars(strip_tags($_POST["province"])));
+    			$city = trim(htmlspecialchars(strip_tags($_POST["city"])));
+    			$qq = trim(htmlspecialchars(strip_tags($_POST["qq"])));
+    			$weibo = trim(addslashes(strip_tags($_POST["weibo"])));
+    			//realinfo
+    			$mobile = trim(htmlspecialchars(strip_tags($_POST["mobile"])));
+    			$birthday = $year."-".$month."-".$day;
+    			$isNicknameUseUserLogin = $UserLogin->where("nickname = '$nickname'")->find();
+    			if (!empty($isNicknameUseUserLogin['uid']) && ($isNicknameUseUserLogin['uid'] != $recordUserLogin['uid'])) {
+    				$this->ajaxReturn(0,'这个昵称已经被别人占用','wrong');
+    			}
+
+    			/**
+    			 * iuc user data
+    			 */
+    			$url = "http://ihelpoousercenter.sinaapp.com/iuc/updateuserdata?uid=".$userloginid."&nickname=".urlencode($nickname)."&sex=".$sex."&birthday=".$birthday."&enteryear=".$enteryear."&introduction=".urlencode($introduction)."&province=".$province."&city=".$city."&mobile=".$mobile."&qq=".$qq."&weibo=".urlencode($weibo)."&pw=".md5('ihelpoo2013');
+    			$userdatacontents = file_get_contents($url);
+    			if ($userdatacontents == 'ok') {
+    				
+    				/**
+    				 * update i_user_login
+    				 */
+    				$updateUserloginData = array(
+		            	'uid' => $userloginid,
+		            	'nickname' => $nickname,
+		            	'sex' => $sex,
+	    				'birthday' => $birthday,
+		            	'enteryear' => $enteryear,
+    				);
+    				$UserLogin->save($updateUserloginData);
+
+    				/**
+    				 * update i_user_info
+    				 */
+    				$updateUserInfoData = array(
+	    				'uid' => $userloginid,
+	    				'introduction' => $introduction,
+	    				'academy_op' => $academy,
+	    				'specialty_op' => $specialty,
+	    				'dormitory_op' => $dormitory,
+	    				'province_op' => $province,
+	    				'city_op' => $city,
+	    				'mobile' => $mobile,
+	    				'qq' => $qq,
+	    				'weibo' => $weibo,
+    				);
+    				$UserInfo->save($updateUserInfoData);
+    				$this->ajaxReturn(0,"修改成功",'yes');
+    			} else {
+    				$this->ajaxReturn(0,"与我帮圈圈用户中心IUC同步出错",'wrong');
+    			}
+    		}
+    	}
+    	$this->display();
+    }
+
+    public function ps()
+    {
+    	$this->assign('title','修改密码');
+        $userloginid = session('userloginid');
+        if ($this->isPost()) {
+        	$IUserLogin = D("IUserLogin");
+	        $validate = array(
+	            array('passwordoriginal','require','原始密码不能为空'),
+	            array('password', 'require', '密码不能为空'),
+	            array('passwordrepeat','password','两次密码不一致',0,'confirm'),
+	        );
+	        $IUserLogin->setProperty("_validate", $validate);
+	        $result = $IUserLogin->create();
+	        if (!$result) {
+	            exit($IUserLogin->getError());
+	        } else {
+	        	$passwordoriginal = trim(addslashes(htmlspecialchars(strip_tags($_POST["passwordoriginal"]))));
+	        	$password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
+	        	$recordUserLogin = $IUserLogin->userExists($userloginid);
+	        	if ($recordUserLogin['password'] == md5($passwordoriginal)) {
+	        		$password = md5($password);
+	        		
+	        		/**
+	        		 * iuc user data
+	        		 */
+	        		$url = "http://ihelpoousercenter.sinaapp.com/iuc/retpassword?uid=".$userloginid."&password=".urlencode($password)."&pw=".md5('ihelpoo2013');
+	        		$userdatacontents = file_get_contents($url);
+	        		if ($userdatacontents == 'ok') {
+	        			$updateUserlogignData = array(
+			            	'uid' => $userloginid,
+							'password' => $password,
+		        		);
+		        		$IUserLogin->save($updateUserlogignData);
+		        		$this->ajaxReturn(0,"修改成功",'yes');
+	        		} else {
+	        			$this->ajaxReturn(0,"与我帮圈圈用户中心IUC同步出错",'wrong');
+	        		}
+	        	} else {
+	        		$this->ajaxReturn(0,"原始密码错误",'wrong');
+	        	}
+	        }
+    	}
+    	$this->display();
+    }
+
+    public function icon()
+    {
+        $this->assign('title','修改头像');
+        $userloginid = session('userloginid');
+        $UserLogin = M("UserLogin");
+        if (!empty($_POST['icontemppath'])) {
+        	$cutIconFullPath = $_POST['icontemppath'];
+        	$iconTempRealSize = getimagesize($cutIconFullPath);
+            $iconRealWidth = $iconTempRealSize['0'];
+            $iconRealHeight = $iconTempRealSize['1'];
+            $imageType = $iconTempRealSize['mime'];
+
+            /**
+             * Calculate the ratio first
+             */
+            $iconRatio = $iconRealWidth / 500;
+        	$dst_x = round($_POST['iconx'] * $iconRatio);
+        	$dst_y = round($_POST['icony'] * $iconRatio);
+        	$dst_w = round($_POST['iconw'] * $iconRatio);
+        	$dst_h = round($_POST['iconh'] * $iconRatio);
+
+        	if ($imageType == 'image/jpeg') {
+                $imgOld = imagecreatefromjpeg($cutIconFullPath);
+            } else if ($imageType == 'image/gif') {
+                $imgOld = imagecreatefromgif($cutIconFullPath);
+            } else if ($imageType == 'image/png') {
+                $imgOld = imagecreatefrompng($cutIconFullPath);
+            }
+
+            /**
+             * 500 * 375 size
+             */
+        	$imgObj = imagecreatetruecolor(500, 375);
+
+        	/**
+        	 * php function book page 398
+        	 */
+        	imagecopyresampled($imgObj, $imgOld, 0, 0, $dst_x, $dst_y, 500, 375, $dst_w, $dst_h);
+
+            /**
+             * new image file
+             */
+        	$srcTempLargeIconFilename = SAE_TMP_PATH.'temp'.$userloginid.time().'.jpg';
+        	$srcTempMiddleIconFilename = SAE_TMP_PATH.'temp'.$userloginid.time().'_m.jpg';
+        	$srcTempSmallIconFilename = SAE_TMP_PATH.'temp'.$userloginid.time().'_s.jpg';
+            imagejpeg($imgObj,$srcTempLargeIconFilename);
+
+            /**
+             * destroy
+             */
+            imagedestroy($imgObj);
+        	imagedestroy($imgOld);
+
+        	/**
+        	 * create size middle 180 * 135 & small 68 * 51
+        	 */
+        	$imgLarge = imagecreatefromjpeg($srcTempLargeIconFilename);
+        	$imgMiddleObj = imagecreatetruecolor(180, 135);
+        	imagecopyresampled($imgMiddleObj, $imgLarge, 0, 0, 0, 0, 180, 135, 500, 375);
+        	imagejpeg($imgMiddleObj, $srcTempMiddleIconFilename, 100);
+        	$imgSmallObj = imagecreatetruecolor(68, 51);
+        	imagecopyresampled($imgSmallObj, $imgLarge, 0, 0, 0, 0, 68, 51, 500, 375);
+        	imagejpeg($imgSmallObj, $srcTempSmallIconFilename, 100);
+            imagedestroy($imgMiddleObj);
+            imagedestroy($imgSmallObj);
+            imagedestroy($imgLarge);
+
+            /**
+             * image handle ok print json
+             */
+            $fullpath = "/useralbum/".$userloginid."/";
+            $newImageName = "icon".$userloginid.time();
+            $storageLargeIconFilename = $fullpath.$newImageName.".jpg";
+            $storageMiddleIconFilename = $fullpath.$newImageName."_m.jpg";
+            $storageSmallIconFilename = $fullpath.$newImageName."_s.jpg";
+            $storage = new SaeStorage();
+            $storage->upload("public",$storageSmallIconFilename,$srcTempSmallIconFilename);
+            $storage->upload("public",$storageMiddleIconFilename,$srcTempMiddleIconFilename);
+            $newfilepath = $storage->upload("public",$storageLargeIconFilename,$srcTempLargeIconFilename);
+            unset($srcTempLargeIconFilename);
+            unset($srcTempMiddleIconFilename);
+            unset($srcTempSmallIconFilename);
+
+            /**
+             * iuc user data
+             */
+            $recordUserLogin = $UserLogin->find($userloginid);
+            if ($recordUserLogin['school'] == 'hbmy') {
+	            $url = "http://ihelpoousercenter.sinaapp.com/iuc/updateusericon?uid=".$userloginid."&icon_url=".$newImageName."&pw=".md5('ihelpoo2013');
+	            $userdatacontents = file_get_contents($url);
+	            if ($userdatacontents != 'ok') {
+	            	$this->ajaxReturn(0,'保存失败，与我帮圈圈用户中心IUC同步出错','wrong');
+	            }
+            }
+            	
+            /**
+             * update i_user_login
+             */
+            $newLoginIconData = array(
+	        	'uid' => $userloginid,
+	        	'icon_fl' => 1,
+	        	'icon_url' => $newImageName,
+            );
+            $UserLogin->save($newLoginIconData);
+
+            /**
+             * add default dynamic record.
+             */
+            $recordDynamicContent = "我刚刚换了新头像噢 :)";
+            $RecordSay = M("RecordSay");
+            $RecordDynamic = M("RecordDynamic");
+            $newRecordSayData = array(
+		        'uid' => $userloginid,
+		        'say_type' => 2,
+		        'content' => $recordDynamicContent,
+		        'time' => time(),
+		        'from' => '动态'
+		    );
+		    $newRecordSayId = $RecordSay->add($newRecordSayData);
+
+		    $UserAlbum = M("UserAlbum");
+		    $lastRecordUserAlbum = $UserAlbum->where("uid = $userloginid")->order('time DESC')->find();
+		    $newRecordDynamicData = array(
+		        'sid' => $newRecordSayId,
+		        'type' => 'changeicon',
+		        'url_id' => $lastRecordUserAlbum['id']
+		    );
+		    $RecordDynamic->add($newRecordDynamicData);
+		    $this->ajaxReturn($newfilepath,'保存成功','ok');
+        }
+
+        if ($this->isPost()) {
+        	if (!empty($_FILES)) {
+        		if ($_FILES["uploadedimg"]["error"] > 0) {
+        			$this->ajaxReturn(0,'上传图片失败, info'.$_FILES["uploadedimg"]["error"],'error');
+        		} else {
+        			$imageOldName = $_FILES["uploadedimg"]["name"];
+        			$imageType = $_FILES["uploadedimg"]["type"];
+        			$imageType = trim($imageType);
+        			$imageSize = $_FILES["uploadedimg"]["size"];
+        			$imageTmpName = $_FILES["uploadedimg"]["tmp_name"];
+        		}
+        		if ($imageSize > 3670016) {
+        			$this->ajaxReturn(0,'上传图片太大, 最大能上传单张 3.5MB','error');
+        		}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
+        			import("@.ORG.UploadFile");
+        			$config=array(
+		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
+		                'savePath'=>'./Public/useralbum/'.$userloginid.'/',
+		                'saveRule'=>'iconorignal'.$userloginid.time(),
+        			);
+        			$upload = new UploadFile($config);
+        			$upload->imageClassPath="@.ORG.Image";
+        			$upload->thumb=true;
+        			$upload->thumbMaxHeight=150;
+        			$upload->thumbMaxWidth=150;
+        			if (!$upload->upload()) {
+        				$uploadErrorInfo = $upload->getErrorMsg();
+        				$this->ajaxReturn($uploadErrorInfo,'上传出错','error');
+        			} else {
+        				$info = $upload->getUploadFileInfo();
+        				$storage = new SaeStorage();
+        				$newfilepath = $storage->getUrl("public", "useralbum/".$userloginid."/".$info[0]['savename']);
+
+        				/**
+        				 * insert into i_user_album
+        				 */
+        				$UserAlbum = M("UserAlbum");
+        				$newAlbumIconData = array(
+        					'uid' => $userloginid,
+        					'type' => 1,
+        					'url' => $newfilepath,
+        					'size' => $info[0]['size'],
+        					'time' => time()
+        				);
+        				$UserAlbum->add($newAlbumIconData);
+
+        				/**
+        				 * ajax return
+        				 */
+        				$this->ajaxReturn($newfilepath,'上传成功','uploaded');
+        			}
+        		} else {
+        			$this->ajaxReturn(0,'上传图片格式错误, 目前仅支持.jpg .png .gif','error');
+        		}
+        	}
+        	exit();
+        }
+        $this->display();
+    }
+
+    public function bind()
+    {
+        $this->assign('title','绑定微博');
+        $userloginid = session('userloginid');
+        $UserLoginWb = M("UserLoginWb");
+        $recordUserLoginWb = $UserLoginWb->where("uid = $userloginid")->find();
+    	if (!empty($recordUserLoginWb['uid'])) {
+            $this->assign('isAlreadyBind',$recordUserLoginWb['weibo_uid']);
+        }
+        if (!empty($_POST['weibo_user_id'])) {
+        	$isbindUserLoginWb = $UserLoginWb->where("weibo_uid = $_POST[weibo_user_id]")->find();
+        	if (!empty($isbindUserLoginWb['uid'])) {
+        		$this->ajaxReturn(0,'这个微博已经绑定了账号，请选择另一个微博','wrong');
+        	}
+        	
+        	/**
+        	 * iuc user data
+        	 */
+        	$url = "http://ihelpoousercenter.sinaapp.com/iuc/weibobind?uid=".$userloginid."&weibo_uid=".$_POST['weibo_user_id']."&pw=".md5('ihelpoo2013');
+        	$userdatacontents = file_get_contents($url);
+        	if ($userdatacontents == 'ok') {
+        		$bindData = array(
+	        	    'uid' => $userloginid,
+	        	    'weibo_uid' => $_POST['weibo_user_id'],
+        		);
+        		$isBind = $UserLoginWb->add($bindData);
+        		if ($isBind) {
+        			$this->ajaxReturn(0,'绑定成功','ok');
+        		}
+        	} else {
+        		$this->ajaxReturn(0,'与我帮圈圈IUC同步失败','wrong');
+        	}
+        }
+        $this->display();
+    }
+
+    public function realfirst()
+    {
+    	$this->assign('title','快速匹配个人信息');
+    	$userloginid = session('userloginid');
+    	$UserInfo = M("UserInfo");
+    	$UserLogin = M("UserLogin");
+    	$recordUserInfo = $UserInfo->find($userloginid);
+    	$this->assign('recordUserInfo',$recordUserInfo);
+    	$recordUserLogin = $UserLogin->find($userloginid);
+    	if ($recordUserInfo['realname_re'] == 0 && $recordUserInfo['realname'] != '') {
+    		if (!empty($_GET['step']) == 3) {
+    			$updateUserInfoReal = array(
+            		'uid' => $userloginid,
+            		'realname' => $recordUserInfo['realname'],
+            		'realname_re' => 1,
+    			);
+    			$UserInfo->save($updateUserInfoReal);
+    		}
+    	}
+    	if ($this->isPost()) {
+
+    		/**
+    		 * Filte rules; For the realinfo reset post data
+    		 */
+    		$postrealname = trim(addslashes(htmlspecialchars(strip_tags($_POST['realname']))));
+    		$poststudent = (int)$_POST['student'];
+    		$DaStudents = M("DaStudents");
+    		$this->assign('realnametemp',$postrealname);
+    		$OpAcademy = M("OpAcademy");
+    		$OpSpecialty = M("OpSpecialty");
+    		$OpProvince = M("OpProvince");
+    		$OpCity = M("OpCity");
+    		$url = "http://ihelpoousercenter.sinaapp.com/iuc/updaterealname?uid=".$userloginid."&realname=".urlencode($postrealname)."&realname_re=0&pw=".md5('ihelpoo2013');
+        	$userdatacontents = file_get_contents($url);
+        	if ($userdatacontents == 'ok') {
+        		$updateUserInfoReal = array(
+	            	'uid' => $userloginid,
+	            	'realname' => $postrealname,
+	            	'realname_re' => 0,
+        		);
+        		$UserInfo->save($updateUserInfoReal);
+        	}
+    		if (!empty($poststudent)) {
+    			$validStudentIs = $DaStudents->where("id = '$poststudent'")->find();
+    			if ($validStudentIs) {
+    				$url = "http://ihelpoousercenter.sinaapp.com/iuc/updaterealname?uid=".$userloginid."&realname=".urlencode($postrealname)."&realname_re=2&pw=".md5('ihelpoo2013');
+    				$userdatacontents = file_get_contents($url);
+    				if ($userdatacontents == 'ok') {
+    					$updateUserInfoReal = array(
+			            	'uid' => $userloginid,
+			            	'realname' => $postrealname,
+			            	'realname_re' => 2,
+    					);
+    				}
+    				$UserInfo->save($updateUserInfoReal);
+    				$birthstring = $validStudentIs['birthday'];
+    				$birthyear = substr($birthstring, 0, 4);
+    				$birthmonth = substr($birthstring, 4, 2);
+    				$birthday = substr($birthstring, 6, 2);
+    				$daStuBirthday = $birthyear."-".$birthmonth."-".$birthday;
+    				if (!empty($validStudentIs['enteryear'])) {
+    					$setUserLogin = array(
+                            'uid' => $userloginid,
+                            'sex' => $validStudentIs['sex'],
+                            'birthday' => $daStuBirthday,
+                            'enteryear' => $validStudentIs['enteryear'],
+    					);
+    				} else {
+    					$setUserLogin = array(
+                            'uid' => $userloginid,
+                            'sex' => $validStudentIs['sex'],
+                            'birthday' => $daStuBirthday,
+    					);
+    				}
+    				$UserLogin->save($setUserLogin);
+    				$daStuAcademy = $OpAcademy->where("number = '$validStudentIs[academy]'")->find();
+    				$daStuProvince = $OpProvince->where("idcode = '$validStudentIs[province]'")->find();
+    				$daStuCity = $OpCity->where("prov_id = '$daStuProvince[id]' AND idcode = '$validStudentIs[city]'")->find();
+    				if (!empty($validStudentIs['specialty'])) {
+    					$daStuSpecialty = $OpSpecialty->where("number = '$validStudentIs[specialty]'")->find();
+    					$setInfobase = array(
+                            'uid' => $userloginid,
+                            'academy_op' => $daStuAcademy['id'],
+                            'specialty_op' => $daStuSpecialty['id'],
+                            'province_op' => $daStuProvince['id'],
+                            'city_op' => $daStuCity['id'],
+    					);
+    				} else {
+    					$setInfobase = array(
+                            'uid' => $userloginid,
+                            'academy_op' => $daStuAcademy['id'],
+                            'province_op' => $daStuProvince['id'],
+                            'city_op' => $daStuCity['id'],
+    					);
+    				}
+    				$UserInfo->save($setInfobase);
+    				$this->assign('info','ok');
+    			}
+    		}
+
+    		/**
+    		 * show grade info ,input enteryear ,output gradeinfo
+    		 */
+    		$student = $DaStudents->where("name = '$postrealname'")->select();
+    		$nametotal = $DaStudents->where("name = '$postrealname'")->count();
+    		foreach ($student as $stu) {
+    			$academy = $OpAcademy->where("number = '$stu[academy]'")->find();
+    			$specialty = $OpSpecialty->where("number = '$stu[specialty]'")->find();
+    			$studentArray[] = array(
+            		'id' =>  $stu['id'],
+            	    'name' =>  $stu['name'],
+            		'birthday' => substr($stu['birthday'], 4),
+            	    'sex' =>  i_sex($stu['sex']),
+            	    'academy' => $academy['name'],
+            	    'specialty' => $specialty['name'],
+            	    'grade' =>  i_grade($stu['enteryear']),
+            	    'total' => $nametotal,
+    			);
+    		}
+    		$this->assign('student',$studentArray);
+
+    	}
+    	$this->display();
+    }
+
+    public function fillaccount()
+    {
+    	$this->assign('title','完善账号');
+    	$userloginid = session('userloginid');
+    	$UserLogin = M("UserLogin");
+
+    	/**
+         * post
+         */
+        if ($this->isPost()) {
+	        $validate = array(
+	            array('email', 'email', '邮箱格式不对'),
+	            array('email','','邮箱已经存在！',0,'unique',1),
+	            array('password', 'require', '密码不能为空'),
+	        );
+	        $UserLogin->setProperty("_validate", $validate);
+	        $result = $UserLogin->create();
+	        if (!$result) {
+	            $errorRegister = $UserLogin->getError();
+	            $this->ajaxReturn(0,$errorRegister,'wrong');
+	        } else {
+	            $email = htmlspecialchars(strtolower(trim($_POST["email"])));
+	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
+	            $password = md5($password);
+	            $recordUserLogin = $UserLogin->find($userloginid);
+	            if (empty($recordUserLogin['email'])) {
+	            	
+	            	/**
+	            	 * iuc user data
+	            	 * update account info
+	            	 */
+	            	$url = "http://ihelpoousercenter.sinaapp.com/iuc/weibofillaccount?uid=".$userloginid."&email=".urlencode($email)."&password=".urlencode($password)."&pw=".md5('ihelpoo2013');
+	            	$userdatacontents = file_get_contents($url);
+	            	if ($userdatacontents == 'ok') {
+	            		$newUserlogignData = array(
+			            	'uid' => $userloginid,
+			            	'status' => '1',
+							'email' => $email,
+			            	'password' => $password,
+	            		);
+	            		$newUserId = $UserLogin->save($newUserlogignData);
+	            		$this->ajaxReturn(0,'','yes');
+	            	} else {
+		            	$this->ajaxReturn(0,'邮箱已经在我帮圈圈IUC中存在，请换一个','wrong');
+		            }
+	            } else {
+	            	$this->ajaxReturn(0,'账号登录资料已经完善','wrong');
+	            }
+	        }
+        }
+    	$this->display();
+    }
+
+    public function ajax()
+    {
+        if (!empty($_POST['selectAcademy'])) {
+        	$selectAcademyNum = (int)$_POST['selectAcademy'];
+            $OpSpecialty = M("OpSpecialty");
+            $selectSpecialtyObj = $OpSpecialty->where("academy = $selectAcademyNum")->select();
+            echo '<select id="specialty" name="specialty">';
+            foreach ($selectSpecialtyObj as $selectSpecialty) {
+                echo "<option value='$selectSpecialty[id]'>$selectSpecialty[name]</option>";
+            }
+            echo '</select>';
+        }
+        if (!empty($_POST['selectDormitory'])) {
+        	$selectDormitoryType = (int)$_POST['selectDormitory'];
+            $OpDormitory = M("OpDormitory");
+            $selectDormitoryObj = $OpDormitory->where("type = $selectDormitoryType")->select();
+            echo '<select id="dormitory" name="dormitory">';
+            foreach ($selectDormitoryObj as $selectDormitory) {
+                echo "<option value='$selectDormitory[id]'>$selectDormitory[name]</option>";
+            }
+            echo '</select>';
+        }
+        if (!empty($_POST['monthAjax']) || !empty($_POST['yearAjax'])) {
+            $month = (int)$_POST['monthAjax'];
+            $year = (int)$_POST['yearAjax'];
+            if ( 4 == $month || 6 == $month || 9 == $month || 11 == $month ) {
+                $mouthDay = 30;
+            } elseif ( 1 == $month || 3 == $month ||5 == $month || 7 == $month || 8 == $month || 10 == $month || 12 == $month ) {
+                $mouthDay = 31;
+            } else {
+                if (($year % 4 == 0) && ($year % 100 != 0) || $year % 400 == 0) {
+                    $mouthDay = 29;
+                } else {
+                    $mouthDay = 28;
+                }
+            }
+            $i = 1;
+            echo '<select id="day" name="day">';
+            while ($i <= $mouthDay) {
+            echo "<option value=\"".$i."\">".$i."</option>";
+            $i++;
+            }
+            echo "</select>";
+        }
+        if (!empty($_POST['provinceAjax'])) {
+        	$selectProvinceId = (int)$_POST['provinceAjax'];
+            $OpCity = M("OpCity");
+            $selectCityObj = $OpCity->where("prov_id = $selectProvinceId")->select();
+            echo '<select id="city" name="city">';
+            foreach ($selectCityObj as $selectCity) {
+			    echo "<option value='$selectCity[id]'>$selectCity[name]</option>";
+            }
+            echo "</select>";
+        }
+        exit();
+    }
+}
+
+?>

@@ -1,0 +1,74 @@
+<include file="Public:headermall" />
+<link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="mainmall">
+    <div class="mallset_top">我的店铺分类管理</div>
+	<div class="mallset_left f12">
+		<ul>
+			<li><a href="__ROOT__/mallset">店铺设置</a></li>
+			<li><a href="__ROOT__/mallset/logo">店铺logo</a></li>
+			<li><a href="__ROOT__/mallset/cate" class="bg_red">分类管理</a></li>
+			<li><a href="__ROOT__/mallset/add">发布商品</a></li>
+			<li><a href="__ROOT__/mallset/commodity">商品管理</a></li>
+			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的店铺</a></li>
+		</ul>
+	</div>
+	<div class="mallset_right">
+		<?php if (!empty($_GET['del'])) { ?>
+		<p class="f12 gray"><span class="icon_attention"></span> 将要删除分类 <?php echo $_GET['name']; ?>? <br /><br /></p> 
+		<a href="__ROOT__/mallset/cate?suredel=<?php echo $_GET['del']; ?>" class="f12 btn_red">确定</a> <a href="__ROOT__/mallset/cate" class="f12 btn_brown">取消</a>
+		<?php } ?>
+		<p class="catemoreinfo f12">公共分类</p>
+		<ul class="mallset_cate_ul">
+			<?php foreach($publicCategoryArray as $category) { ?>
+			<li>
+				<p class="mallindex_category_parent_p"><a href="__ROOT__/mall/category/{$category['id']}" target="_blank">{$category['name']}</a></p>
+				<?php if (!empty($category['children'])) { ?>
+				<ul class="mallindex_category_child_ul f12">
+					<?php foreach($category['children'] as $childcategory) { ?>
+						<li><a href="__ROOT__/mall/category/{$childcategory['id']}" target="_blank">{$childcategory['name']}</a></li>
+					<?php } ?>
+				</ul>
+				<?php } ?>
+			</li>
+			<?php } ?>
+		</ul>
+		
+		<p class="catemoreinfo f12">我的分类</p>
+		<ul class="mallset_cate_my_ul">
+			<?php foreach($myCategoryArray as $category) { ?>
+			<li>
+				<p class="mallindex_category_parent_p"><a href="__ROOT__/mall/category/{$category['id']}" target="_blank">{$category['name']}</a> <a href="__ROOT__/mallset/cate?del={$category['id']}&name={$category['name']}" title="删除"><span class="dot_choose"></span></a></p>
+				<?php if (!empty($category['children'])) { ?>
+				<ul class="mallindex_category_child_ul f12">
+					<?php foreach($category['children'] as $childcategory) { ?>
+						<li>
+							<a href="__ROOT__/mall/category/{$childcategory['id']}" target="_blank">{$childcategory['name']}</a>
+							<a href="__ROOT__/mallset/cate?del={$childcategory['id']}&name={$childcategory['name']}"><span class="f12 red_l">(删除)</span></a>
+						</li>
+					<?php } ?>
+				</ul>
+				<?php } ?>
+			</li>
+			<?php } ?>
+		</ul>
+		
+		<p class="catemoreinfo f12"><span class="icon_plus"></span>添加新分类</p>
+		<form action="__ROOT__/mallset/cate" method="post" id="settingform">
+			<p class="mallset_cate_new_p">
+				<span class="f12 black_l">父分类&#12288;:</span>&#12288; 
+				<select id="parentcategory" name="parentcategory" class="mallset_index_ul_li_select">
+					<option value="0"></option>
+					<?php foreach($resultRecordCommoditycategory as $commoditycategory) { ?>
+					<option value={$commoditycategory['cate_id']}>{$commoditycategory['cate_name']}</option>
+					<?php } ?>
+				</select>
+				<span class="f12 gray">(选择后表示添加子分类)</span>
+			</p>
+			<p class="mallset_cate_new_p">
+				<span class="f12 black_l">添加分类:</span>&#12288; <input type="text" name="newcategory" value="" class="mallset_index_ul_li_input"/>
+				<input type="submit" value="添加" />
+			</p>
+		</form>
+	</div>
+</div>
+<include file="Public:footermall" />

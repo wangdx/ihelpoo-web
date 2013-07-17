@@ -1,0 +1,119 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div style="padding:20px 0">
+<div class="stream_u">
+  <p class="stream_u_img_p">
+    <img src='<?php echo i_icon_check("$userView[uid]", "$userView[icon_url]", "l") ?>' height='374' width='500' />
+    <?php if ($userView['type'] == '3') { ?>
+      <span class="grades"></span>
+    <?php } else if ($userView['type'] == '2') { ?>
+      <span class="gradeg"></span>
+    <?php } else { ?>
+      <span class="grade<?php echo i_gradeNum($userView['enteryear']) ?>"></span>
+    <?php } ?>
+  </p>
+  <?php if (!empty($userIconAlbum)) { ?>
+    <p class="stream_u_img_more_p">
+	  <?php foreach ($userIconAlbum as $userIcon) { ?>
+		<a href="__ROOT__/wo/album/<?php echo $userView['uid'] ?>/9/<?php echo $userIcon['id']; ?>"><img src="<?php echo i_image_thumbnail($userIcon['url']); ?>" height="35" class="stream_u_img_more_p_img" /></a>
+	  <?php } ?>
+	  <a href="__ROOT__/wo/album/<?php echo $userView['uid'] ?>" class="stream_u_img_more_btn_more f10" title="更多">more</a>
+    </p>
+  <?php } ?>
+  <ul class="stream_u_ul">
+    <li>
+      <a href="__ROOT__/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
+      <a href="__ROOT__/wo/honor/<?php echo $userView['uid'] ?>">
+        <span class="gray f12" title="等级: level<?php echo i_degree($userView['active']) ?>"><span class="level<?php echo i_degree($userView['active']) ?>"></span></span>
+      </a>
+      <?php if ($userInfo['realname_re'] == '2') { echo "<span class='f12 gray' style='cursor: pointer' title='数据库有匹配，已经实名认证'>已认证</span>"; }?>
+      <?php if (!empty($totalUserHonorNums)) { ?>
+		<a href="__ROOT__/wo/honor/<?php echo $userView['uid'] ?>" class="f12 gray" title="查看荣誉详情">
+			{$totalUserHonorNums}荣誉
+			<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
+		</a>
+	  <?php } ?>
+    </li>
+    <li>
+      <a href="__ROOT__/talk/to/<?php echo $userView['uid'] ?>" class="f12" title="点击聊天或留言">
+        <span class="online<?php echo $userView['online'] ?>"></span> <span class="f12 gray">聊天</span>
+      </a>
+    </li>
+    <?php if ($userView['type'] == '3') { ?>
+    <li></li>
+    <li><a href="__ROOT__/mall/shop/<?php echo $userView['uid'] ?>" class="btn_red f12">进入店铺</a></li>
+    <li></li>
+	<?php } else { ?> 
+    <li><?php echo i_grade($userView['enteryear']) ?> <span class="gray">入学年份<?php echo $userView['enteryear'] ?></span></li>
+    <li><?php echo i_constellation($userView['birthday']),i_sex($userView['sex']) ?></li>
+    <li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black"><?php echo $userAcademy['name']; ?></a></li>
+    <li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black"><?php echo $userSpecialty['name']; ?></a></li>
+    <?php } ?> 
+    <li title="一句话简介" style="width: 300px; cursor: pointer"><?php echo $userInfo['introduction']; ?><span class="icon_write"></span></li>
+    <li></li>
+    <?php  $sexname = $userView['sex'] == 1 ? "他" : "她"; ?>
+    <li><a href="__ROOT__/wo/<?php echo $userView['uid'] ?>"><?php echo $sexname ?>的小窝</a></li>
+    <?php if($priorityExist) { ?>
+    <li><span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userView['uid'] ?>?del">取消</a></li>
+    <?php } else if ($shieldExist) { ?>
+    <li><span class="f12 gray"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userView['uid'] ?>?del">取消</a></li>
+    <?php } else { ?>
+    <li>
+      <a href="__ROOT__/mutual/priority/<?php echo $userView['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
+      <a href="__ROOT__/mutual/shield/<?php echo $userView['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
+    </li>
+    <?php } ?>
+    <?php if($isChangeinfo) { ?>
+    <li><a href="__ROOT__/mutual/rc/<?php echo $userView['uid'] ?>">真实联系方式</a></li>
+    <?php } else { ?>
+    <li><a href="__ROOT__/mutual/rc/<?php echo $userView['uid'] ?>">请求真实联系方式</a></li>
+    <?php } ?>
+    <li><?php if (!empty($userInfo['qq'])) { ?>
+      <?php if (i_degree($userloginedrecord['active']) >= 3) { ?>
+      <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $userInfo['qq'] ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $userInfo['qq'] ?>:46" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+      <?php } else { ?>
+            <span class="f12 gray">大于<a href="__ROOT__/support?level" target="_blank">3级</a>可以查看<?php echo $sexname ?>的QQ及在线状态 点击直接QQ聊天。</span>
+      <?php } ?>
+    <?php } ?>
+    <?php if (!empty($userInfo['weibo'])) { ?>
+      <br />
+      <a href="<?php echo $userInfo['weibo'] ?>" target="_blank"><img src="__PUBLIC__/image/common/sina.png" /></a>
+    <?php } ?>
+    </li>
+  </ul>
+  <div>
+  <!-- school time bar part -->
+  <?php
+  $dateInfo = getdate();
+  $yearGape = $dateInfo['year'] - $userView['enteryear'];
+  if ($yearGape < 5 && $userView['type'] == '1') {
+      $passedSchoolDays = (($dateInfo['year'] - $userView['enteryear'] - 1) * 365) + $dateInfo['yday'] + 120;
+      $totalSchoolDays = (4 * 365 - 90);
+      $schoolDaysRatio = substr(($passedSchoolDays / $totalSchoolDays) * 100, 0, 5);
+      if ($schoolDaysRatio < 33) {
+          $backgroundcolor = "#9C0";
+      } else if ($schoolDaysRatio < 66){
+          $backgroundcolor = "#09F";
+      } else {
+          $backgroundcolor = "#F60";
+      }
+      $schoolDaysRatio = $schoolDaysRatio . "%";
+  ?>
+  <div>
+    <p style="margin: 30px 20px 20px 20px;" class="gray">
+      <span class="fi gray">今天是<?php echo date("Y年m月d", time()) ?>, 一年中的<?php echo $dateInfo['yday'] ?>天</span>
+      <span class="fb black_l"><?php echo $userView['nickname'] ?></span>的大学时光过去了<span class="f14 fb black_l"><?php echo $schoolDaysRatio ?></span>
+      <span id="timenow"></span> <span style="position: relative; margin-left:5px; "><span id="secondpass" class="f16 fb" style="position: absolute; width: 30px;" >-1</span></span>
+    </p>
+    <div style="border:1px solid #CCC ; width:100%; height:3px;">
+      <div style="background:<?php echo $backgroundcolor ?>; height:3px; float:left; width:<?php echo $schoolDaysRatio ?>"></div>
+    </div>
+  </div>
+  <?php } ?>
+  </div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/stream/u.js"></script>
+<include file="Public:footer" />
