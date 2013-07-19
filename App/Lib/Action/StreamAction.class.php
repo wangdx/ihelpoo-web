@@ -313,10 +313,10 @@ class StreamAction extends Action {
         	    	        /**
 				    		 * send emil
 				    		 */
-                        	$userPrioritiedMail = $UserLogin->find($userPrio['uid']);
-                        	if (!empty($userPrioritiedMail['email'])) {
-				    			$emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
-                        	}
+           //              	$userPrioritiedMail = $UserLogin->find($userPrio['uid']);
+           //              	if (!empty($userPrioritiedMail['email'])) {
+				    			// $emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
+           //              	}
         		        }
                     }
                     
