@@ -354,7 +354,7 @@ class AjaxAction extends Action {
     			} else {
     				$recordUserInfo =$UserInfo->where("uid = $userid")->field('uid,introduction,academy_op,specialty_op,dormitory_op,fans,follow')->find();
     				if ($recordUserInfo[academy_op])
-    					$recordOpAcademy = $OpAcademy->where("number = $recordUserInfo[academy_op]")->find();
+    					$recordOpAcademy = $OpAcademy->where("id = $recordUserInfo[academy_op]")->find();
     				if ($recordUserInfo[specialty_op])
     					$recordOpSpecialty = $OpSpecialty->where("id = $recordUserInfo[specialty_op]")->find();
     				if ($recordUserInfo[dormitory_op])
