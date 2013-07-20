@@ -395,7 +395,7 @@ class SettingAction extends Action {
         			import("@.ORG.UploadFile");
         			$config=array(
 		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
-		                'savePath'=>'./Public/useralbum/'.$userloginid.'/',
+		                'savePath'=>'/useralbum/'.$userloginid.'/',
 		                'saveRule'=>'iconorignal'.$userloginid.time(),
         			);
         			$upload = new UploadFile($config);
