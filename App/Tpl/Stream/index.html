@@ -240,6 +240,10 @@
   	<p class="f12 black_l stream_list_ul_sort">
   		显示 <a href="__ROOT__/stream/u/<?php echo $groupUserRecord['uid']; ?>"><?php echo $groupUserRecord['nickname']; ?></a> <a href="__ROOT__/index/group">组织</a>中的成员信息流 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
   	</p>
+  <?php } else if ($streamway == "specialty") { ?>
+  	<p class="f12 black_l stream_list_ul_sort">
+  		显示就读 <a href="__ROOT__/index/mate?w=academy&n={$academyId}&specialty={$specialtyId}"><?php echo $specialtyName; ?></a> 的童鞋 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
+  	</p>
   <?php } ?>
   <ul class="stream_list_ul">
   <?php foreach ($recordSay as $record):
@@ -275,7 +279,7 @@
       <?php } ?>
       <?php if ($record['type'] == '1') { ?>
       	<?php if (!empty($record['name'])) { ?>
-      		<a href="__ROOT__/index/mate?w=academy&n={$record['academy']}&specialty={$record['specialty_op']}" target="_blank" class="gray f12" title="ta的专业">[{$record['name']}]</a>
+      		<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" target="_blank" class="gray f12" title="ta的专业">[{$record['name']}]</a>
       	<?php } else { ?>
       		<?php if ($record['school'] == 'zzuli') { ?>
       			<a href="http://zzuli.ihelpoo.com/" class="gray f12" title="来自我帮圈圈郑州轻工业学院">[郑州轻工业学院]</a>

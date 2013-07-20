@@ -418,6 +418,8 @@ class StreamAction extends Action {
             $requestWay = "help";
         } else if (preg_match("/index\/group/iUs", $_SERVER["REQUEST_URI"])) {
             $requestWay = "group";
+        } else if (preg_match("/index\/specialty/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "specialty";
         } else {
             $requestWay = "default";
         }
@@ -478,7 +480,7 @@ class StreamAction extends Action {
         	}
         	$select->order('i_record_say.last_comment_ti DESC');
         	$streamway = "shield";
-        } else if($requestWay == "time") {
+        } else if ($requestWay == "time") {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
                 $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9'");
@@ -487,7 +489,7 @@ class StreamAction extends Action {
         	}
         	$select->order('i_record_say.time DESC');
         	$streamway = "time";
-        } else if($requestWay == "help") {
+        } else if ($requestWay == "help") {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
                 $select->where("i_record_say.uid NOT IN ($sidString) AND say_type = '1'");
@@ -496,7 +498,7 @@ class StreamAction extends Action {
         	}
         	$select->order('i_record_say.last_comment_ti DESC');
         	$streamway = "help";
-        } else if($requestWay == "group") {
+        } else if ($requestWay == "group") {
         	$groupUid = (int)trim($_GET["_URL_"][3]);
         	$isSetGroupListPriority = $UserPriority->where("pid = $groupUid")->select();
         	$pidGroupString = NULL;
@@ -518,6 +520,32 @@ class StreamAction extends Action {
         	$this->assign('groupUserNums',$pidGroupNums);
         	$groupUserRecord = $UserLogin->find($groupUid);
         	$this->assign('groupUserRecord',$groupUserRecord);
+        } else if ($requestWay == "specialty") {
+        	$specialtyId = (int)trim($_GET["_URL_"][3]);
+        	//$isSetGroupListPriority = $UserPriority->where("pid = $groupUid")->select();
+        	$allSameSpecialtyUsers = $UserInfo->where("specialty_op = $specialtyId")->select();
+        	$allUserString = NULL;
+        	$allUserNums = 0;
+	        if (!empty($allSameSpecialtyUsers)) {
+	            foreach ($allSameSpecialtyUsers as $specialtyUsers) {
+	                if (!empty($specialtyUsers['uid'])) {
+	                    $allUserString .= $specialtyUsers['uid'].",";
+	                    $allUserNums++;
+	                }
+	            }
+	        } else {
+	        	redirect('/stream', 3, '还没有就读改专业的同学 3秒后页面跳转...');
+	        }
+	        $allUserString = substr($allUserString, 0, -1);
+        	$select->where("i_record_say.uid IN ($allUserString) AND say_type != '9'");
+        	$select->order('i_record_say.last_comment_ti DESC');
+        	$streamway = "specialty";
+        	$this->assign('groupUserNums',$allUserNums);
+        	$OpSpecialty = M("OpSpecialty");
+        	$recordOpSpecialty = $OpSpecialty->where("id = $specialtyId")->find();
+        	$this->assign('specialtyName',$recordOpSpecialty['name']);
+        	$this->assign('specialtyId',$specialtyId);
+        	$this->assign('academyId',$recordOpSpecialty['academy']);
         } else {
         	if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
