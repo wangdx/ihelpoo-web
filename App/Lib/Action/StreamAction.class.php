@@ -523,6 +523,7 @@ class StreamAction extends Action {
         } else if ($requestWay == "specialty") {
         	$specialtyId = (int)trim($_GET["_URL_"][3]);
         	//$isSetGroupListPriority = $UserPriority->where("pid = $groupUid")->select();
+        	$UserInfo = M("UserInfo");
         	$allSameSpecialtyUsers = $UserInfo->where("specialty_op = $specialtyId")->select();
         	$allUserString = NULL;
         	$allUserNums = 0;
