@@ -560,7 +560,7 @@ class StreamAction extends Action {
         $recordSay = $select->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->join('i_user_info ON i_record_say.uid = i_user_info.uid')
         ->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
-		->field('sid,i_user_login.uid,say_type,content,image,url,school,comment_co,diffusion_co,hit_co,time,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.number,i_op_specialty.academy')
+		->field('sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,time,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.number,i_op_specialty.academy')
 		->limit($offset,$count)->select();
 		$userRecordSayUidBefore = NULL;
 		foreach ($recordSay as $record) {
