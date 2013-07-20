@@ -35,10 +35,10 @@
     <ul class="main_mate_op_ul">
     <?php foreach ($academy as $academy) : ?>
     <li>
-      <?php if ($_GET['n'] == $academy['number']) { ?>
-      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['number'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a_select"><?php echo $academy['name'] ?></a>
+      <?php if ($_GET['n'] == $academy['id']) { ?>
+      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a_select"><?php echo $academy['name'] ?></a>
       <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['number'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a"><?php echo $academy['name'] ?></a>
+      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a"><?php echo $academy['name'] ?></a>
       <?php } ?>
     </li>
     <?php endforeach; ?>
