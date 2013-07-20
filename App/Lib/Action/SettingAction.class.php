@@ -300,12 +300,6 @@ class SettingAction extends Action {
             $storageMiddleIconFilename = $fullpath.$newImageName."_m.jpg";
             $storageSmallIconFilename = $fullpath.$newImageName."_s.jpg";
             
-            
-            $storage = new SaeStorage();
-            $storage->upload("public",$storageSmallIconFilename,$srcTempSmallIconFilename);
-            $storage->upload("public",$storageMiddleIconFilename,$srcTempMiddleIconFilename);
-            $newfilepath = $storage->upload("public",$storageLargeIconFilename,$srcTempLargeIconFilename);
-            
             /**
              * storage in upyun
              */
@@ -323,10 +317,13 @@ class SettingAction extends Action {
             	$fh = fopen($srcTempSmallIconFilename, 'rb');
             	$rsp = $upyun->writeFile($storageSmallIconFilename, $fh, True);   //上传图片，自动创建目录
             	fclose($fh);
-            	
+            	$imageStorageUrl = image_storage_url();
+            	$newfilepath = $imageStorageUrl.$storageLargeIconFilename;
             } catch(Exception $e) {
-            	echo $e->getCode();
-            	echo $e->getMessage();
+            	$errorUpyunCode = $e->getCode();
+            	$errorUpyunMessage = $e->getMessage();
+            	$errorUpyun = 'upyun-code:'.$errorUpyunCode.'upyun-message:'.$errorUpyunMessage;
+            	$this->ajaxReturn(0, $errorUpyun, 'wrong');
             }
     	
             unset($srcTempLargeIconFilename);
@@ -335,7 +332,6 @@ class SettingAction extends Action {
 
             /**
              * iuc user data
-             */
             $recordUserLogin = $UserLogin->find($userloginid);
             if ($recordUserLogin['school'] == 'hbmy') {
 	            $url = "http://ihelpoousercenter.sinaapp.com/iuc/updateusericon?uid=".$userloginid."&icon_url=".$newImageName."&pw=".md5('ihelpoo2013');
@@ -344,6 +340,7 @@ class SettingAction extends Action {
 	            	$this->ajaxReturn(0,'保存失败，与我帮圈圈用户中心IUC同步出错','wrong');
 	            }
             }
+            */
             	
             /**
              * update i_user_login

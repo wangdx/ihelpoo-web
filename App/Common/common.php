@@ -1,7 +1,11 @@
 <?php
 	/**
-	 * i_ short for ihelpoo_
+	 * config function
 	 */
+	function image_storage_url()
+	{
+		return $url = "http://ihelpoo.b0.upaiyun.com/";
+	}	
 
     /**
      *
