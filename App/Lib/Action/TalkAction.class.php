@@ -204,7 +204,7 @@ class TalkAction extends Action {
         $OpAcademy = M("OpAcademy");
         $OpSpecialty = M("OpSpecialty");
         if (!empty($toUserInfo['academy_op'])) {
-        	$toUserAcademy = $OpAcademy->where("number = $toUserInfo[academy_op]")->find();
+        	$toUserAcademy = $OpAcademy->where("id = $toUserInfo[academy_op]")->find();
         	$this->assign('toUserAcademy',$toUserAcademy['name']);
         }
         if (!empty($toUserInfo['specialty_op'])) {
