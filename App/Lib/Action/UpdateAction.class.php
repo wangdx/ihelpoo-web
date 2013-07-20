@@ -199,13 +199,15 @@ class UpdateAction extends Action {
     	$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
     	
     	
-    	$listIn = "/useralbum/10000/100001352533354.jpg";
+    	$listIn = '/useralbum/10000/100001352533354.jpg';
+    	$fileUrl = 'http://ihelpoo-public.stor.sinaapp.com/useralbum/10000/100001352533354.jpg';
     	try {
-    		$fh = fopen('http://ihelpoo-public.stor.sinaapp.com/useralbum/10000/100001352533354.jpg', 'rb');
-    		$rsp = $upyun->writeFile($listIn, $fh, True);   //上传图片，自动创建目录
-    		fclose($fh);
+    		//$fh = fopen($fileUrl, 'rb');
+    		$imgOld = imagecreatefromjpeg($fileUrl);
+    		$rsp = $upyun->writeFile($listIn, $imgOld, True);   //上传图片，自动创建目录
+    		//fclose($fh);
     		var_dump($rsp);
-    		$imgOld = imagecreatefromjpeg($cutIconFullPath);
+    		
     	}
     	catch(Exception $e) {
     		echo $e->getCode();
