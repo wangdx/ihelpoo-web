@@ -204,11 +204,9 @@ class UpdateAction extends Action {
     	try {
     		$fh = fopen($fileUrl, 'rb');
     		var_dump($fh);
-    		exit();
     		$rsp = $upyun->writeFile($listIn, $fh, True);   //上传图片，自动创建目录
     		fclose($fh);
     		var_dump($rsp);
-    		
     	}
     	catch(Exception $e) {
     		echo $e->getCode();
