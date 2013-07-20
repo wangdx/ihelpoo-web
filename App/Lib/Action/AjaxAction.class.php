@@ -489,7 +489,7 @@ class AjaxAction extends Action {
         			$newfilepath = $imageStorageUrl.$storageTempFilename;
         			 
         			$opts = array(
-	        			UpYun::X_GMKERL_TYPE    => 'square',
+	        			UpYun::X_GMKERL_TYPE    => 'fix_max',
 	        			UpYun::X_GMKERL_VALUE   => 150,
 	        			UpYun::X_GMKERL_QUALITY => 95,
 	        			UpYun::X_GMKERL_UNSHARP => True
@@ -577,7 +577,7 @@ class AjaxAction extends Action {
         			$newfilepath = $imageStorageUrl.$storageTempFilename;
         			 
         			$opts = array(
-	        			UpYun::X_GMKERL_TYPE    => 'square',
+	        			UpYun::X_GMKERL_TYPE    => 'fix_max',
 	        			UpYun::X_GMKERL_VALUE   => 150,
 	        			UpYun::X_GMKERL_QUALITY => 95,
 	        			UpYun::X_GMKERL_UNSHARP => True
