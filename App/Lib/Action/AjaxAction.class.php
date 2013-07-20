@@ -551,6 +551,7 @@ class AjaxAction extends Action {
     				$imageType = trim($imageType);
     				$imageSize = $_FILES["uploadedimg"]["size"];
     				$imageTmpName = $_FILES["uploadedimg"]["tmp_name"];
+    				$imageOldNameArray = explode('.', $imageOldName);
     			}
 
     			/**
@@ -561,43 +562,48 @@ class AjaxAction extends Action {
     			if ($imageSize > 3670016) {
     				$this->ajaxReturn(0,'上传图片太大, 最大能上传单张 3.5MB','error');
     			}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
-    				import("@.ORG.UploadFile");
-    				$config=array(
-		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
-		                'savePath'=>'./Public/useralbum/'.$userloginid.'/',
-		                'saveRule'=>'talk'.time(),
-    				);
-    				$upload = new UploadFile($config);
-    				$upload->imageClassPath="@.ORG.Image";
-    				$upload->thumb=true;
-        			$upload->thumbMaxHeight=150;
-        			$upload->thumbMaxWidth=150;
-    				if (!$upload->upload()) {
-    					$uploadErrorInfo = $upload->getErrorMsg();
-    					$this->ajaxReturn($uploadErrorInfo,'上传出错','error');
-    				} else {
-    					$info = $upload->getUploadFileInfo();
-    					$storage = new SaeStorage();
-    					$newfilepath = $storage->getUrl("public", "useralbum/".$userloginid."/".$info[0]['savename']);
-
-    					/**
-    					 * insert into i_user_album
-    					 */
-    					$UserAlbum = M("UserAlbum");
-    					$newAlbumIconData = array(
+    				
+    				/**
+        			 * storage in upyun
+        			 */
+        			Vendor('Ihelpoo.Upyun');
+        			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        			$fh = fopen($imageTmpName, 'rb');
+        			$fileName = 'talk'.time().'.'.$imageOldNameArray[1];
+        			$storageTempFilename = '/useralbum/'.$userloginid.'/'.$fileName;
+        			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
+        			fclose($fh);
+        			$imageStorageUrl = image_storage_url();
+        			$newfilepath = $imageStorageUrl.$storageTempFilename;
+        			 
+        			$opts = array(
+	        			UpYun::X_GMKERL_TYPE    => 'square',
+	        			UpYun::X_GMKERL_VALUE   => 150,
+	        			UpYun::X_GMKERL_QUALITY => 95,
+	        			UpYun::X_GMKERL_UNSHARP => True
+        			);
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageThumbTempFilename = '/useralbum/'.$userloginid.'/thumb_'.$fileName;
+        			$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
+        			fclose($fh);
+    				
+        			/**
+        			 * insert into i_user_album
+        			 */
+        			$UserAlbum = M("UserAlbum");
+        			$newAlbumIconData = array(
         					'uid' => $userloginid,
         					'type' => 4,
         					'url' => $newfilepath,
-        					'size' => $info[0]['size'],
+        					'size' => $imageSize,
         					'time' => time()
-    					);
-    					$UserAlbum->add($newAlbumIconData);
+        			);
+        			$UserAlbum->add($newAlbumIconData);
 
-    					/**
-    					 * ajax return
-    					 */
-    					$this->ajaxReturn($newfilepath,'上传成功','uploaded');
-    				}
+        			/**
+        			 * ajax return
+        			 */
+        			$this->ajaxReturn($newfilepath,'上传成功','uploaded');
     			} else {
     				$this->ajaxReturn(0,'上传图片格式错误, 目前仅支持.jpg .png .gif','error');
     			}
