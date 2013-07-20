@@ -4,7 +4,7 @@
 	 */
 	function image_storage_url()
 	{
-		return $url = "http://ihelpoo.b0.upaiyun.com/";
+		return $url = "http://ihelpoo.b0.upaiyun.com";
 	}	
 
     /**
