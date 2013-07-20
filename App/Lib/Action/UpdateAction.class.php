@@ -202,10 +202,10 @@ class UpdateAction extends Action {
     	$listIn = '/useralbum/10000/100001352533354.jpg';
     	$fileUrl = 'http://ihelpoo-public.stor.sinaapp.com/useralbum/10000/100001352533354.jpg';
     	try {
-    		//$fh = fopen($fileUrl, 'rb');
     		$imgOld = imagecreatefromjpeg($fileUrl);
+    		$fh = fopen($imgOld, 'rb');
     		$rsp = $upyun->writeFile($listIn, $imgOld, True);   //上传图片，自动创建目录
-    		//fclose($fh);
+    		fclose($fh);
     		var_dump($rsp);
     		
     	}
