@@ -201,12 +201,16 @@ class UpdateAction extends Action {
     	
     	$listIn = '/useralbum/10000/100001352533354.jpg';
     	$fileUrl = 'http://ihelpoo-public.stor.sinaapp.com/useralbum/10000/100001352533354.jpg';
+    	$srcTempLargeIconFilename = 'temp.jpg';
+    	$imgOld = imagecreatefromjpeg($fileUrl);
+    	imagejpeg($imgOld,$srcTempLargeIconFilename);
+    	imagedestroy($imgOld);
     	try {
-    		$fh = fopen($fileUrl, 'rb');
-    		var_dump($fh);
+    		$fh = fopen($srcTempLargeIconFilename, 'rb');
     		$rsp = $upyun->writeFile($listIn, $fh, True);   //上传图片，自动创建目录
     		fclose($fh);
     		var_dump($rsp);
+    		echo "<a href='http://ihelpoo.b0.upaiyun.com/".$listIn."' target='_blank'>".$listIn."</a><br />";
     	}
     	catch(Exception $e) {
     		echo $e->getCode();
