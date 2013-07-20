@@ -481,7 +481,8 @@ class AjaxAction extends Action {
         			Vendor('Ihelpoo.Upyun');
         			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
         			$fh = fopen($imageTmpName, 'rb');
-        			$storageTempFilename = '/useralbum/'.$userloginid.'/'.'recordsay'.time().'.'.$imageOldNameArray[1];
+        			$fileName = 'recordsay'.time().'.'.$imageOldNameArray[1];
+        			$storageTempFilename = '/useralbum/'.$userloginid.'/'.$fileName;
         			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
         			fclose($fh);
         			$imageStorageUrl = image_storage_url();
@@ -494,7 +495,7 @@ class AjaxAction extends Action {
 	        			UpYun::X_GMKERL_UNSHARP => True
         			);
         			$fh = fopen($imageTmpName, 'rb');
-        			$storageThumbTempFilename = '/useralbum/'.$userloginid.'/thumb_'.'recordsay'.time().'.'.$imageOldNameArray[1];
+        			$storageThumbTempFilename = '/useralbum/'.$userloginid.'/thumb_'.$fileName;
         			$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
         			fclose($fh);
     				
