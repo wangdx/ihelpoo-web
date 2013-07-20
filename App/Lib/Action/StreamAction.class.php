@@ -762,7 +762,7 @@ class StreamAction extends Action {
         $userInfo = $UserInfo->find($userViewUid);
         $this->assign('userInfo', $userInfo);
         if (!empty($userInfo['academy_op'])) {
-            $userAcademy = $OpAcademy->where("number = $userInfo[academy_op]")->find();
+            $userAcademy = $OpAcademy->where("id = $userInfo[academy_op]")->find();
             $this->assign('userAcademy', $userAcademy);
         }
         if (!empty($userInfo['specialty_op'])) {
