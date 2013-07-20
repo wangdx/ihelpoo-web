@@ -299,10 +299,36 @@ class SettingAction extends Action {
             $storageLargeIconFilename = $fullpath.$newImageName.".jpg";
             $storageMiddleIconFilename = $fullpath.$newImageName."_m.jpg";
             $storageSmallIconFilename = $fullpath.$newImageName."_s.jpg";
+            
+            
             $storage = new SaeStorage();
             $storage->upload("public",$storageSmallIconFilename,$srcTempSmallIconFilename);
             $storage->upload("public",$storageMiddleIconFilename,$srcTempMiddleIconFilename);
             $newfilepath = $storage->upload("public",$storageLargeIconFilename,$srcTempLargeIconFilename);
+            
+            /**
+             * storage in upyun
+             */
+            Vendor('Ihelpoo.Upyun');
+            $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+            try {
+            	$fh = fopen($srcTempLargeIconFilename, 'rb');
+            	$rsp = $upyun->writeFile($storageLargeIconFilename, $fh, True);   //上传图片，自动创建目录
+            	fclose($fh);
+            	
+            	$fh = fopen($srcTempMiddleIconFilename, 'rb');
+            	$rsp = $upyun->writeFile($storageMiddleIconFilename, $fh, True);   //上传图片，自动创建目录
+            	fclose($fh);
+            	
+            	$fh = fopen($srcTempSmallIconFilename, 'rb');
+            	$rsp = $upyun->writeFile($storageSmallIconFilename, $fh, True);   //上传图片，自动创建目录
+            	fclose($fh);
+            	
+            } catch(Exception $e) {
+            	echo $e->getCode();
+            	echo $e->getMessage();
+            }
+    	
             unset($srcTempLargeIconFilename);
             unset($srcTempMiddleIconFilename);
             unset($srcTempSmallIconFilename);

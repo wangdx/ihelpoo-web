@@ -197,7 +197,9 @@ class UpdateAction extends Action {
     	 */
     	Vendor('Ihelpoo.Upyun');
     	$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-    	
+    	$rsp = $upyun->readFile($listIn);
+    	var_dump($rsp);
+    	exit();
     	
     	$listIn = '/useralbum/10000/100001352533354.jpg';
     	$fileUrl = 'http://ihelpoo-public.stor.sinaapp.com/useralbum/10000/100001352533354.jpg';
