@@ -920,6 +920,11 @@ class StreamAction extends Action {
         	    	'deliver' => 0,
         	    );
         	    $MsgSystem->add($diffusionToOwnerData);
+
+                $redis = new Redis();
+                $redis->connect('127.0.0.1', 6379);
+                $redis->set('name', '给我一支烟');
+
         	    	    
         		/**
         		 * diffusion
@@ -928,7 +933,7 @@ class StreamAction extends Action {
         	    $userPriorityObj = $UserPriority->where("pid = $userloginid")->join("i_user_login ON i_user_priority.uid = i_user_login.uid")->select();
         	    $userPriorityNums = $UserPriority->where("pid = $userloginid")->count();
         	    
-       	        echo "已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
+       	        echo $redis->get('name')."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
        	        if (!empty($userPriorityNums)) {
        	            $i = 0;
         	        foreach ($userPriorityObj as $userPriority) {
