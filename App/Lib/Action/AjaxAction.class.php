@@ -515,8 +515,7 @@ class AjaxAction extends Action {
         			/**
         			 * ajax return
         			 */
-        			$newfilepaththumb = $imageStorageUrl.$storageThumbTempFilename;
-        			$this->ajaxReturn($newfilepaththumb,'上传成功','uploaded');
+        			$this->ajaxReturn($newfilepath,'上传成功','uploaded');
     			} else {
     				$this->ajaxReturn(0,'上传图片格式错误, 目前仅支持.jpg .png .gif','error');
     			}
