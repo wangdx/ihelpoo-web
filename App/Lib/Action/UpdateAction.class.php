@@ -7,7 +7,6 @@ class UpdateAction extends Action {
 
     protected function _initialize() {
         header("Content-Type:text/html; charset=utf-8");
-        exit();
     }
     
     public function moveusericon() {
@@ -184,7 +183,36 @@ class UpdateAction extends Action {
     	$empty_important_i_user_status= 'TRUNCATE TABLE `i_user_status`';
     }
     
-    
+    /**
+     *
+     * update to version 4
+     */
+    public function moveimgupyun()
+    {
+    	$url = "http://ihelpoo-public.stor.sinaapp.com/";
+    	
+    	/**
+    	 * move useralbum
+    	 * add Upyun.php in ...Vendor
+    	 */
+    	Vendor('Ihelpoo.Upyun');
+    	$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+    	
+    	
+    	$listIn = "/useralbum/10000/100001352533354.jpg";
+    	try {
+    		$fh = fopen('http://ihelpoo-public.stor.sinaapp.com/useralbum/10000/100001352533354.jpg', 'rb');
+    		$rsp = $upyun->writeFile($listIn, $fh, True);   //上传图片，自动创建目录
+    		fclose($fh);
+    		var_dump($rsp);
+    		$imgOld = imagecreatefromjpeg($cutIconFullPath);
+    	}
+    	catch(Exception $e) {
+    		echo $e->getCode();
+    		echo $e->getMessage();
+    	}
+    	exit();
+    }
     
     
     
