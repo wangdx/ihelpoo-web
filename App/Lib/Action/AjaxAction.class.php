@@ -26,7 +26,6 @@ class AjaxAction extends Action {
     		$MsgAt = M("MsgAt");
     		$MsgComment = M("MsgComment");
     		$MsgSystem = M("MsgSystem");
-    		$UserCoins = M("UserCoins");
     		$TalkContent = M("TalkContent");
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
