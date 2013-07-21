@@ -1,18 +1,83 @@
 <include file="Public:headerrooter" />
-  <ul class="para_right_ul">
-  <?php foreach ($adminRealnamemf as $realnamemf) : ?>
+  <?php if (!empty($_GET['delid'])) { ?>
+  是否删除这个站长? <a href="?suredel=<?php echo $_GET['delid']; ?>">是</a> <a href="__ROOT__/rooter/schoolwebmaster">否</a>
+  <?php } ?>
+  <ul>
   <li>
-    <a href="__ROOT__/stream/u/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank">查询</a>) - <?php echo i_time($realnamemf['time']); ?>
-    <?php if ($realnamemf['allow'] == 0) { ?>
-    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>">发送允许修改邮件</a>
-    <?php } else if ($realnamemf['allow'] == 1) { ?>
-    已经发送允许修改邮件
-    <?php } ?>
-  </li>
-  <?php endforeach; ?>
+  	<form>
+    选择学校:
+  	<select name="schoolid">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    </select>
+    <input type="submit" value="确定" />
+    </form>
+    </li>
   </ul>
-  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+  
+  <form method="post">
+  <ul>
+  	<li>添加新站长:</li>
+  	<li>用户uid:<input type="text" name="index_user" value="" /></li>
+	<li>学校sid:
+		<select name="sid">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    	</select>
+    </li>
+	<li>职位:
+		<select name="position">
+  			<option value="m" selected>站长</option>
+  			<option value="a">副站长</option>
+  		<?php } ?>
+    	</select>
+	</li>
+	<li>任职年限:
+	<select name="year">
+		<?php $i = 2013; while ($i < 2020) { ?>
+  			<option value="{$i}" selected>{$i}</option>
+  		<?php $i++; } ?>
+    </select>
+    </li>
+	<li>描述:<input type="text" name="description" value="" /></li>
+	<li>
+	评价星级:
+	<select name="star">
+		<?php $i = 1; while ($i < 6) { ?>
+  			<option value="{$i}" selected>{$i}</option>
+  		<?php $i++; } ?>
+    </select>
+	</li>
+	<li><input type="submit" value="添加" /></li>
+  </ul>
+  </form>
+  
+  <ul class="para_right_ul">
+    <?php foreach ($recordSchoolWebmaster as $schoolWebmaster) : ?>
+    <li>
+    	学校:<?php echo $schoolWebmaster['school']; ?>
+	    站长:<a href="__ROOT__/stream/u/<?php echo $schoolWebmaster['uid']; ?>"><?php echo $schoolWebmaster['nickname']; ?></a> - 
+	    职位:<?php echo $schoolWebmaster['position'] == 'm' ? '站长' : '副站长'; ?> - 
+	    任职年限:<?php echo $schoolWebmaster['year']; ?> - 
+	    描述:<?php echo $schoolWebmaster['description']; ?> -
+	    评价星级:<?php echo $schoolWebmaster['star']; ?> | 
+	    <a href="?delid=<?php echo $schoolWebmaster['id']; ?>">删除</a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>个记录 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
-    <?php if ($totalPages > 1) { i_page_show("rooter/realnameallowmf", $totalPages); } ?>
+    <?php if ($totalPages > 1) { i_page_show("rooter/schoolwebmaster", $totalPages); } ?>
   </div>
+  <?php } ?>
 <include file="Public:footerrooter" />
