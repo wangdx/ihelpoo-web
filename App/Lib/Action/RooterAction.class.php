@@ -339,7 +339,6 @@ class RooterAction extends Action {
     		$school = $_POST['school'];
     		$domain = $_POST['domain'];
     		$remark = $_POST['remark'];
-    		var_dump($id);
     		
     		if (!empty($id)) {
     			
@@ -367,7 +366,7 @@ class RooterAction extends Action {
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
     			}
-    			redirect('/rooter/schoolinfo', '更新学校信息成功', 'ok...');
+    			redirect('/rooter/schoolinfo', 2, '更新学校信息成功 ok...');
     		} else {
     			
     			/**
@@ -394,7 +393,7 @@ class RooterAction extends Action {
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
     			}
-    			redirect('/rooter/schoolinfo', '添加新学校信息成功', 'ok...');
+    			redirect('/rooter/schoolinfo', 2, '添加新学校信息成功 ok...');
     		}
     	}
     	
