@@ -54,6 +54,7 @@
   <ul class="para_right_ul">
     <?php foreach ($recordsOpDormitory as $opDormitory) : ?>
     <li>
+    	<?php echo $opDormitory['id']; ?>. 
     	<?php echo $opDormitory['name']; ?>
     	(<?php echo $opDormitory['type']; ?>)
 	    <a href="?schoolid=<?php echo $_GET['schoolid']; ?>&changeid=<?php echo $opDormitory['id']; ?>">修改</a> | <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
