@@ -969,6 +969,9 @@ class StreamAction extends Action {
         	    $UserPriority = M("UserPriority");
         	    $userPriorityObj = $UserPriority->where("pid = $userloginid")->join("i_user_login ON i_user_priority.uid = i_user_login.uid")->select();
         	    $userPriorityNums = $UserPriority->where("pid = $userloginid")->count();
+
+
+                var_dump($userPriorityObj);
         	    
        	        echo $msg."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
        	        if (!empty($userPriorityNums)) {
