@@ -39,10 +39,24 @@
 		<select name="position">
   			<option value="m" selected>站长</option>
   			<option value="a">副站长</option>
-  		<?php } ?>
     	</select>
 	</li>
-	
+	<li>任职年限:
+	<select name="year">
+		<?php $i = 2013; while ($i < 2020) { ?>
+  			<option value="{$i}" selected>{$i}</option>
+  		<?php $i++; } ?>
+    </select>
+    </li>
+	<li>描述:<input type="text" name="description" value="" /></li>
+	<li>
+	评价星级:
+	<select name="star">
+		<?php $i = 1; while ($i < 6) { ?>
+  			<option value="{$i}" selected>{$i}</option>
+  		<?php $i++; } ?>
+    </select>
+	</li>
 	<li><input type="submit" value="添加" /></li>
   </ul>
   </form>
