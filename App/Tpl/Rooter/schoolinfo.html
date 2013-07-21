@@ -1,16 +1,16 @@
 <include file="Public:headerrooter" />
   <ul class="para_right_ul">
     <?php foreach ($recordSchoolInfo as $schoolInfo) : ?>
+    <form method="post">
     <li>
     <?php echo $schoolInfo['id']; ?>
-    <form method="post">
     	<input type="hidden" name="id" value="<?php echo $schoolInfo['id']; ?>" />
-	    <input type="text" name="school" value="<?php echo $schoolInfo['school']; ?>" />
-	    <input type="text" name="domain" value="<?php echo $schoolInfo['domain']; ?>" />
-	    <input type="text" name="remark" value="<?php echo $schoolInfo['remark']; ?>" />
+	    学校:<input type="text" name="school" value="<?php echo $schoolInfo['school']; ?>" /> - 
+	    域名:<input type="text" name="domain" value="<?php echo $schoolInfo['domain']; ?>" /> -
+	    备注:<input type="text" name="remark" value="<?php echo $schoolInfo['remark']; ?>" />
 	    <input type="submit" value="修改" />
-    </form>
     </li>
+    </form>
     <?php endforeach; ?>
   </ul>
   <form method="post">
