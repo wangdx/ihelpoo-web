@@ -331,10 +331,9 @@ class RooterAction extends Action {
     public function schoolinfo()
     {
     	$admin = logincheck();
-    	$this->assign('title','开通校园');
+    	$this->assign('title','开通学校');
     	$SchoolInfo = M("SchoolInfo");
     	$SchoolInfo->select();
-    	
     	
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
@@ -398,9 +397,7 @@ class RooterAction extends Action {
     			}
     			redirect('/rooter/schoolinfo', '添加新学校信息成功', 'ok...');
     		}
-    		
     	}
-    	
     	
     	$page = i_page_get_num();
         $count = 10;
@@ -415,7 +412,6 @@ class RooterAction extends Action {
         $this->assign('totalRecordNums', $totalReocrdNums);
         $totalPages = ceil($totalReocrdNums / $count);
         $this->assign('totalPages', $totalPages);
-    	
     	
     	$this->display();
     }
