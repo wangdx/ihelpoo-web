@@ -365,7 +365,7 @@ class RooterAction extends Action {
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
     			}
-    			redirect('/rooter/schoolinfo', 2, '更新学校信息成功 ok...');
+    			redirect('/rooter/schoolinfo', 1, '更新学校信息成功 ok...');
     		} else {
     			
     			/**
@@ -393,7 +393,7 @@ class RooterAction extends Action {
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
     			}
-    			redirect('/rooter/schoolinfo', 2, '添加新学校信息成功 ok...');
+    			redirect('/rooter/schoolinfo', 1, '添加新学校信息成功 ok...');
     		}
     	}
     	
@@ -458,7 +458,7 @@ class RooterAction extends Action {
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
     			}
-    			redirect('/rooter/schoolinfo', 2, '更新学校配置信息成功 ok...');
+    			redirect('/rooter/schoolsystem', 1, '更新学校配置信息成功 ok...');
     		}
     	}
     	
