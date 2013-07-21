@@ -471,7 +471,9 @@ class RooterAction extends Action {
     	$page = i_page_get_num();
         $count = 20;
         $offset = $page * $count;
-        $recordSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")->field('i_school_info.time,i_school_system.id',true)->limit($offset,$count)->select();
+        $recordSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")
+        ->field('i_school_info.id,i_school_info.school,i_school_system.sid,i_school_system.total_users,i_school_system.index_user,i_school_system.about,i_school_system.image_index,i_school_system.image_mobile,i_school_system.image_time')
+        ->limit($offset,$count)->select();
         $this->assign('recordSchoolSystem', $recordSchoolSystem);
 
         /**
