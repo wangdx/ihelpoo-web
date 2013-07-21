@@ -1,18 +1,63 @@
 <include file="Public:headerrooter" />
-  <ul class="para_right_ul">
-  <?php foreach ($adminRealnamemf as $realnamemf) : ?>
+  <?php if (!empty($_GET['delid'])) { ?>
+  是否删除? <a href="?suredel=<?php echo $_GET['delid']; ?>">是</a> <a href="__ROOT__/rooter/schoolopacademy">否</a>
+  <?php } ?>
+  <ul>
   <li>
-    <a href="__ROOT__/stream/u/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank">查询</a>) - <?php echo i_time($realnamemf['time']); ?>
-    <?php if ($realnamemf['allow'] == 0) { ?>
-    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>">发送允许修改邮件</a>
-    <?php } else if ($realnamemf['allow'] == 1) { ?>
-    已经发送允许修改邮件
-    <?php } ?>
-  </li>
-  <?php endforeach; ?>
+  	<form>
+    选择学校:
+  	<select name="schoolid">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    </select>
+    <input type="submit" value="确定" />
+    </form>
+    </li>
+  </ul>
+  
+  <form method="post">
+  <ul>
+  	<li>添加寝室:</li>
+	<li>学&#12288;&#12288;校:
+		<select name="sid">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    	</select>
+    </li>
+    <li>类&#12288;&#12288;型:
+    <select name="type">
+      <option value="1">男寝</option>
+      <option value="2">女寝</option>
+      <option value="3">其他</option>
+    </select>
+    </li>
+    <li>楼&#12288;&#12288;栋:<input type="text" name="name" value="" /></li>
+	<li><input type="submit" value="添加" /></li>
+  </ul>
+  </form>
+  
+  <?php if (!empty($schoolid)) { ?>
+  <ul class="para_right_ul">
+    <?php foreach ($recordsOpDormitory as $opDormitory) : ?>
+    <li>
+    	<?php echo $opDormitory['name']; ?>
+	    <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
+    </li>
+    <?php endforeach; ?>
   </ul>
   <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
-    <?php if ($totalPages > 1) { i_page_show("rooter/realnameallowmf", $totalPages); } ?>
+    <?php if ($totalPages > 1) { i_page_show("rooter/schoolopdormitory?schoolid=".$schoolid, $totalPages, '&'); } ?>
   </div>
+  <?php } ?>
 <include file="Public:footerrooter" />
