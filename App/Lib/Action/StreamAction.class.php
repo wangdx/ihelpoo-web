@@ -1023,7 +1023,7 @@ class StreamAction extends Action {
 //        	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
 //        	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
 //        	        		$dataMsgSystemNums = count($dataMsgSystemArray);
-        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='"."' title='点击查看扩散详情'>".$persons = $redis->hGet($diffusionsKey, "diffusionNum");."</span> 人扩散了这条消息给你";
+        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='"."' title='点击查看扩散详情'>".$redis->hGet($diffusionsKey, "diffusionNum")."</span> 人扩散了这条消息给你";
 //        	        		$diffusionData = array(
 //	        	    	        'id' => $isReceivedDiffusionMsg['id'],
 //	        	    	        'data' => $dataMsgSystem,
