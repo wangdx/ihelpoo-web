@@ -420,6 +420,7 @@ class RooterAction extends Action {
     	$this->assign('title','学校配置');
     	$SchoolSystem = M("SchoolSystem");
     	$schoolid = (int)$_GET['schoolid'];
+    	$this->assign('schoolid',$schoolid);
     	
     	if ($this->isPost()) {
     		$sid = (int)$_POST['sid'];

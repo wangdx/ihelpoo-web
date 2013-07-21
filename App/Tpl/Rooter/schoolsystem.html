@@ -5,6 +5,9 @@
     选择学校:
   	<select name="schoolid">
   		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
   			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
   		<?php } ?>
     </select>
@@ -12,6 +15,7 @@
     </form>
     </li>
   </ul>
+  <?php if (!empty($schoolid)) { ?>
   <form method="post">
   <ul>
   	<li>学校名称:<input type="text" name="index_user" value="<?php echo $resultSchoolSystem['school']; ?>" /></li>
@@ -20,7 +24,10 @@
 	<li>关于网站:<input type="text" name="about" value="<?php echo $resultSchoolSystem['about']; ?>" /></li>
 	<li>网站首页图:<input type="text" name="image_index" value="<?php echo $resultSchoolSystem['image_index']; ?>" /></li>
 	<li>手机首页图:<input type="text" name="image_mobile" value="<?php echo $resultSchoolSystem['image_mobile']; ?>" /></li>
-	<li><input type="hidden" name="sid" value="<?php echo $resultSchoolSystem['sid']; ?>" /><input type="submit" value="修改" /></li>
+	<li>
+	<input type="hidden" name="sid" value="<?php echo $resultSchoolSystem['sid'] == NULL ? $schoolid : $resultSchoolSystem['sid']; ?>" />
+	<input type="submit" value="修改" />
+	</li>
   </ul>
   </form>
   
@@ -44,4 +51,5 @@
   <div class="paging_div">
     <?php if ($totalPages > 1) { i_page_show("rooter/schoolinfo", $totalPages); } ?>
   </div>
+  <?php } ?>
 <include file="Public:footerrooter" />
