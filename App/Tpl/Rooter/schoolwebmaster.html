@@ -65,7 +65,7 @@
     <?php foreach ($recordSchoolWebmaster as $schoolWebmaster) : ?>
     <li>
     	学校:<?php echo $schoolWebmaster['school']; ?>
-	    站长:<a href="__ROOT__/stream/u/<?php echo $schoolWebmaster['uid']; ?>"><?php echo $schoolWebmaster['nickname']; ?></a> - 
+	    站长:<a href="__ROOT__/stream/u/<?php echo $schoolWebmaster['uid']; ?>" target="_blank"><?php echo $schoolWebmaster['nickname']; ?></a> - 
 	    职位:<?php echo $schoolWebmaster['position'] == 'm' ? '站长' : '副站长'; ?> - 
 	    任职年限:<?php echo $schoolWebmaster['year']; ?> - 
 	    描述:<?php echo $schoolWebmaster['description']; ?> -
