@@ -863,7 +863,7 @@ class RooterAction extends Action {
 		    		redirect('/rooter/schoolopdormitory', 1, '添加寝室成功 ok...');
 	    		} else {
 	    			$updateOpDormitory = array(
-		    			'id' => $academyid,
+		    			'id' => $schoolpostid,
 		    			'name' => $name,
 		    			'type' => $type,
 		    			'school' => $schoolid
