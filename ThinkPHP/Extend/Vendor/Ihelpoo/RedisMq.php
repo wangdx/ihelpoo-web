@@ -1,6 +1,6 @@
 <?php
 
-class RedisMQ
+class Redismq extends Redis
 {
     const POSITION_FIRST = 0;
     const POSITION_LAST = -1;
