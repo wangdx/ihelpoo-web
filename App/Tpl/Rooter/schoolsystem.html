@@ -20,7 +20,22 @@
   </ul>
   <br />
   <br />
-  
+  <ul>
+  	<li>
+  	选择学校:
+  	<select id="enteryear" name="enteryear">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  		<?php } ?>
+    </select>
+  	</li>
+  	<li>首页推荐:<input type="text" name="index_user" value="<?php echo $resultSchoolSystem['index_user']; ?>" /></li>
+	<li>文化宣传:<input type="text" name="index_spread_info" value="<?php echo $resultSchoolSystem['index_spread_info']; ?>" /></li>
+	<li>关于:<input type="text" name="about" value="<?php echo $resultSchoolSystem['about']; ?>" /></li>
+	<li>网站首页图:<input type="text" name="image_index" value="<?php echo $resultSchoolSystem['image_index']; ?>" /></li>
+	<li>手机首页图:<input type="text" name="image_mobile" value="<?php echo $resultSchoolSystem['image_mobile']; ?>" /></li>
+	<li><input type="submit" value="修改" /></li>
+  </ul>
   <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>个记录 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
     <?php if ($totalPages > 1) { i_page_show("rooter/schoolinfo", $totalPages); } ?>
