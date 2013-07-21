@@ -474,8 +474,9 @@ class RooterAction extends Action {
     		$page = i_page_get_num();
     		$count = 20;
     		$offset = $page * $count;
-    		$recordSchoolSystem = $SchoolSystem->where("i_school_system.sid = $schoolid")->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")
+    		$recordSchoolSystem = $SchoolSystem->where("i_school_system.sid = $schoolid")->join('i_school_info ON i_school_info.id = i_school_system.sid')
     		->field('i_school_info.id,i_school_info.school,i_school_system.sid,i_school_system.total_users,i_school_system.index_user,i_school_system.about,i_school_system.image_index,i_school_system.image_mobile,i_school_system.time')
+    		->order("i_school_system.time DESC")
     		->limit($offset,$count)->select();
     		$this->assign('recordSchoolSystem', $recordSchoolSystem);
     		
@@ -493,7 +494,113 @@ class RooterAction extends Action {
 
     public function schoolwebmaster()
     {
-    	 
+    	$admin = logincheck();
+    	$this->assign('title','站长管理');
+    	$SchoolWebmaster = M("SchoolWebmaster");
+    	
+    	if ($this->isPost()) {
+    		$uid = (int)$_POST['uid'];
+    		$sid = (int)$_POST['sid'];
+    		$description = $_POST['description'];
+    		$year = $_POST['year'];
+    		$position = $_POST['position'];
+    		$star = $_POST['star'];
+    		if (!empty($uid) && !empty($sid)) {
+    			/**
+    			 * insert
+    			 */
+    			$newSchoolWebmasterData = array(
+    				'id' => '',
+    				'uid' => $uid,
+    				'sid' => $sid,
+    				'description' => $description,
+    				'year' => $year,
+    				'position' => $position,
+    				'star' => $star
+    			);
+    			$SchoolWebmaster->add($newSchoolWebmasterData);
+    			
+    			/**
+    			 * admin user operating record
+    			 */
+    			if (!empty($admin['uid'])) {
+    				$AdminUserrecord = M("AdminUserrecord");
+    				$newAdminUserrecordData = array(
+					    'id' => '',
+					    'uid' => $admin['uid'],
+					    'record' => '添加站长 schoolid:'.$sid.'-userid:'.$uid,
+					    'time' => time(),
+    				);
+    				$AdminUserrecord->add($newAdminUserrecordData);
+    			}
+    			redirect('/rooter/schoolwebmaster', 1, '添加站长信息成功 ok...');
+    		}
+    	}
+    	
+    	/**
+    	 * delete webmaster
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteSchoolWebmaster = $SchoolWebmaster->where("id = $suredelid")->find();
+    			
+    			/**
+    			 * admin user operating record
+    			 */
+    			if (!empty($admin['uid'])) {
+    				$AdminUserrecord = M("AdminUserrecord");
+    				$newAdminUserrecordData = array(
+					    'id' => '',
+					    'uid' => $admin['uid'],
+					    'record' => '删除站长 schoolid:'.$deleteSchoolWebmaster['sid'].'-userid:'.$deleteSchoolWebmaster['uid'],
+					    'time' => time(),
+    				);
+    				$AdminUserrecord->add($newAdminUserrecordData);
+    			}
+    			
+    			$SchoolWebmaster->where("id = $suredelid")->delete();
+    			redirect('/rooter/schoolwebmaster', 1, '删除站长成功 ok...');
+    		}
+    	}
+    	
+    	$schoolid = (int)$_GET['schoolid'];
+    	$this->assign('schoolid',$schoolid);
+    	$page = i_page_get_num();
+	    $count = 15;
+	    $offset = $page * $count;
+    	if (!empty($schoolid)) {
+	        $recordSchoolWebmaster = $SchoolWebmaster->where("sid = $schoolid")
+	        ->join('i_school_info ON i_school_info.id = i_school_webmaster.sid')
+	        ->join('i_user_login ON i_user_login.uid = i_school_webmaster.uid')
+    		->field('i_school_info.school,i_user_login.nickname,i_school_webmaster.id,i_school_webmaster.uid,i_school_webmaster.sid,i_school_webmaster.description,i_school_webmaster.year,i_school_webmaster.position,i_school_webmaster.star')
+	        ->order("id DESC")->limit($offset,$count)->select();
+	
+	        /**
+	         * page link
+	         */
+	        $totalReocrdNums = $SchoolWebmaster->where("sid = $schoolid")->count();
+    	} else {
+    		$recordSchoolWebmaster = $SchoolWebmaster->join('i_school_info ON i_school_info.id = i_school_webmaster.sid')
+	        ->join('i_user_login ON i_user_login.uid = i_school_webmaster.uid')
+    		->field('i_school_info.school,i_user_login.nickname,i_school_webmaster.id,i_school_webmaster.uid,i_school_webmaster.sid,i_school_webmaster.description,i_school_webmaster.year,i_school_webmaster.position,i_school_webmaster.star')
+    		->order("id DESC")->limit($offset,$count)->select();
+	
+	        /**
+	         * page link
+	         */
+	        $totalReocrdNums = $SchoolWebmaster->count();
+    	}
+    	$this->assign('recordSchoolWebmaster', $recordSchoolWebmaster);
+    	$this->assign('totalRecordNums', $totalReocrdNums);
+	    $totalPages = ceil($totalReocrdNums / $count);
+	    $this->assign('totalPages', $totalPages);
+    	
+	    $SchoolInfo = M("SchoolInfo");
+		$recordSchoolInfo = $SchoolInfo->select();
+		$this->assign('recordSchoolInfo',$recordSchoolInfo);
+	    
+    	$this->display();
     }
 
     public function schoolopacademy()
