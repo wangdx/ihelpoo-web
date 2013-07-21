@@ -266,9 +266,9 @@ class SettingAction extends Action {
             /**
              * new image file
              */
-        	$srcTempLargeIconFilename = 'temp'.$userloginid.time().'.jpg';
-        	$srcTempMiddleIconFilename = 'temp'.$userloginid.time().'_m.jpg';
-        	$srcTempSmallIconFilename = 'temp'.$userloginid.time().'_s.jpg';
+        	$srcTempLargeIconFilename = 'temp'.$userloginid.'.jpg';
+        	$srcTempMiddleIconFilename = 'temp'.$userloginid.'_m.jpg';
+        	$srcTempSmallIconFilename = 'temp'.$userloginid.'_s.jpg';
             imagejpeg($imgObj,$srcTempLargeIconFilename);
 
             /**
