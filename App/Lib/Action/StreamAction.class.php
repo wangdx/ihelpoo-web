@@ -950,6 +950,7 @@ class StreamAction extends Action {
         	    );
         	    $MsgSystem->add($diffusionToOwnerData);
 
+                Vendor('Ihelpoo.RedisMQ');
                 $redis = new RedisMQ();
                 $redis->connect('127.0.0.1', 6379);
 
