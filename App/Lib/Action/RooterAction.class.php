@@ -425,13 +425,13 @@ class RooterAction extends Action {
 		$SchoolInfo = M("SchoolInfo");
 		$recordSchoolInfo = $SchoolInfo->select();
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
-    	$resultSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("time DESC")->find();
+    	$resultSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")->find();
 		$this->assign('resultSchoolSystem',$resultSchoolSystem);
 		
     	$page = i_page_get_num();
         $count = 20;
         $offset = $page * $count;
-        $recordSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("time ASC")->limit($offset,$count)->select();
+        $recordSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time ASC")->limit($offset,$count)->select();
         $this->assign('recordSchoolSystem', $recordSchoolSystem);
 
         /**
