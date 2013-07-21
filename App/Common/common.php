@@ -334,7 +334,7 @@
      */
     function i_logo_shop($uid, $shopBanner, $size = "d")
     {
-    	$baseUrl = 'http://ihelpoo.b0.upaiyun.com';
+    	$baseUrl = 'http://ihelpoo.b0.upaiyun.com/';
     	if (!empty($shopBanner)) {
     		if ($size == "d") {
     			$logoPath = $baseUrl."shop/".$uid."/".$shopBanner;
@@ -386,7 +386,7 @@
 
     function i_icon_check($uid, $iconUrl, $size = "m")
     {
-    	$baseUrl = 'http://ihelpoo.b0.upaiyun.com';
+    	$baseUrl = 'http://ihelpoo.b0.upaiyun.com/';
     	if (!empty($iconUrl)) {
     		if ($size == "l") {
     			$iconPath = $baseUrl."useralbum/".$uid."/".$iconUrl.".jpg";
@@ -484,7 +484,7 @@
      */
     function i_get_image($recordImageField, $way = 'o')
     {
-    	$sotrageUrl = "http://ihelpoo.b0.upaiyun.com";
+    	$sotrageUrl = "http://ihelpoo.b0.upaiyun.com/";
     	$RecordOutimg = M("RecordOutimg");
     	if (preg_match("/;/", $recordImageField)) {
     		$sayRecordImageArray = explode(";", $recordImageField);
