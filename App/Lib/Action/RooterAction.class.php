@@ -335,6 +335,71 @@ class RooterAction extends Action {
     	$SchoolInfo = M("SchoolInfo");
     	$SchoolInfo->select();
     	
+    	
+    	if ($this->isPost()) {
+    		$id = (int)$_POST['id'];
+    		$school = $_POST['school'];
+    		$domain = $_POST['domain'];
+    		$remark = $_POST['remark'];
+    		if (!empty($id)) {
+    			
+    			/**
+    			 * update
+    			 */
+    			$updateSchoolData = array(
+    				'id' => $id,
+    				'school' => $school,
+    				'domain' => $domain,
+    				'remark' => $remark
+    			);
+    			$SchoolInfo->save($updateSchoolData);
+    			
+    			/**
+    			 * admin user operating record
+    			 */
+    			if (!empty($admin['uid'])) {
+    				$AdminUserrecord = M("AdminUserrecord");
+    				$newAdminUserrecordData = array(
+					    'id' => '',
+					    'uid' => $admin['uid'],
+					    'record' => '更新学校信息 学校:'.$school.'-域名:'.$domain.'-备注:'.$remark,
+					    'time' => time(),
+    				);
+    				$AdminUserrecord->add($newAdminUserrecordData);
+    			}
+    			redirect('/rooter/schoolinfo', '更新学校信息成功', 'ok...');
+    		} else {
+    			
+    			/**
+    			 * insert
+    			 */
+    			$newSchoolData = array(
+    				'id' => '',
+    				'school' => $school,
+    				'domain' => $domain,
+    				'remark' => $remark
+    			);
+    			$SchoolInfo->add($newSchoolData);
+    			
+    			/**
+    			 * admin user operating record
+    			 */
+    			if (!empty($admin['uid'])) {
+    				$AdminUserrecord = M("AdminUserrecord");
+    				$newAdminUserrecordData = array(
+					    'id' => '',
+					    'uid' => $admin['uid'],
+					    'record' => '添加新学校信息 学校:'.$school.'-域名:'.$domain.'-备注:'.$remark,
+					    'time' => time(),
+    				);
+    				$AdminUserrecord->add($newAdminUserrecordData);
+    			}
+    			redirect('/rooter/schoolinfo', '添加新学校信息成功', 'ok...');
+    		}
+    		
+    	}
+    	
+    	
     	$page = i_page_get_num();
         $count = 10;
         $offset = $page * $count;
