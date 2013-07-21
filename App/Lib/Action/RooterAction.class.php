@@ -419,6 +419,7 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	$this->assign('title','学校配置');
     	$SchoolSystem = M("SchoolSystem");
+    	$schoolid = (int)$_GET['schoolid'];
     	
     	if ($this->isPost()) {
     		$sid = (int)$_POST['sid'];
@@ -465,7 +466,9 @@ class RooterAction extends Action {
 		$SchoolInfo = M("SchoolInfo");
 		$recordSchoolInfo = $SchoolInfo->select();
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
-    	$resultSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")->find();
+		if (!empty($schoolid)) {
+    		$resultSchoolSystem = $SchoolSystem->where("i_school_system.sid = $schoolid")->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")->find();
+    	}
 		$this->assign('resultSchoolSystem',$resultSchoolSystem);
 		
     	$page = i_page_get_num();

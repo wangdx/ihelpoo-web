@@ -1,22 +1,29 @@
 <include file="Public:headerrooter" />
-  <form method="post">
   <ul>
-  	<li>
-  	选择学校:
-  	<select id="sid" name="sid">
+  <li>
+  	<form>
+    选择学校:
+  	<select name="schoolid">
   		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
   			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
   		<?php } ?>
     </select>
-  	</li>
+    <input type="submit" value="确定" />
+    </form>
+    </li>
+  </ul>
+  <form method="post">
+  <ul>
+  	<li>学校名称:<input type="text" name="index_user" value="<?php echo $resultSchoolSystem['school']; ?>" /></li>
   	<li>首页推荐:<input type="text" name="index_user" value="<?php echo $resultSchoolSystem['index_user']; ?>" /></li>
 	<li>文化宣传:<input type="text" name="index_spread_info" value="<?php echo $resultSchoolSystem['index_spread_info']; ?>" /></li>
 	<li>关于网站:<input type="text" name="about" value="<?php echo $resultSchoolSystem['about']; ?>" /></li>
 	<li>网站首页图:<input type="text" name="image_index" value="<?php echo $resultSchoolSystem['image_index']; ?>" /></li>
 	<li>手机首页图:<input type="text" name="image_mobile" value="<?php echo $resultSchoolSystem['image_mobile']; ?>" /></li>
-	<li><input type="submit" value="修改" /></li>
+	<li><input type="hidden" name="sid" value="<?php echo $resultSchoolSystem['sid']; ?>" /><input type="submit" value="修改" /></li>
   </ul>
   </form>
+  
   <br />
   <br />
   <ul class="para_right_ul">
