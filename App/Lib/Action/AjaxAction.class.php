@@ -30,7 +30,6 @@ class AjaxAction extends Action {
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
     		$messageSystemNums = $MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
-    		$messageCoinsNums = $UserCoins->where("uid = $userloginid AND deliver = 0")->count();
     		$messageTalkNums = $TalkContent->where("touid = $userloginid AND deliver = 0")->count();
     		if (!empty($messageTalkNums)) {
     			$lastTalkContent = $TalkContent->where("touid = $userloginid AND deliver = 0")
@@ -45,7 +44,6 @@ class AjaxAction extends Action {
     			'messageAtNums' => $messageAtNums,
     			'messageCommentNums' => $messageCommentNums,
     			'messageSystemNums' => $messageSystemNums,
-    			'messageCoinsNums' => $messageCoinsNums,
     			'messageTalkNums' => $messageTalkNums,
     			'lastTalkContent' => $lastTalkContent['content'],
     			'lastTalkContentUserNickname' => $lastTalkContent['nickname'],
