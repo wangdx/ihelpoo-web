@@ -9,7 +9,7 @@
 	    域名:<input type="text" name="domain" value="<?php echo $schoolInfo['domain']; ?>" /> -
 	    备注:<input type="text" name="remark" value="<?php echo $schoolInfo['remark']; ?>" />
 	    <span class="f12 gray">(<?php echo i_time($schoolInfo['time']); ?>)</span>
-	    <input type="submit" value="修改" />
+	    <input type="submit" value="修改" /> <a href="__ROOT__/rooter/schoolsystem?schoolid=<?php echo $schoolInfo['id']; ?>">配置</a>
     </li>
     </form>
     <?php endforeach; ?>
