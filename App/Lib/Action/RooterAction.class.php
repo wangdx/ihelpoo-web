@@ -468,24 +468,24 @@ class RooterAction extends Action {
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
 		if (!empty($schoolid)) {
     		$resultSchoolSystem = $SchoolSystem->where("i_school_system.sid = $schoolid")->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")->find();
+    		$this->assign('resultSchoolSystem',$resultSchoolSystem);
+    		
+    		$page = i_page_get_num();
+    		$count = 20;
+    		$offset = $page * $count;
+    		$recordSchoolSystem = $SchoolSystem->where("i_school_system.sid = $schoolid")->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")
+    		->field('i_school_info.id,i_school_info.school,i_school_system.sid,i_school_system.total_users,i_school_system.index_user,i_school_system.about,i_school_system.image_index,i_school_system.image_mobile,i_school_system.time')
+    		->limit($offset,$count)->select();
+    		$this->assign('recordSchoolSystem', $recordSchoolSystem);
+    		
+    		/**
+    		 * page link
+    		 */
+    		$totalReocrdNums = $SchoolSystem->where("sid = $schoolid")->count();
+    		$this->assign('totalRecordNums', $totalReocrdNums);
+    		$totalPages = ceil($totalReocrdNums / $count);
+    		$this->assign('totalPages', $totalPages);
     	}
-		$this->assign('resultSchoolSystem',$resultSchoolSystem);
-		
-    	$page = i_page_get_num();
-        $count = 20;
-        $offset = $page * $count;
-        $recordSchoolSystem = $SchoolSystem->join('i_school_info ON i_school_info.id = i_school_system.sid')->order("i_school_system.time DESC")
-        ->field('i_school_info.id,i_school_info.school,i_school_system.sid,i_school_system.total_users,i_school_system.index_user,i_school_system.about,i_school_system.image_index,i_school_system.image_mobile,i_school_system.time')
-        ->limit($offset,$count)->select();
-        $this->assign('recordSchoolSystem', $recordSchoolSystem);
-
-        /**
-         * page link
-         */
-        $totalReocrdNums = $SchoolSystem->count();
-        $this->assign('totalRecordNums', $totalReocrdNums);
-        $totalPages = ceil($totalReocrdNums / $count);
-        $this->assign('totalPages', $totalPages);
     	
     	$this->display();
     }
