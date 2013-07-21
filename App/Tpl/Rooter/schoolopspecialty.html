@@ -1,18 +1,85 @@
 <include file="Public:headerrooter" />
-  <ul class="para_right_ul">
-  <?php foreach ($adminRealnamemf as $realnamemf) : ?>
+  <?php if (!empty($_GET['delid'])) { ?>
+  是否删除? <a href="?suredel=<?php echo $_GET['delid']; ?>">是</a> <a href="__ROOT__/rooter/schoolopacademy">否</a>
+  <?php } ?>
+  <ul>
   <li>
-    <a href="__ROOT__/stream/u/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank">查询</a>) - <?php echo i_time($realnamemf['time']); ?>
-    <?php if ($realnamemf['allow'] == 0) { ?>
-    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>">发送允许修改邮件</a>
-    <?php } else if ($realnamemf['allow'] == 1) { ?>
-    已经发送允许修改邮件
+  	<form>
+    选择学校:
+  	<select name="schoolid">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    </select>
+    <?php if (!empty($schoolid)) { ?>
+    选择学院:
+  	<select name="academyid">
+  		<?php foreach($recordOpAcademy as $opAcademy) { ?>
+  			<?php if ($academyid == $opAcademy['id']) { ?>
+  			<option value="{$opAcademy['id']}" selected>{$opAcademy['name']}</option>
+  			<?php } else { ?>
+  			<option value="{$opAcademy['id']}">{$opAcademy['name']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    </select>
     <?php } ?>
-  </li>
-  <?php endforeach; ?>
+    <input type="submit" value="确定" />
+    </form>
+    </li>
+  </ul>
+  
+  <form method="post">
+  <ul>
+    <?php if (empty($_GET['changeid'])) { ?>
+  	<li>添加专业:</li>
+  	<?php } else { ?>
+  	<li>修改专业{$_GET['changeid']}: <input type="hidden" name="specialtyid" value="{$_GET['changeid']}" /></li>
+  	<?php } ?>
+	<li>学&#12288;&#12288;校:
+		<select name="sid">
+  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
+  			<?php if ($schoolid == $schoolInfo['id']) { ?>
+  			<option value="{$schoolInfo['id']}" selected>{$schoolInfo['school']}</option>
+  			<?php } else { ?>
+  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    	</select>
+    </li>
+    <li>学&#12288;&#12288;院:
+		<select name="acedemy">
+  		<?php foreach($recordOpAcademy as $opAcademy) { ?>
+  			<?php if ($academyid == $opAcademy['id']) { ?>
+  			<option value="{$opAcademy['id']}" selected>{$opAcademy['name']}</option>
+  			<?php } else { ?>
+  			<option value="{$opAcademy['id']}">{$opAcademy['name']}</option>
+  			<?php } ?>
+  		<?php } ?>
+    	</select>
+    </li>
+    <li>专&#12288;&#12288;业:<input type="text" name="name" value="" /></li>
+	<li><input type="submit" value="添加" /></li>
+  </ul>
+  </form>
+  
+  <?php if (!empty($schoolid)) { ?>
+  <ul class="para_right_ul">
+    <?php foreach ($recordsOpSpecialty as $opSpecialty) : ?>
+    <li>
+    	<?php echo $opSpecialty['id']; ?>. 
+    	<?php echo $opSpecialty['name']; ?>
+    	<a href="?schoolid=<?php echo $_GET['schoolid']; ?>&academyid=<?php echo $_GET['academyid']; ?>&changeid=<?php echo $opSpecialty['id']; ?>">修改</a> | 
+	    <a href="?delid=<?php echo $opSpecialty['id']; ?>">删除</a>
+    </li>
+    <?php endforeach; ?>
   </ul>
   <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
-    <?php if ($totalPages > 1) { i_page_show("rooter/realnameallowmf", $totalPages); } ?>
+    <?php if ($totalPages > 1) { i_page_show("rooter/schoolopspecialty?schoolid=".$schoolid."&academyid=".$academyid, $totalPages, '&'); } ?>
   </div>
+  <?php } ?>
 <include file="Public:footerrooter" />
