@@ -956,10 +956,9 @@ class StreamAction extends Action {
                 $redis->connect('127.0.0.1', 6379);
 
                 $redis->zAdd('msg', 1, "给我一支烟");
-
-                $msg = "";
-                while ($msg = $redis->zRevPop('msg')) {
-                    var_dump($msg);
+                $msgSystemId = $redis->lPop("i_msg_system:id");
+                if(empty($msgSystemId)){
+                    $redis->set("i_msg_system:id", 200000);
                 }
 
         	    	    
@@ -971,26 +970,26 @@ class StreamAction extends Action {
         	    $userPriorityNums = sizeof($userPriorityObj);
 
 
-       	        echo $msg."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
-//       	        if (!empty($userPriorityNums)) {
-//       	            $i = 0;
-//        	        foreach ($userPriorityObj as $userPriority) {
-//        	    	    if ($i < 10) {
-//        		            echo $userPriority['nickname']."<br />";
-//        		            $i++;
-//        	        	}
-//
-//        	        	/**
-//       	                 * insert into sys_msg
-//       	                 */
-//        	        	$isReceivedDiffusionMsg = $MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
-//        	        	if (empty($isReceivedDiffusionMsg['id'])) {
-//        	        		if ($diffusionSidArray['0'] == "ih") {
-//        	        			$msgSystemType = 'stream/ih-para:diffusion';
-//        	        		} else {
-//        	        			$msgSystemType = 'stream/i-para:diffusion';
-//        	        		}
-//        	        		$contentMsgSystem = "扩散了这条消息给你";
+       	        echo "已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
+       	        if (!empty($userPriorityNums)) {
+       	            $i = 0;
+        	        foreach ($userPriorityObj as $userPriority) {
+        	    	    if ($i < 10) {
+        		            echo $userPriority['nickname']."<br />";
+        		            $i++;
+        	        	}
+
+        	        	/**
+       	                 * insert into sys_msg
+       	                 */
+        	        	$isReceivedDiffusionMsg = $MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
+        	        	if (empty($isReceivedDiffusionMsg['id'])) {
+        	        		if ($diffusionSidArray['0'] == "ih") {
+        	        			$msgSystemType = 'stream/ih-para:diffusion';
+        	        		} else {
+        	        			$msgSystemType = 'stream/i-para:diffusion';
+        	        		}
+        	        		$contentMsgSystem = "扩散了这条消息给你";
 //        	        		$diffusionData = array(
 //	        	    	        'id' => '',
 //	        	    	        'uid' => $userPriority['uid'],
@@ -1001,22 +1000,30 @@ class StreamAction extends Action {
 //	        	    	        'time' => time(),
 //	        	    	        'deliver' => 0,
 //        	        		);
+                            $id = $redis->incr("i_msg_system:id");
+                            $redis->lPush("i_msg_system:".$id.":uid", $userPriority['uid']);
+                            $redis->lPush("i_msg_system:".$id.":type", $msgSystemType);
+                            $redis->lPush("i_msg_system:".$id.":url_id", $diffusionSidArray['1']);
+                            $redis->lPush("i_msg_system:".$id.":from_uid", $$userloginid);
+                            $redis->lPush("i_msg_system:".$id.":content", $contentMsgSystem);
+                            $redis->lPush("i_msg_system:".$id.":time", time());
+                            $redis->lPush("i_msg_system:".$id.":deliver", 0);
 //        	        		$MsgSystem->add($diffusionData);
-//        	        	} else {
-//        	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
-//        	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
-//        	        		$dataMsgSystemNums = count($dataMsgSystemArray);
-//        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='".$isReceivedDiffusionMsg['id']."' title='点击查看扩散详情'>".$dataMsgSystemNums."</span> 人扩散了这条消息给你";
-//        	        		$diffusionData = array(
-//	        	    	        'id' => $isReceivedDiffusionMsg['id'],
-//	        	    	        'data' => $dataMsgSystem,
-//	        	    	        'content' => $contentMsgSystem,
-//        	        		);
-//        	        		$MsgSystem->save($diffusionData);
-//        	        	}
-//        	        }
-//        	        echo "...";
-//       	        }
+        	        	} else {
+        	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
+        	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
+        	        		$dataMsgSystemNums = count($dataMsgSystemArray);
+        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='".$isReceivedDiffusionMsg['id']."' title='点击查看扩散详情'>".$dataMsgSystemNums."</span> 人扩散了这条消息给你";
+        	        		$diffusionData = array(
+	        	    	        'id' => $isReceivedDiffusionMsg['id'],
+	        	    	        'data' => $dataMsgSystem,
+	        	    	        'content' => $contentMsgSystem,
+        	        		);
+        	        		$MsgSystem->save($diffusionData);
+        	        	}
+        	        }
+        	        echo "...";
+       	        }
         	}
             exit();
         }
