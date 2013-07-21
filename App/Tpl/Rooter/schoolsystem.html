@@ -1,18 +1,28 @@
 <include file="Public:headerrooter" />
   <ul class="para_right_ul">
-  <?php foreach ($adminRealnamemf as $realnamemf) : ?>
-  <li>
-    <a href="__ROOT__/stream/u/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank">查询</a>) - <?php echo i_time($realnamemf['time']); ?>
-    <?php if ($realnamemf['allow'] == 0) { ?>
-    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>">发送允许修改邮件</a>
-    <?php } else if ($realnamemf['allow'] == 1) { ?>
-    已经发送允许修改邮件
-    <?php } ?>
-  </li>
-  <?php endforeach; ?>
+    <?php foreach ($recordSchoolSystem as $schoolSystem) : ?>
+    <form method="post">
+    <li>
+    	学校:
+    	<input type="hidden" name="id" value="<?php echo $schoolSystem['id']; ?>" />
+    	<input type="hidden" name="sid" value="<?php echo $schoolSystem['sid']; ?>" />
+	    用户数:<?php echo $schoolSystem['total_users']; ?> - 
+	    首页推荐:<input type="text" name="index_user" value="<?php echo $schoolSystem['index_user']; ?>" /> -
+	    文化宣传:<input type="text" name="index_spread_info" value="<?php echo $schoolSystem['index_spread_info']; ?>" />
+	    关于:<input type="text" name="about" value="<?php echo $schoolSystem['about']; ?>" />
+	    网站首页图:<input type="text" name="image_index" value="<?php echo $schoolSystem['image_index']; ?>" />
+	    手机首页图:<input type="text" name="image_mobile" value="<?php echo $schoolSystem['image_mobile']; ?>" />
+	    最后更新时间<span class="f12 gray">(<?php echo i_time($schoolSystem['time']); ?>)</span>
+	    <input type="submit" value="修改" />
+    </li>
+    </form>
+    <?php endforeach; ?>
   </ul>
-  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+  <br />
+  <br />
+  
+  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>个记录 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
-    <?php if ($totalPages > 1) { i_page_show("rooter/realnameallowmf", $totalPages); } ?>
+    <?php if ($totalPages > 1) { i_page_show("rooter/schoolinfo", $totalPages); } ?>
   </div>
 <include file="Public:footerrooter" />

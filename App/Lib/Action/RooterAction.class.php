@@ -420,7 +420,21 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	$this->assign('title','学校配置');
     	$SchoolSystem = M("SchoolSystem");
-    	$SchoolInfo->select();
+    	
+    	$page = i_page_get_num();
+        $count = 20;
+        $offset = $page * $count;
+        $recordSchoolSystem = $SchoolSystem->order("time ASC")->limit($offset,$count)->select();
+        $this->assign('recordSchoolSystem', $recordSchoolSystem);
+
+        /**
+         * page link
+         */
+        $totalReocrdNums = $SchoolSystem->count();
+        $this->assign('totalRecordNums', $totalReocrdNums);
+        $totalPages = ceil($totalReocrdNums / $count);
+        $this->assign('totalPages', $totalPages);
+    	
     	$this->display();
     }
 
