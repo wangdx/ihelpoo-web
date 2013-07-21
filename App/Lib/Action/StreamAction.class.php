@@ -982,7 +982,7 @@ class StreamAction extends Action {
         	        	/**
        	                 * insert into sys_msg
        	                 */
-        	        	$isReceivedDiffusionMsg = $MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
+        	        	$isReceivedDiffusionMsg = "";//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
         	        	if (empty($isReceivedDiffusionMsg['id'])) {
         	        		if ($diffusionSidArray['0'] == "ih") {
         	        			$msgSystemType = 'stream/ih-para:diffusion';
