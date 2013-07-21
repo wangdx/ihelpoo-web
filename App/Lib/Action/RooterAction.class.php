@@ -323,6 +323,72 @@ class RooterAction extends Action {
     	$this->display();
     }
     
+    
+    /**
+     * school management
+     */
+    
+    public function schoolinfo()
+    {
+    	$admin = logincheck();
+    	$this->assign('title','开通校园');
+    	$SchoolInfo = M("SchoolInfo");
+    	$SchoolInfo->select();
+    	
+    	
+    	$page = i_page_get_num();
+        $count = 10;
+        $offset = $page * $count;
+        $recordSchoolInfo = $SchoolInfo->order("id ASC")->limit($offset,$count)->select();
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
+
+        /**
+         * page link
+         */
+        $totalReocrdNums = $SchoolInfo->count();
+        $this->assign('totalRecordNums', $totalReocrdNums);
+        $totalPages = ceil($totalReocrdNums / $count);
+        $this->assign('totalPages', $totalPages);
+    	
+    	
+    	$this->display();
+    }
+    
+    public function schoolsystem()
+    {
+    	 
+    }
+
+    public function schoolwebmaster()
+    {
+    	 
+    }
+
+    public function schoolopacademy()
+    {
+    	 
+    }
+
+    public function schoolopspecialty()
+    {
+    	 
+    }
+
+    public function schoolopdormitory()
+    {
+    	 
+    }
+
+    public function schoolrecord()
+    {
+    	 
+    }
+    
+    
+    
+    
+    
+    
     /**
      * user management
      */
