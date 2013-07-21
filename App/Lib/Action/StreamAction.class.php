@@ -982,7 +982,8 @@ class StreamAction extends Action {
         	        	/**
        	                 * insert into sys_msg
        	                 */
-        	        	$isReceivedDiffusionMsg = $redis->get("i_msg_system::diffusion:".$userPriority[uid].":".$diffusionSidArray[1].":0");//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
+                        $diffusionsKey = "i_msg_system:diffusion:".$userPriority[uid].":".$diffusionSidArray[1].":0";
+        	        	$isReceivedDiffusionMsg = $redis->hGet($diffusionsKey, "diffusionNum");//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
         	        	if (empty($isReceivedDiffusionMsg['id'])) {
         	        		if ($diffusionSidArray['0'] == "ih") {
         	        			$msgSystemType = 'stream/ih-para:diffusion';
@@ -1005,25 +1006,30 @@ class StreamAction extends Action {
                             $redis->set("i_msg_system:".$id.":uid", $userPriority['uid']);
                             $redis->set("i_msg_system:".$id.":type", $msgSystemType);
                             $redis->set("i_msg_system:".$id.":url_id", $diffusionSidArray['1']);
-                            $redis->set("i_msg_system:".$id.":from_uid", $$userloginid);
+                            $redis->set("i_msg_system:".$id.":from_uid", $userloginid);
                             $redis->set("i_msg_system:".$id.":content", $contentMsgSystem);
                             $redis->set("i_msg_system:".$id.":time", time());
                             $redis->set("i_msg_system:".$id.":deliver", 0);
 
-                            $redis->incr("i_msg_system::diffusion:".$userPriority[uid].":".$diffusionSidArray[1].":0");
+                            $redis->hSet($diffusionsKey, "diffusionNum", 1);
+                            $redis->hSet($diffusionsKey, "personsList", $userloginid);
 
 //        	        		$MsgSystem->add($diffusionData);
         	        	} else {
-        	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
-        	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
-        	        		$dataMsgSystemNums = count($dataMsgSystemArray);
-        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='".$isReceivedDiffusionMsg['id']."' title='点击查看扩散详情'>".$dataMsgSystemNums."</span> 人扩散了这条消息给你";
-        	        		$diffusionData = array(
-	        	    	        'id' => $isReceivedDiffusionMsg['id'],
-	        	    	        'data' => $dataMsgSystem,
-	        	    	        'content' => $contentMsgSystem,
-        	        		);
-        	        		$MsgSystem->save($diffusionData);
+                            $redis->hIncrBy($diffusionsKey, "diffusionNum", 1);
+                            $persons = $redis->hGet($diffusionsKey, "personsList");
+                            $redis->hSet($diffusionsKey, "personsList", $persons.",".$userloginid);
+
+//        	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
+//        	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
+//        	        		$dataMsgSystemNums = count($dataMsgSystemArray);
+        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='"."' title='点击查看扩散详情'>".$persons = $redis->hGet($diffusionsKey, "diffusionNum");."</span> 人扩散了这条消息给你";
+//        	        		$diffusionData = array(
+//	        	    	        'id' => $isReceivedDiffusionMsg['id'],
+//	        	    	        'data' => $dataMsgSystem,
+//	        	    	        'content' => $contentMsgSystem,
+//        	        		);
+//        	        		$MsgSystem->save($diffusionData);
         	        	}
         	        }
         	        echo "...";
