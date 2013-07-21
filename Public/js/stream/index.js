@@ -691,12 +691,6 @@ function mseeageNums() {
         		} else {
          			$('#message_at_nums_a').fadeOut('fast');
          		}
-        		if (msg.data.messageCoinsNums != 0) {
-        			$('#message_cion_nums_a').show();
-        			$('#message_cion_nums_a').children('span').html('￥ +'+msg.data.messageCoinsNums);
-        		} else {
-         			$('#message_cion_nums_a').fadeOut('fast');
-         		}
         		if (msg.data.messageTalkNums != 0) {
         			$('#message_talk_nums_div').fadeIn('fast');
         			$('#message_talk_nums_img_icon').show().attr({'src': msg.data.lastTalkContentUserImg, 'title': msg.data.lastTalkContentUserNickname});
