@@ -505,6 +505,8 @@ class RooterAction extends Action {
     		$year = $_POST['year'];
     		$position = $_POST['position'];
     		$star = $_POST['star'];
+    		var_dump($position);
+    		exit();
     		if (!empty($uid) && !empty($sid)) {
     			/**
     			 * insert
