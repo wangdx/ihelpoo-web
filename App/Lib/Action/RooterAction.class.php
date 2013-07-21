@@ -333,7 +333,6 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	$this->assign('title','开通学校');
     	$SchoolInfo = M("SchoolInfo");
-    	$SchoolInfo->select();
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
     		$school = $_POST['school'];
@@ -419,8 +418,46 @@ class RooterAction extends Action {
     {
     	$admin = logincheck();
     	$this->assign('title','学校配置');
-    	
     	$SchoolSystem = M("SchoolSystem");
+    	
+    	if ($this->isPost()) {
+    		$sid = (int)$_POST['sid'];
+    		$index_user = $_POST['index_user'];
+    		$index_spread_info = $_POST['index_spread_info'];
+    		$about = $_POST['about'];
+    		$image_index = $_POST['image_index'];
+    		$image_mobile = $_POST['image_mobile'];
+    		
+    		/**
+    		 * insert
+    		 */
+    		$newSchoolData = array(
+    			'id' => '',
+    			'sid' => $sid,
+    			'index_user' => $index_user,
+    			'index_spread_info' => $index_spread_info,
+    			'about' => $about,
+    			'image_index' => $image_index,
+    			'image_mobile' => $image_mobile,
+    			'time' => time()
+    		);
+    		$SchoolSystem->add($newSchoolData);
+    		 
+    		/**
+    		 * admin user operating record
+    		 */
+    		if (!empty($admin['uid'])) {
+    			$AdminUserrecord = M("AdminUserrecord");
+    			$newAdminUserrecordData = array(
+				    'id' => '',
+				    'uid' => $admin['uid'],
+				    'record' => '更新学校配置信息 i_school_system 学校id:'.$sid.'-index_user:'.$index_user.'-index_spread_info:'.$index_spread_info.'-about:'.$about.'-image_index:'.$image_index.'-image_mobile:'.$image_mobile,
+				    'time' => time()
+    			);
+    			$AdminUserrecord->add($newAdminUserrecordData);
+    		}
+    		redirect('/rooter/schoolinfo', 2, '更新学校配置信息成功 ok...');
+    	}
     	
 		$SchoolInfo = M("SchoolInfo");
 		$recordSchoolInfo = $SchoolInfo->select();
