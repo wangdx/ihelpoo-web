@@ -51,6 +51,7 @@
     <?php foreach ($recordsOpDormitory as $opDormitory) : ?>
     <li>
     	<?php echo $opDormitory['name']; ?>
+    	(<?php echo $opDormitory['type']; ?>)
 	    <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
     </li>
     <?php endforeach; ?>
