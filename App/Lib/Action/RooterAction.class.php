@@ -335,12 +335,11 @@ class RooterAction extends Action {
     	$SchoolInfo = M("SchoolInfo");
     	$SchoolInfo->select();
     	
-    	
     	$page = i_page_get_num();
         $count = 10;
         $offset = $page * $count;
         $recordSchoolInfo = $SchoolInfo->order("id ASC")->limit($offset,$count)->select();
-        $this->assign('recordSchoolInfo',$recordSchoolInfo);
+        $this->assign('recordSchoolInfo', $recordSchoolInfo);
 
         /**
          * page link
