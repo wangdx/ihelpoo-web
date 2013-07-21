@@ -341,6 +341,8 @@ class RooterAction extends Action {
     		$school = $_POST['school'];
     		$domain = $_POST['domain'];
     		$remark = $_POST['remark'];
+    		var_dump($id);
+    		exit();
     		if (!empty($id)) {
     			
     			/**
