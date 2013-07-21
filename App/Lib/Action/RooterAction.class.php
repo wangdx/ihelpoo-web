@@ -716,7 +716,113 @@ class RooterAction extends Action {
 
     public function schoolopspecialty()
     {
-    	 
+    	$admin = logincheck();
+    	$this->assign('title','专业管理');
+    	$OpSpecialty = M("OpSpecialty");
+    	$schoolid = (int)$_GET['schoolid'];
+    	$this->assign('schoolid',$schoolid);
+    	
+    	if ($this->isPost()) {
+    		$academyid = (int)$_POST['academyid'];
+    		$schoolpostid = (int)$_POST['sid'];
+    		$name = $_POST['name'];
+    		if (!empty($name) && !empty($schoolpostid)) {
+	    		if (empty($academyid)) {
+	    			
+		    		$newOpAcademy = array(
+		    			'name' => $name,
+		    			'school' => $schoolpostid,
+		    		);
+		    		$OpAcademy->add($newOpAcademy);
+		    		
+		    		/**
+		    		 * admin user operating record
+		    		 */
+	    			if (!empty($admin['uid'])) {
+	    				$AdminUserrecord = M("AdminUserrecord");
+	    				$newAdminUserrecordData = array(
+						    'id' => '',
+						    'uid' => $admin['uid'],
+						    'record' => '添加专业 schoolid:'.$schoolpostid.'-专业:'.$name,
+						    'time' => time(),
+	    				);
+	    				$AdminUserrecord->add($newAdminUserrecordData);
+	    			}
+		    		redirect('/rooter/schoolopspecialty', 1, '添加专业成功 ok...');
+	    		} else {
+	    			$updateOpAcademy = array(
+		    			'id' => $academyid,
+		    			'name' => $name,
+		    			'school' => $schoolid,
+		    		);
+		    		$OpAcademy->save($updateOpAcademy);
+		    		
+		    		/**
+		    		 * admin user operating record
+		    		 */
+	    			if (!empty($admin['uid'])) {
+	    				$AdminUserrecord = M("AdminUserrecord");
+	    				$newAdminUserrecordData = array(
+						    'id' => '',
+						    'uid' => $admin['uid'],
+						    'record' => '更新专业 schoolid:'.$schoolid.'-专业:'.$name,
+						    'time' => time(),
+	    				);
+	    				$AdminUserrecord->add($newAdminUserrecordData);
+	    			}
+		    		redirect('/rooter/schoolopspecialty', 1, '更新专业成功 ok...');
+	    		}
+    		}
+    	}
+    	
+    	/**
+    	 * delete academy
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteOpAcademy = $OpAcademy->where("id = $suredelid")->find();
+    			
+    			/**
+    			 * admin user operating record
+    			 */
+    			if (!empty($admin['uid'])) {
+    				$AdminUserrecord = M("AdminUserrecord");
+    				$newAdminUserrecordData = array(
+					    'id' => '',
+					    'uid' => $admin['uid'],
+					    'record' => '删除专业 schoolid:'.$deleteOpAcademy['school'].'-name:'.$deleteOpAcademy['name'],
+					    'time' => time(),
+    				);
+    				$AdminUserrecord->add($newAdminUserrecordData);
+    			}
+    			
+    			$OpAcademy->where("id = $suredelid")->delete();
+    			redirect('/rooter/schoolopspecialty', 1, '删除专业成功 ok...');
+    		}
+    	}
+    	
+    	$SchoolInfo = M("SchoolInfo");
+		$recordSchoolInfo = $SchoolInfo->select();
+		$this->assign('recordSchoolInfo',$recordSchoolInfo);
+		
+		$page = i_page_get_num();
+	    $count = 15;
+	    $offset = $page * $count;
+		
+		if (!empty($schoolid)) {
+			$recordsOpAcademy = $OpAcademy->where("school = $schoolid")->limit($offset,$count)->select();
+			$this->assign('recordsOpAcademy', $recordsOpAcademy);
+			
+			/**
+    		 * page link
+    		 */
+    		$totalReocrdNums = $OpAcademy->where("school = $schoolid")->count();
+    		$this->assign('totalRecordNums', $totalReocrdNums);
+    		$totalPages = ceil($totalReocrdNums / $count);
+    		$this->assign('totalPages', $totalPages);
+		}
+    	$this->display();
     }
 
     public function schoolopdormitory()
@@ -836,10 +942,6 @@ class RooterAction extends Action {
     {
     	 
     }
-    
-    
-    
-    
     
     
     /**
