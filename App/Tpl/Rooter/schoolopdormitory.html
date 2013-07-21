@@ -22,7 +22,11 @@
   
   <form method="post">
   <ul>
+    <?php if (!empty($_GET['changeid'])) { ?>
   	<li>添加寝室:</li>
+  	<?php } else { ?>
+  	<li>修改寝室{$_GET['changeid']}: <input type="hidden" name="id" value="{$_GET['changeid']}" /></li>
+  	<?php } ?>
 	<li>学&#12288;&#12288;校:
 		<select name="sid">
   		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
@@ -52,7 +56,7 @@
     <li>
     	<?php echo $opDormitory['name']; ?>
     	(<?php echo $opDormitory['type']; ?>)
-	    <a href="&changeid=<?php echo $opDormitory['id']; ?>">修改</a> | <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
+	    <a href="?schoolid=<?php echo $_GET['schoolid']; ?>&changeid=<?php echo $opDormitory['id']; ?>">修改</a> | <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
     </li>
     <?php endforeach; ?>
   </ul>
