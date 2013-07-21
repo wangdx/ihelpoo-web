@@ -956,7 +956,7 @@ class StreamAction extends Action {
                 $redis->connect('127.0.0.1', 6379);
 
                 $redis->zAdd('msg', 1, "给我一支烟");
-                $msgSystemId = $redis->lPop("i_msg_system:id");
+                $msgSystemId = $redis->lRange("i_msg_system:id");
                 if(empty($msgSystemId)){
                     $redis->set("i_msg_system:id", 200000);
                 }
