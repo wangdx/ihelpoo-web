@@ -376,7 +376,8 @@ class RooterAction extends Action {
     				'id' => '',
     				'school' => $school,
     				'domain' => $domain,
-    				'remark' => $remark
+    				'remark' => $remark,
+    				'time' => time()
     			);
     			$SchoolInfo->add($newSchoolData);
     			
@@ -416,7 +417,11 @@ class RooterAction extends Action {
     
     public function schoolsystem()
     {
-    	 
+    	$admin = logincheck();
+    	$this->assign('title','学校配置');
+    	$SchoolSystem = M("SchoolSystem");
+    	$SchoolInfo->select();
+    	$this->display();
     }
 
     public function schoolwebmaster()
