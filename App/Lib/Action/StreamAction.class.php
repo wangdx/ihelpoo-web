@@ -968,12 +968,13 @@ class StreamAction extends Action {
         		 */
         	    $UserPriority = M("UserPriority");
         	    $userPriorityObj = $UserPriority->where("pid = $userloginid")->join("i_user_login ON i_user_priority.uid = i_user_login.uid")->select();
+        	    $userPriorityNums = sizeof($userPriorityObj);
 
 
                 var_dump($userPriorityObj);
         	    
-       	        echo $msg."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".sizeof($userPriorityNums)."</span> 人...<br /><br />";
-       	        if (!empty(sizeof($userPriorityNums))) {
+       	        echo $msg."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
+       	        if (!empty($userPriorityNums)) {
        	            $i = 0;
         	        foreach ($userPriorityObj as $userPriority) {
         	    	    if ($i < 10) {
