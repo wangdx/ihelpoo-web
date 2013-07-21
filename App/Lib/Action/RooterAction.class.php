@@ -637,9 +637,7 @@ class RooterAction extends Action {
 	    				);
 	    				$AdminUserrecord->add($newAdminUserrecordData);
 	    			}
-	    			exit();
 		    		redirect('/rooter/schoolopacademy', 1, '添加学院成功 ok...');
-	    			
 	    		} else {
 	    			$updateOpAcademy = array(
 		    			'id' => $academyid,
