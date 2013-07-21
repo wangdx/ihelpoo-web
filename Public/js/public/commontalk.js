@@ -82,12 +82,6 @@ function mseeageNums() {
 				} else {
 					$('#message_at_nums_a').fadeOut('fast');
 				}
-				if (msg.data.messageCoinsNums != 0) {
-					$('#message_cion_nums_a').show();
-					$('#message_cion_nums_a').children('span').html('￥ +'+msg.data.messageCoinsNums);
-				} else {
-					$('#message_cion_nums_a').fadeOut('fast');
-				}
 
 				/**
 				 * talk content
