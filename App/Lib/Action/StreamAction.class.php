@@ -990,25 +990,25 @@ class StreamAction extends Action {
         	        			$msgSystemType = 'stream/i-para:diffusion';
         	        		}
         	        		$contentMsgSystem = "扩散了这条消息给你";
-//        	        		$diffusionData = array(
-//	        	    	        'id' => '',
-//	        	    	        'uid' => $userPriority['uid'],
-//	        	    	        'type' => $msgSystemType,
-//	        	    	        'url_id' => $diffusionSidArray['1'],
-//	        	    	        'from_uid' => $userloginid,
-//	        	    	        'content' => $contentMsgSystem,
-//	        	    	        'time' => time(),
-//	        	    	        'deliver' => 0,
-//        	        		);
-                            $id = $redis->incr("i_msg_system:id");
-                            $redis->lPush("i_msg_system:".$id.":uid", $userPriority['uid']);
-                            $redis->lPush("i_msg_system:".$id.":type", $msgSystemType);
-                            $redis->lPush("i_msg_system:".$id.":url_id", $diffusionSidArray['1']);
-                            $redis->lPush("i_msg_system:".$id.":from_uid", $$userloginid);
-                            $redis->lPush("i_msg_system:".$id.":content", $contentMsgSystem);
-                            $redis->lPush("i_msg_system:".$id.":time", time());
-                            $redis->lPush("i_msg_system:".$id.":deliver", 0);
-//        	        		$MsgSystem->add($diffusionData);
+        	        		$diffusionData = array(
+	        	    	        'id' => '',
+	        	    	        'uid' => $userPriority['uid'],
+	        	    	        'type' => $msgSystemType,
+	        	    	        'url_id' => $diffusionSidArray['1'],
+	        	    	        'from_uid' => $userloginid,
+	        	    	        'content' => $contentMsgSystem,
+	        	    	        'time' => time(),
+	        	    	        'deliver' => 0,
+        	        		);
+//                            $id = $redis->incr("i_msg_system:id");
+//                            $redis->lPush("i_msg_system:".$id.":uid", $userPriority['uid']);
+//                            $redis->lPush("i_msg_system:".$id.":type", $msgSystemType);
+//                            $redis->lPush("i_msg_system:".$id.":url_id", $diffusionSidArray['1']);
+//                            $redis->lPush("i_msg_system:".$id.":from_uid", $$userloginid);
+//                            $redis->lPush("i_msg_system:".$id.":content", $contentMsgSystem);
+//                            $redis->lPush("i_msg_system:".$id.":time", time());
+//                            $redis->lPush("i_msg_system:".$id.":deliver", 0);
+        	        		$MsgSystem->add($diffusionData);
         	        	} else {
         	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
         	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
