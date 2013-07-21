@@ -839,7 +839,7 @@ class RooterAction extends Action {
     		$name = $_POST['name'];
     		$type = $_POST['type'];
     		if (!empty($name) && !empty($schoolpostid) && !empty($type)) {
-	    		if (empty($academyid)) {
+	    		if (empty($dormitoryid)) {
 		    		$newOpDormitory = array(
 		    			'name' => $name,
 		    			'type' => $type,
