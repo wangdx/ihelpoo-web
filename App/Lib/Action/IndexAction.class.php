@@ -51,6 +51,12 @@ class IndexAction extends Action {
         $this->assign('indexSpreadInfoVaule',$indexSpreadInfoVaule);
         $this->display();
     }
+    
+    public function school()
+    {
+    	$title = "我帮圈圈 帮助主题社交网站 开通校园列表";
+        $this->assign('title',$title);
+    }
 
     public function hot()
     {
