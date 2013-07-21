@@ -613,12 +613,12 @@ class RooterAction extends Action {
     	
     	if ($this->isPost()) {
     		$academyid = (int)$_POST['academyid'];
-    		$schoolid = (int)$_POST['schoolid'];
+    		$schoolpostid = (int)$_POST['sid'];
     		$name = $_POST['name'];
     		if (empty($academyid)) {
 	    		$newOpAcademy = array(
 	    			'name' => $name,
-	    			'schoolid' => $schoolid,
+	    			'schoolid' => $schoolpostid,
 	    		);
 	    		$OpAcademy->add($newOpAcademy);
 	    		
@@ -630,7 +630,7 @@ class RooterAction extends Action {
     				$newAdminUserrecordData = array(
 					    'id' => '',
 					    'uid' => $admin['uid'],
-					    'record' => '添加学院 schoolid:'.$schoolid.'-学院:'.$name,
+					    'record' => '添加学院 schoolid:'.$schoolpostid.'-学院:'.$name,
 					    'time' => time(),
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
