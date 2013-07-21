@@ -615,49 +615,52 @@ class RooterAction extends Action {
     		$academyid = (int)$_POST['academyid'];
     		$schoolpostid = (int)$_POST['sid'];
     		$name = $_POST['name'];
-    		if (empty($academyid)) {
-	    		$newOpAcademy = array(
-	    			'name' => $name,
-	    			'schoolid' => $schoolpostid,
-	    		);
-	    		$OpAcademy->add($newOpAcademy);
-	    		
-	    		/**
-	    		 * admin user operating record
-	    		 */
-    			if (!empty($admin['uid'])) {
-    				$AdminUserrecord = M("AdminUserrecord");
-    				$newAdminUserrecordData = array(
-					    'id' => '',
-					    'uid' => $admin['uid'],
-					    'record' => '添加学院 schoolid:'.$schoolpostid.'-学院:'.$name,
-					    'time' => time(),
-    				);
-    				$AdminUserrecord->add($newAdminUserrecordData);
-    			}
-	    		redirect('/rooter/schoolopacademy', 1, '添加学院成功 ok...');
-    		} else {
-    			$updateOpAcademy = array(
-	    			'id' => $academyid,
-	    			'name' => $name,
-	    			'schoolid' => $schoolid,
-	    		);
-	    		$OpAcademy->save($updateOpAcademy);
-	    		
-	    		/**
-	    		 * admin user operating record
-	    		 */
-    			if (!empty($admin['uid'])) {
-    				$AdminUserrecord = M("AdminUserrecord");
-    				$newAdminUserrecordData = array(
-					    'id' => '',
-					    'uid' => $admin['uid'],
-					    'record' => '更新学院 schoolid:'.$schoolid.'-学院:'.$name,
-					    'time' => time(),
-    				);
-    				$AdminUserrecord->add($newAdminUserrecordData);
-    			}
-	    		redirect('/rooter/schoolopacademy', 1, '更新学院成功 ok...');
+    		if (!empty($name) && !empty($schoolpostid)) {
+	    		if (empty($academyid)) {
+	    			
+		    		$newOpAcademy = array(
+		    			'name' => $name,
+		    			'school' => $schoolpostid,
+		    		);
+		    		$OpAcademy->add($newOpAcademy);
+		    		
+		    		/**
+		    		 * admin user operating record
+		    		 */
+	    			if (!empty($admin['uid'])) {
+	    				$AdminUserrecord = M("AdminUserrecord");
+	    				$newAdminUserrecordData = array(
+						    'id' => '',
+						    'uid' => $admin['uid'],
+						    'record' => '添加学院 schoolid:'.$schoolpostid.'-学院:'.$name,
+						    'time' => time(),
+	    				);
+	    				$AdminUserrecord->add($newAdminUserrecordData);
+	    			}
+		    		redirect('/rooter/schoolopacademy', 1, '添加学院成功 ok...');
+	    		} else {
+	    			$updateOpAcademy = array(
+		    			'id' => $academyid,
+		    			'name' => $name,
+		    			'school' => $schoolid,
+		    		);
+		    		$OpAcademy->save($updateOpAcademy);
+		    		
+		    		/**
+		    		 * admin user operating record
+		    		 */
+	    			if (!empty($admin['uid'])) {
+	    				$AdminUserrecord = M("AdminUserrecord");
+	    				$newAdminUserrecordData = array(
+						    'id' => '',
+						    'uid' => $admin['uid'],
+						    'record' => '更新学院 schoolid:'.$schoolid.'-学院:'.$name,
+						    'time' => time(),
+	    				);
+	    				$AdminUserrecord->add($newAdminUserrecordData);
+	    			}
+		    		redirect('/rooter/schoolopacademy', 1, '更新学院成功 ok...');
+	    		}
     		}
     	}
     	
