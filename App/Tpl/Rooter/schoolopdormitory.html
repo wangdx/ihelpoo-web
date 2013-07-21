@@ -57,7 +57,8 @@
     	<?php echo $opDormitory['id']; ?>. 
     	<?php echo $opDormitory['name']; ?>
     	(<?php echo $opDormitory['type']; ?>)
-	    <a href="?schoolid=<?php echo $_GET['schoolid']; ?>&changeid=<?php echo $opDormitory['id']; ?>">修改</a> | <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
+	    <a href="?schoolid=<?php echo $_GET['schoolid']; ?>&changeid=<?php echo $opDormitory['id']; ?>">修改</a> | 
+	    <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
     </li>
     <?php endforeach; ?>
   </ul>

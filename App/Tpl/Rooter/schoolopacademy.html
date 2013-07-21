@@ -22,7 +22,11 @@
   
   <form method="post">
   <ul>
+    <?php if (empty($_GET['changeid'])) { ?>
   	<li>添加学院:</li>
+  	<?php } else { ?>
+  	<li>修改学院{$_GET['changeid']}: <input type="hidden" name="academyid" value="{$_GET['changeid']}" /></li>
+  	<?php } ?>
 	<li>学&#12288;&#12288;校:
 		<select name="sid">
   		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
@@ -43,7 +47,9 @@
   <ul class="para_right_ul">
     <?php foreach ($recordsOpAcademy as $opAcademy) : ?>
     <li>
+    	<?php echo $opAcademy['id']; ?>. 
     	<?php echo $opAcademy['name']; ?>
+    	<a href="?schoolid=<?php echo $_GET['schoolid']; ?>&changeid=<?php echo $opAcademy['id']; ?>">修改</a> | 
 	    <a href="?delid=<?php echo $opAcademy['id']; ?>">删除</a>
     </li>
     <?php endforeach; ?>
