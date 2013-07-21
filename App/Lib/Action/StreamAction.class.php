@@ -982,7 +982,7 @@ class StreamAction extends Action {
         	        	/**
        	                 * insert into sys_msg
        	                 */
-        	        	$isReceivedDiffusionMsg = "";//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
+        	        	$isReceivedDiffusionMsg = $redis->get("i_msg_system::diffusion:".$userPriority[uid].":".$diffusionSidArray[1].":0");//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
         	        	if (empty($isReceivedDiffusionMsg['id'])) {
         	        		if ($diffusionSidArray['0'] == "ih") {
         	        			$msgSystemType = 'stream/ih-para:diffusion';
@@ -1000,6 +1000,7 @@ class StreamAction extends Action {
 //	        	    	        'time' => time(),
 //	        	    	        'deliver' => 0,
 //        	        		);
+
                             $id = $redis->incr("i_msg_system:id");
                             $redis->set("i_msg_system:".$id.":uid", $userPriority['uid']);
                             $redis->set("i_msg_system:".$id.":type", $msgSystemType);
@@ -1008,6 +1009,9 @@ class StreamAction extends Action {
                             $redis->set("i_msg_system:".$id.":content", $contentMsgSystem);
                             $redis->set("i_msg_system:".$id.":time", time());
                             $redis->set("i_msg_system:".$id.":deliver", 0);
+
+                            $redis->incr("i_msg_system::diffusion:".$userPriority[uid].":".$diffusionSidArray[1].":0");
+
 //        	        		$MsgSystem->add($diffusionData);
         	        	} else {
         	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
