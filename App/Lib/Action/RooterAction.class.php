@@ -334,14 +334,14 @@ class RooterAction extends Action {
     	$this->assign('title','开通学校');
     	$SchoolInfo = M("SchoolInfo");
     	$SchoolInfo->select();
-    	
+    	exit('dd');
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
     		$school = $_POST['school'];
     		$domain = $_POST['domain'];
     		$remark = $_POST['remark'];
     		var_dump($id);
-    		exit();
+    		
     		if (!empty($id)) {
     			
     			/**
