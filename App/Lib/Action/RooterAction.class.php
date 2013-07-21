@@ -620,7 +620,7 @@ class RooterAction extends Action {
 	    			
 		    		$newOpAcademy = array(
 		    			'name' => $name,
-		    			'schoolid' => $schoolpostid,
+		    			'school' => $schoolpostid,
 		    		);
 		    		$OpAcademy->add($newOpAcademy);
 		    		
@@ -642,7 +642,7 @@ class RooterAction extends Action {
 	    			$updateOpAcademy = array(
 		    			'id' => $academyid,
 		    			'name' => $name,
-		    			'schoolid' => $schoolid,
+		    			'school' => $schoolid,
 		    		);
 		    		$OpAcademy->save($updateOpAcademy);
 		    		
