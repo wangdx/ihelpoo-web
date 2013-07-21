@@ -331,10 +331,9 @@ class RooterAction extends Action {
     public function schoolinfo()
     {
     	$admin = logincheck();
-    	$this->assign('title','a开通学校');
+    	$this->assign('title','开通学校');
     	$SchoolInfo = M("SchoolInfo");
     	$SchoolInfo->select();
-    	exit('dd');
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
     		$school = $_POST['school'];
