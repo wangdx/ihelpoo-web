@@ -22,7 +22,7 @@
   
   <form method="post">
   <ul>
-    <?php if (!empty($_GET['changeid'])) { ?>
+    <?php if (empty($_GET['changeid'])) { ?>
   	<li>添加寝室:</li>
   	<?php } else { ?>
   	<li>修改寝室{$_GET['changeid']}: <input type="hidden" name="id" value="{$_GET['changeid']}" /></li>
