@@ -963,10 +963,10 @@ class StreamAction extends Action {
 
 
                 Vendor('Ihelpoo.Idworker');
-                $Idworker = new Idworker(1);
-                $a = $Idworker->nextId();
+                $idworker = new Idworker(1);
+                $a = $idworker->nextId();
 //                $Idwork = new Idwork(2);
-                $b = $Idworker->nextId();
+//                $b = $idworker->nextId();
 
                 /**
         		 * diffusion

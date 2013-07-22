@@ -1,7 +1,7 @@
 <?php
 class Idworker
 {
-    const debug = 1;
+    const debug = 0;
     static $workerId;
     static $twepoch = 1361775855078;
     static $sequence = 0;
