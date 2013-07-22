@@ -292,7 +292,7 @@ class UpdateAction extends Action {
     	foreach($resultsRecordSayzzuli as $recordSayzzuli) {
     		$recordSayzzuli['school_id'] = 2;
     		$recordSayzzuli['sid'] = $recordSayzzuli['sid'] + 35000;
-    		$isInsertRecordSay = $RecordSay->add($RecordSay);
+    		//$isInsertRecordSay = $RecordSay->add($RecordSay);
     		echo $isInsertRecordSay."<br />";
     	}
     }
