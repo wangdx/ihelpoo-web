@@ -28,7 +28,7 @@ class IndexAction extends Action {
         $SchoolInfo = M("SchoolInfo");
         $recordSchoolInfo = i_school_domain();
         if (!is_array($recordSchoolInfo)) {
-        	exit('出错啦');
+        	exit('你访问的域名出错啦 message from ihelpoo :)');
         }
         $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
