@@ -233,7 +233,7 @@ class UpdateAction extends Action {
     		if ($existUserLogin['uid']) {
     			echo 'uid:'.$existUserLogin['uid'].' 昵称:'.$existUserLogin['nickname'].' 已经存在<br />';
     		} else {
-    			echo '插入数据库';
+    			echo 'uid:'.$existUserLogin['uid'].' 插入数据库<br />';
     		}
     	}
     }
