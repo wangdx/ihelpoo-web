@@ -26,11 +26,9 @@ class IndexAction extends Action {
         $UserLogin = M("UserLogin");
         $SchoolSystem = M("SchoolSystem");
         $SchoolInfo = M("SchoolInfo");
-        $schoolDomain = i_school_domain();
-        var_dump($schoolDomain);
-        $recordSchoolInfo = $SchoolInfo->find(1);
+        $recordSchoolInfo = i_school_domain();
         $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
-        $recordSchoolSystem = $SchoolSystem->where("sid = 1")->order("time DESC")->find();
+        $recordSchoolSystem = $SchoolSystem->where("sid = $schoolDomain[id]")->order("time DESC")->find();
     	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
     	$indexUserValueArray = explode(",", $indexUserValue);
         $indexUserValueArray = array_unique($indexUserValueArray);
