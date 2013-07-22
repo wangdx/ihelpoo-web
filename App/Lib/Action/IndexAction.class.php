@@ -25,7 +25,6 @@ class IndexAction extends Action {
     	$userloginid = session('userloginid');
         $UserLogin = M("UserLogin");
         $SchoolSystem = M("SchoolSystem");
-        $SchoolInfo = M("SchoolInfo");
         $recordSchoolInfo = i_school_domain();
         $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
@@ -70,7 +69,8 @@ class IndexAction extends Action {
 
     public function hot()
     {
-        $title = "热门 湖北民族学院帮助主题社交网站";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "热门 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
 
         $RecordSay = M("RecordSay");
@@ -86,42 +86,38 @@ class IndexAction extends Action {
         }
 
         if ($_GET['w'] == 'hit') {
-            $recordList = $RecordSay->where("say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school = 1 AND say_type = 0 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
        	    ->limit(50)
        	    ->select();
         } else if($_GET['w'] == 'comment') {
-            $recordList = $RecordSay->where("say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school = 1 AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.comment_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'diffusion') {
-            $recordList = $RecordSay->where("say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school = 1 AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.diffusion_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'help') {
-            $recordList = $RecordSay->where("say_type = 1 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school = 1 AND say_type = 1 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'helpreply') {
-            $recordList = $recordList = $RecordSay->where("say_type = 1 AND time > $timeWidth")
+            $recordList = $recordList = $RecordSay->where("school = 1 AND say_type = 1 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.comment_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'useractive') {
-            $recordList = $UserLogin->order('active DESC')
+            $recordList = $UserLogin->order('school = 1 AND active DESC')
    	        ->limit(100)
-   	        ->select();
-        } else if($_GET['w'] == 'usercoins') {
-   	        $recordList = $UserLogin->order('coins DESC')
-   	        ->limit(50)
    	        ->select();
         } else {
        	    redirect('/index/hot?w=hit&t=week', 0, '缺少参数, 跳转到指定页面 :)...');
