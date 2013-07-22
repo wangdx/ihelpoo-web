@@ -261,9 +261,6 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	Vendor('Ihelpoo.Upyun');
         $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-        $imagestoragelist = $upyun->getList('/school/');
-        var_dump($imagestoragelist);
-        exit();
     	if ($this->isPost()) {
     		$schoolid = $_POST['schoolid'];
     		if (!empty($_FILES)) {
@@ -320,7 +317,7 @@ class RooterAction extends Action {
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
 		
 		//$imagestoragelist = $upyun->getList('/school/');
-		//$this->assign('imagestoragelist',$imagestoragelist);
+		$this->assign('imagestoragelist',$imagestoragelist);
     	$this->display();
     }
     
