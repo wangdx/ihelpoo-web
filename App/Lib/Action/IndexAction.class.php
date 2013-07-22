@@ -86,31 +86,31 @@ class IndexAction extends Action {
         }
 
         if ($_GET['w'] == 'hit') {
-            $recordList = $RecordSay->where("school = 1 AND say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = 1 AND say_type = 0 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
        	    ->limit(50)
        	    ->select();
         } else if($_GET['w'] == 'comment') {
-            $recordList = $RecordSay->where("school = 1 AND say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = 1 AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.comment_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'diffusion') {
-            $recordList = $RecordSay->where("school = 1 AND say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = 1 AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.diffusion_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'help') {
-            $recordList = $RecordSay->where("school = 1 AND say_type = 1 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = 1 AND say_type = 1 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'helpreply') {
-            $recordList = $recordList = $RecordSay->where("school = 1 AND say_type = 1 AND time > $timeWidth")
+            $recordList = $recordList = $RecordSay->where("school_id = 1 AND say_type = 1 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.comment_co DESC')
    	        ->limit(50)
