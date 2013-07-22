@@ -228,9 +228,9 @@ class IndexAction extends Action {
             } else {
             	$totalusers = 150;
             	$userList = $UserInfo->where("i_user_login.type = 1 AND i_user_login.sex = $sex AND i_user_login.school = $recordSchoolInfo[id]")
-            	->join('i_user_login ON i_user_info.uid = i_user_login.uid')
-            	->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
-            	->limit($offset, $count)->select();
+                ->join('i_user_login ON i_user_info.uid = i_user_login.uid')
+                ->order('i_user_login.online DESC,i_user_login.icon_fl DESC')
+                ->limit($offset, $count)->select();
             }
     	    $this->assign('userList',$userList);
     	} else if ($_GET['w'] == "grade") {
