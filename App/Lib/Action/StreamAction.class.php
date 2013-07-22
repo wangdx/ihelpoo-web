@@ -961,7 +961,7 @@ class StreamAction extends Action {
                     $redis->set("i_msg_system:id", 200000);
                 }
 
-                $host = '10.6.1.208';
+                $host = '10.6.5.68';
                 $port = 9998;
                 $port_wr = 9999;
                 $dbname = 'ihelpoo';
