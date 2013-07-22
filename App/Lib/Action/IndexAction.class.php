@@ -310,14 +310,14 @@ class IndexAction extends Action {
     	 * show academy name
     	 */
     	$OpAcademy = M("OpAcademy");
-    	$academy = $OpAcademy->select();
+    	$academy = $OpAcademy->where("school = $recordSchoolInfo[id]")->select();
     	$this->assign('academy',$academy);
 
     	/**
     	 * show dormitory name
     	 */
     	$OpDormitory = M("OpDormitory");
-    	$dormitory = $OpDormitory->select();
+    	$dormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->select();
     	$this->assign('dormitory',$dormitory);
     	$this->display();
     }
