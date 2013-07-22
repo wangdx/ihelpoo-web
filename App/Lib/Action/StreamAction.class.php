@@ -985,6 +985,8 @@ class StreamAction extends Action {
         		            $i++;
         	        	}
 
+                        $redismq.hIncrBy(C('I_MSG').C('I_MSG_SYSTEM'), $userPriority[uid], 1);
+
         	        	/**
        	                 * insert into sys_msg
        	                 */
@@ -997,7 +999,6 @@ class StreamAction extends Action {
         	        			$msgSystemType = 'stream/i-para:diffusion';
         	        		}
 
-                            $redismq.hIncrBy(C('I_MSG').C('I_MSG_SYSTEM'), $userPriority[uid], 1);
 
         	        		$contentMsgSystem = "扩散了这条消息给你";
 //        	        		$diffusionData = array(
