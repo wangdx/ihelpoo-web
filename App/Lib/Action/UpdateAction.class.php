@@ -254,7 +254,6 @@ class UpdateAction extends Action {
     			//var_dump($recordUserStatuszzuli);
     			
     			echo 'uid:'.$userLoginzzuli['uid'].' 插入数据库<br />';
-    			exit();
     		}
     	}
     }
