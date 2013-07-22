@@ -41,7 +41,7 @@ class IndexAction extends Action {
         $sqlValueString = substr($sqlValueString, 0, -1);
     	$allUser = $UserLogin->where("uid IN ($sqlValueString)")->order('logintime DESC')->select();
     	$this->assign('allUser',$allUser);
-		$allUserNums = $UserLogin->count();
+		$allUserNums = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
     	$this->assign('allUserNums',$allUserNums);
     	
     	/**
