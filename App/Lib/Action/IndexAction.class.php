@@ -26,6 +26,8 @@ class IndexAction extends Action {
         $UserLogin = M("UserLogin");
         $SchoolSystem = M("SchoolSystem");
         $SchoolInfo = M("SchoolInfo");
+        $schoolDomain = i_school_domain();
+        var_dump($schoolDomain);
         $recordSchoolInfo = $SchoolInfo->find(1);
         $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
         $recordSchoolSystem = $SchoolSystem->where("sid = 1")->order("time DESC")->find();
@@ -55,7 +57,6 @@ class IndexAction extends Action {
          */
         $indexbgimg = $recordSchoolSystem['image_index'];
         $this->assign('indexbgimg',$indexbgimg);
-        echo $_SERVER['HTTP_HOST'];
         $this->display();
     }
     
