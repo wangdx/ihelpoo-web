@@ -58,10 +58,10 @@ class IndexAction extends Action {
         
         /**
          * list school
-         */
         $SchoolInfo = M("SchoolInfo");
         $resultsSchoolInfo = $SchoolInfo->select();
         $this->assign('resultsSchoolInfo',$resultsSchoolInfo);
+         */
         $this->display();
     }
     

@@ -106,12 +106,7 @@ body{
 	<?php } ?>
   </div>
   <div class="main_index_sub f12">
-  	你正在访问的是 {$schoolname} 
-    切换学校<select>
-    <?php foreach($resultsSchoolInfo as $schoolInfo) { ?>
-    	<option value="<?php echo $schoolInfo['domain']; ?>"><?php echo $schoolInfo['school']; ?></option>
-    <?php } ?>
-    </select>
+  	你正在访问的是 {$schoolname} <a href="__ROOT__/index/school">切换学校</a>
   	<span class="icon_plus"></span><a href="http://iuc.ihelpoo.com/" href="_blank" class="white">我帮圈圈IUC</a><span class="icon_new"></span>
     <span class="icon_index_mobile"></span> <a class="white">手机 平板直接访问</a>
     <a href="http://weibo.com/ihelpoo" target="_blank" class="white"><span class="post_at" style="vertical-align: bottom;"></span>我帮圈圈<span class="fi">(新浪微博)</span></a>
