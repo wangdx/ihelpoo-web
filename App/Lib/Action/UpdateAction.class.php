@@ -284,6 +284,19 @@ class UpdateAction extends Action {
     	}
     }
     
+    public function movesayfromzzuli()
+    {
+    	$RecordSayzzuli = M("RecordSayzzuli");
+    	$RecordSay = M("RecordSay");
+    	$resultsRecordSayzzuli = $RecordSayzzuli->select();
+    	foreach($resultsRecordSayzzuli as $recordSayzzuli) {
+    		$recordSayzzuli['school_id'] = 2;
+    		$recordSayzzuli['sid'] = $recordSayzzuli['sid'] + 35000;
+    		$isInsertRecordSay = $RecordSay->add($RecordSay);
+    		echo $isInsertRecordSay."<br />";
+    	}
+    }
+    
     
     
 }  
