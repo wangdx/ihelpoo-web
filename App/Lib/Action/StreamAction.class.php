@@ -953,7 +953,7 @@ class StreamAction extends Action {
 
                 Vendor('Ihelpoo.Redismq');
                 $redis = new Redismq();
-                $redis->connect(REDIS_HOST, REDIS_PORT);
+                $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 
                 $redis->zAdd('msg', 1, "给我一支烟");
                 $msgSystemId = $redis->get("i_msg_system:id");
