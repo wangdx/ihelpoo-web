@@ -224,6 +224,8 @@ class UpdateAction extends Action {
     public function moveuserfromzzuli()
     {
     	$UserLogin = M("UserLogin");
+    	$UserInfo = M("UserInfo");
+    	$UserStatus = M("UserStatus");
     	$UserLoginzzuli = M("UserLoginzzuli");
     	$UserInfozzuli = M("UserInfozzuli");
     	$UserStatuszzuli = M("UserStatuszzuli");
@@ -234,14 +236,23 @@ class UpdateAction extends Action {
     			echo 'uid:'.$existUserLogin['uid'].' 昵称:'.$existUserLogin['nickname'].' 已经存在<br />';
     		} else {
     			$userLoginzzuli['school'] = 2;
-    			echo '<br />i_user_login<br />';
-    			var_dump($userLoginzzuli);
+    			$UserLogin->add($userLoginzzuli);
+    			
+    			//echo '<br />i_user_login<br />';
+    			//var_dump($userLoginzzuli);
+    			
     			$recordUserInfozzuli = $UserInfozzuli->find($userLoginzzuli['uid']);
-    			echo '<br />i_user_info<br />';
-    			var_dump($recordUserInfozzuli);
+    			$UserInfo->add($recordUserInfozzuli);
+    			
+    			//echo '<br />i_user_info<br />';
+    			//var_dump($recordUserInfozzuli);
+    			
     			$recordUserStatuszzuli = $UserStatuszzuli->find($userLoginzzuli['uid']);
-    			echo '<br />i_user_status<br />';
-    			var_dump($recordUserStatuszzuli);
+    			$UserStatus->add($recordUserStatuszzuli);
+    			
+    			//echo '<br />i_user_status<br />';
+    			//var_dump($recordUserStatuszzuli);
+    			
     			echo 'uid:'.$userLoginzzuli['uid'].' 插入数据库<br />';
     			exit();
     		}
