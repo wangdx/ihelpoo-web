@@ -965,7 +965,7 @@ class StreamAction extends Action {
                 $port = 9998;
                 $port_wr = 9999;
                 $dbname = 'ihelpoo';
-                $table = 'i_msg_system';
+                $table = 't';
                 //GET
                 $hs = new HandlerSocket($host, $port);
                 if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
