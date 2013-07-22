@@ -226,7 +226,7 @@ class IndexAction extends Action {
             		}
             	}
             } else {
-            	$totalusers = 150;
+            	$totalusers = 151;
             	$userList = $UserInfo->where("i_user_login.type = 1 AND i_user_login.sex = $sex AND i_user_login.school = $recordSchoolInfo[id]")
                 ->join('i_user_login ON i_user_info.uid = i_user_login.uid')
                 ->order('i_user_login.online DESC,i_user_login.icon_fl DESC')
