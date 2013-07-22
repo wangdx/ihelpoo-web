@@ -976,13 +976,13 @@ class StreamAction extends Action {
 
                 $retval = $hs->executeSingle(1, '=', array('k1'), 1, 0);
 
-                var_dump($retval);
+//                var_dump($retval);
 
                 $retval = $hs->executeMulti(
                     array(array(1, '=', array('k1'), 1, 0),
                         array(1, '=', array('k2'), 1, 0)));
 
-                var_dump($retval);
+//                var_dump($retval);
 
                 unset($hs);
 
