@@ -22,11 +22,11 @@ return array(
 
     // REDIS structures keys
 
-    'R_MSG'=>'1000',
+    'R_MSG'=>'m:',
 
-    'R_MSG_SYSTEM'=>'1',
-    'R_MSG_AT'=>'2',
-    'R_MSG_COMMENT'=>'3',
+    'R_MSG_SYSTEM'=>'s:',
+    'R_MSG_AT'=>'a:',
+    'R_MSG_COMMENT'=>'c:',
 
 //	'TMPL_EXCEPTION_FILE'=>'./App/Tpl/Public/error.html',
 );
