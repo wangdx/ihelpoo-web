@@ -1,18 +1,15 @@
 <include file="Public:headerrooter" />
-  <ul class="para_right_ul">
-  <?php foreach ($adminRealnamemf as $realnamemf) : ?>
-  <li>
-    <a href="__ROOT__/stream/u/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank">查询</a>) - <?php echo i_time($realnamemf['time']); ?>
-    <?php if ($realnamemf['allow'] == 0) { ?>
-    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>">发送允许修改邮件</a>
-    <?php } else if ($realnamemf['allow'] == 1) { ?>
-    已经发送允许修改邮件
-    <?php } ?>
-  </li>
-  <?php endforeach; ?>
-  </ul>
-  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
-  <div class="paging_div">
-    <?php if ($totalPages > 1) { i_page_show("rooter/realnameallowmf", $totalPages); } ?>
-  </div>
+<ul class="user_ul">
+<?php foreach($recordsAdminUserrecord as $AdminUserrecord) { ?>
+	<li>
+		<span class="black_l fb"><?php echo $AdminUserrecord['name']; ?></span>
+		<span class="f12 gray">record:</span> <span class="red_l"><?php echo $AdminUserrecord['record']; ?></span>
+		<span class="f12 gray">时间:<?php echo i_time($AdminUserrecord['time']); ?></span>
+	</li>
+<?php } ?>
+</ul>
+<p class="f12 gray paging_p">共<?php echo $totalrecords ?>条记录 <?php echo $totalPages ?>页</p>
+<div class="paging_div">
+  <?php if ($totalPages > 1) { i_page_show("rooter/useroperatingrecord", $totalPages); } ?>
+</div>
 <include file="Public:footerrooter" />

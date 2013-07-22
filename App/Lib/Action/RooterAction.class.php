@@ -951,7 +951,9 @@ class RooterAction extends Action {
 
     public function schoolrecord()
     {
-    	 
+    	$admin = logincheck();
+    	$this->assign('title','校园管理记录');
+    	$this->display();
     }
     
     
