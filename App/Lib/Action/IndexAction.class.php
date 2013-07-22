@@ -116,7 +116,7 @@ class IndexAction extends Action {
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'useractive') {
-            $recordList = $UserLogin->order('school = 1 AND active DESC')
+            $recordList = $UserLogin->where('school = 1')->order('active DESC')
    	        ->limit(100)
    	        ->select();
         } else {
