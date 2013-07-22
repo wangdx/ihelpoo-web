@@ -961,30 +961,30 @@ class StreamAction extends Action {
                     $redis->set("i_msg_system:id", 200000);
                 }
 
-                $host = '10.6.5.68';
-                $port = 9998;
-                $port_wr = 9999;
-                $dbname = 'ihelpoo';
-                $table = 'i_msg_system';
-                //GET
-                $hs = new HandlerSocket($host, $port);
-                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
-                {
-                    echo $hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                $retval = $hs->executeSingle(1, '=', array('k1'), 1, 0);
-
-                var_dump($retval);
-
-                $retval = $hs->executeMulti(
-                    array(array(1, '=', array('k1'), 1, 0),
-                        array(1, '=', array('k2'), 1, 0)));
-
-                var_dump($retval);
-
-                unset($hs);
+//                $host = '10.6.5.68';
+//                $port = 9998;
+//                $port_wr = 9999;
+//                $dbname = 'ihelpoo';
+//                $table = 'i_msg_system';
+//                //GET
+//                $hs = new HandlerSocket($host, $port);
+//                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
+//                {
+//                    echo $hs->getError(), PHP_EOL;
+//                    die();
+//                }
+//
+//                $retval = $hs->executeSingle(1, '=', array('k1'), 1, 0);
+//
+//                var_dump($retval);
+//
+//                $retval = $hs->executeMulti(
+//                    array(array(1, '=', array('k1'), 1, 0),
+//                        array(1, '=', array('k2'), 1, 0)));
+//
+//                var_dump($retval);
+//
+//                unset($hs);
 
 
                 /**
