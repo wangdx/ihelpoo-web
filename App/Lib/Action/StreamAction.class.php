@@ -968,7 +968,8 @@ class StreamAction extends Action {
                 $table = 't';
                 //GET
                 $hs = new HandlerSocket($host, $port);
-                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
+                if (!($hs->openIndex(1, $dbname, $table, 'inx_k', 'k,v')))
+//                    if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
                 {
                     echo $hs->getError(), PHP_EOL;
                     die();
