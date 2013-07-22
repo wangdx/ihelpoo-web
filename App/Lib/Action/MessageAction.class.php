@@ -140,7 +140,7 @@ class MessageAction extends Action {
     		}
             $redismq = new Redis();
             $redismq->connect('127.0.0.1', 6379);
-            $redismq->hSet(C('I_MSG').C('I_MSG_SYSTEM'), $userloginid, 0);
+            $redismq->hSet(C('R_MSG').C('R_MSG_SYSTEM'), $userloginid, 0);
 
     	}
     	$this->assign('msgsysarray',$msgSysArray);
