@@ -261,6 +261,7 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	Vendor('Ihelpoo.Upyun');
         $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        $imageStorageUrl = image_storage_url();
     	if ($this->isPost()) {
     		$schoolid = $_POST['schoolid'];
     		if (!empty($_FILES)) {
@@ -289,7 +290,6 @@ class RooterAction extends Action {
         			$storageFilename = '/school/'.$schoolid.'/'.time().'.jpg';
         			$rsp = $upyun->writeFile($storageFilename, $fh, True);
         			fclose($fh);
-        			$imageStorageUrl = image_storage_url();
         			$newfilepath = $imageStorageUrl.$storageFilename;
         			
         			/**
@@ -316,8 +316,13 @@ class RooterAction extends Action {
 		$recordSchoolInfo = $SchoolInfo->select();
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
 		
-		$imagestoragelist = $upyun->getList('/school/1/');
-		$this->assign('imagestoragelist',$imagestoragelist);
+		$schoolid = (int)$_GET['schoolid'];
+    	$this->assign('schoolid',$schoolid);
+    	if (!empty($schoolid)) {
+			$imagestoragelist = $upyun->getList("/school/$schoolid/");
+			$this->assign('imagestoragelist',$imagestoragelist);
+			$this->assign('imagestorageurlfolder',$imageStorageUrl."/school/".$schoolid."/");
+    	}
     	$this->display();
     }
     

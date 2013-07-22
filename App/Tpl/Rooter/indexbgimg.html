@@ -4,18 +4,28 @@
 			<li><span class="f12 gray">选择图片:</span> <input id="upload_image_file" name="uploadimage" type="file" /></li>
 			<li>
 				<span class="f12 gray">选择学校:</span> 
-			  	<select name="schoolid">
+			  	<select name="schoolid" id="schoolid">
 			  		<?php foreach($recordSchoolInfo as $schoolInfo) { ?>
 			  			<option value="{$schoolInfo['id']}">{$schoolInfo['school']}</option>
 			  		<?php } ?>
-			    </select>
+			    </select> <a id="schoollist">列表图片</a>
 			</li>
 			<li><input type="submit" value="上传" /></li>
 		</ul>
 	</form>
+	<?php if (!empty($schoolid)) { ?>
 	<ul>
 	<?php foreach ($imagestoragelist as $imagestorage) { ?>
-	<li><?php var_dump($imagestorage) ?></li>
+	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?></li>
 	<?php } ?>
 	</ul>
+	<?php } ?>
+	<script type="text/javascript">
+	$().ready(function(){
+		$("#schoollist").click(function(){
+	        var schoolid = $("#schoolid").attr("value");
+	        window.location = baseUrl + 'rooter/indexbgimg?schoolid=' + schoolid;
+		});
+	});
+	</script>
 <include file="Public:footerrooter" />
