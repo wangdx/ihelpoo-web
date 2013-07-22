@@ -985,7 +985,7 @@ class StreamAction extends Action {
         		            $i++;
         	        	}
 
-                        $redismq->hIncrBy(C('I_MSG').C('I_MSG_SYSTEM'), $userPriority[uid], 1);
+                        $redismq->hIncrBy(C('I_MSG').":".C('I_MSG_SYSTEM'), $userPriority[uid], 1);
 
         	        	/**
        	                 * insert into sys_msg
@@ -1012,28 +1012,28 @@ class StreamAction extends Action {
 //	        	    	        'deliver' => 0,
 //        	        		);
 
-                            $id = $redismq->incr("i_msg_system:id");
-                            $redismq->set("i_msg_system:".$id.":uid", $userPriority['uid']);
-                            $redismq->set("i_msg_system:".$id.":type", $msgSystemType);
-                            $redismq->set("i_msg_system:".$id.":url_id", $diffusionSidArray['1']);
-                            $redismq->set("i_msg_system:".$id.":from_uid", $userloginid);
-                            $redismq->set("i_msg_system:".$id.":content", $contentMsgSystem);
-                            $redismq->set("i_msg_system:".$id.":time", time());
-                            $redismq->set("i_msg_system:".$id.":deliver", 0);
-
-                            $redismq->hSet($diffusionsKey, "diffusionNum", 1);
-                            $redismq->hSet($diffusionsKey, "personsList", $userloginid);
+//                            $id = $redismq->incr("i_msg_system:id");
+//                            $redismq->set("i_msg_system:".$id.":uid", $userPriority['uid']);
+//                            $redismq->set("i_msg_system:".$id.":type", $msgSystemType);
+//                            $redismq->set("i_msg_system:".$id.":url_id", $diffusionSidArray['1']);
+//                            $redismq->set("i_msg_system:".$id.":from_uid", $userloginid);
+//                            $redismq->set("i_msg_system:".$id.":content", $contentMsgSystem);
+//                            $redismq->set("i_msg_system:".$id.":time", time());
+//                            $redismq->set("i_msg_system:".$id.":deliver", 0);
+//
+//                            $redismq->hSet($diffusionsKey, "diffusionNum", 1);
+//                            $redismq->hSet($diffusionsKey, "personsList", $userloginid);
 
 //        	        		$MsgSystem->add($diffusionData);
         	        	} else {
-                            $redismq->hIncrBy($diffusionsKey, "diffusionNum", 1);
-                            $persons = $redismq->hGet($diffusionsKey, "personsList");
-                            $redismq->hSet($diffusionsKey, "personsList", $persons.",".$userloginid);
+//                            $redismq->hIncrBy($diffusionsKey, "diffusionNum", 1);
+//                            $persons = $redismq->hGet($diffusionsKey, "personsList");
+//                            $redismq->hSet($diffusionsKey, "personsList", $persons.",".$userloginid);
 
 //        	        		$dataMsgSystem = $isReceivedDiffusionMsg['from_uid'].','.$userloginid;
 //        	        		$dataMsgSystemArray = explode(",", $dataMsgSystem);
 //        	        		$dataMsgSystemNums = count($dataMsgSystemArray);
-        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='"."' title='点击查看扩散详情'>".$redismq->hGet($diffusionsKey, "diffusionNum")."</span> 人扩散了这条消息给你";
+//        	        		$contentMsgSystem = "等 <span class='orange fb f14 msggetusers' value='"."' title='点击查看扩散详情'>".$redismq->hGet($diffusionsKey, "diffusionNum")."</span> 人扩散了这条消息给你";
 //        	        		$diffusionData = array(
 //	        	    	        'id' => $isReceivedDiffusionMsg['id'],
 //	        	    	        'data' => $dataMsgSystem,
