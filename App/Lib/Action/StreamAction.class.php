@@ -963,8 +963,8 @@ class StreamAction extends Action {
 
 
                 Vendor('Ihelpoo.Idworker');
-                $idworker = new Idworker(1);
-                $a = $idworker->nextId();
+                $idworker = new Idworker().generateParticle(1);
+//                $a = $idworker;
 //                $Idwork = new Idwork(2);
 //                $b = $idworker->nextId();
 
@@ -976,7 +976,7 @@ class StreamAction extends Action {
         	    $userPriorityNums = sizeof($userPriorityObj);
 
 
-       	        echo $a."-".$b."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
+       	        echo $idworker."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
        	        if (!empty($userPriorityNums)) {
        	            $i = 0;
         	        foreach ($userPriorityObj as $userPriority) {
