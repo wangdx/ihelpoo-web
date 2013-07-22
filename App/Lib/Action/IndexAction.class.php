@@ -27,6 +27,8 @@ class IndexAction extends Action {
         $SchoolSystem = M("SchoolSystem");
         $SchoolInfo = M("SchoolInfo");
         $recordSchoolInfo = i_school_domain();
+        var_dump($recordSchoolInfo);
+        exit();
         if (!is_array($recordSchoolInfo)) {
         	exit('出错啦');
         }
