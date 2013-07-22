@@ -257,10 +257,12 @@ class RooterAction extends Action {
 
     public function indexbgimg()
     {
-    	$this->assign('title','更换首页背景图片');
+    	$this->assign('title','上传图片');
     	$admin = logincheck();
+    	Vendor('Ihelpoo.Upyun');
+        $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
     	if ($this->isPost()) {
-    		$imageNumger = $_POST['image_number'];
+    		$schoolid = $_POST['schoolid'];
     		if (!empty($_FILES)) {
     			if ($_FILES["uploadimage"]["error"] > 0) {
     				redirect('/rooter/indexbgimg', 3, 'file error...'.$_FILES["uploadimage"]["error"]);
@@ -279,47 +281,43 @@ class RooterAction extends Action {
     			if ($imageSize > 800000) {
     				redirect('/rooter/indexbgimg', 3, 'error...上传图片太大, 最大能上传单张 3.5MB');
     			} else if ($imageType == 'image/jpeg') {
-    				import("@.ORG.UploadFile");
-    				$config=array(
-		                'allowExts'=>array('jpg'),
-		                'savePath'=>'./Public/system/',
-		                'saveRule'=>'index_bg'.$imageNumger,
-    					'uploadReplace'=>true,
-    				);
-    				$upload = new UploadFile($config);
-    				$upload->imageClassPath="@.ORG.Image";
-    				$upload->thumb=false;
-    				if (!$upload->upload()) {
-    					$uploadErrorInfo = $upload->getErrorMsg();
-    					redirect('/rooter/indexbgimg', 3, 'error...'.$uploadErrorInfo);
-    				} else {
-    					$info = $upload->getUploadFileInfo();
-
-    					/**
-    					 * admin user operating record
-    					 */
-    					if (!empty($admin['uid'])) {
-    						$AdminUserrecord = M("AdminUserrecord");
-    						$newAdminUserrecordData = array(
-								'id' => '',
-								'uid' => $admin['uid'],
-								'record' => 'indexbgimg, change index_bg'.$imageNumger,
-								'time' => time(),
-    						);
-    						$AdminUserrecord->add($newAdminUserrecordData);
-    					}
-    					
-    					if (!empty($info[0]['savename'])) {
-    						redirect('/rooter/indexbgimg', 1, 'success...');
-    					} else {
-    						redirect('/rooter/indexbgimg', 3, 'failed...');
-    					}
-    				}
+    				
+    				/**
+        			 * storage in upyun
+        			 */
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageFilename = '/school/'.$schoolid.'/'.time().'.jpg';
+        			$rsp = $upyun->writeFile($storageFilename, $fh, True);
+        			fclose($fh);
+        			$imageStorageUrl = image_storage_url();
+        			$newfilepath = $imageStorageUrl.$storageFilename;
+        			
+        			/**
+        			 * admin user operating record
+        			 */
+        			if (!empty($admin['uid'])) {
+        				$AdminUserrecord = M("AdminUserrecord");
+        				$newAdminUserrecordData = array(
+							'id' => '',
+							'uid' => $admin['uid'],
+							'record' => '上传图片'.$newfilepath,
+							'time' => time(),
+        				);
+        				$AdminUserrecord->add($newAdminUserrecordData);
+        			}
+        			redirect('/rooter/indexbgimg', 1, 'success...');
     			} else {
     				redirect('/rooter/indexbgimg', 3, 'error...上传图片格式错误, 目前仅支持.jpg');
     			}
     		}
     	}
+    	
+    	$SchoolInfo = M("SchoolInfo");
+		$recordSchoolInfo = $SchoolInfo->select();
+		$this->assign('recordSchoolInfo',$recordSchoolInfo);
+		
+		$imagestoragelist = $upyun->getList('/school/');
+		$this->assign('imagestoragelist',$imagestoragelist);
     	$this->display();
     }
     
