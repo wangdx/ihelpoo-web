@@ -135,6 +135,10 @@ class MessageAction extends Action {
             		'id' => $msg['id'],
             		'deliver' => 1
             	);
+
+                $redismq = new Redismq();
+                $redismq->connect('127.0.0.1', 6379);
+                $redismq->hSet(C('I_MSG').C('I_MSG_SYSTEM'), $userloginid, 0);
             	$MsgSystem->save($deliverMsgUpdate);
     		}
 
