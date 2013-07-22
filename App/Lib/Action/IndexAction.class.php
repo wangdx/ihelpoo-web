@@ -129,7 +129,7 @@ class IndexAction extends Action {
     public function mate()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$title = "热门 ".$recordSchoolInfo['school']." 帮助主题社交网站";
+    	$title = "大家 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
 
     	$UserLogin = M("UserLogin");
@@ -316,18 +316,19 @@ class IndexAction extends Action {
 
     public function group()
     {
-        $title = "组织 湖北民族学院帮助主题社交网站";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "组织 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
         $page = i_page_get_num();
         $count = 10;
         $offset = $count * $page;
         $UserLogin = M("UserLogin");
-        $groupList = $UserLogin->where('i_user_login.type = 2')
-        ->join('i_user_info ON i_user_info.uid = i_user_login.uid')
+        $groupList = $UserLogin->where("i_user_login.type = 2 AND i_user_login.school = $recordSchoolInfo[id]")
+        ->join("i_user_info ON i_user_info.uid = i_user_login.uid")
         ->limit($offset, $count)
         ->select();
         $this->assign('groupList',$groupList);
-        $totalrecords = $UserLogin->where('i_user_login.type = 2')->count();
+        $totalrecords = $UserLogin->where("i_user_login.type = 2 AND i_user_login.school = $recordSchoolInfo[id]")->count();
         $this->assign('totalrecords',$totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages',$totalPages);
@@ -336,17 +337,18 @@ class IndexAction extends Action {
 
 	public function business()
     {
-        $title = "商家 湖北民族学院帮助主题社交网站";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "商家 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
         $page = i_page_get_num();
         $count = 10;
         $offset = $count * $page;
         $UserLogin = M("UserLogin");
-        $groupList = $UserLogin->where('i_user_login.type = 3')
+        $groupList = $UserLogin->where("i_user_login.type = 3 AND i_user_login.school = $recordSchoolInfo[id]")
         ->join('i_user_info ON i_user_info.uid = i_user_login.uid')
         ->select();
         $this->assign('groupList',$groupList);
-        $totalrecords = $UserLogin->where('i_user_login.type = 3')->count();
+        $totalrecords = $UserLogin->where("i_user_login.type = 3 AND i_user_login.school = $recordSchoolInfo[id]")->count();
         $this->assign('totalrecords',$totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages',$totalPages);
