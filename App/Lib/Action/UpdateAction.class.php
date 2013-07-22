@@ -233,7 +233,17 @@ class UpdateAction extends Action {
     		if ($existUserLogin['uid']) {
     			echo 'uid:'.$existUserLogin['uid'].' 昵称:'.$existUserLogin['nickname'].' 已经存在<br />';
     		} else {
+    			$userLoginzzuli['school'] = 2;
+    			echo '<br />i_user_login<br />';
+    			var_dump($userLoginzzuli);
+    			$recordUserInfozzuli = $UserInfozzuli->find($userLoginzzuli['uid']);
+    			echo '<br />i_user_info<br />';
+    			var_dump($recordUserInfozzuli);
+    			$recordUserStatuszzuli = $UserStatuszzuli->find($userLoginzzuli['uid']);
+    			echo '<br />i_user_status<br />';
+    			var_dump($recordUserStatuszzuli);
     			echo 'uid:'.$userLoginzzuli['uid'].' 插入数据库<br />';
+    			exit();
     		}
     	}
     }
