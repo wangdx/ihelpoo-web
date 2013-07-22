@@ -11,7 +11,7 @@ class Idworker
         $time = floor(microtime(true) * 1000);
 
 //Substract custom epoch from current time
-        $time -= time() * 1000;
+//        $time -= time() * 1000;
 
 //Add to base
         $base = pow(2, 41);
