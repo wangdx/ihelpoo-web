@@ -136,11 +136,11 @@ class MessageAction extends Action {
             		'deliver' => 1
             	);
 
-                $redismq = new Redis();
-                $redismq->connect('127.0.0.1', 6379);
-                $redismq->hSet(C('I_MSG').C('I_MSG_SYSTEM'), $userloginid, 0);
             	$MsgSystem->save($deliverMsgUpdate);
     		}
+            $redismq = new Redis();
+            $redismq->connect('127.0.0.1', 6379);
+            $redismq->hSet(C('I_MSG').C('I_MSG_SYSTEM'), $userloginid, 0);
 
     	}
     	$this->assign('msgsysarray',$msgSysArray);
