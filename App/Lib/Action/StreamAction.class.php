@@ -955,12 +955,6 @@ class StreamAction extends Action {
                 $redismq = new Redis();
                 $redismq->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 
-                $redismq->zAdd('msg', 1, "给我一支烟");
-                $msgSystemId = $redismq->get("i_msg_system:id");
-                if(empty($msgSystemId)){
-                    $redismq->set("i_msg_system:id", 200000);
-                }
-
 
                 Vendor('Ihelpoo.Idworker');
                 $idworker = new Idworker();
