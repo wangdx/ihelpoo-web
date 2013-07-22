@@ -231,7 +231,7 @@ class UpdateAction extends Action {
     		$recordUserLogin = $UserLogin->find($userInfo['uid']);
     		if (empty($recordUserLogin['uid'])) {
     			$isdeleteUserInfo = $UserInfo->where("uid = $userInfo[uid]")->delete();
-    			var_dump($isdeleteUserInfo);
+    			echo $isdeleteUserInfo;
     			echo '<br />';
     		}
     	}
@@ -240,8 +240,8 @@ class UpdateAction extends Action {
     	foreach ($recordUserStatus as $userStatus) {
     		$recordUserLogin = $UserLogin->find($userStatus['uid']);
     		if (empty($recordUserLogin['uid'])) {
-    			$isdeleteUserInfo = $UserStatus->where("uid = $userStatus[uid]")->delete();
-    			var_dump($isdeleteUserInfo);
+    			$isdeleteUserInfo= $UserStatus->where("uid = $userStatus[uid]")->delete();
+    			echo $isdeleteUserInfo;
     			echo '<br />';
     		}
     	}
