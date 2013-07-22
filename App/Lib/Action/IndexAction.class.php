@@ -86,37 +86,37 @@ class IndexAction extends Action {
         }
 
         if ($_GET['w'] == 'hit') {
-            $recordList = $RecordSay->where("school_id = 1 AND say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
        	    ->limit(50)
        	    ->select();
         } else if($_GET['w'] == 'comment') {
-            $recordList = $RecordSay->where("school_id = 1 AND say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.comment_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'diffusion') {
-            $recordList = $RecordSay->where("school_id = 1 AND say_type = 0 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.diffusion_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'help') {
-            $recordList = $RecordSay->where("school_id = 1 AND say_type = 1 AND time > $timeWidth")
+            $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 1 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'helpreply') {
-            $recordList = $recordList = $RecordSay->where("school_id = 1 AND say_type = 1 AND time > $timeWidth")
+            $recordList = $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 1 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.comment_co DESC')
    	        ->limit(50)
    	        ->select();
         } else if($_GET['w'] == 'useractive') {
-            $recordList = $UserLogin->where('school = 1')->order('active DESC')
+            $recordList = $UserLogin->where("school = $recordSchoolInfo[id]")->order("active DESC")
    	        ->limit(100)
    	        ->select();
         } else {
@@ -128,12 +128,13 @@ class IndexAction extends Action {
 
     public function mate()
     {
-        $title = "大家 湖北民族学院帮助主题社交网站";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "热门 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
 
     	$UserLogin = M("UserLogin");
     	$UserInfo = M("UserInfo");
-    	$allUserNums = $UserLogin->where("status != 0")->count();
+    	$allUserNums = $UserLogin->where("school = $recordSchoolInfo[id] AND status != 0")->count();
     	$this->assign('allUserNums',$allUserNums);
 
     	$page = i_page_get_num();
@@ -174,7 +175,7 @@ class IndexAction extends Action {
     		 * show specialty name
     		 */
     		$OpSpecialty = M("OpSpecialty");
-    		$resultsSpecialty = $OpSpecialty->where("academy = $number")->select();
+    		$resultsSpecialty = $OpSpecialty->where("school = $recordSchoolInfo[id] AND academy = $number")->select();
     		$this->assign('resultsSpecialty',$resultsSpecialty);
             if (!empty($number)) {
             	if (!empty($_GET['specialty'])) {
@@ -189,28 +190,28 @@ class IndexAction extends Action {
             	}
             	if (!empty($sex)) {
             		if (!empty($specialty)) {
-            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.sex = $sex")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
-            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty  AND i_user_login.sex = $sex AND i_user_login.type = 1")
+            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.sex = $sex AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty  AND i_user_login.sex = $sex AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
             		} else {
-            			$totalusers = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
-            			$userList = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND i_user_login.type = 1")
+            			$totalusers = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
             		}
             	} else {
             		if (!empty($specialty)) {
-            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty")->count();
-            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.type = 1")
+            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
             		} else {
-            			$totalusers = $UserInfo->where("academy_op = $number")->count();
-            			$userList = $UserInfo->where("academy_op = $number AND i_user_login.type = 1")
+            			$totalusers = $UserInfo->where("academy_op = $number AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
@@ -218,7 +219,7 @@ class IndexAction extends Action {
             	}
             } else {
             	$totalusers = 150;
-            	$userList = $UserInfo->where("i_user_login.type = 1 AND i_user_login.sex = $sex")
+            	$userList = $UserInfo->where("i_user_login.type = 1 AND i_user_login.sex = $sex AND i_user_login.school = $recordSchoolInfo[id]")
             	->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             	->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             	->limit($offset, $count)->select();
@@ -234,37 +235,37 @@ class IndexAction extends Action {
             	}
             	if (!empty($sex)) {
             		if ($number == 5) {
-            			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 1")
+            			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 1 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 1")->count();
+            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 1 AND school = $recordSchoolInfo[id]")->count();
             		} else {
-            			$userList = $UserLogin->where("enteryear = $num AND sex = $sex AND type = 1")
+            			$userList = $UserLogin->where("enteryear = $num AND sex = $sex AND type = 1 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC,i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear = $num AND sex = $sex AND type = 1")->count();
+            			$totalusers = $UserLogin->where("enteryear = $num AND sex = $sex AND type = 1 AND school = $recordSchoolInfo[id]")->count();
             		}
             	} else {
             		if ($number == 5) {
-            			$userList = $UserLogin->where("enteryear <= $num AND type = 1")
+            			$userList = $UserLogin->where("enteryear <= $num AND type = 1 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND type = 1")->count();
+            			$totalusers = $UserLogin->where("enteryear <= $num AND type = 1 AND school = $recordSchoolInfo[id]")->count();
             		} else {
-            			$userList = $UserLogin->where("enteryear = $num AND type = 1")
+            			$userList = $UserLogin->where("enteryear = $num AND type = 1 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC,i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear = $num AND type = 1")->count();
+            			$totalusers = $UserLogin->where("enteryear = $num AND type = 1 AND school = $recordSchoolInfo[id]")->count();
             		}
             	}
             } else {
             	if (!empty($sex)) {
-            		$userList = $UserLogin->where("type = 1 AND sex = $sex AND online != 2")
+            		$userList = $UserLogin->where("type = 1 AND sex = $sex AND online != 2 AND school = $recordSchoolInfo[id]")
             		->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             		->limit($offset,$count)->select();
             		$totalusers = 150;
             	} else {
-            		$userList = $UserLogin->where("type = 1 AND online != 2")
+            		$userList = $UserLogin->where("type = 1 AND online != 2 AND school = $recordSchoolInfo[id]")
             		->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             		->limit($offset,$count)->select();
             		$totalusers = 150;
@@ -272,21 +273,21 @@ class IndexAction extends Action {
             }
             $this->assign('userList',$userList);
     	} else if ($_GET['w'] == "new") {
-    	    $userList = $UserLogin->where('i_user_login.type = 1')
-    	    ->order('i_user_login.uid DESC,i_user_login.icon_fl DESC')
+    	    $userList = $UserLogin->where("type = 1 AND school = $recordSchoolInfo[id]")
+    	    ->order('uid DESC,icon_fl DESC')
     	    ->limit($offset, $count)->select();
     	    $this->assign('userList',$userList);
     	    $totalusers = 150;
     	} else if ($_GET['w'] == "dormitory") {
             if (!empty($number)) {
-            	$totalusers = $UserInfo->where("dormitory_op = $number")->count();
-                $userList = $UserInfo->where("dormitory_op = $number AND i_user_login.type = 1")
+            	$totalusers = $UserInfo->where("dormitory_op = $number AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+                $userList = $UserInfo->where("dormitory_op = $number AND i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
                 ->join('i_user_login ON i_user_info.uid = i_user_login.uid')
                 ->order('i_user_login.online DESC,i_user_login.icon_fl DESC')
                 ->limit($offset, $count)->select();
             } else {
                 $totalusers = 150;
-                $userList = $UserInfo->where("i_user_login.type = 1")
+                $userList = $UserInfo->where("i_user_login.type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
                 ->join('i_user_login ON i_user_info.uid = i_user_login.uid')
                 ->order('i_user_login.online DESC,i_user_login.icon_fl DESC')
                 ->limit($offset, $count)->select();
