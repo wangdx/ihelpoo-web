@@ -16,6 +16,9 @@
 		} else {
 			$recordSchoolInfo = $SchoolInfo->where("domain_main = '$domain'")->find();
 		}
+		if (!is_array($recordSchoolInfo)) {
+        	exit('你访问的域名出错啦 message from ihelpoo :)');
+        }
 		return $recordSchoolInfo;
 	}
 
