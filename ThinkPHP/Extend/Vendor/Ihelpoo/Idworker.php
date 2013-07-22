@@ -1,13 +1,7 @@
 <?php
 class Idworker
 {
-    static $machine_id;
-    function __construct()
-    {
-        self::$machine_id=1;
-    }
-
-    public function nextId(){
+    final public function nextId(){
         return self::generateParticle(1);
     }
 
