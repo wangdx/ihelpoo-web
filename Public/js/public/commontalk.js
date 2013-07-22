@@ -1,4 +1,3 @@
-var baseUrl = "http://42.62.50.238/";
 $().ready(function(){
     flashPic('.message_shine');
     showSkin();
