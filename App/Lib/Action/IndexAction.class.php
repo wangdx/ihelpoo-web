@@ -68,6 +68,7 @@ class IndexAction extends Action {
     	$recordsSchoolInfo = $SchoolInfo->select();
         $this->assign('recordsSchoolInfo',$recordsSchoolInfo);
         $this->assign('title',$title);
+        $this->display();
     }
 
     public function hot()
