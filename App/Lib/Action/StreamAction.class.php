@@ -961,32 +961,11 @@ class StreamAction extends Action {
                     $redis->set("i_msg_system:id", 200000);
                 }
 
-//                $host = '10.6.1.208';
-//                $port = 9998;
-//                $port_wr = 9999;
-//                $dbname = 'ihelpoo';
-//                $table = 't';
-//                //GET
-//                $hs = new HandlerSocket($host, $port);
-//                if (!($hs->openIndex(1, $dbname, $table, 'inx_k', 'k,v')))
-////                    if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                $retval = $hs->executeSingle(1, '=', array('k1'), 1, 0);
-//
-//                var_dump($retval);
-//
-//                $retval = $hs->executeMulti(
-//                    array(array(1, '=', array('k1'), 1, 0),
-//                        array(1, '=', array('k2'), 1, 0)));
-//
-//                var_dump($retval);
-//
-//                unset($hs);
 
+                $Idworker = new Idworker(1);
+                $a = $Idworker->nextId();
+//                $Idwork = new Idwork(2);
+                $b = $Idworker->nextId();
 
                 /**
         		 * diffusion
@@ -996,7 +975,7 @@ class StreamAction extends Action {
         	    $userPriorityNums = sizeof($userPriorityObj);
 
 
-       	        echo $msgSystemId."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
+       	        echo $a."-".$b."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
        	        if (!empty($userPriorityNums)) {
        	            $i = 0;
         	        foreach ($userPriorityObj as $userPriority) {
