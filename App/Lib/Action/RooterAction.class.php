@@ -316,7 +316,7 @@ class RooterAction extends Action {
 		$recordSchoolInfo = $SchoolInfo->select();
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
 		
-		//$imagestoragelist = $upyun->getList('/school/');
+		$imagestoragelist = $upyun->getList('/school/');
 		$this->assign('imagestoragelist',$imagestoragelist);
     	$this->display();
     }
