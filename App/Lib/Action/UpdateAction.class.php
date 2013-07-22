@@ -221,6 +221,23 @@ class UpdateAction extends Action {
     	exit();
     }
     
+    public function moveuserfromzzuli()
+    {
+    	$UserLogin = M("UserLogin");
+    	$UserLoginzzuli = M("UserLoginzzuli");
+    	$UserInfozzuli = M("UserInfozzuli");
+    	$UserStatuszzuli = M("UserStatuszzuli");
+    	$recordUserLoginzzuli = $UserLoginzzuli->select();
+    	foreach ($recordUserLoginzzuli as $userLoginzzuli) {
+    		$existUserLogin = $UserLogin->find($userLoginzzuli['uid']);
+    		if ($existUserLogin['uid']) {
+    			echo 'uid:'.$existUserLogin['uid'].' 昵称:'.$existUserLogin['nickname'].' 已经存在<br />';
+    		} else {
+    			echo '插入数据库';
+    		}
+    	}
+    }
+    
     
     
 }  
