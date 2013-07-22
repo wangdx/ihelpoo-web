@@ -28,7 +28,7 @@ class AjaxAction extends Action {
     		$MsgSystem = M("MsgSystem");
     		$TalkContent = M("TalkContent");
             Vendor('Ihelpoo.Redismq');
-            $redismq = new Redismq();
+            $redismq = new Redis();
             $redismq->connect('127.0.0.1', 6379);
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
