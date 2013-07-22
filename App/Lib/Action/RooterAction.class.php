@@ -340,6 +340,7 @@ class RooterAction extends Action {
     		$id = (int)$_POST['id'];
     		$school = $_POST['school'];
     		$domain = $_POST['domain'];
+    		$domain_main = $_POST['domain_main'];
     		$remark = $_POST['remark'];
     		
     		if (!empty($id)) {
@@ -351,6 +352,7 @@ class RooterAction extends Action {
     				'id' => $id,
     				'school' => $school,
     				'domain' => $domain,
+    				'domain_main' => $domain_main,
     				'remark' => $remark
     			);
     			$SchoolInfo->save($updateSchoolData);
@@ -363,7 +365,7 @@ class RooterAction extends Action {
     				$newAdminUserrecordData = array(
 					    'id' => '',
 					    'uid' => $admin['uid'],
-					    'record' => '更新学校信息 学校:'.$school.'-域名:'.$domain.'-备注:'.$remark,
+					    'record' => '更新学校信息 学校:'.$school.'-主域名:'.$domain_main.'-次域名:'.$domain.'-备注:'.$remark,
 					    'time' => time(),
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
@@ -378,6 +380,7 @@ class RooterAction extends Action {
     				'id' => '',
     				'school' => $school,
     				'domain' => $domain,
+    				'domain_main' => $domain_main,
     				'remark' => $remark,
     				'time' => time()
     			);
@@ -391,7 +394,7 @@ class RooterAction extends Action {
     				$newAdminUserrecordData = array(
 					    'id' => '',
 					    'uid' => $admin['uid'],
-					    'record' => '添加新学校信息 学校:'.$school.'-域名:'.$domain.'-备注:'.$remark,
+					    'record' => '添加新学校信息 学校:'.$school.'-主域名:'.$domain_main.'-次域名:'.$domain.'-备注:'.$remark,
 					    'time' => time(),
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);

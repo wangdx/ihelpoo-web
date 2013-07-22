@@ -6,7 +6,8 @@
     <?php echo $schoolInfo['id']; ?>
     	<input type="hidden" name="id" value="<?php echo $schoolInfo['id']; ?>" />
 	    学校:<input type="text" name="school" value="<?php echo $schoolInfo['school']; ?>" /> - 
-	    域名:<input type="text" name="domain" value="<?php echo $schoolInfo['domain']; ?>" /> -
+	    主域名:<input type="text" name="domain" value="<?php echo $schoolInfo['domain_main']; ?>" /> -
+	    次域名:<input type="text" name="domain" value="<?php echo $schoolInfo['domain']; ?>" /> -
 	    备注:<input type="text" name="remark" value="<?php echo $schoolInfo['remark']; ?>" />
 	    <span class="f12 gray">(<?php echo i_time($schoolInfo['time']); ?>)</span>
 	    <input type="submit" value="修改" /> <a href="__ROOT__/rooter/schoolsystem?schoolid=<?php echo $schoolInfo['id']; ?>">配置</a>
@@ -19,9 +20,10 @@
   <form method="post">
   <ul>
   	<li>添加学校</li>
-  	<li>学校:<input type="text" name="school" value="" /></li>
-  	<li>域名:<input type="text" name="domain" value="" /></li>
-  	<li>备注:<input type="text" name="remark" value="" /></li>
+  	<li>学校&#12288;:<input type="text" name="school" value="" /></li>
+  	<li>主域名:<input type="text" name="domain_main" value="" /> 按学校定义</li>
+  	<li>次域名:<input type="text" name="domain" value="" /> 我帮圈圈分配</li>
+  	<li>备注&#12288;:<input type="text" name="remark" value="" /></li>
   	<li><input type="submit" value="添加学校" /></li>
   </ul>
   </form>
