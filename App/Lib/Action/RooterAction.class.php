@@ -261,6 +261,9 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	Vendor('Ihelpoo.Upyun');
         $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        $imagestoragelist = $upyun->getList('/school/');
+        var_dump($imagestoragelist);
+        exit();
     	if ($this->isPost()) {
     		$schoolid = $_POST['schoolid'];
     		if (!empty($_FILES)) {
