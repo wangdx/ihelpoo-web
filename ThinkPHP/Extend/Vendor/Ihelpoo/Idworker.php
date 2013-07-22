@@ -20,8 +20,8 @@ class Idworker
         }
         self::$workerId = $workId;
 
-        echo 'logdebug->__construct()->self::$workerId:' . self::$workerId;
-        echo '</br>';
+//        echo 'logdebug->__construct()->self::$workerId:' . self::$workerId;
+//        echo '</br>';
 
     }
 
@@ -31,8 +31,8 @@ class Idworker
         $time = explode(' ', microtime());
         $time2 = substr($time[0], 2, 3);
         $timestramp = $time[1] . $time2;
-        echo 'logdebug->timeGen()->$timestramp:' . $time[1] . $time2;
-        echo '</br>';
+//        echo 'logdebug->timeGen()->$timestramp:' . $time[1] . $time2;
+//        echo '</br>';
         return $time[1] . $time2;
     }
 
@@ -43,45 +43,45 @@ class Idworker
             $timestamp = $this->timeGen();
         }
 
-        echo 'logdebug->tilNextMillis()->$timestamp:' . $timestamp;
-        echo '</br>';
+//        echo 'logdebug->tilNextMillis()->$timestamp:' . $timestamp;
+//        echo '</br>';
         return $timestamp;
     }
 
     function  nextId()
     {
         $timestamp = $this->timeGen();
-        echo 'logdebug->nextId()->self::$lastTimestamp1:' . self::$lastTimestamp;
-        echo '</br>';
+//        echo 'logdebug->nextId()->self::$lastTimestamp1:' . self::$lastTimestamp;
+//        echo '</br>';
         if (self::$lastTimestamp == $timestamp) {
             self::$sequence = (self::$sequence + 1) & self::$sequenceMask;
             if (self::$sequence == 0) {
-                echo "###########" . self::$sequenceMask;
+//                echo "###########" . self::$sequenceMask;
                 $timestamp = $this->tilNextMillis(self::$lastTimestamp);
-                echo 'logdebug->nextId()->self::$lastTimestamp2:' . self::$lastTimestamp;
-                echo '</br>';
+//                echo 'logdebug->nextId()->self::$lastTimestamp2:' . self::$lastTimestamp;
+//                echo '</br>';
             }
         } else {
             self::$sequence = 0;
-            echo 'logdebug->nextId()->self::$sequence:' . self::$sequence;
-            echo '</br>';
+//            echo 'logdebug->nextId()->self::$sequence:' . self::$sequence;
+//            echo '</br>';
         }
         if ($timestamp < self::$lastTimestamp) {
             throw new Excwption("Clock moved backwards.  Refusing to generate id for " . (self::$lastTimestamp - $timestamp) . " milliseconds");
         }
         self::$lastTimestamp = $timestamp;
-        echo 'logdebug->nextId()->self::$lastTimestamp3:' . self::$lastTimestamp;
-        echo '</br>';
-
-        echo 'logdebug->nextId()->(($timestamp - self::$twepoch << self::$timestampLeftShift )):' . ((sprintf('%.0f', $timestamp) - sprintf('%.0f', self::$twepoch)));
-        echo '</br>';
+//        echo 'logdebug->nextId()->self::$lastTimestamp3:' . self::$lastTimestamp;
+//        echo '</br>';
+//
+//        echo 'logdebug->nextId()->(($timestamp - self::$twepoch << self::$timestampLeftShift )):' . ((sprintf('%.0f', $timestamp) - sprintf('%.0f', self::$twepoch)));
+//        echo '</br>';
         $nextId = ((sprintf('%.0f', $timestamp) - sprintf('%.0f', self::$twepoch))) | (self::$workerId << self::$workerIdShift) | self::$sequence;
-        echo 'timestamp:' . $timestamp . '-----';
-        echo 'twepoch:' . sprintf('%.0f', self::$twepoch) . '-----';
-        echo 'timestampLeftShift =' . self::$timestampLeftShift . '-----';
-        echo 'nextId:' . $nextId . '----';
-        echo 'workId:' . self::$workerId . '-----';
-        echo 'workerIdShift:' . self::$workerIdShift . '-----';
+//        echo 'timestamp:' . $timestamp . '-----';
+//        echo 'twepoch:' . sprintf('%.0f', self::$twepoch) . '-----';
+//        echo 'timestampLeftShift =' . self::$timestampLeftShift . '-----';
+//        echo 'nextId:' . $nextId . '----';
+//        echo 'workId:' . self::$workerId . '-----';
+//        echo 'workerIdShift:' . self::$workerIdShift . '-----';
         return $nextId;
     }
 
