@@ -7,6 +7,8 @@ return array(
 	'URL_CASE_INSENSITIVE'=>true,
     'URL_HTML_SUFFIX'=>'.html',
     'DB_PREFIX'=>'i_',
+    'REDIS_HOST'=>'127.0.0.1',
+    'REDIS_PORT'=>6379,
 //	'TMPL_EXCEPTION_FILE'=>'./App/Tpl/Public/error.html',
 );
 ?>

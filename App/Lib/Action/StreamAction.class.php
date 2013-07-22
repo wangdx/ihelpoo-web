@@ -953,7 +953,7 @@ class StreamAction extends Action {
 
                 Vendor('Ihelpoo.Redismq');
                 $redis = new Redismq();
-                $redis->connect('127.0.0.1', 6379);
+                $redis->connect(REDIS_HOST, REDIS_PORT);
 
                 $redis->zAdd('msg', 1, "给我一支烟");
                 $msgSystemId = $redis->get("i_msg_system:id");
@@ -961,31 +961,31 @@ class StreamAction extends Action {
                     $redis->set("i_msg_system:id", 200000);
                 }
 
-                $host = '10.6.1.208';
-                $port = 9998;
-                $port_wr = 9999;
-                $dbname = 'ihelpoo';
-                $table = 't';
-                //GET
-                $hs = new HandlerSocket($host, $port);
-                if (!($hs->openIndex(1, $dbname, $table, 'inx_k', 'k,v')))
-//                    if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
-                {
-                    echo $hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                $retval = $hs->executeSingle(1, '=', array('k1'), 1, 0);
-
-                var_dump($retval);
-
-                $retval = $hs->executeMulti(
-                    array(array(1, '=', array('k1'), 1, 0),
-                        array(1, '=', array('k2'), 1, 0)));
-
-                var_dump($retval);
-
-                unset($hs);
+//                $host = '10.6.1.208';
+//                $port = 9998;
+//                $port_wr = 9999;
+//                $dbname = 'ihelpoo';
+//                $table = 't';
+//                //GET
+//                $hs = new HandlerSocket($host, $port);
+//                if (!($hs->openIndex(1, $dbname, $table, 'inx_k', 'k,v')))
+////                    if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'k,v')))
+//                {
+//                    echo $hs->getError(), PHP_EOL;
+//                    die();
+//                }
+//
+//                $retval = $hs->executeSingle(1, '=', array('k1'), 1, 0);
+//
+//                var_dump($retval);
+//
+//                $retval = $hs->executeMulti(
+//                    array(array(1, '=', array('k1'), 1, 0),
+//                        array(1, '=', array('k2'), 1, 0)));
+//
+//                var_dump($retval);
+//
+//                unset($hs);
 
 
                 /**
