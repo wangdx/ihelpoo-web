@@ -221,6 +221,32 @@ class UpdateAction extends Action {
     	exit();
     }
     
+    public function moveuserfromzzulicleandb()
+    {
+    	$UserLogin = M("UserLogin");
+    	$UserInfo = M("UserInfo");
+    	$UserStatus = M("UserStatus");
+    	$recordUserInfo = $UserInfo->select();
+    	foreach ($recordUserInfo as $userInfo) {
+    		$recordUserLogin = $UserLogin->find($userInfo['uid']);
+    		if (empty($recordUserLogin['uid'])) {
+    			$isdeleteUserInfo = $UserInfo->where("uid = $userInfo[uid]")->delete();
+    			var_dump($isdeleteUserInfo);
+    			echo '<br />';
+    		}
+    	}
+    	
+    	$recordUserStatus = $UserStatus->select();
+    	foreach ($recordUserStatus as $userStatus) {
+    		$recordUserLogin = $UserLogin->find($userStatus['uid']);
+    		if (empty($recordUserLogin['uid'])) {
+    			$isdeleteUserInfo = $UserStatus->where("uid = $userStatus[uid]")->delete();
+    			var_dump($isdeleteUserInfo);
+    			echo '<br />';
+    		}
+    	}
+    }
+    
     public function moveuserfromzzuli()
     {
     	$UserLogin = M("UserLogin");
