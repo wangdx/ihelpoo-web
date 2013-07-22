@@ -23,7 +23,6 @@ class IndexAction extends Action {
     public function index()
     {
     	$userloginid = session('userloginid');
-        
         $UserLogin = M("UserLogin");
         $SchoolSystem = M("SchoolSystem");
         $SchoolInfo = M("SchoolInfo");
@@ -56,6 +55,7 @@ class IndexAction extends Action {
          */
         $indexbgimg = $recordSchoolSystem['image_index'];
         $this->assign('indexbgimg',$indexbgimg);
+        echo $_SERVER['HTTP_HOST'];
         $this->display();
     }
     
