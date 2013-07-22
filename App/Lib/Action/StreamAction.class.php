@@ -985,7 +985,7 @@ class StreamAction extends Action {
         		            $i++;
         	        	}
 
-                        $redismq.hSet(C('I_MSG').C('I_MSG_SYSTEM'), $userPriority[uid], 4);
+                        $redismq->hIncrBy(C('I_MSG').C('I_MSG_SYSTEM'), $userPriority[uid], 1);
 
         	        	/**
        	                 * insert into sys_msg
