@@ -23,11 +23,14 @@ class IndexAction extends Action {
     public function index()
     {
     	$userloginid = session('userloginid');
-        $this->assign('title','我帮圈圈 帮助主题社交网站 湖北民族学院站');
+        
         $UserLogin = M("UserLogin");
-        $ISysParameter = D("ISysParameter");
-    	$indexUser = $ISysParameter->getParam("index_user");
-    	$indexUserValue = '9999,'.$indexUser['value'];
+        $SchoolSystem = M("SchoolSystem");
+        $SchoolInfo = M("SchoolInfo");
+        $recordSchoolInfo = $SchoolInfo->find(1);
+        $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
+        $recordSchoolSystem = $SchoolSystem->where("sid = 1")->order("time DESC")->find();
+    	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
     	$indexUserValueArray = explode(",", $indexUserValue);
         $indexUserValueArray = array_unique($indexUserValueArray);
         foreach ($indexUserValueArray as $valueIn) {
@@ -45,10 +48,14 @@ class IndexAction extends Action {
     	/**
          * index_spread_info
          */
-    	$ISysParameter = D("ISysParameter");
-    	$indexSpreadInfo = $ISysParameter->getParam("index_spread_info");
-        $indexSpreadInfoVaule = $indexSpreadInfo['value'];
+        $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
         $this->assign('indexSpreadInfoVaule',$indexSpreadInfoVaule);
+        
+        /**
+         * index background image
+         */
+        $indexbgimg = $recordSchoolSystem['image_index'];
+        $this->assign('indexbgimg',$indexbgimg);
         $this->display();
     }
     
