@@ -171,10 +171,10 @@ class MessageAction extends Action {
 //    	}
 //    	$this->assign('msgsysarray',$msgSysArray);
 //
-//    	if (isset($_GET['suredelsys'])) {
-//    		$MsgSystem->where("uid = $userloginid")->delete();
-//    		redirect('/message/system', 1, '删除成功...');
-//    	}
+    	if (isset($_GET['suredelsys'])) {
+    		$MsgSystem->where("uid = $userloginid")->delete();
+    		redirect('/message/system', 1, '删除成功...');
+    	}
 //    	$this->display();
     }
 
