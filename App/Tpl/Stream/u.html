@@ -23,7 +23,11 @@
   <?php } ?>
   <ul class="stream_u_ul">
     <li>
-      <a href="__ROOT__/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
+      <?php if ($thisschoolid != $userView['school']) { ?>
+      	<a href="http://<?php echo $recordUserViewSchoolInfo['domain_main'] == NULL ? $recordUserViewSchoolInfo['domain'] : $recordUserViewSchoolInfo['domain_main']; ?>//wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
+      <?php } else { ?>
+      	<a href="__ROOT__/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
+      <?php } ?>
       <a href="__ROOT__/wo/honor/<?php echo $userView['uid'] ?>">
         <span class="gray f12" title="等级: level<?php echo i_degree($userView['active']) ?>"><span class="level<?php echo i_degree($userView['active']) ?>"></span></span>
       </a>
@@ -58,7 +62,13 @@
     <li title="一句话简介" style="width: 300px; cursor: pointer"><?php echo $userInfo['introduction']; ?><span class="icon_write"></span></li>
     <li></li>
     <?php  $sexname = $userView['sex'] == 1 ? "他" : "她"; ?>
-    <li><a href="__ROOT__/wo/<?php echo $userView['uid'] ?>"><?php echo $sexname ?>的小窝</a></li>
+    <li>
+      <?php if ($thisschoolid != $userView['school']) { ?>
+      	<a href="http://<?php echo $recordUserViewSchoolInfo['domain_main'] == NULL ? $recordUserViewSchoolInfo['domain'] : $recordUserViewSchoolInfo['domain_main']; ?>//wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $sexname ?>的小窝</a>
+      <?php } else { ?>
+      	<a href="__ROOT__/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $sexname ?>的小窝</a>
+      <?php } ?>
+    </li>
     <?php if($priorityExist) { ?>
     <li><span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userView['uid'] ?>?del">取消</a></li>
     <?php } else if ($shieldExist) { ?>
