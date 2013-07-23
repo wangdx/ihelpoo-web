@@ -659,7 +659,17 @@ class SettingAction extends Action {
 
     public function ajax()
     {
-        if (!empty($_POST['selectAcademy'])) {
+    	if (!empty($_POST['selectSchool'])) {
+        	$selectSchoolNum = (int)$_POST['selectSchool'];
+            $OpAcademy = M("OpAcademy");
+            $selectAcademyObj = $OpAcademy->where("school = $selectSchoolNum")->select();
+            echo '<select id="academy" name="academy">';
+            foreach ($selectAcademyObj as $selectAcademy) {
+                echo "<option value='$selectAcademy[id]'>$selectAcademy[name]</option>";
+            }
+            echo '</select>';
+        }
+    	if (!empty($_POST['selectAcademy'])) {
         	$selectAcademyNum = (int)$_POST['selectAcademy'];
             $OpSpecialty = M("OpSpecialty");
             $selectSpecialtyObj = $OpSpecialty->where("academy = $selectAcademyNum")->select();

@@ -79,6 +79,12 @@
     position: absolute;
     left: 180px;
 }
+#school{
+    color: #666666;
+    font-size: 12px;
+    left: 80px;
+    position: absolute;
+}
 #academy{
     position: absolute;
     left: 80px;
