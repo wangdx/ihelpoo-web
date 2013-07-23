@@ -57,99 +57,125 @@ class MessageAction extends Action {
         $this->assign('totalrecordnums',$totalMsgSystemNums);
         $this->assign('totalpages',$totalPages);
 
+
+        $redismq = new Redis();
+        $redismq->connect('127.0.0.1', 6379);
+
+        $msgIds = $redismq->lRange("A:".$userloginid.":M", 0, -1);
+        $msgIdsStr = '';
+        foreach($msgIds as $msg){
+            $msgIdsStr.=$msg.",";
+        }
+        $msgIdsStr = rtrim($msgIdsStr, ",");
+        $RecordDiffusion = M("RecordDiffusion");
+        $recordDiffusion = $RecordDiffusion->where("id in ($msgIdsStr)")->limit($offset,$count)->order('id DESC')->select();
+
     	/**
     	 * msg form system
     	 */
         $IUserLogin = D("IUserLogin");
-    	foreach ($msgSystem as $msg) {
-    		if (!empty($msg['from_uid'])) {
-    			$fromUser = $IUserLogin->userExists($msg['from_uid']);
-    			$from_user = "<a href='".__ROOT__."/wo/".$msg['from_uid']."' target='_blank' class='getuserinfo' userid='".$msg['from_uid']."'>".$fromUser['nickname']."</a>";
-    		} else {
-    			$from_user = '';
-    		}
-    		if (!empty($msg['type'])) {
-    			if ($msg['type'] == 'setting/realfirst') {
-    				$msg_system_url = "<a href='".__ROOT__."/setting/realfirst?step=1' target='_blank'>详情</a>";
-    			} else if ($msg['type'] == 'mutual/rc-para:?please') {
-    				$msg_system_url = "<a href='".__ROOT__."/mutual/rc/".$msg['url_id']."?please' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'mutual/rc') {
-    				$msg_system_url = "<a href='".__ROOT__."/mutual/rc/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/i') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/ih') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:timeLimit') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:timeEnd') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:success') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:newHelp') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:reply') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'stream/i-para:diffusion') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>去看看</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:diffusion') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>去看看</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:needhelp') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>帮助去</a>";
-    			} else if ($msg['type'] == 'stream/i-para:diffusiontoowner') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'stream/ih-para:diffusiontoowner') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'helprooter/userhonor') {
-    				$msg_system_url = "<a href='".__ROOT__."/wo/honor/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'lab/pushaudit-para:yes') {
-    				$msg_system_url = "<a href='".__ROOT__."/lab/push.content/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'lab/pushaudit-para:no') {
-    				$msg_system_url = "<a href='".__ROOT__."/lab/push?audit=fail' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'rooter/userinvite') {
-    				$msg_system_url = "<a href='".__ROOT__."/mutual/invite/' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'stream/i-para:groupmsgpush') {
-    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'activity/item-para:invite') {
-    				$msg_system_url = "<a href='".__ROOT__."/activity/item/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
-    			} else if ($msg['type'] == 'mallset/buypay') {
-    				$msg_system_url = "<a href='".__ROOT__."/mallset/seller?step=needsure' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'mallset/seller-refuse') {
-    				$msg_system_url = "<a href='".__ROOT__."/mallset/buyer?step=finish' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'mallset/seller-sure') {
-    				$msg_system_url = "<a href='".__ROOT__."/mallset/buyer?step=needsure' target='_blank' class='a_view_info_sys'>详情</a>";
-    			} else if ($msg['type'] == 'system') {
-    				$msg_system_url = '';
-    			} else {
-    				$msg_system_url = '';
-    			}
-    		}
-    		$msgSysArray[] = array(
-        	    'deliver' => $msg['deliver'],
-                'from_user' => $from_user,
-                'content' => $msg['content'],
-                'url' => $msg_system_url,
-                'time' => i_time($msg['time']),
-    		);
-    		if ($msg['deliver'] == 0) {
-    			$deliverMsgUpdate = array(
-            		'id' => $msg['id'],
-            		'deliver' => 1
-            	);
 
-            	$MsgSystem->save($deliverMsgUpdate);
-    		}
-            $redismq = new Redis();
-            $redismq->connect('127.0.0.1', 6379);
-            $redismq->hDel(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
+        foreach($recordDiffusion as $rd){
 
-    	}
-    	$this->assign('msgsysarray',$msgSysArray);
+            $msgSysArray[] = array(
+                'deliver' => 0,
+                'from_user' => $rd['uid'],
+                'content' => $rd['assess_id'],
+                'url' => $rd['assess_id'],
+                'time' => i_time($rd['time']),
+            );
 
+        }
+        $this->assign('msgsysarray',$msgSysArray);
+        $this->display();
+
+//    	foreach ($msgSystem as $msg) {
+//    		if (!empty($msg['from_uid'])) {
+//    			$fromUser = $IUserLogin->userExists($msg['from_uid']);
+//    			$from_user = "<a href='".__ROOT__."/wo/".$msg['from_uid']."' target='_blank' class='getuserinfo' userid='".$msg['from_uid']."'>".$fromUser['nickname']."</a>";
+//    		} else {
+//    			$from_user = '';
+//    		}
+//    		if (!empty($msg['type'])) {
+//    			if ($msg['type'] == 'setting/realfirst') {
+//    				$msg_system_url = "<a href='".__ROOT__."/setting/realfirst?step=1' target='_blank'>详情</a>";
+//    			} else if ($msg['type'] == 'mutual/rc-para:?please') {
+//    				$msg_system_url = "<a href='".__ROOT__."/mutual/rc/".$msg['url_id']."?please' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'mutual/rc') {
+//    				$msg_system_url = "<a href='".__ROOT__."/mutual/rc/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/i') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/ih') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:timeLimit') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:timeEnd') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:success') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:newHelp') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:reply') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'stream/i-para:diffusion') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>去看看</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:diffusion') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>去看看</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:needhelp') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>帮助去</a>";
+//    			} else if ($msg['type'] == 'stream/i-para:diffusiontoowner') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'stream/ih-para:diffusiontoowner') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/help/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'helprooter/userhonor') {
+//    				$msg_system_url = "<a href='".__ROOT__."/wo/honor/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'lab/pushaudit-para:yes') {
+//    				$msg_system_url = "<a href='".__ROOT__."/lab/push.content/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'lab/pushaudit-para:no') {
+//    				$msg_system_url = "<a href='".__ROOT__."/lab/push?audit=fail' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'rooter/userinvite') {
+//    				$msg_system_url = "<a href='".__ROOT__."/mutual/invite/' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'stream/i-para:groupmsgpush') {
+//    				$msg_system_url = "<a href='".__ROOT__."/item/say/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'activity/item-para:invite') {
+//    				$msg_system_url = "<a href='".__ROOT__."/activity/item/".$msg['url_id']."' target='_blank' class='a_view_info_sys'>详细</a>";
+//    			} else if ($msg['type'] == 'mallset/buypay') {
+//    				$msg_system_url = "<a href='".__ROOT__."/mallset/seller?step=needsure' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'mallset/seller-refuse') {
+//    				$msg_system_url = "<a href='".__ROOT__."/mallset/buyer?step=finish' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'mallset/seller-sure') {
+//    				$msg_system_url = "<a href='".__ROOT__."/mallset/buyer?step=needsure' target='_blank' class='a_view_info_sys'>详情</a>";
+//    			} else if ($msg['type'] == 'system') {
+//    				$msg_system_url = '';
+//    			} else {
+//    				$msg_system_url = '';
+//    			}
+//    		}
+//    		$msgSysArray[] = array(
+//        	    'deliver' => $msg['deliver'],
+//                'from_user' => $from_user,
+//                'content' => $msg['content'],
+//                'url' => $msg_system_url,
+//                'time' => i_time($msg['time']),
+//    		);
+//    		if ($msg['deliver'] == 0) {
+//    			$deliverMsgUpdate = array(
+//            		'id' => $msg['id'],
+//            		'deliver' => 1
+//            	);
+//
+//            	$MsgSystem->save($deliverMsgUpdate);
+//    		}
+//            $redismq->hDel(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
+//
+//    	}
+//    	$this->assign('msgsysarray',$msgSysArray);
+//
     	if (isset($_GET['suredelsys'])) {
     		$MsgSystem->where("uid = $userloginid")->delete();
     		redirect('/message/system', 1, '删除成功...');
     	}
-    	$this->display();
+//    	$this->display();
     }
 
     public function comment()
