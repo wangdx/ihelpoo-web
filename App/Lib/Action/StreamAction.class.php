@@ -25,7 +25,10 @@ class StreamAction extends Action {
     public function index()
     {
     	$userloginid = session('userloginid');
-        $this->assign('title','个人中心主页 信息流');
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "信息流 个人中心主页".$recordSchoolInfo['school'];
+    	
+        $this->assign('title',$title);
         
 		$RecordSay = M("RecordSay");
 		$UserLogin = M("UserLogin");
@@ -483,18 +486,18 @@ class StreamAction extends Action {
         } else if ($requestWay == "time") {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
-                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9'");
+                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	} else {
-        		$select->where("say_type != '9'");
+        		$select->where("say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	}
         	$select->order('i_record_say.time DESC');
         	$streamway = "time";
         } else if ($requestWay == "help") {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
-                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type = '1'");
+                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type = '1' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	} else {
-        	    $select->where("say_type = '1'");
+        	    $select->where("say_type = '1' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	}
         	$select->order('i_record_say.last_comment_ti DESC');
         	$streamway = "help";
@@ -514,7 +517,7 @@ class StreamAction extends Action {
 	        	redirect('/stream', 3, '组织成员为空 3秒后页面跳转...');
 	        }
 	        $pidGroupString = substr($pidGroupString, 0, -1);
-        	$select->where("i_record_say.uid IN ($pidGroupString) AND say_type != '9'");
+        	$select->where("i_record_say.uid IN ($pidGroupString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	$select->order('i_record_say.last_comment_ti DESC');
         	$streamway = "group";
         	$this->assign('groupUserNums',$pidGroupNums);
@@ -538,7 +541,7 @@ class StreamAction extends Action {
 	        	redirect('/stream', 3, '还没有就读改专业的同学 3秒后页面跳转...');
 	        }
 	        $allUserString = substr($allUserString, 0, -1);
-        	$select->where("i_record_say.uid IN ($allUserString) AND say_type != '9'");
+        	$select->where("i_record_say.uid IN ($allUserString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	$select->order('i_record_say.last_comment_ti DESC');
         	$streamway = "specialty";
         	$this->assign('groupUserNums',$allUserNums);
@@ -550,9 +553,9 @@ class StreamAction extends Action {
         } else {
         	if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
-                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9'");
+                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	} else {
-        		$select->where("say_type != '9'");
+        		$select->where("say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
         	}
         	$select->order('i_record_say.last_comment_ti DESC');
         	$streamway = "default";
@@ -591,6 +594,7 @@ class StreamAction extends Action {
 					'name' => $record['name'],
 					'number' => $record['number'],
 					'academy' => $record['academy'],
+					'school' => $record['school'],
 					'repatenums' => 1,
 				);
 			} else {
@@ -620,6 +624,7 @@ class StreamAction extends Action {
 					'name' => $record['name'],
 					'number' => $record['number'],
 					'academy' => $record['academy'],
+					'school' => $record['school'],
 					'repatenums' => 0,
 				);
 			}
@@ -659,16 +664,15 @@ class StreamAction extends Action {
         
         /**
          * user shop
-         */
         $UserShop = M("UserShop");
         $recordUserShop = $UserShop->find($userloginid);
         if (!empty($recordUserShop['uid'])) {
         	$this->assign('recordUserShop',$recordUserShop);
         }
+         */
         
         /**
          * user shopping
-         */
         $RecordCommodityassess = M("RecordCommodityassess");
         $goodOnCommodity = $RecordCommodityassess->where("uid = $userloginid AND status = 1")->count();
         $goodOnNeedsure = $RecordCommodityassess->where("uid = $userloginid AND status = 2")->count();
@@ -676,6 +680,7 @@ class StreamAction extends Action {
         $this->assign('goodOnCommodity', $goodOnCommodity);
         $this->assign('goodOnNeedsure', $goodOnNeedsure);
         $this->assign('goodOnAssess', $goodOnAssess);
+         */
         
         /**
          * user group view
@@ -721,8 +726,9 @@ class StreamAction extends Action {
         /**
          * index_spread_info
          */
-        $indexSpreadInfo = $ISysParameter->getParam("index_spread_info");
-        $indexSpreadInfoVaule = $indexSpreadInfo['value'];
+        $SchoolSystem = M("SchoolSystem");
+        $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
+        $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
         $this->assign('indexSpreadInfoVaule',$indexSpreadInfoVaule);
         
         $this->display();
