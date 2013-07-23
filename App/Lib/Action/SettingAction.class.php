@@ -81,7 +81,7 @@ class SettingAction extends Action {
         $this->assign('title','账号设置');
         $this->assign('recorduserlogin',$recordUserLogin);
         $this->assign('recorduserinfo',$recordUserInfo);
-        $this->assign('listSchoolInfo',$listSchoolInfo);
+        $this->assign('listschoolinfo',$listSchoolInfo);
         $this->assign('listopacademy',$listOpAcademy);
         $this->assign('listopspecialty',$listOpSpecialty);
         $this->assign('listopdormitory',$listOpDormitory);
