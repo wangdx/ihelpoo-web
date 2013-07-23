@@ -59,9 +59,9 @@ class MessageAction extends Action {
 
 
         $redismq = new Redis();
-        $redismq->connect('127.0.0.1', 6379);
+        $redismq->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 
-        $msgIds = $redismq->lRange("A:".$userloginid.":M", 0, -1);
+        $msgIds = $redismq->hKeys("A:".$userloginid.":M");
         $msgIdsStr = '';
         foreach($msgIds as $msg){
             $msgIdsStr.=$msg.",";
@@ -85,7 +85,7 @@ class MessageAction extends Action {
             }
 
             $msgSysArray[] = array(
-                'deliver' => 0,
+                'deliver' => $redismq->hGet("A:".$userloginid.":M", $rd['id']),
                 'from_user' => $from_user,
                 'content' => $rd['assess_id'],
                 'url' => $rd['sid'],
@@ -175,7 +175,7 @@ class MessageAction extends Action {
 //
 //    	}
     	$this->assign('msgsysarray',$msgSysArray);
-//
+
     	if (isset($_GET['suredelsys'])) {
     		$MsgSystem->where("uid = $userloginid")->delete();
     		redirect('/message/system', 1, '删除成功...');
