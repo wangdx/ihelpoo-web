@@ -75,6 +75,7 @@ class MessageAction extends Action {
     	 */
         $IUserLogin = D("IUserLogin");
 
+        $redismq->hDel(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
         foreach($recordDiffusion as $rd){
 
     		if (!empty($rd['uid'])) {
@@ -171,7 +172,6 @@ class MessageAction extends Action {
 //
 //            	$MsgSystem->save($deliverMsgUpdate);
 //    		}
-//            $redismq->hDel(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
 //
 //    	}
     	$this->assign('msgsysarray',$msgSysArray);
