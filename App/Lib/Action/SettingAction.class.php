@@ -667,6 +667,16 @@ class SettingAction extends Action {
 
     public function ajax()
     {
+    	if (!empty($_POST['getschoollist'])) {
+            $SchoolInfo = M("SchoolInfo");
+            $resultsSchoolInfo = $SchoolInfo->select();
+            echo '<ul class="setting_school_list_ul">';
+            foreach ($resultsSchoolInfo as $schoolInfo) {
+                echo "<li><a href='".__ROOT__."/setting/index/$schoolInfo[id]'>$schoolInfo[school]</a></li>";
+            }
+            echo '</ul>';
+            exit();
+        }
     	if (!empty($_POST['selectAcademy'])) {
         	$selectAcademyNum = (int)$_POST['selectAcademy'];
             $OpSpecialty = M("OpSpecialty");
@@ -676,6 +686,7 @@ class SettingAction extends Action {
                 echo "<option value='$selectSpecialty[id]'>$selectSpecialty[name]</option>";
             }
             echo '</select>';
+            exit();
         }
         if (!empty($_POST['selectDormitory']) && !empty($_POST['selectSchool'])) {
         	$selectDormitoryType = (int)$_POST['selectDormitory'];
@@ -687,6 +698,7 @@ class SettingAction extends Action {
                 echo "<option value='$selectDormitory[id]'>$selectDormitory[name]</option>";
             }
             echo '</select>';
+            exit();
         }
         if (!empty($_POST['monthAjax']) || !empty($_POST['yearAjax'])) {
             $month = (int)$_POST['monthAjax'];
@@ -709,6 +721,7 @@ class SettingAction extends Action {
             $i++;
             }
             echo "</select>";
+            exit();
         }
         if (!empty($_POST['provinceAjax'])) {
         	$selectProvinceId = (int)$_POST['provinceAjax'];
@@ -719,6 +732,7 @@ class SettingAction extends Action {
 			    echo "<option value='$selectCity[id]'>$selectCity[name]</option>";
             }
             echo "</select>";
+            exit();
         }
         exit();
     }

@@ -132,4 +132,20 @@ $().ready(function(){
             }, "json");
         }
     });
+    $("#selectschool").click(function(){
+        $(this).ajaxStart(function(){
+        	$('#ajaxprogressbar').html($infoLoading);
+        }).ajaxStop(function(){
+        	$infoLoading.remove();
+        });
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "setting/ajax",
+            data: "getschoollist='get'",
+            datatype: "text",
+            success:function(list){
+                $("#ajaxprogressbar").html("<p id='infoupdateok'>"+list+"</p>");
+            }
+        });
+    });
 });
