@@ -677,7 +677,7 @@ class SettingAction extends Action {
             }
             echo '</select>';
         }
-        if (!empty($_POST['selectDormitory'])) {
+        if (!empty($_POST['selectDormitory']) && !empty($_POST['selectSchool'])) {
         	$selectDormitoryType = (int)$_POST['selectDormitory'];
         	$selectSchool = (int)$_POST['selectSchool'];
             $OpDormitory = M("OpDormitory");
