@@ -213,18 +213,12 @@ class SettingAction extends Action {
 	        		/**
 	        		 * iuc user data
 	        		 */
-	        		$url = "http://ihelpoousercenter.sinaapp.com/iuc/retpassword?uid=".$userloginid."&password=".urlencode($password)."&pw=".md5('ihelpoo2013');
-	        		$userdatacontents = file_get_contents($url);
-	        		if ($userdatacontents == 'ok') {
-	        			$updateUserlogignData = array(
-			            	'uid' => $userloginid,
-							'password' => $password,
-		        		);
-		        		$IUserLogin->save($updateUserlogignData);
-		        		$this->ajaxReturn(0,"修改成功",'yes');
-	        		} else {
-	        			$this->ajaxReturn(0,"与我帮圈圈用户中心IUC同步出错",'wrong');
-	        		}
+	        		$updateUserlogignData = array(
+			            'uid' => $userloginid,
+						'password' => $password,
+	        		);
+	        		$IUserLogin->save($updateUserlogignData);
+	        		$this->ajaxReturn(0,"修改成功",'yes');
 	        	} else {
 	        		$this->ajaxReturn(0,"原始密码错误",'wrong');
 	        	}
@@ -340,18 +334,6 @@ class SettingAction extends Action {
             unset($srcTempSmallIconFilename);
 
             /**
-             * iuc user data
-            $recordUserLogin = $UserLogin->find($userloginid);
-            if ($recordUserLogin['school'] == 'hbmy') {
-	            $url = "http://ihelpoousercenter.sinaapp.com/iuc/updateusericon?uid=".$userloginid."&icon_url=".$newImageName."&pw=".md5('ihelpoo2013');
-	            $userdatacontents = file_get_contents($url);
-	            if ($userdatacontents != 'ok') {
-	            	$this->ajaxReturn(0,'保存失败，与我帮圈圈用户中心IUC同步出错','wrong');
-	            }
-            }
-            */
-            	
-            /**
              * update i_user_login
              */
             $newLoginIconData = array(
@@ -466,22 +448,13 @@ class SettingAction extends Action {
         		$this->ajaxReturn(0,'这个微博已经绑定了账号，请选择另一个微博','wrong');
         	}
         	
-        	/**
-        	 * iuc user data
-        	 */
-        	$url = "http://ihelpoousercenter.sinaapp.com/iuc/weibobind?uid=".$userloginid."&weibo_uid=".$_POST['weibo_user_id']."&pw=".md5('ihelpoo2013');
-        	$userdatacontents = file_get_contents($url);
-        	if ($userdatacontents == 'ok') {
-        		$bindData = array(
-	        	    'uid' => $userloginid,
-	        	    'weibo_uid' => $_POST['weibo_user_id'],
-        		);
-        		$isBind = $UserLoginWb->add($bindData);
-        		if ($isBind) {
-        			$this->ajaxReturn(0,'绑定成功','ok');
-        		}
-        	} else {
-        		$this->ajaxReturn(0,'与我帮圈圈IUC同步失败','wrong');
+        	$bindData = array(
+	        	'uid' => $userloginid,
+	        	'weibo_uid' => $_POST['weibo_user_id'],
+        	);
+        	$isBind = $UserLoginWb->add($bindData);
+        	if ($isBind) {
+        		$this->ajaxReturn(0,'绑定成功','ok');
         	}
         }
         $this->display();
@@ -519,28 +492,20 @@ class SettingAction extends Action {
     		$OpSpecialty = M("OpSpecialty");
     		$OpProvince = M("OpProvince");
     		$OpCity = M("OpCity");
-    		$url = "http://ihelpoousercenter.sinaapp.com/iuc/updaterealname?uid=".$userloginid."&realname=".urlencode($postrealname)."&realname_re=0&pw=".md5('ihelpoo2013');
-        	$userdatacontents = file_get_contents($url);
-        	if ($userdatacontents == 'ok') {
-        		$updateUserInfoReal = array(
-	            	'uid' => $userloginid,
-	            	'realname' => $postrealname,
-	            	'realname_re' => 0,
-        		);
-        		$UserInfo->save($updateUserInfoReal);
-        	}
+    		$updateUserInfoReal = array(
+	            'uid' => $userloginid,
+	            'realname' => $postrealname,
+	            'realname_re' => 0,
+    		);
+    		$UserInfo->save($updateUserInfoReal);
     		if (!empty($poststudent)) {
     			$validStudentIs = $DaStudents->where("id = '$poststudent'")->find();
     			if ($validStudentIs) {
-    				$url = "http://ihelpoousercenter.sinaapp.com/iuc/updaterealname?uid=".$userloginid."&realname=".urlencode($postrealname)."&realname_re=2&pw=".md5('ihelpoo2013');
-    				$userdatacontents = file_get_contents($url);
-    				if ($userdatacontents == 'ok') {
-    					$updateUserInfoReal = array(
-			            	'uid' => $userloginid,
-			            	'realname' => $postrealname,
-			            	'realname_re' => 2,
-    					);
-    				}
+    				$updateUserInfoReal = array(
+			            'uid' => $userloginid,
+			            'realname' => $postrealname,
+			            'realname_re' => 2,
+    				);
     				$UserInfo->save($updateUserInfoReal);
     				$birthstring = $validStudentIs['birthday'];
     				$birthyear = substr($birthstring, 0, 4);
@@ -638,25 +603,14 @@ class SettingAction extends Action {
 	            $password = md5($password);
 	            $recordUserLogin = $UserLogin->find($userloginid);
 	            if (empty($recordUserLogin['email'])) {
-	            	
-	            	/**
-	            	 * iuc user data
-	            	 * update account info
-	            	 */
-	            	$url = "http://ihelpoousercenter.sinaapp.com/iuc/weibofillaccount?uid=".$userloginid."&email=".urlencode($email)."&password=".urlencode($password)."&pw=".md5('ihelpoo2013');
-	            	$userdatacontents = file_get_contents($url);
-	            	if ($userdatacontents == 'ok') {
-	            		$newUserlogignData = array(
-			            	'uid' => $userloginid,
-			            	'status' => '1',
-							'email' => $email,
-			            	'password' => $password,
-	            		);
-	            		$newUserId = $UserLogin->save($newUserlogignData);
-	            		$this->ajaxReturn(0,'','yes');
-	            	} else {
-		            	$this->ajaxReturn(0,'邮箱已经在我帮圈圈IUC中存在，请换一个','wrong');
-		            }
+	            	$newUserlogignData = array(
+			            'uid' => $userloginid,
+			            'status' => '1',
+						'email' => $email,
+			            'password' => $password,
+	            	);
+	            	$newUserId = $UserLogin->save($newUserlogignData);
+	            	$this->ajaxReturn(0,'','yes');
 	            } else {
 	            	$this->ajaxReturn(0,'账号登录资料已经完善','wrong');
 	            }

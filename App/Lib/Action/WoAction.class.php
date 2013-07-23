@@ -30,6 +30,7 @@ class WoAction extends Action {
     			$userId = $userloginid;
     		}
     	}
+    	
         $IUserLogin = D("IUserLogin");
         $userLogin = $IUserLogin->userExists($userId);
         $this->assign('userLogin',$userLogin);
@@ -63,11 +64,25 @@ class WoAction extends Action {
         }
 
         /**
-         * user shop
+         * user edu info
          */
-        $UserShop = M("UserShop");
-        $recordUserShop = $UserShop->find($userId);
-        $this->assign('recordUserShop', $recordUserShop);
+        $recordSchoolInfo = i_school_domain();
+        $this->assign('recordSchoolInfo', $recordSchoolInfo);
+        $OpAcademy = M("OpAcademy");
+        $OpSpecialty = M("OpSpecialty");
+        if (!empty($recordUserInfo['academy_op'])) {
+        	$userAcademy = $OpAcademy->where("id = $recordUserInfo[academy_op]")->find();
+        	$this->assign('userAcademy', $userAcademy);
+        }
+        if (!empty($recordUserInfo['specialty_op'])) {
+        	$userSpecialty = $OpSpecialty->where("id = $recordUserInfo[specialty_op]")->find();
+        	$this->assign('userSpecialty', $userSpecialty);
+        }
+        if ($userLogin['school'] != $recordSchoolInfo['id']) {
+        	$SchoolInfo = M("SchoolInfo");
+        	$userLoginSchoolInfo = $SchoolInfo->find($userLogin['school']);
+        	$this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
+        }
     }
 
     public function _empty()
@@ -119,14 +134,6 @@ class WoAction extends Action {
 	        	$this->assign('shieldExist', 0);
 	        }
         }
-
-        /**
-         * user shop
-         */
-        $UserShop = M("UserShop");
-        $recordUserShop = $UserShop->find($userId);
-        $this->assign('recordUserShop', $recordUserShop);
-
     	$RecordSay = M("RecordSay");
 
         /**
