@@ -561,6 +561,7 @@ $().ready(function(){
         						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'>圈她</a>";
         					}
     					}
+    					
     					var inhtml = "<div class='user_info_top_div'>"
     						+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"stream/u/"+msg.data.uid+"' target='_blank'>"
     						+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
@@ -570,9 +571,13 @@ $().ready(function(){
     						+ "		</div>"
     						+ "		<div class='user_info_main_div'>"
     						+ "			<ul>"
-    						+ "             <li>学院: <a target='_blank' href='"+baseUrl+"index/mate?w=academy&n="+msg.data.academy_id+"'>"+msg.data.academy+"</a></li>"
-    						+ "             <li>专业: <a target='_blank' href='"+baseUrl+"index/mate?w=academy&n="+msg.data.academy_id+"&specialty="+msg.data.specialty_id+"'>"+msg.data.specialty+"</a></li>"
-    						+ "             <li>寝室: <a target='_blank' href='"+baseUrl+"index/mate?w=dormitory&n="+msg.data.dormitory_id+"'>"+msg.data.dormitory+"</a></li>"
+    						if (msg.data.schoolname != '') {
+    							+ "             <li>学院: <a target='_blank' href='"+msg.data.domain+"index/mate?w=academy&n="+msg.data.academy_id+"'>"+msg.data.academy+"</a> (<a target='_blank' href='"+msg.data.domain+"'>"+msg.data.schoolname+"</a>)</li>"
+    						} else {
+    							+ "             <li>学院: <a target='_blank' href='"+msg.data.domain+"index/mate?w=academy&n="+msg.data.academy_id+"'>"+msg.data.academy+"</a></li>"
+    						}
+    						+ "             <li>专业: <a target='_blank' href='"+msg.data.domain+"index/mate?w=academy&n="+msg.data.academy_id+"&specialty="+msg.data.specialty_id+"'>"+msg.data.specialty+"</a></li>"
+    						+ "             <li>寝室: <a target='_blank' href='"+msg.data.domain+"index/mate?w=dormitory&n="+msg.data.dormitory_id+"'>"+msg.data.dormitory+"</a></li>"
     						+ "             <li>"+msg.data.introduction+"</li>"
     						+ "			</ul>"
     						+ "		</div>"
