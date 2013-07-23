@@ -66,7 +66,7 @@ class MessageAction extends Action {
         $redismq = new Redis();
         $redismq->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 
-        $msgIds = $redismq->hKeys("A:".$userloginid.":M");
+        $msgIds = $redismq->hKeys(C('R_ACCOUNT').$userloginid.C('R_MESSAGE'));
         $msgIdsStr = '';
         foreach($msgIds as $msg){
             $msgIdsStr.=$msg.",";
@@ -91,7 +91,7 @@ class MessageAction extends Action {
             }
 
             $msgSysArray[] = array(
-                'deliver' => $redismq->hGet("A:".$userloginid.":M", $rd['id']),
+                'deliver' => $redismq->hGet(C('R_ACCOUNT').$userloginid.C('R_MESSAGE'), $rd['id']),
                 'from_user' => $from_user,
                 'content' => $rd['assess_id'],
                 'url' => $rd['sid'],

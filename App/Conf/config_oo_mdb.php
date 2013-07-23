@@ -4,11 +4,12 @@ return array(
 
     'R_NOTICE'=>'N:',
     'R_MESSAGE'=>'M:',
+    'R_ACCOUNT'=>'A:',
 
 
-    'R_SYSTEM'=>'S:',
-    'R_NOTICE_AT'=>'A:',
-    'R_NOTICE_COMMENT'=>'C:',
+    'R_SYSTEM'=>'SY:',
+    'R_AT'=>'AT:',
+    'R_COMMENT'=>'CO:',
 
 
 

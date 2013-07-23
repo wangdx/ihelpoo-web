@@ -963,7 +963,7 @@ class StreamAction extends Action {
 //                        $redismq->hSet(C('R_MESSAGE').C('R_SYSTEM').$userPriority['uid'],"扩散了这条消息给你".":".$diffusionSidArray['1'].":"."0", $ids.":".time());
 
                         $redismq->hIncrBy(C('R_NOTICE').C('R_SYSTEM').substr($userPriority['uid'], 0, strlen($userPriority['uid']) - 3), substr($userPriority['uid'], -3), 1);
-                        $redismq->hSet("A:".$userPriority['uid'].":M", $diffusionId, 0);
+                        $redismq->hSet(C('R_ACCOUNT').$userPriority['uid'].C('R_MESSAGE'), $diffusionId, 0);
 
         	        	/**
        	                 * insert into sys_msg
