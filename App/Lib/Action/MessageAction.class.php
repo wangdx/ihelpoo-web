@@ -8,7 +8,12 @@
  */
 class MessageAction extends Action {
 
-	protected function _initialize()
+    public function resetNoticeCount($redismq, $userloginid)
+    {
+        $redismq->hDel(C('R_NOTICE') . C('R_SYSTEM') . substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
+    }
+
+    protected function _initialize()
 	{
 		$userloginid = session('userloginid');
 		if (!empty($userloginid)) {
@@ -75,7 +80,7 @@ class MessageAction extends Action {
     	 */
         $IUserLogin = D("IUserLogin");
 
-        $redismq->hDel(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
+        $this->resetNoticeCount($redismq, $userloginid);
         foreach($recordDiffusion as $rd){
 
     		if (!empty($rd['uid'])) {
