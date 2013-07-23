@@ -211,13 +211,15 @@
     border: 3px solid #DDD;
     background: #EDF4FB;
     border-radius: 3px;
-    padding: 5px;
+    padding: 10px;
+    width: 300px;
 }
-.setting_school_list_div .close_span{
+#setting_school_close_span{
     
 }
 .setting_school_list_div ul li{
-    display: inline;
+    display: inline-block;
+    margin: 3px 5px;
 }
 /*---real.phtml---*/
 .real_explain{
