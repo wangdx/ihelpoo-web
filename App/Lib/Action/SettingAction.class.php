@@ -32,24 +32,31 @@ class SettingAction extends Action {
     	$recordUserInfo = $UserInfo->find($userloginid);
 
     	/**
+         * school info
+         */
+        $recordSchoolInfo = i_school_domain();
+        $SchoolInfo = M("SchoolInfo");
+        $listSchoolInfo = $SchoolInfo->select();
+    	
+    	/**
     	 * show user info
     	 */
     	$OpAcademy = M("OpAcademy");
-        $listOpAcademy = $OpAcademy->select();
+        $listOpAcademy = $OpAcademy->where("school = $recordSchoolInfo[id]")->select();
         $OpSpecialty = M("OpSpecialty");
 
         if (!empty($recordUserInfo['academy_op'])) {
         	$listOpSpecialty = $OpSpecialty->where("academy = $recordUserInfo[academy_op]")->select();
         } else {
-        	$listOpSpecialty = $OpSpecialty->where("academy = 1")->select();
+        	$listOpSpecialty = $OpSpecialty->where("school = $recordSchoolInfo[id]")->select();
         }
 
         $OpDormitory = M("OpDormitory");
-        $listOpDormitory = $OpDormitory->select();
+        $listOpDormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->select();
         $OpProvince = M("OpProvince");
         $listOpProvince = $OpProvince->select();
         $OpCity = M("OpCity");
-
+        
         if (!empty($recordUserInfo['province_op'])) {
         	$listOpCity = $OpCity->where("prov_id = $recordUserInfo[province_op]")->select();
         } else {
@@ -74,6 +81,7 @@ class SettingAction extends Action {
         $this->assign('title','账号设置');
         $this->assign('recorduserlogin',$recordUserLogin);
         $this->assign('recorduserinfo',$recordUserInfo);
+        $this->assign('listSchoolInfo',$listSchoolInfo);
         $this->assign('listopacademy',$listOpAcademy);
         $this->assign('listopspecialty',$listOpSpecialty);
         $this->assign('listopdormitory',$listOpDormitory);
@@ -92,6 +100,7 @@ class SettingAction extends Action {
 	    		array('nickname', 'require', '昵称不能为空'),
 	            array('sex', 'number', 'sex格式错误'),
 	            array('enteryear', 'number', 'enteryear格式错误'),
+	            array('school', 'number', 'school格式错误'),
 	            array('academy', 'number', 'academy格式错误'),
 	            array('specialty', 'number', 'specialty格式错误'),
 	            array('year', 'number', 'year格式错误'),
@@ -118,6 +127,7 @@ class SettingAction extends Action {
     			$month = trim(htmlspecialchars(strip_tags($_POST["month"])));
     			$day = trim(htmlspecialchars(strip_tags($_POST["day"])));
     			//db seperater
+    			$school = trim(htmlspecialchars(strip_tags($_POST["school"])));
     			$academy = trim(htmlspecialchars(strip_tags($_POST["academy"])));
     			$specialty = trim(htmlspecialchars(strip_tags($_POST["specialty"])));
     			$dormitory = trim(htmlspecialchars(strip_tags($_POST["dormitory"])));
@@ -135,45 +145,37 @@ class SettingAction extends Action {
     				$this->ajaxReturn(0,'这个昵称已经被别人占用','wrong');
     			}
 
-    			/**
-    			 * iuc user data
-    			 */
-    			$url = "http://ihelpoousercenter.sinaapp.com/iuc/updateuserdata?uid=".$userloginid."&nickname=".urlencode($nickname)."&sex=".$sex."&birthday=".$birthday."&enteryear=".$enteryear."&introduction=".urlencode($introduction)."&province=".$province."&city=".$city."&mobile=".$mobile."&qq=".$qq."&weibo=".urlencode($weibo)."&pw=".md5('ihelpoo2013');
-    			$userdatacontents = file_get_contents($url);
-    			if ($userdatacontents == 'ok') {
     				
-    				/**
-    				 * update i_user_login
-    				 */
-    				$updateUserloginData = array(
-		            	'uid' => $userloginid,
-		            	'nickname' => $nickname,
-		            	'sex' => $sex,
-	    				'birthday' => $birthday,
-		            	'enteryear' => $enteryear,
-    				);
-    				$UserLogin->save($updateUserloginData);
+    			/**
+    			 * update i_user_login
+    			 */
+    			$updateUserloginData = array(
+		            'uid' => $userloginid,
+		            'nickname' => $nickname,
+		            'sex' => $sex,
+	    			'birthday' => $birthday,
+		            'enteryear' => $enteryear,
+		            'school' => $school
+    			);
+    			$UserLogin->save($updateUserloginData);
 
-    				/**
-    				 * update i_user_info
-    				 */
-    				$updateUserInfoData = array(
-	    				'uid' => $userloginid,
-	    				'introduction' => $introduction,
-	    				'academy_op' => $academy,
-	    				'specialty_op' => $specialty,
-	    				'dormitory_op' => $dormitory,
-	    				'province_op' => $province,
-	    				'city_op' => $city,
-	    				'mobile' => $mobile,
-	    				'qq' => $qq,
-	    				'weibo' => $weibo,
-    				);
-    				$UserInfo->save($updateUserInfoData);
-    				$this->ajaxReturn(0,"修改成功",'yes');
-    			} else {
-    				$this->ajaxReturn(0,"与我帮圈圈用户中心IUC同步出错",'wrong');
-    			}
+    			/**
+    			 * update i_user_info
+    			 */
+    			$updateUserInfoData = array(
+	    			'uid' => $userloginid,
+	    			'introduction' => $introduction,
+	    			'academy_op' => $academy,
+	    			'specialty_op' => $specialty,
+	    			'dormitory_op' => $dormitory,
+	    			'province_op' => $province,
+	    			'city_op' => $city,
+	    			'mobile' => $mobile,
+	    			'qq' => $qq,
+	    			'weibo' => $weibo,
+    			);
+    			$UserInfo->save($updateUserInfoData);
+    			$this->ajaxReturn(0,"修改成功",'yes');
     		}
     	}
     	$this->display();

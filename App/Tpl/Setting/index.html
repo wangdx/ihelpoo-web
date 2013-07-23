@@ -54,13 +54,25 @@
       </select>
     </li>
     <li>
+      <span class="settitle">学校:</span>
+      <select id="school" name="school">
+         <foreach name="listschoolinfo" item="school">
+         	<if condition="$school.id eq $recorduserlogin['school']"> 
+	        	<option value='{$school.id}' selected>{$school.school}</option>
+			<else />
+				<option value='{$school.id}'>{$school.school}</option>
+			</if>
+		</foreach>
+      </select>
+    </li>
+    <li>
       <span class="settitle">学院:</span>
       <select id="academy" name="academy">
          <foreach name="listopacademy" item="academy">
-         	<if condition="$academy.number eq $recorduserinfo['academy_op']"> 
-	        	<option value='{$academy.number}' selected>{$academy.name}</option>
+         	<if condition="$academy.id eq $recorduserinfo['academy_op']"> 
+	        	<option value='{$academy.id}' selected>{$academy.name}</option>
 			<else />
-				<option value='{$academy.number}'>{$academy.name}</option>
+				<option value='{$academy.id}'>{$academy.name}</option>
 			</if>
 		</foreach>
       </select>
