@@ -712,7 +712,6 @@ class StreamAction extends Action {
     {
         $userloginid = session('userloginid');
         $recordSchoolInfo = i_school_domain();
-        
         $uidView = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if ($uidView <= 0 && !empty($userloginid)) {
         	$uidView = $userloginid;
