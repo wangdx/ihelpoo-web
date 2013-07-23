@@ -65,6 +65,10 @@ class HelpAction extends Action {
     
     public function lists()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "帮助列表 - ".$recordSchoolInfo['school'];
+    	$this->assign('title',$title);
+    	
         $page = i_page_get_num();
         $count = 20;
         $offset = $page * $count;
@@ -73,7 +77,7 @@ class HelpAction extends Action {
         /**
          * show help record not finish, below is the same
          */
-        $recordHelpList = $RecordSay->where("i_record_say.say_type = 1")
+        $recordHelpList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_say.school_id = $recordSchoolInfo[id]")
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
         ->order('i_record_say.time DESC')
@@ -84,15 +88,11 @@ class HelpAction extends Action {
    	    /**
    	     * paging
    	     */
-   	    $totalHelpNums = $RecordSay->where("say_type = 1")->count();
+   	    $totalHelpNums = $RecordSay->where("say_type = 1 AND school_id = $recordSchoolInfo[id]")->count();
         $totalPages = ceil($totalHelpNums / $count);
         $this->assign('totalHelpNums',$totalHelpNums);
         $this->assign('totalPages',$totalPages);
         
-        /**
-         * html title
-         */
-        $this->assign('title','帮助列表 - 我帮圈圈');
         $this->display();
     }
     
