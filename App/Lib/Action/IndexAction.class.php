@@ -139,6 +139,7 @@ class IndexAction extends Action {
     	$recordSchoolInfo = i_school_domain();
     	$title = "大家 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
+        $this->assign('schoolname',$recordSchoolInfo['school']);
 
     	$UserLogin = M("UserLogin");
     	$UserInfo = M("UserInfo");
