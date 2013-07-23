@@ -670,11 +670,11 @@ class SettingAction extends Action {
     	if (!empty($_POST['getschoollist'])) {
             $SchoolInfo = M("SchoolInfo");
             $resultsSchoolInfo = $SchoolInfo->select();
-            echo '<ul class="setting_school_list_ul">';
+            echo '<div class="setting_school_list_div"><span class="f12 fr" id="setting_school_close_span">关闭</span><ul>';
             foreach ($resultsSchoolInfo as $schoolInfo) {
                 echo "<li><a href='".__ROOT__."/setting/index/$schoolInfo[id]'>$schoolInfo[school]</a></li>";
             }
-            echo '</ul>';
+            echo '</ul></div>';
             exit();
         }
     	if (!empty($_POST['selectAcademy'])) {

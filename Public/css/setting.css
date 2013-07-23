@@ -207,6 +207,18 @@
     color: #666;
     display: none;
 }
+.setting_school_list_div{
+    border: 3px solid #DDD;
+    background: #EDF4FB;
+    border-radius: 3px;
+    padding: 5px;
+}
+.setting_school_list_div .close_span{
+    
+}
+.setting_school_list_div ul li{
+    display: inline;
+}
 /*---real.phtml---*/
 .real_explain{
     padding: 5px;
