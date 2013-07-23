@@ -121,8 +121,7 @@ class HelpAction extends Action {
    	    /**
    	     * paging
    	     */
-        $RecordHelp = M("RecordHelp");
-   	    $totalHelpNums = $RecordHelp->where("i_record_help.win_uid != '' AND i_record_say.school_id = $recordSchoolInfo[id]")->join('i_record_help ON i_record_say.sid = i_record_help.sid')->count();
+   	    $totalHelpNums = $RecordSay->where("i_record_help.win_uid != '' AND i_record_say.school_id = $recordSchoolInfo[id]")->join('i_record_help ON i_record_say.sid = i_record_help.sid')->count();
         $totalPages = ceil($totalHelpNums / $count);
         $this->assign('totalHelpNums',$totalHelpNums);
         $this->assign('totalPages',$totalPages);
