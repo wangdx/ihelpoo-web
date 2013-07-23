@@ -34,7 +34,6 @@ class SettingAction extends Action {
     	/**
          * school info
          */
-        $recordSchoolInfo = i_school_domain();
         $SchoolInfo = M("SchoolInfo");
         $listSchoolInfo = $SchoolInfo->select();
     	
@@ -42,17 +41,17 @@ class SettingAction extends Action {
     	 * show user info
     	 */
     	$OpAcademy = M("OpAcademy");
-        $listOpAcademy = $OpAcademy->where("school = $recordSchoolInfo[id]")->select();
+        $listOpAcademy = $OpAcademy->where("school = $recordUserLogin[school]")->select();
         $OpSpecialty = M("OpSpecialty");
 
         if (!empty($recordUserInfo['academy_op'])) {
         	$listOpSpecialty = $OpSpecialty->where("academy = $recordUserInfo[academy_op]")->select();
         } else {
-        	$listOpSpecialty = $OpSpecialty->where("school = $recordSchoolInfo[id]")->select();
+        	$listOpSpecialty = $OpSpecialty->where("school = $recordUserLogin[school]")->select();
         }
 
         $OpDormitory = M("OpDormitory");
-        $listOpDormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->select();
+        $listOpDormitory = $OpDormitory->where("school = $recordUserLogin[school]")->select();
         $OpProvince = M("OpProvince");
         $listOpProvince = $OpProvince->select();
         $OpCity = M("OpCity");
