@@ -4,6 +4,7 @@
     $emotion = new Emotion();
 	Vendor('Ihelpoo.Ofunction');
     $ofunction = new Ofunction();
+	$SchoolInfo = M("SchoolInfo");
 ?>
 <include file="Public:header" />
 <link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
@@ -156,6 +157,7 @@
 	      </ul>
 	      <!-- data storage -->
 	      <input type="hidden" name="help_is" id="help_is_input" value="0"/>
+	      <input type="hidden" name="schoolpublishid" id="schoolpublishid" value="<?php echo $thisschoolid; ?>"/>
 	      <input type="hidden" name="imageurls" id="imageurls" />
 	      <input type="hidden" name="atusers" id="atusers" />
 	      <input type="hidden" name="textareacontent" id="textareacontent" />
@@ -275,20 +277,28 @@
       <?php if (i_degree($record['active']) > 4) { ?>
       <span class="level<?php echo i_degree($record['active']) ?>" title="等级:<?php echo i_degree($record['active']) ?>"></span>
       <?php } else if (i_degree($record['active']) < 2) { ?>
-      <span class="red_l f10" title="欢迎新童鞋:D">新童鞋</span>
+      <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
       <?php } ?>
       <?php if ($record['type'] == '1') { ?>
-      	<?php if (!empty($record['name'])) { ?>
-      		<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">[<?php echo $record['schoolname']; ?>]</a>
       	<?php } else { ?>
-      		<?php if ($record['school'] == 'zzuli') { ?>
-      			<a href="http://zzuli.ihelpoo.com/" class="gray f12" title="来自我帮圈圈郑州轻工业学院">[郑州轻工业学院]</a>
+      		<?php if (!empty($record['name'])) { ?>
+      			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
       		<?php } ?>
       	<?php } ?>
       <?php } else if ($record['type'] == '2') { ?>
-      	<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织?</a>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的组织</a>
+      	<?php } else { ?>
+      		<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织?</a>
+      	<?php } ?>
       <?php } else if ($record['type'] == '3') { ?>
-      	<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的商家</a>
+      	<?php } else { ?>
+      		<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
+      	<?php } ?>
       <?php } ?>
     </div>
     <p class="s_li_p_content lh15">
@@ -352,6 +362,10 @@
           }
       }
       ?>
+      <?php if ($record['school_record'] != $thisschoolid) { ?>
+      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
+      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
+      <?php } ?>
     </span>
     <span class="s_li_s_comment f12 black_l">
       <span class="priority_shield"><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈<?php echo $record['sex'] == '1' ? '他' : '她' ?> or 屏蔽<?php echo $record['sex'] == '1' ? '他' : '她' ?></a></span>
@@ -418,25 +432,6 @@
 			</li>
 			<li>今日在线时长: <span class="fb f14 gray"><?php echo floor($recordUserStatus['total_active_ti']/60) ?></span>min</li>
 			<li>连续登录: <span class="fb f14 gray">{$userloginedrecord['login_days_co']}</span>天</li>
-		</ul>
-	</div>
-	<div class="stream_right_add_userinfo">
-		<ul class="stream_right_add_ul black_l f12">
-			<!-- <li><a href="__ROOT__/message/coin"><span class="fb black_l">钱包RMB:</span> <span class="fb f14 red">{$userloginedrecord['coins']}</span><span class="black_l">元</span></a></li> -->
-			<li>
-				<a href="__ROOT__/mallset/buyer?step=ontrade">交易中<span class="fb orange">({$goodOnCommodity})</span></a>
-				<a href="__ROOT__/mallset/buyer?step=needsure">待确认收货<span class="fb orange">({$goodOnNeedsure})</span></a>
-			</li>
-			<li><a href="__ROOT__/mallset/buyer?step=needassess">待评价<span class="fb orange">({$goodOnAssess})</span></a> | <a href="__ROOT__/mallset/shoppingcart">购物车</a></li>
-		</ul>
-	</div>
-	<div class="stream_right_add_userinfo">
-		<ul class="stream_right_add_ul black_l f12">
-			<?php if (empty($recordUserShop['uid'])) { ?>
-			<li><a class="btn_red f12" href="__ROOT__/mall/newshop?agreement=read">我要开店</a></li>
-			<?php } else { ?>
-			<li><a href="__ROOT__/mall/shop/<?php echo $userloginedrecord['uid']; ?>" class="f12">进入我的店铺</a></li>
-			<?php } ?>
 		</ul>
 	</div>
 	<div class="stream_right_add_userinfo">

@@ -15,7 +15,17 @@ class AboutAction extends Action {
     
     public function index()
     {
-    	$this->assign('title','关于我们');
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "关于我们 ".$recordSchoolInfo['school'];
+    	$this->assign('title', $title);
+    	
+    	$SchoolSystem = M("SchoolSystem");
+    	$recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
+    	$this->assign('schoolabout',$recordSchoolSystem['about']);
+    	
+    	$SchoolWebmaster = M("SchoolWebmaster");
+    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->select();
+    	$this->assign('schoolwebmaster',$recordSchoolWebmaster);
     	$this->display();
     }
     

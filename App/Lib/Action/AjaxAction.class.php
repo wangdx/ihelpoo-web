@@ -330,6 +330,7 @@ class AjaxAction extends Action {
     public function getuserinfo()
     {
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
     	if ($this->isPost()) {
     		if (!empty($_POST['userid']) || !empty($_POST['usernickname'])) {
     			$UserLogin = M("UserLogin");
@@ -345,10 +346,11 @@ class AjaxAction extends Action {
         			}
     			}
     			$UserInfo = M("UserInfo");
+    			$SchoolInfo = M("SchoolInfo");
     			$OpAcademy = M("OpAcademy");
     			$OpSpecialty = M("OpSpecialty");
     			$OpDormitory = M("OpDormitory");
-    			$recordUserLogin = $UserLogin->where("uid = $userid")->field('uid,nickname,sex,birthday,enteryear,type,online,active,icon_url')->find();
+    			$recordUserLogin = $UserLogin->where("uid = $userid")->field('uid,nickname,sex,birthday,enteryear,type,online,active,icon_url,school')->find();
     			if (!$recordUserLogin['uid']) {
     				$this->ajaxReturn(0,"用户不存在",0);
     			} else {
@@ -373,6 +375,7 @@ class AjaxAction extends Action {
     				$recordOpSpecialtyName = $recordOpSpecialty['name'] == NULL ? '':$recordOpSpecialty['name'];
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
+    				
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
     					'nickname' => $recordUserLogin['nickname'],
@@ -384,7 +387,7 @@ class AjaxAction extends Action {
     					'icon_url' => i_icon_check("$recordUserLogin[uid]", "$recordUserLogin[icon_url]", "s"),
     					'introduction' => $recordUserInfoIntroduction,
     					'academy' => $recordOpAcademyName,
-    					'academy_id' => $recordOpAcademy['number'],
+    					'academy_id' => $recordOpAcademy['id'],
     					'specialty' => $recordOpSpecialtyName,
     					'specialty_id' => $recordOpSpecialty['id'],
     					'dormitory' => $recordOpDormitoryName,
@@ -393,7 +396,24 @@ class AjaxAction extends Action {
     					'follow' => $recordUserInfoFollow,
     					'user_relation' => '',
     				);
-
+    				
+    				
+    				/**
+    				 * domain
+    				 */
+    				$thisUserSchoolInfo = $SchoolInfo->find($recordUserLogin['school']);
+    				$userInfoArray['domain'] = $thisUserSchoolInfo['domain_main'] == NULL ? $thisUserSchoolInfo['domain'] : $thisUserSchoolInfo['domain_main'];
+    				$userInfoArray['domain'] = "http://".$userInfoArray['domain']."/";
+    				
+    				/**
+    				 * school info
+    				 */
+    				if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
+    					$userInfoArray['schoolname'] = $thisUserSchoolInfo['school'];
+    				} else {
+    					$userInfoArray['schoolname'] = NULL;
+    				}
+    				
     				/**
     				 *
     				 * user relation

@@ -22,14 +22,16 @@ class LabAction extends Action {
     
     public function index()
     {
-    	$title = "实验室 我帮圈圈";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "实验室 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
         $this->display();
     }
 
     public function maponline()
     {
-    	$title = "在线区域位置3.2 我帮圈圈";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "在线区域位置3.2 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
     	
     	/**

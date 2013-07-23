@@ -22,7 +22,8 @@ class HelpAction extends Action {
     
     public function index()
     {
-    	$title = "帮助广场 - 我帮圈圈";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "帮助广场 - ".$recordSchoolInfo['school'];
         $this->assign('title',$title);
 
     	/**
@@ -30,7 +31,7 @@ class HelpAction extends Action {
     	 * show help record not finish
     	 */
    	    $RecordSay = M("RecordSay");
-   	    $recordHelpGoonList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status < 3")
+   	    $recordHelpGoonList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status < 3 AND i_record_say.school_id = $recordSchoolInfo[id]")
    	    ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
    	    ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
    	    ->order('i_record_say.time DESC')
@@ -42,7 +43,7 @@ class HelpAction extends Action {
    	     * 
    	     * show help record finished
    	     */
-   	    $recordHelpFinishList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status = 3")
+   	    $recordHelpFinishList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status = 3 AND i_record_say.school_id = $recordSchoolInfo[id]")
    	    ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
    	    ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
    	    ->order('i_record_say.time DESC')
@@ -52,19 +53,10 @@ class HelpAction extends Action {
    	    
    	    /**
    	     * 
-   	     * show user order by coins
-   	     */
-   	    $UserLogin = M("UserLogin");
-        $recordUserStatusList = $UserLogin->order('i_user_login.coins DESC')
-   	    ->limit(10)
-   	    ->select();
-   	    $this->assign('recordUserStatusList',$recordUserStatusList);
-   	    
-   	    /**
-   	     * 
    	     * show user order by active
    	     */
-   	    $recordUserActiveList = $UserLogin->order('i_user_login.active DESC')
+   	    $UserLogin = M("UserLogin");
+   	    $recordUserActiveList = $UserLogin->where("school = $recordSchoolInfo[id]")->order('i_user_login.active DESC')
    	    ->limit(10)
    	    ->select();
    	    $this->assign('recordUserActiveList',$recordUserActiveList);
@@ -73,6 +65,10 @@ class HelpAction extends Action {
     
     public function lists()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "帮助列表 - ".$recordSchoolInfo['school'];
+    	$this->assign('title',$title);
+    	
         $page = i_page_get_num();
         $count = 20;
         $offset = $page * $count;
@@ -81,7 +77,7 @@ class HelpAction extends Action {
         /**
          * show help record not finish, below is the same
          */
-        $recordHelpList = $RecordSay->where("i_record_say.say_type = 1")
+        $recordHelpList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_say.school_id = $recordSchoolInfo[id]")
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
         ->order('i_record_say.time DESC')
@@ -92,21 +88,18 @@ class HelpAction extends Action {
    	    /**
    	     * paging
    	     */
-   	    $totalHelpNums = $RecordSay->where("say_type = 1")->count();
+   	    $totalHelpNums = $RecordSay->where("say_type = 1 AND school_id = $recordSchoolInfo[id]")->count();
         $totalPages = ceil($totalHelpNums / $count);
         $this->assign('totalHelpNums',$totalHelpNums);
         $this->assign('totalPages',$totalPages);
         
-        /**
-         * html title
-         */
-        $this->assign('title','帮助列表 - 我帮圈圈');
         $this->display();
     }
     
     public function well()
     {   
-    	$title = "最佳帮助 - 我帮圈圈";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "最佳帮助 - ".$recordSchoolInfo['school'];
     	$this->assign('title',$title);
     	
         $page = i_page_get_num();
@@ -117,7 +110,7 @@ class HelpAction extends Action {
          * show help record finish well done
     	 */
         $RecordSay = M("RecordSay");
-        $recordHelpWellList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.win_uid != ''")
+        $recordHelpWellList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.win_uid != '' AND i_record_say.school_id = $recordSchoolInfo[id]")
         ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->order('i_record_say.time DESC')
@@ -128,8 +121,7 @@ class HelpAction extends Action {
    	    /**
    	     * paging
    	     */
-        $RecordHelp = M("RecordHelp");
-   	    $totalHelpNums = $RecordHelp->where("win_uid != ''")->count();
+   	    $totalHelpNums = $RecordSay->where("i_record_help.win_uid != '' AND i_record_say.school_id = $recordSchoolInfo[id]")->join('i_record_help ON i_record_say.sid = i_record_help.sid')->count();
         $totalPages = ceil($totalHelpNums / $count);
         $this->assign('totalHelpNums',$totalHelpNums);
         $this->assign('totalPages',$totalPages);
@@ -138,7 +130,8 @@ class HelpAction extends Action {
     
     public function need()
     {
-    	$title = "需要帮助 - 我帮圈圈";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "需要帮助 - ".$recordSchoolInfo['school'];
     	$this->assign('title',$title);
     	
         $page = i_page_get_num();
@@ -149,7 +142,7 @@ class HelpAction extends Action {
          * show help record finish well done
     	 */
         $RecordSay = M("RecordSay");
-        $recordHelpNeedList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status < 3")
+        $recordHelpNeedList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status < 3 AND i_record_say.school_id = $recordSchoolInfo[id]")
         ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->order('i_record_say.time DESC')
@@ -160,8 +153,7 @@ class HelpAction extends Action {
    	    /**
    	     * paging
    	     */
-        $RecordHelp = M("RecordHelp");
-   	    $totalHelpNums = $RecordHelp->where("status < 3")->count();
+   	    $totalHelpNums = $RecordSay->where("i_record_help.status < 3 AND i_record_say.school_id = $recordSchoolInfo[id]")->join('i_record_help ON i_record_say.sid = i_record_help.sid')->count();
         $totalPages = ceil($totalHelpNums / $count);
         $this->assign('totalHelpNums',$totalHelpNums);
         $this->assign('totalPages',$totalPages);
