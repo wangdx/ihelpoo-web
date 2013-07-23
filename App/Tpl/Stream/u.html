@@ -47,8 +47,13 @@
 	<?php } else { ?> 
     <li><?php echo i_grade($userView['enteryear']) ?> <span class="gray">入学年份<?php echo $userView['enteryear'] ?></span></li>
     <li><?php echo i_constellation($userView['birthday']),i_sex($userView['sex']) ?></li>
-    <li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black"><?php echo $userAcademy['name']; ?></a></li>
-    <li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black"><?php echo $userSpecialty['name']; ?></a></li>
+    <?php if ($recordSchoolInfo['id'] != $userView['school']) { ?>
+    	<li><a href="<?php echo $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black"><?php echo $recordSchoolInfo['school']; ?> <?php echo $userAcademy['name']; ?></a></li>
+    	<li><a href="<?php echo $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black"><?php echo $userSpecialty['name']; ?></a></li>
+    <?php } else { ?>
+    	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black"><?php echo $userAcademy['name']; ?></a></li>
+    	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black"><?php echo $userSpecialty['name']; ?></a></li>
+    <?php } ?>
     <?php } ?> 
     <li title="一句话简介" style="width: 300px; cursor: pointer"><?php echo $userInfo['introduction']; ?><span class="icon_write"></span></li>
     <li></li>

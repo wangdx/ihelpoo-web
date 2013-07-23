@@ -151,7 +151,6 @@ class StreamAction extends Action {
                 
         		/**
         		 * insert data into database
-        		 *
         		 * image string handle
         		 */
         		$RecordOutimg = M("RecordOutimg");
@@ -341,25 +340,6 @@ class StreamAction extends Action {
                      * 3.Encryption records
                      */
                     if (!empty($reward_coins)) {
-	                    /**
-	                     * $UserCoins = M("UserCoins");
-	                    $UpdateCoinsTime = time();
-	                    $UpdateCoinsHash = md5($recordUserLogin['coins'].$reward_coins.$UpdateCoinsTime);
-	                    $newUserCoinsData = array(
-	                    	'id' => '',
-	                    	'uid' => $userloginid,
-	                    	'total' => $recordUserLogin['coins'],
-	                    	'use' => $reward_coins,
-	                    	'way' => 'min',
-	                    	'reason' => '求助使用',
-	                    	'hash' => $UpdateCoinsHash,
-	                    	'status' => 1,
-	                    	'check_ti' => $UpdateCoinsTime,
-	                    	'time' => $UpdateCoinsTime
-	                    );
-	                    $UserCoins->add($newUserCoinsData);
-	                    **/
-                    	
                     	$MsgActive = M("MsgActive");
 			            $msgActiveArray = array(
 							'id' => '',
@@ -673,26 +653,6 @@ class StreamAction extends Action {
         $this->assign('totalUserHonorNums',$totalUserHonorNums);
         
         /**
-         * user shop
-        $UserShop = M("UserShop");
-        $recordUserShop = $UserShop->find($userloginid);
-        if (!empty($recordUserShop['uid'])) {
-        	$this->assign('recordUserShop',$recordUserShop);
-        }
-         */
-        
-        /**
-         * user shopping
-        $RecordCommodityassess = M("RecordCommodityassess");
-        $goodOnCommodity = $RecordCommodityassess->where("uid = $userloginid AND status = 1")->count();
-        $goodOnNeedsure = $RecordCommodityassess->where("uid = $userloginid AND status = 2")->count();
-        $goodOnAssess = $RecordCommodityassess->where("uid = $userloginid AND status = 4")->count();
-        $this->assign('goodOnCommodity', $goodOnCommodity);
-        $this->assign('goodOnNeedsure', $goodOnNeedsure);
-        $this->assign('goodOnAssess', $goodOnAssess);
-         */
-        
-        /**
          * user group view
          */
         if (!empty($pidGroupArray)) {
@@ -751,6 +711,8 @@ class StreamAction extends Action {
     public function u()
     {
         $userloginid = session('userloginid');
+        $recordSchoolInfo = i_school_domain();
+        
         $uidView = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if ($uidView <= 0 && !empty($userloginid)) {
         	$uidView = $userloginid;
@@ -767,8 +729,9 @@ class StreamAction extends Action {
         if (empty($userViewUid)) {
             redirect('/stream', 3, '用户不存在呢 :(...');
         }
-        $this->assign('title',$userView['nickname'].'的一些信息 关于');
+        $this->assign('title',$userView['nickname'].'的一些信息 '.$recordSchoolInfo['school']);
         $this->assign('userView', $userView);
+        $this->assign('recordSchoolInfo', $recordSchoolInfo);
         
         /**
          * change skin 
