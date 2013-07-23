@@ -57,6 +57,14 @@
     <li><?php echo i_constellation($toUserRecord['birthday']) ?> <?php echo i_grade($toUserRecord['enteryear']) ?> <span class="sex<?php echo $toUserRecord['sex'] ?>"></span></li>
     <li><?php echo $toUserAcademy ?></li>
     <li><?php echo $toUserSpecialty ?></li>
+    <?php if ($recordSchoolInfo['id'] != $toUserRecord['school']) { ?>
+    	<li><a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/" title="学校" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?></a></li>
+    	<li><a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $toUserAcademy['name']; ?></a></li>
+    	<li><a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
+    <?php } else { ?>
+    	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $toUserAcademy['name']; ?></a></li>
+    	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
+    <?php } ?>
     <li><span class="f12 gray"><?php echo $toUserIntroduction; ?></span></li>
     <li><a href="__ROOT__/talk/add/<?php echo $toUserRecord['uid'] ?>" class="f12 gray"><span class="icon_n_fans"></span> 加好友</a></li>
   </ul>
