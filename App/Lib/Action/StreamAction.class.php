@@ -26,7 +26,7 @@ class StreamAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
-    	$title = "信息流 个人中心主页".$recordSchoolInfo['school'];
+    	$title = "信息流 个人中心主页 ".$recordSchoolInfo['school'];
     	
         $this->assign('title',$title);
         
