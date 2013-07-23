@@ -51,6 +51,7 @@ class StreamAction extends Action {
 	        	array('authority', 'number', 'authority错误'),
 	        	array('reward_coins', 'number', 'reward_coins格式错误'),
 	        	array('verificationcode', 'number', '验证码格式错误'),
+	        	array('schoolpublishid', 'number', '验证码格式错误'),
         	);
         	$RecordSay->setProperty("_validate", $validate);
         	$result = $RecordSay->create();
@@ -63,6 +64,7 @@ class StreamAction extends Action {
         		$videourl = trim($_POST["videourl"]);
         		$atusers = htmlspecialchars(addslashes(strtolower(trim($_POST["atusers"]))));
         		$help_is = (int)htmlspecialchars(strtolower(trim($_POST["help_is"])));
+        		$schoolpublishid = (int)htmlspecialchars(strtolower(trim($_POST["schoolpublishid"])));
         		$authority = (int)htmlspecialchars(strtolower(trim($_POST["authority"])));
         		$reward_coins = (int)htmlspecialchars(strtolower(trim($_POST["reward_coins"])));
         		$verificationcode = (int)htmlspecialchars(strtolower(trim($_POST["verificationcode"])));
@@ -205,7 +207,8 @@ class StreamAction extends Action {
                     'authority' => $authority,
                     'time' => time(),
                     'last_comment_ti' => time(),
-                    'from' => $fromBrowser
+                    'from' => $fromBrowser,
+                    'school_id' => $schoolpublishid
                 );
                 $sayLastInsertId = $RecordSay->add($dataRecordSay);
                 
