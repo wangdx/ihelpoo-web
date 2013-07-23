@@ -55,6 +55,7 @@ class HelpAction extends Action {
    	     * 
    	     * show user order by active
    	     */
+   	    $UserLogin = M("UserLogin");
    	    $recordUserActiveList = $UserLogin->where("school = $recordSchoolInfo[id]")->order('i_user_login.active DESC')
    	    ->limit(10)
    	    ->select();
