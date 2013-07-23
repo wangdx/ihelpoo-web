@@ -281,8 +281,8 @@
       	<?php if (!empty($record['name'])) { ?>
       		<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
       	<?php } else { ?>
-      		<?php if ($record['school'] == 'zzuli') { ?>
-      			<a href="http://zzuli.ihelpoo.com/" class="gray f12" title="来自我帮圈圈郑州轻工业学院">[郑州轻工业学院]</a>
+      		<?php if ($record['school'] == $thisschoolid) { ?>
+      			<a href="http://<?php echo $record['domain']; ?>/" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">[<?php echo $record['schoolname']; ?>]</a>
       		<?php } ?>
       	<?php } ?>
       <?php } else if ($record['type'] == '2') { ?>

@@ -26,9 +26,10 @@ class StreamAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
-    	$title = "信息流 个人中心主页 ".$recordSchoolInfo['school'];
+    	$title = "信息流 个人中心 - ".$recordSchoolInfo['school'];
     	
         $this->assign('title',$title);
+        $this->assign('thisschoolid',$recordSchoolInfo['id']);
         
 		$RecordSay = M("RecordSay");
 		$UserLogin = M("UserLogin");
@@ -563,10 +564,12 @@ class StreamAction extends Action {
         $recordSay = $select->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->join('i_user_info ON i_record_say.uid = i_user_info.uid')
         ->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
-		->field('sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,time,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy')
+        ->join('i_school_info ON i_user_login.school = i_school_info.id')
+		->field('sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,time,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy,i_school_info.id,i_school_info.school as schoolname,i_school_info.domain,i_school_info.domain_main')
 		->limit($offset,$count)->select();
 		$userRecordSayUidBefore = NULL;
 		foreach ($recordSay as $record) {
+			$schooldomain = $record['domain_main'] == NULL ? $record['domain'] : $record['domain_main'];
 			if ($userRecordSayUidBefore == $record['uid']) {
 				$recordSayArray[] = array(
 					'sid' => $record['sid'],
@@ -594,7 +597,8 @@ class StreamAction extends Action {
 					'name' => $record['name'],
 					'number' => $record['number'],
 					'academy' => $record['academy'],
-					'school' => $record['school'],
+					'schoolname' => $record['schoolname'],
+					'domain' => $schooldomain,
 					'repatenums' => 1,
 				);
 			} else {
@@ -624,7 +628,8 @@ class StreamAction extends Action {
 					'name' => $record['name'],
 					'number' => $record['number'],
 					'academy' => $record['academy'],
-					'school' => $record['school'],
+					'schoolname' => $record['schoolname'],
+					'domain' => $schooldomain,
 					'repatenums' => 0,
 				);
 			}
