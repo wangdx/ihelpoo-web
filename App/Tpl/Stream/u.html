@@ -23,11 +23,7 @@
   <?php } ?>
   <ul class="stream_u_ul">
     <li>
-      <?php if ($thisschoolid != $userView['school']) { ?>
-      	<a href="http://<?php echo $recordUserViewSchoolInfo['domain_main'] == NULL ? $recordUserViewSchoolInfo['domain'] : $recordUserViewSchoolInfo['domain_main']; ?>/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
-      <?php } else { ?>
-      	<a href="__ROOT__/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
-      <?php } ?>
+      <a href="__ROOT__/wo/<?php echo $userView['uid'] ?>" class="fb"><?php echo $userView['nickname'] ?></a>
       <a href="__ROOT__/wo/honor/<?php echo $userView['uid'] ?>">
         <span class="gray f12" title="等级: level<?php echo i_degree($userView['active']) ?>"><span class="level<?php echo i_degree($userView['active']) ?>"></span></span>
       </a>
