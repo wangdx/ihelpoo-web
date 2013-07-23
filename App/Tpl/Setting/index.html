@@ -55,8 +55,10 @@
     </li>
     <li>
       <span class="settitle">学校:</span>
-      <?php echo $recorduserlogin['school']; ?> <a id="selectschool">更改</a>
-      <input type="hidden" name="school" value="" />
+      <span id="school">
+	      <?php echo $recordSchoolInfo['school']; ?> <a id="selectschool">更改</a>
+	      <input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" />
+      </span>
     </li>
     <li>
       <span class="settitle">学院:</span>

@@ -51,6 +51,7 @@ $().ready(function(){
     });
     $("#dormitorytype").click(function(){
         var dormitorytype = $("#dormitorytype").attr("value");
+        var schoolvalue = $("#school").attr("value");
         $(this).ajaxStart(function(){
         	$('#ajaxprogressbar').html($infoLoading);
         }).ajaxStop(function(){
@@ -59,7 +60,7 @@ $().ready(function(){
         $.ajax({
             type: "POST",
             url: baseUrl+"setting/ajax",
-            data: "selectDormitory=" + dormitorytype,
+            data: {selectDormitory: dormitorytype, selectSchool: schoolvalue },
             datatype: "text",
             success:function(dormitory){
                 $("#dormitory").replaceWith(dormitory);

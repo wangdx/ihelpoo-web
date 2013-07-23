@@ -34,29 +34,32 @@ class SettingAction extends Action {
     	$schoolId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	if (empty($schoolId)) {
     		redirect('/setting/index/'.$recordUserLogin['school'], 0, '缺少学校参数...');
+    		$schoolId = $recordUserLogin['school'];
     	}
 
     	/**
          * school info
          */
         $SchoolInfo = M("SchoolInfo");
+        $recordSchoolInfo = $SchoolInfo->find($schoolId);
         $listSchoolInfo = $SchoolInfo->select();
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
     	
     	/**
     	 * show user info
     	 */
     	$OpAcademy = M("OpAcademy");
-        $listOpAcademy = $OpAcademy->where("school = $recordUserLogin[school]")->select();
+        $listOpAcademy = $OpAcademy->where("school = $schoolId")->select();
         $OpSpecialty = M("OpSpecialty");
 
         if (!empty($recordUserInfo['academy_op'])) {
         	$listOpSpecialty = $OpSpecialty->where("academy = $recordUserInfo[academy_op]")->select();
         } else {
-        	$listOpSpecialty = $OpSpecialty->where("school = $recordUserLogin[school]")->select();
+        	$listOpSpecialty = $OpSpecialty->where("school = $schoolId")->select();
         }
 
         $OpDormitory = M("OpDormitory");
-        $listOpDormitory = $OpDormitory->where("school = $recordUserLogin[school]")->select();
+        $listOpDormitory = $OpDormitory->where("school =$schoolId")->select();
         $OpProvince = M("OpProvince");
         $listOpProvince = $OpProvince->select();
         $OpCity = M("OpCity");
@@ -676,8 +679,9 @@ class SettingAction extends Action {
         }
         if (!empty($_POST['selectDormitory'])) {
         	$selectDormitoryType = (int)$_POST['selectDormitory'];
+        	$selectSchool = (int)$_POST['selectSchool'];
             $OpDormitory = M("OpDormitory");
-            $selectDormitoryObj = $OpDormitory->where("type = $selectDormitoryType")->select();
+            $selectDormitoryObj = $OpDormitory->where("type = $selectDormitoryType AND school = $selectSchool")->select();
             echo '<select id="dormitory" name="dormitory">';
             foreach ($selectDormitoryObj as $selectDormitory) {
                 echo "<option value='$selectDormitory[id]'>$selectDormitory[name]</option>";
