@@ -49,7 +49,7 @@ $().ready(function(){
             }
         });
     });
-    $("#academy").click(function(){
+    $("#academy").live("click", function(){
         var academy = $("#academy").attr("value");
         $(this).ajaxStart(function(){
         	$('#ajaxprogressbar').html($infoLoading);
