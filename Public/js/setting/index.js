@@ -148,4 +148,7 @@ $().ready(function(){
             }
         });
     });
+    $("#setting_school_close_span").click(function(){
+        $(this).parent().fadeOut('fast');
+    });
 });

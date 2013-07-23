@@ -214,9 +214,13 @@
     padding: 10px;
     width: 300px;
     margin: 0 auto;
+    text-align: left;
+    position: relative;
 }
 #setting_school_close_span{
-    
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }
 .setting_school_list_div ul li{
     display: inline-block;
