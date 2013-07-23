@@ -130,7 +130,8 @@ class HelpAction extends Action {
     
     public function need()
     {
-    	$title = "需要帮助 - 我帮圈圈";
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "需要帮助 - ".$recordSchoolInfo['school'];
     	$this->assign('title',$title);
     	
         $page = i_page_get_num();
@@ -141,7 +142,7 @@ class HelpAction extends Action {
          * show help record finish well done
     	 */
         $RecordSay = M("RecordSay");
-        $recordHelpNeedList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status < 3")
+        $recordHelpNeedList = $RecordSay->where("i_record_say.say_type = 1 AND i_record_help.status < 3 AND i_record_say.school_id = $recordSchoolInfo[id]")
         ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->order('i_record_say.time DESC')
@@ -152,8 +153,7 @@ class HelpAction extends Action {
    	    /**
    	     * paging
    	     */
-        $RecordHelp = M("RecordHelp");
-   	    $totalHelpNums = $RecordHelp->where("status < 3")->count();
+   	    $totalHelpNums = $RecordSay->where("i_record_help.status < 3 AND i_record_say.school_id = $recordSchoolInfo[id]")->join('i_record_help ON i_record_say.sid = i_record_help.sid')->count();
         $totalPages = ceil($totalHelpNums / $count);
         $this->assign('totalHelpNums',$totalHelpNums);
         $this->assign('totalPages',$totalPages);
