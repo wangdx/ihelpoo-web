@@ -731,7 +731,9 @@ class StreamAction extends Action {
         }
         $this->assign('title',$userView['nickname'].'的一些信息 '.$recordSchoolInfo['school']);
         $this->assign('userView', $userView);
-        $this->assign('recordSchoolInfo', $recordSchoolInfo);
+        $SchoolInfo = M("SchoolInfo");
+        $recordUserViewSchoolInfo = $SchoolInfo->find($userViewUid);
+        $this->assign('recordSchoolInfo', $recordUserViewSchoolInfo);
         
         /**
          * change skin 
