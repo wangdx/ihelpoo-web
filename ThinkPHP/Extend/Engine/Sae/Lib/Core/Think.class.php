@@ -65,6 +65,10 @@ class Think {
         // 加载项目配置文件
         if(is_file(CONF_PATH.'config.php'))
             C(include CONF_PATH.'config.php');
+        //[ihelpoo]专有配置
+        if (is_file(CONF_PATH . 'config_oo.php'))
+            C(include CONF_PATH . 'config_oo.php');
+
         //[sae]惯例配置
         C(include SAE_PATH.'Conf/convention_sae.php');
         //[sae]专有配置
