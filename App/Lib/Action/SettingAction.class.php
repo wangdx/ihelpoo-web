@@ -31,20 +31,6 @@ class SettingAction extends Action {
     	$UserInfo = M("UserInfo");
     	$recordUserInfo = $UserInfo->find($userloginid);
     	
-    	$schoolId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
-    	if (empty($schoolId)) {
-    		redirect('/setting/index/'.$recordUserLogin['school'], 0, '缺少学校参数...');
-    		$schoolId = $recordUserLogin['school'];
-    	}
-
-    	/**
-         * school info
-         */
-        $SchoolInfo = M("SchoolInfo");
-        $recordSchoolInfo = $SchoolInfo->find($schoolId);
-        $listSchoolInfo = $SchoolInfo->select();
-        $this->assign('recordSchoolInfo',$recordSchoolInfo);
-    	
     	/**
     	 * show user info
     	 */
@@ -185,6 +171,21 @@ class SettingAction extends Action {
     			$this->ajaxReturn(0,"修改成功",'yes');
     		}
     	}
+    	
+    	$schoolId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+    	if (empty($schoolId)) {
+    		redirect('/setting/index/'.$recordUserLogin['school'], 0, '缺少学校参数...');
+    		$schoolId = $recordUserLogin['school'];
+    	}
+
+    	/**
+         * school info
+         */
+        $SchoolInfo = M("SchoolInfo");
+        $recordSchoolInfo = $SchoolInfo->find($schoolId);
+        $listSchoolInfo = $SchoolInfo->select();
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
+        
     	$this->display();
     }
 
