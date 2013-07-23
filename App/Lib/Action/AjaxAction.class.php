@@ -32,7 +32,7 @@ class AjaxAction extends Action {
             $redismq->connect('127.0.0.1', 6379);
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
-    		$messageSystemNums = $redismq->hGet(C('R_NOTICE').C('R_MSG_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));//$MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
+    		$messageSystemNums = $redismq->hGet(C('R_NOTICE').C('R_NOTICE_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));//$MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
     		$messageTalkNums = $TalkContent->where("touid = $userloginid AND deliver = 0")->count();
     		if (!empty($messageTalkNums)) {
     			$lastTalkContent = $TalkContent->where("touid = $userloginid AND deliver = 0")
