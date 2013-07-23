@@ -397,14 +397,6 @@ class AjaxAction extends Action {
     					'user_relation' => '',
     				);
     				
-    				/**
-    				 * school info
-    				 */
-    				if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
-    					$userInfoArray['schoolname'] = $recordSchoolInfo['school'];
-    				} else {
-    					$userInfoArray['schoolname'] = NULL;
-    				}
     				
     				/**
     				 * domain
@@ -412,7 +404,16 @@ class AjaxAction extends Action {
     				$thisUserSchoolInfo = $SchoolInfo->find($recordUserLogin['school']);
     				$userInfoArray['domain'] = $thisUserSchoolInfo['domain_main'] == NULL ? $thisUserSchoolInfo['domain'] : $thisUserSchoolInfo['domain_main'];
     				$userInfoArray['domain'] = "http://".$userInfoArray['domain']."/";
-
+    				
+    				/**
+    				 * school info
+    				 */
+    				if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
+    					$userInfoArray['schoolname'] = $thisUserSchoolInfo['school'];
+    				} else {
+    					$userInfoArray['schoolname'] = $recordSchoolInfo['school'];
+    				}
+    				
     				/**
     				 *
     				 * user relation
