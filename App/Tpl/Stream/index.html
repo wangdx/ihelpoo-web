@@ -288,9 +288,17 @@
       		<?php } ?>
       	<?php } ?>
       <?php } else if ($record['type'] == '2') { ?>
-      	<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织?</a>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的组织</a>
+      	<?php } else { ?>
+      		<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织?</a>
+      	<?php } ?>
       <?php } else if ($record['type'] == '3') { ?>
-      	<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的商家</a>
+      	<?php } else { ?>
+      		<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
+      	<?php } ?>
       <?php } ?>
       <?php if ($record['school_record'] != $thisschoolid) { ?>
       <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
