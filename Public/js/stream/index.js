@@ -561,7 +561,7 @@ $().ready(function(){
         						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'>圈她</a>";
         					}
     					}
-    					if (msg.data.schoolname != 'null') {
+    					if (msg.data.schoolname != null) {
     						var inhtml = "<div class='user_info_top_div'>"
     						+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"stream/u/"+msg.data.uid+"' target='_blank'>"
     						+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
