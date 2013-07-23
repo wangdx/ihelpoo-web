@@ -77,17 +77,22 @@ class MessageAction extends Action {
 
         foreach($recordDiffusion as $rd){
 
+    		if (!empty($rd['uid'])) {
+    			$fromUser = $IUserLogin->userExists($rd['uid']);
+    			$from_user = "<a href='".__ROOT__."/wo/".$rd['uid']."' target='_blank' class='getuserinfo' userid='".$rd['uid']."'>".$fromUser['nickname']."</a>";
+            }else{
+                $from_user = '';
+            }
+
             $msgSysArray[] = array(
                 'deliver' => 0,
-                'from_user' => $rd['uid'],
+                'from_user' => $from_user,
                 'content' => $rd['assess_id'],
-                'url' => $rd['assess_id'],
+                'url' => $rd['sid'],
                 'time' => i_time($rd['time']),
             );
 
         }
-        $this->assign('msgsysarray',$msgSysArray);
-        $this->display();
 
 //    	foreach ($msgSystem as $msg) {
 //    		if (!empty($msg['from_uid'])) {
@@ -169,13 +174,13 @@ class MessageAction extends Action {
 //            $redismq->hDel(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
 //
 //    	}
-//    	$this->assign('msgsysarray',$msgSysArray);
+    	$this->assign('msgsysarray',$msgSysArray);
 //
     	if (isset($_GET['suredelsys'])) {
     		$MsgSystem->where("uid = $userloginid")->delete();
     		redirect('/message/system', 1, '删除成功...');
     	}
-//    	$this->display();
+    	$this->display();
     }
 
     public function comment()
