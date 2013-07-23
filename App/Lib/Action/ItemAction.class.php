@@ -137,6 +137,7 @@ class ItemAction extends Action {
     public function help()
     {
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
     	$recordId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if (empty($recordId)) {
             redirect('/stream', 3, '你访问的内容不存在 或者被删除了 错误代码1 :(...');
@@ -149,9 +150,19 @@ class ItemAction extends Action {
         $this->assign('sayRecord',$sayRecord);
     	$IUserLogin = D("IUserLogin");
         $helpRecordOwener = $IUserLogin->userExists($sayRecord['uid']);
-        $this->assign('title','求助 详细内容 by '.$helpRecordOwener['nickname']);
+        $this->assign('title','求助 详细内容'.$recordSchoolInfo['school'].' by '.$helpRecordOwener['nickname']);
         $this->assign('helpRecordOwener',$helpRecordOwener);
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
 
+        /**
+         * school
+         */
+        if ($sayRecord['school_id'] != $recordSchoolInfo['id']) {
+	        $SchoolInfo = M("SchoolInfo");
+	        $sayRecordSchoolInfo = $SchoolInfo->find($sayRecord['school_id']);
+	        $this->assign('sayRecordSchoolInfo',$sayRecordSchoolInfo);
+        }
+        
         /**
          * diffision part
          */

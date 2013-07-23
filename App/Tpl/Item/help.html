@@ -30,6 +30,9 @@
 		    if (!empty($sayRecord['url'])) {
           		echo "<a href='".$sayRecord[url]."' target='_blank'><span class='post_link_static'></span></a>";
      		} ?>
+     		<?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
+	    		 此求助原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/say/<?php echo $sayRecord['sid']; ?>"><?php echo $sayRecordSchoolInfo['school']; ?></a>
+        	<?php } ?>
 		    </span>
 		    </p>
 		    <span class="i_h_c_describe_time f12 black_l">
