@@ -46,11 +46,11 @@
       <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a>
       
       <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
-    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black"><?php echo $userLoginSchoolInfo['school']; ?> <?php echo $userAcademy['name']; ?></a> 
-    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black"><?php echo $userSpecialty['name']; ?></a>
+    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userLoginSchoolInfo['school']; ?> <?php echo $userAcademy['name']; ?></a> 
+    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
       <?php } else { ?>
-    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black"><?php echo $userAcademy['name']; ?></a>
-    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black"><?php echo $userSpecialty['name']; ?></a>
+    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a>
+    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
       <?php } ?>
       
       <br />

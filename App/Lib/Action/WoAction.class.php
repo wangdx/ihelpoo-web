@@ -70,11 +70,11 @@ class WoAction extends Action {
         $this->assign('recordSchoolInfo', $recordSchoolInfo);
         $OpAcademy = M("OpAcademy");
         $OpSpecialty = M("OpSpecialty");
-        if (!empty($userInfo['academy_op'])) {
+        if (!empty($recordUserInfo['academy_op'])) {
         	$userAcademy = $OpAcademy->where("id = $recordUserInfo[academy_op]")->find();
         	$this->assign('userAcademy', $userAcademy);
         }
-        if (!empty($userInfo['specialty_op'])) {
+        if (!empty($recordUserInfo['specialty_op'])) {
         	$userSpecialty = $OpSpecialty->where("id = $recordUserInfo[specialty_op]")->find();
         	$this->assign('userSpecialty', $userSpecialty);
         }
