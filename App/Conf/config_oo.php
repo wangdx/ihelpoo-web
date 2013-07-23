@@ -1,5 +1,7 @@
 <?php
-return array(
+
+$mdbconfig = require 'config_oo_mdb.php';
+$ooconfig = array(
 
     // IHELPOO SYSTEM CONFIG
     'REDIS_HOST'=>'127.0.0.1',
@@ -12,13 +14,7 @@ return array(
     'HS_PROT'=>9998,     // handlersocket port
     'HS_PORT_WR'=>9999,  // handlersocket port wr
 
-
-    // REDIS structures keys
-
-    'R_MSG'=>'M:',
-
-    'R_MSG_SYSTEM'=>'S:',
-    'R_MSG_AT'=>'A:',
-    'R_MSG_COMMENT'=>'C:',
 );
+
+return array_merge($ooconfig, $mdbconfig);
 ?>

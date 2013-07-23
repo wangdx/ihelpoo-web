@@ -979,7 +979,7 @@ class StreamAction extends Action {
         		            $i++;
         	        	}
 
-                        $redismq->hIncrBy(C('R_MSG').C('R_MSG_SYSTEM').substr($userPriority[uid], 0, strlen($userPriority[uid])-3), substr($userPriority[uid], -3), 1);
+                        $redismq->hIncrBy(C('R_NOTICE').C('R_MSG_SYSTEM').substr($userPriority[uid], 0, strlen($userPriority[uid])-3), substr($userPriority[uid], -3), 1);
 
         	        	/**
        	                 * insert into sys_msg
