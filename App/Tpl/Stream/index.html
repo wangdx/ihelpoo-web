@@ -300,10 +300,6 @@
       		<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
       	<?php } ?>
       <?php } ?>
-      <?php if ($record['school_record'] != $thisschoolid) { ?>
-      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
-      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>">(发布在<?php echo $recordSaySchoolInfo['school']; ?>)</a>
-      <?php } ?>
     </div>
     <p class="s_li_p_content lh15">
       <?php
@@ -366,6 +362,10 @@
           }
       }
       ?>
+      <?php if ($record['school_record'] != $thisschoolid) { ?>
+      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
+      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>">[<?php echo $recordSaySchoolInfo['school']; ?>]</a>
+      <?php } ?>
     </span>
     <span class="s_li_s_comment f12 black_l">
       <span class="priority_shield"><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈<?php echo $record['sex'] == '1' ? '他' : '她' ?> or 屏蔽<?php echo $record['sex'] == '1' ? '他' : '她' ?></a></span>
