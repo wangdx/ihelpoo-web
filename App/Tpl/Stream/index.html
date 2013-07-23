@@ -364,7 +364,7 @@
       ?>
       <?php if ($record['school_record'] != $thisschoolid) { ?>
       <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
-      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>">(发布在<?php echo $recordSaySchoolInfo['school']; ?>)</a>
+      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
       <?php } ?>
     </span>
     <span class="s_li_s_comment f12 black_l">
