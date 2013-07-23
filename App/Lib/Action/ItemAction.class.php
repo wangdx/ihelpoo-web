@@ -27,6 +27,7 @@ class ItemAction extends Action {
     public function say()
     {
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
         $recordId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if (empty($recordId)) {
             redirect('/stream', 3, '你访问的内容不存在 或者被删除了 :(...');
@@ -37,14 +38,23 @@ class ItemAction extends Action {
         	redirect('/stream', 3, '你访问的内容不存在 或者被删除了 :(...');
         }
         $this->assign('sayRecord',$sayRecord);
-
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
+        
+        /**
+         * school
+         */
+        if ($sayRecord['school_id'] != $recordSchoolInfo['id']) {
+	        $SchoolInfo = M("SchoolInfo");
+	        $sayRecordSchoolInfo = $SchoolInfo->find($sayRecord['school_id']);
+	        $this->assign('sayRecordSchoolInfo',$sayRecordSchoolInfo);
+        }
 
         //$userLogin = $dbUserLogin->userExists($user->uid);
         //$this->view->itemUserLogin = $userLogin = $dbUserLogin->userExists($sayRecord->uid);
 
         $IUserLogin = D("IUserLogin");
         $itemUserLogin = $IUserLogin->userExists($sayRecord['uid']);
-        $this->assign('title','详细内容 信息流 by '.$itemUserLogin['nickname']);
+        $this->assign('title','详细内容 '.$recordSchoolInfo['school'].'信息流 by '.$itemUserLogin['nickname']);
         $this->assign('itemUserLogin',$itemUserLogin);
 
         /**

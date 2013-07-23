@@ -35,6 +35,9 @@
           	 				echo " 来自".$sayRecord['from'];
           				}
     				} ?>
+	    			<?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
+	    			 此信息原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/say/<?php echo $sayRecord['sid']; ?>"><?php echo $sayRecordSchoolInfo['school']; ?></a>
+        			<?php } ?>
 		  		</span>
 			</span>
 			<span class="fr f12 black_l i_content_span_info">
