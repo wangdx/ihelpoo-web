@@ -55,15 +55,8 @@
     </li>
     <li>
       <span class="settitle">学校:</span>
-      <select id="school" name="school">
-         <foreach name="listschoolinfo" item="school">
-         	<if condition="$school.id eq $recorduserlogin['school']"> 
-	        	<option value='{$school.id}' selected>{$school.school}</option>
-			<else />
-				<option value='{$school.id}'>{$school.school}</option>
-			</if>
-		</foreach>
-      </select>
+      <?php echo $recorduserlogin['school']; ?> <a id="selectschool">更改</a>
+      <input type="hidden" name="school" value="" />
     </li>
     <li>
       <span class="settitle">学院:</span>

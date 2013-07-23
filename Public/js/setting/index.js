@@ -32,24 +32,7 @@ $().ready(function(){
             introductionOk = "yes";
         }
     });
-    $("#school").click(function(){
-        var school = $("#school").attr("value");
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
-        $.ajax({
-            type: "POST",
-            url: baseUrl+"setting/ajax",
-            data: "selectSchool=" + school,
-            datatype: "text",
-            success:function(academy){
-                $("#academy").replaceWith(academy);
-            }
-        });
-    });
-    $("#academy").live("click", function(){
+    $("#academy").click(function(){
         var academy = $("#academy").attr("value");
         $(this).ajaxStart(function(){
         	$('#ajaxprogressbar').html($infoLoading);

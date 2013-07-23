@@ -30,6 +30,11 @@ class SettingAction extends Action {
     	$recordUserLogin = $UserLogin->find($userloginid);
     	$UserInfo = M("UserInfo");
     	$recordUserInfo = $UserInfo->find($userloginid);
+    	
+    	$schoolId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+    	if (empty($schoolId)) {
+    		redirect('/setting/index/'.$recordUserLogin['school'], 0, '缺少学校参数...');
+    	}
 
     	/**
          * school info
@@ -659,16 +664,6 @@ class SettingAction extends Action {
 
     public function ajax()
     {
-    	if (!empty($_POST['selectSchool'])) {
-        	$selectSchoolNum = (int)$_POST['selectSchool'];
-            $OpAcademy = M("OpAcademy");
-            $selectAcademyObj = $OpAcademy->where("school = $selectSchoolNum")->select();
-            echo '<select id="academy" name="academy">';
-            foreach ($selectAcademyObj as $selectAcademy) {
-                echo "<option value='$selectAcademy[id]'>$selectAcademy[name]</option>";
-            }
-            echo '</select>';
-        }
     	if (!empty($_POST['selectAcademy'])) {
         	$selectAcademyNum = (int)$_POST['selectAcademy'];
             $OpSpecialty = M("OpSpecialty");
