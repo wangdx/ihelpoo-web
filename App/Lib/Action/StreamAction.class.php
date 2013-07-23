@@ -733,7 +733,8 @@ class StreamAction extends Action {
         $this->assign('userView', $userView);
         $SchoolInfo = M("SchoolInfo");
         $recordUserViewSchoolInfo = $SchoolInfo->find($userView['school']);
-        $this->assign('recordSchoolInfo', $recordUserViewSchoolInfo);
+        $this->assign('thisschoolid', $recordSchoolInfo['id']);
+        $this->assign('recordUserViewSchoolInfo', $recordUserViewSchoolInfo);
         
         /**
          * change skin 
