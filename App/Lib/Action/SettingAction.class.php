@@ -32,62 +32,8 @@ class SettingAction extends Action {
     	$recordUserInfo = $UserInfo->find($userloginid);
     	
     	/**
-    	 * show user info
+    	 * post data
     	 */
-    	$OpAcademy = M("OpAcademy");
-        $listOpAcademy = $OpAcademy->where("school = $schoolId")->select();
-        $OpSpecialty = M("OpSpecialty");
-
-        if (!empty($recordUserInfo['academy_op'])) {
-        	$listOpSpecialty = $OpSpecialty->where("academy = $recordUserInfo[academy_op]")->select();
-        } else {
-        	$listOpSpecialty = $OpSpecialty->where("school = $schoolId")->select();
-        }
-
-        $OpDormitory = M("OpDormitory");
-        $listOpDormitory = $OpDormitory->where("school =$schoolId")->select();
-        $OpProvince = M("OpProvince");
-        $listOpProvince = $OpProvince->select();
-        $OpCity = M("OpCity");
-        
-        if (!empty($recordUserInfo['province_op'])) {
-        	$listOpCity = $OpCity->where("prov_id = $recordUserInfo[province_op]")->select();
-        } else {
-        	$listOpCity = $OpCity->where("prov_id = 27")->select();
-        }
-
-        if (!empty($recordUserLogin['birthday'])) {
-        	$birthstring = $recordUserLogin['birthday'];
-        	$birtharray = explode("-", $birthstring);
-        	$birthyear = $birtharray[0];
-        	$birthmonth = $birtharray[1];
-        	$birthdate = $birtharray[2];
-        }
-
-        if (!empty($recordUserInfo['dormitory_op'])) {
-        	$recordDormitory = $OpDormitory->where("id = $recordUserInfo[dormitory_op]")->find();
-        }
-
-        /**
-         * view
-         */
-        $this->assign('title','账号设置');
-        $this->assign('recorduserlogin',$recordUserLogin);
-        $this->assign('recorduserinfo',$recordUserInfo);
-        $this->assign('listschoolinfo',$listSchoolInfo);
-        $this->assign('listopacademy',$listOpAcademy);
-        $this->assign('listopspecialty',$listOpSpecialty);
-        $this->assign('listopdormitory',$listOpDormitory);
-        $this->assign('listopprovince',$listOpProvince);
-        $this->assign('listopcity',$listOpCity);
-        $this->assign('birthyear',$birthyear);
-        $this->assign('birthmonth',$birthmonth);
-        $this->assign('birthdate',$birthdate);
-        $this->assign('dormitorytype',$recordDormitory['type']);
-
-        /**
-         * post data
-         */
     	if ($this->isPost()) {
     		$validate = array(
 	    		array('nickname', 'require', '昵称不能为空'),
@@ -185,7 +131,60 @@ class SettingAction extends Action {
         $recordSchoolInfo = $SchoolInfo->find($schoolId);
         $listSchoolInfo = $SchoolInfo->select();
         $this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	
+    	/**
+    	 * show user info
+    	 */
+    	$OpAcademy = M("OpAcademy");
+        $listOpAcademy = $OpAcademy->where("school = $schoolId")->select();
+        $OpSpecialty = M("OpSpecialty");
+
+        if (!empty($recordUserInfo['academy_op'])) {
+        	$listOpSpecialty = $OpSpecialty->where("academy = $recordUserInfo[academy_op]")->select();
+        } else {
+        	$listOpSpecialty = $OpSpecialty->where("school = $schoolId")->select();
+        }
+
+        $OpDormitory = M("OpDormitory");
+        $listOpDormitory = $OpDormitory->where("school =$schoolId")->select();
+        $OpProvince = M("OpProvince");
+        $listOpProvince = $OpProvince->select();
+        $OpCity = M("OpCity");
         
+        if (!empty($recordUserInfo['province_op'])) {
+        	$listOpCity = $OpCity->where("prov_id = $recordUserInfo[province_op]")->select();
+        } else {
+        	$listOpCity = $OpCity->where("prov_id = 27")->select();
+        }
+
+        if (!empty($recordUserLogin['birthday'])) {
+        	$birthstring = $recordUserLogin['birthday'];
+        	$birtharray = explode("-", $birthstring);
+        	$birthyear = $birtharray[0];
+        	$birthmonth = $birtharray[1];
+        	$birthdate = $birtharray[2];
+        }
+
+        if (!empty($recordUserInfo['dormitory_op'])) {
+        	$recordDormitory = $OpDormitory->where("id = $recordUserInfo[dormitory_op]")->find();
+        }
+
+        /**
+         * view
+         */
+        $this->assign('title','账号设置');
+        $this->assign('recorduserlogin',$recordUserLogin);
+        $this->assign('recorduserinfo',$recordUserInfo);
+        $this->assign('listschoolinfo',$listSchoolInfo);
+        $this->assign('listopacademy',$listOpAcademy);
+        $this->assign('listopspecialty',$listOpSpecialty);
+        $this->assign('listopdormitory',$listOpDormitory);
+        $this->assign('listopprovince',$listOpProvince);
+        $this->assign('listopcity',$listOpCity);
+        $this->assign('birthyear',$birthyear);
+        $this->assign('birthmonth',$birthmonth);
+        $this->assign('birthdate',$birthdate);
+        $this->assign('dormitorytype',$recordDormitory['type']);
     	$this->display();
     }
 
