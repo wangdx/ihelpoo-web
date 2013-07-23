@@ -134,29 +134,6 @@ class WoAction extends Action {
 	        	$this->assign('shieldExist', 0);
 	        }
         }
-        
-        /**
-         * user edu info
-        
-        $recordSchoolInfo = i_school_domain();
-        $this->assign('recordSchoolInfo', $recordSchoolInfo);
-        $OpAcademy = M("OpAcademy");
-        $OpSpecialty = M("OpSpecialty");
-        if (!empty($userInfo['academy_op'])) {
-        	$userAcademy = $OpAcademy->where("id = $recordUserInfo[academy_op]")->find();
-        	$this->assign('userAcademy', $userAcademy);
-        }
-        if (!empty($userInfo['specialty_op'])) {
-        	$userSpecialty = $OpSpecialty->where("id = $recordUserInfo[specialty_op]")->find();
-        	$this->assign('userSpecialty', $userSpecialty);
-        }
-        if ($userLogin['school'] != $recordSchoolInfo['id']) {
-        	$SchoolInfo = M("SchoolInfo");
-        	$userLoginSchoolInfo = $SchoolInfo->find($userLogin['school']);
-        	$this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
-        }
-         */
-
     	$RecordSay = M("RecordSay");
 
         /**
