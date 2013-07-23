@@ -881,9 +881,10 @@ class StreamAction extends Action {
 	        	    'id' => '',
 	        	    'uid' => $userloginid,
 	        	    'sid' => $diffusionSidArray[1],
+                    'assess_id' => 1,
 	        	    'time' => time(),
         		);
-        		$RecordDiffusion->add($dataDiffusion);
+        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
         		
         		/**
         		 * update diffusion_co nums
@@ -933,16 +934,9 @@ class StreamAction extends Action {
         	    );
         	    $MsgSystem->add($diffusionToOwnerData);
 
-//                Vendor('Ihelpoo.Redismq');
                 $redismq = new Redis();
                 $redismq->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 
-
-                Vendor('Ihelpoo.Idworker');
-                $idworker = new Idworker();
-                $a = $idworker->nextId();
-//                $Idwork = new Idwork(2);
-//                $b = $idworker->nextId();
 
                 /**
         		 * diffusion
@@ -961,22 +955,30 @@ class StreamAction extends Action {
         		            $i++;
         	        	}
 
-                        $redismq->hIncrBy(C('R_NOTICE').C('R_NOTICE_SYSTEM').substr($userPriority[uid], 0, strlen($userPriority[uid])-3), substr($userPriority[uid], -3), 1);
+//                        $isReceivedDiffusionMsg = $redismq->hExists(C('R_MESSAGE').C('R_SYSTEM').$userPriority['uid'],"扩散了这条消息给你".":".$diffusionSidArray['1'].":"."0");
+//                        $ids = $userloginid.",";
+//                        if(!empty($isReceivedDiffusionMsg)){
+//                            $ids.=explode(":", $redismq->hGet(C('R_MESSAGE').C('R_SYSTEM').$userPriority['uid'],"扩散了这条消息给你".":".$diffusionSidArray['1'].":"."0"))[0];
+//                        }
+//                        $redismq->hSet(C('R_MESSAGE').C('R_SYSTEM').$userPriority['uid'],"扩散了这条消息给你".":".$diffusionSidArray['1'].":"."0", $ids.":".time());
+
+                        $redismq->hIncrBy(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3), 1);
+                        $redismq->rPush("A:".$userPriority['uid'].":M", $diffusionId);
 
         	        	/**
        	                 * insert into sys_msg
        	                 */
-                        $diffusionsKey = "i_msg_system:diffusion:".$userPriority[uid].":0";
+//                        $diffusionsKey = "i_msg_system:diffusion:".$userPriority[uid].":0";
         	        	$isReceivedDiffusionMsg = $redismq->hGet($diffusionsKey, "diffusionNum");//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
-        	        	if (empty($isReceivedDiffusionMsg['id'])) {
-        	        		if ($diffusionSidArray['0'] == "ih") {
-        	        			$msgSystemType = 'stream/ih-para:diffusion';
-        	        		} else {
-        	        			$msgSystemType = 'stream/i-para:diffusion';
-        	        		}
+//        	        	if (empty($isReceivedDiffusionMsg['id'])) {
+//        	        		if ($diffusionSidArray['0'] == "ih") {
+//        	        			$msgSystemType = 'stream/ih-para:diffusion';
+//        	        		} else {
+//        	        			$msgSystemType = 'stream/i-para:diffusion';
+//        	        		}
 
 
-        	        		$contentMsgSystem = "扩散了这条消息给你";
+//        	        		$contentMsgSystem = "扩散了这条消息给你";
 //        	        		$diffusionData = array(
 //	        	    	        'id' => '',
 //	        	    	        'uid' => $userPriority['uid'],
@@ -1001,7 +1003,7 @@ class StreamAction extends Action {
 //                            $redismq->hSet($diffusionsKey, "personsList", $userloginid);
 
 //        	        		$MsgSystem->add($diffusionData);
-        	        	} else {
+//        	        	} else {
 //                            $redismq->hIncrBy($diffusionsKey, "diffusionNum", 1);
 //                            $persons = $redismq->hGet($diffusionsKey, "personsList");
 //                            $redismq->hSet($diffusionsKey, "personsList", $persons.",".$userloginid);
@@ -1016,7 +1018,7 @@ class StreamAction extends Action {
 //	        	    	        'content' => $contentMsgSystem,
 //        	        		);
 //        	        		$MsgSystem->save($diffusionData);
-        	        	}
+//        	        	}
         	        }
         	        echo "...";
        	        }
