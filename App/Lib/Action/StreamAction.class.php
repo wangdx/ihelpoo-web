@@ -568,7 +568,7 @@ class StreamAction extends Action {
         ->join('i_user_info ON i_record_say.uid = i_user_info.uid')
         ->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
         ->join('i_school_info ON i_user_login.school = i_school_info.id')
-		->field('sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,i_record_say.time,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy,i_school_info.id,i_school_info.school as schoolname,i_school_info.domain,i_school_info.domain_main')
+		->field('sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,i_record_say.time,from,last_comment_ti,school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy,i_school_info.id,i_school_info.school as schoolname,i_school_info.domain,i_school_info.domain_main')
 		->limit($offset,$count)->select();
 		$userRecordSayUidBefore = NULL;
 		foreach ($recordSay as $record) {
@@ -582,6 +582,7 @@ class StreamAction extends Action {
 					'image' => $record['image'],
 					'url' => $record['url'],
 					'school' => $record['school'],
+					'school_record' => $record['school_id'],
 					'comment_co' => $record['comment_co'],
 					'diffusion_co' => $record['diffusion_co'],
 					'hit_co' => $record['hit_co'],
@@ -613,6 +614,7 @@ class StreamAction extends Action {
 					'image' => $record['image'],
 					'url' => $record['url'],
 					'school' => $record['school'],
+					'school_record' => $record['school_id'],
 					'comment_co' => $record['comment_co'],
 					'diffusion_co' => $record['diffusion_co'],
 					'hit_co' => $record['hit_co'],
