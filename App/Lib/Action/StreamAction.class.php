@@ -963,13 +963,13 @@ class StreamAction extends Action {
 //                        $redismq->hSet(C('R_MESSAGE').C('R_SYSTEM').$userPriority['uid'],"扩散了这条消息给你".":".$diffusionSidArray['1'].":"."0", $ids.":".time());
 
                         $redismq->hIncrBy(C('R_NOTICE').C('R_SYSTEM').substr($userPriority['uid'], 0, strlen($userPriority['uid']) - 3), substr($userPriority['uid'], -3), 1);
-                        $redismq->rPush("A:".$userPriority['uid'].":M", $diffusionId);
+                        $redismq->hSet("A:".$userPriority['uid'].":M", $diffusionId, 0);
 
         	        	/**
        	                 * insert into sys_msg
        	                 */
 //                        $diffusionsKey = "i_msg_system:diffusion:".$userPriority[uid].":0";
-        	        	$isReceivedDiffusionMsg = $redismq->hGet($diffusionsKey, "diffusionNum");//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
+//        	        	$isReceivedDiffusionMsg = $redismq->hGet($diffusionsKey, "diffusionNum");//$MsgSystem->where("uid = $userPriority[uid] AND (type = 'stream/i-para:diffusion' OR type = 'stream/ih-para:diffusion') AND url_id = $diffusionSidArray[1] AND deliver = 0")->find();
 //        	        	if (empty($isReceivedDiffusionMsg['id'])) {
 //        	        		if ($diffusionSidArray['0'] == "ih") {
 //        	        			$msgSystemType = 'stream/ih-para:diffusion';
