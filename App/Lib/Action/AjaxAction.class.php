@@ -384,7 +384,7 @@ class AjaxAction extends Action {
     					'icon_url' => i_icon_check("$recordUserLogin[uid]", "$recordUserLogin[icon_url]", "s"),
     					'introduction' => $recordUserInfoIntroduction,
     					'academy' => $recordOpAcademyName,
-    					'academy_id' => $recordOpAcademy['number'],
+    					'academy_id' => $recordOpAcademy['id'],
     					'specialty' => $recordOpSpecialtyName,
     					'specialty_id' => $recordOpSpecialty['id'],
     					'dormitory' => $recordOpDormitoryName,
