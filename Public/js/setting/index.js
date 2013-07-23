@@ -144,7 +144,7 @@ $().ready(function(){
             data: "getschoollist='get'",
             datatype: "text",
             success:function(list){
-                $("#ajaxprogressbar").html("<p id='infoupdateok'>"+list+"</p>");
+                $("#ajaxprogressbar").html(list);
             }
         });
     });
