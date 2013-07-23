@@ -208,10 +208,10 @@
     display: none;
 }
 .setting_school_list_div{
-    border: 3px solid #DDD;
+    border: 5px solid #DDD;
     background: #EDF4FB;
     border-radius: 3px;
-    padding: 15px 20px;
+    padding: 10px 15px;
     width: 300px;
     margin: 0 auto;
     text-align: left;
@@ -219,7 +219,7 @@
 }
 #setting_school_close_span{
     position: absolute;
-    right: 3px;
+    right: 2px;
     top: 2px;
 }
 .setting_school_list_div ul li{
