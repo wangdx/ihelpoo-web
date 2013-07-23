@@ -411,7 +411,7 @@ class AjaxAction extends Action {
     				if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
     					$userInfoArray['schoolname'] = $thisUserSchoolInfo['school'];
     				} else {
-    					$userInfoArray['schoolname'] = $recordSchoolInfo['school'];
+    					$userInfoArray['schoolname'] = NULL;
     				}
     				
     				/**
