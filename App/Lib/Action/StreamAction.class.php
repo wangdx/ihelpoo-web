@@ -910,8 +910,8 @@ class StreamAction extends Action {
 
                 Vendor('Ihelpoo.Idworker');
                 $idworker = new Idworker();
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id, source_id,detail_id,format_id,create_ti')))
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
+                if (!($hs->openIndex(3, 'ihelpoo', 'i_msg_notice', '', 'notice_id, source_id,detail_id,format_id,create_ti')))
                 {
                     echo 'ERROR1:'.$hs->getError(), PHP_EOL;
                     die();
