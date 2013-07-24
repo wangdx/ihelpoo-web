@@ -889,12 +889,12 @@ class StreamAction extends Action {
         		$diffusionId = $RecordDiffusion->add($dataDiffusion);
 
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, C('OO_DBNAME'), 'i_msg_notice', '', 'id, from_id,type_id,content_id, template_id, create_time')))
+                if (!($hs->openIndex(3, 'test', 't', '', 'a, b')))
                 {
                     echo $hs->getError(), PHP_EOL;
                     die();
                 }
-                if ($hs->executeInsert(3, array(1, 6, 1, 2, 3, 1367304177)) === false)
+                if ($hs->executeInsert(3, array('a1111','b1111')) === false)
                 {
                     echo $hs->getError(), PHP_EOL;
                 }
