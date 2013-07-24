@@ -879,21 +879,21 @@ class StreamAction extends Action {
         		/**
         		 * insert diffusion record
         		 */
-//        		$dataDiffusion = array(
-//	        	    'id' => '',
-//	        	    'uid' => $userloginid,
-//	        	    'sid' => $diffusionSidArray[1],
-//                    'assess_id' => 1,
-//	        	    'time' => time(),
-//        		);
-//        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
+        		$dataDiffusion = array(
+	        	    'id' => '',
+	        	    'uid' => $userloginid,
+	        	    'sid' => $diffusionSidArray[1],
+                    'assess_id' => 1,
+	        	    'time' => time(),
+        		);
+        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
 
                 $port = 9998;
                 $port_wr = 9999;
                 $dbname = 'test';
                 $table = 'user';
                 //GET
-                $hs = new HandlerSocket('10.6.5.68', $port);
+                $hs = new HandlerSocket('10.6.1.208', $port);
                 if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
                 {
                     echo 'ERROR:'.$hs->getError(), PHP_EOL;
@@ -985,7 +985,7 @@ class StreamAction extends Action {
         	    $userPriorityNums = sizeof($userPriorityObj);
 
 
-       	        echo $a."已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
+       	        echo "已经扩散给了 <a href='".__ROOT__."/mutual/priority?me'>你的圈子</a> 中的等<span class='f14 fb orange'>".$userPriorityNums."</span> 人...<br /><br />";
        	        if (!empty($userPriorityNums)) {
        	            $i = 0;
         	        foreach ($userPriorityObj as $userPriority) {
