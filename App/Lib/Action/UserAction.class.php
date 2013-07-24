@@ -568,12 +568,25 @@ class UserAction extends Action {
      */
     public function register()
     {
-    	$this->assign('title','用户注册');
+    	
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','用户注册 '.$recordSchoolInfo['school']);
         $OpAcademy = M("OpAcademy");
-        $listOpAcademy = $OpAcademy->select();
+        $listOpAcademy = $OpAcademy->where("school = $recordSchoolInfo[id]")->select();
         $this->assign('listOpAcademy',$listOpAcademy);
-        $recordSchoolInfo = i_school_domain();
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
+        
+        if (!empty($_GET['school'])) {
+        	$getSchoolId = $_GET['school'];
+        	$SchoolInfo = M("SchoolInfo");
+        	$selectSchoolInfo = $SchoolInfo->find($getSchoolId);
+        	$selectSchoolDoamin = $selectSchoolInfo['domain_main'] == NULL ? $selectSchoolInfo['domain'] : $selectSchoolInfo['domain_main'];
+        	$selectSchoolDoamin = "http://".$selectSchoolDoamin;
+        	if (!empty($selectSchoolDoamin)) {
+        		redirect($selectSchoolDoamin.'/user/register', 0, '跳转学校...');
+        	}
+        }
 
         /**
          * inviter user info
@@ -616,7 +629,8 @@ class UserAction extends Action {
 	            array('nickname', 'require', '昵称不能为空'),
 	            array('sex', 'number', 'sex格式错误'),
 	            array('enteryear', 'number', 'enteryear格式错误'),
-	            array('academy', 'number', 'academy格式错误')
+	            array('academy', 'number', 'academy格式错误'),
+	            array('school', 'number', 'school格式错误')
 	        );
 	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
@@ -631,6 +645,7 @@ class UserAction extends Action {
 	            $sex = htmlspecialchars(strtolower(trim($_POST["sex"])));
 	            $enteryear = htmlspecialchars(strtolower(trim($_POST["enteryear"])));
 	            $academy = htmlspecialchars(strtolower(trim($_POST["academy"])));
+	            $school = htmlspecialchars(strtolower(trim($_POST["school"])));
 	            $nickname = str_ireplace(' ','',$nickname);
 	            
 	            /**
@@ -659,7 +674,7 @@ class UserAction extends Action {
 	            	'priority' => '4',
 	            	'creat_ti' => time(),
 	            	'icon_fl' => 0,
-	            	'school' => 'hbmy'
+	            	'school' => $school
 	            );
 	            $newUserId = $UserLogin->add($newUserlogignData);
 

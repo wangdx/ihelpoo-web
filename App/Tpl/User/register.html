@@ -41,7 +41,7 @@
   <?php } ?>
   <form action="__ROOT__/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
   <ul class="registe_ul black_l">
-    <li>邮&#12288;&#12288;箱<input id="email" type="text" name="email" /><span id="emailinfo" class="f12 red_l"></span></li>
+    <li>邮&#12288;&#12288;箱<input id="email" type="text" name="email" /><span id="emailinfo" class="f12 red_l"></span><input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" /></li>
     <li>创建密码<input id="password" type="password" name="password" /><span id="passwordinfo" class="f12 red_l"></span></li>
     <li>密码重复<input id="passwordrepeat" type="password" name="passwordrepeat" /><span id="passwordrepeatinfo" class="f12 red_l"></span></li>
     <li>昵&#12288;&#12288;称<input id="nickname" type="text" name="nickname" /><span id="nicknameinfo" class="f12 red_l"></span></li>
