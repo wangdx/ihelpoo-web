@@ -14,6 +14,8 @@ $ooconfig = array(
     'HS_PROT'=>9998,     // handlersocket port
     'HS_PORT_WR'=>9999,  // handlersocket port wr
 
+    'OO_DBNAME'=>'ihelpoo',
+
 );
 
 return array_merge($ooconfig, $mdbconfig);
