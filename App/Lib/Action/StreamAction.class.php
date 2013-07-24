@@ -945,7 +945,7 @@ class StreamAction extends Action {
 //
 //                unset($hs);
                 //GET
-                $hs = new HandlerSocket(C('MYSQL_SLAVE'), $port);
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
                 if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
                 {
                     echo 'ERROR:'.$hs->getError(), PHP_EOL;
