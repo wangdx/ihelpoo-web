@@ -651,6 +651,7 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq88.gif" title="爱你" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq89.gif" title="NO" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq90.gif" title="OK" height="24" width="24" />';
+			/**
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq91.gif" title="爱情" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq92.gif" title="飞吻" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq93.gif" title="跳跳" height="24" width="24" />';
@@ -702,6 +703,7 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq133.gif" title="惊" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq134.gif" title="吃货" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq135.gif" title="亲戚吐槽" height="24" width="24" />';
+			*/
 			$emotionString .= '</li>';
 		} else if ($page == 2) {
 			$emotionString .= '<li>';
