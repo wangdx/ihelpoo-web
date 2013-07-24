@@ -584,7 +584,7 @@ class StreamAction extends Action {
 					'academy' => $record['academy'],
 					'schoolname' => $record['schoolname'],
 					'domain' => $schooldomain,
-					'remark' => $remark,
+					'remark' => $record['remark'],
 					'repatenums' => 1,
 				);
 			} else {
@@ -617,7 +617,7 @@ class StreamAction extends Action {
 					'academy' => $record['academy'],
 					'schoolname' => $record['schoolname'],
 					'domain' => $schooldomain,
-					'remark' => $remark,
+					'remark' => $record['remark'],
 					'repatenums' => 0
 				);
 			}
