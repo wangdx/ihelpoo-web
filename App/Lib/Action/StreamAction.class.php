@@ -914,20 +914,20 @@ class StreamAction extends Action {
                 $id |= $userloginid%2000 << (64-41-13) ;
                 $id |= ($diffusionId % 1024);
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,source_id,detail_id,format_id,create_time')))
+                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_idx,source_id,detail_id,format_id,create_time')))
                 {
                     echo 'ERROR1:'.$hs->getError(), PHP_EOL;
                     die();
                 }
 
-                if ($hs->executeInsert(3, array($diffusionId, 2222, 3333, 4444, 5555)) === false)
+                if ($hs->executeInsert(3, array($diffusionId,'hello', 2222, 3333, 4444, 5555)) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
                 unset($hs);
                 //GET
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,source_id,detail_id,format_id,create_time')))
+                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_idx,source_id,detail_id,format_id,create_time')))
                 {
                     echo 'ERROR:'.$hs->getError(), PHP_EOL;
                     die();
