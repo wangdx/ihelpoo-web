@@ -890,10 +890,10 @@ class StreamAction extends Action {
 
 
 
-//                $port = 9998;
-//                $port_wr = 9999;
-//                $dbname = 'test';
-//                $table = 'user';
+                $port = 9998;
+                $port_wr = 9999;
+                $dbname = 'test';
+                $table = 'user';
 //                //DELETE
 //                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
 //                if (!($hs->openIndex(4, $dbname, $table, '', '')))
@@ -907,20 +907,32 @@ class StreamAction extends Action {
 //                    echo $hs->getError(), PHP_EOL;
 //                    die();
 //                }
-                //INSERT
+
                 Vendor('Ihelpoo.Idworker');
                 $idworker = new Idworker();
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
                 if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id, source_id,detail_id,format_id,create_ti')))
                 {
-                    echo $hs->getError(), PHP_EOL;
+                    echo 'ERROR1:'.$hs->getError(), PHP_EOL;
                     die();
                 }
 
                 if ($hs->executeInsert(3, array($idworker.nextId(), $userloginid, $diffusionSidArray[1], 1, time())) === false)
                 {
-                    echo $hs->getError(), PHP_EOL;
+                    echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
+//                //INSERT
+//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
+//                if (!($hs->openIndex(3, $dbname, $table, '', 'user_id,user_name,user_email,created')))
+//                {
+//                    echo $hs->getError(), PHP_EOL;
+//                    die();
+//                }
+//
+//                if ($hs->executeInsert(3, array('5', 'aaa5', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
+//                {
+//                    echo $hs->getError(), PHP_EOL;
+//                }
 //                if ($hs->executeInsert(3, array('6', 'aaa6', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
 //                {
 //                    echo 'A', $hs->getError(), PHP_EOL;
@@ -947,24 +959,24 @@ class StreamAction extends Action {
 //
 //                unset($hs);
                 //GET
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-//                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
-//                {
-//                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
-//
-//                var_dump($retval);
-//
-//                $retval = $hs->executeMulti(
-//                    array(array(1, '=', array('1'), 1, 0),
-//                        array(1, '=', array('2'), 1, 0)));
-//
-//                var_dump($retval);
-//
-//                unset($hs);
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
+                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
+                {
+                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
+                    die();
+                }
+
+                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
+
+                var_dump($retval);
+
+                $retval = $hs->executeMulti(
+                    array(array(1, '=', array('1'), 1, 0),
+                        array(1, '=', array('2'), 1, 0)));
+
+                var_dump($retval);
+
+                unset($hs);
 
 //                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
 //                if (!($hs->openIndex(3, 'test', 'user', '', 'a, b')))
