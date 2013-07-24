@@ -467,7 +467,7 @@ class AjaxAction extends Action {
     					'time' => time()
     				);
     				$UserRemark->add($newUserRemark);
-    				$this->ajaxReturn($newUserRemark,"new remark ok",1);
+    				$this->ajaxReturn($newUserRemark,"new remark ok",2);
     			}
     			$this->ajaxReturn(0,"remark error",0);
     		}

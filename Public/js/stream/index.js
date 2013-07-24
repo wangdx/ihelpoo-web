@@ -629,8 +629,10 @@ $().ready(function(){
     		url: baseUrl + "ajax/newremark",
     		data:{newuserid: newuserid, newremarkname: newremarkname},
     		success:function(msg){
-    			if (msg.status) {
+    			if (msg.status == '1') {
     				$('.user_info_main_div').html("<span class='icon_right'></span>备注成功");
+    			} else if (msg.status == '2') {
+    				$('.user_info_main_div').html("<span class='icon_right'></span>更新备注成功");
     			} else {
     				$('.user_info_main_div').html("<span class='icon_wrong'></span>备注失败 稍后再试");
     			}
