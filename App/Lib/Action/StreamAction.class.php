@@ -894,6 +894,41 @@ class StreamAction extends Action {
                 $port_wr = 9999;
                 $dbname = 'test';
                 $table = 'user';
+                //DELETE
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
+                if (!($hs->openIndex(4, $dbname, $table, '', '')))
+                {
+                    echo $hs->getError(), PHP_EOL;
+                    die();
+                }
+
+                if ($hs->executeDelete(4, '=', array('1')) === false)
+                {
+                    echo $hs->getError(), PHP_EOL;
+                    die();
+                }
+                //INSERT
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
+                if (!($hs->openIndex(3, $dbname, $table, '', 'user_id,user_name,user_email,created')))
+                {
+                    echo $hs->getError(), PHP_EOL;
+                    die();
+                }
+
+                if ($hs->executeInsert(3, array('5', 'aaa5', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
+                {
+                    echo $hs->getError(), PHP_EOL;
+                }
+                if ($hs->executeInsert(3, array('6', 'aaa6', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
+                {
+                    echo 'A', $hs->getError(), PHP_EOL;
+                }
+                if ($hs->executeInsert(3, array('7', 'aaa7', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
+                {
+                    echo 'B', $hs->getError(), PHP_EOL;
+                }
+
+                unset($hs);
                 //UPDATE
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
                 if (!($hs->openIndex(2, $dbname, $table, '', 'user_name,user_email,created')))
