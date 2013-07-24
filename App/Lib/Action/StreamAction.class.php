@@ -27,19 +27,19 @@ class StreamAction extends Action {
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
     	$title = "信息流 个人中心 - ".$recordSchoolInfo['school'];
-    	
+
         $this->assign('title',$title);
         $this->assign('thisschoolid',$recordSchoolInfo['id']);
-        
+
 		$RecordSay = M("RecordSay");
 		$UserLogin = M("UserLogin");
 		$UserPriority = M("UserPriority");
 		$UserStatus = M("UserStatus");
         $recordUserStatus = $UserStatus->find($userloginid);
         $this->assign('recordUserStatus',$recordUserStatus);
-        
+
         $ISysParameter = D("ISysParameter");
-        
+
         /**
          * post publish
          */
@@ -71,16 +71,16 @@ class StreamAction extends Action {
         		$quietlyreleased = htmlspecialchars(strtolower(trim($_POST["quietlyreleased"])));
         		$groupmsgpush_system = htmlspecialchars(strtolower(trim($_POST["groupmsgpush_system"])));
         		$groupmsgpush_mail = htmlspecialchars(strtolower(trim($_POST["groupmsgpush_mail"])));
-        		
+
         		$recordUserLogin = $UserLogin->where("uid = $userloginid")->field('uid,logintime,nickname,coins,active')->find();
         		if ($verificationcode == 999) {
-        			
+
         			/**
         			 * show verificaation code
         			 * 999 is a mark number , when show this num, I defined that the system shut verification off;
         			 */
         			$verificationTimeRule = $ISysParameter->getParam("record_verifi_time");
-        			 
+
         			/**
         			 * show verification code ; time/second low;
         			 */
@@ -104,7 +104,7 @@ class StreamAction extends Action {
         				);
         				$this->ajaxReturn($verificationTimeRuleAjaxReturn,"请输入验证码",'verifi');
         			}
-        			 
+
         			/**
         			 * show verification code ; nums/times low;
         			 */
@@ -132,7 +132,7 @@ class StreamAction extends Action {
                         $this->ajaxReturn(0,"验证码错误",'error');
             	    }
         		}
-        		
+
         		/**
         		 * record publish limit nums 6 per 12 hours
         		 */
@@ -141,14 +141,14 @@ class StreamAction extends Action {
         		if ($userInsertTime12hourAll >= $recordUserStatus['record_limit']) {
         			$this->ajaxReturn(0,"发布信息太多，休息休息再来吧:)",'error');
         		}
-        		
+
         		/**
         		 * handle coin nums
         		 */
         		if (($recordUserLogin['active'] - $reward_coins) < 0 && $help_is == 1) {
                     $this->ajaxReturn(0,"活跃不够了",'error');
                 }
-                
+
         		/**
         		 * insert data into database
         		 * image string handle
@@ -179,7 +179,7 @@ class StreamAction extends Action {
         		} else {
         			$imageHandled = '';
         		}
-        		
+
         		/**
         		 * get Browser Info
         		 */
@@ -191,11 +191,11 @@ class StreamAction extends Action {
         			$fromBrowser = '悄悄发布';
         			$sayType = '9';
         		}
-        		
+
         		if ($groupmsgpush_system == 'on' || $groupmsgpush_mail == 'on') {
         			$fromBrowser = '组织推送';
         		}
-        		
+
         		$dataRecordSay = array(
                     'sid' => NULL,
                     'uid' => $userloginid,
@@ -210,13 +210,13 @@ class StreamAction extends Action {
                     'school_id' => $schoolpublishid
                 );
                 $sayLastInsertId = $RecordSay->add($dataRecordSay);
-                
+
                 /**
                  * send mail
                  */
 				Vendor('Ihelpoo.Email');
 				$emailObj = new Email();
-				
+
                 /**
                  * push group msg
                  */
@@ -242,7 +242,7 @@ class StreamAction extends Action {
                         	}
                         	if ($groupmsgpush_mail == 'on') {
                         		$groupPushEmailUser = $UserLogin->find($userPrio['uid']);
-                        		
+
                         		/**
 				    			 * send emil
 				    			 */
@@ -253,14 +253,14 @@ class StreamAction extends Action {
         		        }
                     }
                 }
-                
+
         		/**
         		 * calculate active
         		 */
                 if ($recordUserStatus['active_s_limit'] < 3) {
                 	$recordUserLoginActive = $recordUserLogin['active'] + 3;
                 	$recordUserLogin['active'] = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
-                	
+
                 	/**
 	                 * msg active
 	                 */
@@ -279,7 +279,7 @@ class StreamAction extends Action {
                 } else {
                 	$recordUserLoginActive = $recordUserLogin['active'];
                 }
-                
+
                 /**
                  * update add active limit
                  */
@@ -288,13 +288,13 @@ class StreamAction extends Action {
                     'active_s_limit' => $recordUserStatus['active_s_limit'] + 1,
                 );
                 $UserStatus->save($updateUserStatusInfo);
-                
+
                 /**
-                 * insert into i_record_help 
+                 * insert into i_record_help
                  */
                 if ($help_is) {
                 	$RecordHelp = M("RecordHelp");
-                	
+
                 	/**
                      * if is help insert system_msg to fans
                      */
@@ -315,7 +315,7 @@ class StreamAction extends Action {
         	    	            'deliver' => 0,
         	    	        );
         	    	        $MsgSystem->add($needHelpData);
-        	    	        
+
         	    	        /**
 				    		 * send emil
 				    		 */
@@ -325,7 +325,7 @@ class StreamAction extends Action {
            //              	}
         		        }
                     }
-                    
+
                     $helpData = array(
                         'hid' => '',
                         'sid' => $sayLastInsertId,
@@ -333,7 +333,7 @@ class StreamAction extends Action {
                         'status' => 1,
                     );
                     $helpLastInsertId = $RecordHelp->add($helpData);
-                    
+
                     /**
                      * 1.Add coin records into i_user_coins
                      * 2.Calculate coins use left
@@ -353,7 +353,7 @@ class StreamAction extends Action {
 			            );
 			            $MsgActive->add($msgActiveArray);
                     }
-                    
+
                     /**
                      *
                      */
@@ -368,7 +368,7 @@ class StreamAction extends Action {
                     );
                 }
                 $UserLogin->save($updateUserLoginInfo);
-                
+
         		/**
         		 * at user info
         		 * insert into i_msg_at
@@ -394,7 +394,7 @@ class StreamAction extends Action {
         		$this->ajaxReturn(0,"发布成功",'ok');
         	}
         }
-        
+
         if (preg_match("/priority/iUs", $_SERVER["REQUEST_URI"])) {
             $requestWay = "priority";
         } else if (preg_match("/shield/iUs", $_SERVER["REQUEST_URI"])) {
@@ -410,9 +410,9 @@ class StreamAction extends Action {
         } else {
             $requestWay = "default";
         }
-        
+
         /**
-         * 
+         *
          * show $count records every page
          * $count int
          * $offect int Equal current page * count
@@ -420,9 +420,9 @@ class StreamAction extends Action {
         $page = i_page_get_num();
         $count = 25;
         $offset = $page * $count;
-        
+
         /**
-         * 
+         *
          * priority set; rules by i_user_priority
          */
         $pidString = NULL;
@@ -434,7 +434,7 @@ class StreamAction extends Action {
                 if (!empty($priorityRecord['pid'])) {
                     $pidString .= $priorityRecord['pid'].",";
                     $allIdString .= $priorityRecord['pid'].",";
-                    
+
                     /**
                      * is set group priority
                      */
@@ -447,7 +447,7 @@ class StreamAction extends Action {
                 }
             }
         }
-        
+
         $select = $RecordSay;
         if ($requestWay == "priority") {
             if (!empty($pidString)) {
@@ -623,45 +623,45 @@ class StreamAction extends Action {
 			}
 			$userRecordSayUidBefore = $record['uid'];
 		}
-		
+
         $this->assign('streamway',$streamway);
 		$this->assign('recordSay',$recordSayArray);
-		
+
 		/**
 		 * show new active nums
 		 */
 		$MsgActive = M("MsgActive");
 		$msgActiveNewNums = $MsgActive->where("uid = $userloginid AND deliver = 0")->count();
 		$this->assign('msgActiveNewNums',$msgActiveNewNums);
-        
+
         /**
          * show user info
          */
 		$UserInfo = M("UserInfo");
         $recordUserInfo = $UserInfo->find($userloginid);
         $this->assign('recordUserInfo',$recordUserInfo);
-        
+
         /**
          * show online user nums
          */
         $IWebStatus = D("IWebStatus");
         $recordOnlineUserNums = $IWebStatus->paraExists('online_user_nums');
         $this->assign('onlineUserNums',$recordOnlineUserNums['valuechar']);
-        
+
         /**
          * show user honor nums
          */
         $UserHonor = M("UserHonor");
         $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
         $this->assign('totalUserHonorNums',$totalUserHonorNums);
-        
+
         /**
          * user group view
          */
         if (!empty($pidGroupArray)) {
         	$this->assign('pidGroupArray', $pidGroupArray);
         }
-        
+
         /**
          * weibo
          */
@@ -670,7 +670,7 @@ class StreamAction extends Action {
     	if (!empty($recordUserLoginWb['uid'])) {
             $this->assign('isAlreadyBind',$recordUserLoginWb);
         }
-        
+
         /**
          * calculate online user numbers. calculate per 30 second
          */
@@ -695,7 +695,7 @@ class StreamAction extends Action {
             'valueint' => time(),
         );
         $IWebStatus->save($updateUserOnlineNums);
-        
+
         /**
          * index_spread_info
          */
@@ -703,10 +703,10 @@ class StreamAction extends Action {
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
         $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
         $this->assign('indexSpreadInfoVaule',$indexSpreadInfoVaule);
-        
+
         $this->display();
     }
-    
+
     /**
      *
      * u = user , user info
@@ -725,7 +725,7 @@ class StreamAction extends Action {
         $UserInfo = M("UserInfo");
         $OpAcademy = M("OpAcademy");
         $OpSpecialty = M("OpSpecialty");
-        
+
         $userView = $IUserLogin->userExists($uidView);
         $userViewUid = (int)$userView['uid'];
         if (empty($userViewUid)) {
@@ -737,12 +737,12 @@ class StreamAction extends Action {
         $recordUserViewSchoolInfo = $SchoolInfo->find($userView['school']);
         $this->assign('thisschoolid', $recordSchoolInfo['id']);
         $this->assign('recordUserViewSchoolInfo', $recordUserViewSchoolInfo);
-        
+
         /**
-         * change skin 
+         * change skin
          */
         $this->assign('changeskin', $userView['skin']);
-        
+
         $userInfo = $UserInfo->find($userViewUid);
         $this->assign('userInfo', $userInfo);
         if (!empty($userInfo['academy_op'])) {
@@ -753,7 +753,7 @@ class StreamAction extends Action {
             $userSpecialty = $OpSpecialty->where("id = $userInfo[specialty_op]")->find();
             $this->assign('userSpecialty', $userSpecialty);
         }
-        
+
         /**
          * priority & shield
          */
@@ -766,7 +766,7 @@ class StreamAction extends Action {
         if ($isShieldExist) {
             $this->assign('shieldExist', 1);
         }
-        
+
         /**
          * user changeinfo
          */
@@ -775,14 +775,14 @@ class StreamAction extends Action {
         if ($isUserChangeinfo) {
             $this->assign('isChangeinfo', 1);
         }
-        
+
         /**
          * user album
          */
         $UserAlbum = D("UserAlbum");
         $userIconAlbum = $UserAlbum->where("uid = $userViewUid AND type = 1 AND url != ''")->order("time DESC")->limit(6)->select();
         $this->assign('userIconAlbum',$userIconAlbum);
-        
+
         /**
          * show user honor nums
          */
@@ -791,12 +791,12 @@ class StreamAction extends Action {
         $this->assign('totalUserHonorNums',$totalUserHonorNums);
         $this->display();
     }
-    
+
     public function fav()
     {
     	$userloginid = session('userloginid');
         $this->assign('title','我的收藏');
-        
+
         $page = i_page_get_num();
         $RecordFavourites = M("RecordFavourites");
         $count = 20;
@@ -808,7 +808,7 @@ class StreamAction extends Action {
         ->field('id,i_user_login.uid,i_record_favourites.sid,i_record_favourites.time,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_record_say.content')
         ->order("time DESC")->limit($offset,$count)->select();
         $this->assign('recordFavourites',$recordFavouriteArray);
-        
+
         /**
          * page link
          */
@@ -838,7 +838,7 @@ class StreamAction extends Action {
         		}
         	}
         }
-        
+
         /**
          * need change to ajax
          */
@@ -852,7 +852,7 @@ class StreamAction extends Action {
         }
         $this->display();
     }
-    
+
     public function ajax()
     {
         $userloginid = session('userloginid');
@@ -863,7 +863,7 @@ class StreamAction extends Action {
         	if (!empty($isDiffusion['id'])) {
         		echo "你已经扩散了这条信息";
         	} else {
-        		
+
         		/**
         		 * record diffusion limit nums 5 per 12 hours
         		 */
@@ -875,18 +875,18 @@ class StreamAction extends Action {
 //        			echo "<br />每12小时最多扩散3条";
 //        			exit();
 //        		}
-        		
+
         		/**
         		 * insert diffusion record
         		 */
-        		$dataDiffusion = array(
-	        	    'id' => '',
-	        	    'uid' => $userloginid,
-	        	    'sid' => $diffusionSidArray[1],
-                    'assess_id' => 1,
-	        	    'time' => time(),
-        		);
-        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
+//        		$dataDiffusion = array(
+//	        	    'id' => '',
+//	        	    'uid' => $userloginid,
+//	        	    'sid' => $diffusionSidArray[1],
+//                    'assess_id' => 1,
+//	        	    'time' => time(),
+//        		);
+//        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
 
                 $port = 9998;
                 $port_wr = 9999;
@@ -896,7 +896,7 @@ class StreamAction extends Action {
                 $hs = new HandlerSocket(C('MYSQL_SLAVE'), $port);
                 if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
                 {
-                    echo $hs->getError(), PHP_EOL;
+                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
                     die();
                 }
 
@@ -930,7 +930,7 @@ class StreamAction extends Action {
         		 */
         		$RecordSay = M("RecordSay");
         		$resuleRecordSay = $RecordSay->find($diffusionSidArray[1]);
-        		
+
         		/**
                  * if user > level2 update last_comment_ti
                  */
@@ -950,7 +950,7 @@ class StreamAction extends Action {
         		    );
                 }
         		$RecordSay->save($recordSaySet);
-        		
+
         		/**
         		 * message to owner
         		 */
