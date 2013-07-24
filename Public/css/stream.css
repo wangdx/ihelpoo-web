@@ -758,6 +758,14 @@
     padding: 2px 5px;
     color: #666;
 }
+.newremarkname_p{
+    margin: 20px;
+}
+#newremarkname{
+    padding: 2px;
+    font-size: 12px;
+    color: #666666;
+}
 /*--- item ---*/
 /*--- say.phtml ---*/
 .main_item{

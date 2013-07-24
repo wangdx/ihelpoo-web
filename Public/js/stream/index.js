@@ -617,7 +617,7 @@ $().ready(function(){
      * remark
      */
     $('#user_remark_set').live('click', function(){
-    	var inputremarkhtml = "<br /><br /><input type='text' id='newremarkname' /><a id='user_remark_submit' class='btn_quan f12'>确定</a>";
+    	var inputremarkhtml = "<p class='newremarkname_p'><input type='text' id='newremarkname' /><a id='user_remark_submit' class='btn_quan f12'>确定</a></p>";
 	    $('.user_info_main_div').html(inputremarkhtml);
 	});
     $('#user_remark_submit').live('click', function(){
