@@ -128,7 +128,7 @@ $().ready(function(){
         });
         $.ajax({
             type: "POST",
-            url: baseUrl + "setting/ajax",
+            url: baseUrl + "user/register",
             data: "getschoollist='get'",
             datatype: "text",
             success:function(list){
