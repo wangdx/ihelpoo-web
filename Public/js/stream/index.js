@@ -629,7 +629,11 @@ $().ready(function(){
     		url: baseUrl + "ajax/newremark",
     		data:{newuserid: newuserid, newremarkname: newremarkname},
     		success:function(msg){
-    			$('.user_info_main_div').html("<span class='icon_right'></span>备注成功");
+    			if (msg.status) {
+    				$('.user_info_main_div').html("<span class='icon_right'></span>备注成功");
+    			} else {
+    				$('.user_info_main_div').html("<span class='icon_wrong'></span>备注失败 稍后再试");
+    			}
     		}
     	});
     });
