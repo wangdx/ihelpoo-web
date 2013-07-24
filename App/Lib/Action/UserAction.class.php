@@ -244,7 +244,18 @@ class UserAction extends Action {
                     if (empty($recordUserInfo['realname_re'])) {
                     	redirect('/setting/realfirst?step=1', 0, '填充个人真实信息...');
                     }
-                    redirect('/stream', 0, '登录成功...');
+                    
+                    /**
+                     * select school
+                     */
+                    $recordSchoolInfo = i_school_domain();
+                    if ($recordSchoolInfo['id'] != $dbUser['school']) {
+                    	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    	$schoolDomain = "http://".$schoolDomain;
+                    	redirect($schoolDomain.'/stream', 3, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                    } else {
+                    	redirect('/stream', 0, '登录成功...');
+                    }
 	            } else {
 	            	$this->assign('errorinfo',$dbUser);
 	            }
@@ -273,12 +284,27 @@ class UserAction extends Action {
     		if (is_array($dbUser)) {
     			userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
     			session('userloginid',$dbUser['uid']);
-    			redirect('/stream', 0, '快速登录成功...');
+    			
+    			/**
+                 * select school
+                 */
+    			$recordSchoolInfo = i_school_domain();
+                if ($recordSchoolInfo['id'] != $dbUser['school']) {
+                 	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    $schoolDomain = "http://".$schoolDomain;
+                    redirect($schoolDomain.'/stream', 3, '快速登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                } else {
+                    redirect('/stream', 0, '快速登录成功...');
+                }
     		}
     	}
     	redirect('/', 3, '上次已经点击退出 or 账号密码错误, 快速登录失败...');
     }
     
+    
+    /**
+     * need recode , add qq renren
+     */
     public function loginweibo()
     {
         $userloginid = session('userloginid');
@@ -544,12 +570,10 @@ class UserAction extends Action {
     {
     	$this->assign('title','用户注册');
     	$userloginid = session('userloginid');
-        if (empty($userloginid)) {
-
-        }
         $OpAcademy = M("OpAcademy");
         $listOpAcademy = $OpAcademy->select();
         $this->assign('listOpAcademy',$listOpAcademy);
+        $recordSchoolInfo = i_school_domain();
 
         /**
          * inviter user info
