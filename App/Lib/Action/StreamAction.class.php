@@ -888,10 +888,27 @@ class StreamAction extends Action {
         		);
         		$diffusionId = $RecordDiffusion->add($dataDiffusion);
 
+
+
                 $port = 9998;
                 $port_wr = 9999;
                 $dbname = 'test';
                 $table = 'user';
+                //UPDATE
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
+                if (!($hs->openIndex(2, $dbname, $table, '', 'user_name,user_email,created')))
+                {
+                    echo $hs->getError(), PHP_EOL;
+                    die();
+                }
+
+                if ($hs->executeUpdate(2, '=', array('2'), array('aaa', 'xun@dsf.com', '2011-04-07 18:26:03'), 1, 0) === false)
+                {
+                    echo $hs->getError(), PHP_EOL;
+                    die();
+                }
+
+                unset($hs);
                 //GET
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
                 if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
