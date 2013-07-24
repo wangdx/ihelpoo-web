@@ -273,7 +273,7 @@
         <?php echo i_constellation($record['birthday']),i_sex($record['sex']) ?>
     </div>
     <div class="s_li_p_user f12">
-      <a href="__ROOT__/wo/<?php echo $record['uid']; ?>" class="fb f14 getuserinfo" userid="<?php echo $record['uid']; ?>"><?php echo $record['nickname']; ?><?php echo $record['remark'] != NULL ? "<span class='f12'>($record['remark'])</span>" : ""; ?></a>
+      <a href="__ROOT__/wo/<?php echo $record['uid']; ?>" class="fb f14 getuserinfo" userid="<?php echo $record['uid']; ?>"><?php echo $record['nickname']; ?><?php echo $record['remark'] != NULL ? "<span class='f12'>($record[remark])</span>" : ""; ?></a>
       <?php if (i_degree($record['active']) > 4) { ?>
       <span class="level<?php echo i_degree($record['active']) ?>" title="等级:<?php echo i_degree($record['active']) ?>"></span>
       <?php } else if (i_degree($record['active']) < 2) { ?>
