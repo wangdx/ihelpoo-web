@@ -921,6 +921,24 @@ class StreamAction extends Action {
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
+                unset($hs);
+                //GET
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
+                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,source_id,detail_id,format_id,create_ti')))
+                {
+                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
+                    die();
+                }
+
+                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
+
+                var_dump($retval);
+
+                $retval = $hs->executeMulti(
+                    array(array(1, '=', array('1'), 1, 0),
+                        array(1, '=', array('2'), 1, 0)));
+
+                var_dump($retval);
 //                //INSERT
 //                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
 //                if (!($hs->openIndex(3, $dbname, $table, '', 'user_id,user_name,user_email,created')))
