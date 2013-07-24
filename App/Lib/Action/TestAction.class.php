@@ -12,6 +12,27 @@ class TestAction extends Action {
     
     public function index() {
     	
+    	
+    function transEmotion($words, $baseUrl = "/Public"){
+		$patternQQ['1'] = '/\[微笑\]/';
+		$patternQQ['2'] = '/\[撇嘴\]/';
+		$patternQQ['3'] = '/\[色\]/';
+		
+		$replacementQQ['1'] = '<img src="'.$baseUrl.'/image/emotion/qq1.gif" title="微笑" height="24" width="24" />';
+		$replacementQQ['2'] = '<img src="'.$baseUrl.'/image/emotion/qq2.gif" title="撇嘴" height="24" width="24" />';
+		$replacementQQ['3'] = '<img src="'.$baseUrl.'/image/emotion/qq3.gif" title="色" height="24" width="24" />';
+		$i = 1;
+		while ($i < 136) {
+			if (preg_match($patternQQ[$i], $words)) {
+				$words = preg_replace($patternQQ[$i], $replacementQQ[$i], $words);
+			}
+			$i++;
+		}
+		return $words;
+	}
+	echo transEmotion('微笑[微笑]');
+    	
+    	
     	exit();
     	$RecordComment = M("RecordComment");
     	$recordId = 22088;
