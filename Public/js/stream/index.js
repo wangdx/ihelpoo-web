@@ -561,7 +561,7 @@ $().ready(function(){
         						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'>圈她</a>";
         					}
     					}
-    					if (msg.data.reamrk != null) {
+    					if (msg.data.remark != null) {
     						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击修改备注'>"+msg.data.reamrk+"</a>";
     					} else {
     						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击设置备注'>备注</a>";
