@@ -561,12 +561,17 @@ $().ready(function(){
         						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'>圈她</a>";
         					}
     					}
+    					if (msg.data.reamrk != null) {
+    						var userremarkhtml = '<a class="f12 gray" id="user_remark_set" title="点击修改备注">'+msg.data.reamrk='</a>';
+    					} else {
+    						var userremarkhtml = '<a class="f12 gray" id="user_remark_set" title="点击设置备注">备注</a>';
+    					}
     					if (msg.data.schoolname != null) {
     						var inhtml = "<div class='user_info_top_div'>"
     						+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"stream/u/"+msg.data.uid+"' target='_blank'>"
     						+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     						+ "		    <span class='online"+msg.data.online+"'></span></a>"
-    						+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> <span class='gray'>("+msg.data.type+")</span> <span class='level"+msg.data.degree+"'></span></p>"
+    						+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" <span class='gray'>("+msg.data.type+")</span> <span class='level"+msg.data.degree+"'></span></p>"
     						+ "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>"+msg.data.follow+"</span> 圈子:<span class='fb f14'>"+msg.data.fans+"</span> "+msg.data.constellation+"<span class='sex"+msg.data.sex+"'></span> "+relationhtml+"</p>"
     						+ "		</div>"
     						+ "		<div class='user_info_main_div'>"
@@ -582,7 +587,7 @@ $().ready(function(){
         						+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"stream/u/"+msg.data.uid+"' target='_blank'>"
         						+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
         						+ "		    <span class='online"+msg.data.online+"'></span></a>"
-        						+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> <span class='gray'>("+msg.data.type+")</span> <span class='level"+msg.data.degree+"'></span></p>"
+        						+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" <span class='gray'>("+msg.data.type+")</span> <span class='level"+msg.data.degree+"'></span></p>"
         						+ "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>"+msg.data.follow+"</span> 圈子:<span class='fb f14'>"+msg.data.fans+"</span> "+msg.data.constellation+"<span class='sex"+msg.data.sex+"'></span> "+relationhtml+"</p>"
         						+ "		</div>"
         						+ "		<div class='user_info_main_div'>"

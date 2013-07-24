@@ -350,7 +350,9 @@ class AjaxAction extends Action {
     			$OpAcademy = M("OpAcademy");
     			$OpSpecialty = M("OpSpecialty");
     			$OpDormitory = M("OpDormitory");
+    			$UserRemark = M("UserRemark");
     			$recordUserLogin = $UserLogin->where("uid = $userid")->field('uid,nickname,sex,birthday,enteryear,type,online,active,icon_url,school')->find();
+    			$resultUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $userid")->find();
     			if (!$recordUserLogin['uid']) {
     				$this->ajaxReturn(0,"用户不存在",0);
     			} else {
@@ -379,6 +381,7 @@ class AjaxAction extends Action {
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
     					'nickname' => $recordUserLogin['nickname'],
+    					'remark' => $resultUserRemark['remark'],
     					'sex' => $recordUserLogin['sex'],
     					'constellation' => i_constellation($recordUserLogin['birthday']),
     					'type' => $userType,
