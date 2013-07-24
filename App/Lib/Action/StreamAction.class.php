@@ -888,17 +888,41 @@ class StreamAction extends Action {
         		);
         		$diffusionId = $RecordDiffusion->add($dataDiffusion);
 
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, 'test', 't', '', 'a, b')))
+                $port = 9998;
+                $port_wr = 9999;
+                $dbname = 'test';
+                $table = 'user';
+                //GET
+                $hs = new HandlerSocket(C('MYSQL_SLAVE'), $port);
+                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
                 {
                     echo $hs->getError(), PHP_EOL;
                     die();
                 }
-                if ($hs->executeInsert(3, array('a1111','b1111')) === false)
-                {
-                    echo $hs->getError(), PHP_EOL;
-                }
+
+                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
+
+                var_dump($retval);
+
+                $retval = $hs->executeMulti(
+                    array(array(1, '=', array('1'), 1, 0),
+                        array(1, '=', array('2'), 1, 0)));
+
+                var_dump($retval);
+
                 unset($hs);
+
+//                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
+//                if (!($hs->openIndex(3, 'test', 'user', '', 'a, b')))
+//                {
+//                    echo $hs->getError(), PHP_EOL;
+//                    die();
+//                }
+//                if ($hs->executeInsert(3, array('a1111','b1111')) === false)
+//                {
+//                    echo $hs->getError(), PHP_EOL;
+//                }
+//                unset($hs);
 
 
                 /**
