@@ -562,7 +562,7 @@ $().ready(function(){
         					}
     					}
     					if (msg.data.remark != null) {
-    						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击修改备注'>"+msg.data.reamrk+"</a>";
+    						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击修改备注'>"+msg.data.remark+"</a>";
     					} else {
     						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击设置备注'>备注</a>";
     					}
