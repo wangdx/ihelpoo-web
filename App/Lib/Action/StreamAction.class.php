@@ -910,6 +910,9 @@ class StreamAction extends Action {
 
                 Vendor('Ihelpoo.Idworker');
                 $idworker = new Idworker();
+                $id = time() << (64-41);
+                $id |= $userloginid%2000 << (64-41-13) ;
+                $id |= ($diffusionId % 1024);
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
                 if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,source_id,detail_id,format_id,create_ti')))
                 {
@@ -917,7 +920,7 @@ class StreamAction extends Action {
                     die();
                 }
 
-                if ($hs->executeInsert(3, array($idworker.generateParticle(1), $userloginid, $diffusionSidArray[1], 1, time())) === false)
+                if ($hs->executeInsert(3, array($id, $userloginid, $diffusionSidArray[1], 1, time())) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
