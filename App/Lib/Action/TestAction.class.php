@@ -31,7 +31,7 @@ class TestAction extends Action {
 		}
 		return $words;
 	}
-	echo transEmotion('微笑[微笑]');
+	echo transEmotion('微笑[微笑][撇嘴]');
     	
     	
     	exit();
