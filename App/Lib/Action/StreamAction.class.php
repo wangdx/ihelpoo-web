@@ -894,7 +894,7 @@ class StreamAction extends Action {
                     echo $hs->getError(), PHP_EOL;
                     die();
                 }
-                if ($hs->executeInsert(3, array(time(), $userloginid, 1, 2, 3, time())) === false)
+                if ($hs->executeInsert(3, array(1, 6, 1, 2, 3, 1367304177)) === false)
                 {
                     echo $hs->getError(), PHP_EOL;
                 }
