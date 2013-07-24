@@ -22,8 +22,8 @@ class TestAction extends Action {
 		$replacementQQ['3'] = '<img src="'.$baseUrl.'/image/emotion/qq3.gif" title="色" height="24" width="24" />';
 		$i = 1;
 		while ($i < 4) {
-			echo $patternQQ[$i];
-			echo $replacementQQ[$i];
+			//echo $patternQQ[$i];
+			//echo $replacementQQ[$i];
 			if (preg_match($patternQQ[$i], $words)) {
 				$words = preg_replace($patternQQ[$i], $replacementQQ[$i], $words);
 			}
