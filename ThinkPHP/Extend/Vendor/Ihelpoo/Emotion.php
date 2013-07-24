@@ -1,448 +1,288 @@
 <?php
 class Emotion{
 	public function transEmotion($words, $baseUrl = "/Public"){
-		$patternS1 = '/\[呵呵\]/';
-		$patternS2 = '/\[嘻嘻\]/';
-		$patternS3 = '/\[哈哈\]/';
-		$patternS4 = '/\[嘿嘿\]/';
-		$patternS5 = '/\[赫赫\]/';
-		$patternM1 = '/\[我晕\]/';
-		$patternM2 = '/\[我靠\]/';
-		$patternM3 = '/\[我擦\]/';
-		$patternM4 = '/\[我勒个去\]/';
-		$patternM5 = '/\[我吐\]/';
-		$patternQ1 = '/\[害羞\]/';
-		$patternQ2 = '/\[花心\]/';
-		$patternQ3 = '/\[摆酷\]/';
-		$patternQ4 = '/\[鼓掌\]/';
-		$patternQ5 = '/\[亲亲\]/';
-		$patternQ6 = '/\[可爱\]/';
-		$patternQ7 = '/\[感动\]/';
-		$patternQ8 = '/\[哭了\]/';
-		$patternQ9 = '/\[鄙视\]/';
-		$patternQ10 = '/\[挖鼻屎\]/';
-		$patternQ11 = '/\[吐舌头\]/';
-		$patternQ12 = '/\[耶\]/';
-		$patternG1 = '/\[鲜花\]/';
-		$patternG2 = '/\[月亮\]/';
-		$patternG3 = '/\[太阳\]/';
-		$patternG4 = '/\[猪头\]/';
-		$patternG5 = '/\[便便\]/';
-		$patternJ1 = '/\[大爱\]/';
-		$patternJ2 = '/\[享受\]/';
-		$patternJ3 = '/\[扭屁股\]/';
-		$patternJ4 = '/\[顶\]/';
-		$patternJ5 = '/\[投降了\]/';
-		$patternJ6 = '/\[撞砖\]/';
-		$patternJ7 = '/\[揉脸\]/';
-		$patternJ8 = '/\[瞌睡\]/';
-		$patternJ9 = '/\[汗\]/';
-		$patternJ10 = '/\[哦也\]/';
-		$patternJ11 = '/\[啊！\]/';
-		$patternT1 = '/\[爱\]/';
-		$patternT2 = '/\[兴奋\]/';
-		$patternT3 = '/\[飞吻\]/';
-		$patternT4 = '/\[安慰\]/';
-		$patternT5 = '/\[扮鬼脸\]/';
-		$patternQO1 = '/\[可怜\]/';
-		$patternQO2 = '/\[愤怒\]/';
-		$patternQO3 = '/\[惊恐\]/';
-		$patternQO4 = '/\[骂\]/';
-		$patternQO5 = '/\[疑问\]/';
-		$patternSi1 = '/\[吃货\]/';
-		$patternSi2 = '/\[笑哈哈\]/';
-		$patternSi3 = '/\[江南style\]/';
-		$patternSi4 = '/\[飞个吻\]/';
-		$patternSi5 = '/\[浮云\]/';
-		$patternSi6 = '/\[给力\]/';
-		$patternSi7 = '/\[围观\]/';
-		$patternSi8 = '/\[威武\]/';
-		$patternSi9 = '/\[奥特曼\]/';
-		$patternSi10 = '/\[生病\]/';
-		$patternSi11 = '/\[泪\]/';
-		$patternSi12 = '/\[太开心\]/';
-		$patternSi13 = '/\[good\]/';
-		$patternSi14 = '/\[不要\]/';
-		$patternF1 = '/\[圣诞\]/';
-		$patternF2 = '/\[结婚罗\]/';
-		$patternF3 = '/\[红包\]/';
-		$patternF4 = '/\[爆竹声声\]/';
-		$patternF5 = '/\[生日快乐\]/';
-		$patternF6 = '/\[国旗\]/';
-		$patternF7 = '/\[蜡烛\]/';
-		$patternF8 = '/\[熊猫\]/';
-		$patternF9 = '/\[偷乐\]/';
-		$patternF10 = '/\[ok\]/';
+		$patternQQ['1'] = '/\[微笑\]/';
+		$patternQQ['2'] = '/\[撇嘴\]/';
+		$patternQQ['3'] = '/\[色\]/';
+		$patternQQ['4'] = '/\[发呆\]/';
+		$patternQQ['5'] = '/\[得意\]/';
+		$patternQQ['6'] = '/\[流泪\]/';
+		$patternQQ['7'] = '/\[害羞\]/';
+		$patternQQ['8'] = '/\[闭嘴\]/';
+		$patternQQ['9'] = '/\[睡\]/';
+		$patternQQ['10'] = '/\[大哭\]/';
+		$patternQQ['11'] = '/\[尴尬\]/';
+		$patternQQ['12'] = '/\[发怒\]/';
+		$patternQQ['13'] = '/\[调皮\]/';
+		$patternQQ['14'] = '/\[呲牙\]/';
+		$patternQQ['15'] = '/\[惊讶\]/';
+		$patternQQ['16'] = '/\[难过\]/';
+		$patternQQ['17'] = '/\[酷\]/';
+		$patternQQ['18'] = '/\[冷汗\]/';
+		$patternQQ['19'] = '/\[抓狂\]/';
+		$patternQQ['20'] = '/\[吐\]/';
+		$patternQQ['21'] = '/\[偷笑\]/';
+		$patternQQ['22'] = '/\[可爱\]/';
+		$patternQQ['23'] = '/\[白眼\]/';
+		$patternQQ['24'] = '/\[傲慢\]/';
+		$patternQQ['25'] = '/\[饥饿\]/';
+		$patternQQ['26'] = '/\[困\]/';
+		$patternQQ['27'] = '/\[惊恐\]/';
+		$patternQQ['28'] = '/\[流汗\]/';
+		$patternQQ['29'] = '/\[憨笑\]/';
+		$patternQQ['30'] = '/\[大兵\]/';
+		$patternQQ['31'] = '/\[奋斗\]/';
+		$patternQQ['32'] = '/\[咒骂\]/';
+		$patternQQ['33'] = '/\[疑问\]/';
+		$patternQQ['34'] = '/\[嘘\]/';
+		$patternQQ['35'] = '/\[晕\]/';
+		$patternQQ['36'] = '/\[折磨\]/';
+		$patternQQ['37'] = '/\[哀\]/';
+		$patternQQ['38'] = '/\[骷髅\]/';
+		$patternQQ['39'] = '/\[敲打\]/';
+		$patternQQ['40'] = '/\[再见\]/';
+		$patternQQ['41'] = '/\[擦汗\]/';
+		$patternQQ['42'] = '/\[抠鼻\]/';
+		$patternQQ['43'] = '/\[鼓掌\]/';
+		$patternQQ['44'] = '/\[糗大了\]/';
+		$patternQQ['45'] = '/\[坏笑\]/';
+		$patternQQ['46'] = '/\[左哼哼\]/';
+		$patternQQ['47'] = '/\[右哼哼\]/';
+		$patternQQ['48'] = '/\[哈欠\]/';
+		$patternQQ['49'] = '/\[鄙视\]/';
+		$patternQQ['50'] = '/\[委屈\]/';
+		$patternQQ['51'] = '/\[快哭了\]/';
+		$patternQQ['52'] = '/\[阴险\]/';
+		$patternQQ['53'] = '/\[亲亲\]/';
+		$patternQQ['54'] = '/\[吓\]/';
+		$patternQQ['55'] = '/\[可怜\]/';
+		$patternQQ['56'] = '/\[菜刀\]/';
+		$patternQQ['57'] = '/\[西瓜\]/';
+		$patternQQ['58'] = '/\[啤酒\]/';
+		$patternQQ['59'] = '/\[篮球\]/';
+		$patternQQ['60'] = '/\[乒乓\]/';
+		$patternQQ['61'] = '/\[咖啡\]/';
+		$patternQQ['62'] = '/\[饭\]/';
+		$patternQQ['63'] = '/\[猪头\]/';
+		$patternQQ['64'] = '/\[玫瑰\]/';
+		$patternQQ['65'] = '/\[凋谢\]/';
+		$patternQQ['66'] = '/\[示爱\]/';
+		$patternQQ['67'] = '/\[爱心\]/';
+		$patternQQ['68'] = '/\[心碎\]/';
+		$patternQQ['69'] = '/\[蛋糕\]/';
+		$patternQQ['70'] = '/\[闪电\]/';
+		$patternQQ['71'] = '/\[炸弹\]/';
+		$patternQQ['72'] = '/\[刀\]/';
+		$patternQQ['73'] = '/\[足球\]/';
+		$patternQQ['74'] = '/\[瓢虫\]/';
+		$patternQQ['75'] = '/\[便便\]/';
+		$patternQQ['76'] = '/\[月亮\]/';
+		$patternQQ['77'] = '/\[太阳\]/';
+		$patternQQ['78'] = '/\[礼物\]/';
+		$patternQQ['79'] = '/\[拥抱\]/';
+		$patternQQ['80'] = '/\[强\]/';
+		$patternQQ['81'] = '/\[弱\]/';
+		$patternQQ['82'] = '/\[握手\]/';
+		$patternQQ['83'] = '/\[胜利\]/';
+		$patternQQ['84'] = '/\[抱拳\]/';
+		$patternQQ['85'] = '/\[勾引\]/';
+		$patternQQ['86'] = '/\[拳头\]/';
+		$patternQQ['87'] = '/\[差劲\]/';
+		$patternQQ['88'] = '/\[爱你\]/';
+		$patternQQ['89'] = '/\[NO\]/';
+		$patternQQ['90'] = '/\[OK\]/';
+		$patternQQ['91'] = '/\[爱情\]/';
+		$patternQQ['92'] = '/\[飞吻\]/';
+		$patternQQ['93'] = '/\[跳跳\]/';
+		$patternQQ['94'] = '/\[发抖\]/';
+		$patternQQ['95'] = '/\[怄火\]/';
+		$patternQQ['96'] = '/\[转圈\]/';
+		$patternQQ['97'] = '/\[磕头\]/';
+		$patternQQ['98'] = '/\[回头\]/';
+		$patternQQ['99'] = '/\[跳绳\]/';
+		$patternQQ['100'] = '/\[挥手\]/';
+		$patternQQ['101'] = '/\[激动\]/';
+		$patternQQ['102'] = '/\[街舞\]/';
+		$patternQQ['103'] = '/\[献吻\]/';
+		$patternQQ['104'] = '/\[左太极\]/';
+		$patternQQ['105'] = '/\[右太极\]/';
+		$patternQQ['106'] = '/\[捶地大笑\]/';
+		$patternQQ['107'] = '/\[安慰\]/';
+		$patternQQ['108'] = '/\[扮鬼脸\]/';
+		$patternQQ['109'] = '/\[加油\]/';
+		$patternQQ['110'] = '/\[敬礼\]/';
+		$patternQQ['111'] = '/\[狂汗\]/';
+		$patternQQ['112'] = '/\[没心情\]/';
+		$patternQQ['113'] = '/\[潜水\]/';
+		$patternQQ['114'] = '/\[叹气\]/';
+		$patternQQ['115'] = '/\[生病\]/';
+		$patternQQ['116'] = '/\[石化\]/';
+		$patternQQ['117'] = '/\[伤不起\]/';
+		$patternQQ['118'] = '/\[亲爱的\]/';
+		$patternQQ['119'] = '/\[祈祷\]/';
+		$patternQQ['120'] = '/\[蜡烛\]/';
+		$patternQQ['121'] = '/\[毕业了\]/';
+		$patternQQ['122'] = '/\[热\]/';
+		$patternQQ['123'] = '/\[鼓掌\]/';
+		$patternQQ['124'] = '/\[雷\]/';
+		$patternQQ['125'] = '/\[大笑\]/';
+		$patternQQ['126'] = '/\[害羞\]/';
+		$patternQQ['127'] = '/\[囧\]/';
+		$patternQQ['128'] = '/\[泪\]/';
+		$patternQQ['129'] = '/\[巨汗\]/';
+		$patternQQ['130'] = '/\[拉轰\]/';
+		$patternQQ['131'] = '/\[亲亲\]/';
+		$patternQQ['132'] = '/\[切克闹\]/';
+		$patternQQ['133'] = '/\[惊\]/';
+		$patternQQ['134'] = '/\[吃货\]/';
+		$patternQQ['135'] = '/\[亲戚吐槽\]/';
 		
-		$replacementS1 = '<img src="'.$baseUrl.'/image/emotion/s1.gif" title="呵呵" height="24" width="24" />';
-		$replacementS2 = '<img src="'.$baseUrl.'/image/emotion/s2.gif" title="嘻嘻" height="24" width="24" />';
-		$replacementS3 = '<img src="'.$baseUrl.'/image/emotion/s3.gif" title="哈哈" height="24" width="24" />';
-		$replacementS4 = '<img src="'.$baseUrl.'/image/emotion/s4.gif" title="嘿嘿" height="24" width="24" />';
-		$replacementS5 = '<img src="'.$baseUrl.'/image/emotion/s5.gif" title="赫赫" height="24" width="24" />';
-		$replacementM1 = '<img src="'.$baseUrl.'/image/emotion/m1.gif" title="我晕" height="24" width="24" />';
-		$replacementM2 = '<img src="'.$baseUrl.'/image/emotion/m2.gif" title="我靠" height="24" width="24" />';
-		$replacementM3 = '<img src="'.$baseUrl.'/image/emotion/m3.gif" title="我擦" height="24" width="24" />';
-		$replacementM4 = '<img src="'.$baseUrl.'/image/emotion/m4.gif" title="我勒个去" height="24" width="24" />';
-		$replacementM5 = '<img src="'.$baseUrl.'/image/emotion/m5.gif" title="我吐" height="24" width="24" />';
-		$replacementQ1 = '<img src="'.$baseUrl.'/image/emotion/q1.gif" title="害羞" height="24" width="24" />';
-		$replacementQ2 = '<img src="'.$baseUrl.'/image/emotion/q2.gif" title="花心" height="24" width="24" />';
-		$replacementQ3 = '<img src="'.$baseUrl.'/image/emotion/q3.gif" title="摆酷" height="24" width="24" />';
-		$replacementQ4 = '<img src="'.$baseUrl.'/image/emotion/q4.gif" title="鼓掌" height="24" width="24" />';
-		$replacementQ5 = '<img src="'.$baseUrl.'/image/emotion/q5.gif" title="亲亲" height="24" width="24" />';
-		$replacementQ6 = '<img src="'.$baseUrl.'/image/emotion/q6.gif" title="可爱" height="24" width="24" />';
-		$replacementQ7 = '<img src="'.$baseUrl.'/image/emotion/q7.gif" title="感动" height="24" width="24" />';
-		$replacementQ8 = '<img src="'.$baseUrl.'/image/emotion/q8.gif" title="哭了" height="24" width="24" />';
-		$replacementQ9 = '<img src="'.$baseUrl.'/image/emotion/q9.gif" title="鄙视" height="24" width="24" />';
-		$replacementQ10 = '<img src="'.$baseUrl.'/image/emotion/q10.gif" title="挖鼻屎" height="24" width="24" />';
-		$replacementQ11 = '<img src="'.$baseUrl.'/image/emotion/q11.gif" title="吐舌头" height="24" width="24" />';
-		$replacementQ12 = '<img src="'.$baseUrl.'/image/emotion/q12.gif" title="耶" height="24" width="24" />';
-		$replacementG1 = '<img src="'.$baseUrl.'/image/emotion/g1.gif" title="鲜花" height="24" width="24" />';
-		$replacementG2 = '<img src="'.$baseUrl.'/image/emotion/g2.gif" title="月亮" height="24" width="24" />';
-		$replacementG3 = '<img src="'.$baseUrl.'/image/emotion/g3.gif" title="太阳" height="24" width="24" />';
-		$replacementG4 = '<img src="'.$baseUrl.'/image/emotion/g4.gif" title="猪头" height="24" width="24" />';
-		$replacementG5 = '<img src="'.$baseUrl.'/image/emotion/g5.gif" title="便便" height="24" width="24" />';
-		$replacementJ1 = '<img src="'.$baseUrl.'/image/emotion/j1.gif" title="大爱" height="40" width="40" />';
-		$replacementJ2 = '<img src="'.$baseUrl.'/image/emotion/j2.gif" title="享受" height="40" width="40" />';
-		$replacementJ3 = '<img src="'.$baseUrl.'/image/emotion/j3.gif" title="扭屁股" height="40" width="40" />';
-		$replacementJ4 = '<img src="'.$baseUrl.'/image/emotion/j4.gif" title="顶" height="40" width="40" />';
-		$replacementJ5 = '<img src="'.$baseUrl.'/image/emotion/j5.gif" title="投降了" height="40" width="40" />';
-		$replacementJ6 = '<img src="'.$baseUrl.'/image/emotion/j6.gif" title="撞砖" height="40" width="40" />';
-		$replacementJ7 = '<img src="'.$baseUrl.'/image/emotion/j7.gif" title="揉脸" height="40" width="40" />';
-		$replacementJ8 = '<img src="'.$baseUrl.'/image/emotion/j8.gif" title="瞌睡" height="40" width="40" />';
-		$replacementJ9 = '<img src="'.$baseUrl.'/image/emotion/j9.gif" title="汗" height="40" width="40" />';
-		$replacementJ10 = '<img src="'.$baseUrl.'/image/emotion/j10.gif" title="哦也" height="40" width="40" />';
-		$replacementJ11 = '<img src="'.$baseUrl.'/image/emotion/j11.gif" title="啊！" height="40" width="40" />';
-		$replacementT1 = '<img src="'.$baseUrl.'/image/emotion/t1.gif" title="爱" height="35" width="36" />';
-		$replacementT2 = '<img src="'.$baseUrl.'/image/emotion/t2.gif" title="兴奋" height="29" width="36" />';
-		$replacementT3 = '<img src="'.$baseUrl.'/image/emotion/t3.gif" title="飞吻" height="31" width="38" />';
-		$replacementT4 = '<img src="'.$baseUrl.'/image/emotion/t4.gif" title="安慰" height="30" width="30" />';
-		$replacementT5 = '<img src="'.$baseUrl.'/image/emotion/t5.gif" title="扮鬼脸" height="27" width="34" />';
-		$replacementQO1 = '<img src="'.$baseUrl.'/image/emotion/qo1.gif" title="可怜" height="24" width="24" />';
-		$replacementQO2 = '<img src="'.$baseUrl.'/image/emotion/qo2.gif" title="愤怒" height="24" width="24" />';
-		$replacementQO3 = '<img src="'.$baseUrl.'/image/emotion/qo3.gif" title="惊恐" height="24" width="24" />';
-		$replacementQO4 = '<img src="'.$baseUrl.'/image/emotion/qo4.gif" title="骂" height="24" width="24" />';
-		$replacementQO5 = '<img src="'.$baseUrl.'/image/emotion/qo5.gif" title="疑问" height="24" width="24" />';
-		$replacementSi1 = '<img src="'.$baseUrl.'/image/emotion/si1.gif" title="吃货" height="22" width="22" />';
-		$replacementSi2 = '<img src="'.$baseUrl.'/image/emotion/si2.gif" title="笑哈哈" height="22" width="22" />';
-		$replacementSi3 = '<img src="'.$baseUrl.'/image/emotion/si3.gif" title="江南style" height="22" width="22" />';
-		$replacementSi4 = '<img src="'.$baseUrl.'/image/emotion/si4.gif" title="飞个吻" height="22" width="22" />';
-		$replacementSi5 = '<img src="'.$baseUrl.'/image/emotion/si5.gif" title="浮云" height="22" width="22" />';
-		$replacementSi6 = '<img src="'.$baseUrl.'/image/emotion/si6.gif" title="给力" height="22" width="22" />';
-		$replacementSi7 = '<img src="'.$baseUrl.'/image/emotion/si7.gif" title="围观" height="22" width="22" />';
-		$replacementSi8 = '<img src="'.$baseUrl.'/image/emotion/si8.gif" title="威武" height="22" width="22" />';
-		$replacementSi9 = '<img src="'.$baseUrl.'/image/emotion/si9.gif" title="奥特曼" height="22" width="22" />';
-		$replacementSi10 = '<img src="'.$baseUrl.'/image/emotion/si10.gif" title="生病" height="22" width="22" />';
-		$replacementSi11 = '<img src="'.$baseUrl.'/image/emotion/si11.gif" title="泪" height="22" width="22" />';
-		$replacementSi12 = '<img src="'.$baseUrl.'/image/emotion/si12.gif" title="太开心" height="22" width="22" />';
-		$replacementSi13 = '<img src="'.$baseUrl.'/image/emotion/si13.gif" title="good" height="22" width="22" />';
-		$replacementSi14 = '<img src="'.$baseUrl.'/image/emotion/si14.gif" title="不要" height="22" width="22" />';
-		$replacementF1 = '<img src="'.$baseUrl.'/image/emotion/f1.gif" title="圣诞" height="22" width="22" />';
-		$replacementF2 = '<img src="'.$baseUrl.'/image/emotion/f2.gif" title="结婚罗" height="22" width="22" />';
-		$replacementF3 = '<img src="'.$baseUrl.'/image/emotion/f3.gif" title="红包" height="22" width="22" />';
-		$replacementF4 = '<img src="'.$baseUrl.'/image/emotion/f4.gif" title="爆竹声声" height="22" width="22" />';
-		$replacementF5 = '<img src="'.$baseUrl.'/image/emotion/f5.gif" title="生日快乐" height="22" width="22" />';
-		$replacementF6 = '<img src="'.$baseUrl.'/image/emotion/f6.gif" title="国旗" height="22" width="22" />';
-		$replacementF7 = '<img src="'.$baseUrl.'/image/emotion/f7.gif" title="蜡烛" height="22" width="22" />';
-		$replacementF8 = '<img src="'.$baseUrl.'/image/emotion/f8.gif" title="熊猫" height="22" width="22" />';
-		$replacementF9 = '<img src="'.$baseUrl.'/image/emotion/f9.gif" title="偷乐" height="22" width="22" />';
-		$replacementF10 = '<img src="'.$baseUrl.'/image/emotion/f10.gif" title="ok" height="22" width="22" />';
-		
-		if (preg_match($patternS1, $words)) {
-			$words = preg_replace($patternS1, $replacementS1, $words);
-		}
-		if (preg_match($patternS2, $words)) {
-			$words = preg_replace($patternS2, $replacementS2, $words);
-		}
-		if (preg_match($patternS3, $words)) {
-			$words = preg_replace($patternS3, $replacementS3, $words);
-		}
-		if (preg_match($patternS4, $words)) {
-			$words = preg_replace($patternS4, $replacementS4, $words);
-		}
-		if (preg_match($patternS5, $words)) {
-			$words = preg_replace($patternS5, $replacementS5, $words);
-		}
-		if (preg_match($patternM1, $words)) {
-			$words = preg_replace($patternM1, $replacementM1, $words);
-		}
-		if (preg_match($patternM2, $words)) {
-			$words = preg_replace($patternM2, $replacementM2, $words);
-		}
-		if (preg_match($patternM3, $words)) {
-			$words = preg_replace($patternM3, $replacementM3, $words);
-		}
-		if (preg_match($patternM4, $words)) {
-			$words = preg_replace($patternM4, $replacementM4, $words);
-		}
-		if (preg_match($patternM5, $words)) {
-			$words = preg_replace($patternM5, $replacementM5, $words);
-		}
-		if (preg_match($patternQ1, $words)) {
-			$words = preg_replace($patternQ1, $replacementQ1, $words);
-		}
-		if (preg_match($patternQ2, $words)) {
-			$words = preg_replace($patternQ2, $replacementQ2, $words);
-		}
-		if (preg_match($patternQ3, $words)) {
-			$words = preg_replace($patternQ3, $replacementQ3, $words);
-		}
-		if (preg_match($patternQ4, $words)) {
-			$words = preg_replace($patternQ4, $replacementQ4, $words);
-		}
-		if (preg_match($patternQ5, $words)) {
-			$words = preg_replace($patternQ5, $replacementQ5, $words);
-		}
-		if (preg_match($patternQ6, $words)) {
-			$words = preg_replace($patternQ6, $replacementQ6, $words);
-		}
-		if (preg_match($patternQ7, $words)) {
-			$words = preg_replace($patternQ7, $replacementQ7, $words);
-		}
-		if (preg_match($patternQ8, $words)) {
-			$words = preg_replace($patternQ8, $replacementQ8, $words);
-		}
-		if (preg_match($patternQ9, $words)) {
-			$words = preg_replace($patternQ9, $replacementQ9, $words);
-		}
-		if (preg_match($patternQ10, $words)) {
-			$words = preg_replace($patternQ10, $replacementQ10, $words);
-		}
-		if (preg_match($patternQ11, $words)) {
-			$words = preg_replace($patternQ11, $replacementQ11, $words);
-		}
-		if (preg_match($patternQ12, $words)) {
-			$words = preg_replace($patternQ12, $replacementQ12, $words);
-		}
-		if (preg_match($patternG1, $words)) {
-			$words = preg_replace($patternG1, $replacementG1, $words);
-		}
-		if (preg_match($patternG2, $words)) {
-			$words = preg_replace($patternG2, $replacementG2, $words);
-		}
-		if (preg_match($patternG3, $words)) {
-			$words = preg_replace($patternG3, $replacementG3, $words);
-		}
-		if (preg_match($patternG4, $words)) {
-			$words = preg_replace($patternG4, $replacementG4, $words);
-		}
-		if (preg_match($patternG5, $words)) {
-			$words = preg_replace($patternG5, $replacementG5, $words);
-		}
-		if (preg_match($patternJ1, $words)) {
-			$words = preg_replace($patternJ1, $replacementJ1, $words);
-		}
-		if (preg_match($patternJ2, $words)) {
-			$words = preg_replace($patternJ2, $replacementJ2, $words);
-		}
-		if (preg_match($patternJ3, $words)) {
-			$words = preg_replace($patternJ3, $replacementJ3, $words);
-		}
-		if (preg_match($patternJ4, $words)) {
-			$words = preg_replace($patternJ4, $replacementJ4, $words);
-		}
-		if (preg_match($patternJ5, $words)) {
-			$words = preg_replace($patternJ5, $replacementJ5, $words);
-		}
-		if (preg_match($patternJ6, $words)) {
-			$words = preg_replace($patternJ6, $replacementJ6, $words);
-		}
-		if (preg_match($patternJ7, $words)) {
-			$words = preg_replace($patternJ7, $replacementJ7, $words);
-		}
-		if (preg_match($patternJ8, $words)) {
-			$words = preg_replace($patternJ8, $replacementJ8, $words);
-		}
-		if (preg_match($patternJ9, $words)) {
-			$words = preg_replace($patternJ9, $replacementJ9, $words);
-		}
-		if (preg_match($patternJ10, $words)) {
-			$words = preg_replace($patternJ10, $replacementJ10, $words);
-		}
-		if (preg_match($patternJ11, $words)) {
-			$words = preg_replace($patternJ11, $replacementJ11, $words);
-		}
-		if (preg_match($patternT1, $words)) {
-			$words = preg_replace($patternT1, $replacementT1, $words);
-		}
-		if (preg_match($patternT2, $words)) {
-			$words = preg_replace($patternT2, $replacementT2, $words);
-		}
-		if (preg_match($patternT3, $words)) {
-			$words = preg_replace($patternT3, $replacementT3, $words);
-		}
-		if (preg_match($patternT4, $words)) {
-			$words = preg_replace($patternT4, $replacementT4, $words);
-		}
-		if (preg_match($patternT5, $words)) {
-			$words = preg_replace($patternT5, $replacementT5, $words);
-		}
-	    if (preg_match($patternQO1, $words)) {
-			$words = preg_replace($patternQO1, $replacementQO1, $words);
-		}
-	    if (preg_match($patternQO2, $words)) {
-			$words = preg_replace($patternQO2, $replacementQO2, $words);
-		}
-	    if (preg_match($patternQO3, $words)) {
-			$words = preg_replace($patternQO3, $replacementQO3, $words);
-		}
-	    if (preg_match($patternQO4, $words)) {
-			$words = preg_replace($patternQO4, $replacementQO4, $words);
-		}
-	    if (preg_match($patternQO5, $words)) {
-			$words = preg_replace($patternQO5, $replacementQO5, $words);
-		}
-	    if (preg_match($patternSi1, $words)) {
-			$words = preg_replace($patternSi1, $replacementSi1, $words);
-		}
-	    if (preg_match($patternSi2, $words)) {
-			$words = preg_replace($patternSi2, $replacementSi2, $words);
-		}
-	    if (preg_match($patternSi3, $words)) {
-			$words = preg_replace($patternSi3, $replacementSi3, $words);
-		}
-	    if (preg_match($patternSi4, $words)) {
-			$words = preg_replace($patternSi4, $replacementSi4, $words);
-		}
-	    if (preg_match($patternSi5, $words)) {
-			$words = preg_replace($patternSi5, $replacementSi5, $words);
-		}
-	    if (preg_match($patternSi6, $words)) {
-			$words = preg_replace($patternSi6, $replacementSi6, $words);
-		}
-	    if (preg_match($patternSi7, $words)) {
-			$words = preg_replace($patternSi7, $replacementSi7, $words);
-		}
-	    if (preg_match($patternSi8, $words)) {
-			$words = preg_replace($patternSi8, $replacementSi8, $words);
-		}
-	    if (preg_match($patternSi9, $words)) {
-			$words = preg_replace($patternSi9, $replacementSi9, $words);
-		}
-	    if (preg_match($patternSi10, $words)) {
-			$words = preg_replace($patternSi10, $replacementSi10, $words);
-		}
-	    if (preg_match($patternSi11, $words)) {
-			$words = preg_replace($patternSi11, $replacementSi11, $words);
-		}
-	    if (preg_match($patternSi12, $words)) {
-			$words = preg_replace($patternSi12, $replacementSi12, $words);
-		}
-	    if (preg_match($patternSi13, $words)) {
-			$words = preg_replace($patternSi13, $replacementSi13, $words);
-		}
-	    if (preg_match($patternSi14, $words)) {
-			$words = preg_replace($patternSi14, $replacementSi14, $words);
-		}
-	    if (preg_match($patternF1, $words)) {
-			$words = preg_replace($patternF1, $replacementF1, $words);
-		}
-	    if (preg_match($patternF2, $words)) {
-			$words = preg_replace($patternF2, $replacementF2, $words);
-		}
-	    if (preg_match($patternF3, $words)) {
-			$words = preg_replace($patternF3, $replacementF3, $words);
-		}
-	    if (preg_match($patternF4, $words)) {
-			$words = preg_replace($patternF4, $replacementF4, $words);
-		}
-	    if (preg_match($patternF5, $words)) {
-			$words = preg_replace($patternF5, $replacementF5, $words);
-		}
-	    if (preg_match($patternF6, $words)) {
-			$words = preg_replace($patternF6, $replacementF6, $words);
-		}
-		if (preg_match($patternF7, $words)) {
-			$words = preg_replace($patternF7, $replacementF7, $words);
-		}
-		if (preg_match($patternF8, $words)) {
-			$words = preg_replace($patternF8, $replacementF8, $words);
-		}
-		if (preg_match($patternF9, $words)) {
-			$words = preg_replace($patternF9, $replacementF9, $words);
-		}
-		if (preg_match($patternF10, $words)) {
-			$words = preg_replace($patternF10, $replacementF10, $words);
+		$replacementQQ['1'] = '<img src="'.$baseUrl.'/image/emotion/qq1.gif" title="微笑" height="24" width="24" />';
+		$replacementQQ['2'] = '<img src="'.$baseUrl.'/image/emotion/qq2.gif" title="撇嘴" height="24" width="24" />';
+		$replacementQQ['3'] = '<img src="'.$baseUrl.'/image/emotion/qq3.gif" title="色" height="24" width="24" />';
+		$replacementQQ['4'] = '<img src="'.$baseUrl.'/image/emotion/qq4.gif" title="发呆" height="24" width="24" />';
+		$replacementQQ['5'] = '<img src="'.$baseUrl.'/image/emotion/qq5.gif" title="得意" height="24" width="24" />';
+		$replacementQQ['6'] = '<img src="'.$baseUrl.'/image/emotion/qq6.gif" title="流泪" height="24" width="24" />';
+		$replacementQQ['7'] = '<img src="'.$baseUrl.'/image/emotion/qq7.gif" title="害羞" height="24" width="24" />';
+		$replacementQQ['8'] = '<img src="'.$baseUrl.'/image/emotion/qq8.gif" title="闭嘴" height="24" width="24" />';
+		$replacementQQ['9'] = '<img src="'.$baseUrl.'/image/emotion/qq9.gif" title="睡" height="24" width="24" />';
+		$replacementQQ['10'] = '<img src="'.$baseUrl.'/image/emotion/qq10.gif" title="大哭" height="24" width="24" />';
+		$replacementQQ['11'] = '<img src="'.$baseUrl.'/image/emotion/qq11.gif" title="尴尬" height="24" width="24" />';
+		$replacementQQ['12'] = '<img src="'.$baseUrl.'/image/emotion/qq12.gif" title="发怒" height="24" width="24" />';
+		$replacementQQ['13'] = '<img src="'.$baseUrl.'/image/emotion/qq13.gif" title="调皮" height="24" width="24" />';
+		$replacementQQ['14'] = '<img src="'.$baseUrl.'/image/emotion/qq14.gif" title="呲牙" height="24" width="24" />';
+		$replacementQQ['15'] = '<img src="'.$baseUrl.'/image/emotion/qq15.gif" title="惊讶" height="24" width="24" />';
+		$replacementQQ['16'] = '<img src="'.$baseUrl.'/image/emotion/qq16.gif" title="难过" height="24" width="24" />';
+		$replacementQQ['17'] = '<img src="'.$baseUrl.'/image/emotion/qq17.gif" title="酷" height="24" width="24" />';
+		$replacementQQ['18'] = '<img src="'.$baseUrl.'/image/emotion/qq18.gif" title="冷汗" height="24" width="24" />';
+		$replacementQQ['19'] = '<img src="'.$baseUrl.'/image/emotion/qq19.gif" title="抓狂" height="24" width="24" />';
+		$replacementQQ['20'] = '<img src="'.$baseUrl.'/image/emotion/qq20.gif" title="吐" height="24" width="24" />';
+		$replacementQQ['21'] = '<img src="'.$baseUrl.'/image/emotion/qq21.gif" title="偷笑" height="24" width="24" />';
+		$replacementQQ['22'] = '<img src="'.$baseUrl.'/image/emotion/qq22.gif" title="可爱" height="24" width="24" />';
+		$replacementQQ['23'] = '<img src="'.$baseUrl.'/image/emotion/qq23.gif" title="白眼" height="24" width="24" />';
+		$replacementQQ['24'] = '<img src="'.$baseUrl.'/image/emotion/qq24.gif" title="傲慢" height="24" width="24" />';
+		$replacementQQ['25'] = '<img src="'.$baseUrl.'/image/emotion/qq25.gif" title="饥饿" height="24" width="24" />';
+		$replacementQQ['26'] = '<img src="'.$baseUrl.'/image/emotion/qq26.gif" title="困" height="24" width="24" />';
+		$replacementQQ['27'] = '<img src="'.$baseUrl.'/image/emotion/qq27.gif" title="惊恐" height="24" width="24" />';
+		$replacementQQ['28'] = '<img src="'.$baseUrl.'/image/emotion/qq28.gif" title="流汗" height="24" width="24" />';
+		$replacementQQ['29'] = '<img src="'.$baseUrl.'/image/emotion/qq29.gif" title="憨笑" height="24" width="24" />';
+		$replacementQQ['30'] = '<img src="'.$baseUrl.'/image/emotion/qq30.gif" title="大兵" height="24" width="24" />';
+		$replacementQQ['31'] = '<img src="'.$baseUrl.'/image/emotion/qq31.gif" title="奋斗" height="24" width="24" />';
+		$replacementQQ['32'] = '<img src="'.$baseUrl.'/image/emotion/qq32.gif" title="咒骂" height="24" width="24" />';
+		$replacementQQ['33'] = '<img src="'.$baseUrl.'/image/emotion/qq33.gif" title="疑问" height="24" width="24" />';
+		$replacementQQ['34'] = '<img src="'.$baseUrl.'/image/emotion/qq34.gif" title="嘘" height="24" width="24" />';
+		$replacementQQ['35'] = '<img src="'.$baseUrl.'/image/emotion/qq35.gif" title="晕" height="24" width="24" />';
+		$replacementQQ['36'] = '<img src="'.$baseUrl.'/image/emotion/qq36.gif" title="折磨" height="24" width="24" />';
+		$replacementQQ['37'] = '<img src="'.$baseUrl.'/image/emotion/qq37.gif" title="哀" height="24" width="24" />';
+		$replacementQQ['38'] = '<img src="'.$baseUrl.'/image/emotion/qq38.gif" title="骷髅" height="24" width="24" />';
+		$replacementQQ['39'] = '<img src="'.$baseUrl.'/image/emotion/qq39.gif" title="敲打" height="24" width="24" />';
+		$replacementQQ['40'] = '<img src="'.$baseUrl.'/image/emotion/qq40.gif" title="再见" height="24" width="24" />';
+		$replacementQQ['41'] = '<img src="'.$baseUrl.'/image/emotion/qq41.gif" title="擦汗" height="24" width="24" />';
+		$replacementQQ['42'] = '<img src="'.$baseUrl.'/image/emotion/qq42.gif" title="抠鼻" height="24" width="24" />';
+		$replacementQQ['43'] = '<img src="'.$baseUrl.'/image/emotion/qq43.gif" title="鼓掌" height="24" width="24" />';
+		$replacementQQ['44'] = '<img src="'.$baseUrl.'/image/emotion/qq44.gif" title="糗大了" height="24" width="24" />';
+		$replacementQQ['45'] = '<img src="'.$baseUrl.'/image/emotion/qq45.gif" title="坏笑" height="24" width="24" />';
+		$replacementQQ['46'] = '<img src="'.$baseUrl.'/image/emotion/qq46.gif" title="左哼哼" height="24" width="24" />';
+		$replacementQQ['47'] = '<img src="'.$baseUrl.'/image/emotion/qq47.gif" title="右哼哼" height="24" width="24" />';
+		$replacementQQ['48'] = '<img src="'.$baseUrl.'/image/emotion/qq48.gif" title="哈欠" height="24" width="24" />';
+		$replacementQQ['49'] = '<img src="'.$baseUrl.'/image/emotion/qq49.gif" title="鄙视" height="24" width="24" />';
+		$replacementQQ['50'] = '<img src="'.$baseUrl.'/image/emotion/qq50.gif" title="委屈" height="24" width="24" />';
+		$replacementQQ['51'] = '<img src="'.$baseUrl.'/image/emotion/qq51.gif" title="快哭了" height="24" width="24" />';
+		$replacementQQ['52'] = '<img src="'.$baseUrl.'/image/emotion/qq52.gif" title="阴险" height="24" width="24" />';
+		$replacementQQ['53'] = '<img src="'.$baseUrl.'/image/emotion/qq53.gif" title="亲亲" height="24" width="24" />';
+		$replacementQQ['54'] = '<img src="'.$baseUrl.'/image/emotion/qq54.gif" title="吓" height="24" width="24" />';
+		$replacementQQ['55'] = '<img src="'.$baseUrl.'/image/emotion/qq55.gif" title="可怜" height="24" width="24" />';
+		$replacementQQ['56'] = '<img src="'.$baseUrl.'/image/emotion/qq56.gif" title="菜刀" height="24" width="24" />';
+		$replacementQQ['57'] = '<img src="'.$baseUrl.'/image/emotion/qq57.gif" title="西瓜" height="24" width="24" />';
+		$replacementQQ['58'] = '<img src="'.$baseUrl.'/image/emotion/qq58.gif" title="啤酒" height="24" width="24" />';
+		$replacementQQ['59'] = '<img src="'.$baseUrl.'/image/emotion/qq59.gif" title="篮球" height="24" width="24" />';
+		$replacementQQ['60'] = '<img src="'.$baseUrl.'/image/emotion/qq60.gif" title="乒乓" height="24" width="24" />';
+		$replacementQQ['61'] = '<img src="'.$baseUrl.'/image/emotion/qq61.gif" title="咖啡" height="24" width="24" />';
+		$replacementQQ['62'] = '<img src="'.$baseUrl.'/image/emotion/qq62.gif" title="饭" height="24" width="24" />';
+		$replacementQQ['63'] = '<img src="'.$baseUrl.'/image/emotion/qq63.gif" title="猪头" height="24" width="24" />';
+		$replacementQQ['64'] = '<img src="'.$baseUrl.'/image/emotion/qq64.gif" title="玫瑰" height="24" width="24" />';
+		$replacementQQ['65'] = '<img src="'.$baseUrl.'/image/emotion/qq65.gif" title="凋谢" height="24" width="24" />';
+		$replacementQQ['66'] = '<img src="'.$baseUrl.'/image/emotion/qq66.gif" title="示爱" height="24" width="24" />';
+		$replacementQQ['67'] = '<img src="'.$baseUrl.'/image/emotion/qq67.gif" title="爱心" height="24" width="24" />';
+		$replacementQQ['68'] = '<img src="'.$baseUrl.'/image/emotion/qq68.gif" title="心碎" height="24" width="24" />';
+		$replacementQQ['69'] = '<img src="'.$baseUrl.'/image/emotion/qq69.gif" title="蛋糕" height="24" width="24" />';
+		$replacementQQ['70'] = '<img src="'.$baseUrl.'/image/emotion/qq70.gif" title="闪电" height="24" width="24" />';
+		$replacementQQ['71'] = '<img src="'.$baseUrl.'/image/emotion/qq71.gif" title="炸弹" height="24" width="24" />';
+		$replacementQQ['72'] = '<img src="'.$baseUrl.'/image/emotion/qq72.gif" title="刀" height="24" width="24" />';
+		$replacementQQ['73'] = '<img src="'.$baseUrl.'/image/emotion/qq73.gif" title="足球" height="24" width="24" />';
+		$replacementQQ['74'] = '<img src="'.$baseUrl.'/image/emotion/qq74.gif" title="瓢虫" height="24" width="24" />';
+		$replacementQQ['75'] = '<img src="'.$baseUrl.'/image/emotion/qq75.gif" title="便便" height="24" width="24" />';
+		$replacementQQ['76'] = '<img src="'.$baseUrl.'/image/emotion/qq76.gif" title="月亮" height="24" width="24" />';
+		$replacementQQ['77'] = '<img src="'.$baseUrl.'/image/emotion/qq77.gif" title="太阳" height="24" width="24" />';
+		$replacementQQ['78'] = '<img src="'.$baseUrl.'/image/emotion/qq78.gif" title="礼物" height="24" width="24" />';
+		$replacementQQ['79'] = '<img src="'.$baseUrl.'/image/emotion/qq79.gif" title="拥抱" height="24" width="24" />';
+		$replacementQQ['80'] = '<img src="'.$baseUrl.'/image/emotion/qq80.gif" title="强" height="24" width="24" />';
+		$replacementQQ['81'] = '<img src="'.$baseUrl.'/image/emotion/qq81.gif" title="弱" height="24" width="24" />';
+		$replacementQQ['82'] = '<img src="'.$baseUrl.'/image/emotion/qq82.gif" title="握手" height="24" width="24" />';
+		$replacementQQ['83'] = '<img src="'.$baseUrl.'/image/emotion/qq83.gif" title="胜利" height="24" width="24" />';
+		$replacementQQ['84'] = '<img src="'.$baseUrl.'/image/emotion/qq84.gif" title="抱拳" height="24" width="24" />';
+		$replacementQQ['85'] = '<img src="'.$baseUrl.'/image/emotion/qq85.gif" title="勾引" height="24" width="24" />';
+		$replacementQQ['86'] = '<img src="'.$baseUrl.'/image/emotion/qq86.gif" title="拳头" height="24" width="24" />';
+		$replacementQQ['87'] = '<img src="'.$baseUrl.'/image/emotion/qq87.gif" title="差劲" height="24" width="24" />';
+		$replacementQQ['88'] = '<img src="'.$baseUrl.'/image/emotion/qq88.gif" title="爱你" height="24" width="24" />';
+		$replacementQQ['89'] = '<img src="'.$baseUrl.'/image/emotion/qq89.gif" title="NO" height="24" width="24" />';
+		$replacementQQ['90'] = '<img src="'.$baseUrl.'/image/emotion/qq90.gif" title="OK" height="24" width="24" />';
+		$replacementQQ['91'] = '<img src="'.$baseUrl.'/image/emotion/qq91.gif" title="爱情" height="24" width="24" />';
+		$replacementQQ['92'] = '<img src="'.$baseUrl.'/image/emotion/qq92.gif" title="飞吻" height="24" width="24" />';
+		$replacementQQ['93'] = '<img src="'.$baseUrl.'/image/emotion/qq93.gif" title="跳跳" height="24" width="24" />';
+		$replacementQQ['94'] = '<img src="'.$baseUrl.'/image/emotion/qq94.gif" title="发抖" height="24" width="24" />';
+		$replacementQQ['95'] = '<img src="'.$baseUrl.'/image/emotion/qq95.gif" title="怄火" height="24" width="24" />';
+		$replacementQQ['96'] = '<img src="'.$baseUrl.'/image/emotion/qq96.gif" title="转圈" height="24" width="24" />';
+		$replacementQQ['97'] = '<img src="'.$baseUrl.'/image/emotion/qq97.gif" title="磕头" height="24" width="24" />';
+		$replacementQQ['98'] = '<img src="'.$baseUrl.'/image/emotion/qq98.gif" title="回头" height="24" width="24" />';
+		$replacementQQ['99'] = '<img src="'.$baseUrl.'/image/emotion/qq99.gif" title="跳绳" height="24" width="24" />';
+		$replacementQQ['100'] = '<img src="'.$baseUrl.'/image/emotion/qq100.gif" title="挥手" height="24" width="24" />';
+		$replacementQQ['101'] = '<img src="'.$baseUrl.'/image/emotion/qq101.gif" title="激动" height="24" width="24" />';
+		$replacementQQ['102'] = '<img src="'.$baseUrl.'/image/emotion/qq102.gif" title="街舞" height="24" width="24" />';
+		$replacementQQ['103'] = '<img src="'.$baseUrl.'/image/emotion/qq103.gif" title="献吻" height="24" width="24" />';
+		$replacementQQ['104'] = '<img src="'.$baseUrl.'/image/emotion/qq104.gif" title="左太极" height="24" width="24" />';
+		$replacementQQ['105'] = '<img src="'.$baseUrl.'/image/emotion/qq105.gif" title="右太极" height="24" width="24" />';
+		$replacementQQ['106'] = '<img src="'.$baseUrl.'/image/emotion/qq106.gif" title="捶地大笑" height="24" width="24" />';
+		$replacementQQ['107'] = '<img src="'.$baseUrl.'/image/emotion/qq107.gif" title="安慰" height="24" width="24" />';
+		$replacementQQ['108'] = '<img src="'.$baseUrl.'/image/emotion/qq108.gif" title="扮鬼脸" height="24" width="24" />';
+		$replacementQQ['109'] = '<img src="'.$baseUrl.'/image/emotion/qq109.gif" title="加油" height="24" width="24" />';
+		$replacementQQ['110'] = '<img src="'.$baseUrl.'/image/emotion/qq110.gif" title="敬礼" height="24" width="24" />';
+		$replacementQQ['111'] = '<img src="'.$baseUrl.'/image/emotion/qq111.gif" title="狂汗" height="24" width="24" />';
+		$replacementQQ['112'] = '<img src="'.$baseUrl.'/image/emotion/qq112.gif" title="没心情" height="24" width="24" />';
+		$replacementQQ['113'] = '<img src="'.$baseUrl.'/image/emotion/qq113.gif" title="潜水" height="24" width="24" />';
+		$replacementQQ['114'] = '<img src="'.$baseUrl.'/image/emotion/qq114.gif" title="叹气" height="24" width="24" />';
+		$replacementQQ['115'] = '<img src="'.$baseUrl.'/image/emotion/qq115.gif" title="生病" height="24" width="24" />';
+		$replacementQQ['116'] = '<img src="'.$baseUrl.'/image/emotion/qq116.gif" title="石化" height="24" width="24" />';
+		$replacementQQ['117'] = '<img src="'.$baseUrl.'/image/emotion/qq117.gif" title="伤不起" height="24" width="24" />';
+		$replacementQQ['118'] = '<img src="'.$baseUrl.'/image/emotion/qq118.gif" title="亲爱的" height="24" width="24" />';
+		$replacementQQ['119'] = '<img src="'.$baseUrl.'/image/emotion/qq119.gif" title="祈祷" height="24" width="24" />';
+		$replacementQQ['120'] = '<img src="'.$baseUrl.'/image/emotion/qq120.gif" title="蜡烛" height="24" width="24" />';
+		$replacementQQ['121'] = '<img src="'.$baseUrl.'/image/emotion/qq121.gif" title="毕业了" height="24" width="24" />';
+		$replacementQQ['122'] = '<img src="'.$baseUrl.'/image/emotion/qq122.gif" title="热" height="24" width="24" />';
+		$replacementQQ['123'] = '<img src="'.$baseUrl.'/image/emotion/qq123.gif" title="鼓掌" height="24" width="24" />';
+		$replacementQQ['124'] = '<img src="'.$baseUrl.'/image/emotion/qq124.gif" title="雷" height="24" width="24" />';
+		$replacementQQ['125'] = '<img src="'.$baseUrl.'/image/emotion/qq125.gif" title="大笑" height="24" width="24" />';
+		$replacementQQ['126'] = '<img src="'.$baseUrl.'/image/emotion/qq126.gif" title="害羞" height="24" width="24" />';
+		$replacementQQ['127'] = '<img src="'.$baseUrl.'/image/emotion/qq127.gif" title="囧" height="24" width="24" />';
+		$replacementQQ['128'] = '<img src="'.$baseUrl.'/image/emotion/qq128.gif" title="泪" height="24" width="24" />';
+		$replacementQQ['129'] = '<img src="'.$baseUrl.'/image/emotion/qq129.gif" title="巨汗" height="24" width="24" />';
+		$replacementQQ['130'] = '<img src="'.$baseUrl.'/image/emotion/qq130.gif" title="拉轰" height="24" width="24" />';
+		$replacementQQ['131'] = '<img src="'.$baseUrl.'/image/emotion/qq131.gif" title="亲亲" height="24" width="24" />';
+		$replacementQQ['132'] = '<img src="'.$baseUrl.'/image/emotion/qq132.gif" title="切克闹" height="24" width="24" />';
+		$replacementQQ['133'] = '<img src="'.$baseUrl.'/image/emotion/qq133.gif" title="惊" height="24" width="24" />';
+		$replacementQQ['134'] = '<img src="'.$baseUrl.'/image/emotion/qq134.gif" title="吃货" height="24" width="24" />';
+		$replacementQQ['135'] = '<img src="'.$baseUrl.'/image/emotion/qq135.gif" title="亲戚吐槽" height="24" width="24" />';
+		$i = 1;
+		while ($i < 136) {
+			if (preg_match($patternQQ[$i], $words)) {
+				$words = preg_replace($patternQQ[$i], $replacementQQ[$i], $words);
+			}
+			$i++;
 		}
 		return $words;
 	}
 	
 	public function loadEmotion($page = 1, $baseUrl = "/Public"){
-		/*$patternS1 = '/\[呵呵\]/';
-		$patternS2 = '/\[嘻嘻\]/';
-		$patternS3 = '/\[哈哈\]/';
-		$patternS4 = '/\[嘿嘿\]/';
-		$patternS5 = '/\[赫赫\]/';
-		$patternM1 = '/\[我晕\]/';
-		$patternM2 = '/\[我靠\]/';
-		$patternM3 = '/\[我擦\]/';
-		$patternM4 = '/\[我勒个去\]/';
-		$patternM5 = '/\[我吐\]/';
-		$patternQ1 = '/\[害羞\]/';
-		$patternQ2 = '/\[花心\]/';
-		$patternQ3 = '/\[摆酷\]/';
-		$patternQ4 = '/\[鼓掌\]/';
-		$patternQ5 = '/\[亲亲\]/';
-		$patternQ6 = '/\[可爱\]/';
-		$patternQ7 = '/\[感动\]/';
-		$patternQ8 = '/\[哭了\]/';
-		$patternQ9 = '/\[鄙视\]/';
-		$patternQ10 = '/\[挖鼻屎\]/';
-		$patternQ11 = '/\[吐舌头\]/';
-		$patternQ12 = '/\[耶\]/';
-		
-		$patternQO1 = '/\[可怜\]/';
-		$patternQO2 = '/\[愤怒\]/';
-		$patternQO3 = '/\[惊恐\]/';
-		$patternQO4 = '/\[骂\]/';
-		$patternQO5 = '/\[疑问\]/';
-		
-		
-		$patternSi1 = '/\[吃货\]/';
-		$patternSi2 = '/\[笑哈哈\]/';
-		$patternSi3 = '/\[江南style\]/';
-		$patternSi4 = '/\[飞个吻\]/';
-		$patternSi5 = '/\[浮云\]/';
-		$patternSi6 = '/\[给力\]/';
-		$patternSi7 = '/\[围观\]/';
-		$patternSi8 = '/\[威武\]/';
-		$patternSi9 = '/\[奥特曼\]/';
-		$patternSi10 = '/\[生病\]/';
-		$patternSi11 = '/\[泪\]/';
-		$patternSi12 = '/\[太开心\]/';
-		$patternSi13 = '/\[good\]/';
-		$patternSi14 = '/\[不要\]/';
-		
-		$patternG1 = '/\[鲜花\]/';
-		$patternG2 = '/\[月亮\]/';
-		$patternG3 = '/\[太阳\]/';
-		$patternG4 = '/\[猪头\]/';
-		$patternG5 = '/\[便便\]/';
-		
-		$patternF1 = '/\[圣诞\]/';
-		$patternF2 = '/\[结婚罗\]/';
-		$patternF3 = '/\[红包\]/';
-		$patternF4 = '/\[爆竹声声\]/';
-		$patternF5 = '/\[生日快乐\]/';
-		$patternF6 = '/\[国旗\]/';
-		
-
-		$patternT1 = '/\[爱\]/';
-		$patternT2 = '/\[兴奋\]/';
-		$patternT3 = '/\[飞吻\]/';
-		$patternT4 = '/\[安慰\]/';
-		$patternT5 = '/\[扮鬼脸\]/';
-		
-		$patternJ1 = '/\[大爱\]/';
-		$patternJ2 = '/\[享受\]/';
-		$patternJ3 = '/\[扭屁股\]/';
-		$patternJ4 = '/\[顶\]/';
-		$patternJ5 = '/\[投降了\]/';
-		$patternJ6 = '/\[撞砖\]/';
-		$patternJ7 = '/\[揉脸\]/';
-		$patternJ8 = '/\[瞌睡\]/';
-		$patternJ9 = '/\[汗\]/';
-		$patternJ10 = '/\[哦也\]/';
-		$patternJ11 = '/\[啊！\]/';*/
 
 		if ($page == 1) {
 			$emotionString = "<li>";
