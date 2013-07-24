@@ -6,7 +6,7 @@
   
   <?php if (empty($inviteUser['uid'])){ ?>
   <div class="registe_toptext">
-    <p class="f16 black_l"><span class="icon_n_color" title="ihelpoo Beta3 换肤啦 买东西..."></span> 欢迎加入我帮圈圈 校园帮助主题社交网站 ~ 湖北民族学院</p>
+    <p class="f16 black_l"><span class="icon_n_color" title="ihelpoo Beta3 换肤啦 买东西..."></span> 欢迎加入我帮圈圈 校园帮助主题社交网站 ~ <?php echo $recordSchoolInfo['school']; ?> <a id="selectschool" class="f12">[更改]</a></p>
     <ul class="f12 gray">
       <li>希望大家一起能帮您解决一些问题...</li>
       <li>希望您找到需要的讯息...</li>
@@ -41,7 +41,7 @@
   <?php } ?>
   <form action="__ROOT__/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
   <ul class="registe_ul black_l">
-    <li>邮&#12288;&#12288;箱<input id="email" type="text" name="email" /><span id="emailinfo" class="f12 red_l"></span></li>
+    <li>邮&#12288;&#12288;箱<input id="email" type="text" name="email" /><span id="emailinfo" class="f12 red_l"></span><input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" /></li>
     <li>创建密码<input id="password" type="password" name="password" /><span id="passwordinfo" class="f12 red_l"></span></li>
     <li>密码重复<input id="passwordrepeat" type="password" name="passwordrepeat" /><span id="passwordrepeatinfo" class="f12 red_l"></span></li>
     <li>昵&#12288;&#12288;称<input id="nickname" type="text" name="nickname" /><span id="nicknameinfo" class="f12 red_l"></span></li>
@@ -66,7 +66,7 @@
   </ul>
   </form>
 </div>
-
+<div id="ajaxprogressbar"></div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/user/register.js?id=1"></script>
 <include file="Public:footer" />

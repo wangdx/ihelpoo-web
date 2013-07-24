@@ -43,7 +43,8 @@ class IUserLoginModel extends Model{
                     'logintime' => $data['logintime'], 
                     'lastlogintime' => $data['lastlogintime'],
                 	'email' => $user['email'],
-                	'password' => $user['password']
+                	'password' => $user['password'],
+                	'school' => $user['school']
                 );
             } else {
                 return 'password wrong';

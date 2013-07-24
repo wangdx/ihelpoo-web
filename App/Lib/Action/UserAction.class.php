@@ -244,7 +244,18 @@ class UserAction extends Action {
                     if (empty($recordUserInfo['realname_re'])) {
                     	redirect('/setting/realfirst?step=1', 0, '填充个人真实信息...');
                     }
-                    redirect('/stream', 0, '登录成功...');
+                    
+                    /**
+                     * select school
+                     */
+                    $recordSchoolInfo = i_school_domain();
+                    if ($recordSchoolInfo['id'] != $dbUser['school']) {
+                    	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    	$schoolDomain = "http://".$schoolDomain;
+                    	redirect($schoolDomain.'/stream', 3, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                    } else {
+                    	redirect('/stream', 0, '登录成功...');
+                    }
 	            } else {
 	            	$this->assign('errorinfo',$dbUser);
 	            }
@@ -273,12 +284,27 @@ class UserAction extends Action {
     		if (is_array($dbUser)) {
     			userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
     			session('userloginid',$dbUser['uid']);
-    			redirect('/stream', 0, '快速登录成功...');
+    			
+    			/**
+                 * select school
+                 */
+    			$recordSchoolInfo = i_school_domain();
+                if ($recordSchoolInfo['id'] != $dbUser['school']) {
+                 	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    $schoolDomain = "http://".$schoolDomain;
+                    redirect($schoolDomain.'/stream', 3, '快速登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                } else {
+                    redirect('/stream', 0, '快速登录成功...');
+                }
     		}
     	}
     	redirect('/', 3, '上次已经点击退出 or 账号密码错误, 快速登录失败...');
     }
     
+    
+    /**
+     * need recode , add qq renren
+     */
     public function loginweibo()
     {
         $userloginid = session('userloginid');
@@ -542,14 +568,36 @@ class UserAction extends Action {
      */
     public function register()
     {
-    	$this->assign('title','用户注册');
+    	
     	$userloginid = session('userloginid');
-        if (empty($userloginid)) {
-
-        }
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','用户注册 '.$recordSchoolInfo['school']);
         $OpAcademy = M("OpAcademy");
-        $listOpAcademy = $OpAcademy->select();
+        $listOpAcademy = $OpAcademy->where("school = $recordSchoolInfo[id]")->select();
         $this->assign('listOpAcademy',$listOpAcademy);
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
+        
+        if (!empty($_GET['school'])) {
+        	$getSchoolId = $_GET['school'];
+        	$SchoolInfo = M("SchoolInfo");
+        	$selectSchoolInfo = $SchoolInfo->find($getSchoolId);
+        	$selectSchoolDoamin = $selectSchoolInfo['domain_main'] == NULL ? $selectSchoolInfo['domain'] : $selectSchoolInfo['domain_main'];
+        	$selectSchoolDoamin = "http://".$selectSchoolDoamin;
+        	if (!empty($selectSchoolDoamin)) {
+        		redirect($selectSchoolDoamin.'/user/register', 0, '跳转学校...');
+        	}
+        }
+        
+        if (!empty($_POST['getschoollist'])) {
+        	$SchoolInfo = M("SchoolInfo");
+        	$resultsSchoolInfo = $SchoolInfo->select();
+        	echo '<div class="setting_school_list_div"><a class="gray f12" id="setting_school_close_span"><span class="icon_quit"></span></a><ul>';
+        	foreach ($resultsSchoolInfo as $schoolInfo) {
+        		echo "<li><a href='".__ROOT__."/user/register?school=$schoolInfo[id]'>$schoolInfo[school]</a></li>";
+        	}
+        	echo '</ul></div>';
+        	exit();
+        }
 
         /**
          * inviter user info
@@ -592,7 +640,8 @@ class UserAction extends Action {
 	            array('nickname', 'require', '昵称不能为空'),
 	            array('sex', 'number', 'sex格式错误'),
 	            array('enteryear', 'number', 'enteryear格式错误'),
-	            array('academy', 'number', 'academy格式错误')
+	            array('academy', 'number', 'academy格式错误'),
+	            array('school', 'number', 'school格式错误')
 	        );
 	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
@@ -607,6 +656,7 @@ class UserAction extends Action {
 	            $sex = htmlspecialchars(strtolower(trim($_POST["sex"])));
 	            $enteryear = htmlspecialchars(strtolower(trim($_POST["enteryear"])));
 	            $academy = htmlspecialchars(strtolower(trim($_POST["academy"])));
+	            $school = htmlspecialchars(strtolower(trim($_POST["school"])));
 	            $nickname = str_ireplace(' ','',$nickname);
 	            
 	            /**
@@ -635,7 +685,7 @@ class UserAction extends Action {
 	            	'priority' => '4',
 	            	'creat_ti' => time(),
 	            	'icon_fl' => 0,
-	            	'school' => 'hbmy'
+	            	'school' => $school
 	            );
 	            $newUserId = $UserLogin->add($newUserlogignData);
 

@@ -205,11 +205,18 @@ class TalkAction extends Action {
         $OpSpecialty = M("OpSpecialty");
         if (!empty($toUserInfo['academy_op'])) {
         	$toUserAcademy = $OpAcademy->where("id = $toUserInfo[academy_op]")->find();
-        	$this->assign('toUserAcademy',$toUserAcademy['name']);
+        	$this->assign('toUserAcademy',$toUserAcademy);
         }
         if (!empty($toUserInfo['specialty_op'])) {
         	$toUserSpecialty = $OpSpecialty->where("id = $toUserInfo[specialty_op]")->find();
-        	$this->assign('toUserSpecialty',$toUserSpecialty['name']);
+        	$this->assign('toUserSpecialty',$toUserSpecialty);
+        }
+        $recordSchoolInfo = i_school_domain();
+        $this->assign('recordSchoolInfo', $recordSchoolInfo);
+        if ($toUserRecord['school'] != $recordSchoolInfo['id']) {
+        	$SchoolInfo = M("SchoolInfo");
+        	$userLoginSchoolInfo = $SchoolInfo->find($toUserRecord['school']);
+        	$this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
         }
         $this->display();
     }

@@ -118,4 +118,25 @@ $().ready(function(){
     		document.body.focus();
     	}         
     })
+    
+    var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
+    $("#selectschool").click(function(){
+        $(this).ajaxStart(function(){
+        	$('#ajaxprogressbar').html($infoLoading);
+        }).ajaxStop(function(){
+        	$infoLoading.remove();
+        });
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "user/register",
+            data: "getschoollist='get'",
+            datatype: "text",
+            success:function(list){
+                $("#ajaxprogressbar").html(list);
+            }
+        });
+    });
+    $("#setting_school_close_span").live('click', function(){
+        $(this).parent().fadeOut('fast');
+    });
 });

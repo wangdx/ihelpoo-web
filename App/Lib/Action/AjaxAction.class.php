@@ -350,7 +350,9 @@ class AjaxAction extends Action {
     			$OpAcademy = M("OpAcademy");
     			$OpSpecialty = M("OpSpecialty");
     			$OpDormitory = M("OpDormitory");
+    			$UserRemark = M("UserRemark");
     			$recordUserLogin = $UserLogin->where("uid = $userid")->field('uid,nickname,sex,birthday,enteryear,type,online,active,icon_url,school')->find();
+    			$resultUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $userid")->find();
     			if (!$recordUserLogin['uid']) {
     				$this->ajaxReturn(0,"用户不存在",0);
     			} else {
@@ -375,10 +377,11 @@ class AjaxAction extends Action {
     				$recordOpSpecialtyName = $recordOpSpecialty['name'] == NULL ? '':$recordOpSpecialty['name'];
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
-    				
+    				$resultUserRemarkremark = empty($resultUserRemark['remark']) ? NULL : $resultUserRemark['remark'];
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
     					'nickname' => $recordUserLogin['nickname'],
+    					'remark' => $resultUserRemarkremark,
     					'sex' => $recordUserLogin['sex'],
     					'constellation' => i_constellation($recordUserLogin['birthday']),
     					'type' => $userType,
@@ -432,6 +435,41 @@ class AjaxAction extends Action {
     				}
     				$this->ajaxReturn($userInfoArray,"ok",1);
     			}
+    		}
+    	}
+    }
+    
+    public function newremark()
+    {
+    	$userloginid = session('userloginid');
+    	if ($this->isPost()) {
+    		$newuserid = (int)$_POST['newuserid'];
+    		$newremarkname = trim(addslashes(strip_tags($_POST["newremarkname"])));
+    		if (!empty($newuserid)) {
+    			$UserRemark = M("UserRemark");
+    			$recordUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $newuserid")->find();
+    			if (!empty($recordUserRemark['id'])) {
+    				$updateUserRemark = array(
+    					'id' => $recordUserRemark['id'],
+    					'uid' => $userloginid,
+    					'ruid' => $newuserid,
+    					'remark' => $newremarkname,
+    					'time' => time()
+    				);
+    				$UserRemark->save($updateUserRemark);
+    				$this->ajaxReturn($updateUserRemark,"update remark ok",1);
+    			} else {
+    				$newUserRemark = array(
+    					'id' => '',
+    					'uid' => $userloginid,
+    					'ruid' => $newuserid,
+    					'remark' => $newremarkname,
+    					'time' => time()
+    				);
+    				$UserRemark->add($newUserRemark);
+    				$this->ajaxReturn($newUserRemark,"new remark ok",2);
+    			}
+    			$this->ajaxReturn(0,"remark error",0);
     		}
     	}
     }

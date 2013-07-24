@@ -152,6 +152,32 @@ input{
     left: 260px;
     top: 10px;
 }
+#ajaxprogressbar{
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.setting_school_list_div{
+    border: 5px solid #DDD;
+    background: #EDF4FB;
+    border-radius: 3px;
+    padding: 10px 15px;
+    width: 300px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+}
+#setting_school_close_span{
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+.setting_school_list_div ul li{
+    display: inline-block;
+    margin: 3px 5px;
+}
 /*---login.html---*/
 #login_status{
     left: 50px;
