@@ -445,7 +445,7 @@ class AjaxAction extends Action {
     	if ($this->isPost()) {
     		$newuserid = (int)$_POST['newuserid'];
     		$newremarkname = trim(addslashes(strip_tags($_POST["newremarkname"])));
-    		if (!empty($newuserid) && !empty($newremarkname)) {
+    		if (!empty($newuserid)) {
     			$UserRemark = M("UserRemark");
     			$recordUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $newuserid")->find();
     			if (!empty($recordUserRemark['id'])) {
