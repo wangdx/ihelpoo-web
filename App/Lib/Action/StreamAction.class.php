@@ -917,7 +917,7 @@ class StreamAction extends Action {
                     die();
                 }
 
-                if ($hs->executeInsert(3, array($idworker.nextId(), $userloginid, $diffusionSidArray[1], 1, time())) === false)
+                if ($hs->executeInsert(3, array($idworker.generateParticle(1), $userloginid, $diffusionSidArray[1], 1, time())) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
