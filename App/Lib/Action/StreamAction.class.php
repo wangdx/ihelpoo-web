@@ -910,14 +910,14 @@ class StreamAction extends Action {
 
                 Vendor('Ihelpoo.Idworker');
                 $idworker = new Idworker();
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-                if (!($hs->openIndex(3, 'ihelpoo', 'i_msg_notice', '', 'notice_id,source_id,detail_id,format_id,create_ti')))
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
+                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,source_id,detail_id,format_id,create_ti')))
                 {
                     echo 'ERROR1:'.$hs->getError(), PHP_EOL;
                     die();
                 }
 
-                if ($hs->executeInsert(3, array(1, 10000, 10001, 1, 11111)) === false)
+                if ($hs->executeInsert(3, array($idworker.nextId(), $userloginid, $diffusionSidArray[1], 1, time())) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
@@ -957,24 +957,24 @@ class StreamAction extends Action {
 //                    die();
 //                }
 //
-                unset($hs);
-                //GET
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
-                {
-                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
-
-                var_dump($retval);
-
-                $retval = $hs->executeMulti(
-                    array(array(1, '=', array('1'), 1, 0),
-                        array(1, '=', array('2'), 1, 0)));
-
-                var_dump($retval);
+//                unset($hs);
+//                //GET
+//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
+//                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
+//                {
+//                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
+//                    die();
+//                }
+//
+//                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
+//
+//                var_dump($retval);
+//
+//                $retval = $hs->executeMulti(
+//                    array(array(1, '=', array('1'), 1, 0),
+//                        array(1, '=', array('2'), 1, 0)));
+//
+//                var_dump($retval);
 
                 unset($hs);
 
