@@ -274,6 +274,7 @@
     </div>
     <div class="s_li_p_user f12">
       <?php echo " <a href='".__ROOT__."/wo/".$record['uid']."' class='fb f14 getuserinfo' userid='".$record['uid']."'>".$record['nickname']."</a>" ?>
+      <?php var_dump($record['remark']); ?>
       <?php if (i_degree($record['active']) > 4) { ?>
       <span class="level<?php echo i_degree($record['active']) ?>" title="等级:<?php echo i_degree($record['active']) ?>"></span>
       <?php } else if (i_degree($record['active']) < 2) { ?>
