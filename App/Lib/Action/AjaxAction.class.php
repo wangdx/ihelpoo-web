@@ -439,6 +439,41 @@ class AjaxAction extends Action {
     	}
     }
     
+    public function newremark()
+    {
+    	$userloginid = session('userloginid');
+    	if ($this->isPost()) {
+    		$newuserid = (int)$_POST['newuserid'];
+    		$newremarkname = trim(addslashes(strip_tags($_POST["newremarkname"])));
+    		if (!empty($newuserid) && !empty($newremarkname)) {
+    			$UserRemark = M("UserRemark");
+    			$recordUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $newuserid")->find();
+    			if (!empty($recordUserRemark['id'])) {
+    				$updateUserRemark = array(
+    					'id' => $recordUserRemark['id'],
+    					'uid' => $userloginid,
+    					'ruid' => $newuserid,
+    					'remark' => $newremarkname,
+    					'time' => time()
+    				);
+    				$UserRemark->save($updateUserRemark);
+    				$this->ajaxReturn($updateUserRemark,"update remark ok",1);
+    			} else {
+    				$newUserRemark = array(
+    					'id' => '',
+    					'uid' => $userloginid,
+    					'ruid' => $newuserid,
+    					'remark' => $newremarkname,
+    					'time' => time()
+    				);
+    				$UserRemark->add($newUserRemark);
+    				$this->ajaxReturn($newUserRemark,"new remark ok",1);
+    			}
+    			$this->ajaxReturn(0,"remark error",0);
+    		}
+    	}
+    }
+    
     public function msggetusers()
     {
     	$userloginid = session('userloginid');

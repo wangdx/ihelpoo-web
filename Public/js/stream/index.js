@@ -567,7 +567,7 @@ $().ready(function(){
     						var userremarkhtml = "<a class='f12 black_l' id='user_remark_set' title='点击设置备注'>备注</a>";
     					}
     					if (msg.data.schoolname != null) {
-    						var inhtml = "<div class='user_info_top_div'>"
+    						var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
     						+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"stream/u/"+msg.data.uid+"' target='_blank'>"
     						+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     						+ "		    <span class='online"+msg.data.online+"'></span></a>"
@@ -610,6 +610,27 @@ $().ready(function(){
     	$('.user_info_div').hover(function(){},
     	function(){
     		$(this).fadeOut("slow");
+    	});
+    });
+    
+    /**
+     * remark
+     */
+    $('#user_remark_set').live('click', function(){
+    	var inputremarkhtml = "<input type='text' id='newremarkname' /><a id='user_remark_submit' class='btn f12'>确定</a>";
+	    $(this).parent().parent().find('.user_info_main_div').html(inputremarkhtml);
+	});
+    $('#user_remark_submit').live('click', function(){
+    	var newremarkname = $('#newremarkname').val();
+    	var newuserid = $('.user_info_top_div').attr('userid');
+    	$.ajax({
+            type: "POST",
+    		dataType: "json",
+    		url: baseUrl + "ajax/getuserinfo",
+    		data:{newuserid: newuserid, newremarkname: newremarkname},
+    		success:function(msg){
+    			$('.user_info_main_div').html("<span class='icon_right'></span>备注成功");
+    		}
     	});
     });
 
