@@ -920,7 +920,7 @@ class StreamAction extends Action {
                     die();
                 }
 
-                if ($hs->executeInsert(3, array($diffusionId, $userloginid, $diffusionSidArray[1], 1, time())) === false)
+                if ($hs->executeInsert(3, array($diffusionId, 2222, 3333, 4444, 5555)) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
