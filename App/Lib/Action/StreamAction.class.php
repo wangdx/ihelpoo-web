@@ -927,7 +927,7 @@ class StreamAction extends Action {
                 unset($hs);
                 //GET
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,source_id,detail_id,format_id,create_ti')))
+                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,source_id,detail_id,format_id,create_time')))
                 {
                     echo 'ERROR:'.$hs->getError(), PHP_EOL;
                     die();
