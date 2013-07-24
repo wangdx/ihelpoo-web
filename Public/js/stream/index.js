@@ -562,9 +562,9 @@ $().ready(function(){
         					}
     					}
     					if (msg.data.reamrk != null) {
-    						var userremarkhtml = '<a class="f12 gray" id="user_remark_set" title="点击修改备注">'+msg.data.reamrk='</a>';
+    						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击修改备注'>"+msg.data.reamrk+"</a>";
     					} else {
-    						var userremarkhtml = '<a class="f12 gray" id="user_remark_set" title="点击设置备注">备注</a>';
+    						var userremarkhtml = "<a class='f12 gray' id='user_remark_set' title='点击设置备注'>备注</a>";
     					}
     					if (msg.data.schoolname != null) {
     						var inhtml = "<div class='user_info_top_div'>"
