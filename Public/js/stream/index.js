@@ -626,7 +626,7 @@ $().ready(function(){
     	$.ajax({
             type: "POST",
     		dataType: "json",
-    		url: baseUrl + "ajax/getuserinfo",
+    		url: baseUrl + "ajax/newremark",
     		data:{newuserid: newuserid, newremarkname: newremarkname},
     		success:function(msg){
     			$('.user_info_main_div').html("<span class='icon_right'></span>备注成功");
