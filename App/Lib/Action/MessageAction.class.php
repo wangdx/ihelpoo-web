@@ -73,7 +73,9 @@ class MessageAction extends Action {
         }
         $msgIdsStr = rtrim($msgIdsStr, ",");
         $RecordDiffusion = M("RecordDiffusion");
-        $recordDiffusion = $RecordDiffusion->where("id in ($msgIdsStr)")->limit($offset,$count)->order('id DESC')->select();
+        if(!empty($msgIdsStr)){
+            $recordDiffusion = $RecordDiffusion->where("id in ($msgIdsStr)")->limit($offset,$count)->order('id DESC')->select();
+        }
 
     	/**
     	 * msg form system
