@@ -377,12 +377,11 @@ class AjaxAction extends Action {
     				$recordOpSpecialtyName = $recordOpSpecialty['name'] == NULL ? '':$recordOpSpecialty['name'];
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
-    				$resultUserRemarkremark = $resultUserRemark['remark'] == NULL ? '':$resultUserRemark['remark'];
     				
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
     					'nickname' => $recordUserLogin['nickname'],
-    					'remark' => $resultUserRemarkremark,
+    					'remark' => $resultUserRemark['remark'],
     					'sex' => $recordUserLogin['sex'],
     					'constellation' => i_constellation($recordUserLogin['birthday']),
     					'type' => $userType,
