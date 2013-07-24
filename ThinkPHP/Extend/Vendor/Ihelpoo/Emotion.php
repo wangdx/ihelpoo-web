@@ -651,7 +651,6 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq88.gif" title="爱你" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq89.gif" title="NO" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq90.gif" title="OK" height="24" width="24" />';
-			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq113.gif" title="潜水" height="24" width="24" />';
 			/**
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq91.gif" title="爱情" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq92.gif" title="飞吻" height="24" width="24" />';
