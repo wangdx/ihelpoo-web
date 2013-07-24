@@ -377,7 +377,7 @@ class AjaxAction extends Action {
     				$recordOpSpecialtyName = $recordOpSpecialty['name'] == NULL ? '':$recordOpSpecialty['name'];
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
-    				$resultUserRemarkremark = empty($resultUserRemark['remark']) ? '' : $resultUserRemark['remark'];
+    				$resultUserRemarkremark = empty($resultUserRemark['remark']) ? NULL : $resultUserRemark['remark'];
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
     					'nickname' => $recordUserLogin['nickname'],
