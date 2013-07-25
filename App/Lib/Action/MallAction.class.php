@@ -303,7 +303,7 @@ class MallAction extends Action {
     	
     	if (!empty($shopcategoryString)) {
     		if ($shopcategoryString == 't_1') {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 1 AND i_user_login.school = $recordSchoolInfo[school]")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 1 AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
@@ -311,9 +311,9 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 1 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if ($shopcategoryString == 't_2') {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 2 AND i_user_login.school = $recordSchoolInfo[school]")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 2 AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
@@ -321,9 +321,9 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 2 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 2 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if ($shopcategoryString == 't_3') {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 3 AND i_user_login.school = $recordSchoolInfo[school]")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 3 AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
@@ -331,9 +331,9 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 3 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 3 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if (is_numeric($shopcategoryString)) {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[school]")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
@@ -341,7 +341,7 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[school]")
+    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
@@ -350,7 +350,7 @@ class MallAction extends Action {
     		}
     		$this->assign('shopcategoryString',$shopcategoryString);
     	} else {
-    		$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_login.school = $recordSchoolInfo[school]")
+    		$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_login.school = $recordSchoolInfo[id]")
     		->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     		->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     		->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
@@ -358,7 +358,7 @@ class MallAction extends Action {
     		->order('commodity_co DESC')
     		->limit($offset, $count)
     		->select();
-    		$totalRecordNums = $UserShop->where("status = 2 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    		$totalRecordNums = $UserShop->where("status = 2 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     	}
     	$this->assign('recordsUserShop', $recordsUserShop);
 
