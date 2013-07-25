@@ -546,6 +546,7 @@ class MallsetAction extends Action {
     	$userloginid = session('userloginid');
     	$this->assign('title','商品管理 - 买卖');
     	$RecordCommodity = M("RecordCommodity");
+    	$recordSchoolInfo = i_school_domain();
 
     	/**
     	 * UserShop
@@ -610,7 +611,7 @@ class MallsetAction extends Action {
     	$page = i_page_get_num();
     	$count = 15;
         $offset = $page * $count;
-    	$resultsRecordCommodity = $RecordCommodity->where("shopid = $userloginid")
+    	$resultsRecordCommodity = $RecordCommodity->where("shopid = $userloginid AND school_id = $recordSchoolInfo[id]")
     	->field('detail',true)
     	->order("time DESC")->limit($offset,$count)->select();
     	$this->assign('resultsRecordCommodity',$resultsRecordCommodity);

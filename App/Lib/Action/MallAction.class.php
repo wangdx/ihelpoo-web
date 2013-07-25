@@ -426,12 +426,12 @@ class MallAction extends Action {
         	->select();
         	$totalCommodityNums = $RecordCommodity->where("shopid = $shopId AND category_id = $categoryId")->count();
         } else {
-        	$resultsRecordCommodity = $RecordCommodity->where("shopid = $shopId AND status = 1")
+        	$resultsRecordCommodity = $RecordCommodity->where("shopid = $shopId AND status = 1 AND school_id = $recordSchoolInfo[id]")
         	->field('detail',true)
         	->order("time DESC")
         	->limit($offset,$count)
         	->select();
-        	$totalCommodityNums = $RecordCommodity->where("shopid = $shopId")->count();
+        	$totalCommodityNums = $RecordCommodity->where("shopid = $shopId AND school_id = $recordSchoolInfo[id]")->count();
         }
 
     	/**
