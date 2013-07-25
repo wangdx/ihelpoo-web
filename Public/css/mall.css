@@ -160,7 +160,7 @@
 }
 .mall_category_ul li{
     display: inline-block;
-    height: 251px;
+    height: 240px;
     width: 160px;
     vertical-align: top;
     margin: 5px 30px 10px 0;
@@ -175,13 +175,13 @@
 .mall_category_ul_li_price{
     position: absolute;
     left: 0;
-    top: 200px;
+    top: 180px;
     text-align: center;
 }
 .mall_category_ul_li_shoper{
     position: absolute;
     left: 0;
-    top: 230px;
+    top: 205px;
 }
 .mall_category_ul_li_p{
     display: table-cell;
