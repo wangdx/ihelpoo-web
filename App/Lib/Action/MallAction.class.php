@@ -728,6 +728,7 @@ class MallAction extends Action {
     	$recordUserShop = $UserShop->find($userloginid);
     	
     	if ($_GET['sureopen'] == 'true') {
+    		var_dump($_GET['sureopen']);
     		if (empty($recordUserShop['uid'])) {
     			$newUserShop = array(
 		    		'uid' => $userloginid,
