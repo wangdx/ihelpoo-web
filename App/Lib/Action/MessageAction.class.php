@@ -78,7 +78,7 @@ class MessageAction extends Action
 
         $MsgNotice = M("MsgNotice");
         if(!empty($msgIdsStr)){
-            $msgNotice = $MsgNotice->where("id in ($msgIdsStr)")->limit($offset, $count)->order('create_time DESC')->select();
+            $msgNotice = $MsgNotice->where("notice_id in ($msgIdsStr)")->limit($offset, $count)->order('create_time DESC')->select();
         }
 
         $IUserLogin = D("IUserLogin");
