@@ -718,10 +718,8 @@ class MallAction extends Action {
     	if (empty($userloginid)) {
     		redirect('/mall', 3, '你还没有登录呢...');
     	}
-    	$UserInfo = M("UserLogin");
+    	$UserInfo = M("UserInfo");
     	$recordUserInfo = $UserInfo->find($userloginid);
-    	var_dump($recordUserInfo['mobile']);
-    	var_dump($recordUserInfo['qq']);
     	if (empty($recordUserInfo['mobile']) || empty($recordUserInfo['qq'])) {
     		redirect('/setting', 3, '请填写完善你的手机、QQ等个人信息...');
     	}
