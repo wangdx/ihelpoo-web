@@ -280,95 +280,12 @@ class MallAction extends Action {
     	$this->display();
     }
     
-    public function itemlasted()
-    {
-    	$itemcategoryString = htmlspecialchars(trim($_GET["_URL_"][2]));
-    	$this->assign('title','最新商品');
-    	
-    	if (empty($itemcategoryString)) {
-    		redirect('/mall/itemlasted/all', 0, '缺少URL参数 页面跳转...');
-    	} else {
-    		$this->assign('itemcategoryString', $itemcategoryString);
-    	}
-    	
-    	$page = i_page_get_num();
-    	$count = 20;
-    	$offset = $page * $count;
-    	$RecordCommodity = M("RecordCommodity");
-    	if ($itemcategoryString == 'all') {
-	    	$joinResultsRecordCommodity = $RecordCommodity->where("i_record_commodity.status = 1")
-	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
-	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
-	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
-	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
-		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
-		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
-	    	->order("time DESC")
-	    	->limit($offset,$count)
-	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("status = 1")->count();
-    	} else if ($itemcategoryString == 'new') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 1 AND i_record_commodity.status = 1")
-	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
-	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
-	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
-	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
-		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
-		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
-	    	->order("time DESC")
-	    	->limit($offset,$count)
-	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_type = 1 AND status = 1")->count();
-    	} else if ($itemcategoryString == 'secondhand') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 2 AND i_record_commodity.status = 1")
-	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
-	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
-	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
-	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
-		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
-		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
-	    	->order("time DESC")
-	    	->limit($offset,$count)
-	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_type = 2 AND status = 1")->count();
-    	} else if ($itemcategoryString == 'sales') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums > 0 AND i_record_commodity.status = 1")
-	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
-	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
-	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
-	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
-		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
-		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
-	    	->order("time DESC")
-	    	->limit($offset,$count)
-	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_nums > 0 AND status = 1")->count();
-    	} else if ($itemcategoryString == 'hassold') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums = 0 AND i_record_commodity.status = 1")
-	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
-	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
-	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
-	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
-		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
-		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
-	    	->order("time DESC")
-	    	->limit($offset,$count)
-	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_nums = 0 AND status = 1")->count();
-    	}
-    	
-    	$this->assign('joinResultsRecordCommodity',$joinResultsRecordCommodity);
-    	$totalPages = ceil($totalRecordNums / $count);
-    	$this->assign('totalRecordNums',$totalRecordNums);
-        $this->assign('totalPages',$totalPages);
-    	
-    	$this->display();
-    }
-
     public function shoplist()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$shopcategoryString = htmlspecialchars(trim($_GET["_URL_"][2]));
-    	$this->assign('title','店铺列表');
+    	$this->assign('title','小店列表 '.$recordSchoolInfo['school']);
     	$UserShop = M("UserShop");
     	
     	/**
@@ -380,64 +297,68 @@ class MallAction extends Action {
 
     	/**
     	 * User Shop Lists
+    	 * i_user_shop.shop_type = 1 students
+    	 * i_user_shop.shop_type = 3 shoper
     	 */
+    	
     	if (!empty($shopcategoryString)) {
     		if ($shopcategoryString == 't_1') {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 1")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 1 AND i_user_login.school = $recordSchoolInfo[school]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
-	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
+	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_login.school,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 1")->count();
+    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 1 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if ($shopcategoryString == 't_2') {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 2")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 2 AND i_user_login.school = $recordSchoolInfo[school]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
-	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
+	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_login.school,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 2")->count();
+    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 2 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if ($shopcategoryString == 't_3') {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 3")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 3 AND i_user_login.school = $recordSchoolInfo[school]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
-	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
+	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_login.school,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 3")->count();
+    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 3 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if (is_numeric($shopcategoryString)) {
-    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString")
+    			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[school]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
-	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
+	    		i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_login.school,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString")
+    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[school]")
+    			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     			->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     			->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
-	   			i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
+	   			i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_login.school,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
     			->count();
     		}
     		$this->assign('shopcategoryString',$shopcategoryString);
     	} else {
-    		$recordsUserShop = $UserShop->where("i_user_shop.status = 2")
+    		$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_login.school = $recordSchoolInfo[school]")
     		->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
     		->join('i_user_info ON i_user_shop.uid = i_user_info.uid')
     		->field('i_user_shop.uid,i_user_shop.status,i_user_shop.shop_type,i_user_shop.category,i_user_shop.address,i_user_shop.imww,i_user_shop.time,i_user_shop.commodity_co,
-	    	i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
+	    	i_user_login.nickname,i_user_login.online,i_user_login.icon_url,i_user_login.school,i_user_info.introduction,i_user_info.dormitory_op,i_user_info.mobile,i_user_info.qq,i_user_info.weibo')
     		->order('commodity_co DESC')
     		->limit($offset, $count)
     		->select();
-    		$totalRecordNums = $UserShop->where("status = 2")->count();
+    		$totalRecordNums = $UserShop->where("status = 2 AND i_user_login.school = $recordSchoolInfo[school]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     	}
     	$this->assign('recordsUserShop', $recordsUserShop);
 
@@ -452,7 +373,6 @@ class MallAction extends Action {
     
     public function shop()
     {
-    	//$userloginid = session('userloginid');
     	$shopId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	$categoryId = (int)htmlspecialchars(trim($_GET["_URL_"][3]));
     	if (empty($shopId)) {

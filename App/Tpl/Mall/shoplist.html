@@ -7,7 +7,7 @@
 <div class="mainmall">
 	<div class="mall_category_nav">
 		<p class="mall_category_nav_p">
-			<a href="__ROOT__/mall" class="gray">逛街首页</a> - 店铺列表
+			<a href="__ROOT__/mall" class="gray">买卖首页</a> - 小店列表
 		</p>
 		<ul class="mall_category_nav_ul">
 			<?php if (empty($shopcategoryString)) { ?>
@@ -16,14 +16,9 @@
 				<li><a href="__ROOT__/mall/shoplist">全部</a></li>
 			<?php } ?>
 			<?php if ($shopcategoryString == 't_1') { ?>
-				<li><a href="__ROOT__/mall/shoplist/t_1" class="bg_red">学生二手</a></li>
+				<li><a href="__ROOT__/mall/shoplist/t_1" class="bg_red">学生</a></li>
 			<?php } else { ?>
-				<li><a href="__ROOT__/mall/shoplist/t_1">学生二手</a></li>
-			<?php } ?>
-			<?php if ($shopcategoryString == 't_2') { ?>
-				<li><a href="__ROOT__/mall/shoplist/t_2" class="bg_red">学生经商</a></li>
-			<?php } else { ?>
-				<li><a href="__ROOT__/mall/shoplist/t_2">学生经商</a></li>
+				<li><a href="__ROOT__/mall/shoplist/t_1">学生</a></li>
 			<?php } ?>
 			<?php if ($shopcategoryString == 't_3') { ?>
 				<li><a href="__ROOT__/mall/shoplist/t_3" class="bg_red">商家</a></li>
@@ -47,9 +42,7 @@
 					    	</a> 
 					    </span>
 					    <?php if ($userShop['shop_type'] == '1') { ?>
-					    	<span title="店铺类型:学生二手" class="gray">学生二手</span> 
-					    <?php } else if ($userShop['shop_type'] == '2') { ?>
-					    	<span title="店铺类型:学生经商" class="orange">学生经商</span> 
+					    	<span title="店铺类型:学生" class="gray">学生</span> 
 					    <?php } else if ($userShop['shop_type'] == '3') { ?>
 					   		<span title="店铺类型:商家" class="red">商家</span> 
 					    <?php } ?>
@@ -88,17 +81,6 @@
   		</div>
 	</div>
 	<div class="mall_category_right">
-	<script type="text/javascript">
-     document.write('<a style="display:none!important" id="tanx-a-mm_12471997_4022398_13066845"></a>');
-     tanx_s = document.createElement("script");
-     tanx_s.type = "text/javascript";
-     tanx_s.charset = "gbk";
-     tanx_s.id = "tanx-s-mm_12471997_4022398_13066845";
-     tanx_s.async = true;
-     tanx_s.src = "http://p.tanx.com/ex?i=mm_12471997_4022398_13066845";
-     tanx_h = document.getElementsByTagName("head")[0];
-     if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
-	</script>
 	</div>
 </div>
 <!-- <script type="text/javascript" src="__PUBLIC__/js/mall/"></script> -->
