@@ -921,7 +921,7 @@ class StreamAction extends Action {
                     die();
                 }
 
-                if ($hs->executeInsert(3, array($diffusionId,'hello', 2222, 3333, 4444, 5555)) === false)
+                if ($hs->executeInsert(3, array($id,'hello', 2222, 3333, 4444, 5555)) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
