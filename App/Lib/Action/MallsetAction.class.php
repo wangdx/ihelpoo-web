@@ -322,7 +322,7 @@ class MallsetAction extends Action {
     	$UserShop = M("UserShop");
     	$userloginedrecordUserShop = $UserShop->find($userloginid);
     	if (empty($userloginedrecordUserShop)) {
-    		redirect('/mall/', 3, '你还没有自己的小店呢...');
+    		redirect('/mall/explanation', 3, '你还没有自己的小店呢，点击同意开通后就能发布商品了...');
     	}
     	if ($userloginedrecordUserShop['status'] != 2) {
     		redirect('/mall/', 3, '你的小店还在审核中，暂时不能发布商品...');
