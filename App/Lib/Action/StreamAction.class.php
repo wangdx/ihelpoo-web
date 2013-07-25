@@ -868,9 +868,9 @@ class StreamAction extends Action
 //        $this->exitWhenSpamming($RecordDiffusion, $userloginid);
         $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
         $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid);
-        $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
+        $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
         $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid);
-        $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers);
+        $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
         exit();
     }
 
@@ -944,16 +944,16 @@ class StreamAction extends Action
     public function increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid)
     {
         $RecordSay = M("RecordSay");
-        $resuleRecordSay = $RecordSay->find($diffusionSidArray[1]);
+        $resultRecordSay = $RecordSay->find($diffusionSidArray[1]);
 
         $UserLogin = M("UserLogin");
         $recordUserLogin = $UserLogin->find($userloginid);
         $recordSaySet = array(
             'sid' => $diffusionSidArray['1'],
-            'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+            'diffusion_co' => $resultRecordSay['diffusion_co'] + 1,
         );
         $RecordSay->save($this->affectRecordTimeWhenLevelMoreThan(i_degree($recordUserLogin['active']), $recordSaySet, 2));
-        return $resuleRecordSay;
+        return $resultRecordSay;
     }
 
 
@@ -970,13 +970,13 @@ class StreamAction extends Action
         $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($userPriority['uid'], 0, strlen($userPriority['uid']) - 3), substr($userPriority['uid'], -3), 1);
     }
 
-    public function diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers)
+    public function diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $recordOwnerId)
     {
         $UserPriority = M("UserPriority");
         $userPriorityObj = $UserPriority->where("pid = $userloginid")->join("i_user_login ON i_user_priority.uid = i_user_login.uid")->select();
         $userPriorityNums = sizeof($userPriorityObj);
-        $userPriority = $this->outputMessage($userPriorityNums, $userPriorityObj);
-        $this->saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriority, $userPriorityObj);
+        $this->outputMessage($userPriorityNums, $userPriorityObj);
+        $this->saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId);
     }
 
     public function outputMessage($userPriorityNums, $userPriorityObj)
@@ -993,21 +993,21 @@ class StreamAction extends Action
         return $userPriority;
     }
 
-    public function saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriority, $userPriorityObj)
+    public function saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId)
     {
         $redis = new Redis();
         $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
-        $redis->hSet(C('R_ACCOUNT') . $userPriority['uid'] . C('R_MESSAGE'), $noticeIdForOwner, 0);
+        $this->diffuseTo($redis, $recordOwnerId, $noticeIdForOwner);
         foreach ($userPriorityObj as $userPriority) {
             $this->increaseNoticeMessageCount($redis, $userPriority);
-            $this->diffuseTo($redis, $userPriority, $noticeIdForFollowers);
+            $this->diffuseTo($redis, $userPriority['uid'], $noticeIdForFollowers);
         }
     }
 
 
-    public function diffuseTo($redis, $userPriority, $noticeIdForFollowers)
+    public function diffuseTo($redis, $who, $noticeIdForFollowers)
     {
-        $redis->hSet(C('R_ACCOUNT') . $userPriority['uid'] . C('R_MESSAGE'), $noticeIdForFollowers, 0);
+        $redis->hSet(C('R_ACCOUNT') . $who . C('R_MESSAGE'), $noticeIdForFollowers, 0);
     }
 
 
