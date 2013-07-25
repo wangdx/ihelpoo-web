@@ -100,30 +100,30 @@ class MessageAction extends Action
             $redis->hSet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $msg, 1);
         }
 
-        $RecordDiffusion = M("RecordDiffusion");
-        if (!empty($msgIdsStr)) {
-            $recordDiffusion = $RecordDiffusion->where("id in ($msgIdsStr)")->limit($offset, $count)->order('id DESC')->select();
-        }
-
-        /**
-         * msg form system
-         */
-        $IUserLogin = D("IUserLogin");
-
-        $this->resetNoticeCount($redis, $userloginid);
-        foreach ($recordDiffusion as $rd) {
-            $fromUser = $IUserLogin->userExists($rd['uid']);
-            $from_user = "<a href='" . __ROOT__ . "/wo/" . $rd['uid'] . "' target='_blank' class='getuserinfo' userid='" . $rd['uid'] . "'>" . $fromUser['nickname'] . "</a>";
-
-            $msgSysArray[] = array(
-                'deliver' => $redis->hGet(C('R_ACCOUNT') . $userloginid . C('R_MESSAGE'), $rd['id']),
-                'from_user' => $from_user,
-                'content' => $rd['assess_id'],
-                'url' => $rd['sid'],
-                'time' => i_time($rd['time']),
-            );
-
-        }
+//        $RecordDiffusion = M("RecordDiffusion");
+//        if (!empty($msgIdsStr)) {
+//            $recordDiffusion = $RecordDiffusion->where("id in ($msgIdsStr)")->limit($offset, $count)->order('id DESC')->select();
+//        }
+//
+//        /**
+//         * msg form system
+//         */
+//        $IUserLogin = D("IUserLogin");
+//
+//        $this->resetNoticeCount($redis, $userloginid);
+//        foreach ($recordDiffusion as $rd) {
+//            $fromUser = $IUserLogin->userExists($rd['uid']);
+//            $from_user = "<a href='" . __ROOT__ . "/wo/" . $rd['uid'] . "' target='_blank' class='getuserinfo' userid='" . $rd['uid'] . "'>" . $fromUser['nickname'] . "</a>";
+//
+//            $msgSysArray[] = array(
+//                'deliver' => $redis->hGet(C('R_ACCOUNT') . $userloginid . C('R_MESSAGE'), $rd['id']),
+//                'from_user' => $from_user,
+//                'content' => $rd['assess_id'],
+//                'url' => $rd['sid'],
+//                'time' => i_time($rd['time']),
+//            );
+//
+//        }
 
 //    	foreach ($msgSystem as $msg) {
 //    		if (!empty($msg['from_uid'])) {
@@ -207,7 +207,12 @@ class MessageAction extends Action
         $this->assign('msgsysarray', $msgSysArray);
 
         if (isset($_GET['suredelsys'])) {
-            $MsgSystem->where("uid = $userloginid")->delete();
+
+//            $MsgSystem->where("uid = $userloginid")->delete();
+            $notices = $redis->hKeys(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid);
+            foreach($notices as $notice){
+                $redis->hDel(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid, $notice);
+            }
             redirect('/message/system', 1, '删除成功...');
         }
         $this->display();
