@@ -65,94 +65,14 @@
 .mallindex_right{
     margin-left: 220px;
 }
-.mallindex_right_focus{
-    width: 600px;
-    height: 270px;
-    background: #f5f5f5 url('../images/bg.jpg') no-repeat left top;
-    overflow: hidden;
+.mallindex_right_nav_ul{
+    margin: 0 0 15px 0;
 }
-.mallindex_right_ad{
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 270px;
-    width: 165px;
-}
-.mallindex_right_adul_li{
-    height: 130px;
-    width: 165px;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-.mallindex_right_goods{
-    margin: 15px 0;
-    position: relative;
-}
-.mallindex_right_goods_p{
-    background: #DCAD7F;
-    padding: 3px 10px;
-}
-.mallindex_right_goods_ad_p{
-    position: absolute;
-    top: 24px;
-    left: 0px;
-    height: 305px;
-    overflow: hidden;
-    width: 225px;
-}
-.mallindex_right_goods_ul{
-    border: 1px solid #DCAD7F;
-    border-top: 0px;
-    margin-left: 225px;
-    height: 305px;
-}
-.mallindex_right_goods_ul li{
+.mallindex_right_nav_ul li a{
     display: inline-block;
-    position: relative;
-    padding: 10px 0 10px 25px;
-}
-*+html .mallindex_right_goods_ul li{
-    display: inline;
-}
-*html .mallindex_right_goods_ul li{
-    display: inline;
-}
-.mallindex_right_goods_ul_li_p{
-    display: table-cell;
-    display /*\**/:block\9;
-    overflow: hidden;
-    vertical-align: middle;
-    height: 100px;
-    width: 100px;
-}
-.mallindex_right_goods_ul_li_p a img{
-    max-height: 100px;
-    max-width: 100px;
-}
-.mallindex_right_shopsad{
-    padding: 15px 0;
-}
-.mallindex_right_shops{
-    margin: 15px 0;
-}
-.mallindex_right_shops_p{
-    background: #9FD9DD;
-    padding: 3px 10px;
-}
-.mallindex_right_shops_ul{
-    border: 1px solid #9FD9DD;
-    padding: 5px;
-    min-height: 180px;
-}
-.mallindex_right_shops_ul li{
-    padding: 5px;
-    display: inline-block;
-}
-*+html .mallindex_right_shops_ul li{
-    display: inline;
-}
-*html .mallindex_right_shops_ul li{
-    display: inline;
+    width: 150px;
+    padding: 10px 0;
+    text-align: center;
 }
 .mallindex_cooperation{
     width: 100%;
