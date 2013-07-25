@@ -88,20 +88,76 @@ class MallAction extends Action {
     	/**
     	 * right list
     	 */
+    	$itemcategoryString = htmlspecialchars(trim($_GET["_URL_"][2]));
+    	if (empty($itemcategoryString)) {
+    		redirect('/mall/index/all', 0, '缺少URL参数 页面跳转...');
+    	} else {
+    		$this->assign('itemcategoryString', $itemcategoryString);
+    	}
     	$page = i_page_get_num();
     	$count = 20;
     	$offset = $page * $count;
-    	$joinResultsRecordCommodity = $RecordCommodity->where("i_record_commodity.status = 1")
-    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
-    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
-    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
-    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
-		i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
-		i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
-    	->order("time DESC")
-    	->limit($offset,$count)
-    	->select();
-    	$totalRecordNums = $RecordCommodity->where("status = 1")->count();
+    	if ($itemcategoryString == 'all') {
+	    	$joinResultsRecordCommodity = $RecordCommodity->where("i_record_commodity.status = 1")
+	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
+	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
+	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
+	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
+		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
+		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
+	    	->order("time DESC")
+	    	->limit($offset,$count)
+	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("status = 1")->count();
+    	} else if ($itemcategoryString == 'new') {
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 1 AND i_record_commodity.status = 1")
+	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
+	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
+	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
+	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
+		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
+		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
+	    	->order("time DESC")
+	    	->limit($offset,$count)
+	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("good_type = 1 AND status = 1")->count();
+    	} else if ($itemcategoryString == 'secondhand') {
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 2 AND i_record_commodity.status = 1")
+	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
+	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
+	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
+	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
+		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
+		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
+	    	->order("time DESC")
+	    	->limit($offset,$count)
+	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("good_type = 2 AND status = 1")->count();
+    	} else if ($itemcategoryString == 'sales') {
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums > 0 AND i_record_commodity.status = 1")
+	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
+	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
+	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
+	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
+		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
+		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
+	    	->order("time DESC")
+	    	->limit($offset,$count)
+	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("good_nums > 0 AND status = 1")->count();
+    	} else if ($itemcategoryString == 'hassold') {
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums = 0 AND i_record_commodity.status = 1")
+	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
+	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
+	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
+	    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
+		    i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
+		    i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
+	    	->order("time DESC")
+	    	->limit($offset,$count)
+	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("good_nums = 0 AND status = 1")->count();
+    	}
     	$this->assign('joinResultsRecordCommodity',$joinResultsRecordCommodity);
     	$totalPages = ceil($totalRecordNums / $count);
     	$this->assign('totalRecordNums',$totalRecordNums);
