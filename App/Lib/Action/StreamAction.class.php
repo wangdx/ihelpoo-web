@@ -915,7 +915,7 @@ class StreamAction extends Action {
                 $id |= $userloginid%2000 << (64-41-13) ;
                 $id |= ($diffusionId % 1024);
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_idx,source_id,detail_id,format_id,create_time')))
+                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
                 {
                     echo 'ERROR1:'.$hs->getError(), PHP_EOL;
                     die();
@@ -928,7 +928,7 @@ class StreamAction extends Action {
                 unset($hs);
                 //GET
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_idx,source_id,detail_id,format_id,create_time')))
+                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
                 {
                     echo 'ERROR:'.$hs->getError(), PHP_EOL;
                     die();
