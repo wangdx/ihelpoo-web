@@ -463,6 +463,8 @@ class MallAction extends Action {
 
     public function item()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$itemId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	if (empty($itemId)) {
@@ -510,7 +512,7 @@ class MallAction extends Action {
     	$shopId = $resultRecordCommodity['shopid'];
         $IUserLogin = D("IUserLogin");
     	$shopUserLogin = $IUserLogin->userExists($shopId);
-    	$this->assign('title',$resultRecordCommodity['name'].' - '.$shopUserLogin['nickname'].' ');
+    	$this->assign('title',$resultRecordCommodity['name'].' - '.$shopUserLogin['nickname'].' '.$recordSchoolInfo['school']);
     	$this->assign('shopUserLogin',$shopUserLogin);
     	$UserShop = M("UserShop");
     	$recordUserShop = $UserShop->where("uid = $shopId")->find();

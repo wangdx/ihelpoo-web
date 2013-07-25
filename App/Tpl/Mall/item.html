@@ -6,14 +6,14 @@
 	</div>
 	<div class="shop_left">
 		<ul class="shop_info_ul f12 black_l">
-			<li class="shop_info_ul_title">&#12288;<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}" class="white">店铺首页</a></li>
+			<li class="shop_info_ul_title">&#12288;<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}" class="white">小店首页</a></li>
 		    <li>
 		    	<a href="__ROOT__/stream/u/{$shopUserLogin['uid']}">
 					<img src="<?php echo i_icon_check($shopUserLogin['uid'], $shopUserLogin['icon_url'], 's') ?>" class="radius3" width="68" height="51" />
 				</a>
 			</li>
 			<li>
-				店铺: <a href="__ROOT__/mall/shop/{$shopUserLogin['uid']}">{$shopUserLogin['nickname']}</a> 已认证
+				小店: <a href="__ROOT__/mall/shop/{$shopUserLogin['uid']}">{$shopUserLogin['nickname']}</a> 已认证
 			</li>
 			<li>地址: <?php echo $recordUserShop['address'] ?></li>
 			<li>电话: {$shopUserInfo['mobile']}</li>
@@ -37,7 +37,7 @@
 			</li>
 			<?php if ($userloginedrecord['uid'] == $shopUserLogin['uid']) { ?>
 			<li>
-				<a href="__ROOT__/mallset">店铺管理</a>
+				<a href="__ROOT__/mallset">小店管理</a>
 			</li>
 			<?php } ?>
 		</ul>
@@ -55,7 +55,7 @@
 	<div class="shop_right">
 		<?php if (!empty($singleRecordCommoditycategory['cate_id'])) { ?>
 			<div class="shop_right_category f12">
-				<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}">店铺首页</a>
+				<a href="__ROOT__/mall/shop/{$recordUserShop['uid']}">小店首页</a>
 				<?php if (!empty($parentRecordCommoditycategory['cate_id'])) { ?>
 				 - <a href="__ROOT__/mall/shop/{$recordUserShop['uid']}/{$parentRecordCommoditycategory['cate_id']}">{$parentRecordCommoditycategory['cate_name']}</a>
 				<?php } ?>
