@@ -28,6 +28,7 @@ class ItemAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
         $recordId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if (empty($recordId)) {
             redirect('/stream', 3, '你访问的内容不存在 或者被删除了 :(...');
@@ -138,6 +139,7 @@ class ItemAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$recordId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if (empty($recordId)) {
             redirect('/stream', 3, '你访问的内容不存在 或者被删除了 错误代码1 :(...');
