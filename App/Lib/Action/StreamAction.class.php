@@ -870,7 +870,7 @@ class StreamAction extends Action {
         		 * record diffusion limit nums 5 per 12 hours
         		 */
                 //TODO for test temporarily
-                $this->exitWhenSpaming($RecordDiffusion, $userloginid);
+//                $this->exitWhenSpaming($RecordDiffusion, $userloginid);
 
                 $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
 
