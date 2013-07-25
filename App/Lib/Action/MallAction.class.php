@@ -727,15 +727,15 @@ class MallAction extends Action {
     	$UserShop = M("UserShop");
     	$recordUserShop = $UserShop->find($userloginid);
     	
-    	if ($_GET['useropen'] == 'true') {
+    	if ($_GET['sureopen'] == 'true') {
     		if (empty($recordUserShop['uid'])) {
-    			$updateUserShop = array(
+    			$newUserShop = array(
 		    		'uid' => $userloginid,
 		    		'status' => 2,
 	    			'shop_type' => $shoptype,
 	    			'time' => time()
     			);
-    			$isUpdateFlag = $UserShop->save($updateUserShop);
+    			$isUpdateFlag = $UserShop->save($newUserShop);
     			if ($isUpdateFlag) {
     				redirect('/mallset', 3, '你成功开通了一个小店，可以在里面发布交易了，首次发布请完善小店相关资料...');
     			}
