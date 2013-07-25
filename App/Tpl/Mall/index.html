@@ -72,7 +72,7 @@
 				    </a>
 					<p class="mall_category_ul_li_price gray">
 						￥<span class="fb red f14"><?php echo $commodity['price'] ?></span> 
-						<span class="gray f12" title="销量:<?php echo $commodity['sales_co']; ?> 人气:<?php echo $commodity['hit']; ?>">
+						<span class="gray f12" title="人气:<?php echo $commodity['hit']; ?>">
 							<?php echo i_time($commodity['time']); ?>
 						</span>
 					</p>
@@ -80,7 +80,7 @@
 						店主:<a href="__ROOT__/stream/u/<?php echo $commodity['uid'] ?>" class="black_l" target="_blank">
 							<?php echo $ofunction->cut_str($commodity['nickname'],10); ?>
 					    </a> 
-					    <?php echo $ofunction->cut_str($commodity['address'],20); ?>
+					    <?php echo $ofunction->cut_str($commodity['address'],18); ?>
 				    </p>
 				</li>
 				<?php } ?>
