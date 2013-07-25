@@ -720,7 +720,8 @@ class MallAction extends Action {
     	}
     	$UserInfo = M("UserLogin");
     	$recordUserInfo = $UserInfo->find($userloginid);
-    	
+    	var_dump($recordUserInfo['mobile']);
+    	var_dump($recordUserInfo['qq']);
     	if (empty($recordUserInfo['mobile']) || empty($recordUserInfo['qq'])) {
     		redirect('/setting', 3, '请填写完善你的手机、QQ等个人信息...');
     	}
