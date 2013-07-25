@@ -32,7 +32,7 @@ class MallAction extends Action {
     public function index()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('title','买卖 '.$recordSchoolInfo['school']);
+    	$this->assign('title','买卖首页 '.$recordSchoolInfo['school']);
     	$this->assign('schoolname',$recordSchoolInfo['school']);
 
     	/**
@@ -161,6 +161,8 @@ class MallAction extends Action {
 
     public function category()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$categoryId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	$order = htmlspecialchars(trim($_GET["_URL_"][3]));
     	$goodtype = htmlspecialchars(trim($_GET["_URL_"][4]));
@@ -226,7 +228,7 @@ class MallAction extends Action {
     	$RecordCommodity = M("RecordCommodity");
     	if ($goodtype == 'new') {
     		$goodtype = 'new';
-    		$joinResultsRecordCommodity = $RecordCommodity->where("category_id IN ($categoryString) AND good_type = 1 AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("category_id IN ($categoryString) AND good_type = 1 AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -236,9 +238,10 @@ class MallAction extends Action {
 	    	->order("$orderway $ordersort")
 	    	->limit($offset,$count)
 	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("category_id IN ($categoryString) AND good_type = 1 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	} else if ($goodtype == 'secondhand') {
     		$goodtype = 'secondhand';
-    		$joinResultsRecordCommodity = $RecordCommodity->where("category_id IN ($categoryString) AND good_type = 2 AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("category_id IN ($categoryString) AND good_type = 2 AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -248,9 +251,10 @@ class MallAction extends Action {
 	    	->order("$orderway $ordersort")
 	    	->limit($offset,$count)
 	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("category_id IN ($categoryString) AND good_type = 2 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	} else {
     		$goodtype = 'all';
-    		$joinResultsRecordCommodity = $RecordCommodity->where("category_id IN ($categoryString) AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("category_id IN ($categoryString) AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -260,19 +264,19 @@ class MallAction extends Action {
 	    	->order("$orderway $ordersort")
 	    	->limit($offset,$count)
 	    	->select();
+	    	$totalRecordNums = $RecordCommodity->where("category_id IN ($categoryString) AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	}
     	$this->assign('joinResultsRecordCommodity',$joinResultsRecordCommodity);
 
     	/**
     	 * paging
     	 */
-    	$totalRecordNums = $RecordCommodity->where("category_id IN ($categoryString) AND status = 1")->count();
     	$totalPages = ceil($totalRecordNums / $count);
     	$this->assign('totalRecordNums',$totalRecordNums);
         $this->assign('totalPages',$totalPages);
         $this->assign('order',$order);
         $this->assign('goodtype',$goodtype);
-    	$this->assign('title',$resultRecordCommoditycategory[cate_name].' - 逛街');
+    	$this->assign('title',$resultRecordCommoditycategory['cate_name'].' '.$recordSchoolInfo['school']);
     	$this->display();
     }
     
