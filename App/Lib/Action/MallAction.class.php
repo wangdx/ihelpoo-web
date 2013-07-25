@@ -67,6 +67,7 @@ class MallAction extends Action {
     	/**
     	 * show shop & commodity nums
     	 */
+    	$UserShop = M("UserShop");
     	$totalShops = $UserShop->count();
     	$totalAuditShops = $UserShop->where('status = 1')->count();
     	$totalRunsShops = $UserShop->where('status = 2')->count();
