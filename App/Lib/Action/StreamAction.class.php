@@ -889,26 +889,6 @@ class StreamAction extends Action {
         		);
         		$diffusionId = $RecordDiffusion->add($dataDiffusion);
 
-
-
-                $port = 9998;
-                $port_wr = 9999;
-                $dbname = 'test';
-                $table = 'user';
-//                //DELETE
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-//                if (!($hs->openIndex(4, $dbname, $table, '', '')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                if ($hs->executeDelete(4, '=', array('1')) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-
                 Vendor('Ihelpoo.Idworker');
                 $idworker = new Idworker();
                 $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
@@ -918,13 +898,13 @@ class StreamAction extends Action {
                     die();
                 }
 
-                if ($hs->executeInsert(3, array($idworker->next(),'hello', 2222, 3333, 4444, 5555)) === false)
+                if ($hs->executeInsert(3, array($idworker->next(),'stream/'.$diffusionSidArray['0'].'-para:diffusion', $userloginid, $diffusionSidArray[1], 4444, time())) === false)
                 {
                     echo 'ERR2:'.$hs->getError(), PHP_EOL;
                 }
                 unset($hs);
                 //GET
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
+                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT'));
                 if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
                 {
                     echo 'ERROR:'.$hs->getError(), PHP_EOL;
@@ -940,74 +920,8 @@ class StreamAction extends Action {
                         array(1, '=', array('2'), 1, 0)));
 
                 var_dump($retval);
-//                //INSERT
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-//                if (!($hs->openIndex(3, $dbname, $table, '', 'user_id,user_name,user_email,created')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                if ($hs->executeInsert(3, array('8', 'aaa5', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                }
-//                if ($hs->executeInsert(3, array('6', 'aaa6', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
-//                {
-//                    echo 'A', $hs->getError(), PHP_EOL;
-//                }
-//                if ($hs->executeInsert(3, array('7', 'aaa7', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
-//                {
-//                    echo 'B', $hs->getError(), PHP_EOL;
-//                }
-//
-//                unset($hs);
-//                //UPDATE
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-//                if (!($hs->openIndex(2, $dbname, $table, '', 'user_name,user_email,created')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                if ($hs->executeUpdate(2, '=', array('2'), array('aaa', 'xun@dsf.com', '2011-04-07 18:26:03'), 1, 0) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                unset($hs);
-//                //GET
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-//                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
-//                {
-//                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
-//
-//                var_dump($retval);
-//
-//                $retval = $hs->executeMulti(
-//                    array(array(1, '=', array('1'), 1, 0),
-//                        array(1, '=', array('2'), 1, 0)));
-//
-//                var_dump($retval);
 
                 unset($hs);
-
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-//                if (!($hs->openIndex(3, 'test', 'user', '', 'a, b')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//                if ($hs->executeInsert(3, array('a1111','b1111')) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                }
-//                unset($hs);
 
 
                 /**
