@@ -58,14 +58,19 @@ class MessageAction extends Action
         /**
          * page link
          */
-        $totalMsgSystemNums = $MsgSystem->where("uid = $userloginid")->count();
+//        $totalMsgSystemNums = $MsgSystem->where("uid = $userloginid")->count();
+
+        $redis = new Redis();
+        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+
+        $notices = $redis->hKeys(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid);
+        $totalMsgSystemNums =  sizeof($notices);
+
         $totalPages = ceil($totalMsgSystemNums / $count);
         $this->assign('totalrecordnums', $totalMsgSystemNums);
         $this->assign('totalpages', $totalPages);
 
 
-        $redis = new Redis();
-        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
 
         $msgIds = $redis->hKeys(C('R_ACCOUNT') . C('R_MESSAGE') . $userloginid);
         $msgIdsStr = '';
@@ -209,7 +214,6 @@ class MessageAction extends Action
         if (isset($_GET['suredelsys'])) {
 
 //            $MsgSystem->where("uid = $userloginid")->delete();
-            $notices = $redis->hKeys(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid);
             foreach($notices as $notice){
                 $redis->hDel(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid, $notice);
             }
