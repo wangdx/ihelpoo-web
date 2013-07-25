@@ -34,7 +34,7 @@ class MallsetAction extends Action {
     public function index()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','店铺设置 - 逛街');
+    	$this->assign('title','小店设置 - 逛街');
 
     	/**
     	 * UserShop
@@ -42,7 +42,7 @@ class MallsetAction extends Action {
     	$UserShop = M("UserShop");
     	$userloginedrecordUserShop = $UserShop->find($userloginid);
     	if (empty($userloginedrecordUserShop)) {
-    		redirect('/mall/', 3, '你还没有自己的店铺呢...');
+    		redirect('/mall/', 3, '你还没有自己的小店呢...');
     	}
     	$this->assign('recordUserShop', $userloginedrecordUserShop);
 
@@ -60,7 +60,7 @@ class MallsetAction extends Action {
     	if ($this->isPost()) {
     		$address = trim(addslashes(htmlspecialchars(strip_tags($_POST["address"]))));
     		$imww = trim(addslashes(htmlspecialchars(strip_tags($_POST["imww"]))));
-    		$shopcategory = (int)trim(htmlspecialchars(strip_tags($_POST["shopcategory"])));
+    		$shopcategory = 1;
     		$dataUserShop = array(
     			'uid' => $userloginid,
     			'category' => $shopcategory,
@@ -81,7 +81,7 @@ class MallsetAction extends Action {
     public function logo()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','店铺logo修改 - 逛街');
+    	$this->assign('title','小店logo修改 - 逛街');
     	$UserAlbum = M("UserAlbum");
     	
     	/**
@@ -90,7 +90,7 @@ class MallsetAction extends Action {
     	$UserShop = M("UserShop");
     	$userloginedrecordUserShop = $UserShop->find($userloginid);
     	if (empty($userloginedrecordUserShop)) {
-    		redirect('/mall/', 3, '你还没有自己的店铺呢...');
+    		redirect('/mall/', 3, '你还没有自己的小店呢...');
     	}
     	$this->assign('recordUserShop', $userloginedrecordUserShop);
     	
@@ -193,7 +193,7 @@ class MallsetAction extends Action {
     	$UserShop = M("UserShop");
     	$userloginedrecordUserShop = $UserShop->find($userloginid);
     	if (empty($userloginedrecordUserShop)) {
-    		redirect('/mall/', 3, '你还没有自己的店铺呢...');
+    		redirect('/mall/', 3, '你还没有自己的小店呢...');
     	}
     	
     	/**
@@ -309,10 +309,10 @@ class MallsetAction extends Action {
     	$UserShop = M("UserShop");
     	$userloginedrecordUserShop = $UserShop->find($userloginid);
     	if (empty($userloginedrecordUserShop)) {
-    		redirect('/mall/', 3, '你还没有自己的店铺呢...');
+    		redirect('/mall/', 3, '你还没有自己的小店呢...');
     	}
     	if ($userloginedrecordUserShop['status'] != 2) {
-    		redirect('/mall/', 3, '你的店铺还在审核中，暂时不能发布商品...');
+    		redirect('/mall/', 3, '你的小店还在审核中，暂时不能发布商品...');
     	}
     	$this->assign('recordUserShop', $userloginedrecordUserShop);
     	
@@ -535,7 +535,7 @@ class MallsetAction extends Action {
     	$UserShop = M("UserShop");
     	$userloginedrecordUserShop = $UserShop->find($userloginid);
     	if (empty($userloginedrecordUserShop)) {
-    		redirect('/mall/', 3, '你还没有自己的店铺呢...');
+    		redirect('/mall/', 3, '你还没有自己的小店呢...');
     	}
     	 
     	/**
@@ -767,7 +767,7 @@ class MallsetAction extends Action {
     	$this->assign('resultRecordCommodity',$resultRecordCommodity);
 
     	if ($resultRecordCommodity['good_nums'] < $buynums) {
-    		redirect('/mall/item/'.$resultRecordCommodity['cid'], 3, '购买的商品数量超过了店铺能提供的范围...3秒后返回');
+    		redirect('/mall/item/'.$resultRecordCommodity['cid'], 3, '购买的商品数量超过了小店能提供的范围...3秒后返回');
     	}
     	
     	/**
@@ -1169,7 +1169,7 @@ class MallsetAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$RecordCommodity = M("RecordCommodity");
-    	$this->assign('title',"我的店铺订单");
+    	$this->assign('title',"我的小店订单");
     	$RecordCommodityassess = M("RecordCommodityassess");
 
     	if ($this->isPost()) {
