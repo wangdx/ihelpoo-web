@@ -34,7 +34,7 @@ class MallsetAction extends Action {
     public function index()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','小店设置 - 逛街');
+    	$this->assign('title','小店设置 - 买卖');
 
     	/**
     	 * UserShop
@@ -81,7 +81,7 @@ class MallsetAction extends Action {
     public function logo()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','小店logo修改 - 逛街');
+    	$this->assign('title','小店logo修改 - 买卖');
     	$UserAlbum = M("UserAlbum");
     	
     	/**
@@ -127,51 +127,57 @@ class MallsetAction extends Action {
     			if ($imageSize > 3670016) {
     				$this->ajaxReturn(0,'上传图片太大, 最大能上传单张 3.5MB','error');
     			}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
-    				import("@.ORG.UploadFile");
-    				$config=array(
-		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
-		                'savePath'=>'./Public/shop/'.$userloginid.'/',
-		                'saveRule'=>'logo'.$userloginid.time(),
+    					
+    				/**
+    				 * storage in upyun
+    				 */
+    				Vendor('Ihelpoo.Upyun');
+    				$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+    				$fh = fopen($imageTmpName, 'rb');
+    				$shoplogoname = 'logo'.$userloginid.time().'.jpg';
+    				$storageTempFilename = '/shop/'.$userloginid.'/'.$shoplogoname;
+    				$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
+    				fclose($fh);
+    				$imageStorageUrl = image_storage_url();
+    				$newfilepath = $imageStorageUrl.$storageTempFilename;
+
+    				$opts = array(
+    				UpYun::X_GMKERL_TYPE    => 'fix_max',
+    				UpYun::X_GMKERL_VALUE   => 150,
+    				UpYun::X_GMKERL_QUALITY => 95,
+    				UpYun::X_GMKERL_UNSHARP => True
     				);
-    				$upload = new UploadFile($config);
-    				$upload->imageClassPath="@.ORG.Image";
-    				$upload->thumb=true;
-        			$upload->thumbMaxHeight=150;
-        			$upload->thumbMaxWidth=150;
-    				if (!$upload->upload()) {
-    					$uploadErrorInfo = $upload->getErrorMsg();
-    					$this->ajaxReturn($uploadErrorInfo,'上传出错','error');
-    				} else {
-    					$info = $upload->getUploadFileInfo();
-    					$storage = new SaeStorage();
-    					$newfilepath = $storage->getUrl("public", "shop/".$userloginid."/".$info[0]['savename']);
+    				$fh = fopen($imageTmpName, 'rb');
+    				$storageThumbTempFilename = '/logo/'.$userloginid.'/thumb_'.$shoplogoname;
+    				$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
+    				fclose($fh);
+    					
 
-    					/**
-    					 * insert into i_user_album
-    					 */
-    					$newAlbumIconData = array(
-        					'uid' => $userloginid,
-        					'type' => 3,
-        					'url' => $newfilepath,
-        					'size' => $info[0]['size'],
-        					'time' => time()
-    					);
-    					$UserAlbum->add($newAlbumIconData);
+    				/**
+    				 * insert into i_user_album
+    				 */
+    				$newAlbumIconData = array(
+        				'uid' => $userloginid,
+        				'type' => 3,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'time' => time()
+    				);
+    				$UserAlbum->add($newAlbumIconData);
 
-    					/**
-    					 * update i_user_shop
-    					 */
-    					$newUserShopData = array(
-        					'uid' => $userloginid,
-        					'shop_banner' => $info[0]['savename'],
-    					);
-    					$UserShop->save($newUserShopData);
+    				/**
+    				 * update i_user_shop
+    				 */
+    				$newUserShopData = array(
+        				'uid' => $userloginid,
+        				'shop_banner' => $newfilepath
+    				);
+    				$UserShop->save($newUserShopData);
 
-    					/**
-    					 * ajax return
-    					 */
-    					$this->ajaxReturn($newfilepath,'上传成功','uploaded');
-    				}
+    				/**
+    				 * ajax return
+    				 */
+    				$this->ajaxReturn($newfilepath,'上传成功','uploaded');
     			} else {
     				$this->ajaxReturn(0,'上传图片格式错误, 目前仅支持.jpg .png .gif','error');
     			}
@@ -184,7 +190,7 @@ class MallsetAction extends Action {
     public function cate()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','分类管理 - 逛街');
+    	$this->assign('title','分类管理 - 买卖');
     	$RecordCommoditycategory = M("RecordCommoditycategory");
     	
     	/**
@@ -301,7 +307,7 @@ class MallsetAction extends Action {
     public function add()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','发布商品 - 逛街');
+    	$this->assign('title','发布商品 - 买卖');
 
     	/**
     	 * UserShop
@@ -498,7 +504,7 @@ class MallsetAction extends Action {
 		            	'say_type' => 2,
 		            	'content' => $recordDynamicContent,
 		            	'time' => time(),
-		            	'from' => '逛街动态'
+		            	'from' => '买卖动态'
 		            );
 		            $newRecordSayId = $RecordSay->add($newRecordSayData);
 		            $newRecordDynamicData = array(
@@ -526,7 +532,7 @@ class MallsetAction extends Action {
     public function commodity()
     {
     	$userloginid = session('userloginid');
-    	$this->assign('title','商品管理 - 逛街');
+    	$this->assign('title','商品管理 - 买卖');
     	$RecordCommodity = M("RecordCommodity");
 
     	/**
@@ -751,12 +757,12 @@ class MallsetAction extends Action {
     		$buynums = 1;
     	}
     	if ($commodityId <= 0) {
-    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回逛街首页');
+    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回买卖首页');
     	}
     	$RecordCommodity = M("RecordCommodity");
     	$resultRecordCommodity = $RecordCommodity->where("cid = $commodityId")->field('detail',true)->find();
     	if (!$resultRecordCommodity['cid']) {
-    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回逛街首页');
+    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回买卖首页');
     	}
     	
     	if ($resultRecordCommodity['shopid'] == $userloginid) {
@@ -922,14 +928,14 @@ class MallsetAction extends Action {
     	}
     	$showRecordCommodityassess = $RecordCommodityassess->find($commodityassessId);
     	if (!$showRecordCommodityassess['cid']) {
-    		redirect('/mall', 3, '购买出错(错误代码:buypay1)...3秒后返回逛街首页');
+    		redirect('/mall', 3, '购买出错(错误代码:buypay1)...3秒后返回买卖首页');
     	}
     	if ($showRecordCommodityassess['uid'] != $userloginid) {
-    		redirect('/mall', 3, '购买出错(错误代码:buypay2)...3秒后返回逛街首页');
+    		redirect('/mall', 3, '购买出错(错误代码:buypay2)...3秒后返回买卖首页');
     	}
     	$showRecordCommodity = $RecordCommodity->where("cid = $showRecordCommodityassess[cid]")->field('detail',true)->find();
     	if (!$showRecordCommodity['cid']) {
-    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回逛街首页');
+    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回买卖首页');
     	}
     	$this->assign('showRecordCommodity',$showRecordCommodity);
     	$this->assign('showRecordCommodityassess',$showRecordCommodityassess);
@@ -976,14 +982,14 @@ class MallsetAction extends Action {
     	}
     	$showRecordCommodityassess = $RecordCommodityassess->find($commodityassessId);
     	if (!$showRecordCommodityassess['cid']) {
-    		redirect('/mall', 3, '购买出错(错误代码:buypay1)...3秒后返回逛街首页');
+    		redirect('/mall', 3, '购买出错(错误代码:buypay1)...3秒后返回买卖首页');
     	}
     	if ($showRecordCommodityassess['uid'] != $userloginid) {
-    		redirect('/mall', 3, '购买出错(错误代码:buypay2)...3秒后返回逛街首页');
+    		redirect('/mall', 3, '购买出错(错误代码:buypay2)...3秒后返回买卖首页');
     	}
     	$showRecordCommodity = $RecordCommodity->where("cid = $showRecordCommodityassess[cid]")->field('detail',true)->find();
     	if (!$showRecordCommodity['cid']) {
-    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回逛街首页');
+    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回买卖首页');
     	}
     	$this->assign('showRecordCommodity',$showRecordCommodity);
     	$this->assign('showRecordCommodityassess',$showRecordCommodityassess);
@@ -1071,7 +1077,7 @@ class MallsetAction extends Action {
 		            	'say_type' => 2,
 		            	'content' => $recordDynamicContent,
 		            	'time' => time(),
-		            	'from' => '逛街动态'
+		            	'from' => '买卖动态'
 		            );
 		            $newRecordSayId = $RecordSay->add($newRecordSayData);
 		            $newRecordDynamicData = array(
@@ -1091,14 +1097,14 @@ class MallsetAction extends Action {
     	}
     	$showRecordCommodityassess = $RecordCommodityassess->find($commodityassessId);
     	if (!$showRecordCommodityassess['cid']) {
-    		redirect('/mall', 3, '购买出错(错误代码:buypay1)...3秒后返回逛街首页');
+    		redirect('/mall', 3, '购买出错(错误代码:buypay1)...3秒后返回买卖首页');
     	}
     	if ($showRecordCommodityassess['uid'] != $userloginid) {
-    		redirect('/mall', 3, '购买出错(错误代码:buypay2)...3秒后返回逛街首页');
+    		redirect('/mall', 3, '购买出错(错误代码:buypay2)...3秒后返回买卖首页');
     	}
     	$showRecordCommodity = $RecordCommodity->where("cid = $showRecordCommodityassess[cid]")->field('detail',true)->find();
     	if (!$showRecordCommodity['cid']) {
-    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回逛街首页');
+    		redirect('/mall', 3, '你要购买的商品不存在...3秒后返回买卖首页');
     	}
     	$this->assign('showRecordCommodity',$showRecordCommodity);
     	$this->assign('showRecordCommodityassess',$showRecordCommodityassess);
