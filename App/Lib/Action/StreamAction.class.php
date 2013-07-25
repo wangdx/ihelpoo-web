@@ -30,6 +30,7 @@ class StreamAction extends Action {
 
         $this->assign('title',$title);
         $this->assign('thisschoolid',$recordSchoolInfo['id']);
+        $this->assign('schoolname',$recordSchoolInfo['school']);
 
 		$RecordSay = M("RecordSay");
 		$UserLogin = M("UserLogin");
