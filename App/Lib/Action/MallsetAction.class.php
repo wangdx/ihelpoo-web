@@ -325,7 +325,7 @@ class MallsetAction extends Action {
     		redirect('/mall/explanation', 3, '你还没有自己的小店呢，点击同意开通后就能发布商品了...');
     	}
     	if ($userloginedrecordUserShop['status'] != 2) {
-    		redirect('/mall/', 3, '你的小店还在审核中，暂时不能发布商品...');
+    		redirect('/mall/', 3, '由于多次违规，你的小店在重新审核中，暂时不能发布商品...');
     	}
     	$this->assign('recordUserShop', $userloginedrecordUserShop);
     	
