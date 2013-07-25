@@ -71,7 +71,6 @@ class MessageAction extends Action
         $msgIdsStr = '';
         foreach ($msgIds as $msg) {
             $msgIdsStr .= $msg . ",";
-            $redis->hSet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $msg, 1);
         }
         $msgIdsStr = rtrim($msgIdsStr, ",");
 
@@ -95,6 +94,10 @@ class MessageAction extends Action
                 'content' => $content,
                 'time' => i_time($notice['create_time']),
             );
+        }
+
+        foreach ($msgIds as $msg) {
+            $redis->hSet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $msg, 1);
         }
 
         $RecordDiffusion = M("RecordDiffusion");
