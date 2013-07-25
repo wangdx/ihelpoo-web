@@ -740,9 +740,10 @@ class MallAction extends Action {
     				redirect('/mallset', 3, '你成功开通了一个小店，可以在里面发布交易了，首次发布请完善小店相关资料...');
     			}
     		} else {
+    			var_dump($_GET['sureopen']);
     			redirect('/mallset', 3, '你已经开通了一个小店...');
     		}
-    		var_dump($_GET['sureopen']);
+    		
     	}
     	//$this->display();
     }
