@@ -31,7 +31,9 @@ class MallAction extends Action {
 
     public function index()
     {
-    	$this->assign('title','买卖');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','买卖 '.$recordSchoolInfo['school']);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
 
     	/**
     	 * show commodity category
@@ -61,25 +63,17 @@ class MallAction extends Action {
     	 * show Cooperation
     	 */
     	$MallCooperation = M("MallCooperation");
-    	$resultsMallCooperation = $MallCooperation->order("'order' DESC")->select();
+    	$resultsMallCooperation = $MallCooperation->where("school = $recordSchoolInfo[id]")->order("'order' DESC")->select();
     	$this->assign('resultsMallCooperation',$resultsMallCooperation);
     	
     	/**
-    	 * show shop & commodity nums
+    	 * commodity nums
     	 */
-    	$UserShop = M("UserShop");
-    	$totalShops = $UserShop->count();
-    	$totalAuditShops = $UserShop->where('status = 1')->count();
-    	$totalRunsShops = $UserShop->where('status = 2')->count();
-    	$this->assign('totalShops',$totalShops);
-    	$this->assign('totalAuditShops',$totalAuditShops);
-    	$this->assign('totalRunsShops',$totalRunsShops);
-    	
     	$RecordCommodity = M("RecordCommodity");
-    	$totalCommodities = $RecordCommodity->count();
-    	$totalForbidCommodities = $RecordCommodity->where('status = 0')->count();
-    	$totalSoldCommodities = $RecordCommodity->where('good_nums = 0 AND status = 1')->count();
-    	$totalSellCommodities = $RecordCommodity->where('good_nums > 0 AND status = 1')->count();
+    	$totalCommodities = $RecordCommodity->where("school_id = $recordSchoolInfo[id]")->count();
+    	$totalForbidCommodities = $RecordCommodity->where("status = 0 AND school_id = $recordSchoolInfo[id]")->count();
+    	$totalSoldCommodities = $RecordCommodity->where("good_nums = 0 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
+    	$totalSellCommodities = $RecordCommodity->where("good_nums > 0 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	$this->assign('totalCommodities',$totalCommodities);
     	$this->assign('totalForbidCommodities',$totalForbidCommodities);
     	$this->assign('totalSoldCommodities',$totalSoldCommodities);
@@ -98,7 +92,7 @@ class MallAction extends Action {
     	$count = 20;
     	$offset = $page * $count;
     	if ($itemcategoryString == 'all') {
-	    	$joinResultsRecordCommodity = $RecordCommodity->where("i_record_commodity.status = 1")
+	    	$joinResultsRecordCommodity = $RecordCommodity->where("i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -108,9 +102,9 @@ class MallAction extends Action {
 	    	->order("time DESC")
 	    	->limit($offset,$count)
 	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("status = 1")->count();
+	    	$totalRecordNums = $RecordCommodity->where("status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	} else if ($itemcategoryString == 'new') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 1 AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 1 AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -120,9 +114,9 @@ class MallAction extends Action {
 	    	->order("time DESC")
 	    	->limit($offset,$count)
 	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_type = 1 AND status = 1")->count();
+	    	$totalRecordNums = $RecordCommodity->where("good_type = 1 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	} else if ($itemcategoryString == 'secondhand') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 2 AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_type = 2 AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -132,9 +126,9 @@ class MallAction extends Action {
 	    	->order("time DESC")
 	    	->limit($offset,$count)
 	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_type = 2 AND status = 1")->count();
+	    	$totalRecordNums = $RecordCommodity->where("good_type = 2 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	} else if ($itemcategoryString == 'sales') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums > 0 AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums > 0 AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -144,9 +138,9 @@ class MallAction extends Action {
 	    	->order("time DESC")
 	    	->limit($offset,$count)
 	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_nums > 0 AND status = 1")->count();
+	    	$totalRecordNums = $RecordCommodity->where("good_nums > 0 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	} else if ($itemcategoryString == 'hassold') {
-    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums = 0 AND i_record_commodity.status = 1")
+    		$joinResultsRecordCommodity = $RecordCommodity->where("good_nums = 0 AND i_record_commodity.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")
 	    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
 	    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
 	    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
@@ -156,13 +150,12 @@ class MallAction extends Action {
 	    	->order("time DESC")
 	    	->limit($offset,$count)
 	    	->select();
-	    	$totalRecordNums = $RecordCommodity->where("good_nums = 0 AND status = 1")->count();
+	    	$totalRecordNums = $RecordCommodity->where("good_nums = 0 AND status = 1 AND school_id = $recordSchoolInfo[id]")->count();
     	}
     	$this->assign('joinResultsRecordCommodity',$joinResultsRecordCommodity);
     	$totalPages = ceil($totalRecordNums / $count);
     	$this->assign('totalRecordNums',$totalRecordNums);
     	$this->assign('totalPages',$totalPages);
-    	
     	$this->display();
     }
 
