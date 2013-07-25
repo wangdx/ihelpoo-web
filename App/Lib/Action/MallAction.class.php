@@ -718,127 +718,26 @@ class MallAction extends Action {
     	if (empty($userloginid)) {
     		redirect('/mall', 3, '你还没有登录呢...');
     	}
-    	
-	    /**
-	     * 
-	     * quanquan code ...
-	     */
-    	if (!empty($_GET['qcode'])) {
-    		$qcode = (int)$_GET['qcode'];
-    		if ($qcode > 0) {
-    			$DaQcode = M("DaQcode");
-    			$userRecordDaQcode = $DaQcode->where("uid = $userloginid")->find();
-    			if (!empty($userRecordDaQcode['id'])) {
-    				$this->assign('qcode', $userRecordDaQcode['qcode']);
-    			} else {
-	    			$recordDaQcode = $DaQcode->where("qcode = $qcode")->find();
-	    			if (!empty($recordDaQcode['uid']) && $recordDaQcode['uid'] != $userloginid) {
-	    				redirect('/mall/newshop?agreement=read', 3, '圈圈码已经被别人使用了...');
-	    			} else if (!empty($recordDaQcode['id'])) {
-	    				$useDaQcode = array(
-	    					'id' => $recordDaQcode['id'],
-	    					'uid' => $userloginid,
-	    					'use' => 1,
-	    					'time' => time()
-	    				);
-	    				$DaQcode->save($useDaQcode);
-	    				$this->assign('qcode', $qcode);
-	    			} else {
-	    				redirect('/mall/newshop?agreement=read', 3, '圈圈码不存在...');
-	    			}
-    			}
-    		}
-    	}
 
     	$UserShop = M("UserShop");
     	$recordUserShop = $UserShop->find($userloginid);
-    	if ($this->isPost()) {
-    		$shoptype = (int)$_POST['shoptype'];
-    		if (!empty($_FILES)) {
-    			if ($_FILES["uploadidcard"]["error"] > 0) {
-    				redirect('/mall/newshop', 3, 'file error...'.$_FILES["uploadidcard"]["error"]);
-    			} else {
-    				$imageOldName = $_FILES["uploadidcard"]["name"];
-    				$imageType = $_FILES["uploadidcard"]["type"];
-    				$imageSize = $_FILES["uploadidcard"]["size"];
-    				$imageTmpName = $_FILES["uploadidcard"]["tmp_name"];
+    	if ($_GET['useropen'] == 'true') {
+    		if (empty($recordUserShop['uid'])) {
+    			$updateUserShop = array(
+		    		'uid' => $userloginid,
+		    		'status' => 2,
+	    			'shop_type' => $shoptype,
+	    			'time' => time()
+    			);
+    			$isUpdateFlag = $UserShop->save($updateUserShop);
+    			if ($isUpdateFlag) {
+    				redirect('/mallset', 3, '你成功开通了一个小店，可以在里面发布交易了，首次发布请完善小店相关资料...');
     			}
-
-    			/**
-    			 * $tempRealSize = getimagesize($_FILES["uploadedimg"]["tmp_name"]);
-    			 * $logoRealWidth = $tempRealSize['0'];
-    			 * $logoRealHeight = $tempRealSize['1'];
-    			 */
-    			if ($imageSize > 3670016) {
-    				redirect('/mall/newshop', 3, 'error...上传图片太大, 最大能上传单张 3.5MB');
-    			} else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
-    				import("@.ORG.UploadFile");
-    				$config=array(
-		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
-		                'savePath'=>'./Public/mall/idcard/',
-		                'saveRule'=>$userloginid.time(),
-    				);
-    				$upload = new UploadFile($config);
-    				$upload->imageClassPath="@.ORG.Image";
-    				$upload->thumb=false;
-    				if (!$upload->upload()) {
-    					$uploadErrorInfo = $upload->getErrorMsg();
-    					redirect('/rooter/mallindex', 3, 'error...'.$uploadErrorInfo);
-    				} else {
-    					$info = $upload->getUploadFileInfo();
-    					$storage = new SaeStorage();
-    					$newfilepath = $storage->getUrl("public", "mall/idcard/".$info[0]['savename']);
-
-    					/**
-    					 * update into i_user_album
-    					 */
-    					if (!empty($recordUserShop['uid'])) {
-	    					$updateUserShop = array(
-	    						'uid' => $userloginid,
-	    						'status' => 1,
-	    						'idcard' => $newfilepath,
-	    					);
-	    					$isUpdateFlag = $UserShop->save($updateUserShop);
-	    					if ($isUpdateFlag) {
-	    						redirect('/mall/newshop', 3, '更新证件成功,等待审核...');
-	    					} else {
-	    						redirect('/mall/newshop', 3, 'failed...请重试');
-	    					}
-    					} else {
-
-    						/**
-    						 * status
-    						 * 1 for upload idcord; need check
-    						 * 2 for ok
-    						 */
-    						$updateUserShop = array(
-	    						'uid' => $userloginid,
-    							'status' => 1,
-    							'shop_type' => $shoptype,
-	    						'idcard' => $newfilepath,
-	    						'time' => time(),
-	    					);
-    						$isUpdateFlag = $UserShop->add($updateUserShop);
-    						if ($isUpdateFlag) {
-	    						redirect('/mallset', 3, '上传证件成功,等待审核后开通小店...');
-	    					} else {
-	    						redirect('/mall/newshop', 3, 'failed...请重试');
-	    					}
-    					}
-
-    				}
-    			} else {
-    				redirect('/mall/newshop', 3, 'error...上传图片格式错误, 目前仅支持.jpg .png .gif');
-    			}
+    		} else {
+    			redirect('/mallset', 3, '你已经开通了一个小店...');
     		}
     	}
-
-    	if (empty($recordUserShop['uid']) && empty($_GET['agreement'])) {
-    		redirect('/mall/newshop?agreement=read', 3, '请选择小店类型...');
-    	}
-
-        $this->assign('recordUserShop',$recordUserShop);
-    	$this->display();
+    	//$this->display();
     }
 
 }
