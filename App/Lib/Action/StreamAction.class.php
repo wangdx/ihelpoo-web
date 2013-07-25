@@ -869,59 +869,30 @@ class StreamAction extends Action {
         		 * record diffusion limit nums 5 per 12 hours
         		 */
                 //TODO for test temporarily
-//        		$time12hour = time() - 43200;
-//        		$userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
-//        		if ($userDiffusion12hourAll >= 3) {
-//        			echo "你扩散了太多消息，休息休息再来吧 :)";
-//        			echo "<br />每12小时最多扩散3条";
-//        			exit();
-//        		}
+                $this->exitIfSpaming($RecordDiffusion, $userloginid);
 
-        		/**
-        		 * insert diffusion record
-        		 */
-        		$dataDiffusion = array(
-	        	    'id' => '',
-	        	    'uid' => $userloginid,
-	        	    'sid' => $diffusionSidArray[1],
-                    'assess_id' => 1,
-	        	    'time' => time(),
-        		);
-        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
+                $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
 
-                Vendor('Ihelpoo.Idworker');
-                $idworker = new Idworker();
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
-                {
-                    echo 'ERROR1:'.$hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                if ($hs->executeInsert(3, array($idworker->next(),'stream/'.$diffusionSidArray['0'].'-para:diffusion', $userloginid, $diffusionSidArray[1], 4444, time())) === false)
-                {
-                    echo 'ERR2:'.$hs->getError(), PHP_EOL;
-                }
-                unset($hs);
+                $nid = $this->saveNoticeMessage($diffusionSidArray, $userloginid);
                 //GET
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT'));
-                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
-                {
-                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
-
-                var_dump($retval);
-
-                $retval = $hs->executeMulti(
-                    array(array(1, '=', array('1'), 1, 0),
-                        array(1, '=', array('2'), 1, 0)));
-
-                var_dump($retval);
-
-                unset($hs);
+//                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_R'));
+//                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
+//                {
+//                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
+//                    die();
+//                }
+//
+//                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
+//
+//                var_dump($retval);
+//
+//                $retval = $hs->executeMulti(
+//                    array(array(1, '=', array('1'), 1, 0),
+//                        array(1, '=', array('2'), 1, 0)));
+//
+//                var_dump($retval);
+//
+//                unset($hs);
 
 
                 /**
@@ -1063,6 +1034,59 @@ class StreamAction extends Action {
         	}
             exit();
         }
+    }
+
+
+    /**
+     * @param $RecordDiffusion
+     * @param $userloginid
+     */
+    public function exitIfDiffuseMoreThanThresholdWithinHalfDay($RecordDiffusion, $userloginid, $threshold)
+    {
+        $time12hour = time() - 43200;
+        $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
+        if ($userDiffusion12hourAll >= $threshold) {
+            echo "你扩散了太多消息，休息休息再来吧 :)";
+            echo "<br />每12小时最多扩散3条";
+            exit();
+        }
+    }
+
+
+    public function exitIfSpaming($RecordDiffusion, $userloginid)
+    {
+        $this->exitIfDiffuseMoreThanThresholdWithinHalfDay($RecordDiffusion, $userloginid, 3);
+    }
+
+
+    public function saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion)
+    {
+        $dataDiffusion = array(
+            'id' => '',
+            'uid' => $userloginid,
+            'sid' => $diffusionSidArray[1],
+            'time' => time(),
+        );
+        $diffusionId = $RecordDiffusion->add($dataDiffusion);
+        return $diffusionId;
+    }
+
+    public function saveNoticeMessage($diffusionSidArray, $userloginid)
+    {
+        Vendor('Ihelpoo.Idworker');
+        $idworker = new Idworker();
+        $noticeId = $idworker->next();
+        $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
+        if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time'))) {
+            echo 'ERROR1:' . $hs->getError(), PHP_EOL;
+            die();
+        }
+
+        if ($hs->executeInsert(3, array($noticeId, 'stream/' . $diffusionSidArray['0'] . '-para:diffusion', $userloginid, $diffusionSidArray[1], 'diffusion', time())) === false) {
+            echo 'ERR2:' . $hs->getError(), PHP_EOL;
+        }
+        unset($hs);
+        return $noticeId;
     }
 
 }
