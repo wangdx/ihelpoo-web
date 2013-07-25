@@ -367,21 +367,32 @@
       		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
       <?php } ?>
     </span>
-    <span class="s_li_s_comment f12 black_l">
+    <span class="s_li_s_comment f12 gray">
       <span class="priority_shield"><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈<?php echo $record['sex'] == '1' ? '他' : '她' ?> or 屏蔽<?php echo $record['sex'] == '1' ? '他' : '她' ?></a></span>
+      <a>赞</a> | 
       <?php
         if ($record['say_type'] == '1') {
+			echo " <a class='diffusion' value='ih-".$record['sid']."'>扩散";
+			if (!empty($record['diffusion_co'])) {
+                echo "(".$record['diffusion_co'].")";
+            }
+			echo "</a> | ";
             echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'><span class='helpleaf'></span></a>";
             if (!empty($record['comment_co'])) {
                 echo "(".$record['comment_co'].")";
             }
-            echo " <a class='gray diffusion' value='ih-".$record['sid']."'>扩散".$record['diffusion_co']."</a>";
+			echo "</a>";
         } else {
+			echo " <a class='gray diffusion' value='i-".$record['sid']."'>扩散";
+			if (!empty($record['diffusion_co'])) {
+                echo "(".$record['diffusion_co'].")";
+            }
+			echo "</a> | ";
         	echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>评论</a>";
             if (!empty($record['comment_co'])) {
                 echo "(".$record['comment_co'].")";
             }
-            echo " <a class='gray diffusion' value='i-".$record['sid']."'>扩散".$record['diffusion_co']."</a>";
+			echo "</a>";
         }
       ?>
     </span>
