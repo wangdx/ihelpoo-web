@@ -73,9 +73,15 @@
 }
 .mallindex_right_nav_ul li a{
     display: inline-block;
-    width: 150px;
+    width: 182px;
     padding: 10px 0;
     text-align: center;
+}
+.m_r_n_ul_li_select{
+    background-color:#FFF;
+    color: #999;
+    font-weight: bold;
+    border: 1px solid #EEE;
 }
 .mallindex_cooperation{
     width: 100%;
