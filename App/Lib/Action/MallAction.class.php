@@ -311,7 +311,7 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND shop_type = 1 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if ($shopcategoryString == 't_2') {
     			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 2 AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
@@ -321,7 +321,7 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 2 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND shop_type = 2 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if ($shopcategoryString == 't_3') {
     			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_shop.shop_type = 3 AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
@@ -331,7 +331,7 @@ class MallAction extends Action {
     			->limit($offset, $count)
     			->order('commodity_co DESC')
     			->select();
-    			$totalRecordNums = $UserShop->where("status = 2 AND shop_type = 3 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    			$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND shop_type = 3 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     		} else if (is_numeric($shopcategoryString)) {
     			$recordsUserShop = $UserShop->where("i_user_shop.status = 2 AND i_user_info.dormitory_op = $shopcategoryString AND i_user_login.school = $recordSchoolInfo[id]")
     			->join('i_user_login ON i_user_shop.uid = i_user_login.uid')
