@@ -358,7 +358,7 @@ class MallAction extends Action {
     		->order('commodity_co DESC')
     		->limit($offset, $count)
     		->select();
-    		$totalRecordNums = $UserShop->where("status = 2 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
+    		$totalRecordNums = $UserShop->where("i_user_shop.status = 2 AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_shop.uid = i_user_login.uid')->count();
     	}
     	$this->assign('recordsUserShop', $recordsUserShop);
 
