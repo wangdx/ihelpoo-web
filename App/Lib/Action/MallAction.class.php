@@ -31,10 +31,9 @@ class MallAction extends Action {
 
     public function index()
     {
-    	$this->assign('title','逛街');
+    	$this->assign('title','买卖');
 
     	/**
-    	 *
     	 * show commodity category
     	 */
     	$RecordCommoditycategory = M("RecordCommoditycategory");
@@ -59,60 +58,6 @@ class MallAction extends Action {
     	$this->assign('categoryArray',$categoryArray);
 
     	/**
-    	 *
-    	 * show UserShop recommend
-    	 */
-    	$UserShop = M("UserShop");
-    	$ISysParameter = D("ISysParameter");
-    	$mallIndexItem = $ISysParameter->getParam("mall_index_item");
-    	$mallIndexShop = $ISysParameter->getParam("mall_index_shop");
-    	$mallIndexItem = '1,'.$mallIndexItem['value'];
-    	$mallIndexItemArray = explode(",", $mallIndexItem);
-        $mallIndexItemArray = array_unique($mallIndexItemArray);
-        foreach ($mallIndexItemArray as $valueIn) {
-        	$valueIn = (int)$valueIn;
-        	if (!empty($valueIn)) {
-        		$mallIndexItemValue .= $valueIn.",";
-        	}
-        }
-        $mallIndexItemValue = substr($mallIndexItemValue, 0, -1);
-        
-        $mallIndexShop = '1,'.$mallIndexShop['value'];
-    	$mallIndexShopArray = explode(",", $mallIndexShop);
-        $mallIndexShopArray = array_unique($mallIndexShopArray);
-        foreach ($mallIndexShopArray as $valueIn) {
-        	$valueIn = (int)$valueIn;
-        	if (!empty($valueIn)) {
-        		$mallIndexShopValue .= $valueIn.",";
-        	}
-        }
-        $mallIndexShopValue = substr($mallIndexShopValue, 0, -1);
-        
-    	$recordsUserShop = $UserShop->where("i_user_shop.uid in ($mallIndexShopValue)")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->limit(15)->select();
-    	$this->assign('recordsUserShop',$recordsUserShop);
-    	
-    	/**
-    	 *
-    	 * show commodities
-    	 */
-    	$RecordCommodity = M("RecordCommodity");
-    	$recordsRecordCommodity = $RecordCommodity->where("i_record_commodity.cid in ($mallIndexItemValue)")->limit(8)->order('cid DESC')->select();
-    	$this->assign('recordsRecordCommodity', $recordsRecordCommodity);
-    	
-    	/**
-    	 *
-    	 * show image
-    	 */
-    	$MallIndeximg = M("MallIndeximg");
-    	$recordsMiddleImage = $MallIndeximg->where("middle_img != ''")->order("`order` DESC")->limit(3)->select();
-    	$recordsRightImage = $MallIndeximg->where("right_img != ''")->order("`order` DESC")->limit(2)->select();
-    	$recordCenterImage = $MallIndeximg->where("center_img != ''")->order("`order` DESC")->find();
-    	$this->assign('recordsMiddleImage',$recordsMiddleImage);
-    	$this->assign('recordsRightImage',$recordsRightImage);
-    	$this->assign('recordCenterImage',$recordCenterImage);
-
-    	/**
-    	 *
     	 * show Cooperation
     	 */
     	$MallCooperation = M("MallCooperation");
@@ -129,6 +74,7 @@ class MallAction extends Action {
     	$this->assign('totalAuditShops',$totalAuditShops);
     	$this->assign('totalRunsShops',$totalRunsShops);
     	
+    	$RecordCommodity = M("RecordCommodity");
     	$totalCommodities = $RecordCommodity->count();
     	$totalForbidCommodities = $RecordCommodity->where('status = 0')->count();
     	$totalSoldCommodities = $RecordCommodity->where('good_nums = 0 AND status = 1')->count();
@@ -137,6 +83,29 @@ class MallAction extends Action {
     	$this->assign('totalForbidCommodities',$totalForbidCommodities);
     	$this->assign('totalSoldCommodities',$totalSoldCommodities);
     	$this->assign('totalSellCommodities',$totalSellCommodities);
+    	
+    	/**
+    	 * right list
+    	 */
+    	$page = i_page_get_num();
+    	$count = 20;
+    	$offset = $page * $count;
+    	$joinResultsRecordCommodity = $RecordCommodity->where("i_record_commodity.status = 1")
+    	->join('i_record_commoditycategory ON i_record_commodity.category_id = i_record_commoditycategory.cate_id')
+    	->join('i_user_login ON i_record_commodity.shopid = i_user_login.uid')
+    	->join('i_user_shop ON i_record_commodity.shopid = i_user_shop.uid')
+    	->field('i_record_commodity.cid,shopid,i_record_commodity.name,i_record_commodity.price,i_record_commodity.rebate,i_record_commodity.buyway,i_record_commodity.image,
+		i_record_commodity.sales_co,i_record_commodity.good_nums,i_record_commodity.good_type,i_record_commodity.assess_co,i_record_commodity.hit,i_record_commodity.time,i_record_commodity.category_id,i_record_commodity.status,
+		i_record_commoditycategory.cate_name,i_record_commoditycategory.parent_id,i_user_shop.uid,i_user_login.nickname,i_user_login.online,i_user_shop.address')
+    	->order("time DESC")
+    	->limit($offset,$count)
+    	->select();
+    	$totalRecordNums = $RecordCommodity->where("status = 1")->count();
+    	$this->assign('joinResultsRecordCommodity',$joinResultsRecordCommodity);
+    	$totalPages = ceil($totalRecordNums / $count);
+    	$this->assign('totalRecordNums',$totalRecordNums);
+    	$this->assign('totalPages',$totalPages);
+    	
     	$this->display();
     }
 
