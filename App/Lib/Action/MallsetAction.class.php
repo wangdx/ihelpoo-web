@@ -25,6 +25,12 @@ class MallsetAction extends Action {
     		if (!empty($userloginedrecordUserShop)) {
     			$this->assign('userloginedrecordUserShop',$userloginedrecordUserShop);
     		}
+    		
+    		/**
+    		 * 
+    		 */
+    		$recordSchoolInfo = i_school_domain();
+    		$this->assign('schoolname',$recordSchoolInfo['school']);
     	} else {
     		redirect('/user/notlogin', 0, '你还没有登录呢...');
     	}
@@ -148,7 +154,7 @@ class MallsetAction extends Action {
     				UpYun::X_GMKERL_UNSHARP => True
     				);
     				$fh = fopen($imageTmpName, 'rb');
-    				$storageThumbTempFilename = '/logo/'.$userloginid.'/thumb_'.$shoplogoname;
+    				$storageThumbTempFilename = '/shop/'.$userloginid.'/thumb_'.$shoplogoname;
     				$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
     				fclose($fh);
     					
@@ -308,6 +314,7 @@ class MallsetAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$this->assign('title','发布商品 - 买卖');
+    	$recordSchoolInfo = i_school_domain();
 
     	/**
     	 * UserShop
@@ -393,42 +400,47 @@ class MallsetAction extends Action {
         		if ($imageSize > 3670016) {
         			$this->ajaxReturn(0,'上传图片太大, 最大能上传单张 3.5MB','error');
         		}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
-        			import("@.ORG.UploadFile");
-        			$config=array(
-		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
-		                'savePath'=>'./Public/shop/'.$userloginid.'/',
-		                'saveRule'=>'goods'.time(),
+        			 
+        			/**
+        			 * storage in upyun
+        			 */
+        			Vendor('Ihelpoo.Upyun');
+        			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        			$fh = fopen($imageTmpName, 'rb');
+        			$shopitemname = 'goods'.time().'.jpg';
+        			$storageTempFilename = '/shop/'.$userloginid.'/'.$shopitemname;
+        			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
+        			fclose($fh);
+        			$imageStorageUrl = image_storage_url();
+        			$newfilepath = $imageStorageUrl.$storageTempFilename;
+
+        			$opts = array(
+        			UpYun::X_GMKERL_TYPE    => 'fix_max',
+        			UpYun::X_GMKERL_VALUE   => 160,
+        			UpYun::X_GMKERL_QUALITY => 95,
+        			UpYun::X_GMKERL_UNSHARP => True
         			);
-        			$upload = new UploadFile($config);
-        			$upload->imageClassPath="@.ORG.Image";
-        			$upload->thumb=true;
-        			$upload->thumbMaxHeight=160;
-        			$upload->thumbMaxWidth=160;
-        			if (!$upload->upload()) {
-        				$uploadErrorInfo = $upload->getErrorMsg();
-        				$this->ajaxReturn($uploadErrorInfo,'上传出错','error');
-        			} else {
-        				$info = $upload->getUploadFileInfo();
-        				$storage = new SaeStorage();
-        				$newfilepath = $storage->getUrl("public", "shop/".$userloginid."/".$info[0]['savename']);
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageThumbTempFilename = '/shop/'.$userloginid.'/thumb_'.$shopitemname;
+        			$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
+        			fclose($fh);
 
-        				/**
-        				 * insert into i_user_album
-        				 */
-        				$newAlbumIconData = array(
-        					'uid' => $userloginid,
-        					'type' => 3,
-        					'url' => $newfilepath,
-        					'size' => $info[0]['size'],
-        					'time' => time()
-        				);
-        				$UserAlbum->add($newAlbumIconData);
+        			/**
+        			 * insert into i_user_album
+        			 */
+        			$newAlbumIconData = array(
+        				'uid' => $userloginid,
+        				'type' => 3,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'time' => time()
+        			);
+        			$UserAlbum->add($newAlbumIconData);
 
-        				/**
-        				 * ajax return
-        				 */
-        				$this->ajaxReturn($newfilepath,'上传成功','uploaded');
-        			}
+        			/**
+        			 * ajax return
+        			 */
+        			$this->ajaxReturn($newfilepath,'上传成功','uploaded');
         		} else {
         			$this->ajaxReturn(0,'上传图片格式错误, 目前仅支持.jpg .png .gif','error');
         		}
@@ -482,7 +494,8 @@ class MallsetAction extends Action {
     				'detail' => $detail,
     				'image' => $image,
     				'category_id' => $category_id,
-    				'status' => 1
+    				'status' => 1,
+    				'school_id' => $recordSchoolInfo['id']
     			);
     			if (!empty($cid)) {
     				$newRecordCommodity['cid'] = $cid;
@@ -525,7 +538,6 @@ class MallsetAction extends Action {
     		}
     		redirect('/mallset/add?succ='.$cid, 0, '发布商品成功...');
     	}
-    	
     	$this->display();
     }
 
@@ -672,46 +684,49 @@ class MallsetAction extends Action {
         			$data['error'] = 1;
         			$this->ajaxReturn($data,'JSON');
         		}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
-        			import("@.ORG.UploadFile");
-        			$config=array(
-		                'allowExts'=>array('jpeg','jpg','gif','png','bmp'),
-		                'savePath'=>'./Public/shop/'.$userloginid.'/',
-		                'saveRule'=>'goodscontent'.time(),
+        			
+        			/**
+        			 * storage in upyun
+        			 */
+        			Vendor('Ihelpoo.Upyun');
+        			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        			$fh = fopen($imageTmpName, 'rb');
+        			$shopitemname = 'goodscontent'.time().'.jpg';
+        			$storageTempFilename = '/shop/'.$userloginid.'/'.$shopitemname;
+        			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
+        			fclose($fh);
+        			$imageStorageUrl = image_storage_url();
+        			$newfilepath = $imageStorageUrl.$storageTempFilename;
+
+        			$opts = array(
+        			UpYun::X_GMKERL_TYPE    => 'fix_max',
+        			UpYun::X_GMKERL_VALUE   => 150,
+        			UpYun::X_GMKERL_QUALITY => 95,
+        			UpYun::X_GMKERL_UNSHARP => True
         			);
-        			$upload = new UploadFile($config);
-        			$upload->imageClassPath="@.ORG.Image";
-    				$upload->thumb=true;
-        			$upload->thumbMaxHeight=150;
-        			$upload->thumbMaxWidth=150;
-        			if (!$upload->upload()) {
-        				$uploadErrorInfo = $upload->getErrorMsg();
-        				$data['message'] = $uploadErrorInfo;
-        				$data['error'] = 1;
-        				$this->ajaxReturn($data,'JSON');
-        			} else {
-        				$info = $upload->getUploadFileInfo();
-        				$storage = new SaeStorage();
-        				$newfilepath = $storage->getUrl("public", "shop/".$userloginid."/".$info[0]['savename']);
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageThumbTempFilename = '/shop/'.$userloginid.'/thumb_'.$shopitemname;
+        			$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
+        			fclose($fh);
+        			 
+        			/**
+        			 * insert into i_user_album
+        			 */
+        			$newAlbumIconData = array(
+        				'uid' => $userloginid,
+        				'type' => 3,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'time' => time()
+        			);
+        			$UserAlbum->add($newAlbumIconData);
 
-        				/**
-        				 * insert into i_user_album
-        				 */
-        				$newAlbumIconData = array(
-        					'uid' => $userloginid,
-        					'type' => 3,
-        					'url' => $newfilepath,
-        					'size' => $info[0]['size'],
-        					'time' => time()
-        				);
-        				$UserAlbum->add($newAlbumIconData);
-
-        				/**
-        				 * ajax return
-        				 */
-        				$data['url'] = $newfilepath;
-        				$data['error'] = 0;
-        				$this->ajaxReturn($data,'JSON');
-        			}
+        			/**
+        			 * ajax return
+        			 */
+        			$data['url'] = $newfilepath;
+        			$data['error'] = 0;
+        			$this->ajaxReturn($data,'JSON');
         		} else {
         			$data['message'] = '上传图片格式错误, 目前仅支持.jpg .png .gif';
         			$data['error'] = 1;

@@ -13,12 +13,12 @@
     </div>
 	<div class="mallset_left f12">
 		<ul>
-			<li><a href="__ROOT__/mallset">店铺设置</a></li>
-			<li><a href="__ROOT__/mallset/logo">店铺logo</a></li>
+			<li><a href="__ROOT__/mallset">小店设置</a></li>
+			<li><a href="__ROOT__/mallset/logo">小店logo</a></li>
 			<li><a href="__ROOT__/mallset/cate">分类管理</a></li>
 			<li><a href="__ROOT__/mallset/add" class="bg_red">发布商品</a></li>
 			<li><a href="__ROOT__/mallset/commodity">商品管理</a></li>
-			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的店铺</a></li>
+			<li><a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">返回我的小店</a></li>
 		</ul>
 	</div>
 	<div class="mallset_right">
@@ -42,14 +42,9 @@
 			    <li><span class="mallset_add_ul_title_span">价&#12288;&#12288;格:</span> <input class="mallset_index_ul_li_input" name="price" type="text" value="{$resultRecordCommodity['price']}" /> <span class="f12 gray">必须填整数</span></li>
 			    <li><span class="mallset_add_ul_title_span">成&#12288;&#12288;色:</span> 
 			    	<select id="" name="good_type" class="mallset_index_ul_li_select" >
-			    		<?php if ($recordUserShop['shop_type'] == '1') { ?>
-			    			<option value="2">二手</option>
-			    		<?php } else { ?>
-				    		<option value="1">全新</option>
-				    		<option value="2">二手</option>
-			    		<?php } ?>
+				    	<option value="1">全新</option>
+				    	<option value="2">二手</option>
 			    	</select>
-			    	<span class="f12 gray">学生二手类店铺只能选择“二手”</span>
 			    </li>
 			    <li><span class="mallset_add_ul_title_span">数&#12288;&#12288;量:</span>
 			    	<select id="" name="good_nums" class="mallset_index_ul_li_select" >
