@@ -298,6 +298,7 @@ class MallAction extends Action {
     	/**
     	 * User Shop Lists
     	 * i_user_shop.shop_type = 1 students
+    	 * i_user_shop.shop_type = 2 delete
     	 * i_user_shop.shop_type = 3 shoper
     	 */
     	
@@ -373,23 +374,25 @@ class MallAction extends Action {
     
     public function shop()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$shopId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	$categoryId = (int)htmlspecialchars(trim($_GET["_URL_"][3]));
     	if (empty($shopId)) {
-    		redirect('/mall', 3, '你访问的店铺不存在 或者关闭了 :(...');
+    		redirect('/mall', 3, '你访问的小店不存在 或者关闭了 :(...');
     	}
         $IUserLogin = D("IUserLogin");
     	$shopUserLogin = $IUserLogin->userExists($shopId);
-    	$this->assign('title',$shopUserLogin['nickname'].' - 店铺');
+    	$this->assign('title',$shopUserLogin['nickname'].' - 小店 '.$recordSchoolInfo['school']);
     	$this->assign('shopUserLogin',$shopUserLogin);
 
     	$UserShop = M("UserShop");
     	$recordUserShop = $UserShop->where("uid = $shopId")->find();
     	if (empty($recordUserShop)) {
-    		redirect('/mall', 3, '你访问的店铺不存在 或者关闭了 :(...');
+    		redirect('/mall', 3, '你访问的小店不存在 或者关闭了 :(...');
     	}
     	if ($recordUserShop['status'] == 1) {
-    		redirect('/mall', 3, '你访问的店铺还在审核中 稍后再来看看 :)...');
+    		redirect('/mall', 3, '你访问的小店还在审核中 稍后再来看看 :)...');
     	}
         $this->assign('recordUserShop',$recordUserShop);
 
@@ -512,7 +515,7 @@ class MallAction extends Action {
     	$UserShop = M("UserShop");
     	$recordUserShop = $UserShop->where("uid = $shopId")->find();
     	if (empty($recordUserShop)) {
-    		redirect('/mall', 3, '你访问的店铺不存在 或者关闭了 :(...');
+    		redirect('/mall', 3, '你访问的小店不存在 或者关闭了 :(...');
     	}
         $this->assign('recordUserShop',$recordUserShop);
         $UserInfo = M("UserInfo");
@@ -520,7 +523,7 @@ class MallAction extends Action {
         $this->assign('shopUserInfo',$shopUserInfo);
         
     	if ($recordUserShop['status'] == 1) {
-    		redirect('/mall', 3, '你访问的店铺还在审核中 稍后再来看看 :)...');
+    		redirect('/mall', 3, '你访问的小店还在审核中 稍后再来看看 :)...');
     	}
 
         /**
@@ -815,7 +818,7 @@ class MallAction extends Action {
 	    					);
     						$isUpdateFlag = $UserShop->add($updateUserShop);
     						if ($isUpdateFlag) {
-	    						redirect('/mallset', 3, '上传证件成功,等待审核后开通店铺...');
+	    						redirect('/mallset', 3, '上传证件成功,等待审核后开通小店...');
 	    					} else {
 	    						redirect('/mall/newshop', 3, 'failed...请重试');
 	    					}
@@ -829,7 +832,7 @@ class MallAction extends Action {
     	}
 
     	if (empty($recordUserShop['uid']) && empty($_GET['agreement'])) {
-    		redirect('/mall/newshop?agreement=read', 3, '请选择店铺类型...');
+    		redirect('/mall/newshop?agreement=read', 3, '请选择小店类型...');
     	}
 
         $this->assign('recordUserShop',$recordUserShop);
