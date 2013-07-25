@@ -8,6 +8,7 @@
  */
 class StreamAction extends Action {
 
+
     protected function _initialize()
     {
     	$userloginid = session('userloginid');
@@ -869,7 +870,7 @@ class StreamAction extends Action {
         		 * record diffusion limit nums 5 per 12 hours
         		 */
                 //TODO for test temporarily
-                $this->exitIfSpaming($RecordDiffusion, $userloginid);
+                $this->exitWhenSpaming($RecordDiffusion, $userloginid);
 
                 $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
 
@@ -893,35 +894,10 @@ class StreamAction extends Action {
 //                var_dump($retval);
 //
 //                unset($hs);
+                $resuleRecordSay = $this->increaseDiffusionOfRecord($diffusionSidArray, $userloginid);
 
 
                 /**
-        		 * update diffusion_co nums
-        		 */
-        		$RecordSay = M("RecordSay");
-        		$resuleRecordSay = $RecordSay->find($diffusionSidArray[1]);
-
-        		/**
-                 * if user > level2 update last_comment_ti
-                 */
-                $UserLogin = M("UserLogin");
-                $recordUserLogin = $UserLogin->find($userloginid);
-                $userLevel = i_degree($recordUserLogin['active']);
-                if ($userLevel >= 2) {
-                    $recordSaySet = array(
-                    	'sid' => $diffusionSidArray['1'],
-        		        'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
-        		        'last_comment_ti' => time(),
-        		    );
-                } else {
-                	$recordSaySet = array(
-                		'sid' => $diffusionSidArray['1'],
-        		        'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
-        		    );
-                }
-        		$RecordSay->save($recordSaySet);
-
-        		/**
         		 * message to owner
         		 */
         		$MsgSystem = M("MsgSystem");
@@ -1053,7 +1029,7 @@ class StreamAction extends Action {
     }
 
 
-    public function exitIfSpaming($RecordDiffusion, $userloginid)
+    public function exitWhenSpaming($RecordDiffusion, $userloginid)
     {
         $this->exitIfDiffuseMoreThanThresholdWithinHalfDay($RecordDiffusion, $userloginid, 3);
     }
@@ -1087,6 +1063,50 @@ class StreamAction extends Action {
         }
         unset($hs);
         return $noticeId;
+    }
+
+
+    /**
+     * @param $diffusionSidArray
+     * @param $userloginid
+     * @return mixed
+     */
+    public function increaseDiffusionOfRecord($diffusionSidArray, $userloginid)
+    {
+        /**
+         * update diffusion_co nums
+         */
+        $RecordSay = M("RecordSay");
+        $resuleRecordSay = $RecordSay->find($diffusionSidArray[1]);
+
+        /**
+         * if user > level2 update last_comment_ti
+         */
+        $UserLogin = M("UserLogin");
+        $recordUserLogin = $UserLogin->find($userloginid);
+        $userLevel = i_degree($recordUserLogin['active']);
+
+        $recordSaySet = array(
+            'sid' => $diffusionSidArray['1'],
+            'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+        );
+        if ($userLevel >= 2)
+            $recordSaySet['last_comment_ti'] = time();
+
+//        if ($userLevel >= 2) {
+//            $recordSaySet = array(
+//                'sid' => $diffusionSidArray['1'],
+//                'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+//                'last_comment_ti' => time(),
+//            );
+//        } else {
+//            $recordSaySet = array(
+//                'sid' => $diffusionSidArray['1'],
+//                'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+//            );
+//        }
+        $RecordSay->save($recordSaySet);
+        return $resuleRecordSay;
     }
 
 }
