@@ -170,7 +170,7 @@ class MallsetAction extends Action {
     				 */
     				$newUserShopData = array(
         				'uid' => $userloginid,
-        				'shop_banner' => $newfilepath
+        				'shop_banner' => $shoplogoname
     				);
     				$UserShop->save($newUserShopData);
 
