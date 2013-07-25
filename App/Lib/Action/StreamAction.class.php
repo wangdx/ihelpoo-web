@@ -1007,7 +1007,7 @@ class StreamAction extends Action
 
     public function diffuseTo($redis, $who, $noticeIdForFollowers)
     {
-        $redis->hSet(C('R_ACCOUNT') . $who . C('R_MESSAGE'), $noticeIdForFollowers, 0);
+        $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeIdForFollowers, 0);
     }
 
 

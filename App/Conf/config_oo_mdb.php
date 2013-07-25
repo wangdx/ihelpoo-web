@@ -3,6 +3,9 @@
 return array(
 
     // redis
+    'R_Notice_Message_Template'=>'Notice:Message:Template',
+    'R_Notice_Message_Link'=>'Notice:Message:Link',
+
     'R_NOTICE'=>'N:',
     'R_MESSAGE'=>'M:',
     'R_ACCOUNT'=>'A:',
