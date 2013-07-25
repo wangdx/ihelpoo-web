@@ -8,6 +8,7 @@
  */
 class StreamAction extends Action {
 
+
     protected function _initialize()
     {
     	$userloginid = session('userloginid');
@@ -869,120 +870,14 @@ class StreamAction extends Action {
         		 * record diffusion limit nums 5 per 12 hours
         		 */
                 //TODO for test temporarily
-//        		$time12hour = time() - 43200;
-//        		$userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
-//        		if ($userDiffusion12hourAll >= 3) {
-//        			echo "你扩散了太多消息，休息休息再来吧 :)";
-//        			echo "<br />每12小时最多扩散3条";
-//        			exit();
-//        		}
+//                $this->exitWhenSpaming($RecordDiffusion, $userloginid);
 
-        		/**
-        		 * insert diffusion record
-        		 */
-        		$dataDiffusion = array(
-	        	    'id' => '',
-	        	    'uid' => $userloginid,
-	        	    'sid' => $diffusionSidArray[1],
-                    'assess_id' => 1,
-	        	    'time' => time(),
-        		);
-        		$diffusionId = $RecordDiffusion->add($dataDiffusion);
+                $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
 
-
-
-                $port = 9998;
-                $port_wr = 9999;
-                $dbname = 'test';
-                $table = 'user';
-//                //DELETE
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-//                if (!($hs->openIndex(4, $dbname, $table, '', '')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                if ($hs->executeDelete(4, '=', array('1')) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-
-                Vendor('Ihelpoo.Idworker');
-                $idworker = new Idworker();
-                $id = time() << (64-41);
-                $id |= $userloginid%2000 << (64-41-13) ;
-                $id |= ($diffusionId % 1024);
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-                if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
-                {
-                    echo 'ERROR1:'.$hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                if ($hs->executeInsert(3, array($diffusionId,'hello', 2222, 3333, 4444, 5555)) === false)
-                {
-                    echo 'ERR2:'.$hs->getError(), PHP_EOL;
-                }
-                unset($hs);
+                $nid = $this->saveNoticeMessage($diffusionSidArray, $userloginid);
                 //GET
-                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
-                {
-                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
-                    die();
-                }
-
-                $retval = $hs->executeSingle(1, '>=', array('0'), 10, 0);
-
-                var_dump($retval);
-
-                $retval = $hs->executeMulti(
-                    array(array(1, '=', array('1'), 1, 0),
-                        array(1, '=', array('2'), 1, 0)));
-
-                var_dump($retval);
-//                //INSERT
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-//                if (!($hs->openIndex(3, $dbname, $table, '', 'user_id,user_name,user_email,created')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                if ($hs->executeInsert(3, array('8', 'aaa5', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                }
-//                if ($hs->executeInsert(3, array('6', 'aaa6', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
-//                {
-//                    echo 'A', $hs->getError(), PHP_EOL;
-//                }
-//                if ($hs->executeInsert(3, array('7', 'aaa7', 'xun@dsf.com', '2011-04-07 18:26:03')) === false)
-//                {
-//                    echo 'B', $hs->getError(), PHP_EOL;
-//                }
-//
-//                unset($hs);
-//                //UPDATE
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port_wr);
-//                if (!($hs->openIndex(2, $dbname, $table, '', 'user_name,user_email,created')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                if ($hs->executeUpdate(2, '=', array('2'), array('aaa', 'xun@dsf.com', '2011-04-07 18:26:03'), 1, 0) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//
-//                unset($hs);
-//                //GET
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), $port);
-//                if (!($hs->openIndex(1, $dbname, $table, HandlerSocket::PRIMARY, 'user_id,user_name,user_email,created')))
+//                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_R'));
+//                if (!($hs->openIndex(1, C('OO_DBNAME'),  C('H_I_MSG_NOTICE'), HandlerSocket::PRIMARY, 'notice_id,notice_type,source_id,detail_id,format_id,create_time')))
 //                {
 //                    echo 'ERROR:'.$hs->getError(), PHP_EOL;
 //                    die();
@@ -997,49 +892,12 @@ class StreamAction extends Action {
 //                        array(1, '=', array('2'), 1, 0)));
 //
 //                var_dump($retval);
-
-                unset($hs);
-
-//                $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-//                if (!($hs->openIndex(3, 'test', 'user', '', 'a, b')))
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                    die();
-//                }
-//                if ($hs->executeInsert(3, array('a1111','b1111')) === false)
-//                {
-//                    echo $hs->getError(), PHP_EOL;
-//                }
+//
 //                unset($hs);
+                $resuleRecordSay = $this->increaseDiffusionOfRecord($diffusionSidArray, $userloginid);
 
 
                 /**
-        		 * update diffusion_co nums
-        		 */
-        		$RecordSay = M("RecordSay");
-        		$resuleRecordSay = $RecordSay->find($diffusionSidArray[1]);
-
-        		/**
-                 * if user > level2 update last_comment_ti
-                 */
-                $UserLogin = M("UserLogin");
-                $recordUserLogin = $UserLogin->find($userloginid);
-                $userLevel = i_degree($recordUserLogin['active']);
-                if ($userLevel >= 2) {
-                    $recordSaySet = array(
-                    	'sid' => $diffusionSidArray['1'],
-        		        'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
-        		        'last_comment_ti' => time(),
-        		    );
-                } else {
-                	$recordSaySet = array(
-                		'sid' => $diffusionSidArray['1'],
-        		        'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
-        		    );
-                }
-        		$RecordSay->save($recordSaySet);
-
-        		/**
         		 * message to owner
         		 */
         		$MsgSystem = M("MsgSystem");
@@ -1152,6 +1010,103 @@ class StreamAction extends Action {
         	}
             exit();
         }
+    }
+
+
+    /**
+     * @param $RecordDiffusion
+     * @param $userloginid
+     */
+    public function exitIfDiffuseMoreThanThresholdWithinHalfDay($RecordDiffusion, $userloginid, $threshold)
+    {
+        $time12hour = time() - 43200;
+        $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
+        if ($userDiffusion12hourAll >= $threshold) {
+            echo "你扩散了太多消息，休息休息再来吧 :)";
+            echo "<br />每12小时最多扩散3条";
+            exit();
+        }
+    }
+
+
+    public function exitWhenSpaming($RecordDiffusion, $userloginid)
+    {
+        $this->exitIfDiffuseMoreThanThresholdWithinHalfDay($RecordDiffusion, $userloginid, 3);
+    }
+
+
+    public function saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion)
+    {
+        $dataDiffusion = array(
+            'id' => '',
+            'uid' => $userloginid,
+            'sid' => $diffusionSidArray[1],
+            'time' => time(),
+        );
+        $diffusionId = $RecordDiffusion->add($dataDiffusion);
+        return $diffusionId;
+    }
+
+    public function saveNoticeMessage($diffusionSidArray, $userloginid)
+    {
+        Vendor('Ihelpoo.Idworker');
+        $idworker = new Idworker();
+        $noticeId = $idworker->next();
+        $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
+        if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time'))) {
+            echo 'ERROR1:' . $hs->getError(), PHP_EOL;
+            die();
+        }
+
+        if ($hs->executeInsert(3, array($noticeId, 'stream/' . $diffusionSidArray['0'] . '-para:diffusion', $userloginid, $diffusionSidArray[1], 'diffusion', time())) === false) {
+            echo 'ERR2:' . $hs->getError(), PHP_EOL;
+        }
+        unset($hs);
+        return $noticeId;
+    }
+
+
+    /**
+     * @param $diffusionSidArray
+     * @param $userloginid
+     * @return mixed
+     */
+    public function increaseDiffusionOfRecord($diffusionSidArray, $userloginid)
+    {
+        /**
+         * update diffusion_co nums
+         */
+        $RecordSay = M("RecordSay");
+        $resuleRecordSay = $RecordSay->find($diffusionSidArray[1]);
+
+        /**
+         * if user > level2 update last_comment_ti
+         */
+        $UserLogin = M("UserLogin");
+        $recordUserLogin = $UserLogin->find($userloginid);
+        $userLevel = i_degree($recordUserLogin['active']);
+
+        $recordSaySet = array(
+            'sid' => $diffusionSidArray['1'],
+            'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+        );
+        if ($userLevel >= 2)
+            $recordSaySet['last_comment_ti'] = time();
+
+//        if ($userLevel >= 2) {
+//            $recordSaySet = array(
+//                'sid' => $diffusionSidArray['1'],
+//                'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+//                'last_comment_ti' => time(),
+//            );
+//        } else {
+//            $recordSaySet = array(
+//                'sid' => $diffusionSidArray['1'],
+//                'diffusion_co' => $resuleRecordSay['diffusion_co'] + 1,
+//            );
+//        }
+        $RecordSay->save($recordSaySet);
+        return $resuleRecordSay;
     }
 
 }

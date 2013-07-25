@@ -11,8 +11,8 @@ $ooconfig = array(
     'MYSQL_SLAVE'=>'10.6.5.68',
     'MYSQL_PORT'=>3306,
 
-    'HS_PROT'=>9998,     // handlersocket port
-    'HS_PORT_WR'=>9999,  // handlersocket port wr
+    'HS_PORT_R'=>9998,     // handlersocket port read only
+    'HS_PORT_WR'=>9999,  // handlersocket port write only
 
     'OO_DBNAME'=>'ihelpoo',
 

@@ -1,7 +1,7 @@
 <?php
 class Idworker
 {
-    final public function nextId(){
+    final public function next(){
         return self::generateParticle(1);
     }
 
