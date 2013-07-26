@@ -24,7 +24,7 @@
         <?php } else { ?>
         <a href="__ROOT__/item/say/<?php echo $recordDiffusion['sid'] ?>">详细</a>
         <?php } ?>
-        <span class="f12 gray"><?php echo i_time($recordDiffusion['time']) ?></span>
+        <span class="f12 gray"><?php echo i_time($recordDiffusion['time']) ?></span> <- 并表示：$recordDiffusion['view']
       </li>
     <?php endforeach; ?>
     </ul>

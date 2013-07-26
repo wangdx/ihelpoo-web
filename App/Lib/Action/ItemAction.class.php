@@ -77,7 +77,7 @@ class ItemAction extends Action {
         $this->assign('recordDiffusionNums', $recordDiffusionNums);
         if (!empty($recordDiffusionNums)) {
         	$recordDiffusionArray = $RecordDiffusion->where("sid = $recordId")->join('i_user_login ON i_record_diffusion.uid = i_user_login.uid')
-		    ->field('id,i_user_login.uid,i_record_diffusion.sid,i_record_diffusion.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+		    ->field('id,i_user_login.uid,i_record_diffusion.sid,i_record_diffusion.view,i_record_diffusion.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 		    ->order('i_record_diffusion.time DESC')
 		    ->select();
 		    $this->assign('recordDiffusionArray', $recordDiffusionArray);
