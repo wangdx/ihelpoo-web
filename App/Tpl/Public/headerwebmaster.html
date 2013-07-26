@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>{$title} - 我帮圈圈校园管理后台 {$recordSchoolInfo['school']}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="__PUBLIC__/css/ihelpoo.css?id=5" media="screen" rel="stylesheet" type="text/css" />
+  <link href="__PUBLIC__/css/schooladmin.css?id=5" media="screen" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
+  <script type="text/javascript">
+  	baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/public/commonother.js"></script>
+</head>
+<div class="schooladmin_top">
+	<p class="schooladmin_top_info_p"><a href="__ROOT__/" target="_blank">我帮圈圈</a> {$recordSchoolInfo['school']}校园管理后台</p>
+	<p class="schooladmin_top_user_p">欢迎您: {$webmasterloginname} <a href="__ROOT__/schooladmin/quit">退出</a></p>
+</div>
+<div class="schooladmin_nav">
+	<ul class="schooladmin_nav_ul">
+		<li><span class="f14 fb">系统</span></li>
+		<li><a href="__ROOT__/schooladmin/main">管理中心</a></li>
+		<li><a href="__ROOT__/schooladmin/parameter">系统配置</a><span class='f12 red_l'>[权限]</span></li>
+		<li><a href="__ROOT__/schooladmin/indexbgimg">上传图片</a></li>
+		<li><span class="f14 fb">用户</span></li>
+		<li><a href="__ROOT__/schooladmin/orderusericon">首页用户排序</a></li>
+		<li><a href="__ROOT__/schooladmin/user">用户管理</a></li>
+		<li><a href="__ROOT__/schooladmin/realnameallowmf">用户实名修改管理</a></li>
+		<li><a href="__ROOT__/schooladmin/userhonor">授予荣誉奖励活跃</a></li>
+		<li><a href="__ROOT__/schooladmin/userinvite">邀请用户奖励</a></li>
+		<li><a href="__ROOT__/schooladmin/userfillaccount">填充账号</a></li>
+		<li><span class="f14 fb">记录</span></li>
+		<li><a href="__ROOT__/schooladmin/record">记录管理</a></li>
+		<li><span class="f14 fb">邮件</span></li>
+		<li><a href="__ROOT__/schooladmin/emailinvite">邮件邀请</a></li>
+		<li><a href="__ROOT__/schooladmin/reinviteltnl">邮件提醒新消息</a></li>
+		<li><a href="__ROOT__/schooladmin/emailnotice">邮件邀请公告</a></li>
+		<li><span class="f14 fb">About CMS</span></li>
+		<li><a href="__ROOT__/schooladmin/about">文章列表</a></li>
+		<li><span class="f14 fb">Mall 逛街</span></li>
+		<li><a href="__ROOT__/schooladmin/mallshop">店铺管理</a></li>
+		<li><a href="__ROOT__/schooladmin/mallcommodity">商品管理</a></li>
+		<li><a href="__ROOT__/schooladmin/mallcommodityassess">交易管理</a></li>
+		<li><a href="__ROOT__/schooladmin/mallindex">mall首页管理</a></li>
+		<li><a href="__ROOT__/schooladmin/mallcooperation">cooperation 管理</a></li>
+		<li><span class="f14 fb">Activity 活动</span></li>
+		<li><a href="__ROOT__/schooladmin/activity">活动管理</a></li>
+		<li><a href="__ROOT__/schooladmin/useroperatingrecord" class='f12 red_l'>操作记录</a></li>
+	</ul>
+</div>
+<div class="schooladmin_main">

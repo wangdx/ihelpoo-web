@@ -4,16 +4,16 @@
   <title>{$title} - 我帮圈圈{$recordSchoolInfo['school']}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link href="__PUBLIC__/css/ihelpoo.css?id=5" media="screen" rel="stylesheet" type="text/css" />
-  <link href="__PUBLIC__/css/rooter.css?id=5" media="screen" rel="stylesheet" type="text/css" />
+  <link href="__PUBLIC__/css/schooladmin.css?id=5" media="screen" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
   <script type="text/javascript" src="__PUBLIC__/js/public/commonother.js"></script>
 </head>
-<div class="rooter_top">
-	<p class="rooter_top_info_p"><a href="__ROOT__/" target="_blank">我帮圈圈</a> 校园管理后台 (Bate 4 Butterfly Plan)</p>
+<div class="schooladmin_top">
+	<p class="schooladmin_top_info_p"><a href="__ROOT__/" target="_blank">我帮圈圈</a> 校园管理后台 (Bate 4 Butterfly Plan)</p>
 	<?php if (!empty($adminuserloginname)) { ?>
-		<p class="rooter_top_user_p">欢迎您: <?php echo $adminuserloginname; ?> <a href="__ROOT__/rooter/quit">退出</a></p>
+		<p class="schooladmin_top_user_p">欢迎您: <?php echo $adminuserloginname; ?> <a href="__ROOT__/schooladmin/quit">退出</a></p>
 	<?php } else { ?>
-		<p class="rooter_top_user_p">未登录...</p>
+		<p class="schooladmin_top_user_p">未登录...</p>
 	<?php } ?>
 </div>
 <div>
@@ -22,8 +22,9 @@
 </h3>
 <form method="post">
 <ul class="loginbox">
-  <li><p>站长:</p><input type="text" name="rooter" value="" /></li>
+  <li><p>站长:</p><input type="text" name="webmaster" value="" /></li>
   <li><p>密码:</p><input type="password" name="password" value="" /></li>
+  <li><p>口令:</p><input type="password" name="cypher" value="" /></li>
   <li><input type="submit" value="登录" /></li>
 </ul>
 </form>
