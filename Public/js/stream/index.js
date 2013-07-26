@@ -485,8 +485,10 @@ $().ready(function(){
             data: {'sid':$(this).attr('value')},
             datatype: "html",
             success:function(data){
-                console.log($(this).parent().find('.plus_count_region').val());
-                $(this).parent().find('.plus_count_region').text(data);
+//                console.log($(this).parent().find('.plus_count_region').val());
+//                $(this).parent().find('.plus_count_region').text(data);
+
+                $(this).append('<span class="red_l">'+data+'</span>');
             }
         });
     });
