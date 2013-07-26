@@ -479,6 +479,7 @@ $().ready(function(){
 //    });
 
     $('.plus_button').click(function(){
+        alert('hi');
         $.post(baseUrl+'stream/plus', {'sid':$(this).attr('value')}, function( data ){
             $(this).parent().find('.plus_count_region').val(data);
         });
