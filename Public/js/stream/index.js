@@ -489,7 +489,7 @@ $().ready(function(){
 //                $(this).parent().find('.plus_count_region').text(data);
 
                 alert($('#plus_count_region_'+$(this).attr('value')));
-                $('#plus_count_region_'+$(this).attr('value')).text('<span class="red_l">'+data+'</span>');
+                $('#plus_count_region_'+$(this).attr('value')).html('<span class="red_l">'+data+'</span>');
             }
         });
     });
