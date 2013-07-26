@@ -466,16 +466,33 @@ $().ready(function(){
         }
     });
 
+
+    //reply
+    $('.reply_box_btn').click(function(){
+        $comment_reply_div_box = $(this).parent().parent().parent().find('.comment_reply_div_box');
+        $comment_reply_div_box.slideDown('fast');
+    });
+
     /**
      * diffusion part
      */
     $('.diffusion').click(function(){
-        var diffusionSid = $(this).attr('value');
-        var $thisDiffusion = $(this);
+
+
+        diffusion_view_div_box = $(this).parent().parent().parent().find('.diffusion_view_div_box');
+        diffusion_view_div_box.slideDown('fast');
+    });
+
+    $('.diffusion_view_btn').click(function(){
+
+        var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
+
+        var diffusionSid = $('.diffusion').attr('value');
+        var $thisDiffusion = $('.diffusion');
         $.ajax({
             type: "POST",
             url: baseUrl + "stream/ajax",
-            data: "diffusionSid=" + diffusionSid,
+            data: {'diffusionSid':diffusionSid, 'diffusion_view':$diffusion_view},
             datatype: "html",
             success:function(data){
                 $('#infotextareacheck').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');

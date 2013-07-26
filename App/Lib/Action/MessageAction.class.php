@@ -98,7 +98,7 @@ class MessageAction extends Action
             $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $recordDiffusion['sid'], "a_view_info_sys");
 
             if(!empty($recordDiffusion['view'])){
-                $content.=' <- 并评论说：'.$recordDiffusion['view'];
+                $content.=' <- 并表示：'.$recordDiffusion['view'];
             }
 
             $msgSysArray[] = array(
