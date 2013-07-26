@@ -355,7 +355,7 @@ class SchooladminAction extends Action {
     	$page = i_page_get_num();
         $count = 25;
         $offset = $page * $count;
-    	$recordsWebmasterUserrecord = $SchoolRecord->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_user_login.uid = i_school_record.uid')->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')->order("time DESC")->limit($offset,$count)->select();
+    	$recordsWebmasterUserrecord = $SchoolRecord->where("i_school_record.sid = $recordSchoolInfo[id]")->join('i_user_login ON i_user_login.uid = i_school_record.uid')->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')->order("time DESC")->limit($offset,$count)->select();
     	$totalrecords = $SchoolRecord->where("sid = $recordSchoolInfo[id]")->count();
     	$this->assign('recordsWebmasterUserrecord',$recordsWebmasterUserrecord);
     	$this->assign('totalrecords',$totalrecords);
