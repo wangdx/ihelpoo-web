@@ -479,6 +479,7 @@ $().ready(function(){
 //    });
 
     $('.plus_button').click(function(){
+
         $.ajax({
             type: "POST",
             url: baseUrl+"stream/plus",
@@ -493,8 +494,8 @@ $().ready(function(){
 
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
 
-        var $thisDiffusion = $(this).parent().parent().parent().find('.diffusion');
-        var $diffusionSid = $thisDiffusion.attr('value');
+        var diffusionSid = $('.diffusion').attr('value');
+        var $thisDiffusion = $('.diffusion');
         $.ajax({
             type: "POST",
             url: baseUrl + "stream/ajax",
