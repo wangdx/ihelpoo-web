@@ -162,12 +162,31 @@ class SchooladminAction extends Action {
     	$this->assign('recordSchoolSystem',$recordSchoolSystem);
     	$lastrecordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
     	$this->assign('lastrecordSchoolSystem',$lastrecordSchoolSystem);
+    	$UserLogin = M("UserLogin");
+    	$totalSchoolUsers = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
     	
         /**
          * update system parameter
          */
         if ($this->isPost()) {
-        	$parameter = $_POST['parameter'];
+        	$index_user = trim(addslashes($_POST['index_user']));
+        	$index_spread_info = trim(addslashes($_POST['index_spread_info']));
+        	$image_index = trim(addslashes($_POST['image_index']));
+        	$image_mobile = trim(addslashes($_POST['image_mobile']));
+        	$about = trim(addslashes($_POST['about']));
+        	
+        	$newSchoolSystem = array(
+        		'id' => '',
+        		'sid' => $recordSchoolInfo['id'],
+        		'total_users' => $totalSchoolUsers,
+        		'index_user' => $index_user,
+        		'index_spread_info' => $index_spread_info,
+        		'about' => $about,
+        		'image_index' => $image_index,
+        		'image_mobile' => $image_mobile,
+        		'time' => time()
+        	);
+        	$insertSchoolSystemId = $SchoolSystem->add($newSchoolSystem);
         	
         	/**
 	         * webmaster user operating record
@@ -175,7 +194,7 @@ class SchooladminAction extends Action {
 	        $SchoolRecord = M("SchoolRecord");
 	        $newSchoolRecordData = array(
                 'id' => '',
-                'sys_id' => '',
+                'sys_id' => $insertSchoolSystemId,
                 'uid' => $webmaster['uid'],
                 'sid' => $recordSchoolInfo['id'],
                 'record' => '修改配置参数',
