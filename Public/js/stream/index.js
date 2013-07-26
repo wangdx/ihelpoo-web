@@ -468,7 +468,7 @@ $().ready(function(){
 
 
     //reply
-    $('.reply_box_btn').click(function(){
+    $('.diffusion').click(function(){
         $comment_reply_div_box = $(this).parent().parent().parent().find('.comment_reply_div_box');
         $comment_reply_div_box.slideDown('fast');
     });
