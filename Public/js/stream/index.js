@@ -487,7 +487,7 @@ $().ready(function(){
             success:function(data){
 //                console.log($(this).parent().find('.plus_count_region').val());
 //                $(this).parent().find('.plus_count_region').text(data);
-                $('#plus_count_region_'+$(this).attr('value')).html('<span class="red_l">'+data+'</span>');
+                $('#plus_button_'+$(this).attr('value')).append('<span class="red_l">'+data+'</span>');
             }
         });
     });
