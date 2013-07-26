@@ -336,7 +336,7 @@ class SchooladminAction extends Action {
     			}
     		}
     	}
-    	$userLoginRecords = $UserLogin->where("school = $recordSchoolInfo[id]")->order("icon_fl DESC")->limit($offset,$count)->select();
+    	$userLoginRecords = $UserLogin->where("school = $recordSchoolInfo[id]")->order("icon_fl DESC, logintime DESC")->limit($offset,$count)->select();
     	$this->assign('userLoginRecords',$userLoginRecords);
     	$totalusers = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
     	$this->assign('totalusers',$totalusers);
