@@ -12,8 +12,8 @@ class WoAction extends Action {
     	$userloginid = session('userloginid');
     	if (!empty($userloginid)) {
     		i_db_update_activetime($userloginid);
-    		$IUserLogin = D("IUserLogin");
-    		$userloginedrecord = $IUserLogin->userExists($userloginid);
+    		$UserLogin = M("UserLogin");
+    		$userloginedrecord = $UserLogin->find($userloginid);
     		$this->assign('userloginedrecord',$userloginedrecord);
     	}
         header("Content-Type:text/html; charset=utf-8");
