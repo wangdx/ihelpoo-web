@@ -77,9 +77,15 @@ class SchooladminAction extends Action {
                     if ($cypher != md5($cypherNum)) {
                 	    redirect('/schooladmin', 2, 'cypher wrong...');
                 	}
+                	
+                	$SchoolWebmaster = M("SchoolWebmaster");
+                	$recordSchoolWebmaster = $SchoolWebmaster->where("uid = $recordWebmasterUserLogin[uid]")->find();
+                	if (empty($recordSchoolWebmaster['id'])) {
+                		redirect('/schooladmin', 2, '你不是站长，不能登录校园管理后台...');
+                	}
                 	$recordSchoolInfo = i_school_domain();
                 	if ($recordSchoolInfo['id'] != $recordWebmasterUserLogin['school']) {
-                		redirect('/schooladmin', 2, '你不能登录其他学校的后台...');
+                		redirect('/schooladmin', 2, '不能登录其他学校的校园管理后台...');
                 	}
                 	session('webmasterloginid',$recordWebmasterUserLogin['uid']);
                 	session('webmasterloginname',$recordWebmasterUserLogin['nickname']);
@@ -98,7 +104,8 @@ class SchooladminAction extends Action {
                 	
                 	);
                 	$SchoolRecord->add($newSchoolRecordData);
-                    redirect('/schooladmin/main', 3, '登录成功...');
+                	$callname = $recordSchoolWebmaster['position'] == 'm' ? '站长' : '副站长';
+                    redirect('/schooladmin/main', 3, '登录成功! 欢迎您,'.$callname.' ...');
 	            }
 	        }
     	}
