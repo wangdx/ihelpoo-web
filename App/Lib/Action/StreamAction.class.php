@@ -903,7 +903,7 @@ class StreamAction extends Action
             'plus_co' => $resultRecordSay['plus_co'] + $offset,
         );
         $RecordSay->save($recordSaySet);
-        return $resultRecordSay['plus_co'];
+        return $RecordSay['plus_co'];
     }
 
 
