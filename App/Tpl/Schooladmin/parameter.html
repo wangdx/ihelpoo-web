@@ -17,12 +17,13 @@
   <ul class="para_right_ul">
     <?php foreach ($recordSchoolSystem as $schoolSystem): ?>
     <li>
-	    首页用户推荐:<?php echo $schoolSystem['index_user']; ?> - 
-	    文化展示:<?php echo $schoolSystem['index_spread_info']; ?> - 
-	    首页图:<?php echo $schoolSystem['image_index']; ?> - 
-	    手机首页图:<?php echo $schoolSystem['image_mobile']; ?> - 
-	    关于网站:<?php echo $schoolSystem['about']; ?> 
-	    <span class="f12 gray"><?php echo i_time($schoolSystem['time']); ?></span>
+	    首页用户推荐:<span class="gray"><?php echo $schoolSystem['index_user']; ?></span> - 
+	    文化展示:<span class="gray"><?php echo $schoolSystem['index_spread_info']; ?></span> - 
+	    首页图:<span class="gray"><?php echo $schoolSystem['image_index']; ?></span> - 
+	    手机首页图:<span class="gray"><?php echo $schoolSystem['image_mobile']; ?></span> - 
+	    关于网站:<span class="gray"><?php echo $schoolSystem['about']; ?></span> - 
+	    用户数:<span class="gray"><?php echo $schoolSystem['total_users']; ?></span>
+	    <span class="gray"><?php echo i_time($schoolSystem['time']); ?></span>
     </li>
     <?php endforeach; ?>
   </ul>
