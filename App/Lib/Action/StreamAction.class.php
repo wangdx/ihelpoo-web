@@ -855,16 +855,26 @@ class StreamAction extends Action
         $this->display();
     }
 
-    public function plus(){
+    public function plusToggle(){
        if(empty($_POST['sid'])){
            exit();
        }
-        echo $this->increasePlusCountOfRecord($_POST['sid']);
-        $this->savePlusRecord($_POST['sid']);
+        $RecordPlus = M('RecordPlus');
+        $userloginid = session('userloginid');
+        $sid = $_POST['sid'];
+        $plus = $RecordPlus->where("uid = $userloginid AND $sid = sid")->find();
+        $plusId = $plus['id'];
+        if (!empty($plus)) {
+            $RecordPlus->where("id=$plusId")->delete();
+            echo $this->bouncePlusCountOfRecord($_POST['sid'] ,-1);
+        }else{
+            $this->addPlusRecord($_POST['sid']);
+            echo $this->bouncePlusCountOfRecord($_POST['sid'] ,1);
+        }
         exit();
     }
 
-    public function savePlusRecord($sid){
+    public function addPlusRecord($sid){
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
 
@@ -875,10 +885,10 @@ class StreamAction extends Action
             'view'=> '',
             'create_time' => time(),
         );
-        return $RecordPlus->save($plus);
+        return $RecordPlus->add($plus);
     }
 
-    public function increasePlusCountOfRecord($sid)
+    public function bouncePlusCountOfRecord($sid, $offset)
     {
         $userloginid = session('userloginid');
         $RecordSay = M("RecordSay");
@@ -888,7 +898,7 @@ class StreamAction extends Action
         $recordUserLogin = $UserLogin->find($userloginid);
         $recordSaySet = array(
             'sid' => $sid,
-            'plus_co' => $resultRecordSay['plus_co'] + 1,
+            'plus_co' => $resultRecordSay['plus_co'] + $offset,
         );
         $RecordSay->save($recordSaySet);
         return $resultRecordSay['plus_co'];

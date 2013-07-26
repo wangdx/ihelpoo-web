@@ -479,11 +479,9 @@ $().ready(function(){
 //    });
 
     $('.plus_button').click(function(){
-
-        console.log('123---');
         $.ajax({
             type: "POST",
-            url: baseUrl+"stream/plus",
+            url: baseUrl+"stream/plusToggle",
             data: {'sid':$(this).attr('value')},
             datatype: "html",
             success:function(data){
