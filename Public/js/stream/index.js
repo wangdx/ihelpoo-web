@@ -479,7 +479,8 @@ $().ready(function(){
 //    });
 
     $('.plus_button').click(function(){
-        $thisButton = $(this);
+        var $thisButton = $(this);
+        var $region = $('#plus_view_region_'+$(this).attr('value'));
         $.ajax({
             type: "POST",
             url: baseUrl+"stream/plusToggle",
@@ -489,7 +490,8 @@ $().ready(function(){
 //                console.log($(this).parent().find('.plus_count_region').val());
 //                $(this).parent().find('.plus_count_region').text(data);
 //                alert($(this).attr('class'));
-                $thisButton.append('<span class="red_l">+1</span>');
+                $region.text(data);
+//                $thisButton.append('<span class="red_l">data</span>');
             }
         });
     });
