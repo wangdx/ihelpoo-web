@@ -383,8 +383,10 @@
 }
 .shop_item_detail_info_p{
     padding: 3px 5px;
+    margin: 10px;
     background: #FFFA85;
     border-radius: 3px;
+    text-align: center;
 }
 .item_assess_show_info_div{
     border: 3px solid #EEE;
