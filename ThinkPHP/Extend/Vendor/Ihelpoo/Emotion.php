@@ -108,7 +108,7 @@ class Emotion{
 		$patternQQ['105'] = '/\[右太极\]/';
 		$patternQQ['106'] = '/\[捶地大笑\]/';
 		$patternQQ['107'] = '/\[安慰\]/';
-		$patternQQ['108'] = '/\[扮鬼脸\]/';
+		$patternQQ['108'] = '/\[做鬼脸\]/';
 		$patternQQ['109'] = '/\[加油\]/';
 		$patternQQ['110'] = '/\[敬礼\]/';
 		$patternQQ['111'] = '/\[狂汗\]/';
@@ -369,7 +369,7 @@ class Emotion{
 		$replacementQQ['105'] = '<img src="'.$baseUrl.'/image/emotion/qq105.gif" title="右太极" height="24" width="24" />';
 		$replacementQQ['106'] = '<img src="'.$baseUrl.'/image/emotion/qq106.gif" title="捶地大笑" height="24" width="24" />';
 		$replacementQQ['107'] = '<img src="'.$baseUrl.'/image/emotion/qq107.gif" title="安慰" height="24" width="24" />';
-		$replacementQQ['108'] = '<img src="'.$baseUrl.'/image/emotion/qq108.gif" title="扮鬼脸" height="24" width="24" />';
+		$replacementQQ['108'] = '<img src="'.$baseUrl.'/image/emotion/qq108.gif" title="做鬼脸" height="24" width="24" />';
 		$replacementQQ['109'] = '<img src="'.$baseUrl.'/image/emotion/qq109.gif" title="加油" height="24" width="24" />';
 		$replacementQQ['110'] = '<img src="'.$baseUrl.'/image/emotion/qq110.gif" title="敬礼" height="24" width="24" />';
 		$replacementQQ['111'] = '<img src="'.$baseUrl.'/image/emotion/qq111.gif" title="狂汗" height="24" width="24" />';
@@ -671,7 +671,7 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq105.gif" title="右太极" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq106.gif" title="捶地大笑" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq107.gif" title="安慰" height="24" width="24" />';
-			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq108.gif" title="扮鬼脸" height="24" width="24" />';
+			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq108.gif" title="做鬼脸" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq109.gif" title="加油" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq110.gif" title="敬礼" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'/image/emotion/qq111.gif" title="狂汗" height="24" width="24" />';
