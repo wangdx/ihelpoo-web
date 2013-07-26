@@ -268,6 +268,84 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+    public function orderusericon()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','大家页面头像排序');
+    	$UserLogin = M("UserLogin");
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	if ($this->isPost()) {
+    		if (!empty($_POST['userid']) && !empty($_POST['way'])) {
+    			$userid = $_POST['userid'];
+    			$way = $_POST['way'];
+    			$userLoginRecord = $UserLogin->find($userid);
+    			$icon_fl = $userLoginRecord['icon_fl'];
+    			if ($way == 'up') {
+    				$icon_fl++;
+    				if ($icon_fl > 5) {
+    					$icon_fl = 5;
+    				}
+    				$newUserIconFlArray = array(
+    					'uid' => $userLoginRecord['uid'],
+    					'icon_fl' => $icon_fl,
+    				);
+    				$UserLogin->save($newUserIconFlArray);
+    				
+    				/**
+        			 * webmaster user operating record
+        			 */
+        			$SchoolRecord = M("SchoolRecord");
+        			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '修改头像排序 uid:'.$userLoginRecord['uid'].' +icon_fl:'.$icon_fl,
+		                'time' => time()
+        			);
+        			$SchoolRecord->add($newSchoolRecordData);
+    				$this->ajaxReturn(0,'排序提前('.$icon_fl.')','yes');
+    			} else if ($way = 'down') {
+    				$icon_fl--;
+    				if ($icon_fl < 1) {
+    					$icon_fl = 1;
+    				}
+    				$newUserIconFlArray = array(
+    					'uid' => $userLoginRecord['uid'],
+    					'icon_fl' => $icon_fl,
+    				);
+    				$UserLogin->save($newUserIconFlArray);
+    				
+    				/**
+        			 * webmaster user operating record
+        			 */
+        			$SchoolRecord = M("SchoolRecord");
+        			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '修改头像排序 uid:'.$userLoginRecord['uid'].' -icon_fl:'.$icon_fl,
+		                'time' => time()
+        			);
+        			$SchoolRecord->add($newSchoolRecordData);
+    				$this->ajaxReturn(0,'排序置后('.$icon_fl.')','yes');
+    			}
+    		}
+    	}
+    	$userLoginRecords = $UserLogin->where("school = $recordSchoolInfo[id]")->order("icon_fl DESC")->limit($offset,$count)->select();
+    	$this->assign('userLoginRecords',$userLoginRecords);
+    	$totalusers = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
+    	$this->assign('totalusers',$totalusers);
+    	$totalPages = ceil($totalusers / $count);
+        $this->assign('totalPages',$totalPages);
+        $this->display();
+    }
+    
+    
     public function operatingrecord()
     {
     	$webmaster = logincheck();

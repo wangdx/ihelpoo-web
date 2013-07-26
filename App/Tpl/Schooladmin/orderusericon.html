@@ -1,0 +1,20 @@
+<include file="Public:headerwebmaster" />
+<script type="text/javascript" src="__PUBLIC__/js/schooladmin/orderusericon.js"></script>
+<ul class="user_ul">
+<?php foreach($userLoginRecords as $userLogin) { ?>
+	<li>
+		<img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 's') ?>" width="68" height="50" /> 
+		<a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>" target="_blank"><?php echo $userLogin['nickname'] ?></a>
+		<span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span>
+		icon_fl:<?php echo $userLogin['icon_fl'] ?>
+		<span class="usericon_up f14 fb red" uid="<?php echo $userLogin['uid']; ?>">+</span> 
+		<span class="usericon_down f14 fb blue" uid="<?php echo $userLogin['uid']; ?>">-</span>
+		<span class="usericon_ordered_info"></span>
+	</li>
+<?php } ?>
+</ul>
+<p class="f12 gray paging_p">共<?php echo $totalusers ?>位童鞋 <?php echo $totalPages ?>页</p>
+<div class="paging_div">
+  <?php if ($totalPages > 1) { i_page_show("schooladmin/orderusericon", $totalPages); } ?>
+</div>
+<include file=Public:footerwebmaster />
