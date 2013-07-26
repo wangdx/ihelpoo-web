@@ -486,7 +486,7 @@ $().ready(function(){
             datatype: "html",
             success:function(data){
                 console.log(data);
-                $(this).find('.plus_count_region').text(data);
+                $(this).parent().find('.plus_count_region').text(data);
             }
         });
     });
