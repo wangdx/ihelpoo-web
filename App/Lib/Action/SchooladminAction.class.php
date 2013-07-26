@@ -135,9 +135,10 @@ class SchooladminAction extends Action {
         $this->display();
     }
     
-    public function index()
+    public function main()
     {
-    	
+    	$webmaster = logincheck();
+    	$this->assign('title','管理中心');
     }
 
 }
