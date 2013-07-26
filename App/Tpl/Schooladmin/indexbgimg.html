@@ -12,7 +12,11 @@
 	<li>3. 考虑到下载网速，图片不要超过500k（限制最大0.8MB），可以在ps中调低图片质量 8~9为适谊</li>
 	</ul>
 	<?php if (!empty($schoolid)) { ?>
+	<br />
+	<br />
+	<br />
 	<ul>
+	<li>已上传图片列表:</li>
 	<?php foreach ($imagestoragelist as $imagestorage) { ?>
 	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorageurlfolder,$imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?></li>
 	<?php } ?>
