@@ -27,13 +27,13 @@
     border: 1px solid #EEE;
     position: absolute;
     left: 0;
-    top: 650px;
+    top: 665px;
 }
 .mallindex_left_sub p{
     padding: 10px 15px;
 }
 .mallindex_left_sub_nums_ul{
-    margin: 0 10px 10px 10px;
+    margin: 10px 10px;
 }
 .mallindex_left_sub_nums_ul li{
     padding: 3px 5px;
@@ -64,6 +64,7 @@
 }
 .mallindex_right{
     margin-left: 220px;
+    min-height: 850px;
 }
 .mallindex_right_nav_ul{
     margin: 0 0 15px 0;
@@ -380,6 +381,14 @@
 }
 .shop_item_detail{
 
+}
+.shop_item_detail_info_p{
+    padding: 3px 5px;
+    margin: 10px 0;
+    background: #FCFAF9;
+    border-radius: 3px;
+    text-align: center;
+    border: 1px solid #F7F5F3;
 }
 .item_assess_show_info_div{
     border: 3px solid #EEE;

@@ -130,6 +130,7 @@
 				<a id="postsalesrecord_btn">销售记录({$resultRecordCommodity['sales_co'] == NULL ? '0' : $resultRecordCommodity['sales_co']})</a>
 			</div>
 			<div class="shop_item_detail">
+			<p class="shop_item_detail_info_p f12 gray">你可以直接<a href="__ROOT__/talk/to/<?php echo $shopUserLogin['uid']; ?>" target="_blank">悄悄话</a>或电话联系店主快速买卖。交易成功后请店主重新编辑此商品，将“数量”修改为“0”，表示“已卖光”。</p>
 			<?php echo stripslashes($resultRecordCommodity['detail']); ?>
 			</div>
 		</div>

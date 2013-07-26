@@ -838,28 +838,13 @@ class MallsetAction extends Action {
 	    			$this->ajaxReturn(0,'你要购买的商品不存在...','wrong');
 	    		}
 
-	    		/**
-	    		 * handle use icons
-	    		 */
-	    		$coinsUserLogin = $UserLogin->where("uid = $userloginid")->field('coins,nickname')->find();
-	    		$userLoginCoins =  $coinsUserLogin['coins'];
-	    		$resultRecordCommodityPrice = $resultRecordCommodity['price'];
-	    		if ($userLoginCoins > $usecoins) {
-	    			if ($resultRecordCommodityPrice < $usecoins) {
-	    				$usecoins = $resultRecordCommodityPrice;
-	    			}
-	    		} else {
-	    			$usecoins = $userLoginCoins;
-	    		}
 	    		// more here ...
-
 	    		$newRecordCommodityassess = array(
 	    			'id' => '',
 	    			'uid' => $userloginid,
 	    			'cid' => $resultRecordCommodity['cid'],
 	    			'buynums' => $buynums,
 	    			'buyprice' => $resultRecordCommodity['price'],
-	    			'usecoins' => $usecoins,
 	    			'remarks' => $remarks,
 	    			'buyaddressid' => $deliveryAddressId,
 	    			'status' => 0,
