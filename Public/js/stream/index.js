@@ -473,9 +473,9 @@ $().ready(function(){
         diffusion_view_div_box = $(this).parent().parent().find('.diffusion_view_div_box');
         diffusion_view_div_box.slideDown('fast');
     });
-    $('.diffusion_view_div_box').mouseout(function(){
-        $(this).slideUp('fast');
-    });
+//    $('.diffusion_view_div_box').mouseout(function(){
+//        $(this).slideUp('slow');
+//    });
 
     $('.diffusion_view_btn').click(function(){
 
