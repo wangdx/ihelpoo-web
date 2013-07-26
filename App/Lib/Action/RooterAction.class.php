@@ -246,7 +246,7 @@ class RooterAction extends Action {
     			}
     		}
     	}
-    	$userLoginRecords = $UserLogin->order("icon_fl DESC")->limit($offset,$count)->select();
+    	$userLoginRecords = $UserLogin->order("icon_fl DESC, logintime DESC")->limit($offset,$count)->select();
     	$this->assign('userLoginRecords',$userLoginRecords);
     	$totalusers = $UserLogin->count();
     	$this->assign('totalusers',$totalusers);
