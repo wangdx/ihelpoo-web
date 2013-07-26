@@ -478,6 +478,11 @@ $().ready(function(){
 //        $(this).slideUp('slow');
 //    });
 
+    $('.plus_button').click(function(){
+        $.post(baseUrl+'stream/plus', {'sid':$(this).attr('value')}, function( data ){
+            $(this).parent().find('.diffusion_view_textarea').val(data);
+        });
+    });
     $('.diffusion_view_btn').click(function(){
 
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();

@@ -855,6 +855,46 @@ class StreamAction extends Action
         $this->display();
     }
 
+    public function plus(){
+       if(empty($_POST['sid'])){
+           exit();
+       }
+        echo $this->increasePlusCountOfRecord($_POST['sid']);
+        $this->savePlusRecord($_POST['sid']);
+        exit();
+    }
+
+    public function savePlusRecord($sid){
+        $RecordPlus = M('RecordPlus');
+        $userloginid = session('userloginid');
+
+        $plus = array(
+            'id' => '',
+            'sid' => $sid,
+            'uid' => $userloginid,
+            'view'=> '',
+            'create_time' => time(),
+        );
+        return $RecordPlus->save($plus);
+    }
+
+    public function increasePlusCountOfRecord($sid)
+    {
+        $userloginid = session('userloginid');
+        $RecordSay = M("RecordSay");
+        $resultRecordSay = $RecordSay->find($sid);
+
+        $UserLogin = M("UserLogin");
+        $recordUserLogin = $UserLogin->find($userloginid);
+        $recordSaySet = array(
+            'sid' => $sid,
+            'plus_co' => $resultRecordSay['plus_co'] + 1,
+        );
+        $RecordSay->save($recordSaySet);
+        return $resultRecordSay['plus_co'];
+    }
+
+
     public function ajax()
     {
         if (empty($_POST['diffusionSid'])) {
@@ -962,7 +1002,6 @@ class StreamAction extends Action
     {
         if ($userLevel >= $thresholdLevel)
             $recordSaySet['last_comment_ti'] = time();
-        return $recordSaySet;
         return $recordSaySet;
     }
 
