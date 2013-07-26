@@ -480,6 +480,7 @@ $().ready(function(){
 
     $('.plus_button').click(function(){
 
+        console.log('123---');
         $.ajax({
             type: "POST",
             url: baseUrl+"stream/plus",
