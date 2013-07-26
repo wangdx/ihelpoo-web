@@ -35,8 +35,8 @@ class SchooladminAction extends Action {
     			$webmasterloginid = session('webmasterloginid');
     			$webmasterloginname = session('webmasterloginname');
     			return array(
-    				'webmasteruid' => $webmasterloginid,
-    				'webmastername' => $webmasterloginname,
+    				'uid' => $webmasterloginid,
+    				'nickname' => $webmasterloginname,
     			);
     		}
     	}
@@ -147,6 +147,47 @@ class SchooladminAction extends Action {
     	$webmaster = logincheck();
     	$this->assign('title','校园管理后台');
     	$this->display();
+    }
+    
+    public function parameter()
+    {
+    	$webmaster = logincheck();
+    	$this->assign('title','校园参数配置');
+    	$this->display();
+    	$webmaster['uid'];
+    	$webmaster['nickname'];
+    	
+    	$recordSchoolInfo = i_school_domain();
+    	$SchoolSystem = M("SchoolSystem");
+    	$recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->select();
+    	$this->assign('recordSchoolSystem',$recordSchoolSystem);
+    	$lastrecordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
+    	$this->assign('lastrecordSchoolSystem',$lastrecordSchoolSystem);
+    	
+        /**
+         * update system parameter
+         */
+        if ($this->isPost()) {
+        	$parameter = $_POST['parameter'];
+        	
+        	/**
+	         * webmaster user operating record
+	         */
+	        $SchoolRecord = M("SchoolRecord");
+	        $newSchoolRecordData = array(
+                'id' => '',
+                'sys_id' => '',
+                'uid' => $webmaster['uid'],
+                'sid' => $recordSchoolInfo['id'],
+                'record' => '修改配置参数',
+                'time' => time()
+	         
+	        );
+	        $SchoolRecord->add($newSchoolRecordData);
+	        redirect('/schooladmin/parameter', 1, 'ok...');
+        }
+        $this->display();
+    	
     }
 
 }
