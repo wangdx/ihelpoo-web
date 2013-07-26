@@ -1,7 +1,7 @@
 <include file="Public:headermall" />
 <link href="__PUBLIC__/css/mall.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="mainmall">
-    <div class="mallset_top">店铺订单</div>
+    <div class="mallset_top">小店订单</div>
 	<div class="mallset_left f12">
 		<?php if (!empty($userloginedrecordUserShop['uid'])) { ?>
 		<ul class="mallset_left_ul">
@@ -96,10 +96,10 @@
   		</div>
   		<?php } else { ?>
 			<div class="f12 black_l">
-				<span class="icon_pump"></span> 您还没有自己的店铺，可以申请开店.
+				<span class="icon_pump"></span> 您还没有自己的小店，可以申请开店.
 				<br />
 				<br />
-				<a href="__ROOT__/mall/newshop?agreement=read" class="btn_red">我要开店</a>
+				<a href="__ROOT__/mall/explanation" class="btn_red">我要开店</a>
 			</div>
 		<?php } ?>
 	</div>
