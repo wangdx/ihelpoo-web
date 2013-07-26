@@ -71,13 +71,14 @@ class MessageAction extends Action
         $this->assign('totalpages', $totalPages);
 
 
-
-        $msgIds = $redis->hKeys(C('R_ACCOUNT') . C('R_MESSAGE') . $userloginid);
         $msgIdsStr = '';
-        foreach ($msgIds as $msg) {
+        foreach ($notices as $msg) {
             $msgIdsStr .= $msg . ",";
         }
         $msgIdsStr = rtrim($msgIdsStr, ",");
+
+
+        $RecordDiffusion = M("RecordDiffusion");
 
 
         $MsgNotice = M("MsgNotice");
@@ -91,8 +92,14 @@ class MessageAction extends Action
             $fromUser = $IUserLogin->userExists($notice['source_id']);
             $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_blank' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a>";
 
+            $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
+
             $tpl =   $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
-            $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $notice['detail_id'], "a_view_info_sys");
+            $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $recordDiffusion['sid'], "a_view_info_sys");
+
+            if(!empty($recordDiffusion['view'])){
+                $content.=' <- 并评论说：'.$recordDiffusion['view'];
+            }
 
             $msgSysArray[] = array(
                 'deliver' => $redis->hGet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $notice['notice_id']),
@@ -101,7 +108,7 @@ class MessageAction extends Action
             );
         }
 
-        foreach ($msgIds as $msg) {
+        foreach ($notices as $msg) {
             $redis->hSet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $msg, 1);
         }
 

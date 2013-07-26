@@ -866,10 +866,10 @@ class StreamAction extends Action
         $this->exitWhenDuplicated($RecordDiffusion, $userloginid, $diffusionSidArray);
         //TODO for test temporarily
 //        $this->exitWhenSpamming($RecordDiffusion, $userloginid);
-        $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
-        $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid);
+        $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
+        $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionId);
         $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
-        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid);
+        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid,$diffusionId);
         $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
         exit();
     }
@@ -907,23 +907,24 @@ class StreamAction extends Action
             'id' => '',
             'uid' => $userloginid,
             'sid' => $diffusionSidArray[1],
+            'view'=> '+1，对该说法表示赞同',
             'time' => time(),
         );
         $diffusionId = $RecordDiffusion->add($dataDiffusion);
         return $diffusionId;
     }
 
-    public function saveNoticeMessageForOwner($diffusionSidArray, $userloginid)
+    public function saveNoticeMessageForOwner($diffusionSidArray, $userloginid,$detailId)
     {
-        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusiontoowner');
+        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusiontoowner',$detailId);
     }
 
-    public function saveNoticeMessageForFollowers($diffusionSidArray, $userloginid)
+    public function saveNoticeMessageForFollowers($diffusionSidArray, $userloginid,$detailId)
     {
-        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusion');
+        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusion', $detailId);
     }
 
-    public function saveNoticeMessage($diffusionSidArray, $userloginid, $noticeType)
+    public function saveNoticeMessage($diffusionSidArray, $userloginid, $noticeType, $detailId)
     {
         Vendor('Ihelpoo.Idworker');
         $idworker = new Idworker();
@@ -934,7 +935,7 @@ class StreamAction extends Action
             die();
         }
 
-        if ($hs->executeInsert(3, array($noticeId, 'stream/' . $diffusionSidArray['0'] . '-para:' . $noticeType, $userloginid, $diffusionSidArray[1], $noticeType, time())) === false) {
+        if ($hs->executeInsert(3, array($noticeId, 'stream/' . $diffusionSidArray['0'] . '-para:' . $noticeType, $userloginid, $detailId, $noticeType, time())) === false) {
             echo 'ERR2:' . $hs->getError(), PHP_EOL;
         }
         unset($hs);
