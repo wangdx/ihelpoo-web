@@ -495,6 +495,7 @@ $().ready(function(){
                 }
             }
         });
+        $('.diffusion_view_div_box').slideUp('slow');
     });
 
     $('.diffusion_list_sure').live("click", function(){
