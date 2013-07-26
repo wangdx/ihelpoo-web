@@ -168,9 +168,6 @@
     right: -5px;
     top: 6px;
 }
-.align-right{
-    right:0;
-}
 .s_t_authority{
     position: absolute;
     top: 63px;
@@ -1359,4 +1356,8 @@
 }
 *html .s_r_ul_sub li{
 	margin: -12px 0;
+}
+
+.align-right{
+    right:0;
 }
