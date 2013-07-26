@@ -153,9 +153,6 @@ class SchooladminAction extends Action {
     {
     	$webmaster = logincheck();
     	$this->assign('title','校园参数配置');
-    	$webmaster['uid'];
-    	$webmaster['nickname'];
-    	
     	$recordSchoolInfo = i_school_domain();
     	$SchoolSystem = M("SchoolSystem");
     	$recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->select();
@@ -205,6 +202,71 @@ class SchooladminAction extends Action {
 	        redirect('/schooladmin/parameter', 1, 'ok...');
         }
         $this->display();
+    }
+    
+    public function indexbgimg()
+    {
+    	$webmaster = logincheck();
+    	$this->assign('title','校园参数配置');
+    	$webmaster['uid'];
+    	
+    	$recordSchoolInfo = i_school_domain();
+    	$schoolid = $recordSchoolInfo['id'];
+    	$this->assign('schoolid',$schoolid);
+    	
+    	Vendor('Ihelpoo.Upyun');
+        $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        $imageStorageUrl = image_storage_url();
+    	if ($this->isPost()) {
+    		if (!empty($_FILES)) {
+    			if ($_FILES["uploadimage"]["error"] > 0) {
+    				redirect('/schooladmin/indexbgimg', 3, 'file error...'.$_FILES["uploadimage"]["error"]);
+    			} else {
+    				$imageOldName = $_FILES["uploadimage"]["name"];
+    				$imageType = $_FILES["uploadimage"]["type"];
+    				$imageSize = $_FILES["uploadimage"]["size"];
+    				$imageTmpName = $_FILES["uploadimage"]["tmp_name"];
+    			}
+    			
+    			if ($imageSize > 800000) {
+    				redirect('/schooladmin/indexbgimg', 3, 'error...上传图片太大, 最大能上传单张 3.5MB');
+    			} else if ($imageType == 'image/jpeg') {
+    				
+    				/**
+        			 * storage in upyun
+        			 */
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageFilename = '/school/'.$schoolid.'/'.time().'.jpg';
+        			$rsp = $upyun->writeFile($storageFilename, $fh, True);
+        			fclose($fh);
+        			$newfilepath = $imageStorageUrl.$storageFilename;
+        			
+        			/**
+        			 * webmaster user operating record
+        			 */
+        			$SchoolRecord = M("SchoolRecord");
+        			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '上传图片'.$newfilepath,
+		                'time' => time()
+        			);
+        			$SchoolRecord->add($newSchoolRecordData);
+        			redirect('/schooladmin/indexbgimg', 1, 'success...');
+    			} else {
+    				redirect('/schooladmin/indexbgimg', 3, 'error...上传图片格式错误, 目前仅支持.jpg');
+    			}
+    		}
+    	}
+    	
+    	if (!empty($schoolid)) {
+    		$imagestoragelist = $upyun->getList("/school/$schoolid/");
+    		$this->assign('imagestoragelist',$imagestoragelist);
+    		$this->assign('imagestorageurlfolder',$imageStorageUrl."/school/".$schoolid."/");
+    	}
+    	$this->display();
     }
 
 }
