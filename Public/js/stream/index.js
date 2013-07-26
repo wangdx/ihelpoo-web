@@ -483,7 +483,7 @@ $().ready(function(){
         $.ajax({
             type: "POST",
             url: baseUrl + "stream/ajax",
-            data: {'diffusionSid':diffusionSid, 'diffusion_view':$diffusion_view},
+            data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
             datatype: "html",
             success:function(data){
                 $('#infotextareacheck').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');

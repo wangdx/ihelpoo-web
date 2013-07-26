@@ -907,7 +907,7 @@ class StreamAction extends Action
             'id' => '',
             'uid' => $userloginid,
             'sid' => $diffusionSidArray[1],
-            'view'=> '+1，对该说法表示赞同',
+            'view'=> trim($_POST['diffusionView']),
             'time' => time(),
         );
         $diffusionId = $RecordDiffusion->add($dataDiffusion);
