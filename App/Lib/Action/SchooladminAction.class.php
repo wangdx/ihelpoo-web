@@ -153,7 +153,6 @@ class SchooladminAction extends Action {
     {
     	$webmaster = logincheck();
     	$this->assign('title','校园参数配置');
-    	$this->display();
     	$webmaster['uid'];
     	$webmaster['nickname'];
     	
@@ -187,7 +186,6 @@ class SchooladminAction extends Action {
 	        redirect('/schooladmin/parameter', 1, 'ok...');
         }
         $this->display();
-    	
     }
 
 }
