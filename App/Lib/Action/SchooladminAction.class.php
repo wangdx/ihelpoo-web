@@ -57,7 +57,7 @@ class SchooladminAction extends Action {
 	            array('password', 'require', '密码不能为空'),
 	            array('cypher', 'require', '口令不能为空'),
 	        );
-	        $AdminUser->setProperty("_validate", $validate);
+	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
 	        if (!$result) {
 	            exit($UserLogin->getError());
