@@ -208,7 +208,6 @@ class SchooladminAction extends Action {
     {
     	$webmaster = logincheck();
     	$this->assign('title','校园参数配置');
-    	$webmaster['uid'];
     	
     	$recordSchoolInfo = i_school_domain();
     	$schoolid = $recordSchoolInfo['id'];
@@ -266,6 +265,24 @@ class SchooladminAction extends Action {
     		$this->assign('imagestoragelist',$imagestoragelist);
     		$this->assign('imagestorageurlfolder',$imageStorageUrl."/school/".$schoolid."/");
     	}
+    	$this->display();
+    }
+    
+    public function operatingrecord()
+    {
+    	$webmaster = logincheck();
+    	$this->assign('title','站长操作记录');
+    	$recordSchoolInfo = i_school_domain();
+    	$SchoolRecord = M("SchoolRecord");
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	$recordsWebmasterUserrecord = $SchoolRecord->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_user_login.uid = i_school_record.uid')->order("time DESC")->limit($offset,$count)->select();
+    	$totalrecords = $SchoolRecord->where("sid = $recordSchoolInfo[id]")->count();
+    	$this->assign('recordsWebmasterUserrecord',$recordsWebmasterUserrecord);
+    	$this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
     	$this->display();
     }
 
