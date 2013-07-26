@@ -1,0 +1,21 @@
+<include file="Public:headerwebmaster" />
+	<form enctype="multipart/form-data" action="__ROOT__/rooter/indexbgimg" method="post" id="settingform">
+		<ul class="mallset_index_ul">
+			<li><span class="f12 gray">选择图片:</span> <input id="upload_image_file" name="uploadimage" type="file" /></li>
+			<li><input type="submit" value="上传" /></li>
+		</ul>
+	</form>
+	<ul>
+	<li>更换首页背景图片 注意:</li>
+	<li>1. 考虑各分辨率兼容，请上传1900* 1100px 大小的图片，建议更换后，首页刷新用 "ctrl" + "-" or "ctrl" + "+" 预览各分辨率下效果</li>
+	<li>2. 目前仅支持jpg的图片</li>
+	<li>3. 考虑到下载网速，图片不要超过500k（限制最大0.8MB），可以在ps中调低图片质量 8~9为适谊</li>
+	</ul>
+	<?php if (!empty($schoolid)) { ?>
+	<ul>
+	<?php foreach ($imagestoragelist as $imagestorage) { ?>
+	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorageurlfolder,$imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?></li>
+	<?php } ?>
+	</ul>
+	<?php } ?>
+<include file="Public:footerwebmaster" />
