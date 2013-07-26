@@ -470,7 +470,7 @@ $().ready(function(){
      * diffusion part
      */
     $('.diffusion').click(function(){
-        diffusion_view_div_box = $(this).parent().parent().parent().find('.diffusion_view_div_box');
+        diffusion_view_div_box = $(this).parent().parent().find('.diffusion_view_div_box');
         diffusion_view_div_box.slideDown('fast');
     });
 
