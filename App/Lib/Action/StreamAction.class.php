@@ -14,9 +14,9 @@ class StreamAction extends Action
         $userloginid = session('userloginid');
         if (!empty($userloginid)) {
             i_db_update_activetime($userloginid);
-            $IUserLogin = D("IUserLogin");
-            $userloginedrecord = $IUserLogin->userExists($userloginid);
-            $this->assign('userloginedrecord', $userloginedrecord);
+    		$UserLogin = M("UserLogin");
+    		$userloginedrecord = $UserLogin->find($userloginid);
+    		$this->assign('userloginedrecord',$userloginedrecord);
         } else {
             redirect('/user/notlogin', 0, '你还没有登录呢...');
         }
