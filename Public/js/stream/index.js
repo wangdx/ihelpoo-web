@@ -480,7 +480,7 @@ $().ready(function(){
 
     $('.plus_button').click(function(){
         $.post(baseUrl+'stream/plus', {'sid':$(this).attr('value')}, function( data ){
-            $(this).parent().find('.diffusion_view_textarea').val(data);
+            $(this).parent().find('.plus_count_region').val(data);
         });
     });
     $('.diffusion_view_btn').click(function(){
