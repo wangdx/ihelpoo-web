@@ -168,6 +168,9 @@
     right: -5px;
     top: 6px;
 }
+.float-right{
+    float:right;
+}
 .s_t_authority{
     position: absolute;
     top: 63px;
