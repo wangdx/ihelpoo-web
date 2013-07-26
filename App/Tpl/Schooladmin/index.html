@@ -18,8 +18,7 @@
 </div>
 <div>
 <h3 class="index_top_info">
-	<?php echo $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main']; ?>
-	 - beta 2013.forth <span class="f12 gray">我帮圈圈</span>
+	 ihelpoo - beta 2013.forth <span class="f12 gray">我帮圈圈</span>
 </h3>
 <form method="post">
 <ul class="loginbox">
@@ -29,7 +28,7 @@
 </ul>
 </form>
 <div class="index_bottom_info f12 gray">
-<p>Beta for {$recordSchoolInfo['school']} </p>
+<p>Beta for {$recordSchoolInfo['school']} <?php echo $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main']; ?></p>
 </div>
 </div>
 </body>
