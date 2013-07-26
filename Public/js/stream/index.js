@@ -485,7 +485,7 @@ $().ready(function(){
             data: {'sid':$(this).attr('value')},
             datatype: "html",
             success:function(data){
-                console.log($(this).parent().find('.plus_count_region'));
+                console.log($(this).parent().find('.plus_count_region').val());
                 $(this).parent().find('.plus_count_region').text(data);
             }
         });
