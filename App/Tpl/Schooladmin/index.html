@@ -9,7 +9,7 @@
   <script type="text/javascript" src="__PUBLIC__/js/public/commonother.js"></script>
 </head>
 <div class="rooter_top">
-	<p class="rooter_top_info_p"><a href="__ROOT__/" target="_blank">我帮圈圈</a> 后台管理中心 (Bate 4 Butterfly Plan)</p>
+	<p class="rooter_top_info_p"><a href="__ROOT__/" target="_blank">我帮圈圈</a> 校园管理后台 (Bate 4 Butterfly Plan)</p>
 	<?php if (!empty($adminuserloginname)) { ?>
 		<p class="rooter_top_user_p">欢迎您: <?php echo $adminuserloginname; ?> <a href="__ROOT__/rooter/quit">退出</a></p>
 	<?php } else { ?>
@@ -17,15 +17,19 @@
 	<?php } ?>
 </div>
 <div>
-<h3 class="index_top_info">ihelpoo.com - beta 2013.forth <span class="f12 gray">我帮圈圈</span></h3>
+<h3 class="index_top_info">
+	<?php echo $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main']; ?>
+	 - beta 2013.forth <span class="f12 gray">我帮圈圈</span>
+</h3>
 <form method="post">
 <ul class="loginbox">
   <li><p>站长:</p><input type="text" name="rooter" value="" /></li>
   <li><p>密码:</p><input type="password" name="password" value="" /></li>
-  <li><input type="submit" value="login" /></li>
+  <li><input type="submit" value="登录" /></li>
 </ul>
 </form>
 <div class="index_bottom_info f12 gray">
+<p>Beta for {$recordSchoolInfo['school']} </p>
 </div>
 </div>
 </body>
