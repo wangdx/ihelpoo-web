@@ -493,8 +493,8 @@ $().ready(function(){
 
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
 
-        var diffusionSid = $('.diffusion').attr('value');
-        var $thisDiffusion = $('.diffusion');
+        var $thisDiffusion = $(this).parent().parent().parent().find('.diffusion');
+        var $diffusionSid = $thisDiffusion.attr('value');
         $.ajax({
             type: "POST",
             url: baseUrl + "stream/ajax",
