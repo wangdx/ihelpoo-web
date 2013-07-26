@@ -64,6 +64,7 @@
 }
 .mallindex_right{
     margin-left: 220px;
+    min-height: 850px;
 }
 .mallindex_right_nav_ul{
     margin: 0 0 15px 0;
