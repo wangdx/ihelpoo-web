@@ -369,7 +369,7 @@
     </span>
     <span class="s_li_s_comment f12 gray">
       <span class="priority_shield"><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈<?php echo $record['sex'] == '1' ? '他' : '她' ?> or 屏蔽<?php echo $record['sex'] == '1' ? '他' : '她' ?></a></span>
-      <a class="plus_button" value="<?php echo $record['sid']; ?>">赞</a><span id="plus_count_region_<?php echo $record['sid']; ?>">123</span> |
+      <a id="plus_button_<?php echo $record['sid']" value="<?php echo $record['sid']; ?>">赞</a> |
       <?php
         if ($record['say_type'] == '1') {
 			echo " <a class='diffusion' value='ih-".$record['sid']."'>扩散";
