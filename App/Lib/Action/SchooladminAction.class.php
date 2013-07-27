@@ -1275,6 +1275,167 @@ class SchooladminAction extends Action {
     	$this->assign('resultsMallCooperation', $resultsMallCooperation);
     	$this->display();
     }
+    
+    /**
+     * activity
+     */
+    public function activity()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','活动管理');
+    	$ActivityItem = M("ActivityItem");
+    	
+    	/**
+    	 * change activity status
+    	 */
+    	if (!empty($_GET['aid'])) {
+    		$aid = (int)$_GET['aid'];
+    		$recordActivityItem = $ActivityItem->where("aid = $aid AND school_id = $recordSchoolInfo[id]")->find();
+    		if (empty($recordActivityItem['aid'])) {
+    			redirect('/schooladmin/activity', 2, 'error aid empty...');
+    		}
+    		$MsgSystem = M("MsgSystem");
+    		Vendor('Ihelpoo.Email');
+    		$emailObj = new Email();
+    		$UserLogin = M("UserLogin");
+    		$recordUserLogin = $UserLogin->where("uid = $recordActivityItem[sponsor_uid]")->find();
+    		if ($_GET['change'] == 'yes') {
+    			$updateActivityStatus = array(
+    				'aid' => $aid,
+    				'status' => 1,
+    			);
+    			$ActivityItem->save($updateActivityStatus);
+    			
+    			/**
+	             * send system message.
+	             */
+	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
+	            $msgData = array(
+                	'id' => NULL,
+                	'uid' => $recordActivityItem['sponsor_uid'],
+                 	'type' => 'system',
+              		'content' => $msgContent,
+                	'time' => time(),
+                	'deliver' => 0,
+	            );
+	            $MsgSystem->add($msgData);
+	            
+	            /**
+	             * send mail
+	             */
+	            $emailObj->activityVerify($recordUserLogin['email'], $recordUserLogin['nickname'], $msgContent, $aid, $recordActivityItem['subject']);
+	            
+	            /**
+	             * insert into record say
+	             */
+	            $RecordSay = M("RecordSay");
+	            if (empty($recordActivityItem['sid'])) {
+		            Vendor('Ihelpoo.Ofunction'); 
+		            $ofunction = new Ofunction();
+		            $content = "欢迎参加活动 “".$recordActivityItem['subject']."” ".$ofunction->cut_str(strip_tags($recordActivityItem['content']), 100)." <a href='".__ROOT__."/activity/item/".$recordActivityItem['aid']."'>查看活动</a>";
+		            $dataRecordSay = array(
+	                    'sid' => NULL,
+	                    'uid' => $recordUserLogin['uid'],
+	                    'say_type' => 0,
+	                    'content' => $content,
+	                    'authority' => 0,
+	                    'time' => time(),
+	                    'last_comment_ti' => time(),
+	                    'from' => '活动',
+	                    'school_id' => $recordSchoolInfo['id']
+	                );
+	                $sayLastInsertId = $RecordSay->add($dataRecordSay);
+	                
+	                /**
+	                 * update sid
+	                 */
+	                $updateRecordActivityItemArray = array(
+	                	'aid' => $recordActivityItem['aid'],
+	                	'sid' => $sayLastInsertId,
+	                );
+	                $ActivityItem->save($updateRecordActivityItemArray);
+	            } else {
+	            	$updateRecordSay = array(
+	                    'sid' => $recordActivityItem['sid'],
+	                    'time' => time(),
+	                    'last_comment_ti' => time(),
+	            	);
+	            	$RecordSay->save($updateRecordSay);
+	            }
+	            
+                /**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => '活动通过 activity status success, aid:'.$recordActivityItem['aid'].' uid:'.$recordActivityItem['sponsor_uid'].' subject:'.$recordActivityItem['subject'],
+					'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			redirect('/schooladmin/activity', 2, '通过 change activity status success...');
+    		} else if ($_GET['change'] == 'no') {
+    			$updateActivityStatus = array(
+    				'aid' => $aid,
+    				'status' => 2,
+    			);
+    			$ActivityItem->save($updateActivityStatus);
+    			
+    			/**
+	             * send system message.
+	             */
+	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核未通过，请重新填写，务必合符组织活动规范!";
+	            $msgData = array(
+                	'id' => NULL,
+                	'uid' => $recordActivityItem['sponsor_uid'],
+                 	'type' => 'system',
+              		'content' => $msgContent,
+                	'time' => time(),
+                	'deliver' => 0,
+	            );
+	            $MsgSystem->add($msgData);
+	            
+	            /**
+	             * send mail
+	             */
+	            $emailObj->activityVerify($recordUserLogin['email'], $recordUserLogin['nickname'], $msgContent, $aid, $recordActivityItem['subject']);
+	            
+                /**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => '活动不通过 activity status failed, aid:'.$recordActivityItem['aid'].' uid:'.$recordActivityItem['sponsor_uid'].' subject:'.$recordActivityItem['subject'],
+					'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			redirect('/schooladmin/activity', 2, '不通过 change activity status failed...');
+    		}
+    	}
+    	
+    	/**
+    	 * lists
+    	 */
+    	$page = i_page_get_num();
+        $count = 20;
+        $offset = $page * $count;
+    	
+    	$recordsActivityItem = $ActivityItem->where("school_id = $recordSchoolInfo[id]")->order("time DESC")->limit($offset,$count)->select();
+    	$this->assign('recordsActivityItem',$recordsActivityItem);
+    	$totalrecords = $ActivityItem->count();
+    	$this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
+    	$this->display();
+    }
 
     
     /**
