@@ -868,7 +868,8 @@ class StreamAction extends Action
         $plus = $RecordPlus->where("uid = $userloginid AND $sid = sid")->find();
         $plusId = $plus['id'];
         $MsgNotice = M('MsgNotice');
-        $msgNotice = $MsgNotice->where("notice_type = 'plus' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
+        $noticeType = 'stream/' . $plusSidArr['0'] . '-para:plus';
+        $msgNotice = $MsgNotice->where("notice_type = $noticeType AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
             $recordSay = $this->bouncePlusCountOfRecord($sid ,-1);
