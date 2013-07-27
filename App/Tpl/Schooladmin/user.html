@@ -9,20 +9,20 @@
 	<br />
 	<br />
 	<form method="post">
-		<input type="hidden" class="input_style" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
-		新密码&#12288;: <input type="text" name="password" />
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		新密码&#12288;: <input type="text" name="password" class="input_style" />
 		<input type="submit" value="重置密码"> <a href="__ROOT__/schooladmin/user">重新查询</a>
 	</form>
 	<br />
 	<form method="post">
-		<input type="hidden" name="uid" class="input_style" value="<?php echo $recordUserLogin['uid']; ?>"/>
-		发布限制: <input type="text" name="recordlimit" value="{$recordUserStatus['record_limit']}"/> 
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		发布限制: <input type="text" name="recordlimit" value="{$recordUserStatus['record_limit']}" class="input_style" /> 
 		<input type="submit" value="重置"> (条数限制 / 12hour 默认6)
 	</form>
 	<br />
 	<form method="post">
-		<input type="hidden" name="uid" class="input_style" value="<?php echo $recordUserLogin['uid']; ?>"/>
-		用户类型: <input type="text" name="type" value="{$recordUserLogin['type']}"/> 
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		用户类型: <input type="text" name="type" value="{$recordUserLogin['type']}" class="input_style" /> 
 		<input type="submit" value="重置"> (用户类型1 普通;2 组织;3 商家)
 	</form>
 	<br />
