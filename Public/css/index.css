@@ -221,15 +221,7 @@ input{
 .index_mark_box{
     color:#666;
 }
-#submit{
-    display: inline-block;
-    height: 34px;
-    width: 116px;
-    background: #f00 url('../image/common/index_btn.png') no-repeat left top;
-}
-#submit:hover{
-    background: #f00 url('../image/common/index_btn.png') no-repeat left -50px;
-}
+
 .register{
     position: absolute;
     right: 0;
