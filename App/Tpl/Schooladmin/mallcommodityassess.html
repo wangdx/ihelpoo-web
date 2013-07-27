@@ -17,9 +17,9 @@
 		    <?php } ?>
 		    <span class="f12 gray">时间:</span> <?php echo i_time($Commodityassess['start_ti']); ?>
 		    <span class="f12 gray">状态:</span> 
-		    <?php if ($Commodityassess['status'] == '1') { ?>
+		    <?php if ($Commodityassess['i_record_commodityassess.status'] == '1') { ?>
 		    	<span class="f14 fb orange"><?php echo $Commodityassess['status']; ?></span> <a href="__ROOT__/schooladmin/mallcommodityassess/1">等待店主确认交易</a>
-		    <?php } else if ($Commodityassess['status'] == '2') { ?>
+		    <?php } else if ($Commodityassess['i_record_commodityassess.status'] == '2') { ?>
 		    	<span class="f14 fb blue"><?php echo $Commodityassess['status']; ?></span> <a href="__ROOT__/schooladmin/mallcommodityassess/2">交易中</a>
 		    <?php } else if ($Commodityassess['status'] == '3') { ?>
 		    	<span class="f14 fb red"><?php echo $Commodityassess['status']; ?></span> <a href="__ROOT__/schooladmin/mallcommodityassess/3">等待买家确认收货</a>
@@ -30,7 +30,6 @@
 		    <?php } ?>
 		</p>
 		<p><br /><a href="__ROOT__/schooladmin/user/<?php echo $Commodityassess['uid']; ?>" target="_blank"><?php echo $Commodityassess['uid']; ?></a> - 购买 - <a href="__ROOT__/mall/item/<?php echo $Commodityassess['cid']; ?>" target="_blank">商品<?php echo $Commodityassess['cid']; ?></a></span><br /><br /></p>
-		<p><span class="f12 gray"><?php var_dump($Commodityassess); ?></p>
 		<form method="post">
 		    <input type="hidden" name="id" value="<?php echo $Commodityassess['uid']; ?>" />
 		</form>
