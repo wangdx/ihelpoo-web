@@ -32,10 +32,12 @@ class IndexAction extends Action {
     	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
     	$indexUserValueArray = explode(",", $indexUserValue);
         $indexUserValueArray = array_unique($indexUserValueArray);
+        $i = 1;
         foreach ($indexUserValueArray as $valueIn) {
         	$valueIn = (int)$valueIn;
-        	if (!empty($valueIn)) {
+        	if (!empty($valueIn) && $i < 22) {
         		$sqlValueString .= $valueIn.",";
+        		$i++;
         	}
         }
         $sqlValueString = substr($sqlValueString, 0, -1);
