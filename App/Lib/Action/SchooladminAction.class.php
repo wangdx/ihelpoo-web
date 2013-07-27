@@ -268,6 +268,112 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+    /**
+     * school management
+     */
+    public function academy()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '学院管理');
+    	$schoolid = $recordSchoolInfo['id'];
+    	
+    	if ($this->isPost()) {
+    		$academyid = (int)$_POST['academyid'];
+    		$name = $_POST['name'];
+    		if (!empty($name) && !empty($schoolid)) {
+	    		if (empty($academyid)) {
+		    		$newOpAcademy = array(
+		    			'name' => $name,
+		    			'school' => $schoolid,
+		    		);
+		    		$OpAcademy->add($newOpAcademy);
+		    		
+	    			/**
+        			 * webmaster user operating record
+        			 */
+        			$SchoolRecord = M("SchoolRecord");
+        			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '添加学院:'.$name,
+		                'time' => time()
+        			);
+        			$SchoolRecord->add($newSchoolRecordData);
+		    		redirect('/schooladmin/schoolopacademy', 1, '添加学院成功 ok...');
+	    		} else {
+	    			$updateOpAcademy = array(
+		    			'id' => $academyid,
+		    			'name' => $name,
+		    			'school' => $schoolid,
+		    		);
+		    		$OpAcademy->save($updateOpAcademy);
+	    			
+	    			/**
+        			 * webmaster user operating record
+        			 */
+        			$SchoolRecord = M("SchoolRecord");
+        			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '更新学院:'.$name,
+		                'time' => time()
+        			);
+        			$SchoolRecord->add($newSchoolRecordData);
+		    		redirect('/schooladmin/schoolopacademy', 1, '更新学院成功 ok...');
+	    		}
+    		}
+    	}
+    	
+    	/**
+    	 * delete academy
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteOpAcademy = $OpAcademy->where("id = $suredelid AND school = $schoolid")->find();
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '删除学院 name:'.$deleteOpAcademy['name'],
+		                'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			$OpAcademy->where("id = $suredelid AND school = $schoolid")->delete();
+    			redirect('/schooladmin/schoolopacademy', 1, '删除学院成功 ok...');
+    		}
+    	}
+    	
+		$page = i_page_get_num();
+	    $count = 15;
+	    $offset = $page * $count;
+		if (!empty($schoolid)) {
+			$recordsOpAcademy = $OpAcademy->where("school = $schoolid")->limit($offset,$count)->select();
+			$this->assign('recordsOpAcademy', $recordsOpAcademy);
+			
+			/**
+    		 * page link
+    		 */
+    		$totalReocrdNums = $OpAcademy->where("school = $schoolid")->count();
+    		$this->assign('totalRecordNums', $totalReocrdNums);
+    		$totalPages = ceil($totalReocrdNums / $count);
+    		$this->assign('totalPages', $totalPages);
+		}
+    	
+    	$this->display();
+    }
+    
     
     /**
      * user management

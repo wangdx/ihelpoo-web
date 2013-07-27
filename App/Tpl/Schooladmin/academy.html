@@ -1,0 +1,34 @@
+<include file="Public:headerwebmaster" />
+  <?php if (!empty($_GET['delid'])) { ?>
+  是否删除? <a href="?suredel=<?php echo $_GET['delid']; ?>">是</a> <a href="__ROOT__/schooladmin/schoolopacademy">否</a>
+  <?php } ?>
+  
+  <form method="post">
+  <ul>
+    <?php if (empty($_GET['changeid'])) { ?>
+  	<li>添加学院:</li>
+  	<?php } else { ?>
+  	<li>修改学院{$_GET['changeid']}: <input type="hidden" name="academyid" value="{$_GET['changeid']}" /></li>
+  	<?php } ?>
+    <li>名&#12288;&#12288;称:<input type="text" name="name" value="" calss="input_style" /></li>
+	<li><input type="submit" value="添加" /></li>
+  </ul>
+  </form>
+  
+  <?php if (!empty($schoolid)) { ?>
+  <ul class="para_right_ul">
+    <?php foreach ($recordsOpAcademy as $opAcademy) : ?>
+    <li>
+    	<?php echo $opAcademy['id']; ?>. 
+    	<?php echo $opAcademy['name']; ?>
+    	<a href="?changeid=<?php echo $opAcademy['id']; ?>">修改</a> | 
+	    <a href="?delid=<?php echo $opAcademy['id']; ?>">删除</a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+  <div class="paging_div">
+    <?php if ($totalPages > 1) { i_page_show("schooladmin/schoolopacademy", $totalPages); } ?>
+  </div>
+  <?php } ?>
+<include file="Public:footerwebmaster" />
