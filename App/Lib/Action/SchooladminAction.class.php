@@ -1145,7 +1145,9 @@ class SchooladminAction extends Action {
         $offset = $page * $count;
     	$RecordCommodityassess = M("RecordCommodityassess");
     	if ($statusMarks == 1) {
-    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodity ON i_record_commodityassess.cid = i_record_commodity.cid")->order("i_record_commodityassess.start_ti DESC")->limit($offset,$count)->select();
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodity ON i_record_commodityassess.cid = i_record_commodity.cid")
+    		-field("uid,cid,i_record_commodityassess.status as status_c,i_record_commodityassess.start_ti,i_record_commodity.school_id")
+    		->order("i_record_commodityassess.start_ti DESC")->limit($offset,$count)->select();
     		$totalrecords = $RecordCommodityassess->where("i_record_commodityassess.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodity ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
     	} else if ($statusMarks == 2) {
     		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 2 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodity ON i_record_commodityassess.cid = i_record_commodity.cid")->order('i_record_commodityassess.start_ti DESC')->limit($offset,$count)->select();
