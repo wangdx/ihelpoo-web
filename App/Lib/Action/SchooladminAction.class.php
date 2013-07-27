@@ -1005,48 +1005,7 @@ class SchooladminAction extends Action {
     	if ($this->isPost()) {
     		$uid = (int)$_POST['uid'];
     		$status = (int)$_POST['status'];
-    		$shoptype = (int)$_POST['shop_type'];
     		$recordUserShop = $UserShop->find($uid);
-    		if ($shoptype != $recordUserShop['shop_type']) {
-	    		if (!empty($uid) && !empty($shoptype)) {
-	    			$updateShopStatus = array(
-	    				'uid' => $uid,
-	    				'shop_type' => $shoptype,
-	    			);
-	    			$UserShop->save($updateShopStatus);
-	    			
-	    			/**
-	    			 * change user type
-	    			 */
-	    			if ($shoptype == 3) {
-	    				$newUserLoginType = array(
-	    					'uid' => $uid,
-	    					'type' => 3
-	    				);
-	    			} else {
-	    				$newUserLoginType = array(
-	    					'uid' => $uid,
-	    					'type' => 1
-	    				);
-	    			}
-	    			$UserLogin->save($newUserLoginType);
-	    			
-		            /**
-		             * webmaster user operating record
-		             */
-		            $SchoolRecord = M("SchoolRecord");
-		            $newSchoolRecordData = array(
-					    'id' => '',
-					    'sys_id' => '',
-					    'uid' => $webmaster['uid'],
-					    'sid' => $recordSchoolInfo['id'],
-					    'record' => '小店管理, uid:'.$uid. 'change shop type:'.$shoptype,
-					    'time' => time()
-		            );
-		            $SchoolRecord->add($newSchoolRecordData);
-	    			redirect('/schooladmin/mallshop/'.$uid, 1, 'ok...');
-	    		}
-    		}
     		
     		if ($status != $recordUserShop['status']) {
 	    		if (!empty($uid) && !empty($status)) {

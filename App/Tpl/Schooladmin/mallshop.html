@@ -14,17 +14,7 @@
 		    </p>
 		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
 		    <p>
-		    	状态: <input type="text" name="status" value="<?php echo $userShopRecord['status']; ?>" />
-		    </p>
-		    <p>
-		    	类型: <input type="text" name="shop_type" value="<?php echo $userShopRecord['shop_type']; ?>" />
-		    	<?php if ($userShopRecord['shop_type'] == '1') { ?>
-		    		<span class="gray f12">(<span class="red">1.学生</span> 2.学生经商 3.商家)</span>
-		    	<?php } else if ($userShopRecord['shop_type'] == '2') { ?>
-		    		<span class="gray f12">(1.学生 <span class="red">2.学生经商</span> 3.商家)</span>
-		    	<?php } else if ($userShopRecord['shop_type'] == '3') { ?>
-		    		<span class="gray f12">(1.学生 2.学生经商 <span class="red">3.商家</span>)</span>
-		    	<?php } ?>
+		    	状态: <input type="text" name="status" value="<?php echo $userShopRecord['status']; ?>" class="input_style"/> <span class="f12 gray">1.关闭, 2.开启</span>
 		    </p>
 		    <p><input type="submit" value="修改" /></p>
 		    <p>Record: <span class="f12 gray"><?php var_dump($userShopRecord); ?></p>
@@ -36,7 +26,7 @@
 	<ul class="user_ul">
 	<li>
 		<form method="get">
-			<input type="text" name="searchuid" value="" />
+			<input type="text" name="searchuid" class="input_style" value="" />
 			<input type="submit" value="查询" />
 		</form>
 	</li>
@@ -54,20 +44,9 @@
 		    </p>
 		    <p><a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShops['time']); ?></span></p>
 		    <p>
-		    	状态: <input type="text" name="status" value="<?php echo $userShops['status']; ?>" />
-		    </p>
-		    <p>
-		    	类型: <input type="text" name="shop_type" value="<?php echo $userShops['shop_type']; ?>" />
-		    	<?php if ($userShops['shop_type'] == '1') { ?>
-		    		<span class="gray f12">(<span class="red">1.学生</span> 2.学生经商 3.商家)</span>
-		    	<?php } else if ($userShops['shop_type'] == '2') { ?>
-		    		<span class="gray f12">(1.学生 <span class="red">2.学生经商</span> 3.商家)</span>
-		    	<?php } else if ($userShops['shop_type'] == '3') { ?>
-		    		<span class="gray f12">(1.学生 2.学生经商 <span class="red">3.商家</span>)</span>
-		    	<?php } ?>
+		    	状态: <input type="text" name="status" value="<?php echo $userShops['status']; ?>" class="input_style"/> <span class="f12 gray">1.关闭, 2.开启</span>
 		    </p>
 		    <p><input type="submit" value="修改" /></p>
-		    <p>Record: <span class="f12 gray"><?php var_dump($userShops); ?></p>
     	</form>
 	</li>
 	<?php }	?>
