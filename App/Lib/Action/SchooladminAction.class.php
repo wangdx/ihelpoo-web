@@ -303,7 +303,7 @@ class SchooladminAction extends Action {
 		                'time' => time()
         			);
         			$SchoolRecord->add($newSchoolRecordData);
-		    		redirect('/schooladmin/schoolopacademy', 1, '添加学院成功 ok...');
+		    		redirect('/schooladmin/academy', 1, '添加学院成功 ok...');
 	    		} else {
 	    			$updateOpAcademy = array(
 		    			'id' => $academyid,
@@ -325,7 +325,7 @@ class SchooladminAction extends Action {
 		                'time' => time()
         			);
         			$SchoolRecord->add($newSchoolRecordData);
-		    		redirect('/schooladmin/schoolopacademy', 1, '更新学院成功 ok...');
+		    		redirect('/schooladmin/academy', 1, '更新学院成功 ok...');
 	    		}
     		}
     	}
@@ -352,7 +352,7 @@ class SchooladminAction extends Action {
     			);
     			$SchoolRecord->add($newSchoolRecordData);
     			$OpAcademy->where("id = $suredelid AND school = $schoolid")->delete();
-    			redirect('/schooladmin/schoolopacademy', 1, '删除学院成功 ok...');
+    			redirect('/schooladmin/academy', 1, '删除学院成功 ok...');
     		}
     	}
     	
@@ -371,7 +371,6 @@ class SchooladminAction extends Action {
     		$totalPages = ceil($totalReocrdNums / $count);
     		$this->assign('totalPages', $totalPages);
 		}
-    	
     	$this->display();
     }
     
