@@ -399,7 +399,8 @@ class SchooladminAction extends Action {
 
         if (!empty($userId)) {
         	$recordUserLogin = $UserLogin->find($userId);
-
+        	$this->assign('recordUserLogin',$recordUserLogin);
+        	
         	/**
         	 * user album
         	 */
@@ -440,15 +441,6 @@ class SchooladminAction extends Action {
         		'userTalkNums' => $userTalkNums,
         	);
         	$this->assign('userOtherInfo',$userOtherInfo);
-
-        	/**
-        	 * user shop
-        	 */
-        	$UserShop = M("UserShop");
-        	$recordUserShop = $UserShop->find($userId);
-        	if (!empty($recordUserShop['uid'])) {
-        		$this->assign('recordUserShop',$recordUserShop);
-        	}
         }
         $this->display();
     }
