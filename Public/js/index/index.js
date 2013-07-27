@@ -2,8 +2,6 @@ var firstVisitUrl = location.href;
 
 $().ready(function(){
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
-    $('#index_lf_div_icon_p_img').fadeTo('fast', 0.9);
-    
     emailok = 'no';
     passwordok = 'no';
     $('#email').blur(function(){
