@@ -47,6 +47,15 @@ class IndexAction extends Action {
     	$this->assign('allUserNums',$allUserNums);
     	
     	/**
+    	 * login fast user icon
+    	 */
+    	if (!empty($_COOKIE['userEmail'])) {
+    		$userCookieEmail = trim(addslashes(htmlspecialchars(strip_tags($_COOKIE['userEmail']))));
+    		$cookieUserLogin = $UserLogin->where("email = '$userCookieEmail'")->field("uid,email,nickname,icon_url")->find();
+    		$this->assign('cookieUserLogin',$cookieUserLogin);
+    	}
+    	
+    	/**
          * index_spread_info
          */
         $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];

@@ -54,10 +54,12 @@ body{
 	    <div class="mim_ligonbox">
 		   <ul class="white">
 		   		<li style="height:30px;"></li>
-			   	<li>
-			     <span class="f12">已经检测到上次登录账号</span><br /><br />
-			     <?php echo $_COOKIE['userEmail'] ?>&#12288;<a href="__ROOT__/?login=new" class="f12 orange">使用其他账号?</a><br /><br />
-			     <a href="__ROOT__/user/loginfast" class="fb white">快速登录<span class="f12 gray">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
+			   	<li><a>快速登录</a> <a href="__ROOT__/?login=new">使用其他账号</a></li>
+			     <span class="f12">检测到上次登录账号，点击头像登录</span><br /><br />
+			     <a href="__ROOT__/user/loginfast">
+			     	<img src="<?php i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="100" height="75" />
+			     </a>
+			     <a href="__ROOT__/user/loginfast" class="fb"><?php echo $cookieUserLogin['nickname']; ?>(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
 			   	</li>
 		   </ul>
 		</div>
