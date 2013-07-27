@@ -15,7 +15,6 @@
   </ul>
   </form>
   
-  <?php if (!empty($schoolid)) { ?>
   <ul class="para_right_ul">
     <?php foreach ($recordsOpAcademy as $opAcademy) : ?>
     <li>
@@ -30,5 +29,4 @@
   <div class="paging_div">
     <?php if ($totalPages > 1) { i_page_show("schooladmin/schoolopacademy", $totalPages); } ?>
   </div>
-  <?php } ?>
 <include file="Public:footerwebmaster" />
