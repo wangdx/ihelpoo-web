@@ -56,7 +56,7 @@
     margin: 15px 0 0 0;
 }
 .mim_loginbox{
-    border: 1px solid #666;
+    border: 1px solid #999;
     float: right;
     height: 215px;
     padding: 15px;
@@ -80,7 +80,7 @@
     padding-right: 4px;
     vertical-align: middle;
     width: 170px;
-    margin: 20px auto;
+    margin-top: 20px;
 }
 .loginbox_password{
     background-position: 0 -50px;
@@ -105,6 +105,35 @@
     vertical-align: middle;
 }
 
+.loginbox_select{
+    width: 170px;
+    margin: 10px auto 0;
+}
+
+.loginbox_submit{
+    width: 170px;
+    margin: 10px auto 0;
+}
+
+.loginbox_submit a{
+    background: url("../image/common/form_login.png") no-repeat scroll 0 -150px transparent;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 22px;
+    font-style: normal;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 24px;
+    padding: 2px 0 5px;
+    text-align: center;
+    vertical-align: 0;
+    width: 143px;
+}
+
+.loginbox_more{
+    width: 170px;
+    margin: 10px auto 0;
+}
 
 
 
