@@ -1,0 +1,41 @@
+<include file="Public:headerrooter" />
+  <?php if (!empty($_GET['delid'])) { ?>
+  <span class="icon_attention"></span> 是否删除? <a href="?suredel=<?php echo $_GET['delid']; ?>">是</a> <a href="__ROOT__/rooter/schoolopacademy">否</a>
+  <?php } ?>
+  <form method="post">
+  <ul>
+    <?php if (empty($_GET['changeid'])) { ?>
+  	<li>添加寝室:</li>
+  	<?php } else { ?>
+  	<li>修改寝室{$_GET['changeid']}: <input type="hidden" name="dormitoryid" value="{$_GET['changeid']}" /></li>
+  	<?php } ?>
+    <li>类&#12288;&#12288;型:
+    <select name="type">
+      <option value="1">男寝</option>
+      <option value="2">女寝</option>
+      <option value="3">其他</option>
+    </select>
+    </li>
+    <li>楼&#12288;&#12288;栋:<input type="text" name="name" value="" class="input_style" /></li>
+	<li><input type="submit" value="添加" /></li>
+  </ul>
+  </form>
+  
+  <?php if (!empty($schoolid)) { ?>
+  <ul class="para_right_ul">
+    <?php foreach ($recordsOpDormitory as $opDormitory) : ?>
+    <li>
+    	<?php echo $opDormitory['id']; ?>. 
+    	<?php echo $opDormitory['name']; ?>
+    	(<?php echo $opDormitory['type']; ?>)
+	    <a href="?changeid=<?php echo $opDormitory['id']; ?>">修改</a> | 
+	    <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+  <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+  <div class="paging_div">
+    <?php if ($totalPages > 1) { i_page_show("schooladmin/dormitory", $totalPages); } ?>
+  </div>
+  <?php } ?>
+<include file="Public:footerrooter" />

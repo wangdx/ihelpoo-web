@@ -492,6 +492,115 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+    public function schoolopdormitory()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','寝室管理');
+    	$OpDormitory = M("OpDormitory");
+    	$schoolid = $recordSchoolInfo['id'];
+    	$this->assign('schoolid',$schoolid);
+    	
+    	if ($this->isPost()) {
+    		$dormitoryid = (int)$_POST['dormitoryid'];
+    		$schoolpostid = $recordSchoolInfo['id'];
+    		$name = $_POST['name'];
+    		$type = $_POST['type'];
+    		if (!empty($name) && !empty($schoolpostid) && !empty($type)) {
+	    		if (empty($dormitoryid)) {
+		    		$newOpDormitory = array(
+		    			'name' => $name,
+		    			'type' => $type,
+		    			'school' => $schoolpostid
+		    		);
+		    		$OpDormitory->add($newOpDormitory);
+	    			
+	    			/**
+	    			 * webmaster user operating record
+	    			 */
+	    			$SchoolRecord = M("SchoolRecord");
+	    			$newSchoolRecordData = array(
+			            'id' => '',
+			            'sys_id' => '',
+			            'uid' => $webmaster['uid'],
+			            'sid' => $recordSchoolInfo['id'],
+			            'record' => '添加寝室:'.$name,
+			            'time' => time()
+	    			);
+	    			$SchoolRecord->add($newSchoolRecordData);
+		    		redirect('/schooladmin/dormitory', 1, '添加寝室成功 ok...');
+	    		} else {
+	    			$updateOpDormitory = array(
+		    			'id' => $schoolpostid,
+		    			'name' => $name,
+		    			'type' => $type,
+		    			'school' => $schoolid
+		    		);
+		    		$OpDormitory->save($updateOpDormitory);
+		    		
+	    			/**
+	    			 * webmaster user operating record
+	    			 */
+	    			$SchoolRecord = M("SchoolRecord");
+	    			$newSchoolRecordData = array(
+			            'id' => '',
+			            'sys_id' => '',
+			            'uid' => $webmaster['uid'],
+			            'sid' => $recordSchoolInfo['id'],
+			            'record' => '更新寝室:'.$name,
+			            'time' => time()
+	    			);
+	    			$SchoolRecord->add($newSchoolRecordData);
+		    		redirect('/schooladmin/dormitory', 1, '更新寝室成功 ok...');
+	    		}
+    		}
+    	}
+    	
+    	/**
+    	 * delete academy
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteOpDormitory = $OpDormitory->where("id = $suredelid AND school = $schoolid")->find();
+
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+			        'id' => '',
+			        'sys_id' => '',
+			        'uid' => $webmaster['uid'],
+			        'sid' => $recordSchoolInfo['id'],
+			        'record' => '删除寝室:'.$deleteOpDormitory['name'],
+			        'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			$OpDormitory->where("id = $suredelid AND school = $schoolid")->delete();
+    			redirect('/schooladmin/dormitory', 1, '删除寝室成功 ok...');
+    		}
+    	}
+		
+		$page = i_page_get_num();
+	    $count = 15;
+	    $offset = $page * $count;
+		
+		if (!empty($schoolid)) {
+			$recordsOpDormitory = $OpDormitory->where("school = $schoolid")->limit($offset,$count)->select();
+			$this->assign('recordsOpDormitory', $recordsOpDormitory);
+			
+			/**
+    		 * page link
+    		 */
+    		$totalReocrdNums = $OpDormitory->where("school = $schoolid")->count();
+    		$this->assign('totalRecordNums', $totalReocrdNums);
+    		$totalPages = ceil($totalReocrdNums / $count);
+    		$this->assign('totalPages', $totalPages);
+		}
+    	$this->display();
+    }
+    
     
     /**
      * user management
