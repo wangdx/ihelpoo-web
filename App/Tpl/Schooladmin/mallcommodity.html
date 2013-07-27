@@ -15,10 +15,7 @@
 	<br />
 	<p>商品资料:</p>
 	<pre><?php print_r($resultRecordCommodity); ?></pre>
-	<?php if (!empty($recordUserShop)) { ?>
-	<p>店铺信息:<a href="__ROOT__/mall/shop/<?php echo $recordUserShop['uid']; ?>" target="_blank">查看</a></p>
-	<pre><?php print_r($recordUserShop); ?></pre>
-	<?php } ?>
+	<p><a href="__ROOT__/mall/shop/<?php echo $recordUserShop['uid']; ?>" target="_blank">查看店铺</a></p>
 <?php } else { ?>
 <form method="post">
 	<input type="text" class="input_style" name="search" /> <input type="submit" value="查询"> 商品cid 
