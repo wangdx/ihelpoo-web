@@ -2,7 +2,7 @@
 <form method="post">
 <ul>
 <li>会删除所有相关 涉及4个表</li>
-<li>信息流sid:<input type="text" name="recordid" /></li>
+<li>信息流sid:<input type="text" name="recordid" class="input_style" /></li>
 <?php if (!empty($recordDelete['sid'])) { ?>
 <li>
 <p>确认删除信息流sid:<?php echo $recordDelete['sid'] ?> <input type="hidden" name="sid" value="<?php echo $recordDelete['sid']; ?>" /></p>

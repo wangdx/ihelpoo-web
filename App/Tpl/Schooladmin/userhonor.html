@@ -13,7 +13,7 @@
 	    <option value="8">level8</option>
 	    <option value="9">level9</option>
 	  </select>
-	  <input type="submit" value="查找" />
+	  <input type="submit" class="input_style" value="查找" />
 	  <span title="<?php echo $userStrings; ?>"><?php echo $totalUserNums ?></span>
 	</form>
 	<br /><br />
@@ -21,8 +21,8 @@
 	<br /><br />
 	<form method="post">
 	  <span class="fb blue f14">2</span>.授予用户荣誉:<br /><br />
-	  <p>用户uids:<input type="text" name="user_ids" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)<br /><br /></p>
-	  <p>荣誉内容:<textarea name="honor_content" rows="5" cols="70"></textarea></p>
+	  <p>用户uids:<input type="text" name="user_ids" class="input_style" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)<br /><br /></p>
+	  <p>荣誉内容:<textarea name="honor_content" class="textarea_style" rows="5" cols="70"></textarea></p>
 	  <p><br />&#12288;&#12288;&#12288;&#12288; <input type="submit" value="授予" /></p>
 	</form>
 	<br /><br />
@@ -30,9 +30,9 @@
 	<br /><br />
 	<form method="post">
 	  <span class="fb blue f14">3</span>.奖励用户活跃:<br /><br />
-	  <p>用户uids:<input type="text" name="user_ids" value="<?php echo $userStrings ?>" /> (格式:10000;10001;10002)<br /><br /></p>
-	  <p>活跃数量:<input type="text" name="active_nums" /></p>
-	  <p>活跃原因:<input type="text" name="active_reason" />(奖励活跃原因)</p>
+	  <p>用户uids:<input type="text" name="user_ids" class="input_style" value="<?php echo $userStrings ?>" /> (格式:10000;10001;10002)<br /><br /></p>
+	  <p>活跃数量:<input type="text" name="active_nums" class="input_style" /></p>
+	  <p>活跃原因:<input type="text" name="active_reason" class="input_style" />(奖励活跃原因)</p>
 	  <p><br />&#12288;&#12288;&#12288;&#12288; <input type="submit" value="奖励活跃" /></p>
 	</form>
 </div>

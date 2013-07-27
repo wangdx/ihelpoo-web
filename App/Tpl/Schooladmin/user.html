@@ -9,19 +9,19 @@
 	<br />
 	<br />
 	<form method="post">
-		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		<input type="hidden" class="input_style" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
 		新密码&#12288;: <input type="text" name="password" />
 		<input type="submit" value="重置密码"> <a href="__ROOT__/schooladmin/user">重新查询</a>
 	</form>
 	<br />
 	<form method="post">
-		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		<input type="hidden" name="uid" class="input_style" value="<?php echo $recordUserLogin['uid']; ?>"/>
 		发布限制: <input type="text" name="recordlimit" value="{$recordUserStatus['record_limit']}"/> 
 		<input type="submit" value="重置"> (条数限制 / 12hour 默认6)
 	</form>
 	<br />
 	<form method="post">
-		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		<input type="hidden" name="uid" class="input_style" value="<?php echo $recordUserLogin['uid']; ?>"/>
 		用户类型: <input type="text" name="type" value="{$recordUserLogin['type']}"/> 
 		<input type="submit" value="重置"> (用户类型1 普通;2 组织;3 商家)
 	</form>
@@ -31,7 +31,7 @@
 	<pre><?php print_r($userOtherInfo); ?></pre>
 <?php } else { ?>
 <form method="post">
-	<input type="text" name="search" /> <input type="submit" value="查询"> 用户uid、昵称 或 email 
+	<input type="text" class="input_style" name="search" /> <input type="submit" value="查询"> 用户uid、昵称 或 email 
 </form>
 <?php } ?>
 <include file="Public:footerwebmaster" />
