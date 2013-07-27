@@ -961,7 +961,7 @@ class RooterAction extends Action {
     	$this->assign('title','校园管理记录');
     	$SchoolRecord = M("SchoolRecord");
     	$page = i_page_get_num();
-        $count = 25;
+        $count = 30;
         $offset = $page * $count;
     	$recordsWebmasterUserrecord = $SchoolRecord->join('i_user_login ON i_user_login.uid = i_school_record.uid')
     	->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')
@@ -2574,7 +2574,7 @@ class RooterAction extends Action {
     	 * lists
     	 */
     	$page = i_page_get_num();
-        $count = 25;
+        $count = 30;
         $offset = $page * $count;
     	
     	$recordsActivityItem = $ActivityItem->order("time DESC")->limit($offset,$count)->select();
@@ -2606,7 +2606,7 @@ class RooterAction extends Action {
     	$AdminUser = M("AdminUser");
     	$recordAdminUser = $AdminUser->find($adminuid);
     	$page = i_page_get_num();
-        $count = 25;
+        $count = 30;
         $offset = $page * $count;
     	if ($recordAdminUser['priority'] == '1') {
     		$recordsAdminUserrecord = $AdminUserrecord->join('i_admin_user ON i_admin_userrecord.uid = i_admin_user.uid')->field('i_admin_userrecord.id,i_admin_userrecord.uid,i_admin_user.name,i_admin_userrecord.record,i_admin_userrecord.time')->order("time DESC")->limit($offset,$count)->select();
