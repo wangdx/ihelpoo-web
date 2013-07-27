@@ -867,7 +867,7 @@ class StreamAction extends Action
         $diffusionSidArray = explode("-", $_POST['diffusionSid']);
         $plus = $RecordPlus->where("uid = $userloginid AND $sid = sid")->find();
         $plusId = $plus['id'];
-        $MsgNotice = M('i_msg_notice');
+        $MsgNotice = M('MsgNotice');
         $msgNotice = $MsgNotice->where("notice_type = 'plus' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
