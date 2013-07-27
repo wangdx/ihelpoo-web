@@ -68,16 +68,16 @@
 }
 
 .index_loginfast_div{
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #EEE;
     border: 1px solid #333333;
     float: right;
     height: 215px;
     padding: 15px;
     position: relative;
     width: 235px;
-    filter:alpha(opacity=60); 
-    -moz-opacity:0.6; 
-    opacity:0.6;
+    filter:alpha(opacity=70); 
+    -moz-opacity:0.7; 
+    opacity:0.7;
 }
 .index_loginfast_div_nav_p{
     border-bottom: 1px solid #CCC;
