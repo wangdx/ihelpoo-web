@@ -881,6 +881,7 @@ class StreamAction extends Action
 
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], -1);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
+
             echo $recordSay['plus_co'];
         }else{
             $this->addPlusRecord($sid);

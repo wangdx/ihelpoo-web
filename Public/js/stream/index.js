@@ -753,7 +753,7 @@ function mseeageNums() {
         success:function(msg){
         	if (msg.status == 'ok') {
         		var acquiremilliseconds = msg.data.acquireSeconds;
-        		if (msg.data.messageSystemNums != 0) {
+        		if (msg.data.messageSystemNums > 0) {
         			$('#message_system_nums_a').show();
         			$('#message_system_nums_a').children('span').html('+'+msg.data.messageSystemNums);
         		} else {
