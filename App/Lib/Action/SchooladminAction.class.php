@@ -1131,6 +1131,44 @@ class SchooladminAction extends Action {
     	}
     	$this->display();
     }
+    
+    public function mallcommodityassess()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','交易管理');
+    	$statusMarks = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+    	$this->assign('statusMarks', $statusMarks);
+    	
+    	$page = i_page_get_num();
+        $count = 10;
+        $offset = $page * $count;
+    	$RecordCommodityassess = M("RecordCommodityassess");
+    	if ($statusMarks == 1) {
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->order("i_record_commodityassess.start_ti DESC")->limit($offset,$count)->select();
+    		$totalrecords = $RecordCommodityassess->where("i_record_commodityassess.status = 1 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
+    	} else if ($statusMarks == 2) {
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 2 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->order('i_record_commodityassess.start_ti DESC')->limit($offset,$count)->select();
+    		$totalrecords = $RecordCommodityassess->where("i_record_commodityassess.status = 2 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
+    	} else if ($statusMarks == 3) {
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 3 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->order('i_record_commodityassess.start_ti DESC')->limit($offset,$count)->select();
+    		$totalrecords = $RecordCommodityassess->where("i_record_commodityassess.status = 3 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
+    	} else if ($statusMarks == 4) {
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 4 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->order('i_record_commodityassess.start_ti DESC')->limit($offset,$count)->select();
+    		$totalrecords = $RecordCommodityassess->where("i_record_commodityassess.status = 4 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
+    	} else if ($statusMarks == 5) {
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodityassess.status = 5 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->order('i_record_commodityassess.start_ti DESC')->limit($offset,$count)->select();
+    		$totalrecords = $RecordCommodityassess->where("i_record_commodityassess.status = 5 AND i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
+    	} else {
+    		$resultRecordCommodityassess = $RecordCommodityassess->where("i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->order('i_record_commodityassess.start_ti DESC')->limit($offset,$count)->select();
+    		$totalrecords = $RecordCommodityassess->where("i_record_commodity.school_id = $recordSchoolInfo[id]")->join("i_record_commodityassess ON i_record_commodityassess.cid = i_record_commodity.cid")->count();
+    	}
+    	$this->assign('resultRecordCommodityassess', $resultRecordCommodityassess);
+    	$this->assign('totalrecords', $totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+    	$this->assign('totalPages', $totalPages);
+    	$this->display();
+    }
 
     
     /**
