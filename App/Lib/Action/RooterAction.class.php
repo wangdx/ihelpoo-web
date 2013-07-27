@@ -1887,7 +1887,7 @@ class RooterAction extends Action {
     public function mallshop()
     {
     	$admin = logincheck();
-    	$this->assign('title','店铺管理');
+    	$this->assign('title','小店管理');
     	$page = i_page_get_num();
         $count = 10;
         $offset = $page * $count;
@@ -1943,7 +1943,7 @@ class RooterAction extends Action {
 		            	$newAdminUserrecordData = array(
 							'id' => '',
 							'uid' => $admin['uid'],
-							'record' => '店铺管理, uid:'.$uid. 'change shop type:'.$shoptype,
+							'record' => '小店管理, uid:'.$uid. 'change shop type:'.$shoptype,
 							'time' => time(),
 		            	);
 		            	$AdminUserrecord->add($newAdminUserrecordData);
@@ -1966,7 +1966,7 @@ class RooterAction extends Action {
 		             */
 		            $MsgSystem = M("MsgSystem");
 		            if ($status == 2) {
-		            	$msgContent = "资料审核通过，您的店铺开通了!";
+		            	$msgContent = "资料审核通过，您的小店开通了!";
 		            	
 		            	/**
 		            	 * insert priority data
@@ -2002,7 +2002,7 @@ class RooterAction extends Action {
 		            		$UserInfo->save($newUserInfoPrioritiedData);
 		            	}
 		            } else {
-		            	$msgContent = "资料重新审核中，您的店铺暂时关闭!";
+		            	$msgContent = "资料重新审核中，您的小店暂时关闭!";
 		            }
 		            $msgData = array(
 	                	'id' => NULL,
@@ -2022,7 +2022,7 @@ class RooterAction extends Action {
 		            	$newAdminUserrecordData = array(
 							'id' => '',
 							'uid' => $admin['uid'],
-							'record' => '店铺管理, uid:'.$uid. 'content:'.$msgContent,
+							'record' => '小店管理, uid:'.$uid. 'content:'.$msgContent,
 							'time' => time(),
 		            	);
 		            	$AdminUserrecord->add($newAdminUserrecordData);

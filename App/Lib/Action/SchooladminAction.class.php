@@ -702,7 +702,7 @@ class SchooladminAction extends Action {
              * message to owner
         	 */
         	$MsgSystem = M("MsgSystem");
-            $msgSystemType = 'helprooter/userhonor';
+            $msgSystemType = 'helpschooladmin/userhonor';
             $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
             $i = 0;
             foreach ($userArray as $user) {
@@ -877,7 +877,7 @@ class SchooladminAction extends Action {
 	            $msgData = array(
                 	'id' => NULL,
                 	'uid' => $recordUserInvite['uid'],
-                 	'type' => 'rooter/userinvite',
+                 	'type' => 'schooladmin/userinvite',
               		'content' => $msgContent,
                 	'time' => time(),
                 	'deliver' => 0,
@@ -974,6 +974,144 @@ class SchooladminAction extends Action {
         	redirect('/schooladmin/record', 3, '删除记录成功 涉及4个表...');
         }
         $this->display();
+    }
+    
+    /**
+     * mall
+     */
+    public function mallshop()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','小店管理');
+    	$page = i_page_get_num();
+        $count = 10;
+        $offset = $page * $count;
+    	$UserShop = M("UserShop");
+    	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+		$UserLogin = M("UserLogin");
+    		
+    	/**
+    	 * search
+    	 */
+    	if (!empty($_GET['searchuid'])) {
+    		$searchuid = (int)$_GET['searchuid'];
+    		redirect('/schooladmin/mallshop/'.$searchuid, 0, 'ok...');
+    	}
+    	
+    	/**
+    	 * post change shop status
+    	 */
+    	if ($this->isPost()) {
+    		$uid = (int)$_POST['uid'];
+    		$status = (int)$_POST['status'];
+    		$shoptype = (int)$_POST['shop_type'];
+    		$recordUserShop = $UserShop->find($uid);
+    		if ($shoptype != $recordUserShop['shop_type']) {
+	    		if (!empty($uid) && !empty($shoptype)) {
+	    			$updateShopStatus = array(
+	    				'uid' => $uid,
+	    				'shop_type' => $shoptype,
+	    			);
+	    			$UserShop->save($updateShopStatus);
+	    			
+	    			/**
+	    			 * change user type
+	    			 */
+	    			if ($shoptype == 3) {
+	    				$newUserLoginType = array(
+	    					'uid' => $uid,
+	    					'type' => 3
+	    				);
+	    			} else {
+	    				$newUserLoginType = array(
+	    					'uid' => $uid,
+	    					'type' => 1
+	    				);
+	    			}
+	    			$UserLogin->save($newUserLoginType);
+	    			
+		            /**
+		             * webmaster user operating record
+		             */
+		            $SchoolRecord = M("SchoolRecord");
+		            $newSchoolRecordData = array(
+					    'id' => '',
+					    'sys_id' => '',
+					    'uid' => $webmaster['uid'],
+					    'sid' => $recordSchoolInfo['id'],
+					    'record' => '小店管理, uid:'.$uid. 'change shop type:'.$shoptype,
+					    'time' => time()
+		            );
+		            $SchoolRecord->add($newSchoolRecordData);
+	    			redirect('/schooladmin/mallshop/'.$uid, 1, 'ok...');
+	    		}
+    		}
+    		
+    		if ($status != $recordUserShop['status']) {
+	    		if (!empty($uid) && !empty($status)) {
+	    			$updateShopStatus = array(
+	    				'uid' => $uid,
+	    				'status' => $status,
+	    			);
+	    			$UserShop->save($updateShopStatus);
+	
+	    			/**
+		             * send system message.
+		             */
+		            $MsgSystem = M("MsgSystem");
+		            if ($status == 2) {
+		            	$msgContent = "资料重新审核通过，您的小店又开通了!";
+		            } else {
+		            	$msgContent = "资料重新审核中，您的小店暂时关闭!";
+		            }
+		            $msgData = array(
+	                	'id' => NULL,
+	                	'uid' => $uid,
+	                 	'type' => 'system',
+	              		'content' => $msgContent,
+	                	'time' => time(),
+	                	'deliver' => 0,
+		            );
+		            $MsgSystem->add($msgData);
+		            
+		            /**
+		             * webmaster user operating record
+		             */
+		            $SchoolRecord = M("SchoolRecord");
+		            $newSchoolRecordData = array(
+					    'id' => '',
+					    'sys_id' => '',
+					    'uid' => $webmaster['uid'],
+					    'sid' => $recordSchoolInfo['id'],
+					    'record' => '小店管理, uid:'.$uid. 'content:'.$msgContent,
+					    'time' => time()
+		            );
+		            $SchoolRecord->add($newSchoolRecordData);
+	    			redirect('/schooladmin/mallshop/'.$uid, 1, 'ok...');
+	    		}
+    		}
+    	}
+
+    	/**
+    	 * list
+    	 */
+    	if (!empty($userId)) {
+    		$recordUserLogin = $UserLogin->find($userId);
+    		if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
+    			redirect('/schooladmin/mallshop/'.$searchuid, 3, '无权管理其他学校小店...');
+    		}
+    		$userShopRecord = $UserShop->find($userId);
+    		$this->assign('userShopRecord',$userShopRecord);
+    	} else {
+	    	$userShopRecords = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->order("status DESC, time ASC")->limit($offset,$count)->select();
+	    	$this->assign('userShopRecords',$userShopRecords);
+	    	$totalshops = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->count();
+	    	$this->assign('totalshops',$totalshops);
+	    	$totalPages = ceil($totalshops / $count);
+	        $this->assign('totalPages',$totalPages);
+    	}
+    	$this->display();
     }
 
     

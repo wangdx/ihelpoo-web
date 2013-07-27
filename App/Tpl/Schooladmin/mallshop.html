@@ -1,4 +1,4 @@
-<include file="Public:headerrooter" />
+<include file="Public:headerwebmaster" />
 	<?php if (!empty($userShopRecord)) { ?>
 	<ul class="user_ul">
 	<li>
@@ -19,11 +19,11 @@
 		    <p>
 		    	类型: <input type="text" name="shop_type" value="<?php echo $userShopRecord['shop_type']; ?>" />
 		    	<?php if ($userShopRecord['shop_type'] == '1') { ?>
-		    		<span class="gray f12">(<span class="red">1.学生二手</span> 2.学生经商 3.商家)</span>
+		    		<span class="gray f12">(<span class="red">1.学生</span> 2.学生经商 3.商家)</span>
 		    	<?php } else if ($userShopRecord['shop_type'] == '2') { ?>
-		    		<span class="gray f12">(1.学生二手 <span class="red">2.学生经商</span> 3.商家)</span>
+		    		<span class="gray f12">(1.学生 <span class="red">2.学生经商</span> 3.商家)</span>
 		    	<?php } else if ($userShopRecord['shop_type'] == '3') { ?>
-		    		<span class="gray f12">(1.学生二手 2.学生经商 <span class="red">3.商家</span>)</span>
+		    		<span class="gray f12">(1.学生 2.学生经商 <span class="red">3.商家</span>)</span>
 		    	<?php } ?>
 		    </p>
 		    <p><input type="submit" value="修改" /></p>
@@ -59,11 +59,11 @@
 		    <p>
 		    	类型: <input type="text" name="shop_type" value="<?php echo $userShops['shop_type']; ?>" />
 		    	<?php if ($userShops['shop_type'] == '1') { ?>
-		    		<span class="gray f12">(<span class="red">1.学生二手</span> 2.学生经商 3.商家)</span>
+		    		<span class="gray f12">(<span class="red">1.学生</span> 2.学生经商 3.商家)</span>
 		    	<?php } else if ($userShops['shop_type'] == '2') { ?>
-		    		<span class="gray f12">(1.学生二手 <span class="red">2.学生经商</span> 3.商家)</span>
+		    		<span class="gray f12">(1.学生 <span class="red">2.学生经商</span> 3.商家)</span>
 		    	<?php } else if ($userShops['shop_type'] == '3') { ?>
-		    		<span class="gray f12">(1.学生二手 2.学生经商 <span class="red">3.商家</span>)</span>
+		    		<span class="gray f12">(1.学生 2.学生经商 <span class="red">3.商家</span>)</span>
 		    	<?php } ?>
 		    </p>
 		    <p><input type="submit" value="修改" /></p>
@@ -74,7 +74,7 @@
 	</ul>
 	<p class="f12 gray paging_p">共<?php echo $totalshops ?>个小店 <?php echo $totalPages ?>页</p>
 	<div class="paging_div">
-	  <?php if ($totalPages > 1) { i_page_show("rooter/mallshop", $totalPages); } ?>
+	  <?php if ($totalPages > 1) { i_page_show("schooladmin/mallshop", $totalPages); } ?>
 	</div>
 	<?php } ?>
-<include file="Public:footerrooter" />
+<include file="Public:footerwebmaster" />
