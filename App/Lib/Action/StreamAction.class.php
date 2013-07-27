@@ -1088,6 +1088,7 @@ class StreamAction extends Action
         $redis = new Redis();
         $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId, 0);
+        echo 'to';
     }
 
 
@@ -1099,6 +1100,7 @@ class StreamAction extends Action
         $redis = new Redis();
         $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hDel(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId);
+        echo 'back';
     }
 
 
