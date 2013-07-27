@@ -89,6 +89,9 @@
     text-align: center;
     width: 90px;
 }
+.index_loginfast_div_nav_p_select{
+    border-bottom: 2px solid #333;
+}
 .index_loginfast_div_info_p{
     margin: 25px auto 10px;
     text-align: center;
