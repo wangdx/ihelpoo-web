@@ -53,9 +53,8 @@ body{
 	<?php if (!empty($_COOKIE['userEmail'])) {?>
 	    <div class="mim_ligonbox">
 		   <ul class="white">
-		   		<li style="height:30px;"></li>
 			   	<li><a>快速登录</a> <a href="__ROOT__/?login=new">使用其他账号</a></li>
-			     <span class="f12">检测到上次登录账号，点击头像登录</span><br /><br />
+			     <span class="f12">检测到上次登录账号，点击头像登录</span><br />
 			     <a href="__ROOT__/user/loginfast">
 			     	<img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="100" height="75" />
 			     </a>
