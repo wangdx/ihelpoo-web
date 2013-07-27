@@ -56,16 +56,33 @@
     margin: 15px 0 0 0;
 }
 .main_index_middle .mim_ligonbox{
-    border: 1px solid #333333;
+    border: 1px solid #666;
     float: right;
     height: 215px;
     padding: 15px;
     position: relative;
     width: 235px;
 }
-.mim_ligonbox ul li{
-    position: relative;
+
+.loginbox_email, .loginbox_password{
+    background-image: url("../image/common/form_login.png");
+    background-repeat: no-repeat;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 1px 1px 1px 0 #EAEAEA inset;
+    color: #808080;
+    height: 28px;
+    padding-left: 39px;
+    padding-right: 4px;
+    vertical-align: middle;
+    width: 165px;
 }
+.password {
+    background-position: 0 -50px;
+}
+
+
+
 
 .index_loginfast_div{
     background: none repeat scroll 0 0 #EEE;

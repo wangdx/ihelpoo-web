@@ -65,27 +65,31 @@ body{
 	<?php } else { ?>
 	    <div class="mim_ligonbox">
 		  <form action="/user/login" method="post">
-		  <ul>
-		    <li><span class="white f12">登录名(邮箱): <span id="emailinfo" class="red_l"></span></span><input type="text" name="email" id="email" /></li>
-		    <li><span class="white f12">密码: <span id="passwordinfo" class="red_l"></span></span><input type="password" name="password" id="password" /></li>
-		    <!-- <li id="verificationli">
-		      <input type="text" name="verificationcode" id="verificationcode"/>
-		      <span id="verificationvalue"></span>
-		      <span id="verificationimg"></span>
-		    </li> -->
-		    <li style="height:30px;">
+		      <div class="loginbox_email">
+			    <input type="text" name="email" id="email" />
+			  </div>
+			  <div class="loginbox_password">
+			  	<input type="password" name="password" id="password" />
+			  </div>
+			  <div class="">
+			  	潜水登录<input type="checkbox" />
+			  </div>
+			  <div class="">
+			  	<a class="submit">登录</a>
+			  </div>
+			  <div class="">
+			  	<a href="__ROOT__/user/resetpw">忘记密码</a> <a href="__ROOT__/user/register">注册</a>
+			  </div>
+		    <!-- <span class="white f12">登录名(邮箱): <span id="emailinfo" class="red_l"></span></span><input type="text" name="email" id="email" />
+		    <span class="white f12">密码: <span id="passwordinfo" class="red_l"></span></span><input type="password" name="password" id="password" />
 		    	<span id="login_status" value="1" class="f12 white" title="点击切换登录状态"><span class="login_status_online"></span> 正常登录</span>
 		    	<input type="hidden" name="login_status_input" id="login_status_input" value="1" />
-		    	<!-- <a href="__ROOT__/support?lastweibo" class="f12 white">微博登录</a> -->
 		    	<span id="wb_connect_btn"></span>
-		    </li>
-		    <li>
 		      <a id="submit" ></a>
 		      <a href="__ROOT__/user/register" class="register white">注册</a>
 		      <a href="__ROOT__/user/resetpw" class="resetpw f12 white">找回密码</a>
 		      <span id="wb_connect_btn"></span>
-		    </li>
-		  </ul>
+		      -->
 		  </form>
 		</div>
 		<?php } ?>
