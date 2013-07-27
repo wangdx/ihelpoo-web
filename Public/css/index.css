@@ -81,6 +81,25 @@
     background-position: 0 -50px;
 }
 
+.loginbox_email_input, .loginbox_password_input{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: transparent !important;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 #FFFFFF;
+    padding-left: 0;
+    color: #808080;
+    height: 28px;
+    width: 165px;
+    padding-right: 5px;
+    outline-style: none;
+    vertical-align: middle;
+}
+
 
 
 
