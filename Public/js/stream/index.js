@@ -484,7 +484,7 @@ $().ready(function(){
         $.ajax({
             type: "POST",
             url: baseUrl+"stream/plusToggle",
-            data: {'sid':$(this).attr('value')},
+            data: {'plusSid':$(this).attr('value')},
 //            datatype: "html",
             success:function(data){
 //                console.log($(this).parent().find('.plus_count_region').val());
