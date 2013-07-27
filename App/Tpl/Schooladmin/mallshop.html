@@ -10,7 +10,7 @@
 		    	<?php } else { ?>
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
-		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['nickname']; ?></a>
+		    	用户ID: <a href="__ROOT__/schooladmin/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['nickname']; ?></a>
 		    </p>
 		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
 		    <p>
@@ -32,22 +32,19 @@
 	</li>
 	<?php foreach($userShopRecords as $userShops) { ?>
 	<li>
-		<form method="post">
-		    <input type="hidden" name="uid" value="<?php echo $userShops['uid']; ?>" />
 		    <p>
 		    	<?php if ($userShops['status'] == '2') { ?>
 		    		<span class="icon_right"></span>
 		    	<?php } else { ?>
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
-		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['nickname']; ?></a>
+		    	用户ID: <a href="__ROOT__/schooladmin/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['nickname']; ?></a>
 		    </p>
 		    <p><a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShops['time']); ?></span></p>
 		    <p>
-		    	状态: <input type="text" name="status" value="<?php echo $userShops['status']; ?>" class="input_style"/> <span class="f12 gray">1.关闭, 2.开启</span>
+		    	店铺状态: <span class="f12 gray"><?php echo $userShops['status'] == "1" ? "已关闭" : "已开启"; ?></span>
+		   		<a href="__ROOT__/schooladmin/mallshop/<?php echo $userShops['uid']; ?>">修改</a>
 		    </p>
-		    <p><input type="submit" value="修改" /></p>
-    	</form>
 	</li>
 	<?php }	?>
 	</ul>
