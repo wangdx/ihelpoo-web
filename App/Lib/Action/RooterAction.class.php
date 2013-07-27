@@ -959,6 +959,19 @@ class RooterAction extends Action {
     {
     	$admin = logincheck();
     	$this->assign('title','校园管理记录');
+    	$SchoolRecord = M("SchoolRecord");
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	$recordsWebmasterUserrecord = $SchoolRecord->join('i_user_login ON i_user_login.uid = i_school_record.uid')
+    	->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')
+    	->join('i_school_info ON i_school_webmaster.sid = i_school_info.id')
+    	->order("time DESC")->limit($offset,$count)->select();
+    	$totalrecords = $SchoolRecord->count();
+    	$this->assign('recordsWebmasterUserrecord',$recordsWebmasterUserrecord);
+    	$this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
     	$this->display();
     }
     
