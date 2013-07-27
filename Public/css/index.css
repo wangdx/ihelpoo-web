@@ -50,15 +50,15 @@
 }
 .index_user_facewall li{
     display: inline-block;
-    margin: 2px;
+    margin: 0px;
 }
 .index_user_nums{
-    margin: 25px 0 0 0;
+    margin: 15px 0 0 0;
 }
 .main_index_middle .mim_ligonbox{
     border: 1px solid #333333;
     float: right;
-    height: 192px;
+    height: 215px;
     padding: 15px;
     position: relative;
     width: 235px;
