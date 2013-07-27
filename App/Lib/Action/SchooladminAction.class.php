@@ -621,6 +621,210 @@ class SchooladminAction extends Action {
         $this->display();
     }
     
+    public function userhonor()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '授予荣誉奖励活跃');
+        if (!empty($_POST['get_user_level'])) {
+        	$UserLogin = M("UserLogin");
+            $userAll = $UserLogin->where("school = $recordSchoolInfo[id]")->select();
+            $userStrings = NULL;
+            $i = 0;
+            foreach ($userAll as $user) {
+                $userLevel = i_degree($user['active']);
+                if ($userLevel >= $_POST['get_user_level']) {
+                	$userStrings .= $user['uid'].";";
+                	$i ++;
+                }
+            }
+            $userStrings = substr($userStrings, 0, -1);
+            $this->assign('userStrings', $userStrings);
+            $this->assign('totalUserNums', ">= level".$_POST['get_user_level']." 共".$i."人");
+            
+            /**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => 'userhonor get_user_level 查询. level:'.$_POST['get_user_level'].' '.$i.'人',
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+        }
+
+        if (!empty($_POST['get_user_info'])) {
+        	$UserLogin = M("UserLogin");
+        	$userArray = explode(";", $_POST['get_user_info']);
+        	$userString = NULL;
+        	foreach ($userArray as $user) {
+        	    $userString .= $user.",";
+        	}
+        	$userString = substr($userString, 0, -1);
+
+        	$userList = $UserLogin->where("i_user_login.uid in (".$userString.")")
+        	->join('i_user_info ON i_user_info.uid = i_user_login.uid')
+        	->join('i_op_academy ON i_user_info.academy_op = i_op_academy.number')
+        	->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
+        	->join('i_op_dormitory ON i_user_info.dormitory_op = i_op_dormitory.id')
+        	->join('i_op_city ON i_user_info.city_op = i_op_city.id')
+        	->field('i_user_login.uid,email,nickname,sex,birthday,enteryear,ip,logintime,realname,mobile,qq,weibo,i_op_academy.name as nameacademy,i_op_specialty.name as namespecialty,i_op_dormitory.name as namedormitory,i_op_city.name as namecity')
+        	->select();
+        	$this->assign('userList', $userList);
+        	
+        	/**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => 'userhonor get_user_info 查询用户详细. userString:'.$userString,
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+        }
+
+        if (!empty($_POST['honor_content'])) {
+            $UserHonor = M("UserHonor");
+            $userArray = explode(";", $_POST['user_ids']);
+
+            /**
+             * message to owner
+        	 */
+        	$MsgSystem = M("MsgSystem");
+            $msgSystemType = 'helprooter/userhonor';
+            $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
+            $i = 0;
+            foreach ($userArray as $user) {
+                $data = array(
+                    'id' => '',
+                    'uid' => $user,
+                    'content' => $_POST['honor_content'],
+                    'time' => time()
+                );
+                $UserHonor->add($data);
+
+                /**
+                 * insert into system message
+                 */
+                $diffusionToOwnerData = array(
+        	        'id' => '',
+        	        'uid' => $user,
+        	        'type' => $msgSystemType,
+        	        'url_id' => $user,
+        	        'from_uid' => '',
+        	        'content' => $contentToOwnerMsgSystem,
+        	        'time' => time(),
+        	        'deliver' => 0,
+                );
+        	    $MsgSystem->add($diffusionToOwnerData);
+        	    $i++;
+            }
+        	
+        	/**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => '授予我帮圈圈荣誉: 共'.$i.'人, content'.$_POST['honor_content'],
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+            redirect('/schooladmin/userhonor', 3, '授予荣誉成功 共'.$i.'人...');
+        }
+        
+        if (!empty($_POST['active_nums']) && !empty($_POST['active_reason'])) {
+        	$activeNums = $_POST['active_nums'];
+        	$activeReason = $_POST['active_reason'];
+        	if ($activeNums > 200) {
+        		redirect('/schooladmin/userhonor', 3, '“活跃”最高只能一次奖励200');
+        	}
+        	
+        	/**
+        	 * msg active
+        	 */
+        	$MsgActive = M("MsgActive");
+        	$UserLogin = M("UserLogin");
+            $userArray = explode(";", $_POST['user_ids']);
+
+            /**
+             * message to owner
+        	 */
+        	$MsgSystem = M("MsgSystem");
+            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
+            $i = 0;
+            foreach ($userArray as $user) {
+            	$recordUserLogin = $UserLogin->find($user);
+            	$recordUserLoginActive = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
+            	$userStatusData = array(
+    				'uid' => $user,
+	                'active' => $recordUserLoginActive + $activeNums,
+    			);
+    			$UserLogin->save($userStatusData);
+            	
+    			/**
+                 * insert into msg active
+                 */
+            	$msgActiveArray = array(
+					'id' => '',
+					'uid' => $user,
+					'total' => $recordUserLoginActive,
+					'change' => $activeNums,
+					'way' => 'add',
+					'reason' => $activeReason,
+					'time' => time(),
+					'deliver' => 0,
+            	);
+            	$MsgActive->add($msgActiveArray);
+
+                /**
+                 * insert into system message
+                 */
+                $insertToOwnerData = array(
+                    'id' => '',
+                    'uid' => $user,
+                    'type' => 'system',
+                    'content' => $contentToOwnerMsgSystem,
+                    'time' => time(),
+                    'deliver' => 0,
+                );
+        	    $MsgSystem->add($insertToOwnerData);
+        	    $i++;
+            }
+        	
+        	/**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => '奖励我帮圈圈活跃: 共'.$i.'人, nums:'.$activeNums.', reason:'.$activeReason,
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+            redirect('/schooladmin/userhonor', 3, '奖励我帮圈圈活跃 共'.$i.'人...');
+        }
+        $this->display();
+    }
+
+    
+    /**
+     * operating record
+     */
     public function operatingrecord()
     {
     	$webmaster = logincheck();
