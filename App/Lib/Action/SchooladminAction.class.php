@@ -277,6 +277,7 @@ class SchooladminAction extends Action {
     	$recordSchoolInfo = i_school_domain();
     	$this->assign('title', '学院管理');
     	$schoolid = $recordSchoolInfo['id'];
+    	$OpAcademy = M("OpAcademy");
     	
     	if ($this->isPost()) {
     		$academyid = (int)$_POST['academyid'];
