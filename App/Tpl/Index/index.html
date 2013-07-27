@@ -51,16 +51,16 @@ body{
     </div>
 	<?php if (empty($userloginedrecord['uid'])) { ?>
 	<?php if (!empty($_COOKIE['userEmail'])) {?>
-	    <div class="mim_ligonbox">
-		   <ul class="white">
-			   	<li><a>快速登录</a> <a href="__ROOT__/?login=new">使用其他账号</a></li>
-			     <span class="f12">检测到上次登录账号，点击头像登录</span><br />
-			     <a href="__ROOT__/user/loginfast">
-			     	<img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="100" height="75" class="radius3" />
-			     </a>
-			     <a href="__ROOT__/user/loginfast" class="fb white"><?php echo $cookieUserLogin['nickname']; ?>(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
-			   	</li>
-		   </ul>
+	    <div class="index_loginfast_div">
+			<p class="index_loginfast_div_nav_p"><a>快速登录</a> <a href="__ROOT__/?login=new">使用其他账号</p>
+			<p class="index_loginfast_div_info_p"><span class="f12 gray">检测到上次登录账号，点击头像登录</span></p>
+			<p class="index_loginfast_div_icon_p">
+				<a href="__ROOT__/user/loginfast">
+			     	<img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="100" height="75" class="radius5" />
+			    </a>
+			</p>
+			<p class="index_loginfast_div_name_p"><a href="__ROOT__/user/loginfast" class="fb white"><?php echo $cookieUserLogin['nickname']; ?>(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a></p>
+			<p class="index_loginfast_div_registe_p"><a class="gray f12">注册账号</a></p>
 		</div>
 	<?php } else { ?>
 	    <div class="mim_ligonbox">

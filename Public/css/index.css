@@ -66,6 +66,45 @@
 .mim_ligonbox ul li{
     position: relative;
 }
+
+.index_loginfast_div{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #333333;
+    float: right;
+    height: 215px;
+    padding: 15px;
+    position: relative;
+    width: 235px;
+}
+.index_loginfast_div_nav_p{
+    border-bottom: 1px solid #EEE;
+}
+.index_loginfast_div_nav_p a{
+    display: block;
+    padding: 3px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 10px;
+    text-align: center;
+}
+.index_loginfast_div_info_p{
+    margin: 30px auto 10px;
+    text-align: center;
+}
+.index_loginfast_div_icon_p{
+    margin: 10px auto;
+}
+.index_loginfast_div_name_p{
+    margin: 10px auto;
+}
+.index_loginfast_div_registe_p{
+    position: absolute;
+    bottom: 5px;
+    text-align: right;
+}
+
+
 lable{
     margin: 0 5px;
 }
