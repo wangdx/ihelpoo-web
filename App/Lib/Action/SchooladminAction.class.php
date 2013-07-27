@@ -400,7 +400,8 @@ class SchooladminAction extends Action {
         if (!empty($userId)) {
         	$recordUserLogin = $UserLogin->find($userId);
         	$this->assign('recordUserLogin',$recordUserLogin);
-        	
+        	var_dump($recordUserLogin);
+        	var_dump($recordSchoolInfo['id']);
         	if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
         		redirect('/schooladmin/user', 1, '仅查询到其他学校用户，你无权管理...');
         	}
