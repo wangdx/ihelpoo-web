@@ -985,7 +985,7 @@ class SchooladminAction extends Action {
     	$recordSchoolInfo = i_school_domain();
     	$this->assign('title','小店管理');
     	$page = i_page_get_num();
-        $count = 10;
+        $count = 20;
         $offset = $page * $count;
     	$UserShop = M("UserShop");
     	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
