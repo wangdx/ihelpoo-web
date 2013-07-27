@@ -1,0 +1,46 @@
+<include file="Public:headerwebmaster" />
+<?php if (!empty($recordUserLogin['uid'])) { ?>
+	<a href="__ROOT__/stream/u/<?php echo $recordUserLogin['uid']; ?>" target="_blank">
+		<img src="<?php echo i_icon_check($recordUserLogin['uid'], $recordUserLogin['icon_url'], 's') ?>" width="68" height="51" class="radius3" />
+	</a>
+	<a href="__ROOT__/stream/u/<?php echo $recordUserLogin['uid']; ?>" target="_blank">
+		<?php echo $recordUserLogin['nickname']; ?>
+	</a>
+	<br />
+	<br />
+	<form method="post">
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		新密码&#12288;: <input type="text" name="password" />
+		<input type="submit" value="重置密码"> <a href="__ROOT__/schooladmin/user">重新查询</a>
+	</form>
+	<br />
+	<form method="post">
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		发布限制: <input type="text" name="recordlimit" value="{$recordUserStatus['record_limit']}"/> 
+		<input type="submit" value="重置"> (条数限制 / 12hour 默认6)
+	</form>
+	<br />
+	<form method="post">
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		用户类型: <input type="text" name="type" value="{$recordUserLogin['type']}"/> 
+		<input type="submit" value="重置"> (用户类型1 普通;2 组织;3 商家)
+	</form>
+	<br />
+	<br />
+	<br />
+	<p>基本资料:</p>
+	<pre><?php print_r($recordUserLogin); ?></pre>
+	<p>扩充信息:
+	<pre><?php print_r($recordUserInfo); ?></pre>
+	<p>统计信息:</p>
+	<pre><?php print_r($userOtherInfo); ?></pre>
+	<?php if (!empty($recordUserShop)) { ?>
+	<p>店铺信息:<a href="__ROOT__/mall/shop/<?php echo $recordUserShop['uid']; ?>" target="_blank">查看</a></p>
+	<pre><?php print_r($recordUserShop); ?></pre>
+	<?php } ?>
+<?php } else { ?>
+<form method="post">
+	<input type="text" name="search" /> <input type="submit" value="查询"> 用户uid、昵称 或 email 
+</form>
+<?php } ?>
+<include file="Public:footerwebmaster" />

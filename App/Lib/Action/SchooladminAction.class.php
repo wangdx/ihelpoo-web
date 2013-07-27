@@ -268,6 +268,197 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+    
+    /**
+     * user management
+     */
+    public function user()
+    {
+    	$webmaster = logincheck();
+    	$this->assign('title', '用户管理');
+        $UserLogin = M("UserLogin");
+        $userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+        $recordSchoolInfo = i_school_domain();
+
+        /**
+         * search
+         */
+        if (!empty($_POST['search'])) {
+        	$searchWords = trim(addslashes(htmlspecialchars(strip_tags($_POST['search']))));
+        	if (preg_match("/@/i", $searchWords)) {
+        		$userLoginRecord = $UserLogin->where("email = '$searchWords'")->find();
+        	} else if (preg_match("/[0-9]/", $searchWords) && $searchWords > 9999) {
+        		$userLoginRecord = $UserLogin->where("uid = '$searchWords'")->find();
+        	} else {
+        		$userLoginRecord = $UserLogin->where("nickname like '%$searchWords%'")->find();
+        	}
+        	
+        	/**
+	         * webmaster user operating record
+	         */
+	        $SchoolRecord = M("SchoolRecord");
+	        $newSchoolRecordData = array(
+                'id' => '',
+                'sys_id' => '',
+                'uid' => $webmaster['uid'],
+                'sid' => $recordSchoolInfo['id'],
+                'record' => 'user search 搜索 searchWords:'.$searchWords,
+                'time' => time()
+	         
+	        );
+	        $SchoolRecord->add($newSchoolRecordData);
+        	
+        	if (!empty($userLoginRecord['uid'])) {
+        		redirect('/schooladmin/user/'.$userLoginRecord['uid'], 0, 'ok...');
+        	} else {
+        		redirect('/schooladmin/user?uid=empty', 1, 'empty...');
+        	}
+        }
+
+        if (!empty($_POST['password']) && !empty($_POST['uid'])) {
+            $isUserExist = $UserLogin->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setPassword = array(
+            		'uid' => $isUserExist['uid'],
+            	    'password' => md5($_POST['password']),
+            	);
+                $UserLogin->save($setPassword);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+	                'id' => '',
+	                'sys_id' => '',
+	                'uid' => $webmaster['uid'],
+	                'sid' => $recordSchoolInfo['id'],
+	                'record' => 'user reset pw 重置密码. uid:'.$isUserExist['uid'].' password:'.md5($_POST['password']),
+	                'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                
+                redirect('/schooladmin/user', 1, 'update user password ok...');
+            }
+        }
+
+        if (!empty($_POST['recordlimit']) && !empty($_POST['uid'])) {
+        	$UserStatus = M("UserStatus");
+        	$newRecordLimit = (int)$_POST['recordlimit'];
+            $isUserExist = $UserStatus->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setRecordLimit = array(
+            		'uid' => $isUserExist['uid'],
+            	    'record_limit' => $newRecordLimit,
+            	);
+                $UserStatus->save($setRecordLimit);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+	                'id' => '',
+	                'sys_id' => '',
+	                'uid' => $webmaster['uid'],
+	                'sid' => $recordSchoolInfo['id'],
+	                'record' => 'change user record limit. uid:'.$isUserExist['uid'].' record_limit:'.$newRecordLimit,
+	                'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                redirect('/schooladmin/user', 1, 'update user record limit ok...');
+            }
+        }
+        
+		if (!empty($_POST['type']) && !empty($_POST['uid'])) {
+        	$newUserType = (int)$_POST['type'];
+			$isUserExist = $UserLogin->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setUserType = array(
+            		'uid' => $isUserExist['uid'],
+            	    'type' => $newUserType,
+            	);
+                $UserLogin->save($setUserType);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+	                'id' => '',
+	                'sys_id' => '',
+	                'uid' => $webmaster['uid'],
+	                'sid' => $recordSchoolInfo['id'],
+	                'record' => 'change user type. uid:'.$isUserExist['uid'].' type:'.$newUserType,
+	                'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                redirect('/schooladmin/user', 1, 'update user type ok...');
+            }
+        }
+
+        if (!empty($userId)) {
+        	$recordUserLogin = $UserLogin->find($userId);
+        	$recordUserLogin['logintime'] = date("Y-m-d H:i:s", $recordUserLogin['logintime']);
+        	$recordUserLogin['lastlogintime'] = date("Y-m-d H:i:s", $recordUserLogin['lastlogintime']);
+        	$recordUserLogin['creat_ti'] = date("Y-m-d H:i:s", $recordUserLogin['creat_ti']);
+        	$this->assign('recordUserLogin',$recordUserLogin);
+
+        	$UserInfo = M("UserInfo");
+        	$recordUserInfo = $UserInfo->find($userId);
+        	$this->assign('recordUserInfo',$recordUserInfo);
+
+        	/**
+        	 * user album
+        	 */
+        	$UserAlbum = M("UserAlbum");
+        	$userAlbumNums = $UserAlbum->where("uid = $userId")->count();
+        	$userAlbumSize = $UserAlbum->where("uid = $userId")->sum('size');
+
+        	/**
+        	 * user msg
+        	 */
+        	$MsgSystem = M("MsgSystem");
+        	$MsgComment = M("MsgComment");
+        	$MsgActive = M("MsgActive");
+        	$MsgAt = M("MsgAt");
+        	$userMsgSystemNums = $MsgSystem->where("uid = $userId")->count();
+        	$userMsgCommentNums = $MsgComment->where("uid = $userId")->count();
+        	$userMsgActiveNums = $MsgActive->where("uid = $userId")->count();
+        	$userMsgAtNums = $MsgAt->where("touid = $userId")->count();
+
+        	/**
+        	 * user talk
+        	 */
+        	$TalkContent = M("TalkContent");
+        	$userTalkNums = $TalkContent->where("uid = $userId OR touid = $userId")->count();
+
+        	/**
+        	 * show
+        	 */
+        	$userOtherInfo = array(
+        		'userAlbumNums' => $userAlbumNums,
+        		'userAlbumSize' => round($userAlbumSize/(1024*1024),2)."MB",
+        		'userMsgSystemNums' => $userMsgSystemNums,
+        		'userMsgCommentNums' => $userMsgCommentNums,
+        		'userMsgActiveNums' => $userMsgActiveNums,
+        		'userMsgAtNums' => $userMsgAtNums,
+        		'userTalkNums' => $userTalkNums,
+        	);
+        	$this->assign('userOtherInfo',$userOtherInfo);
+
+        	/**
+        	 * user shop
+        	 */
+        	$UserShop = M("UserShop");
+        	$recordUserShop = $UserShop->find($userId);
+        	if (!empty($recordUserShop['uid'])) {
+        		$this->assign('recordUserShop',$recordUserShop);
+        	}
+        }
+        $this->display();
+    }
+    
     public function orderusericon()
     {
     	$webmaster = logincheck();
