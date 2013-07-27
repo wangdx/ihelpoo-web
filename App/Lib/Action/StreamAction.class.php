@@ -438,7 +438,7 @@ class StreamAction extends Action
                     $allIdString .= $priorityRecord['pid'] . ",";
 
                     /**
-                     * is set group priority
+                     * is set org priority
                      */
                     if ($priorityRecord['pid_type'] == 2) {
                         $pidGroupArray[] = $UserLogin->where("uid = $priorityRecord[pid]")->field('uid,nickname')->find();
