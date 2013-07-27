@@ -34,6 +34,14 @@ class SchooladminAction extends Action {
     		} else {
     			$webmasterloginid = session('webmasterloginid');
     			$webmasterloginname = session('webmasterloginname');
+    			$SchoolRecord = M("SchoolRecord");
+    			$resultsSchoolRecord = $SchoolRecord->where("uid = $webmasterloginid")->order("time DESC")->find();
+    			$timegap = time() - $resultsSchoolRecord['time'];
+    			if ($timegap > 1800) {
+    				session('webmasterloginid', null);
+        			session('webmasterloginname', null);
+    				redirect('/schooladmin', 3, '挂起页面时间太长登录失效，请重新登录...');
+    			}
     			return array(
     				'uid' => $webmasterloginid,
     				'nickname' => $webmasterloginname,
