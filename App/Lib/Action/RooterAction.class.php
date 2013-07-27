@@ -2345,7 +2345,6 @@ class RooterAction extends Action {
     			);
     			$AdminUserrecord->add($newAdminUserrecordData);
     		}
-    		
     		redirect('/rooter/mallcooperation', 1, 'deltete success...');
     	}
 
@@ -2380,7 +2379,6 @@ class RooterAction extends Action {
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
     			}
-    			
     			redirect('/rooter/mallcooperation', 1, 'success...new add');
     		} else {
     			$newCooperationData = array(

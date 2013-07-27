@@ -1,0 +1,31 @@
+<include file="Public:headerwebmaster" />
+	<?php if (!empty($_GET['del'])) { ?>
+		<div><span class="icon_attention"></span><a href="__ROOT__/schooladmin/mallcooperation?suredel=<?php echo $_GET['del']; ?>">确认</a> <a href="__ROOT__/schooladmin/mallcooperation">取消</a></div>
+	<?php } ?>
+	<form method="post">
+		<ul class="mallset_index_ul">
+			<li>名称: <input type="text" name="name" value="" /></li>
+			<li>网站: <input type="text" name="url" value="" /></li>
+			<li>排序: <input type="text" name="order" value="1" /></li>
+			<li><input type="submit" value="添加" /></li>
+		</ul>
+	</form>
+	<ul>
+	<?php if (!empty($resultsMallCooperation)) {
+		foreach($resultsMallCooperation as $cooperation) {
+	?>
+	<li>
+		<form method="post">
+		    <input type="hidden" name="id" value="<?php echo $cooperation['id']; ?>" />
+		    Name:<input type="text" name="name" value="<?php echo $cooperation['name']; ?>" />
+		    Url:<input type="text" name="url" value="<?php echo $cooperation['url']; ?>" />
+		    Order:<input type="text" name="order" value="<?php echo $cooperation['order']; ?>" />
+		    <input type="submit" value="修改" /> 
+		    <a href="__ROOT__/schooladmin/mallcooperation?del=<?php echo $cooperation['id']; ?>">删除</a>
+		    <span class="gray f12"><?php echo i_time($cooperation['time']); ?></span> 
+    	</form>
+	</li>
+	<?php }	
+	} ?>
+	</ul>
+<include file="Public:footerwebmaster" />

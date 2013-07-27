@@ -1181,6 +1181,100 @@ class SchooladminAction extends Action {
     	$this->assign('totalPages', $totalPages);
     	$this->display();
     }
+    
+    public function mallcooperation()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','cooperation 管理');
+    	$MallCooperation = M("MallCooperation");
+
+    	/**
+    	 * delete record
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelId = (int)$_GET['suredel'];
+    		$MallCooperation->where("id = $suredelId AND school = $recordSchoolInfo[id]")->delete();
+    		
+    		/**
+    		 * webmaster user operating record
+    		 */
+    		$SchoolRecord = M("SchoolRecord");
+    		$newSchoolRecordData = array(
+				'id' => '',
+				'sys_id' => '',
+				'uid' => $webmaster['uid'],
+				'sid' => $recordSchoolInfo['id'],
+				'record' => 'mallcooperation deltete, suredel id:'.$suredelId,
+				'time' => time()
+    		);
+    		$SchoolRecord->add($newSchoolRecordData);
+    		redirect('/schooladmin/mallcooperation', 1, 'deltete success...');
+    	}
+
+    	/**
+    	 * post
+    	 */
+    	if ($this->isPost()) {
+    		$id = (int)$_POST['id'];
+    		$name = $_POST['name'];
+    		$url = $_POST['url'];
+    		$order = (int)$_POST['order'];
+    		if (empty($id)) {
+    			$newCooperationData = array(
+    				'id' => '',
+    				'name' => $name,
+    				'url' => $url,
+    				'order' => $order,
+    				'time' => time(),
+    				'school' => $recordSchoolInfo['id']
+    			);
+    			$MallCooperation->add($newCooperationData);
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => 'mallcooperation new add, name:'.$name.' url:'.$url,
+					'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			redirect('/schooladmin/mallcooperation', 1, 'success...new add');
+    		} else {
+    			$newCooperationData = array(
+    				'id' => $id,
+    				'name' => $name,
+    				'url' => $url,
+    				'order' => $order,
+    				'time' => time(),
+    			);
+    			$MallCooperation->save($newCooperationData);
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => 'mallcooperation update, name:'.$name.' url:'.$url,
+					'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			redirect('/schooladmin/mallcooperation', 1, 'success...update');
+    		}
+    	}
+    	$resultsMallCooperation = $MallCooperation->select();
+    	$this->assign('resultsMallCooperation', $resultsMallCooperation);
+    	$this->display();
+    }
 
     
     /**
