@@ -1,19 +1,18 @@
 <include file="Public:headerwebmaster" />
   <form method="post">
   <ul>
-    <li>首页用户推荐: <input type="text" name="index_user" value="<?php echo $lastrecordSchoolSystem['index_user']; ?>" /></li>
-    <li>文化展示:&#12288;&#12288; <input type="text" name="index_spread_info" value="<?php echo $lastrecordSchoolSystem['index_spread_info']; ?>" /></li>
-    <li>网站首页图:&#12288; <input type="text" name="image_index" value="<?php echo $lastrecordSchoolSystem['image_index']; ?>" /></li>
-    <li>手机首页图:&#12288; <input type="text" name="image_mobile" value="<?php echo $lastrecordSchoolSystem['image_mobile']; ?>" /></li>
-    <li>关于网站:&#12288;&#12288; <textarea name="about" class="f12"><?php echo $lastrecordSchoolSystem['about']; ?></textarea></li>
-    <li><input type="submit" value="修改" /></li>
+    <li>首页用户推荐: <input type="text" name="index_user" class="input_style" value="<?php echo $lastrecordSchoolSystem['index_user']; ?>" /></li>
+    <li>文化展示:&#12288;&#12288; <input type="text" name="index_spread_info" class="input_style" value="<?php echo $lastrecordSchoolSystem['index_spread_info']; ?>" /></li>
+    <li>网站首页图:&#12288; <input type="text" name="image_index" class="input_style" value="<?php echo $lastrecordSchoolSystem['image_index']; ?>" /></li>
+    <li>手机首页图:&#12288; <input type="text" name="image_mobile" class="input_style" value="<?php echo $lastrecordSchoolSystem['image_mobile']; ?>" /></li>
+    <li>关于网站:&#12288;&#12288; <textarea cols="60" rows="5" class="textarea_style" name="about" class="f12"><?php echo $lastrecordSchoolSystem['about']; ?></textarea></li>
+    <li>&#12288;&#12288;&#12288;&#12288;&#12288;&#12288; <input type="submit" value="修改" /></li>
   </ul>
   </form>
   <br />
   <br />
+  <br />
   <p class="f12 gray">相关历史记录</p>
-  <br />
-  <br />
   <ul class="para_right_ul">
     <?php foreach ($recordSchoolSystem as $schoolSystem): ?>
     <li>

@@ -1,0 +1,55 @@
+<include file="Public:headerwebmaster" />
+	<?php if (!empty($userShopRecord)) { ?>
+	<ul class="user_ul">
+	<li>
+		<form method="post">
+		    <input type="hidden" name="uid" value="<?php echo $userShopRecord['uid']; ?>" />
+		    <p>
+		    	<?php if ($userShopRecord['status'] == '2') { ?>
+		    		<span class="icon_right"></span>
+		    	<?php } else { ?>
+		    		<span class="icon_attention"></span>
+		    	<?php } ?>
+		    	用户ID: <a href="__ROOT__/schooladmin/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['uid']; ?></a>
+		    </p>
+		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
+		    <p>
+		    	状态: <input type="text" name="status" value="<?php echo $userShopRecord['status']; ?>" class="input_style"/> <span class="f12 gray">1.关闭, 2.开启</span>
+		    </p>
+		    <p><input type="submit" value="修改" /></p>
+		    <p>Record: <span class="f12 gray"><?php var_dump($userShopRecord); ?></p>
+		</form>
+	</li>
+	</ul>
+	<?php } ?>
+	<?php if (!empty($userShopRecords)) { ?>
+	<ul class="user_ul">
+	<li>
+		<form method="get">
+			<input type="text" name="searchuid" class="input_style" value="" />
+			<input type="submit" value="查询" />
+			<span class="f12 gray">输入用户uid</span>
+		</form>
+	</li>
+	<?php foreach($userShopRecords as $userShops) { ?>
+	<li>
+		    <p>
+		    	<?php if ($userShops['status'] == '2') { ?>
+		    		<span class="icon_right"></span>
+		    	<?php } else { ?>
+		    		<span class="icon_attention"></span>
+		    	<?php } ?>
+		    	<a href="__ROOT__/schooladmin/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['nickname']; ?></a> | 
+		    	<a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店地址</a> 开店时间:<span class="f12 gray"><?php echo i_time($userShops['time']); ?></span> | 
+		    	店铺状态: <?php echo $userShops['status'] == "1" ? "<span class='f12 red'>已关闭</span> " : "<span class='f12 green'>已开启</span> "; ?>
+		   		<a href="__ROOT__/schooladmin/mallshop/<?php echo $userShops['uid']; ?>">修改</a>
+		    </p>
+	</li>
+	<?php }	?>
+	</ul>
+	<p class="f12 gray paging_p">共<?php echo $totalshops ?>个小店 <?php echo $totalPages ?>页</p>
+	<div class="paging_div">
+	  <?php if ($totalPages > 1) { i_page_show("schooladmin/mallshop", $totalPages); } ?>
+	</div>
+	<?php } ?>
+<include file="Public:footerwebmaster" />

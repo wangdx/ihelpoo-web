@@ -268,6 +268,189 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+    
+    /**
+     * user management
+     */
+    public function user()
+    {
+    	$webmaster = logincheck();
+    	$this->assign('title', '用户管理');
+        $UserLogin = M("UserLogin");
+        $userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+        $recordSchoolInfo = i_school_domain();
+        
+        /**
+         * search
+         */
+        if (!empty($_POST['search'])) {
+        	$searchWords = trim(addslashes(htmlspecialchars(strip_tags($_POST['search']))));
+        	if (preg_match("/@/i", $searchWords)) {
+        		$userLoginRecord = $UserLogin->where("email = '$searchWords'")->find();
+        	} else if (preg_match("/[0-9]/", $searchWords) && $searchWords > 9999) {
+        		$userLoginRecord = $UserLogin->where("uid = '$searchWords'")->find();
+        	} else {
+        		$userLoginRecord = $UserLogin->where("nickname like '%$searchWords%'")->find();
+        	}
+        	
+        	/**
+	         * webmaster user operating record
+	         */
+	        $SchoolRecord = M("SchoolRecord");
+	        $newSchoolRecordData = array(
+                'id' => '',
+                'sys_id' => '',
+                'uid' => $webmaster['uid'],
+                'sid' => $recordSchoolInfo['id'],
+                'record' => 'user search 搜索 searchWords:'.$searchWords,
+                'time' => time()
+	         
+	        );
+	        $SchoolRecord->add($newSchoolRecordData);
+        	
+        	if (!empty($userLoginRecord['uid'])) {
+        		redirect('/schooladmin/user/'.$userLoginRecord['uid'], 0, 'ok...');
+        	} else {
+        		redirect('/schooladmin/user?uid=empty', 1, 'empty...');
+        	}
+        }
+
+        if (!empty($_POST['password']) && !empty($_POST['uid'])) {
+            $isUserExist = $UserLogin->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setPassword = array(
+            		'uid' => $isUserExist['uid'],
+            	    'password' => md5($_POST['password']),
+            	);
+                $UserLogin->save($setPassword);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+	                'id' => '',
+	                'sys_id' => '',
+	                'uid' => $webmaster['uid'],
+	                'sid' => $recordSchoolInfo['id'],
+	                'record' => 'user reset pw 重置密码. uid:'.$isUserExist['uid'].' password:'.md5($_POST['password']),
+	                'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                
+                redirect('/schooladmin/user', 1, 'update user password ok...');
+            }
+        }
+
+        if (!empty($_POST['recordlimit']) && !empty($_POST['uid'])) {
+        	$UserStatus = M("UserStatus");
+        	$newRecordLimit = (int)$_POST['recordlimit'];
+            $isUserExist = $UserStatus->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setRecordLimit = array(
+            		'uid' => $isUserExist['uid'],
+            	    'record_limit' => $newRecordLimit,
+            	);
+                $UserStatus->save($setRecordLimit);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+	                'id' => '',
+	                'sys_id' => '',
+	                'uid' => $webmaster['uid'],
+	                'sid' => $recordSchoolInfo['id'],
+	                'record' => 'change user record limit. uid:'.$isUserExist['uid'].' record_limit:'.$newRecordLimit,
+	                'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                redirect('/schooladmin/user', 1, 'update user record limit ok...');
+            }
+        }
+        
+		if (!empty($_POST['type']) && !empty($_POST['uid'])) {
+        	$newUserType = (int)$_POST['type'];
+			$isUserExist = $UserLogin->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setUserType = array(
+            		'uid' => $isUserExist['uid'],
+            	    'type' => $newUserType,
+            	);
+                $UserLogin->save($setUserType);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+	                'id' => '',
+	                'sys_id' => '',
+	                'uid' => $webmaster['uid'],
+	                'sid' => $recordSchoolInfo['id'],
+	                'record' => 'change user type. uid:'.$isUserExist['uid'].' type:'.$newUserType,
+	                'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                redirect('/schooladmin/user', 1, 'update user type ok...');
+            }
+        }
+
+        if (!empty($userId)) {
+        	$recordUserLogin = $UserLogin->find($userId);
+        	$this->assign('recordUserLogin',$recordUserLogin);
+        	if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
+        		redirect('/schooladmin/user', 1, '仅查询到其他学校用户，你无权管理...');
+        	}
+        	$UserInfo = M("UserInfo");
+        	$recordUserInfo = $UserInfo->find($userId);
+        	
+        	/**
+        	 * user album
+        	 */
+        	$UserAlbum = M("UserAlbum");
+        	$userAlbumNums = $UserAlbum->where("uid = $userId")->count();
+        	$userAlbumSize = $UserAlbum->where("uid = $userId")->sum('size');
+
+        	/**
+        	 * user msg
+        	 */
+        	$MsgSystem = M("MsgSystem");
+        	$MsgComment = M("MsgComment");
+        	$MsgActive = M("MsgActive");
+        	$MsgAt = M("MsgAt");
+        	$userMsgSystemNums = $MsgSystem->where("uid = $userId")->count();
+        	$userMsgCommentNums = $MsgComment->where("uid = $userId")->count();
+        	$userMsgActiveNums = $MsgActive->where("uid = $userId")->count();
+        	$userMsgAtNums = $MsgAt->where("touid = $userId")->count();
+
+        	/**
+        	 * user talk
+        	 */
+        	$TalkContent = M("TalkContent");
+        	$userTalkNums = $TalkContent->where("uid = $userId OR touid = $userId")->count();
+
+        	/**
+        	 * show
+        	 */
+        	$userOtherInfo = array(
+        		'uid' => $recordUserLogin['uid'],
+        		'nickname' => $recordUserLogin['nickname'],
+        		'realname' => $recordUserInfo['realname'],
+        		'userAlbumNums' => $userAlbumNums,
+        		'userAlbumSize' => round($userAlbumSize/(1024*1024),2)."MB",
+        		'userMsgSystemNums' => $userMsgSystemNums,
+        		'userMsgCommentNums' => $userMsgCommentNums,
+        		'userMsgActiveNums' => $userMsgActiveNums,
+        		'userMsgAtNums' => $userMsgAtNums,
+        		'userTalkNums' => $userTalkNums,
+        	);
+        	$this->assign('userOtherInfo',$userOtherInfo);
+        }
+        $this->display();
+    }
+    
     public function orderusericon()
     {
     	$webmaster = logincheck();
@@ -345,7 +528,614 @@ class SchooladminAction extends Action {
         $this->display();
     }
     
+    public function realnameallowmf()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '用户实名修改');
+        $AdminRealnamemf = M("AdminRealnamemf");
+        $page = i_page_get_num();
+        $count = 20;
+        $offset = $page * $count;
+        $recordAdminRealnamemf = $AdminRealnamemf->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_admin_realnamemf.uid")->order("time DESC")->limit($offset,$count)->select();
+        $this->assign('adminRealnamemf',$recordAdminRealnamemf);
+
+        /**
+         * page link
+         */
+        $totalReocrdNums = $AdminRealnamemf->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_admin_realnamemf.uid")->count();
+        $this->assign('totalRecordNums', $totalReocrdNums);
+        $totalPages = ceil($totalReocrdNums / $count);
+        $this->assign('totalPages', $totalPages);
+
+        /**
+         * post
+         */
+        if (!empty($_GET['sendmail'])) {
+            $uid = $_GET['sendmail'];
+            $UserLogin = M("UserLogin");
+            $recordUserLogin = $UserLogin->find($uid);
+            $toEmail = $recordUserLogin['email'];
+            $toNickname = $recordUserLogin['nickname'];
+
+            /**
+             * send welcome email, do not throw exception
+             */
+            Vendor('Ihelpoo.Email');
+            $emailObj = new Email();
+            $isSend = $emailObj->realNameModifiedAllow($toEmail, $toNickname);
+            if ($isSend) {
+
+            	/**
+                 * send system message.
+                 */
+                $MsgSystem = M("MsgSystem");
+                $msgContent = "您的真实姓名可以修改了!";
+                $msgData = array(
+                    'id' => NULL,
+                    'uid' => $uid,
+                    'type' => 'setting/realfirst',
+                    'content' => $msgContent,
+                    'time' => time(),
+                    'deliver' => 0,
+                );
+                $MsgSystem->add($msgData);
+
+                /**
+                 * update i_admin_realnalemf.allow
+                 */
+                $recordAdminRealnamemf = $AdminRealnamemf->where("uid = $uid AND allow != '1'")->find();
+                $dataAf = array(
+                	'id' => $recordAdminRealnamemf['id'],
+                    'allow' => 1
+                );
+                $isUpdateAdminRealnamemf = $AdminRealnamemf->save($dataAf);
+
+                /**
+                 * update i_user_infoconn
+                 */
+                $UserInfo = M("UserInfo");
+                $dataUserInfoconn = array(
+                	'uid' => $uid,
+                    'realname_re' => 0
+                );
+                $isUpdateUserInfo = $UserInfo->save($dataUserInfoconn);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => 'realnameallowmf 允许修改真实姓名. uid:'.$uid.' realname_re:0',
+		            'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                if ($isUpdateAdminRealnamemf && $isUpdateUserInfo) {
+                	redirect('/schooladmin/realnameallowmf', 3, 'update user modify ok...');
+                } else {
+                	redirect('/schooladmin/realnameallowmf', 3, 'update info... isUpdateAdminRealnamemf:'.$isUpdateAdminRealnamemf.'; isUpdateUserInfo:'.$isUpdateUserInfo);
+                }
+            }
+        }
+        $this->display();
+    }
     
+    public function userhonor()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '授予荣誉奖励活跃');
+        if (!empty($_POST['get_user_level'])) {
+        	$UserLogin = M("UserLogin");
+            $userAll = $UserLogin->where("school = $recordSchoolInfo[id]")->select();
+            $userStrings = NULL;
+            $i = 0;
+            foreach ($userAll as $user) {
+                $userLevel = i_degree($user['active']);
+                if ($userLevel >= $_POST['get_user_level']) {
+                	$userStrings .= $user['uid'].";";
+                	$i ++;
+                }
+            }
+            $userStrings = substr($userStrings, 0, -1);
+            $this->assign('userStrings', $userStrings);
+            $this->assign('totalUserNums', ">= level".$_POST['get_user_level']." 共".$i."人");
+            
+            /**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => 'userhonor get_user_level 查询. level:'.$_POST['get_user_level'].' '.$i.'人',
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+        }
+
+        if (!empty($_POST['get_user_info'])) {
+        	$UserLogin = M("UserLogin");
+        	$userArray = explode(";", $_POST['get_user_info']);
+        	$userString = NULL;
+        	foreach ($userArray as $user) {
+        	    $userString .= $user.",";
+        	}
+        	$userString = substr($userString, 0, -1);
+
+        	$userList = $UserLogin->where("i_user_login.uid in (".$userString.")")
+        	->join('i_user_info ON i_user_info.uid = i_user_login.uid')
+        	->join('i_op_academy ON i_user_info.academy_op = i_op_academy.id')
+        	->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
+        	->join('i_op_dormitory ON i_user_info.dormitory_op = i_op_dormitory.id')
+        	->join('i_op_city ON i_user_info.city_op = i_op_city.id')
+        	->field('i_user_login.uid,email,nickname,sex,birthday,enteryear,ip,logintime,realname,mobile,qq,weibo,i_op_academy.name as nameacademy,i_op_specialty.name as namespecialty,i_op_dormitory.name as namedormitory,i_op_city.name as namecity')
+        	->select();
+        	$this->assign('userList', $userList);
+        	
+        	/**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => 'userhonor get_user_info 查询用户详细. userString:'.$userString,
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+        }
+
+        if (!empty($_POST['honor_content'])) {
+            $UserHonor = M("UserHonor");
+            $userArray = explode(";", $_POST['user_ids']);
+
+            /**
+             * message to owner
+        	 */
+        	$MsgSystem = M("MsgSystem");
+            $msgSystemType = 'helpschooladmin/userhonor';
+            $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
+            $i = 0;
+            foreach ($userArray as $user) {
+                $data = array(
+                    'id' => '',
+                    'uid' => $user,
+                    'content' => $_POST['honor_content'],
+                    'time' => time()
+                );
+                $UserHonor->add($data);
+
+                /**
+                 * insert into system message
+                 */
+                $diffusionToOwnerData = array(
+        	        'id' => '',
+        	        'uid' => $user,
+        	        'type' => $msgSystemType,
+        	        'url_id' => $user,
+        	        'from_uid' => '',
+        	        'content' => $contentToOwnerMsgSystem,
+        	        'time' => time(),
+        	        'deliver' => 0,
+                );
+        	    $MsgSystem->add($diffusionToOwnerData);
+        	    $i++;
+            }
+        	
+        	/**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => '授予我帮圈圈荣誉: 共'.$i.'人, content'.$_POST['honor_content'],
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+            redirect('/schooladmin/userhonor', 3, '授予荣誉成功 共'.$i.'人...');
+        }
+        
+        if (!empty($_POST['active_nums']) && !empty($_POST['active_reason'])) {
+        	$activeNums = $_POST['active_nums'];
+        	$activeReason = $_POST['active_reason'];
+        	if ($activeNums > 200) {
+        		redirect('/schooladmin/userhonor', 3, '“活跃”最高只能一次奖励200');
+        	}
+        	
+        	/**
+        	 * msg active
+        	 */
+        	$MsgActive = M("MsgActive");
+        	$UserLogin = M("UserLogin");
+            $userArray = explode(";", $_POST['user_ids']);
+
+            /**
+             * message to owner
+        	 */
+        	$MsgSystem = M("MsgSystem");
+            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
+            $i = 0;
+            foreach ($userArray as $user) {
+            	$recordUserLogin = $UserLogin->find($user);
+            	$recordUserLoginActive = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
+            	$userStatusData = array(
+    				'uid' => $user,
+	                'active' => $recordUserLoginActive + $activeNums,
+    			);
+    			$UserLogin->save($userStatusData);
+            	
+    			/**
+                 * insert into msg active
+                 */
+            	$msgActiveArray = array(
+					'id' => '',
+					'uid' => $user,
+					'total' => $recordUserLoginActive,
+					'change' => $activeNums,
+					'way' => 'add',
+					'reason' => $activeReason,
+					'time' => time(),
+					'deliver' => 0,
+            	);
+            	$MsgActive->add($msgActiveArray);
+
+                /**
+                 * insert into system message
+                 */
+                $insertToOwnerData = array(
+                    'id' => '',
+                    'uid' => $user,
+                    'type' => 'system',
+                    'content' => $contentToOwnerMsgSystem,
+                    'time' => time(),
+                    'deliver' => 0,
+                );
+        	    $MsgSystem->add($insertToOwnerData);
+        	    $i++;
+            }
+        	
+        	/**
+             * webmaster user operating record
+             */
+            $SchoolRecord = M("SchoolRecord");
+            $newSchoolRecordData = array(
+		        'id' => '',
+		        'sys_id' => '',
+		        'uid' => $webmaster['uid'],
+		        'sid' => $recordSchoolInfo['id'],
+		        'record' => '奖励我帮圈圈活跃: 共'.$i.'人, nums:'.$activeNums.', reason:'.$activeReason,
+		        'time' => time()
+            );
+            $SchoolRecord->add($newSchoolRecordData);
+            redirect('/schooladmin/userhonor', 3, '奖励我帮圈圈活跃 共'.$i.'人...');
+        }
+        $this->display();
+    }
+    
+    public function userinvite()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '邀请用户 奖励');
+    	$UserInvite = M("UserInvite");
+
+    	if ($this->isPost()) {
+    		$id = (int)$_POST['id'];
+    		$award = (int)$_POST['award'];
+    		$recordUserInvite = $UserInvite->find($id);
+    		if (!empty($recordUserInvite['id'])) {
+    			$updateInviteStatus = array(
+    				'id' => $id,
+    				'award' => $award,
+    			);
+    			$UserInvite->save($updateInviteStatus);
+
+    			/**
+    			 * send message system
+    			 */
+    			$MsgSystem = M("MsgSystem");
+	            if ($award == 1) {
+	            	$msgContent = "你邀请的用户被认定为有效，加活跃50";
+	            	$UserLogin = M("UserLogin");
+	            	$recordUserLogin = $UserLogin->find($recordUserInvite['uid']);
+
+	            	/**
+	                 * msg active
+	                 */
+	                $MsgActive = M("MsgActive");
+	                $msgActiveArray = array(
+		            	'id' => '',
+		            	'uid' => $recordUserInvite['uid'],
+		            	'total' => $recordUserLogin['active'],
+		            	'change' => 50,
+		            	'way' => 'add',
+		            	'reason' => '成功邀请朋友加入我帮圈圈',
+		            	'time' => time(),
+		            	'deliver' => 0,
+		            );
+		            $MsgActive->add($msgActiveArray);
+		            $updateUserLoginInfo = array(
+                    	'uid' => $recordUserInvite['uid'],
+                    	'active' => $recordUserLogin['active'] + 50,
+                    );
+                	$UserLogin->save($updateUserLoginInfo);
+	            } else {
+	            	$msgContent = "你邀请的用户无效:(，暂时不赠送活跃";
+	            }
+	            $msgData = array(
+                	'id' => NULL,
+                	'uid' => $recordUserInvite['uid'],
+                 	'type' => 'schooladmin/userinvite',
+              		'content' => $msgContent,
+                	'time' => time(),
+                	'deliver' => 0,
+	            );
+	            $MsgSystem->add($msgData);
+	            
+	            /**
+	             * webmaster user operating record
+	             */
+	            $SchoolRecord = M("SchoolRecord");
+	            $newSchoolRecordData = array(
+			        'id' => '',
+			        'sys_id' => '',
+			        'uid' => $webmaster['uid'],
+			        'sid' => $recordSchoolInfo['id'],
+			        'record' => '邀请用户认定, uid:'.$recordUserInvite['uid'].', content:'.$msgContent,
+			        'time' => time()
+	            );
+	            $SchoolRecord->add($newSchoolRecordData);
+    			redirect('/schooladmin/userinvite', 1, 'ok...');
+    		}
+    	}
+
+    	$page = i_page_get_num();
+        $count = 20;
+        $this->assign('count', $count);
+        $offset = $page * $count;
+        $resultsUserInvite = $UserInvite->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_invite.uid")->order("time DESC")->limit($offset,$count)->select();
+        $this->assign('resultsUserInvite', $resultsUserInvite);
+
+        $totalRecords = $UserInvite->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_invite.uid")->count();
+    	$this->assign('totalRecords',$totalRecords);
+    	$totalPages = ceil($totalRecords / $count);
+        $this->assign('totalPages',$totalPages);
+
+    	$this->display();
+    }
+    
+    /**
+     * record management
+     */
+    public function record()
+    {
+        $webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '信息管理');
+        $RecordSay = M("RecordSay");
+        if (!empty($_POST['recordid'])) {
+        	$recordid = $_POST['recordid'];
+        	$resultRecordSay = $RecordSay->where("sid = $recordid AND school_id = $recordSchoolInfo[id]")->find();
+        	if (!empty($resultRecordSay['sid'])) {
+        		$this->assign('recordDelete', $resultRecordSay);
+        	} else {
+        		redirect('/schooladmin/record', 3, '没有找到相关记录或者你没有其他学校记录的删除权限...');
+        	}
+        	
+        	/**
+        	 * webmaster user operating record
+        	 */
+        	$SchoolRecord = M("SchoolRecord");
+        	$newSchoolRecordData = array(
+			    'id' => '',
+			    'sys_id' => '',
+			    'uid' => $webmaster['uid'],
+			    'sid' => $recordSchoolInfo['id'],
+			    'record' => '查询记录, sid:'.$_POST['recordid'].' content:'.$resultRecordSay['content'],
+			    'time' => time()
+        	);
+        	$SchoolRecord->add($newSchoolRecordData);
+        }
+        if (!empty($_POST['sid'])) {
+        	$sid = $_POST['sid'];
+        	$RecordHelp = M("RecordHelp");
+        	$RecordComment = M("RecordComment");
+        	$RecordHelpreply = M("RecordHelpreply");
+        	$RecordSay->where("sid = $sid")->delete();
+        	$RecordComment->where("sid = $sid")->delete();
+        	$RecordHelp->where("sid = $sid")->delete();
+        	$RecordHelpreply->where("sid = $sid")->delete();
+        	
+        	/**
+        	 * webmaster user operating record
+        	 */
+        	$SchoolRecord = M("SchoolRecord");
+        	$newSchoolRecordData = array(
+			    'id' => '',
+			    'sys_id' => '',
+			    'uid' => $webmaster['uid'],
+			    'sid' => $recordSchoolInfo['id'],
+			    'record' => '删除记录, sid:'.$sid,
+			    'time' => time()
+        	);
+        	$SchoolRecord->add($newSchoolRecordData);
+        	redirect('/schooladmin/record', 3, '删除记录成功 涉及4个表...');
+        }
+        $this->display();
+    }
+    
+    /**
+     * mall
+     */
+    public function mallshop()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','小店管理');
+    	$page = i_page_get_num();
+        $count = 20;
+        $offset = $page * $count;
+    	$UserShop = M("UserShop");
+    	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+		$UserLogin = M("UserLogin");
+    		
+    	/**
+    	 * search
+    	 */
+    	if (!empty($_GET['searchuid'])) {
+    		$searchuid = (int)$_GET['searchuid'];
+    		redirect('/schooladmin/mallshop/'.$searchuid, 0, 'ok...');
+    	}
+    	
+    	/**
+    	 * post change shop status
+    	 */
+    	if ($this->isPost()) {
+    		$uid = (int)$_POST['uid'];
+    		$status = (int)$_POST['status'];
+    		$recordUserShop = $UserShop->find($uid);
+    		if ($status != $recordUserShop['status']) {
+	    		if (!empty($uid) && !empty($status)) {
+	    			$updateShopStatus = array(
+	    				'uid' => $uid,
+	    				'status' => $status,
+	    			);
+	    			$UserShop->save($updateShopStatus);
+	
+	    			/**
+		             * send system message.
+		             */
+		            $MsgSystem = M("MsgSystem");
+		            if ($status == 2) {
+		            	$msgContent = "资料重新审核通过，您的小店又开通了!";
+		            } else {
+		            	$msgContent = "资料重新审核中，您的小店暂时关闭!";
+		            }
+		            $msgData = array(
+	                	'id' => NULL,
+	                	'uid' => $uid,
+	                 	'type' => 'system',
+	              		'content' => $msgContent,
+	                	'time' => time(),
+	                	'deliver' => 0,
+		            );
+		            $MsgSystem->add($msgData);
+		            
+		            /**
+		             * webmaster user operating record
+		             */
+		            $SchoolRecord = M("SchoolRecord");
+		            $newSchoolRecordData = array(
+					    'id' => '',
+					    'sys_id' => '',
+					    'uid' => $webmaster['uid'],
+					    'sid' => $recordSchoolInfo['id'],
+					    'record' => '小店管理, uid:'.$uid. 'content:'.$msgContent,
+					    'time' => time()
+		            );
+		            $SchoolRecord->add($newSchoolRecordData);
+	    			redirect('/schooladmin/mallshop/'.$uid, 1, 'ok...');
+	    		}
+    		}
+    	}
+
+    	/**
+    	 * list
+    	 */
+    	if (!empty($userId)) {
+    		$recordUserLogin = $UserLogin->find($userId);
+    		if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
+    			redirect('/schooladmin/mallshop/'.$searchuid, 3, '无权管理其他学校小店...');
+    		}
+    		$userShopRecord = $UserShop->find($userId);
+    		$this->assign('userShopRecord',$userShopRecord);
+    	} else {
+	    	$userShopRecords = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")
+	    	->order("i_user_shop.status DESC, i_user_shop.time ASC")
+	    	->field("i_user_shop.status,i_user_shop.uid,i_user_shop.time,i_user_login.nickname,i_user_login.school")
+	    	->limit($offset,$count)->select();
+	    	$this->assign('userShopRecords',$userShopRecords);
+	    	$totalshops = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->count();
+	    	$this->assign('totalshops',$totalshops);
+	    	$totalPages = ceil($totalshops / $count);
+	        $this->assign('totalPages',$totalPages);
+    	}
+    	$this->display();
+    }
+    
+    public function mallcommodity()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','商品管理');
+    	if ($this->isPost()) {
+    		$RecordCommodity = M("RecordCommodity");
+    		if (!empty($_POST['search'])) {
+        		$searchWords = (int)trim(htmlspecialchars(strip_tags($_POST['search'])));
+        		$resultRecordCommodity = $RecordCommodity->where("cid = $searchWords AND school_id = $recordSchoolInfo[id]")->find();
+        		$this->assign('resultRecordCommodity', $resultRecordCommodity);
+        		
+        		$UserShop = M("UserShop");
+        		$recordUserShop = $UserShop->where("uid = $resultRecordCommodity[shopid]")->find();
+        		$this->assign('recordUserShop', $recordUserShop);
+        		
+	        	/**
+	        	 * webmaster user operating record
+	        	 */
+	        	$SchoolRecord = M("SchoolRecord");
+	        	$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => 'search 搜索商品: '.$resultRecordCommodity['name'],
+					'time' => time()
+	        	);
+	        	$SchoolRecord->add($newSchoolRecordData);
+    		}
+    		
+    		if (!empty($_POST['cid'])) {
+    			$newStatusRecordCommodity = array(
+    				'cid' => (int)$_POST['cid'],
+    				'status' => (int)$_POST['status']
+    			);
+    			$RecordCommodity->save($newStatusRecordCommodity);
+	        	
+	        	/**
+	        	 * webmaster user operating record
+	        	 */
+	        	$SchoolRecord = M("SchoolRecord");
+	        	$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => '更新商品状态 cid:'.$_POST['cid'].' status:'.$_POST['status'],
+					'time' => time()
+	        	);
+	        	$SchoolRecord->add($newSchoolRecordData);
+	        	redirect('/schooladmin/mallcommodity/', 1, 'update commodity status ok...');
+    		}
+    	}
+    	$this->display();
+    }
+
+    
+    /**
+     * operating record
+     */
     public function operatingrecord()
     {
     	$webmaster = logincheck();

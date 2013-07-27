@@ -1,4 +1,3 @@
-<?php $DaQcode = M("DaQcode"); ?>
 <include file="Public:headerrooter" />
 	<?php if (!empty($userShopRecord)) { ?>
 	<ul class="user_ul">
@@ -12,13 +11,8 @@
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
 		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['uid']; ?></a> - <a href="<?php echo $userShopRecord['idcard']; ?>" target="_blank">证件</a>
-		    	<?php
-		    	$recordDaQcode = $DaQcode->where("uid = $userShopRecord[uid]")->find();
-				if (!empty($recordDaQcode['id'])) {
-					echo "圈圈码:".$recordDaQcode['qcode'];
-				} ?>
 		    </p>
-		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">店铺</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
+		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
 		    <p>
 		    	状态: <input type="text" name="status" value="<?php echo $userShopRecord['status']; ?>" />
 		    </p>
@@ -57,13 +51,8 @@
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
 		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['uid']; ?></a> - <a href="<?php echo $userShops['idcard']; ?>" target="_blank">证件</a>
-		    	<?php
-		    	$recordDaQcode = $DaQcode->where("uid = $userShops[uid]")->find();
-				if (!empty($recordDaQcode['id'])) {
-					echo "圈圈码:".$recordDaQcode['qcode'];
-				} ?>
 		    </p>
-		    <p><a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">店铺</a> 开店时间:<?php echo i_time($userShops['time']); ?></span></p>
+		    <p><a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShops['time']); ?></span></p>
 		    <p>
 		    	状态: <input type="text" name="status" value="<?php echo $userShops['status']; ?>" />
 		    </p>
@@ -83,7 +72,7 @@
 	</li>
 	<?php }	?>
 	</ul>
-	<p class="f12 gray paging_p">共<?php echo $totalshops ?>个店铺 <?php echo $totalPages ?>页</p>
+	<p class="f12 gray paging_p">共<?php echo $totalshops ?>个小店 <?php echo $totalPages ?>页</p>
 	<div class="paging_div">
 	  <?php if ($totalPages > 1) { i_page_show("rooter/mallshop", $totalPages); } ?>
 	</div>
