@@ -872,7 +872,7 @@ class StreamAction extends Action
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
             $recordSay = $this->bouncePlusCountOfRecord($_POST['sid'] ,-1);
-            deleteNoticeMessage($msgNotice['notice_id']);
+            $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
         }else{
             $this->addPlusRecord($_POST['sid']);
