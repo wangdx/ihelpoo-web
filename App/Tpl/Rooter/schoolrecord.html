@@ -1,9 +1,9 @@
-<include file="Public:headerwebmaster" />
+<include file="Public:headerrooter" />
 <ul class="user_ul">
 <?php foreach($recordsWebmasterUserrecord as $WebmasterUserrecord) { ?>
 	<li>
 		<span class="black_l fb"><?php echo $WebmasterUserrecord['school']; ?></span> 
-		<span class="black_l fb"><?php echo $WebmasterUserrecord['nickname']; ?></span>
+		<span class="black_l fb"><a href="__ROOT__/rooter/user/<?php echo $WebmasterUserrecord['uid']; ?>"><?php echo $WebmasterUserrecord['nickname']; ?></a></span>
 		<?php echo $WebmasterUserrecord['position'] == 'm' ? '站长' : '副站长'; ?>
 		<span class="f12 gray">record:</span> <span class="red_l"><?php echo $WebmasterUserrecord['record']; ?></span>
 		<span class="f12 gray"><?php echo empty($WebmasterUserrecord['sys_id']) ? NULL : "systemid:".$WebmasterUserrecord['sys_id']; ?> 时间:<?php echo i_time($WebmasterUserrecord['time']); ?></span>
@@ -14,4 +14,4 @@
 <div class="paging_div">
   <?php if ($totalPages > 1) { i_page_show("rooter/schoolrecord", $totalPages); } ?>
 </div>
-<include file="Public:footerwebmaster" />
+<include file="Public:footerrooter" />
