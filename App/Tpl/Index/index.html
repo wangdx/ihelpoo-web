@@ -95,7 +95,7 @@ body{
 		<?php } ?>
 	<?php } else { ?>
 	<div class="mim_loginbox">
-		<ul class="white">
+		<ul class="">
 			<li style="height:30px;"></li>
 			<?php if (!empty($_GET['login'])) { ?>
 				<li class="f12" style="height:30px;"><span id="wb_connect_btn"></span> 微博登录 <a href="__ROOT__/stream/" class="f16 reb_back fb">{$userloginedrecord['nickname']}</a> <a href="__ROOT__/user/quit" class="gray">退出</a></li>
@@ -103,9 +103,9 @@ body{
 				<li class="f12" style="height:30px;"><span class="icon_pump"></span> 您已经登录 <a href="__ROOT__/stream/" class="f16 reb_back fb">{$userloginedrecord['nickname']}</a> <a href="__ROOT__/user/quit" class="gray">退出</a></li>
 			<?php } ?>
 			<li style="height:10px;"></li>
-	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/stream/" class="white">个人中心</a></li>
-	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/message/" class="white">您的消息</a></li>
-	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/setting/" class="white">个人资料</a></li>
+	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/stream/" class="">个人中心</a></li>
+	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/message/" class="">您的消息</a></li>
+	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/setting/" class="">个人资料</a></li>
 	    </ul>
 	</div>
 	<?php } ?>
