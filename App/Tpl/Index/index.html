@@ -106,7 +106,6 @@ body{
 	<?php } ?>
   </div>
   <div class="main_index_sub f12">
-  	<span class="icon_plus"></span><span class="white">你正在访问的是 {$schoolname}</span> <a href="__ROOT__/index/school">切换学校<span class="icon_new"></span></a>
     <span class="icon_index_mobile"></span> <a class="white">手机 平板直接访问</a>
     <a href="http://weibo.com/ihelpoo" target="_blank" class="white"><span class="post_at" style="vertical-align: bottom;"></span>我帮圈圈<span class="fi">(新浪微博)</span></a>
   </div>
@@ -114,12 +113,7 @@ body{
 <div class="footer_about f12 white">
   <p>Copyright © 2013 ihelpoo.com 我帮圈圈 | <a href="__ROOT__/about">关于我们</a> | <a href="__ROOT__/support?play">使用帮助</a> | 鄂ICP备07502730号</p>
   <p class="f10">
-    <?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
-  		<a href="http://sae.sina.com.cn" target="_blank"><img src="__PUBLIC__/image/common/sinaapp.gif" style="vertical-align:bottom"></a>
-  	<?php } else { ?>
-    	<a href="http://sae.sina.com.cn" target="_blank"><img src="__PUBLIC__/image/common/sinaapp.png" style="vertical-align:bottom"></a>
-    <?php } ?>
-  Beta for 湖北民族学院
+  Beta for {$schoolname}
   </p>
 </div>
 </div>
