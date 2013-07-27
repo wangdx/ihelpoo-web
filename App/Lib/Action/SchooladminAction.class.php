@@ -279,7 +279,7 @@ class SchooladminAction extends Action {
         $UserLogin = M("UserLogin");
         $userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         $recordSchoolInfo = i_school_domain();
-
+        
         /**
          * search
          */
@@ -291,10 +291,6 @@ class SchooladminAction extends Action {
         		$userLoginRecord = $UserLogin->where("uid = '$searchWords'")->find();
         	} else {
         		$userLoginRecord = $UserLogin->where("nickname like '%$searchWords%'")->find();
-        	}
-        	
-        	if ($userLoginRecord['school'] != $recordSchoolInfo['id']) {
-        		redirect('/schooladmin/user', 1, '仅查询到其他学校用户，你无权管理...');
         	}
         	
         	/**
@@ -404,6 +400,10 @@ class SchooladminAction extends Action {
         if (!empty($userId)) {
         	$recordUserLogin = $UserLogin->find($userId);
         	$this->assign('recordUserLogin',$recordUserLogin);
+        	
+        	if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
+        		redirect('/schooladmin/user', 1, '仅查询到其他学校用户，你无权管理...');
+        	}
         	
         	/**
         	 * user album
