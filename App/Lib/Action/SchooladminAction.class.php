@@ -1074,6 +1074,63 @@ class SchooladminAction extends Action {
     	}
     	$this->display();
     }
+    
+    public function mallcommodity()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','商品管理');
+    	if ($this->isPost()) {
+    		$RecordCommodity = M("RecordCommodity");
+    		if (!empty($_POST['search'])) {
+        		$searchWords = (int)trim(htmlspecialchars(strip_tags($_POST['search'])));
+        		$resultRecordCommodity = $RecordCommodity->where("cid = $searchWords AND school_id = $recordSchoolInfo[id]")->find();
+        		$this->assign('resultRecordCommodity', $resultRecordCommodity);
+        		
+        		$UserShop = M("UserShop");
+        		$recordUserShop = $UserShop->where("uid = $resultRecordCommodity[shopid]")->find();
+        		$this->assign('recordUserShop', $recordUserShop);
+        		
+	        	/**
+	        	 * webmaster user operating record
+	        	 */
+	        	$SchoolRecord = M("SchoolRecord");
+	        	$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => 'search 搜索商品: '.$resultRecordCommodity['name'],
+					'time' => time()
+	        	);
+	        	$SchoolRecord->add($newSchoolRecordData);
+    		}
+    		
+    		if (!empty($_POST['cid'])) {
+    			$newStatusRecordCommodity = array(
+    				'cid' => (int)$_POST['cid'],
+    				'status' => (int)$_POST['status']
+    			);
+    			$RecordCommodity->save($newStatusRecordCommodity);
+	        	
+	        	/**
+	        	 * webmaster user operating record
+	        	 */
+	        	$SchoolRecord = M("SchoolRecord");
+	        	$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => '更新商品状态 cid:'.$_POST['cid'].' status:'.$_POST['status'],
+					'time' => time()
+	        	);
+	        	$SchoolRecord->add($newSchoolRecordData);
+	        	redirect('/schooladmin/mallcommodity/', 1, 'update commodity status ok...');
+    		}
+    	}
+    	$this->display();
+    }
 
     
     /**
