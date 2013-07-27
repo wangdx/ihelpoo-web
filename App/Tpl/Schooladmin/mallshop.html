@@ -10,7 +10,7 @@
 		    	<?php } else { ?>
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
-		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['uid']; ?></a> - <a href="<?php echo $userShopRecord['idcard']; ?>" target="_blank">证件</a>
+		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShopRecord['uid']; ?>" target="_blank"><?php echo $userShopRecord['nickname']; ?></a>
 		    </p>
 		    <p><a href="__ROOT__/mall/shop/<?php echo $userShopRecord['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShopRecord['time']); ?></span></p>
 		    <p>
@@ -40,7 +40,7 @@
 		    	<?php } else { ?>
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
-		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['uid']; ?></a> - <a href="<?php echo $userShops['idcard']; ?>" target="_blank">证件</a>
+		    	用户ID: <a href="__ROOT__/rooter/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['nickname']; ?></a>
 		    </p>
 		    <p><a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店</a> 开店时间:<?php echo i_time($userShops['time']); ?></span></p>
 		    <p>
