@@ -1104,7 +1104,7 @@ class SchooladminAction extends Action {
     		$userShopRecord = $UserShop->find($userId);
     		$this->assign('userShopRecord',$userShopRecord);
     	} else {
-	    	$userShopRecords = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->order("status DESC, time ASC")->limit($offset,$count)->select();
+	    	$userShopRecords = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->order("i_user_shop.status DESC, time ASC")->limit($offset,$count)->select();
 	    	$this->assign('userShopRecords',$userShopRecords);
 	    	$totalshops = $UserShop->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_shop.uid")->count();
 	    	$this->assign('totalshops',$totalshops);
