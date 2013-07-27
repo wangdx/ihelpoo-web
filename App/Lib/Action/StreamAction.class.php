@@ -880,7 +880,13 @@ class StreamAction extends Action
             $this->addPlusRecord($sid);
             $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
+
+
+            $redis = new Redis();
+            $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+            $this->increaseNoticeMessageCount($redis, $recordSay['uid']);
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
+
             echo $recordSay['plus_co'];
         }
         exit();
@@ -1044,9 +1050,9 @@ class StreamAction extends Action
         return $recordSaySet;
     }
 
-    public function increaseNoticeMessageCount($redis, $userPriority)
+    public function increaseNoticeMessageCount($redis, $uid)
     {
-        $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($userPriority['uid'], 0, strlen($userPriority['uid']) - 3), substr($userPriority['uid'], -3), 1);
+        $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($uid, 0, strlen($uid) - 3), substr($uid, -3), 1);
     }
 
     public function diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $recordOwnerId)
@@ -1076,9 +1082,10 @@ class StreamAction extends Action
     {
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $this->increaseNoticeMessageCount($redis, $recordOwnerId);
         $this->deliverTo($recordOwnerId, $noticeIdForOwner);
         foreach ($userPriorityObj as $userPriority) {
-            $this->increaseNoticeMessageCount($redis, $userPriority);
+            $this->increaseNoticeMessageCount($redis, $userPriority['uid']);
             $this->deliverTo($userPriority['uid'], $noticeIdForFollowers);
         }
     }
@@ -1087,7 +1094,7 @@ class StreamAction extends Action
     public function deliverTo($who, $noticeId)
     {
         $redis = new Redis();
-        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId, 0);
     }
 
@@ -1098,7 +1105,7 @@ class StreamAction extends Action
     public function deliverBack($who, $noticeId)
     {
         $redis = new Redis();
-        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hDel(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId);
     }
 
