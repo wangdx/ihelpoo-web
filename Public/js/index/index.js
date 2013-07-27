@@ -1,11 +1,9 @@
 var firstVisitUrl = location.href;
-if (firstVisitUrl == 'http://ihelpoo.sinaapp.com/') {
-	alert('请访问 www.ihelpoo.com 我帮圈圈这个域名 :)，点击确定后页面自动跳转...');
-	window.location = 'http://www.ihelpoo.com/';
-}
 
 $().ready(function(){
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
+    $('#index_lf_div_icon_p_img').fadeTo('fast', 0.9);
+    
     emailok = 'no';
     passwordok = 'no';
     $('#email').blur(function(){
