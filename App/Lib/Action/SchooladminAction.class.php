@@ -403,6 +403,8 @@ class SchooladminAction extends Action {
         	if ($recordUserLogin['school'] != $recordSchoolInfo['id']) {
         		redirect('/schooladmin/user', 1, '仅查询到其他学校用户，你无权管理...');
         	}
+        	$UserInfo = M("UserInfo");
+        	$recordUserInfo = $UserInfo->find($userId);
         	
         	/**
         	 * user album
@@ -435,6 +437,7 @@ class SchooladminAction extends Action {
         	$userOtherInfo = array(
         		'uid' => $recordUserLogin['uid'],
         		'nickname' => $recordUserLogin['nickname'],
+        		'realname' => $recordUserInfo['realname'],
         		'userAlbumNums' => $userAlbumNums,
         		'userAlbumSize' => round($userAlbumSize/(1024*1024),2)."MB",
         		'userMsgSystemNums' => $userMsgSystemNums,
@@ -819,6 +822,98 @@ class SchooladminAction extends Action {
             redirect('/schooladmin/userhonor', 3, '奖励我帮圈圈活跃 共'.$i.'人...');
         }
         $this->display();
+    }
+    
+    public function userinvite()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '邀请用户 奖励');
+    	$UserInvite = M("UserInvite");
+
+    	if ($this->isPost()) {
+    		$id = (int)$_POST['id'];
+    		$award = (int)$_POST['award'];
+    		$recordUserInvite = $UserInvite->find($id);
+    		if (!empty($recordUserInvite['id'])) {
+    			$updateInviteStatus = array(
+    				'id' => $id,
+    				'award' => $award,
+    			);
+    			$UserInvite->save($updateInviteStatus);
+
+    			/**
+    			 * send message system
+    			 */
+    			$MsgSystem = M("MsgSystem");
+	            if ($award == 1) {
+	            	$msgContent = "你邀请的用户被认定为有效，加活跃50";
+	            	$UserLogin = M("UserLogin");
+	            	$recordUserLogin = $UserLogin->find($recordUserInvite['uid']);
+
+	            	/**
+	                 * msg active
+	                 */
+	                $MsgActive = M("MsgActive");
+	                $msgActiveArray = array(
+		            	'id' => '',
+		            	'uid' => $recordUserInvite['uid'],
+		            	'total' => $recordUserLogin['active'],
+		            	'change' => 50,
+		            	'way' => 'add',
+		            	'reason' => '成功邀请朋友加入我帮圈圈',
+		            	'time' => time(),
+		            	'deliver' => 0,
+		            );
+		            $MsgActive->add($msgActiveArray);
+		            $updateUserLoginInfo = array(
+                    	'uid' => $recordUserInvite['uid'],
+                    	'active' => $recordUserLogin['active'] + 50,
+                    );
+                	$UserLogin->save($updateUserLoginInfo);
+	            } else {
+	            	$msgContent = "你邀请的用户无效:(，暂时不赠送活跃";
+	            }
+	            $msgData = array(
+                	'id' => NULL,
+                	'uid' => $recordUserInvite['uid'],
+                 	'type' => 'rooter/userinvite',
+              		'content' => $msgContent,
+                	'time' => time(),
+                	'deliver' => 0,
+	            );
+	            $MsgSystem->add($msgData);
+	            
+	            /**
+	             * webmaster user operating record
+	             */
+	            $SchoolRecord = M("SchoolRecord");
+	            $newSchoolRecordData = array(
+			        'id' => '',
+			        'sys_id' => '',
+			        'uid' => $webmaster['uid'],
+			        'sid' => $recordSchoolInfo['id'],
+			        'record' => '邀请用户认定, uid:'.$recordUserInvite['uid'].', content:'.$msgContent,
+			        'time' => time()
+	            );
+	            $SchoolRecord->add($newSchoolRecordData);
+    			redirect('/schooladmin/userinvite', 1, 'ok...');
+    		}
+    	}
+
+    	$page = i_page_get_num();
+        $count = 20;
+        $this->assign('count', $count);
+        $offset = $page * $count;
+        $resultsUserInvite = $UserInvite->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_invite.uid")->order("time DESC")->limit($offset,$count)->select();
+        $this->assign('resultsUserInvite', $resultsUserInvite);
+
+        $totalRecords = $UserInvite->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_user_invite.uid")->count();
+    	$this->assign('totalRecords',$totalRecords);
+    	$totalPages = ceil($totalRecords / $count);
+        $this->assign('totalPages',$totalPages);
+
+    	$this->display();
     }
 
     
