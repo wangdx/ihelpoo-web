@@ -875,13 +875,13 @@ class StreamAction extends Action
             $recordSay = $this->bouncePlusCountOfRecord($sid ,-1);
             $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
-            echo $recordSay['plus_co'] - 1;
+            echo $recordSay['plus_co'];
         }else{
             $this->addPlusRecord($sid);
             $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
-            echo $recordSay['plus_co'] + 1;
+            echo $recordSay['plus_co'];
         }
         exit();
     }
@@ -907,10 +907,11 @@ class StreamAction extends Action
         $resultRecordSay = $RecordSay->find($sid);
         $recordSay = array(
             'sid' => $sid,
+            'uid' => $resultRecordSay['uid'],
             'plus_co' => $resultRecordSay['plus_co'] + $offset,
         );
         $RecordSay->save($recordSay);
-        return $resultRecordSay;
+        return $recordSay;
     }
 
 
@@ -1088,7 +1089,6 @@ class StreamAction extends Action
         $redis = new Redis();
         $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId, 0);
-        echo 'to';
     }
 
 
@@ -1100,7 +1100,6 @@ class StreamAction extends Action
         $redis = new Redis();
         $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hDel(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId);
-        echo 'back';
     }
 
 
