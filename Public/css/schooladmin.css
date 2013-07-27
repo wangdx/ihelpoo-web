@@ -122,8 +122,8 @@ a:hover{
 .input_style{
     margin: 8px 0;
     padding: 3px 5px;
-    font-size: 14px;
-    color: #000;
+    font-size: 12px;
+    color: #666;
     width: 333px;
     border: 1px solid #D0D0D0;
     word-wrap: break-word;
@@ -137,6 +137,7 @@ a:hover{
     outline: none;
 }
 .input_style:focus {
+    color: #333;
 	border-color: #7BD6F6;
 	-moz-outline: 4px solid #E2F5FB;
 	-moz-outline-radius: 8px;
@@ -146,7 +147,7 @@ a:hover{
 .textarea_style{
     padding: 5px;
     font-size: 12px;
-    color: #000;
+    color: #666;
     resize: none;
     line-height: 21px;
     margin: 8px 0;
@@ -164,6 +165,7 @@ a:hover{
     outline: none;
 }
 .textarea_style:focus {
+    color: #333;
 	border-color: #7BD6F6;
 	-moz-outline: 4px solid #E2F5FB;
 	-moz-outline-radius: 8px;
