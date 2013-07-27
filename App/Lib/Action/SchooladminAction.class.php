@@ -166,10 +166,10 @@ class SchooladminAction extends Action {
          * update system parameter
          */
         if ($this->isPost()) {
-        	$index_user = trim(addslashes($_POST['index_user']));
+        	$index_user = trim(addslashes(htmlspecialchars(strip_tags($_POST['index_user']))));
         	$index_spread_info = trim(addslashes($_POST['index_spread_info']));
-        	$image_index = trim(addslashes($_POST['image_index']));
-        	$image_mobile = trim(addslashes($_POST['image_mobile']));
+        	$image_index = trim(addslashes(htmlspecialchars(strip_tags($_POST['image_index']))));
+        	$image_mobile = trim(addslashes(htmlspecialchars(strip_tags($_POST['image_mobile']))));
         	$about = trim(addslashes($_POST['about']));
         	
         	$newSchoolSystem = array(
@@ -281,7 +281,7 @@ class SchooladminAction extends Action {
     	
     	if ($this->isPost()) {
     		$academyid = (int)$_POST['academyid'];
-    		$name = $_POST['name'];
+    		$name = trim(addslashes(htmlspecialchars(strip_tags($_POST['name']))));
     		if (!empty($name) && !empty($schoolid)) {
 	    		if (empty($academyid)) {
 		    		$newOpAcademy = array(
@@ -389,7 +389,7 @@ class SchooladminAction extends Action {
     		$specialtyid = (int)$_POST['specialtyid'];
     		$schoolpostid = $recordSchoolInfo['id'];
     		$academypostid = (int)$_POST['acedemy'];
-    		$name = $_POST['name'];
+    		$name = trim(addslashes(htmlspecialchars(strip_tags($_POST['name']))));
     		if (!empty($name) && !empty($schoolpostid) && !empty($academypostid)) {
 	    		if (empty($specialtyid)) {
 		    		$newOpSpecialty = array(
@@ -504,8 +504,8 @@ class SchooladminAction extends Action {
     	if ($this->isPost()) {
     		$dormitoryid = (int)$_POST['dormitoryid'];
     		$schoolpostid = $recordSchoolInfo['id'];
-    		$name = $_POST['name'];
-    		$type = $_POST['type'];
+    		$name = trim(addslashes(htmlspecialchars(strip_tags($_POST['name']))));
+    		$type = (int)$_POST['type'];
     		if (!empty($name) && !empty($schoolpostid) && !empty($type)) {
 	    		if (empty($dormitoryid)) {
 		    		$newOpDormitory = array(
@@ -1082,7 +1082,7 @@ class SchooladminAction extends Action {
         
         if (!empty($_POST['active_nums']) && !empty($_POST['active_reason'])) {
         	$activeNums = $_POST['active_nums'];
-        	$activeReason = $_POST['active_reason'];
+        	$activeReason = trim(addslashes(htmlspecialchars(strip_tags($_POST['active_reason']))));
         	if ($activeNums > 200) {
         		redirect('/schooladmin/userhonor', 3, '“活跃”最高只能一次奖励200');
         	}
@@ -1550,8 +1550,8 @@ class SchooladminAction extends Action {
     	 */
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
-    		$name = $_POST['name'];
-    		$url = $_POST['url'];
+    		$name = trim(addslashes(htmlspecialchars(strip_tags($_POST['name']))));
+    		$url = trim(addslashes(htmlspecialchars(strip_tags($_POST['url']))));
     		$order = (int)$_POST['order'];
     		if (empty($id)) {
     			$newCooperationData = array(
