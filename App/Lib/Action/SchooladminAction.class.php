@@ -928,7 +928,11 @@ class SchooladminAction extends Action {
         if (!empty($_POST['recordid'])) {
         	$recordid = $_POST['recordid'];
         	$resultRecordSay = $RecordSay->where("sid = $recordid AND school_id = $recordSchoolInfo[id]")->find();
-        	$this->assign('recordDelete', $resultRecordSay);
+        	if (!empty($resultRecordSay[sid])) {
+        		$this->assign('recordDelete', $resultRecordSay);
+        	} else {
+        		redirect('/schooladmin/record', 3, '没有找到相关记录或者你没有其他学校删除权限...');
+        	}
         	
         	/**
         	 * webmaster user operating record
