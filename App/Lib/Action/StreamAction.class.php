@@ -864,15 +864,23 @@ class StreamAction extends Action
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
         $sid = $_POST['sid'];
+        $diffusionSidArray = explode("-", $_POST['diffusionSid']);
         $plus = $RecordPlus->where("uid = $userloginid AND $sid = sid")->find();
         $plusId = $plus['id'];
+        $MsgNotice = M('MsgNotice');
+        $msgNotice = $MsgNotice->where("notice_type = 'plus' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
-            echo $this->bouncePlusCountOfRecord($_POST['sid'] ,-1);
+            $recordSay = $this->bouncePlusCountOfRecord($_POST['sid'] ,-1);
+            $this->deleteNoticeMessage($msgNotice['notice_id']);
+            $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
         }else{
             $this->addPlusRecord($_POST['sid']);
-            echo $this->bouncePlusCountOfRecord($_POST['sid'] ,1);
+            $recordSay = $this->bouncePlusCountOfRecord($_POST['sid'] ,1);
+            $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $sid, 'plus');
+            $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
         }
+        echo $recordSay['plus_co'];
         exit();
     }
 
@@ -885,6 +893,7 @@ class StreamAction extends Action
             'sid' => $sid,
             'uid' => $userloginid,
             'view'=> '',
+            'deliver'=>0,
             'create_time' => time(),
         );
         return $RecordPlus->add($plus);
@@ -892,18 +901,14 @@ class StreamAction extends Action
 
     public function bouncePlusCountOfRecord($sid, $offset)
     {
-        $userloginid = session('userloginid');
         $RecordSay = M("RecordSay");
         $resultRecordSay = $RecordSay->find($sid);
-
-        $UserLogin = M("UserLogin");
-        $recordUserLogin = $UserLogin->find($userloginid);
-        $recordSaySet = array(
+        $recordSay = array(
             'sid' => $sid,
             'plus_co' => $resultRecordSay['plus_co'] + $offset,
         );
-        $RecordSay->save($recordSaySet);
-        return $resultRecordSay['plus_co']  + $offset;
+        $RecordSay->save($recordSay);
+        return $recordSay;
     }
 
 
@@ -921,7 +926,7 @@ class StreamAction extends Action
         $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
         $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionId);
         $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
-        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid,$diffusionId);
+        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionId, 'diffusiontoowner');
         $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
         exit();
     }
@@ -966,9 +971,11 @@ class StreamAction extends Action
         return $diffusionId;
     }
 
-    public function saveNoticeMessageForOwner($diffusionSidArray, $userloginid,$detailId)
+
+
+    public function saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $detailId, $noticeType)
     {
-        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusiontoowner',$detailId);
+        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, $noticeType,$detailId);
     }
 
     public function saveNoticeMessageForFollowers($diffusionSidArray, $userloginid,$detailId)
@@ -992,6 +999,23 @@ class StreamAction extends Action
         }
         unset($hs);
         return $noticeId;
+    }
+
+    public function deleteNoticeMessage($noticeId){
+        //DELETE
+        $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
+        if (!($hs->openIndex(4, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', '')))
+        {
+            echo 'ERR_WHEN_DEL_OPEN: '.$hs->getError(), PHP_EOL;
+            die();
+        }
+
+        if ($hs->executeDelete(4, '=', array($noticeId)) === false)
+        {
+            echo 'ERR_WHEN_DEL: '.$hs->getError(), PHP_EOL;
+            die();
+        }
+        unset($hs);
     }
 
     public function increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid)
@@ -1048,18 +1072,31 @@ class StreamAction extends Action
     public function saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId)
     {
         $redis = new Redis();
-        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
-        $this->diffuseTo($redis, $recordOwnerId, $noticeIdForOwner);
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $this->deliverTo($recordOwnerId, $noticeIdForOwner);
         foreach ($userPriorityObj as $userPriority) {
             $this->increaseNoticeMessageCount($redis, $userPriority);
-            $this->diffuseTo($redis, $userPriority['uid'], $noticeIdForFollowers);
+            $this->deliverTo($userPriority['uid'], $noticeIdForFollowers);
         }
     }
 
 
-    public function diffuseTo($redis, $who, $noticeIdForFollowers)
+    public function deliverTo($who, $noticeId)
     {
-        $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeIdForFollowers, 0);
+        $redis = new Redis();
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId, 0);
+    }
+
+
+    /*
+     * remove one's single notice
+     */
+    public function deliverBack($who, $noticeId)
+    {
+        $redis = new Redis();
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->hDel(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId);
     }
 
 
