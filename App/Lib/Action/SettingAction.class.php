@@ -193,7 +193,7 @@ class SettingAction extends Action {
         $this->assign('title','分组');
         $userloginid = session('userloginid');
         if ($this->isPost()) {
-            $IUserGroup = D("IUserGroup");
+            $IUserGroup = D("UserGroup");
             $validate = array(
                 array('group_name','require','请输入分组名'),
             );
