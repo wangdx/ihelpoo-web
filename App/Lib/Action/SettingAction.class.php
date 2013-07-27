@@ -208,7 +208,7 @@ class SettingAction extends Action {
                 $groupDesc = trim(addslashes(htmlspecialchars(strip_tags($_POST["group_desc"]))));
                 $groupData = array(
                     'group_name' => $groupName,
-                    'group_Desc' => $groupDesc,
+                    'group_desc' => $groupDesc,
                     'uid' => $userloginid,
                     'create_time'=>time(),
                     'update_time'=>time(),
