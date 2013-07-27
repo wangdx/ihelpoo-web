@@ -668,7 +668,7 @@ class SchooladminAction extends Action {
 
         	$userList = $UserLogin->where("i_user_login.uid in (".$userString.")")
         	->join('i_user_info ON i_user_info.uid = i_user_login.uid')
-        	->join('i_op_academy ON i_user_info.academy_op = i_op_academy.number')
+        	->join('i_op_academy ON i_user_info.academy_op = i_op_academy.id')
         	->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
         	->join('i_op_dormitory ON i_user_info.dormitory_op = i_op_dormitory.id')
         	->join('i_op_city ON i_user_info.city_op = i_op_city.id')
