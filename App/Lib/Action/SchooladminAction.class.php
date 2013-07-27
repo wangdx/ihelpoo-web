@@ -931,7 +931,7 @@ class SchooladminAction extends Action {
         	if (!empty($resultRecordSay[sid])) {
         		$this->assign('recordDelete', $resultRecordSay);
         	} else {
-        		redirect('/schooladmin/record', 3, '没有找到相关记录或者你没有其他学校删除权限...');
+        		redirect('/schooladmin/record', 3, '没有找到相关记录或者你没有其他学校记录的删除权限...');
         	}
         	
         	/**
