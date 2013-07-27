@@ -525,6 +525,101 @@ class SchooladminAction extends Action {
         $this->display();
     }
     
+    public function realnameallowmf()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '用户实名修改');
+        $AdminRealnamemf = M("AdminRealnamemf");
+        $page = i_page_get_num();
+        $count = 20;
+        $offset = $page * $count;
+        $recordAdminRealnamemf = $AdminRealnamemf->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_admin_realnamemf.uid")->order("time DESC")->limit($offset,$count)->select();
+        $this->assign('adminRealnamemf',$recordAdminRealnamemf);
+
+        /**
+         * page link
+         */
+        $totalReocrdNums = $AdminRealnamemf->where("i_user_login.school = $recordSchoolInfo[id]")->join("i_user_login ON i_user_login.uid = i_admin_realnamemf.uid")->count();
+        $this->assign('totalRecordNums', $totalReocrdNums);
+        $totalPages = ceil($totalReocrdNums / $count);
+        $this->assign('totalPages', $totalPages);
+
+        /**
+         * post
+         */
+        if (!empty($_GET['sendmail'])) {
+            $uid = $_GET['sendmail'];
+            $UserLogin = M("UserLogin");
+            $recordUserLogin = $UserLogin->find($uid);
+            $toEmail = $recordUserLogin['email'];
+            $toNickname = $recordUserLogin['nickname'];
+
+            /**
+             * send welcome email, do not throw exception
+             */
+            Vendor('Ihelpoo.Email');
+            $emailObj = new Email();
+            $isSend = $emailObj->realNameModifiedAllow($toEmail, $toNickname);
+            if ($isSend) {
+
+            	/**
+                 * send system message.
+                 */
+                $MsgSystem = M("MsgSystem");
+                $msgContent = "您的真实姓名可以修改了!";
+                $msgData = array(
+                    'id' => NULL,
+                    'uid' => $uid,
+                    'type' => 'setting/realfirst',
+                    'content' => $msgContent,
+                    'time' => time(),
+                    'deliver' => 0,
+                );
+                $MsgSystem->add($msgData);
+
+                /**
+                 * update i_admin_realnalemf.allow
+                 */
+                $recordAdminRealnamemf = $AdminRealnamemf->where("uid = $uid AND allow != '1'")->find();
+                $dataAf = array(
+                	'id' => $recordAdminRealnamemf['id'],
+                    'allow' => 1
+                );
+                $isUpdateAdminRealnamemf = $AdminRealnamemf->save($dataAf);
+
+                /**
+                 * update i_user_infoconn
+                 */
+                $UserInfo = M("UserInfo");
+                $dataUserInfoconn = array(
+                	'uid' => $uid,
+                    'realname_re' => 0
+                );
+                $isUpdateUserInfo = $UserInfo->save($dataUserInfoconn);
+                
+                /**
+                 * webmaster user operating record
+                 */
+                $SchoolRecord = M("SchoolRecord");
+                $newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => 'realnameallowmf 允许修改真实姓名. uid:'.$uid.' realname_re:0',
+		            'time' => time()
+                );
+                $SchoolRecord->add($newSchoolRecordData);
+                if ($isUpdateAdminRealnamemf && $isUpdateUserInfo) {
+                	redirect('/schooladmin/realnameallowmf', 3, 'update user modify ok...');
+                } else {
+                	redirect('/schooladmin/realnameallowmf', 3, 'update info... isUpdateAdminRealnamemf:'.$isUpdateAdminRealnamemf.'; isUpdateUserInfo:'.$isUpdateUserInfo);
+                }
+            }
+        }
+        $this->display();
+    }
     
     public function operatingrecord()
     {
