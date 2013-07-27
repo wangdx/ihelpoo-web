@@ -75,9 +75,9 @@
     padding: 15px;
     position: relative;
     width: 235px;
-    filter:alpha(opacity=80); 
-    -moz-opacity:0.8; 
-    opacity:0.8;
+    filter:alpha(opacity=70); 
+    -moz-opacity:0.7; 
+    opacity:0.7;
 }
 .index_loginfast_div_nav_p{
     border-bottom: 1px solid #EEE;
