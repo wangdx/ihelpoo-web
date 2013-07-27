@@ -374,6 +374,124 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+	public function specialty()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','专业管理');
+    	$OpSpecialty = M("OpSpecialty");
+    	$schoolid = $recordSchoolInfo['id'];
+    	$this->assign('schoolid',$schoolid);
+    	$academyid = (int)$_GET['academyid'];
+    	$this->assign('academyid',$academyid);
+    	
+    	if ($this->isPost()) {
+    		$specialtyid = (int)$_POST['specialtyid'];
+    		$schoolpostid = $recordSchoolInfo['id'];
+    		$academypostid = (int)$_POST['acedemy'];
+    		$name = $_POST['name'];
+    		if (!empty($name) && !empty($schoolpostid) && !empty($academypostid)) {
+	    		if (empty($specialtyid)) {
+		    		$newOpSpecialty = array(
+		    			'name' => $name,
+		    			'academy' => $academypostid,
+		    			'school' => $schoolpostid
+		    		);
+		    		$OpSpecialty->add($newOpSpecialty);
+	    			
+	    			/**
+	    			 * webmaster user operating record
+	    			 */
+	    			$SchoolRecord = M("SchoolRecord");
+	    			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '添加专业:'.$name,
+		                'time' => time()
+	    			);
+	    			$SchoolRecord->add($newSchoolRecordData);
+		    		redirect('/schooladmin/schoolopspecialty', 1, '添加专业成功 ok...');
+	    		} else {
+	    			$updateOpSpecialty = array(
+		    			'id' => $specialtyid,
+		    			'name' => $name,
+	    				'academy' => $academypostid,
+		    			'school' => $schoolid
+		    		);
+		    		$OpSpecialty->save($updateOpSpecialty);
+		    		
+	    			/**
+	    			 * webmaster user operating record
+	    			 */
+	    			$SchoolRecord = M("SchoolRecord");
+	    			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '更新专业:'.$name,
+		                'time' => time()
+	    			);
+	    			$SchoolRecord->add($newSchoolRecordData);
+		    		redirect('/schooladmin/schoolopspecialty', 1, '更新专业成功 ok...');
+	    		}
+    		}
+    	}
+    	
+    	/**
+    	 * delete academy
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteOpSpecialty = $OpSpecialty->where("id = $suredelid AND school = $schoolid")->find();
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => '删除专业:'.$deleteOpSpecialty['name'],
+		            'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			
+    			$OpSpecialty->where("id = $suredelid AND school = $schoolid")->delete();
+    			redirect('/schooladmin/schoolopspecialty', 1, '删除专业成功 ok...');
+    		}
+    	}
+		
+		if (!empty($schoolid)) {
+			$OpAcademy = M("OpAcademy");
+			$recordOpAcademy = $OpAcademy->where("school = $schoolid")->select();
+			$this->assign('recordOpAcademy', $recordOpAcademy);
+		}
+		
+		$page = i_page_get_num();
+	    $count = 15;
+	    $offset = $page * $count;
+		
+		if (!empty($schoolid) && !empty($academyid)) {
+			$recordsOpSpecialty = $OpSpecialty->where("school = $schoolid && academy = $academyid")->limit($offset,$count)->select();
+			$this->assign('recordsOpSpecialty', $recordsOpSpecialty);
+			
+			/**
+    		 * page link
+    		 */
+    		$totalReocrdNums = $OpSpecialty->where("school = $schoolid && academy = $academyid")->count();
+    		$this->assign('totalRecordNums', $totalReocrdNums);
+    		$totalPages = ceil($totalReocrdNums / $count);
+    		$this->assign('totalPages', $totalPages);
+		}
+    	$this->display();
+    }
+    
     
     /**
      * user management
