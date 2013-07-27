@@ -875,13 +875,13 @@ class StreamAction extends Action
             $recordSay = $this->bouncePlusCountOfRecord($sid ,-1);
             $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
-            echo $recordSay['plus_co'];
+            echo $recordSay['plus_co'] - 1;
         }else{
             $this->addPlusRecord($sid);
             $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
-            echo $recordSay['plus_co'];
+            echo $recordSay['plus_co'] + 1;
         }
         exit();
     }
