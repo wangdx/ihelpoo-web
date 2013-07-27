@@ -128,6 +128,10 @@
     vertical-align: 0;
     width: 143px;
 }
+.loginbox_submit a:hover{
+    background-position: 0 -192px;
+    text-decoration: none;
+}
 
 .loginbox_more{
     width: 215px;
