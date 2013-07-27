@@ -62,6 +62,7 @@
     padding: 15px;
     position: relative;
     width: 235px;
+    background: #FFF;
 }
 
 .loginbox_email, .loginbox_password{
@@ -93,8 +94,9 @@
     border-width: 1px;
     box-shadow: 0 0 #FFFFFF;
     color: #808080;
-    height: 16px;
+    height: 25px;
     width: 165px;
+    margin: 1px 0;
     padding: 0 5px 0 0;
     outline-style: none;
     vertical-align: middle;
