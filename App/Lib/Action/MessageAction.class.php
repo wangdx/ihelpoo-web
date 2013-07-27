@@ -92,14 +92,19 @@ class MessageAction extends Action
             $fromUser = $IUserLogin->userExists($notice['source_id']);
             $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_blank' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a>";
 
-            $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
+            $detailId = $notice['detail_id'];
+            if($notice['format_id'] !== 'plus'){
+                $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
+                $detailId =  $recordDiffusion['sid'];
+                if(!empty($recordDiffusion['view'])){
+                    $view = ' <- 并表示：'.$recordDiffusion['view'];
+                }
+
+            }
 
             $tpl =   $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
-            $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $recordDiffusion['sid'], "a_view_info_sys");
-
-            if(!empty($recordDiffusion['view'])){
-                $content.=' <- 并表示：'.$recordDiffusion['view'];
-            }
+            $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $detailId, "a_view_info_sys");
+            $content.=$view;
 
             $msgSysArray[] = array(
                 'deliver' => $redis->hGet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $notice['notice_id']),
