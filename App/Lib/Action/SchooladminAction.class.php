@@ -915,6 +915,62 @@ class SchooladminAction extends Action {
 
     	$this->display();
     }
+    
+    /**
+     * record management
+     */
+    public function record()
+    {
+        $webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '信息管理');
+        $RecordSay = M("RecordSay");
+        if (!empty($_POST['recordid'])) {
+        	$recordid = $_POST['recordid'];
+        	$resultRecordSay = $RecordSay->where("sid = $recordid AND school_id = $recordSchoolInfo[id]")->find();
+        	$this->assign('recordDelete', $resultRecordSay);
+        	
+        	/**
+        	 * webmaster user operating record
+        	 */
+        	$SchoolRecord = M("SchoolRecord");
+        	$newSchoolRecordData = array(
+			    'id' => '',
+			    'sys_id' => '',
+			    'uid' => $webmaster['uid'],
+			    'sid' => $recordSchoolInfo['id'],
+			    'record' => '查询记录, sid:'.$_POST['recordid'].' content:'.$resultRecordSay['content'],
+			    'time' => time()
+        	);
+        	$SchoolRecord->add($newSchoolRecordData);
+        }
+        if (!empty($_POST['sid'])) {
+        	$sid = $_POST['sid'];
+        	$RecordHelp = M("RecordHelp");
+        	$RecordComment = M("RecordComment");
+        	$RecordHelpreply = M("RecordHelpreply");
+        	$RecordSay->where("sid = $sid")->delete();
+        	$RecordComment->where("sid = $sid")->delete();
+        	$RecordHelp->where("sid = $sid")->delete();
+        	$RecordHelpreply->where("sid = $sid")->delete();
+        	
+        	/**
+        	 * webmaster user operating record
+        	 */
+        	$SchoolRecord = M("SchoolRecord");
+        	$newSchoolRecordData = array(
+			    'id' => '',
+			    'sys_id' => '',
+			    'uid' => $webmaster['uid'],
+			    'sid' => $recordSchoolInfo['id'],
+			    'record' => '删除记录, sid:'.$sid,
+			    'time' => time()
+        	);
+        	$SchoolRecord->add($newSchoolRecordData);
+        	redirect('/schooladmin/record', 3, '删除记录成功 涉及4个表...');
+        }
+        $this->display();
+    }
 
     
     /**
