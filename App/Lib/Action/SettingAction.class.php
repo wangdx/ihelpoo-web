@@ -187,40 +187,34 @@ class SettingAction extends Action {
         $this->assign('dormitorytype',$recordDormitory['type']);
     	$this->display();
     }
+
     public function group()
     {
         $this->assign('title','分组');
         $userloginid = session('userloginid');
         if ($this->isPost()) {
-            $IUserLogin = D("IUserLogin");
+            $IUserGroup = D("IUserGroup");
             $validate = array(
-                array('passwordoriginal','require','原始密码不能为空'),
-                array('password', 'require', '密码不能为空'),
-                array('passwordrepeat','password','两次密码不一致',0,'confirm'),
+                array('group_name','require','请输入分组名'),
             );
-            $IUserLogin->setProperty("_validate", $validate);
-            $result = $IUserLogin->create();
-            if (!$result) {
-                exit($IUserLogin->getError());
-            } else {
-                $passwordoriginal = trim(addslashes(htmlspecialchars(strip_tags($_POST["passwordoriginal"]))));
-                $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
-                $recordUserLogin = $IUserLogin->userExists($userloginid);
-                if ($recordUserLogin['password'] == md5($passwordoriginal)) {
-                    $password = md5($password);
 
-                    /**
-                     * iuc user data
-                     */
-                    $updateUserlogignData = array(
-                        'uid' => $userloginid,
-                        'password' => $password,
-                    );
-                    $IUserLogin->save($updateUserlogignData);
-                    $this->ajaxReturn(0,"修改成功",'yes');
-                } else {
-                    $this->ajaxReturn(0,"原始密码错误",'wrong');
-                }
+            $IUserGroup->setProperty("_validate", $validate);
+            $result = $IUserGroup->create();
+
+            if (!$result) {
+                exit($IUserGroup->getError());
+            }  else{
+                $groupName = trim(addslashes(htmlspecialchars(strip_tags($_POST["group_name"]))));
+                $groupDesc = trim(addslashes(htmlspecialchars(strip_tags($_POST["group_desc"]))));
+                $groupData = array(
+                    'group_name' => $groupName,
+                    'group_Desc' => $groupDesc,
+                    'uid' => $userloginid,
+                    'create_time'=>time(),
+                    'update_time'=>time(),
+                );
+                $IUserGroup->add($groupData);
+                $this->ajaxReturn(0,"创建成功",'yes');
             }
         }
         $this->display();
