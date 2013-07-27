@@ -27,17 +27,8 @@
 	</form>
 	<br />
 	<br />
-	<br />
-	<p>基本资料:</p>
-	<pre><?php print_r($recordUserLogin); ?></pre>
-	<p>扩充信息:
-	<pre><?php print_r($recordUserInfo); ?></pre>
 	<p>统计信息:</p>
 	<pre><?php print_r($userOtherInfo); ?></pre>
-	<?php if (!empty($recordUserShop)) { ?>
-	<p>店铺信息:<a href="__ROOT__/mall/shop/<?php echo $recordUserShop['uid']; ?>" target="_blank">查看</a></p>
-	<pre><?php print_r($recordUserShop); ?></pre>
-	<?php } ?>
 <?php } else { ?>
 <form method="post">
 	<input type="text" name="search" /> <input type="submit" value="查询"> 用户uid、昵称 或 email 

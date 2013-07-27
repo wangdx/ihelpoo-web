@@ -399,14 +399,6 @@ class SchooladminAction extends Action {
 
         if (!empty($userId)) {
         	$recordUserLogin = $UserLogin->find($userId);
-        	$recordUserLogin['logintime'] = date("Y-m-d H:i:s", $recordUserLogin['logintime']);
-        	$recordUserLogin['lastlogintime'] = date("Y-m-d H:i:s", $recordUserLogin['lastlogintime']);
-        	$recordUserLogin['creat_ti'] = date("Y-m-d H:i:s", $recordUserLogin['creat_ti']);
-        	$this->assign('recordUserLogin',$recordUserLogin);
-
-        	$UserInfo = M("UserInfo");
-        	$recordUserInfo = $UserInfo->find($userId);
-        	$this->assign('recordUserInfo',$recordUserInfo);
 
         	/**
         	 * user album
@@ -437,6 +429,8 @@ class SchooladminAction extends Action {
         	 * show
         	 */
         	$userOtherInfo = array(
+        		'uid' => $recordUserLogin['uid'],
+        		'nickname' => $recordUserLogin['nickname'],
         		'userAlbumNums' => $userAlbumNums,
         		'userAlbumSize' => round($userAlbumSize/(1024*1024),2)."MB",
         		'userMsgSystemNums' => $userMsgSystemNums,
