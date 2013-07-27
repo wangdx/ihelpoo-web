@@ -5,11 +5,11 @@
 		<span class="black_l fb"><?php echo $WebmasterUserrecord['nickname']; ?></span>
 		<?php echo $WebmasterUserrecord['position'] == 'm' ? '站长' : '副站长'; ?>
 		<span class="f12 gray">record:</span> <span class="red_l"><?php echo $WebmasterUserrecord['record']; ?></span>
-		<span class="f12 gray"><?php echo $WebmasterUserrecord['sys_id'] == NULL ? NULL : "systemid:".$WebmasterUserrecord['sys_id']; ?> 时间:<?php echo i_time($WebmasterUserrecord['time']); ?></span>
+		<span class="f12 gray"><?php echo empty($WebmasterUserrecord['sys_id']) ? NULL : "systemid:".$WebmasterUserrecord['sys_id']; ?> 时间:<?php echo i_time($WebmasterUserrecord['time']); ?></span>
 	</li>
 <?php } ?>
 </ul>
-<p class="f12 gray paging_p">a共<?php echo $totalrecords ?>条记录 <?php echo $totalPages ?>页</p>
+<p class="f12 gray paging_p">共<?php echo $totalrecords ?>条记录 <?php echo $totalPages ?>页</p>
 <div class="paging_div">
   <?php if ($totalPages > 1) { i_page_show("schooladmin/operatingrecord", $totalPages); } ?>
 </div>
