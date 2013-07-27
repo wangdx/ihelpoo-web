@@ -77,7 +77,7 @@
     vertical-align: middle;
     width: 165px;
 }
-.password {
+.loginbox_password{
     background-position: 0 -50px;
 }
 
@@ -158,12 +158,8 @@ lable{
 }
 input{
     padding: 5px 2px;
-    font-size: 14px;
+    font-size: 12px;
     color: #666;
-}
-#email, #password{
-    width: 220px;
-    margin: 5px 0;
 }
 .index_out_box{
     border:1px dotted #EEE;
