@@ -492,7 +492,7 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
-    public function schoolopdormitory()
+    public function dormitory()
     {
     	$webmaster = logincheck();
     	$recordSchoolInfo = i_school_domain();
