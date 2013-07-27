@@ -293,6 +293,10 @@ class SchooladminAction extends Action {
         		$userLoginRecord = $UserLogin->where("nickname like '%$searchWords%'")->find();
         	}
         	
+        	if ($userLoginRecord['school'] != $recordSchoolInfo['id']) {
+        		redirect('/schooladmin/user', 1, '仅查询到其他学校用户，你无权管理...');
+        	}
+        	
         	/**
 	         * webmaster user operating record
 	         */
