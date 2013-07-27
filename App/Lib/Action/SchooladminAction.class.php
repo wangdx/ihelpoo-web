@@ -412,7 +412,7 @@ class SchooladminAction extends Action {
 		                'time' => time()
 	    			);
 	    			$SchoolRecord->add($newSchoolRecordData);
-		    		redirect('/schooladmin/schoolopspecialty', 1, '添加专业成功 ok...');
+		    		redirect('/schooladmin/specialty', 1, '添加专业成功 ok...');
 	    		} else {
 	    			$updateOpSpecialty = array(
 		    			'id' => $specialtyid,
@@ -435,7 +435,7 @@ class SchooladminAction extends Action {
 		                'time' => time()
 	    			);
 	    			$SchoolRecord->add($newSchoolRecordData);
-		    		redirect('/schooladmin/schoolopspecialty', 1, '更新专业成功 ok...');
+		    		redirect('/schooladmin/specialty', 1, '更新专业成功 ok...');
 	    		}
     		}
     	}
@@ -463,7 +463,7 @@ class SchooladminAction extends Action {
     			$SchoolRecord->add($newSchoolRecordData);
     			
     			$OpSpecialty->where("id = $suredelid AND school = $schoolid")->delete();
-    			redirect('/schooladmin/schoolopspecialty', 1, '删除专业成功 ok...');
+    			redirect('/schooladmin/specialty', 1, '删除专业成功 ok...');
     		}
     	}
 		
