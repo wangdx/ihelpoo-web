@@ -907,10 +907,11 @@ class StreamAction extends Action
         $resultRecordSay = $RecordSay->find($sid);
         $recordSay = array(
             'sid' => $sid,
+            'uid' => $resultRecordSay['uid'],
             'plus_co' => $resultRecordSay['plus_co'] + $offset,
         );
         $RecordSay->save($recordSay);
-        return $resultRecordSay;
+        return $recordSay;
     }
 
 
