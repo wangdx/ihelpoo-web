@@ -870,10 +870,16 @@ class StreamAction extends Action
         $MsgNotice = M('MsgNotice');
         $noticeType = 'stream/' . $plusSidArr['0'] . '-para:plus';
         $msgNotice = $MsgNotice->where("notice_type = '".$noticeType."' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
+
+        $redis = new Redis();
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
             $recordSay = $this->bouncePlusCountOfRecord($sid ,-1);
             $this->deleteNoticeMessage($msgNotice['notice_id']);
+
+            $this->bounceNoticeMessageCount($redis, $recordSay['uid'], -1);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
             echo $recordSay['plus_co'];
         }else{
@@ -882,9 +888,8 @@ class StreamAction extends Action
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
 
 
-            $redis = new Redis();
-            $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
-            $this->increaseNoticeMessageCount($redis, $recordSay['uid']);
+
+            $this->bounceNoticeMessageCount($redis, $recordSay['uid'], 1);
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
 
             echo $recordSay['plus_co'];
@@ -1050,9 +1055,9 @@ class StreamAction extends Action
         return $recordSaySet;
     }
 
-    public function increaseNoticeMessageCount($redis, $uid)
+    public function bounceNoticeMessageCount($redis, $uid, $offset)
     {
-        $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($uid, 0, strlen($uid) - 3), substr($uid, -3), 1);
+        $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($uid, 0, strlen($uid) - 3), substr($uid, -3), $offset);
     }
 
     public function diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $recordOwnerId)
@@ -1082,10 +1087,10 @@ class StreamAction extends Action
     {
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
-        $this->increaseNoticeMessageCount($redis, $recordOwnerId);
+        $this->bounceNoticeMessageCount($redis, $recordOwnerId, 1);
         $this->deliverTo($recordOwnerId, $noticeIdForOwner);
         foreach ($userPriorityObj as $userPriority) {
-            $this->increaseNoticeMessageCount($redis, $userPriority['uid']);
+            $this->bounceNoticeMessageCount($redis, $userPriority['uid'], 1);
             $this->deliverTo($userPriority['uid'], $noticeIdForFollowers);
         }
     }
