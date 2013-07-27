@@ -858,26 +858,26 @@ class StreamAction extends Action
     }
 
     public function plusToggle(){
-       if(empty($_POST['sid'])){
+       if(empty($_POST['plusSid'])){
            exit();
        }
+        $plusSidArr = explode("-", $_POST['plusSid']);
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
-        $sid = $_POST['sid'];
-        $diffusionSidArray = explode("-", $_POST['diffusionSid']);
+        $sid = $plusSidArr[1];
         $plus = $RecordPlus->where("uid = $userloginid AND $sid = sid")->find();
         $plusId = $plus['id'];
         $MsgNotice = M('MsgNotice');
         $msgNotice = $MsgNotice->where("notice_type = 'plus' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
-            $recordSay = $this->bouncePlusCountOfRecord($_POST['sid'] ,-1);
+            $recordSay = $this->bouncePlusCountOfRecord($sid ,-1);
             $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
         }else{
-            $this->addPlusRecord($_POST['sid']);
-            $recordSay = $this->bouncePlusCountOfRecord($_POST['sid'] ,1);
-            $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $sid, 'plus');
+            $this->addPlusRecord($sid);
+            $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
+            $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
         }
         echo $recordSay['plus_co'];
@@ -973,9 +973,9 @@ class StreamAction extends Action
 
 
 
-    public function saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $detailId, $noticeType)
+    public function saveNoticeMessageForOwner($typeIdArr, $userloginid, $detailId, $noticeType)
     {
-        return $this->saveNoticeMessage($diffusionSidArray, $userloginid, $noticeType,$detailId);
+        return $this->saveNoticeMessage($typeIdArr, $userloginid, $noticeType,$detailId);
     }
 
     public function saveNoticeMessageForFollowers($diffusionSidArray, $userloginid,$detailId)
@@ -983,7 +983,7 @@ class StreamAction extends Action
         return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusion', $detailId);
     }
 
-    public function saveNoticeMessage($diffusionSidArray, $userloginid, $noticeType, $detailId)
+    public function saveNoticeMessage($typeIdArr, $userloginid, $noticeType, $detailId)
     {
         Vendor('Ihelpoo.Idworker');
         $idworker = new Idworker();
@@ -994,7 +994,7 @@ class StreamAction extends Action
             die();
         }
 
-        if ($hs->executeInsert(3, array($noticeId, 'stream/' . $diffusionSidArray['0'] . '-para:' . $noticeType, $userloginid, $detailId, $noticeType, time())) === false) {
+        if ($hs->executeInsert(3, array($noticeId, 'stream/' . $typeIdArr['0'] . '-para:' . $noticeType, $userloginid, $detailId, $noticeType, time())) === false) {
             echo 'ERR2:' . $hs->getError(), PHP_EOL;
         }
         unset($hs);
