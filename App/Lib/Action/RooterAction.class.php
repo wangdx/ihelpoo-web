@@ -966,7 +966,7 @@ class RooterAction extends Action {
     	$recordsWebmasterUserrecord = $SchoolRecord->join('i_user_login ON i_user_login.uid = i_school_record.uid')
     	->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')
     	->join('i_school_info ON i_school_webmaster.sid = i_school_info.id')
-    	->order("time DESC")->limit($offset,$count)->select();
+    	->order("i_school_record.time DESC")->limit($offset,$count)->select();
     	$totalrecords = $SchoolRecord->count();
     	$this->assign('recordsWebmasterUserrecord',$recordsWebmasterUserrecord);
     	$this->assign('totalrecords',$totalrecords);
