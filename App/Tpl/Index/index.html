@@ -39,7 +39,7 @@ body{
          <?php foreach ($allUser as $user) : ?>
          <li>
            <a href="__ROOT__/wo/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?>">
-             <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="80" height="60" />
+             <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="92" height="69" />
            </a>
          </li>
          <?php endforeach; ?>
@@ -54,10 +54,12 @@ body{
 	    <div class="mim_ligonbox">
 		   <ul class="white">
 		   		<li style="height:30px;"></li>
-			   	<li>
-			     <span class="f12">已经检测到上次登录账号</span><br /><br />
-			     <?php echo $_COOKIE['userEmail'] ?>&#12288;<a href="__ROOT__/?login=new" class="f12 orange">使用其他账号?</a><br /><br />
-			     <a href="__ROOT__/user/loginfast" class="fb white">快速登录<span class="f12 gray">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
+			   	<li><a>快速登录</a> <a href="__ROOT__/?login=new">使用其他账号</a></li>
+			     <span class="f12">检测到上次登录账号，点击头像登录</span><br /><br />
+			     <a href="__ROOT__/user/loginfast">
+			     	<img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="100" height="75" />
+			     </a>
+			     <a href="__ROOT__/user/loginfast" class="fb white"><?php echo $cookieUserLogin['nickname']; ?>(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
 			   	</li>
 		   </ul>
 		</div>
@@ -106,20 +108,14 @@ body{
 	<?php } ?>
   </div>
   <div class="main_index_sub f12">
-  	<span class="icon_plus"></span><span class="white">你正在访问的是 {$schoolname}</span> <a href="__ROOT__/index/school">切换学校<span class="icon_new"></span></a>
     <span class="icon_index_mobile"></span> <a class="white">手机 平板直接访问</a>
     <a href="http://weibo.com/ihelpoo" target="_blank" class="white"><span class="post_at" style="vertical-align: bottom;"></span>我帮圈圈<span class="fi">(新浪微博)</span></a>
   </div>
 </div>
 <div class="footer_about f12 white">
   <p>Copyright © 2013 ihelpoo.com 我帮圈圈 | <a href="__ROOT__/about">关于我们</a> | <a href="__ROOT__/support?play">使用帮助</a> | 鄂ICP备07502730号</p>
-  <p class="f10">
-    <?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
-  		<a href="http://sae.sina.com.cn" target="_blank"><img src="__PUBLIC__/image/common/sinaapp.gif" style="vertical-align:bottom"></a>
-  	<?php } else { ?>
-    	<a href="http://sae.sina.com.cn" target="_blank"><img src="__PUBLIC__/image/common/sinaapp.png" style="vertical-align:bottom"></a>
-    <?php } ?>
-  Beta for 湖北民族学院
+  <p class="f12">
+  Beta for {$schoolname}
   </p>
 </div>
 </div>

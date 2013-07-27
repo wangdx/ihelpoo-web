@@ -32,10 +32,12 @@ class IndexAction extends Action {
     	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
     	$indexUserValueArray = explode(",", $indexUserValue);
         $indexUserValueArray = array_unique($indexUserValueArray);
+        $i = 0;
         foreach ($indexUserValueArray as $valueIn) {
         	$valueIn = (int)$valueIn;
-        	if (!empty($valueIn)) {
+        	if (!empty($valueIn) && $i < 22) {
         		$sqlValueString .= $valueIn.",";
+        		$i++;
         	}
         }
         $sqlValueString = substr($sqlValueString, 0, -1);
@@ -43,6 +45,15 @@ class IndexAction extends Action {
     	$this->assign('allUser',$allUser);
 		$allUserNums = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
     	$this->assign('allUserNums',$allUserNums);
+    	
+    	/**
+    	 * login fast user icon
+    	 */
+    	if (!empty($_COOKIE['userEmail'])) {
+    		$userCookieEmail = trim(addslashes(htmlspecialchars(strip_tags($_COOKIE['userEmail']))));
+    		$cookieUserLogin = $UserLogin->where("email = '$userCookieEmail'")->field("uid,email,nickname,icon_url")->find();
+    		$this->assign('cookieUserLogin',$cookieUserLogin);
+    	}
     	
     	/**
          * index_spread_info

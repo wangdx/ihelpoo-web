@@ -35,33 +35,33 @@
     background-color: #FE6600;
 }
 .main_index_middle{
-    height:300px;
+    height: 300px;
     position: relative;
+    margin-top: 25px;
 }
 .main_index_middle_user_div{
     position: absolute;
     left: 0px;
-    top: 10px;
-    height: 260px;
-    width: 690px;
+    top: 0px;
+    width: 720px;
 }
 .index_user_facewall{
-    margin: 20px 0 0 0;
-}
-.index_user_facewall li{
-    display: inline;
     margin: 0;
 }
+.index_user_facewall li{
+    display: inline-block;
+    margin: 0px;
+}
 .index_user_nums{
-    margin: 25px 0 0 0;
+    margin: 15px 0 0 0;
 }
 .main_index_middle .mim_ligonbox{
-    position: relative;
+    border: 1px solid #333333;
     float: right;
-    margin: 10px 20px 0 0;
+    height: 215px;
     padding: 15px;
-    width: 230px;
-    height: 180px;
+    position: relative;
+    width: 235px;
 }
 .main_index_middle .mim_ligonbox ul li{
     height: 65px;
