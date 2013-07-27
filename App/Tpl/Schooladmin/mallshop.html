@@ -39,9 +39,9 @@
 		    	<?php } else { ?>
 		    		<span class="icon_attention"></span>
 		    	<?php } ?>
-		    	用户ID: <a href="__ROOT__/schooladmin/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['nickname']; ?></a> | 
-		    	<a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店地址</a> 开店时间:<?php echo i_time($userShops['time']); ?> | 
-		    	店铺状态: <span class="f12 gray"><?php echo $userShops['status'] == "1" ? "已关闭" : "已开启"; ?></span> 
+		    	<a href="__ROOT__/schooladmin/user/<?php echo $userShops['uid']; ?>" target="_blank"><?php echo $userShops['nickname']; ?></a> | 
+		    	<a href="__ROOT__/mall/shop/<?php echo $userShops['uid']; ?>" target="_blank">小店地址</a> 开店时间:<span class="f12 gray"><?php echo i_time($userShops['time']); ?></span> | 
+		    	店铺状态: <span class="f12 blue"><?php echo $userShops['status'] == "1" ? "已关闭" : "已开启"; ?></span> 
 		   		<a href="__ROOT__/schooladmin/mallshop/<?php echo $userShops['uid']; ?>">修改</a>
 		    </p>
 	</li>
