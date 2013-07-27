@@ -32,7 +32,7 @@ class IndexAction extends Action {
     	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
     	$indexUserValueArray = explode(",", $indexUserValue);
         $indexUserValueArray = array_unique($indexUserValueArray);
-        $i = 1;
+        $i = 0;
         foreach ($indexUserValueArray as $valueIn) {
         	$valueIn = (int)$valueIn;
         	if (!empty($valueIn) && $i < 22) {
