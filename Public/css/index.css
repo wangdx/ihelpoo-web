@@ -107,9 +107,9 @@
     text-align: center;
 }
 .index_loginfast_div_icon_p img{
-    filter:alpha(opacity=90); 
-    -moz-opacity:0.9; 
-    opacity:0.9;
+    filter:alpha(opacity=150); 
+    -moz-opacity:1.5; 
+    opacity:1.5;
 }
 .index_loginfast_div_name_p{
     margin: 10px auto;
