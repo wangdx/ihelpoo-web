@@ -187,6 +187,44 @@ class SettingAction extends Action {
         $this->assign('dormitorytype',$recordDormitory['type']);
     	$this->display();
     }
+    public function group()
+    {
+        $this->assign('title','分组');
+        $userloginid = session('userloginid');
+        if ($this->isPost()) {
+            $IUserLogin = D("IUserLogin");
+            $validate = array(
+                array('passwordoriginal','require','原始密码不能为空'),
+                array('password', 'require', '密码不能为空'),
+                array('passwordrepeat','password','两次密码不一致',0,'confirm'),
+            );
+            $IUserLogin->setProperty("_validate", $validate);
+            $result = $IUserLogin->create();
+            if (!$result) {
+                exit($IUserLogin->getError());
+            } else {
+                $passwordoriginal = trim(addslashes(htmlspecialchars(strip_tags($_POST["passwordoriginal"]))));
+                $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
+                $recordUserLogin = $IUserLogin->userExists($userloginid);
+                if ($recordUserLogin['password'] == md5($passwordoriginal)) {
+                    $password = md5($password);
+
+                    /**
+                     * iuc user data
+                     */
+                    $updateUserlogignData = array(
+                        'uid' => $userloginid,
+                        'password' => $password,
+                    );
+                    $IUserLogin->save($updateUserlogignData);
+                    $this->ajaxReturn(0,"修改成功",'yes');
+                } else {
+                    $this->ajaxReturn(0,"原始密码错误",'wrong');
+                }
+            }
+        }
+        $this->display();
+    }
 
     public function ps()
     {
@@ -226,6 +264,10 @@ class SettingAction extends Action {
     	}
     	$this->display();
     }
+
+
+
+
 
     public function icon()
     {
