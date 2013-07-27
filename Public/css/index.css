@@ -55,7 +55,7 @@
 .index_user_nums{
     margin: 15px 0 0 0;
 }
-.main_index_middle .mim_ligonbox{
+.mim_loginbox{
     border: 1px solid #666;
     float: right;
     height: 215px;
@@ -63,6 +63,9 @@
     position: relative;
     width: 235px;
     background: #FFF;
+    filter:alpha(opacity=80); 
+    -moz-opacity:0.8; 
+    opacity:0.8;
 }
 
 .loginbox_email, .loginbox_password{
