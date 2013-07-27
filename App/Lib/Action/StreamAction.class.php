@@ -865,7 +865,7 @@ class StreamAction extends Action
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
         $sid = $plusSidArr[1];
-        $plus = $RecordPlus->where("uid = $userloginid AND $sid = sid")->find();
+        $plus = $RecordPlus->where("uid = $userloginid AND sid = $sid")->find();
         $plusId = $plus['id'];
         $MsgNotice = M('MsgNotice');
         $noticeType = 'stream/' . $plusSidArr['0'] . '-para:plus';
@@ -1085,7 +1085,7 @@ class StreamAction extends Action
     public function deliverTo($who, $noticeId)
     {
         $redis = new Redis();
-        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId, 0);
     }
 
@@ -1096,7 +1096,7 @@ class StreamAction extends Action
     public function deliverBack($who, $noticeId)
     {
         $redis = new Redis();
-        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hDel(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId);
     }
 
