@@ -26,9 +26,9 @@ $().ready(function(){
 
     $(".groupSubmit").click(function(){
         var uid = $(this).attr('value');
-        var values = new Array();
+        var values = "";
         $.each($("input[name='groups']:checked"), function() {
-            values.push($(this).val()+',');
+            values += $(this).val()+',';
         });
 
         alert(uid + "-"+values);
