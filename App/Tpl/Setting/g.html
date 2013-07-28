@@ -3,7 +3,7 @@
 <div class="main">
     <form action="__ROOT__/setting/groupUpdate" method="post" id="groupUpdateForm">
     <ul class="real">
-        <input type="hidden" id="group_id" value="<?php echo $userGroup['id']?>"/>
+        <input type="hidden" id="group_id" name="group_id" value="<?php echo $userGroup['id']?>"/>
         <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name"
                                                       value="<?php echo $userGroup['group_name']?>"/></li>
         <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc"
