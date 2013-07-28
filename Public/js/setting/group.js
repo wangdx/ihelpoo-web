@@ -23,6 +23,17 @@ $().ready(function(){
             }, "json");
         }
     });
+
+    $("#groupSubmit").click(function(){
+        var uid = $(this).attr('value');
+        var values = new Array();
+        $.each($("input[name='groups']:checked"), function() {
+            values.push($(this).val());
+        });
+
+        alert(uid + "-"+values);
+
+    });
 });
 function showWrongInfo(info) {
 	$("#ajaxprogressbar").html("<p id='infopsupdateok'><span class='icon_wrong'></span> " + info + "</p>");
