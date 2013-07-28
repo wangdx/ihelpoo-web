@@ -52,6 +52,12 @@
     display: inline-block;
     margin: 0px;
 }
+*+html .index_user_facewall li{
+    display: inline;
+}
+*html .index_user_facewall li{
+    display: inline;
+}
 .index_user_nums{
     margin: 15px 0 0 0;
 }
