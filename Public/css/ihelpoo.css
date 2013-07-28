@@ -260,8 +260,8 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header a,.headermall a{ color:#FFF; margin:0px 5px; }
 .header a:hover,.headermall a:hover{ color:#FFFA85; }
 .main{ min-height:500px; width:980px; margin:60px auto 10px; padding:10px; border:1px solid #EEE; }
-.footer{ clear:both; height:65px; width:100%; margin-bottom:0px; border-top:3px solid #DDD; background:url(../image/common/bg_w.png?id=1) repeat 0px 0px #FEFEFE; }
-.footer .about{ margin:15px auto; width:360px; }
+.footer{ clear:both; height:80px; width:1000px; margin-bottom:0px; border:1px solid #EEE; background:url(../image/common/bg_w.png?id=1) repeat 0px 0px #FEFEFE; }
+.footer .about{ margin:22px auto; width:360px; }
 .footer .about .footer_logo{ height:36px; width:36px; display:inline-block; background:url(../image/common/logo_mi.png) no-repeat; float:left; }
 /*--- ie6 ---*/
 *+html .header{ position:relative; }
