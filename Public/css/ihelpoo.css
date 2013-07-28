@@ -312,6 +312,8 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     line-height: 21px;
     overflow: hidden;
     position: relative;
+    position: relative;
+    bottom: 1px;
 }
 .input_search {
     background: none repeat scroll 0 0 transparent;
