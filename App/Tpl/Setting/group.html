@@ -29,7 +29,7 @@
 
 
         </ul>
-        <p/>
+        <p style="padding:20px;"/>
 
         <div>
             <?php foreach ($userGroups as $userGroup) : ?>
@@ -39,7 +39,7 @@
 
             <?php endforeach ?>（目前一个人只能在一个组下，默认取最前面分组）
 
-            <p/>
+            <p style="padding:20px;"/>
             <?php foreach ($userPrioritys as $user) : ?>
             <?php echo $user['nickname']?> <a class="groupSubmit" value="<?php echo $user['id']?>">分到该组</a> |
             <?php endforeach ?>
