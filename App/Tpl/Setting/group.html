@@ -28,7 +28,7 @@
 
     </ul>
           <p/>
-    <ul>
+    <div>
 
 
         <form action="__ROOT__/setting/ps" method="post" id="groupform">
@@ -43,17 +43,11 @@
 
             <p/>
         <?php foreach ($userPrioritys as $user) : ?>
-        <li><?php echo $user['nickname']?>
-
-
-        <li><a id="groupSubmit" class="btn" value="<?php echo $user['uid']?>">保存分组</a></li>
-
-
-        </li>
+        <?php echo $user['nickname']?><a id="groupSubmit" value="<?php echo $user['uid']?>">保存分组</a>
         <?php endforeach ?>
             </form>
 
-    </ul>
+    </div>
 </div>
 <div id="ajaxprogressbar"></div>
 </div>
