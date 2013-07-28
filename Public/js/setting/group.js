@@ -19,7 +19,7 @@ $().ready(function(){
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
-                setTimeout(location.reload(),3000);
+                setTimeout(function(){location.reload();},3000);
             }, "json");
         }
     });
