@@ -28,8 +28,9 @@ $().ready(function(){
         var uid = $(this).attr('value');
         var values = new Array();
         $.each($("input[name='groups']:checked"), function() {
-            values.push($(this).val());
+            values.push($(this).val()+',');
         });
+        values.pop(',');
 
         alert(uid + "-"+values);
 
