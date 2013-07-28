@@ -25,13 +25,17 @@ $().ready(function(){
     });
 
     $(".groupSubmit").click(function(){
-        var uid = $(this).attr('value');
+        var id = $(this).attr('value');
         var values = "";
         $.each($("input[name='groups']:checked"), function() {
             values += $(this).val()+',';
         });
 
-        alert(uid + "-"+values);
+        $.post(baseUrl + "setting/groupme", { "id":id, "gids":values },
+            function(data){
+                console.log(data.name); // John
+                console.log(data.time); // 2pm
+            }, "json");
 
     });
 });

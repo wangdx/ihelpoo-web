@@ -204,6 +204,28 @@ class SettingAction extends Action {
 
     }
 
+    public function groupme(){
+        if ($this->isPost()) {
+
+            $id = $_POST['id'];
+            $gids = $_POST['gids'];
+
+            $gidsArr = explode(",", $gids);
+            $firstGid = $gidsArr[0];
+
+            //TODO, support one person - multiple groups
+
+
+            $UserPriority = M("UserPriority");
+            $groupData = array(
+                "id"=>$id,
+                "group_id"=>$firstGid,
+            );
+            $UserPriority->save($groupData);
+            $this->ajaxReturn(0,"创建成功",'yes');
+        }
+    }
+
     public function group()
     {
 
