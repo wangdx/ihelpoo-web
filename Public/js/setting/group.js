@@ -20,6 +20,7 @@ $().ready(function(){
                     showWrongInfo(data.info);
                 }
             }, "json");
+            location.reload();
         }
     });
 });
