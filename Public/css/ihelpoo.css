@@ -251,18 +251,21 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *+html .headermall{ position:relative; }
 *html .headermall{ position:relative; }
 
+.header_left a{
+    margin:0 20px 0 0;
+}
 
 .h_arrow{
-    margin: 0 0 0 4px;
+    margin: 0;
     position: absolute;
-    top: 17px;
+    top: 9px;
     line-height: 13px;
     display: inline-block;
     font-size: 12px;
     height: 4px;
     overflow: hidden;
     vertical-align: middle;
-    width: 7px;
+    width: 8px;
     color: #FFFFFF;
     cursor: pointer;
 }
