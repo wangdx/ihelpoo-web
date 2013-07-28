@@ -346,7 +346,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -126px -35px;
 }
 
-.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_gift, .ico_add{
+.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_gift, .ico_add, .ico_school{
     height: 18px;
     width: 18px;
     margin: 0 7px 0 8px;
@@ -376,6 +376,10 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .ico_store{
     background-image: url("../image/common/icon_main.png");
     background-position: -600px -51px;
+}
+.ico_school{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -502px 0;
 }
 
 
