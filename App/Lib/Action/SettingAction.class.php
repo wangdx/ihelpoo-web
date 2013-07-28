@@ -231,6 +231,49 @@ class SettingAction extends Action {
         }
     }
 
+
+    public function groupDelete(){
+
+        $gid = $_POST["group_id"];
+        if ($this->isPost()) {
+            $IUserGroup = M("UserGroup");
+            $IUserGroup->where("id = $gid")->delete();
+            $this->ajaxReturn(0,"删除分组成功",'yes');
+        }
+    }
+
+    public function groupUpdate(){
+
+        $uid = session('userloginid');
+        if ($this->isPost()) {
+            $IUserGroup = D("UserGroup");
+            $validate = array(
+                array('group_name','require','请输入分组名'),
+            );
+
+            $IUserGroup->setProperty("_validate", $validate);
+            $result = $IUserGroup->create();
+
+            if (!$result) {
+                exit($IUserGroup->getError());
+            }  else{
+                $gid = $_POST["group_id"];
+                $groupName = trim(addslashes(htmlspecialchars(strip_tags($_POST["group_name"]))));
+                $groupDesc = trim(addslashes(htmlspecialchars(strip_tags($_POST["group_desc"]))));
+                $groupData = array(
+                    'id' => $gid,
+                    'group_name' => $groupName,
+                    'group_desc' => $groupDesc,
+                    'uid' => $uid,
+                    'update_time'=>time(),
+                );
+                $IUserGroup->save($groupData);
+                $this->ajaxReturn(0,"更新分组成功",'yes');
+            }
+        }
+    }
+
+
     public function group()
     {
 
