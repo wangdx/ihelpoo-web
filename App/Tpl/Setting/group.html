@@ -27,6 +27,33 @@
 
 
     </ul>
+          <p/>
+    <ul>
+
+
+        <form action="__ROOT__/setting/ps" method="post" id="groupform">
+
+
+
+                <?php foreach ($userGroups as $userGroup) : ?>
+
+                <input type="checkbox" name="groups" value="Bike"><?php echo $userGroup['group_name']?><br>
+
+                <?php endforeach ?>
+
+            <p/>
+        <?php foreach ($userPrioritys as $user) : ?>
+        <li><?php echo $user['nickname']?>
+
+
+        <li><a id="groupSubmit" class="btn" value="<?php echo $user['uid']?>">保存分组</a></li>
+
+
+        </li>
+        <?php endforeach ?>
+            </form>
+
+    </ul>
 </div>
 <div id="ajaxprogressbar"></div>
 </div>
