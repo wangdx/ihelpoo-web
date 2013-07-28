@@ -276,6 +276,27 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     margin: -7px 0 0 -2px;
 }
 
+.ico_setup{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -804px -34px;
+    height: 16px;
+    width: 16px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+    overflow: hidden;
+}
+.ico_msg{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -821px 0;
+    height: 16px;
+    width: 16px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+    overflow: hidden;
+}
+
 
 .header_main{ width:1000px; margin:0 auto; position:relative; }
 .header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }

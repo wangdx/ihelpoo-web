@@ -29,15 +29,15 @@
 	    <?php } else { ?>
 	    	<span id="header_online_status" value="{$userloginedrecord['online']}" class="login_status_hidden" title="潜水，点击切换为正常在线状态"></span>
 	    <?php } ?>
-	    <a href="__ROOT__/mallset/seller">买卖</a>
-	    <a href="__ROOT__/mutual/find">找人</a>
-	    <a href="__ROOT__/setting">设置</a>
-	    <a href="__ROOT__/message/system">消息</a>
+	    <!-- <a href="__ROOT__/mallset/seller">买卖</a>
+	    <a href="__ROOT__/mutual/find">找人</a> -->
+	    <a href="__ROOT__/setting" title="设置"><span class="ico_setup"></span></a>
+	    <a href="__ROOT__/message/system" title="圈圈消息"><span class="ico_msg"></span></a>
 	    <a href="__ROOT__/message/system" title="帮助与系统消息" id="message_system_nums_a" style="display:none"><span class='message_green message_shine'></span></a>
 	    <a href="__ROOT__/message/comment" title="评论回复" id="message_comment_nums_a" style="display:none"><span class='message message_shine'></span></a>
 	    <a href="__ROOT__/message/at" title="@我的消息" id="message_at_nums_a" style="display:none"><span class='message_blue message_shine'></span></a>
 	    <a href="__ROOT__/message/coin" title="RBM管理记录" id="message_cion_nums_a" style="display:none"><span class='message_yellow message_shine'></span></a>
-	    <a href="__ROOT__/user/quit">退出<span class="icon_quit"></span></a>
+	    <a href="__ROOT__/user/quit">[退出]</a>
     <?php } else { ?>
     	<a href="__ROOT__/">登录</a>
     	<a href="__ROOT__/user/register">注册</a>
