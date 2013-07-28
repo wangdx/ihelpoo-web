@@ -1,55 +1,52 @@
-<include file="Public:header" />
-<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<include file="Public:header"/>
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
 <div class="main">
-<div class="s_left f12">
-  <ul>
-    <li><a href="__ROOT__/setting"><span class="icon_text"></span> 个人资料</a></li>
-    <li><a href="__ROOT__/setting/ps"><span class="icon_write"></span> 修改密码</a></li>
-    <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
-    <li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li>
-      <li><a href="__ROOT__/setting/group" class="bg_orange"><span class="icon_plus"></span> 创建分组</a></li>
-  </ul>
-</div>
-<div class="s_right">
-  <form action="__ROOT__/setting/ps" method="post" id="psform">
-  <ul class="real">
-    <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name" /></li>
-    <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc" /></li>
-    <li><a id="pssubmit" class="btn">保存</a></li>
-  </ul>
-  </form>
-    <ul>
+    <div class="s_left f12">
+        <ul>
+            <li><a href="__ROOT__/setting"><span class="icon_text"></span> 个人资料</a></li>
+            <li><a href="__ROOT__/setting/ps"><span class="icon_write"></span> 修改密码</a></li>
+            <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
+            <li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li>
+            <li><a href="__ROOT__/setting/group" class="bg_orange"><span class="icon_plus"></span> 创建分组</a></li>
+        </ul>
+    </div>
+    <div class="s_right">
+        <form action="__ROOT__/setting/ps" method="post" id="psform">
+            <ul class="real">
+                <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name"/></li>
+                <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc"/></li>
+                <li><a id="pssubmit" class="btn">保存</a></li>
+            </ul>
+        </form>
+        <ul>
 
-        <?php foreach ($userGroups as $userGroup) : ?>
-        <li><a href="__ROOT__/setting/g/<?php echo $userGroup['id']?>"><?php echo $userGroup['group_name']?> </a> (<?php echo $userGroup['group_desc']?>)</li>
+            <?php foreach ($userGroups as $userGroup) : ?>
+            <li><a href="__ROOT__/setting/g/<?php echo $userGroup['id']?>"><?php echo $userGroup['group_name']?> </a>
+                (<?php echo $userGroup['group_desc']?>)
+            </li>
 
-        <?php endforeach ?>
-
-
-    </ul>
-          <p/>
-    <div>
+            <?php endforeach ?>
 
 
-        <form action="__ROOT__/setting/ps" method="post" id="groupform">
+        </ul>
+        <p/>
 
+        <div>
+            <?php foreach ($userGroups as $userGroup) : ?>
 
+            <input type="checkbox" name="groups"
+                   value='<?php echo $userGroup["id"]?>'><?php echo $userGroup['group_name']?>
 
-                <?php foreach ($userGroups as $userGroup) : ?>
-
-                <input type="checkbox" name="groups" value='<?php echo $userGroup["id"]?>'><?php echo $userGroup['group_name']?>
-
-                <?php endforeach ?>
+            <?php endforeach ?>
 
             <p/>
-        <?php foreach ($userPrioritys as $user) : ?>
-        <?php echo $user['nickname']?> <a class="groupSubmit" value="<?php echo $user['uid']?>">保存分组</a> |
-        <?php endforeach ?>
-            </form>
+            <?php foreach ($userPrioritys as $user) : ?>
+            <?php echo $user['nickname']?> <a class="groupSubmit" value="<?php echo $user['id']?>">保存分组</a> |
+            <?php endforeach ?>
 
+        </div>
     </div>
-</div>
-<div id="ajaxprogressbar"></div>
+    <div id="ajaxprogressbar"></div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/setting/group.js?id=1"></script>
-<include file="Public:footer" />
+<include file="Public:footer"/>

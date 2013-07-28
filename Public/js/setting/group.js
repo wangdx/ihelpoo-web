@@ -25,13 +25,22 @@ $().ready(function(){
     });
 
     $(".groupSubmit").click(function(){
-        var uid = $(this).attr('value');
+        var id = $(this).attr('value');
         var values = "";
         $.each($("input[name='groups']:checked"), function() {
             values += $(this).val()+',';
         });
 
-        alert(uid + "-"+values);
+        $.post(baseUrl + "setting/groupme", { "id":id, "gids":values },
+            function(data){
+                if (data.status == "yes") {
+                    $("#ajaxprogressbar").html("<p id='infopsupdateok'><span class='icon_right'></span> 分组成功</p>");
+                    $("#infopsupdateok").slideDown('normal').delay(1000);
+                    $("#infopsupdateok").fadeOut('slow');
+                } else if (data.status == "wrong") {
+                    showWrongInfo(data.info);
+                }
+            }, "json");
 
     });
 });
