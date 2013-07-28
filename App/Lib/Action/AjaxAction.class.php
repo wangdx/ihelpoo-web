@@ -71,11 +71,9 @@ class AjaxAction extends Action {
     		$MsgAt = M("MsgAt");
     		$MsgComment = M("MsgComment");
     		$MsgSystem = M("MsgSystem");
-    		$UserCoins = M("UserCoins");
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
     		$messageSystemNums = $MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
-    		$messageCoinsNums = $UserCoins->where("uid = $userloginid AND deliver = 0")->count();
     		if ($userStatusRecord['acquire_seconds'] <= 6000) {
     			$userStatusRecordAcquireSeconds = $userStatusRecord['acquire_seconds'] / 2;
     		} else {
@@ -85,7 +83,6 @@ class AjaxAction extends Action {
     			'messageAtNums' => $messageAtNums,
     			'messageCommentNums' => $messageCommentNums,
     			'messageSystemNums' => $messageSystemNums,
-    			'messageCoinsNums' => $messageCoinsNums,
     			'acquireTimes' => $userStatusRecord['acquire_times'],
     			'acquireSeconds' => $userStatusRecordAcquireSeconds,
     			'newmessage' => '',
