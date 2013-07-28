@@ -23,11 +23,11 @@
   </p>
   <p class="header_right fr f12">
   	<?php if (!empty($userloginedrecord['uid'])) { ?>
-	    <a href="__ROOT__/stream">圈圈个人中心</a> | <a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a>
+	    <a href="__ROOT__/wo" class="fb">{$userloginedrecord['nickname']}</a>
 	    <?php if ($userloginedrecord['online'] == 1) { ?>
-	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="正常，点击切换为潜水状态">[在线]</span>
+	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="正常，点击切换为潜水状态" class="pointer">[在线]</span>
 	    <?php } else { ?>
-	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="潜水，点击切换为正常在线状态">[潜水]</span>
+	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="潜水，点击切换为正常在线状态" class="pointer">[潜水]</span>
 	    <?php } ?>
 	    <!-- <a href="__ROOT__/mallset/seller">买卖</a>
 	    <a href="__ROOT__/mutual/find">找人</a> -->
@@ -37,7 +37,7 @@
 	    <a href="__ROOT__/message/comment" title="评论回复" id="message_comment_nums_a" style="display:none"><span class='message message_shine'></span></a>
 	    <a href="__ROOT__/message/at" title="@我的消息" id="message_at_nums_a" style="display:none"><span class='message_blue message_shine'></span></a>
 	    <a href="__ROOT__/message/coin" title="RBM管理记录" id="message_cion_nums_a" style="display:none"><span class='message_yellow message_shine'></span></a>
-	    <a href="__ROOT__/user/quit">[退出]</a>
+	    <a href="__ROOT__/user/quit">退出</a>
     <?php } else { ?>
     	<a href="__ROOT__/">登录</a>
     	<a href="__ROOT__/user/register">注册</a>
