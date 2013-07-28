@@ -19,8 +19,9 @@ $().ready(function(){
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
+
+                location.reload();
             }, "json");
-            location.reload();
         }
     });
 });
