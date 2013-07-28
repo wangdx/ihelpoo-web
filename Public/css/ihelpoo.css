@@ -252,7 +252,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *html .headermall{ position:relative; }
 .header a,.headermall a{ color:#FFF; margin:0px 5px; }
 
-.header_left a{
+.header_left_arrow{
     margin:0 20px 0 0;
 }
 
