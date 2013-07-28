@@ -193,6 +193,11 @@ class SettingAction extends Action {
         $uid = session('userloginid');
         $gid = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
 
+        $UserGroup = M("UserGroup");
+        $userGroup = $UserGroup->where("id = $gid")->find();
+
+        $this->assign('userGroup',$userGroup);
+
 
         $UserPriority = M("UserPriority");
         $userPrioritys = $UserPriority->where("i_user_priority.uid = $uid AND group_id=$gid AND pid != ''")
