@@ -253,12 +253,11 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header a,.headermall a{ color:#FFF; }
 
 .header .header_left_arrow{
-    margin:0 20px 0 0;
+    margin:0 20px 0 5px;
 }
 .header_right a{
-    margin:0 10px 0 0;
+    margin:0 0 0 10px;
 }
-
 .h_arrow{
     margin: 0 0 0 4px;
     position: absolute;
