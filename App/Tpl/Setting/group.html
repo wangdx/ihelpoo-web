@@ -39,7 +39,7 @@
             <input type="checkbox" name="groups"
                    value='<?php echo $userGroup["id"]?>'><?php echo $userGroup['group_name']?>
 
-            <?php endforeach ?>（目前一个人只能在一个组下，默认取最前面分组）
+            <?php endforeach ?>（暂只支持单选）
 
             <p style="padding:20px;"/>
             <?php foreach ($userPrioritys as $user) : ?>
