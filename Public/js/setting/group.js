@@ -19,6 +19,7 @@ $().ready(function(){
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
+                setTimeout(function(){location.reload();},2000);
             }, "json");
         }
     });
