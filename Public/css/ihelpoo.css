@@ -256,6 +256,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     margin-left: 6px;
     margin-top: 8px;
     border-width: 3px 3px 0;
+    border-style: solid;
     display: inline-block;
     font-size: 0;
     height: 0;
@@ -263,6 +264,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     overflow: hidden;
     vertical-align: top;
     width: 0;
+    color: #FFFFFF;
 }
 
 
