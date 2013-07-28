@@ -55,9 +55,9 @@ $().ready(function(){
             success:function(msg){
             	if (msg.status == 'yes') {
             		if (msg.data == 1) {
-            			$('#header_online_status').attr({ value : '1', title: '正常，点击切换为潜水状态'}).removeClass('login_status_hidden').addClass('login_status_online');
+            			$('#header_online_status').attr({ value : '1', title: '正常，点击切换为潜水状态'}).html('[在线]');
             		} else if (msg.data == 2) {
-            			$('#header_online_status').attr({ value : '2', title: '潜水，点击切换为正常在线状态'}).removeClass('login_status_online').addClass('login_status_hidden');
+            			$('#header_online_status').attr({ value : '2', title: '潜水，点击切换为正常在线状态'}).html('[潜水]');
             		}
             	} else {
             		alert(msg.info);

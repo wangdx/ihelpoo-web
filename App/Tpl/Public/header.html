@@ -23,11 +23,11 @@
   </p>
   <p class="header_right fr f12">
   	<?php if (!empty($userloginedrecord['uid'])) { ?>
-	    <span class="icon_pump"></span><a href="__ROOT__/stream">圈圈个人中心</a> | <a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a>
+	    <a href="__ROOT__/stream">圈圈个人中心</a> | <a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a>
 	    <?php if ($userloginedrecord['online'] == 1) { ?>
-	    	<span id="header_online_status" value="{$userloginedrecord['online']}" class="login_status_online" title="正常，点击切换为潜水状态"></span>
+	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="正常，点击切换为潜水状态">[在线]</span>
 	    <?php } else { ?>
-	    	<span id="header_online_status" value="{$userloginedrecord['online']}" class="login_status_hidden" title="潜水，点击切换为正常在线状态"></span>
+	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="潜水，点击切换为正常在线状态">[潜水]</span>
 	    <?php } ?>
 	    <!-- <a href="__ROOT__/mallset/seller">买卖</a>
 	    <a href="__ROOT__/mutual/find">找人</a> -->
