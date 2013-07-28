@@ -59,7 +59,9 @@ body{
 			     	<img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="80" height="60" class="radius5" />
 			    </a>
 			</p>
-			<p class="index_loginfast_div_name_p"><a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?><span class="f12 fn gray">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a></p>
+			<p class="index_loginfast_div_name_p">
+				<a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
+			</p>
 			<p class="index_loginfast_div_registe_p"><a class="black_l f12">注册账号</a></p>
 		</div>
 	<?php } else { ?>
@@ -75,7 +77,7 @@ body{
 			  	<input type="password" name="password" id="password" class="loginbox_password_input" />
 			  </div>
 			  </div>
-			  <div class="loginbox_select f12 gray">
+			  <div class="loginbox_select f12 black_l">
 			  	记住密码<input type="checkbox" /> 潜水登录<input type="checkbox" />
 			  </div>
 			  <div class="loginbox_submit">
