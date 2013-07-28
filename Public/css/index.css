@@ -56,16 +56,11 @@
     margin: 15px 0 0 0;
 }
 .mim_loginbox{
-    border: 1px solid #999;
     float: right;
     height: 215px;
     padding: 15px 25px;
     position: relative;
     width: 220px;
-    background: #FFF;
-    filter:alpha(opacity=90); 
-    -moz-opacity:0.9; 
-    opacity:0.9;
 }
 
 .loginbox_email, .loginbox_password{
@@ -140,24 +135,25 @@
 
 
 .loginbox_outer{
-    background: #EEE;
+    background: #FFF;
     height: 215px;
-    padding: 15px;
-    width: 235px;
+    padding: 15px 25px;
+    width: 220px;
     border: 1px solid #666;
-    filter:alpha(opacity=8); 
-    -moz-opacity:0.8; 
-    opacity:0.8;
+    filter:alpha(opacity=50); 
+    -moz-opacity:0.5; 
+    opacity:0.5;
     position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
 }
 
 
 .index_loginfast_div{
-    
-    
     float: right;
-    height: 215px;
-    padding: 15px;
+    height: 220px;
+    padding: 15px 25px;
     position: relative;
     width: 235px;
     
