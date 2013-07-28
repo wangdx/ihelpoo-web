@@ -66,22 +66,23 @@
 .loginbox_email, .loginbox_password{
     background-image: url("../image/common/form_login.png");
     background-repeat: no-repeat;
-    border: 1px solid #CCCCCC;
-    border-radius: 2px 2px 2px 2px;
-    box-shadow: 1px 1px 1px 0 #EAEAEA inset;
-    color: #808080;
-    height: 28px;
     padding-left: 39px;
     padding-right: 4px;
     vertical-align: middle;
-    width: 170px;
-    margin-top: 20px;
+    
 }
 .loginbox_password{
     background-position: 0 -50px;
 }
 .loginbox_email_bg, .loginbox_password_bg{
     background: #FFF;
+    width: 170px;
+    margin-top: 20px;
+    height: 28px;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 1px 1px 1px 0 #EAEAEA inset;
+    color: #808080;
 }
 
 .loginbox_email_input, .loginbox_password_input{
