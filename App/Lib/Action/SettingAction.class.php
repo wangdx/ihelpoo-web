@@ -208,10 +208,10 @@ class SettingAction extends Action {
     {
 
         $this->assign('title','分组');
-        $userloginid = session('userloginid');
+        $uid = session('userloginid');
 
         $UserGroup = M('UserGroup');
-        $userGroup = $UserGroup->where("uid = $userloginid")->select();
+        $userGroup = $UserGroup->where("uid = $uid")->select();
         $this->assign('userGroups',$userGroup);
 
 
@@ -239,7 +239,7 @@ class SettingAction extends Action {
                 $groupData = array(
                     'group_name' => $groupName,
                     'group_desc' => $groupDesc,
-                    'uid' => $userloginid,
+                    'uid' => $uid,
                     'create_time'=>time(),
                     'update_time'=>time(),
                 );
