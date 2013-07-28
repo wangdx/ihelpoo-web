@@ -101,18 +101,16 @@ body{
 		<?php } ?>
 	<?php } else { ?>
 	<div class="mim_loginbox">
-		<ul class="">
-			<li style="height:30px;"></li>
-			<?php if (!empty($_GET['login'])) { ?>
-				<li class="f12" style="height:30px;"><span id="wb_connect_btn"></span> 微博登录 <a href="__ROOT__/stream/" class="f16 reb_back fb">{$userloginedrecord['nickname']}</a> <a href="__ROOT__/user/quit" class="gray">退出</a></li>
-			<?php } else { ?>
-				<li class="f12" style="height:30px;"><span class="icon_pump"></span> 您已经登录 <a href="__ROOT__/stream/" class="f16 reb_back fb">{$userloginedrecord['nickname']}</a> <a href="__ROOT__/user/quit" class="gray">退出</a></li>
-			<?php } ?>
-			<li style="height:10px;"></li>
-	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/stream/" class="">个人中心</a></li>
-	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/message/" class="">您的消息</a></li>
-	    	<li style="height:30px;"><span class="icon_plus"></span><a href="__ROOT__/setting/" class="">个人资料</a></li>
-	    </ul>
+	    <p class="index_loginfast_div_nav_p"><a class="index_loginfast_div_nav_p_select">您已经登录</a></p>
+		<p class="index_loginfast_div_info_p"><span class="f12 black_l">圈圈欢迎您! {$userloginedrecord['nickname']} <a href="__ROOT__/user/quit">[退出]</a></span></p>
+		<p class="index_loginfast_div_icon_p">
+			<a href="__ROOT__/stream/">
+			     <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url']); ?>" width="80" height="60" class="radius5" />
+			</a>
+		</p>
+		<p class="index_loginfast_div_name_p">
+			<a href="__ROOT__/stream" class="f16 reb_back fb" ><?php echo $cookieUserLogin['nickname']; ?> <span class="fn f12 black_l">进入个人中心</span></a>
+		</p>
 	</div>
 	<?php } ?>
 	<div class="loginbox_outer">
