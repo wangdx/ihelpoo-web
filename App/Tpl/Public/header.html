@@ -21,6 +21,12 @@
     <a href="__ROOT__/help" class="header_left_arrow">帮助<span class="h_arrow"><em>◆</em></span></a>
     <a href="__ROOT__/index/hot">排行</a>
   </p>
+  <p class="header_search">
+	<p id="divSearchBox" class="search_inner">
+	<input id="inputSearchBox" class="input_search" type="text" title="找人/记录" value="搜 找人/记录">
+	<input id="inputSearchButton" class="bt_search" type="button" title="点击开始搜索" value=" ">
+	</p>
+  </p>
   <p class="header_right fr f12">
   	<?php if (!empty($userloginedrecord['uid'])) { ?>
 	    <a href="__ROOT__/wo" class="fb">{$userloginedrecord['nickname']}</a>
