@@ -244,7 +244,6 @@ class SettingAction extends Action {
 
     public function groupUpdate(){
 
-        $uid = session('userloginid');
         if ($this->isPost()) {
             $IUserGroup = D("UserGroup");
             $validate = array(
@@ -264,7 +263,6 @@ class SettingAction extends Action {
                     'id' => $gid,
                     'group_name' => $groupName,
                     'group_desc' => $groupDesc,
-                    'uid' => $uid,
                     'update_time'=>time(),
                 );
                 $IUserGroup->save($groupData);

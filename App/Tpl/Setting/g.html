@@ -1,14 +1,14 @@
 <include file="Public:header"/>
 <link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
 <div class="main">
-    <form action="__ROOT__/setting/ps" method="post" id="groupUpdateForm">
+    <form method="post" id="groupUpdateForm">
     <ul class="real">
         <input type="hidden" id="group_id" value="<?php echo $userGroup['id']?>"/>
         <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name"
                                                       value="<?php echo $userGroup['group_name']?>"/></li>
         <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc"
                                                       value="<?php echo $userGroup['group_desc']?>"/></li>
-        <li><a id="groupUpdate" class="btn">修改</a><a id="groupDelete" class="btn">删除</a></li>
+        <li><a id="groupUpdate" class="btn">修改</a> | <a id="groupDelete" class="btn">删除</a></li>
     </ul>
         </form>
 
