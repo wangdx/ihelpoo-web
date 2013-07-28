@@ -346,6 +346,47 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -126px -35px;
 }
 
+.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_gift, .ico_add{
+    height: 18px;
+    width: 18px;
+    margin: 0 7px 0 8px;
+    overflow: hidden;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    float: left;
+    display: inline-block;
+    font-size: 0;
+}
+.ico_friendfeed{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -467px -20px;
+}
+.ico_specialcare{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -472px -39px;
+}
+.ico_mentionme{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -483px 0;
+}
+.ico_sharespace{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -491px -38px;
+}
+.ico_store{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -600px -51px;
+}
+
+
+.ico_gift{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -668px -51px;
+}
+.ico_add{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -668px -34px;
+}
 
 
 .header_main{ width:1000px; margin:0 auto; position:relative; }

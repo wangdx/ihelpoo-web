@@ -73,9 +73,9 @@
     <li><a href="__ROOT__/wo/quaned/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">圈子</a> <span class="num f16 fb"><a href="__ROOT__/wo/quaned/<?php echo $userloginedrecord['uid']; ?>">{$recordUserInfo['fans']}</a></span></li>
   </ul>
   <ul class="s_r_ul">
-    <li><a href="__ROOT__/stream/"><span class="icon_recycle"></span>信息流<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
-    <li><a href="__ROOT__/stream/index/priority"><span class="icon_up"></span>只看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
-    <li><a href="__ROOT__/stream/index/help"><span class="icon_plus"></span>只看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/index/priority"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/index/help"><i class="ico_specialcare"></i>只看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
   </ul>
   <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] != '1') { ?>
   <ul class="s_r_ul">
@@ -91,9 +91,9 @@
   	<?php } ?>
   	<?php foreach ($pidGroupArray as $pidGroup) { ?>
 	  	<?php if ($groupUserRecord['uid'] == $pidGroup['uid']) { ?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?><span class="dot_choose"></span></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?><span class="dot_choose"></span></a></li>
 	  	<?php } else {?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?></a></li>
 	  	<?php } ?>
   	<?php } ?>
   </ul>
