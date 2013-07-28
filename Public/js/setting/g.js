@@ -13,7 +13,7 @@ $().ready(function(){
                   } else if (data.status == "wrong") {
                       showWrongInfo(data.info);
                   }
-//                  setTimeout(function(){location.reload();},2000);
+                  setTimeout(function(){location.href=baseUrl + "setting/group";},2000);
               }, "json");
           }
 
@@ -37,7 +37,7 @@ $().ready(function(){
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
-//                setTimeout(function(){location.reload();},2000);
+                setTimeout(function(){location.href=baseUrl + "setting/group";},2000);
             }, "json");
         }
     });
