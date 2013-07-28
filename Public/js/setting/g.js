@@ -1,5 +1,6 @@
 $().ready(function(){
 
+    var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
 
     $("#groupDelete").click(function(){
           if(confirm("确定？")){
