@@ -21,7 +21,7 @@
     <ul>
 
         <?php foreach ($userGroups as $userGroup) : ?>
-        <li><?php echo $userGroup['id']?> | <?php echo $userGroup['group_name']?> | <?php echo $userGroup['group_desc']?></li>
+        <li><a href="__ROOT__/setting/g/<?php echo $userGroup['id']?>"><?php echo $userGroup['group_name']?> </a> (<?php echo $userGroup['group_desc']?>)</li>
 
         <?php endforeach ?>
 
