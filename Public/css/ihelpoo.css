@@ -250,6 +250,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .headermall{ height:16px; width:100%; padding:10px 0; background:#B20000; border-bottom:2px solid #B20000; position:absolute; top:0; left:0 }
 *+html .headermall{ position:relative; }
 *html .headermall{ position:relative; }
+.header a,.headermall a{ color:#FFF; margin:0px 5px; }
 
 .header_left a{
     margin:0 20px 0 0;
@@ -282,7 +283,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header_left{ margin-left:160px; }
 *html .header_left{ margin-left:80px; }
 .header_right{ margin-right:0px; }
-.header a,.headermall a{ color:#FFF; margin:0px 5px; }
 .header a:hover,.headermall a:hover{ color:#FFFA85; }
 .main{ min-height:500px; width:980px; margin:60px auto 10px; padding:10px; border:1px solid #EEE; }
 .footer{ clear:both; height:80px; width:1000px; margin-bottom:0px; border:1px solid #EEE; background:url(../image/common/bg_w.png?id=1) repeat 0px 0px #FEFEFE; }
