@@ -194,15 +194,6 @@ class SettingAction extends Action {
         $this->assign('title','分组');
         $userloginid = session('userloginid');
 
-
-        $UserPriority = M("UserPriority");
-        $userPrioritys = $UserPriority->where("i_user_priority.uid = $userId AND pid != ''")
-            ->join('i_user_login ON i_user_priority.pid = i_user_login.uid')
-            ->order('i_user_priority.time DESC')
-            ->limit($offset, $count)
-            ->select();
-        $this->assign('userPrioritys',$userPrioritys);
-
         $UserGroup = M('UserGroup');
         $userGroup = $UserGroup->where("uid = $userloginid")->select();
         $this->assign('userGroups',$userGroup);
