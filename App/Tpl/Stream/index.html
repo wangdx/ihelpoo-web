@@ -79,6 +79,7 @@
     <li><a href="__ROOT__/stream/index/help"><i class="ico_specialcare"></i>只看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
   </ul>
   <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] != '1') { ?>
+  <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
   	<?php if($userloginedrecord['type'] != '1') { ?>
   		<li>
@@ -99,12 +100,14 @@
   	<?php } ?>
   </ul>
   <?php } ?>
+  <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
     <li><a href="__ROOT__/wo"><i class="ico_add"></i>我的小窝</a></li>
     <li><a href="__ROOT__/talk"><i class="ico_add"></i>悄悄话</a></li>
     <li><a href="__ROOT__/stream/fav"><i class="ico_add"></i>我的收藏</a></li>
     <li><a href="__ROOT__/mutual/shield?list"><i class="ico_add"></i>我的屏蔽</a></li>
   </ul>
+  <div class="splitter_line_div"></div>
   <ul class="s_r_ul_sub f12">
      <li><a href="__ROOT__/help">帮助广场</a></li>
      <li><a href="__ROOT__/index/mate?w=academy&n=1">大家(学院)</a></li>

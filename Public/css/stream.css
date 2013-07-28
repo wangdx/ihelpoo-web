@@ -86,9 +86,7 @@
     color: #666;
 }
 .s_r_ul_sub{
-    margin: 15px 0px 10px 0;
-    border-top: 1px dashed #CCC;
-    padding-top: 15px;
+    margin: 10px 0px 0 0;
 }
 .s_r_ul_sub li a{
     display: block;
