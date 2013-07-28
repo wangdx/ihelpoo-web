@@ -138,17 +138,29 @@
     margin: 10px 0 0;
 }
 
-.index_loginfast_div{
-    background: none repeat scroll 0 0 #EEE;
+
+.loginbox_outer{
+    background: #EEE;
+    height: 215px;
+    padding: 15px;
+    width: 235px;
     border: 1px solid #666;
+    filter:alpha(opacity=8); 
+    -moz-opacity:0.8; 
+    opacity:0.8;
+    position: absolute;
+}
+
+
+.index_loginfast_div{
+    
+    
     float: right;
     height: 215px;
     padding: 15px;
     position: relative;
     width: 235px;
-    filter:alpha(opacity=85); 
-    -moz-opacity:0.85; 
-    opacity:0.85;
+    
 }
 .index_loginfast_div_nav_p{
     border-bottom: 1px solid #CCC;
