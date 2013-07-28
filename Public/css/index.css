@@ -80,6 +80,9 @@
 .loginbox_password{
     background-position: 0 -50px;
 }
+.loginbox_email_bg, .loginbox_password_bg{
+    background: #FFF;
+}
 
 .loginbox_email_input, .loginbox_password_input{
     -moz-border-bottom-colors: none;

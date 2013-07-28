@@ -65,11 +65,15 @@ body{
 	<?php } else { ?>
 	    <div class="mim_loginbox">
 		  <form action="/user/login" method="post">
+		      <div class="loginbox_email_bg">
 		      <div class="loginbox_email">
 			    <input type="text" name="email" id="email" class="loginbox_email_input" />
 			  </div>
+			  </div>
+			  <div class="loginbox_password_bg">
 			  <div class="loginbox_password">
 			  	<input type="password" name="password" id="password" class="loginbox_password_input" />
+			  </div>
 			  </div>
 			  <div class="loginbox_select f12 gray">
 			  	记住密码<input type="checkbox" /> 潜水登录<input type="checkbox" />
