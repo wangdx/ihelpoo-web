@@ -1,12 +1,22 @@
+<include file="Public:header"/>
+<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
+<div class="main">
+    <ul class="real">
+        <input type="hidden" id="group_id" value="<?php echo $userGroup['id']?>"/>
+        <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name"
+                                                      value="<?php echo $userGroup['group_name']?>"/></li>
+        <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc"
+                                                      value="<?php echo $userGroup['group_desc']?>"/></li>
+        <li><a id="groupUpdate" class="btn">保存</a></li>
+    </ul>
 
-<ul class="real">
-    <input type="hidden" id="group_id" value="<?php echo $userGroup['id']?>" />
-    <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name" value="<?php echo $userGroup['group_name']?>"/></li>
-    <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc" value="<?php echo $userGroup['group_desc']?>"/></li>
-    <li><a id="groupUpdate" class="btn">保存</a></li>
-</ul>
+    <?php foreach ($userPrioritys as $user) : ?>
+    <?php echo $user['nickname']?><br>
 
-<?php foreach ($userPrioritys as $user) : ?>
-<?php echo $user['nickname']?><br>
+    <?php endforeach ?>
 
-<?php endforeach ?>
+
+    <div id="ajaxprogressbar"></div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/setting/group.js?id=1"></script>
+<include file="Public:footer"/>
