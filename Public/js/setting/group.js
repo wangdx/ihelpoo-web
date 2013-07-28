@@ -33,8 +33,13 @@ $().ready(function(){
 
         $.post(baseUrl + "setting/groupme", { "id":id, "gids":values },
             function(data){
-                console.log(data.name); // John
-                console.log(data.time); // 2pm
+                if (data.status == "yes") {
+                    $("#ajaxprogressbar").html("<p id='infopsupdateok'><span class='icon_right'></span> 分组成功</p>");
+                    $("#infopsupdateok").slideDown('normal').delay(1000);
+                    $("#infopsupdateok").fadeOut('slow');
+                } else if (data.status == "wrong") {
+                    showWrongInfo(data.info);
+                }
             }, "json");
 
     });
