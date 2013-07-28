@@ -312,8 +312,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     line-height: 21px;
     overflow: hidden;
     position: relative;
-    position: relative;
-    bottom: 1px;
 }
 .input_search {
     background: none repeat scroll 0 0 transparent;
@@ -327,6 +325,8 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     overflow: hidden;
     padding: 3px 3px 3px 9px;
     width: 117px;
+    position: relative;
+    bottom: 1px;
 }
 .bt_search {
     -moz-border-bottom-colors: none;
