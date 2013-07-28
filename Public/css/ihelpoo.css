@@ -386,7 +386,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .ico_gift, .ico_add{
     height: 16px;
     width: 16px;
-    margin: 0 7px 0 8px;
+    margin: 2px 7px 0 8px;
     overflow: hidden;
     vertical-align: middle;
     background-repeat: no-repeat;

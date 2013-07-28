@@ -91,9 +91,9 @@
   	<?php } ?>
   	<?php foreach ($pidGroupArray as $pidGroup) { ?>
 	  	<?php if ($groupUserRecord['uid'] == $pidGroup['uid']) { ?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?><span class="dot_choose"></span></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?><span class="dot_choose"></span></a></li>
 	  	<?php } else {?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 5); ?></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?></a></li>
 	  	<?php } ?>
   	<?php } ?>
   </ul>
