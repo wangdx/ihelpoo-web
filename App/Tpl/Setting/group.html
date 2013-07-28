@@ -18,6 +18,15 @@
     <li><a id="pssubmit" class="btn">保存</a></li>
   </ul>
   </form>
+    <ul>
+
+        <?php foreach ($userGroups as $userGroup) : ?>
+        <li><?php echo $userGroup['id']?> <?php echo $userGroup['group_name']?> <?php echo $userGroup['group_desc']?>?> </li>
+
+        <?php endforeach ?>
+
+
+    </ul>
 </div>
 <div id="ajaxprogressbar"></div>
 </div>
