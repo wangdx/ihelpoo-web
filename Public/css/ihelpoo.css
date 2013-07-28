@@ -250,10 +250,13 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .headermall{ height:16px; width:100%; padding:10px 0; background:#B20000; border-bottom:2px solid #B20000; position:absolute; top:0; left:0 }
 *+html .headermall{ position:relative; }
 *html .headermall{ position:relative; }
-.header a,.headermall a{ color:#FFF; margin:0px 5px; }
+.header a,.headermall a{ color:#FFF; }
 
 .header .header_left_arrow{
     margin:0 20px 0 0;
+}
+.header_right a{
+    margin:0 10px 0 0;
 }
 
 .h_arrow{
