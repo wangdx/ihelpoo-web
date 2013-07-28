@@ -30,7 +30,6 @@ $().ready(function(){
         $.each($("input[name='groups']:checked"), function() {
             values.push($(this).val()+',');
         });
-        values.pop(',');
 
         alert(uid + "-"+values);
 
