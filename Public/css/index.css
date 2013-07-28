@@ -189,6 +189,16 @@
 .index_loginfast_div_nav_p_select{
     border-bottom: 2px solid #333;
 }
+.i_l_div_nav_p_span_info{
+    display: block;
+    padding: 6px 0px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 0px 10px;
+    text-align: center;
+    width: 150px;
+}
 .index_loginfast_div_info_p{
     margin: 25px auto 10px;
     text-align: center;
