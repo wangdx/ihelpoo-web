@@ -15,11 +15,11 @@ $().ready(function(){
                 if (data.status == "yes") {
                     $("#ajaxprogressbar").html("<p id='infopsupdateok'><span class='icon_right'></span> 创建分组成功</p>");
                     $("#infopsupdateok").slideDown('normal').delay(1000);
-                    $("#infopsupdateok").fadeOut('slow').delay(2000);
+                    $("#infopsupdateok").fadeOut('slow');
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
-                location.reload();
+                setTimeout(location.reload(),3000);
             }, "json");
         }
     });
