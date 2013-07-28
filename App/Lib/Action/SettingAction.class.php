@@ -188,6 +188,22 @@ class SettingAction extends Action {
     	$this->display();
     }
 
+    public function g(){
+
+        $uid = session('userloginid');
+        $gid = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+
+
+        $UserPriority = M("UserPriority");
+        $userPrioritys = $UserPriority->where("i_user_priority.uid = $uid AND group_id=$gid AND pid != ''")
+            ->join('i_user_login ON i_user_priority.pid = i_user_login.uid')
+            ->order('i_user_priority.time DESC')
+            ->select();
+        $this->assign('userPrioritys',$userPrioritys);
+        $this->display();
+
+    }
+
     public function group()
     {
 
@@ -197,6 +213,14 @@ class SettingAction extends Action {
         $UserGroup = M('UserGroup');
         $userGroup = $UserGroup->where("uid = $userloginid")->select();
         $this->assign('userGroups',$userGroup);
+
+
+        $UserPriority = M("UserPriority");
+        $userPrioritys = $UserPriority->where("i_user_priority.uid = $uid AND pid != ''")
+            ->join('i_user_login ON i_user_priority.pid = i_user_login.uid')
+            ->order('i_user_priority.time DESC')
+            ->select();
+        $this->assign('userPrioritys',$userPrioritys);
 
         if ($this->isPost()) {
             $IUserGroup = D("UserGroup");
