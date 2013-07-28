@@ -1,26 +1,12 @@
-<include file="Public:header" />
-<link href="__PUBLIC__/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
-<div class="main">
-<div class="s_left f12">
-  <ul>
-    <li><a href="__ROOT__/setting"><span class="icon_text"></span> 个人资料</a></li>
-    <li><a href="__ROOT__/setting/ps" class="bg_orange"><span class="icon_write"></span> 修改密码</a></li>
-    <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
-    <li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li>
-      <li><a href="__ROOT__/setting/group"><span class="icon_plus"></span> 创建分组</a></li>
-  </ul>
-</div>
-<div class="s_right">
-  <form action="__ROOT__/setting/ps" method="post" id="psform">
-  <ul class="real">
-    <li><span class="settitle">原密码:</span><input id="passwordoriginal" type="password" name="passwordoriginal" /></li>
-    <li><span class="settitle">新密码:</span><input id="password" type="password" name="password" /></li>
-    <li><span class="settitle">密码重复:</span><input id="passwordrepeat" type="password" name="passwordrepeat" /></li>
-    <li><a id="pssubmit" class="btn">修改</a></li>
-  </ul>
-  </form>
-</div>
-<div id="ajaxprogressbar"></div>
-</div>
-<script type="text/javascript" src="__PUBLIC__/js/setting/ps.js?id=1"></script>
-<include file="Public:footer" />
+
+<ul class="real">
+    <input type="hidden" id="group_id" value="<?php echo $userGroup['id']?>" />
+    <li><span class="settitle">分组名:*</span><input id="group_name" type="text" name="group_name" value="<?php echo $userGroup['group_name']?>"/></li>
+    <li><span class="settitle">分组描述:</span><input id="group_desc" type="text" name="group_desc" value="<?php echo $userGroup['group_desc']?>"/></li>
+    <li><a id="groupUpdate" class="btn">保存</a></li>
+</ul>
+
+<?php foreach ($userPrioritys as $user) : ?>
+<?php echo $user['nickname']?><br>
+
+<?php endforeach ?>
