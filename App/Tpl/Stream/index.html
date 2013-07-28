@@ -72,6 +72,7 @@
     <li><a href="__ROOT__/wo/quan/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">我圈</a> <span class="num f16 fb"><a href="__ROOT__/wo/quan/<?php echo $userloginedrecord['uid']; ?>">{$recordUserInfo['follow']}</a></span></li>
     <li><a href="__ROOT__/wo/quaned/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">圈子</a> <span class="num f16 fb"><a href="__ROOT__/wo/quaned/<?php echo $userloginedrecord['uid']; ?>">{$recordUserInfo['fans']}</a></span></li>
   </ul>
+  <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
     <li><a href="__ROOT__/stream/"><i class="ico_school"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/priority"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
