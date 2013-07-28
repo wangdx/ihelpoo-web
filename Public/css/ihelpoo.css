@@ -252,19 +252,24 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *html .headermall{ position:relative; }
 
 
-.a_trig_b{
-    margin-left: 6px;
-    margin-top: 8px;
-    border-width: 3px 3px 0;
-    border-style: solid;
+.h_arrow{
+    margin: 0 0 0 4px;
+    position: absolute;
+    top: 17px;
+    line-height: 13px;
     display: inline-block;
-    font-size: 0;
-    height: 0;
-    line-height: 0;
+    font-size: 12px;
+    height: 4px;
     overflow: hidden;
-    vertical-align: top;
-    width: 0;
+    vertical-align: middle;
+    width: 7px;
     color: #FFFFFF;
+    cursor: pointer;
+}
+.h_arrow em {
+    display: inline-block;
+    font-family: "SimSun";
+    margin: -7px 0 0 -2px;
 }
 
 
