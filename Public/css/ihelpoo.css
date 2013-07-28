@@ -301,6 +301,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 .header_search{
     margin: 7px 0 0 8px;
+    width: 300px;
 }
 .search_inner{
     background: none repeat scroll 0 0 #EDEDED;
