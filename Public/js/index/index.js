@@ -6,7 +6,7 @@ $().ready(function(){
 	 */
 	
 	var windowheight = $(window).height();
-	var windowwidth = $(document).width();
+	var windowwidth = $(document.body).width();
 	if (windowheight < '600') {
 		windowheight = 600;
 	}
@@ -15,7 +15,7 @@ $().ready(function(){
 	
 	$(window).resize(function(){
 		var windowheight = $(window).height();
-		var windowwidth = $(document).width();
+		var windowwidth = $(document.body).width();
 		if (windowheight < '600') {
 			windowheight = 600;
 		}
