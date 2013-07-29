@@ -312,11 +312,6 @@
 		  if (!empty($record['url'])) {
               echo "<a href='".$record['url']."' target='_blank'><span class='post_video'></span></a>";
           }
-          if ($record['say_type'] == '1') {
-              echo " <a href='".__ROOT__."/item/help/".$record['sid']."' title='详情' target='_blank'><span class='btn_more'></span></a>";
-          } else {
-              echo " <a href='".__ROOT__."/item/say/".$record['sid']."' title='详情' target='_blank'><span class='btn_more'></span></a>";
-          }
       ?>
       <?php
       if (!empty($record['image'])) {

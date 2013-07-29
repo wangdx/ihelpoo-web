@@ -34,12 +34,9 @@ $().ready(function(){
     var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
     var contentOk = 'no';
 	var imageNums = 0;
-    $('.btn_more').hide();
     $('.stream_list_ul li').hover(function(){
-        $(this).find('.btn_more').show();
         $(this).find('.priority_shield').show();
     }, function(){
-        $(this).find('.btn_more').hide();
         $(this).find('.priority_shield').hide();
     });
 
