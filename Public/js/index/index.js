@@ -6,7 +6,7 @@ $().ready(function(){
 	 * css style image background
 	 */
 	var windowheight = $(window).height();
-	var documentheight = $(".texture_background").height();
+	var documentheight = $(".main_index").height() + $(".footer_about").height();
 	var windowwidth = $(window).width();
 	var documentwidth = $(document.body).width();
 	if (documentheight < windowheight) {
