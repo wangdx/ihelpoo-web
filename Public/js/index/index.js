@@ -6,7 +6,7 @@ $().ready(function(){
 	 * css style image background
 	 */
 	var windowheight = $(window).height();
-	var documentheight = $(document.body).height();
+	var documentheight = $(document.body).outerHeight(true);
 	var windowwidth = $(window).width();
 	var documentwidth = $(document.body).width();
 	if (documentheight < windowheight) {
