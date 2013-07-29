@@ -387,6 +387,9 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 
+
+
+
 .ico_gift, .ico_add{
     height: 16px;
     width: 16px;
@@ -407,6 +410,41 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -668px -34px;
 }
 
+
+.icon_iphone, .icon_ipad, .icon_android, .icon_windowsphone, .icon_mobileother {
+    vertical-align: top;
+    display: inline-block;
+}
+.icon_iphone {
+    background-image: url("../image/common/index_login.png");
+    background-position: -58px -71px;
+    height: 28px;
+    width: 28px;
+}
+.icon_ipad {
+    background-image: url("../image/common/index_login.png");
+    background-position: -58px -100px;
+    height: 28px;
+    width: 28px;
+}
+.icon_android {
+    background-image: url("../image/common/index_login.png");
+    background-position: -87px -42px;
+    height: 28px;
+    width: 28px;
+}
+.icon_windowsphone {
+    background-image: url("../image/common/index_login.png");
+    background-position: -87px -100px;
+    height: 28px;
+    width: 28px;
+}
+.icon_mobileother {
+    background-image: url("../image/common/index_login.png");
+    background-position: -87px -71px;
+    height: 28px;
+    width: 28px;
+}
 
 .header_main{ width:1000px; margin:0 auto; position:relative; }
 .header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
