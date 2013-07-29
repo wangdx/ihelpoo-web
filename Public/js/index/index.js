@@ -6,7 +6,7 @@ $().ready(function(){
 	 * css style image background
 	 */
 	var windowheight = $(window).height();
-	var documentheight = $(document.body).height();
+	var documentheight = $(document).height();
 	var windowwidth = $(window).width();
 	var documentwidth = $(document.body).width();
 	if (documentheight < windowheight) {
@@ -24,7 +24,7 @@ $().ready(function(){
 	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
 	$(window).resize(function(){
 		var windowheight = $(window).height();
-		var documentheight = $(document.body).height();
+		var documentheight = $(document).height();
 		var windowwidth = $(window).width();
 		var documentwidth = $(document.body).width();
 		if (documentheight < windowheight) {
