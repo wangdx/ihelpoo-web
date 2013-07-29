@@ -11,20 +11,8 @@
 } ?>
 <link href="__PUBLIC__/css/ihelpoo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
-<style type="text/css">
-body{
-    background: url('<?php echo $indexbgimg; ?>') no-repeat center top #09F;
-}
-.index_texture{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('__PUBLIC__/image/common/bg_w.png') repeat left top;
-}
-</style>
 </head>
 <body>
-<div class="index_texture">
 <div class="main_index">
   <p class="main_index_logo">
   	<?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
@@ -156,6 +144,9 @@ body{
   <p class="f12">Copyright © 2013 ihelpoo.All Rights Reserved.</p>
   <p>我帮圈圈 For {$schoolname}</p>
 </div>
+
+<div id="lay_bg" class="lay_background">
+	<img id="lay_bg_img" class="lay_background_img " alt="" src="<?php echo $indexbgimg; ?>" >
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
 <script type="text/javascript">

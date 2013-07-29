@@ -1,6 +1,16 @@
 var firstVisitUrl = location.href;
 
 $().ready(function(){
+	/**
+	 * css style image background
+	 */
+	
+	var windowheight = $(window).height();
+	var windowwidth = $(window).width();
+	alert(windowheight);
+	$('#lay_bg').css({ width: windowwidth, height: windowheight});
+	$('#lay_bg_img').fadeIn('normal').css({ width: windowwidth, height: windowheight});
+	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
     emailok = 'no';
     passwordok = 'no';

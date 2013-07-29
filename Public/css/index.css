@@ -301,6 +301,12 @@ input{
     margin-top: 10px;
     color: #FFF;
 }
+.lay_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../image/common/bg_w.png') repeat left top;
+}
 
 .footer_index{
     clear:both;
