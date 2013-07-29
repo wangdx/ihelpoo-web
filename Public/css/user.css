@@ -140,9 +140,17 @@ input{
 #registe_submit{
     position: relative;
     left: 75px;
-    padding: 5px 15px;
-    color: #FFF;
-    background-color: #6ccacd;
+    background: url("../image/common/form_login.png") no-repeat scroll 0 -150px transparent;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 18px;
+    font-style: normal;
+    height: 30px;
+    line-height: 30px;
+    padding: 2px 0 5px;
+    text-align: center;
+    vertical-align: 0;
+    width: 143px;
 }
 #registe_submit:hover{
     background-color: #FE6600;
