@@ -6,20 +6,38 @@ $().ready(function(){
 	 * css style image background
 	 */
 	var windowheight = $(window).height();
-	var windowwidth = $(document.body).width();
-	if (windowheight < '600') {
-		windowheight = 600;
+	var documentheight = $(document.body).height();
+	var windowwidth = $(window).width();
+	var documentwidth = $(document.body).width();
+	if (documentheight < windowheight) {
+		var bgheight = windowheight;
+	} else {
+		var bgheight = documentheight;
 	}
-	$('#lay_bg').css({ width: windowwidth, height: windowheight});
-	$('#lay_bg_img').fadeIn('slow').css({ width: windowwidth, height: windowheight});
+	if (windowwidth < documentwidth) {
+		var bgwidth = documentwidth;
+	} else {
+		var bgwidth = windowwidth;
+	}
+	$('#lay_bg').css({ width: bgwidth, height: bgheight});
+	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
 	$(window).resize(function(){
 		var windowheight = $(window).height();
-		var windowwidth = $(document.body).width();
-		if (windowheight < '600') {
-			windowheight = 600;
+		var documentheight = $(document.body).height();
+		var windowwidth = $(window).width();
+		var documentwidth = $(document.body).width();
+		if (documentheight < windowheight) {
+			var bgheight = windowheight;
+		} else {
+			var bgheight = documentheight;
 		}
-		$('#lay_bg').css({ width: windowwidth, height: windowheight});
-		$('#lay_bg_img').fadeIn('slow').css({ width: windowwidth, height: windowheight});
+		if (windowwidth < documentwidth) {
+			var bgwidth = documentwidth;
+		} else {
+			var bgwidth = windowwidth;
+		}
+		$('#lay_bg').css({ width: bgwidth, height: bgheight});
+		$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
 	});
 	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
