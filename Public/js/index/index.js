@@ -37,7 +37,8 @@ $().ready(function(){
 			var bgwidth = windowwidth;
 		}
 		$('#lay_bg').css({ width: bgwidth, height: bgheight});
-		$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
+		$('#lay_bg_img').css({ width: bgwidth, height: bgheight}).fadeIn('slow');
+		$('.texture_background').css({ width: bgwidth, height: bgheight});
 	});
 	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
