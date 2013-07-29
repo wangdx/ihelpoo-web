@@ -390,7 +390,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 
 
-.ico_gift, .ico_add, .icon_hand{
+.ico_gift, .ico_add{
     height: 16px;
     width: 16px;
     margin: 2px 7px 0 8px;
@@ -409,6 +409,12 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-image: url("../image/common/icon_main.png");
     background-position: -668px -34px;
     cursor: pointer;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
 }
 
 
