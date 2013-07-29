@@ -5,19 +5,20 @@ $().ready(function(){
 	/**
 	 * css style image background
 	 */
+	var bgheight,bgwidth;
 	var windowheight = $(window).height();
-	var documentheight = '630';
 	var windowwidth = $(window).width();
+	var documentheight = '620';
 	var documentwidth = $(document.body).width();
 	if (documentheight < windowheight) {
-		var bgheight = windowheight;
+		bgheight = windowheight;
 	} else {
-		var bgheight = documentheight;
+		bgheight = documentheight;
 	}
 	if (windowwidth < documentwidth) {
-		var bgwidth = documentwidth;
+		bgwidth = documentwidth;
 	} else {
-		var bgwidth = windowwidth;
+		bgwidth = windowwidth;
 	}
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
 	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
