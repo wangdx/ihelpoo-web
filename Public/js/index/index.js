@@ -4,8 +4,6 @@ $().ready(function(){
 	/**
 	 * css style image background
 	 */
-	$(html).css({ overflow-x: 'hidden', overflow-y: 'hidden'});
-	$(body).css({ _overflow-x: 'hidden', _overflow-y: 'hidden'});
 	var bgheight,bgwidth;
 	var windowheight = $(window).height();
 	var windowwidth = $(window).width();
