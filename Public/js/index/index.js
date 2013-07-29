@@ -6,7 +6,7 @@ $().ready(function(){
 	 * css style image background
 	 */
 	var windowheight = $(window).height();
-	var documentheight = $(".main_index").height() + $(".footer_about").height();
+	var documentheight = '600';
 	var windowwidth = $(window).width();
 	var documentwidth = $(document.body).width();
 	if (documentheight < windowheight) {
@@ -19,12 +19,10 @@ $().ready(function(){
 	} else {
 		var bgwidth = windowwidth;
 	}
-	alert(bgheight + ' - ' + documentheight);
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
 	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
 	$(window).resize(function(){
 		var windowheight = $(window).height();
-		var documentheight = $(".texture_background").height();
 		var windowwidth = $(window).width();
 		var documentwidth = $(document.body).width();
 		if (documentheight < windowheight) {
