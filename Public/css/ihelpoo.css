@@ -428,7 +428,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-image: url("../image/common/icon_main.png");
     height: 14px;
     width: 16px;
-    vertical-align: top;
+    vertical-align: bottom;
     background-repeat: no-repeat;
     display: inline-block;
     font-size: 0;

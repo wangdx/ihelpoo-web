@@ -231,25 +231,25 @@
   <?php if($streamway == "time" || $streamway == "default") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
   		<?php if (!empty($indexSpreadInfoVaule)) { echo $indexSpreadInfoVaule; } ?>
-        <i class="icon_feedctrblog"></i> 排序
+        <i class="icon_feedctrrefresh"></i> 排序
     	<a href="__ROOT__/stream" class='<?php if($streamway == "default") { echo "stream_list_ul_sort_a"; } ?>'>默认</a>
     	<a href="__ROOT__/stream/index/time" class='<?php if($streamway == "time") { echo "stream_list_ul_sort_a"; } ?>'>按时间</a>
   	</p>
   <?php } else if ($streamway == "priority") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
-  		仅显示我圈的
+  		<i class="icon_stateplay"></i> 仅显示我圈的
   	</p>
   <?php } else if ($streamway == "help") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
-  		仅显示帮助
+  		<i class="icon_stateplay"></i> 仅显示帮助
   	</p>
   <?php } else if ($streamway == "group") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
-  		显示 <a href="__ROOT__/stream/u/<?php echo $groupUserRecord['uid']; ?>"><?php echo $groupUserRecord['nickname']; ?></a> <a href="__ROOT__/index/group">组织</a>中的成员信息流 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
+  		<i class="icon_feedctrblog"></i> 显示 <a href="__ROOT__/stream/u/<?php echo $groupUserRecord['uid']; ?>"><?php echo $groupUserRecord['nickname']; ?></a> <a href="__ROOT__/index/group">组织</a>中的成员信息流 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
   	</p>
   <?php } else if ($streamway == "specialty") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
-  		显示就读 <a href="__ROOT__/index/mate?w=academy&n={$academyId}&specialty={$specialtyId}"><?php echo $specialtyName; ?></a> 的童鞋 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
+  		<i class="icon_feedctrblog"></i> 显示就读 <a href="__ROOT__/index/mate?w=academy&n={$academyId}&specialty={$specialtyId}"><?php echo $specialtyName; ?></a> 的童鞋 共<span class="fb blue"><?php echo $groupUserNums; ?></span>人
   	</p>
   <?php } ?>
   <ul class="stream_list_ul">
@@ -306,7 +306,7 @@
       	<?php } ?>
       <?php } ?>
     </div>
-    <span class="priority_shield f12"><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈ta or 屏蔽ta</a></span>
+    <span class="priority_shield f12"><i class="icon_stateplay"></i><a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target='_blank'>圈ta or 屏蔽ta</a></span>
     <p class="s_li_p_content lh15">
       <?php
           echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
