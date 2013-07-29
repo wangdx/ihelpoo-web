@@ -306,6 +306,7 @@ input{
     color: #FFF;
 }
 .lay_background{
+    display: none;
     position: absolute;
     top: 0;
     z-index: -2;
