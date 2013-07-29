@@ -428,9 +428,9 @@
 			$skinValue = $userloginedrecord['skin'] == '' ? '0' : $userloginedrecord['skin'];
 		}
 		if (!empty($changeskin)) { ?>
-	    <a id="change_skin" title="显示的是对方皮肤" value="<?php echo $skinValue ?>"><span class="icon_plus"></span></a>
+	    <a id="change_skin" title="显示的是对方皮肤" value="<?php echo $skinValue ?>"></a>
 	    <?php } else { ?>
-	    <a id="change_skin" title="换皮肤" value="<?php echo $skinValue ?>"><span class="icon_n_color"></span></a>
+	    <a id="change_skin" title="换皮肤" value="<?php echo $skinValue ?>"></a>
 	    <?php } } ?>
 		<?php if (empty($userloginedrecord['icon_url'])) { ?>
 			<p class="s_r_a_info_p">还没有上传头像呢 <a href="__ROOT__/setting/icon" class="fb">上传</a></p>

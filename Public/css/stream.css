@@ -701,6 +701,20 @@
     border-radius: 2px;
     border: 1px solid #EEEEEE;
 }
+
+#change_skin{
+    background: url(../image/common/send_submit.png) no-repeat scroll -277px 0 transparent;
+    display: block;
+    height: 24px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 23px;
+}
+#change_skin:hover{
+    background-position: -277px -24px;
+}
+
 .stream_right_add_ul{
     margin: 10px 0;
 }
@@ -712,6 +726,7 @@
     border: 1px solid #EEE;
     padding: 5px;
     margin-top: 5px;
+    background: #FAFAFA;
 }
 .grade_ratio_box_ul li{
     padding: 5px;
