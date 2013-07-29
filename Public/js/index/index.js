@@ -111,6 +111,6 @@ function loadBackground()
 		bgwidth = windowwidth;
 	}
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
-	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
+	$('#lay_bg_img').css({ width: bgwidth, height: bgheight}).fadeIn('slow');
 	$('.texture_background').css({ width: bgwidth, height: bgheight});
 }
