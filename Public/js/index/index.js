@@ -19,6 +19,7 @@ $().ready(function(){
 	} else {
 		var bgwidth = windowwidth;
 	}
+	alert(bgheight + ' - ' + documentheight);
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
 	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
 	$(window).resize(function(){
