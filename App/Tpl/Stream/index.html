@@ -232,8 +232,8 @@
   	<p class="f12 black_l stream_list_ul_sort">
   		<?php if (!empty($indexSpreadInfoVaule)) { echo $indexSpreadInfoVaule; } ?>
         排序
-    	<a href="__ROOT__/stream" class='<?php if($streamway == "default") { echo "bg_blue"; } ?>' style="padding: 1px 2px; border-radius: 3px;">默认</a>
-    	<a href="__ROOT__/stream/index/time" class='<?php if($streamway == "time") { echo "bg_blue"; } ?>' style="padding: 1px 2px; border-radius: 3px;">按时间</a>
+    	<a href="__ROOT__/stream" class='<?php if($streamway == "default") { echo "stream_list_ul_sort_a"; } ?>'>默认</a>
+    	<a href="__ROOT__/stream/index/time" class='<?php if($streamway == "time") { echo "stream_list_ul_sort_a"; } ?>'>按时间</a>
   	</p>
   <?php } else if ($streamway == "priority") { ?>
   	<p class="f12 black_l stream_list_ul_sort">

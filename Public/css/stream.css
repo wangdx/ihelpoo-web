@@ -261,6 +261,12 @@
 	border-bottom:1px dotted #CCC;
 	border-top:1px dotted #CCC;
 }
+.stream_list_ul_sort_a{
+    padding: 1px 2px;
+    border-radius: 3px;
+    color: #999;
+    border: 1px solid #DDD;
+}
 .s_li_p_icon{
     width: 100px;
     position: absolute;
