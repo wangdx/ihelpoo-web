@@ -256,7 +256,7 @@ class UserAction extends Action {
                     	redirect('/stream', 0, '登录成功...');
                     }
 	            } else {
-	            	$this->assign('errorinfo',$dbUser);
+	            	exit($dbUser);
 	            }
 	        }
     	}
