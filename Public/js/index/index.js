@@ -7,11 +7,11 @@ $().ready(function(){
 	
 	var windowheight = $(window).height();
 	var windowwidth = $(window).width();
-	if (windowheight < '800') {
-		windowheight = 800;
+	if (windowheight < '600') {
+		windowheight = 600;
 	}
-	if (windowwidth < '1000') {
-		windowwidth = 1000;
+	if (windowwidth < '800') {
+		windowwidth = 800;
 	}
 	$('#lay_bg').css({ width: windowwidth, height: windowheight});
 	$('#lay_bg_img').fadeIn('normal').css({ width: windowwidth, height: windowheight});

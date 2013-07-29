@@ -12,15 +12,8 @@
 <link href="__PUBLIC__/css/ihelpoo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 </head>
-<style type="text/css">
-body{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: url('__PUBLIC__/image/common/bg_w.png') repeat left top;
-}
-</style>
 <body>
+<div class="texture_background">
 <div class="main_index">
   <p class="main_index_logo">
   	<?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
@@ -151,6 +144,7 @@ body{
   <p><a class="white">反馈建议</a> | <a href="http://weibo.com/ihelpoo" class="white">新浪微博</a> | <a href="__ROOT__/support?play" class="white">使用帮助</a> | <a href="__ROOT__/about" class="white">关于我们</a> | 鄂ICP备07502730号</p>
   <p class="f12">Copyright © 2013 ihelpoo.All Rights Reserved.</p>
   <p>我帮圈圈 For {$schoolname}</p>
+</div>
 </div>
 <div id="lay_bg" class="lay_background">
 	<img id="lay_bg_img" class="lay_background_img " alt="" src="<?php echo $indexbgimg; ?>" >
