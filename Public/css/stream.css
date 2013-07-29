@@ -710,10 +710,11 @@
 .grade_ratio_box_ul{
     border-radius: 3px;
     border: 1px solid #EEE;
-    padding: 10px;
+    padding: 5px;
+    margin-top: 5px;
 }
 .grade_ratio_box_ul li{
-    padding: 5px 0;
+    margin: 5px 0;
 }
 .stream_new_active_nums_span{
     padding: 0px 5px;
