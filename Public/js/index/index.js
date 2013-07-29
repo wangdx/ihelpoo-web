@@ -5,13 +5,7 @@ $().ready(function(){
 	 * css style image background
 	 */
 	
-	var windowheight = $(window).height();
-	var windowwidth = $(document.body).width();
-	if (windowheight < '600') {
-		windowheight = 600;
-	}
-	$('#lay_bg').css({ width: windowwidth, height: windowheight});
-	$('#lay_bg_img').fadeIn('slow').css({ width: windowwidth, height: windowheight});
+	
 	
 	$(window).resize(function(){
 		var windowheight = $(window).height();
