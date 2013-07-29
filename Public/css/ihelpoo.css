@@ -424,6 +424,41 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 
+.icon_feedctrall, .icon_feedctrblog, .icon_feedctrrefresh, .icon_feedctrset{
+    background-image: url("../image/common/icon_main.png");
+    height: 14px;
+    width: 16px;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_feedctrall{
+    background-position: -770px 0;
+}
+.icon_feedctrblog{
+    background-position: -617px -34px;
+}
+.icon_feedctrrefresh{
+    background-position: -787px -51px;
+}
+.icon_feedctrset{
+    background-position: -804px 0;
+}
+
+
+.icon_stateplay{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -838px 0;
+    height: 16px;
+    width: 8px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+
+
 
 
 
