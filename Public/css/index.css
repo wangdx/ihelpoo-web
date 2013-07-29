@@ -286,7 +286,6 @@ input{
 }
 
 .main_index_sub{
-    padding: 10px 0 0 0;
     text-align: center;
 }
 .main_index_sub_ul{
@@ -311,7 +310,7 @@ input{
     background: url('../image/common/index_but.jpg') no-repeat center top;
 }
 .footer_about{
-    margin:15px auto;
+    margin:30px auto;
     width:500px;
     text-align: center;
 }
