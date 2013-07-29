@@ -6,15 +6,22 @@ $().ready(function(){
 	 */
 	
 	var windowheight = $(window).height();
-	var windowwidth = $(window).width();
+	var windowwidth = $(document).width();
 	if (windowheight < '600') {
 		windowheight = 600;
 	}
-	if (windowwidth < '800') {
-		windowwidth = 800;
-	}
 	$('#lay_bg').css({ width: windowwidth, height: windowheight});
-	$('#lay_bg_img').fadeIn('normal').css({ width: windowwidth, height: windowheight});
+	$('#lay_bg_img').fadeIn('slow').css({ width: windowwidth, height: windowheight});
+	
+	$(window).resize(function(){
+		var windowheight = $(window).height();
+		var windowwidth = $(document).width();
+		if (windowheight < '600') {
+			windowheight = 600;
+		}
+		$('#lay_bg').css({ width: windowwidth, height: windowheight});
+		$('#lay_bg_img').fadeIn('slow').css({ width: windowwidth, height: windowheight});
+	});
 	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
     emailok = 'no';
