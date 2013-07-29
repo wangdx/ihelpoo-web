@@ -1,6 +1,12 @@
 body{
     background: #FAFAFA;
 }
+.lay_background{
+    background-attachment: scroll;
+    background-image: url("http://ctc.i.gtimg.cn/qzone/space_item/orig/10/64538_top.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+}
 .main {
 	border:0px;
 	padding:0px;
