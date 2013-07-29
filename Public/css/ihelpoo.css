@@ -408,6 +408,12 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .ico_add{
     background-image: url("../image/common/icon_main.png");
     background-position: -668px -34px;
+}
+
+
+.icon_hand{
+    background-image: url("../image/common/icon_main.png");
+    background-position: -957px -17px;
     cursor: pointer;
     height: 16px;
     width: 16px;
@@ -415,12 +421,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-repeat: no-repeat;
     display: inline-block;
     font-size: 0;
-}
-
-
-.icon_hand{
-    background-image: url("../image/common/icon_main.png");
-    background-position: -957px -17px;
 }
 
 
