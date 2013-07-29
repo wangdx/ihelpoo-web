@@ -5,8 +5,8 @@ $().ready(function(){
 	/**
 	 * css style image background
 	 */
-	loadBackground();
 	$('#lay_bg_img').fadeIn('slow');
+	loadBackground();
 	$(window).resize(function(){
 		loadBackground();
 	});
