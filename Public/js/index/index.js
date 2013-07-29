@@ -6,6 +6,7 @@ $().ready(function(){
 	 * css style image background
 	 */
 	loadBackground();
+	$('#lay_bg_img').fadeOut('fast').fadeIn('slow');
 	$(window).resize(function(){
 		loadBackground();
 	});
@@ -111,7 +112,6 @@ function loadBackground()
 		bgwidth = windowwidth;
 	}
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
-	$('#lay_bg_img').fadeOut('fast').fadeIn('slow');
 	$('#lay_bg_img').css({ width: bgwidth, height: bgheight});
 	$('.texture_background').css({ width: bgwidth, height: bgheight});
 }
