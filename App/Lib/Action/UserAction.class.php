@@ -198,6 +198,69 @@ class UserAction extends Action {
     {
 	    redirect('/index', 0, '');
     }
+    
+    public function login()
+    {
+    	$userloginid = session('userloginid');
+        if ($userloginid) {
+        	redirect('/stream', 1, '已经登录...');
+        }
+    	if ($this->isPost()) {
+	    	$UserLogin = M("UserLogin");
+	        $validate = array(
+	            array('email', 'email', '邮箱格式不对'),
+	            array('password', 'require', '密码不能为空'),
+	            array('login_status_input', 'number', '登录状态格式错误'),
+	        );
+	        $UserLogin->setProperty("_validate", $validate);
+	        $result = $UserLogin->create();
+	        if (!$result) {
+	            exit($UserLogin->getError());
+	        } else {
+	            $email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
+	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));//strip_tags
+	            $loginstatus = (int)trim(strip_tags($_POST["login_status_input"]));
+	            $password = md5($password);
+	            $IUserLogin = D("IUserLogin");
+	            if ($loginstatus == 1) {
+	            	$dbUser = $IUserLogin->userVerification($email, $password, 1);
+	            } else {
+	            	$dbUser = $IUserLogin->userVerification($email, $password, 2);
+	            }
+	            if (is_array($dbUser)) {
+	            	userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
+                    session('userloginid',$dbUser['uid']);
+                    setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
+                    setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
+                    setcookie('userLoginstatus', $loginstatus, time() + 3600 * 24 *30, '/');
+
+                    /**
+                     * first time login
+                     * guide to file personal infomation
+                     */
+                    $UserInfo = M("UserInfo");
+                    $recordUserInfo = $UserInfo->find($dbUser['uid']);
+                    if (empty($recordUserInfo['realname_re'])) {
+                    	redirect('/setting/realfirst?step=1', 0, '填充个人真实信息...');
+                    }
+                    
+                    /**
+                     * select school
+                     */
+                    $recordSchoolInfo = i_school_domain();
+                    if ($recordSchoolInfo['id'] != $dbUser['school']) {
+                    	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    	$schoolDomain = "http://".$schoolDomain;
+                    	redirect($schoolDomain.'/stream', 3, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                    } else {
+                    	redirect('/stream', 0, '登录成功...');
+                    }
+	            } else {
+	            	$this->assign('errorinfo',$dbUser);
+	            }
+	        }
+    	}
+    }
 
     public function loginfast()
     {
