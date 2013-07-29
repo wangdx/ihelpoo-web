@@ -593,6 +593,9 @@
 .priority_shield{
     display: none;
     margin-right: 10px;
+    position: absolute;
+    right: 0;
+    top: 15px;
 }
 /*--- upload image part---*/
 .imgajaxloading_span{
