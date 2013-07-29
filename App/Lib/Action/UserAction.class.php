@@ -535,7 +535,7 @@ class UserAction extends Action {
     public function quit()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
         $userloginid = session('userloginid');
         $updateUserOnlineData = array(
         	'uid' => $userloginid,
@@ -557,7 +557,7 @@ class UserAction extends Action {
     public function notlogin()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
         if ($userloginid) {
         	redirect('/stream', 1, '已经登录...');
@@ -575,6 +575,7 @@ class UserAction extends Action {
     	
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title','用户注册 '.$recordSchoolInfo['school']);
         $OpAcademy = M("OpAcademy");
         $listOpAcademy = $OpAcademy->where("school = $recordSchoolInfo[id]")->select();
@@ -850,7 +851,7 @@ class UserAction extends Action {
     public function emailaffirm()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title','邮箱验证');
     	$userloginid = session('userloginid');
 		$uid = (int)htmlspecialchars(trim($_GET["_URL_"][3]));
@@ -916,7 +917,7 @@ class UserAction extends Action {
     public function resetpw()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title','找回密码');
     	$userloginid = session('userloginid');
     	if (!empty($userloginid)) {
@@ -975,7 +976,7 @@ class UserAction extends Action {
     public function resetpwsure()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title','找回密码 确定');
     	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	$userHash = htmlspecialchars(trim($_GET["_URL_"][3]));
@@ -1031,7 +1032,7 @@ class UserAction extends Action {
     public function realnamemf()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	if (empty($userloginid)) {
         	redirect('/index', 0, '页面跳转...');
