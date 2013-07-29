@@ -534,6 +534,8 @@ class UserAction extends Action {
 
     public function quit()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
         $userloginid = session('userloginid');
         $updateUserOnlineData = array(
         	'uid' => $userloginid,
@@ -554,6 +556,8 @@ class UserAction extends Action {
 
     public function notlogin()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
     	$userloginid = session('userloginid');
         if ($userloginid) {
         	redirect('/stream', 1, '已经登录...');
@@ -561,7 +565,7 @@ class UserAction extends Action {
         $this->assign('title','您还没有登录呢!');
         $this->display();
     }
-
+    
     /**
      *
      * register
@@ -845,6 +849,8 @@ class UserAction extends Action {
      */
     public function emailaffirm()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
     	$this->assign('title','邮箱验证');
     	$userloginid = session('userloginid');
 		$uid = (int)htmlspecialchars(trim($_GET["_URL_"][3]));
@@ -909,6 +915,8 @@ class UserAction extends Action {
      */
     public function resetpw()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
     	$this->assign('title','找回密码');
     	$userloginid = session('userloginid');
     	if (!empty($userloginid)) {
@@ -966,6 +974,8 @@ class UserAction extends Action {
 
     public function resetpwsure()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
     	$this->assign('title','找回密码 确定');
     	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
     	$userHash = htmlspecialchars(trim($_GET["_URL_"][3]));
@@ -1020,6 +1030,8 @@ class UserAction extends Action {
      */
     public function realnamemf()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('recordSchoolInfo',$recordSchoolInfo);
     	$userloginid = session('userloginid');
     	if (empty($userloginid)) {
         	redirect('/index', 0, '页面跳转...');
