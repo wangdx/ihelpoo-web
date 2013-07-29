@@ -672,6 +672,7 @@ body{
     right: 0;
     top: 0;
     width: 180px;
+    padding-top: 35px;
 }
 .stream_right_add_userinfo{
     border-bottom: 1px solid #EEE;
