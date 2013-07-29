@@ -23,9 +23,6 @@ $().ready(function(){
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
 	$('#lay_bg_img').fadeIn('slow').css({ width: bgwidth, height: bgheight});
 	$('.texture_background').css({ width: bgwidth, height: bgheight});
-	/**$('#lay_bg_img').fadeIn('slow',function(){
-		loadBackground();
-	});*/
 	$(window).resize(function(){
 		loadBackground();
 	});
