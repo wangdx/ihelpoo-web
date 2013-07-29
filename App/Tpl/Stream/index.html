@@ -349,7 +349,7 @@
     <span class="s_li_s_time f12 gray">
       <?php if( $streamway == "default") {
       	 if ($record['last_comment_ti'] != $record['time']) {
-             echo "<span title='发布时间:".i_time($record['time'])." 最新回应时间:".i_time($record['last_comment_ti'])."'>新回应:".i_time($record['last_comment_ti'])."<span class='icon_new'></span></span>";
+             echo "<span title='发布时间:".i_time($record['time'])." 最新回应时间:".i_time($record['last_comment_ti'])."'>新回应:".i_time($record['last_comment_ti']);
       	 } else {
 			 echo i_time($record['time']);
 		 }
