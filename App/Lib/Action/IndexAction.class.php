@@ -347,7 +347,7 @@ class IndexAction extends Action {
     	$title = "组织 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
         $page = i_page_get_num();
-        $count = 21;
+        $count = 10;
         $offset = $count * $page;
         $UserLogin = M("UserLogin");
         $groupList = $UserLogin->where("i_user_login.type = 2 AND i_user_login.school = $recordSchoolInfo[id]")
