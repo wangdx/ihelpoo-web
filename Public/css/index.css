@@ -551,7 +551,10 @@ input{
 .main_group_nav_info_ul{
     position: absolute;
     left: 350px;
-    top: 5px;
+    top: 10px;
+}
+.main_group_nav_info_ul li{
+    padding: 1px;
 }
 .main_group_nav_p{
     position: absolute;
