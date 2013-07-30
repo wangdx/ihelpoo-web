@@ -529,13 +529,18 @@ input{
     margin: 0;
     padding: 10px;
     position: relative;
+    height: 75px;
 }
 .main_group_nav_school_p{
+    border-bottom: 2px solid #666666;
+    left: 15px;
+    padding: 5px 10px;
     position: absolute;
-    left: 10px;
     top: 5px;
-    padding: 5px;
-    border-bottom: 2px solid #666;
+}
+.main_group_nav_ul{
+    position: absolute;
+    top: 30px;
 }
 .main_group_nav_ul li{
     display: inline-block;
