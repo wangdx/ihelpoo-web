@@ -538,22 +538,23 @@ input{
     border-bottom: 1px solid #EEE;
     padding: 10px 5px;
 	position: relative;
+	display: inline-block;
+	margin: 5px 10px;
 }
 *html .main_group_ul li{
     padding: 1px 5px;
 }
 .main_group_img_p{
 	position: relative; 
-	width: 180px;
+	width: 100px;
 	display: inline-block;
 }
-.group_introduction{
-    width: 750px;
+.group_introduction_p{
+    width: 100px;
 	position: absolute;
-	left: 200px;
-	bottom: 15px;
+	text-align: center;
 }
-*html .group_introduction{
+*html .group_introduction_p{
 	position: relative;
 	bottom: 50px;
 }
