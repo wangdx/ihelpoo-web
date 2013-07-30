@@ -525,15 +525,24 @@ input{
 }
 /*--- group.phtml ---*/
 .main_group_nav{
-    margin: 10px;
-    padding: 5px 10px;
-    color: #FFF;
+    border: 1px solid #EEEEEE;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 10px;
     position: relative;
 }
-
+.main_group_nav_ul li{
+    display: inline-block;
+    margin: 0 10px;
+}
+.main_group_nav_p{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 .main_group_ul{
     margin: 10px 0;
-    background: none repeat scroll 0 0 #EEEEEE;
+    background: none repeat scroll 0 0 #FAFAFA;
     padding: 15px 15px 20px;
 }
 .main_group_ul li{
@@ -543,7 +552,7 @@ input{
 	margin: 15px 10px;
 }
 .main_group_img_p_img{
-    border: 1px solid #DDD; 
+    border: 1px solid #EEEEEE; 
 }
 *html .main_group_ul li{
     padding: 1px 5px;
