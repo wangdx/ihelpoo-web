@@ -548,6 +548,11 @@ input{
     display: inline-block;
     margin: 5px;
 }
+.main_group_nav_info_ul{
+    position: absolute;
+    left: 350px;
+    top: 5px;
+}
 .main_group_nav_p{
     position: absolute;
     right: 25px;
