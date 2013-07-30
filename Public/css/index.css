@@ -533,7 +533,7 @@ input{
 }
 .main_group_nav_ul li{
     display: inline-block;
-    margin: 0 10px;
+    margin: 5px;
 }
 .main_group_nav_p{
     position: absolute;
