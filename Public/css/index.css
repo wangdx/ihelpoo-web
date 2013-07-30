@@ -532,14 +532,18 @@ input{
 }
 
 .main_group_ul{
-    margin: 0 10px;
+    margin: 10px 0;
+    background: none repeat scroll 0 0 #EEEEEE;
+    padding: 15px 15px 20px;
 }
 .main_group_ul li{
-    border-bottom: 1px solid #EEE;
     padding: 10px 5px;
 	position: relative;
 	display: inline-block;
-	margin: 5px 10px;
+	margin: 15px 10px;
+}
+.main_group_img_p_img{
+    border: 1px solid #DDD; 
 }
 *html .main_group_ul li{
     padding: 1px 5px;
