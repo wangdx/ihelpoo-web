@@ -1,3 +1,32 @@
+/*--- icon ---*/
+.btn_group_a {
+    background: url("../image/common/btn_group.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    display: block;
+    height: 30px;
+    line-height: 31px;
+    text-align: center;
+    width: 102px;
+}
+.btn_group_a:hover{
+    background-position: 0 -120px;
+}
+
+.btn_iapply_a {
+    background: url("../image/common/btn_group.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 37px;
+    line-height: 0;
+    margin: 83px 0 0 35px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 135px;
+}
+.btn_iapply_a:hover {
+    background-position: 0 -40px;
+}
+
+/*--- ---*/
 .stream_top_notice_info{
     margin: -10px -10px 10px -10px;
     padding: 5px 10px;
@@ -496,20 +525,13 @@ input{
     top: 15px;
 }
 /*--- group.phtml ---*/
-.main_group_connect{
-    margin: 10px 15px;
-    background: #9C0;
-    padding: 5px 20px;
-    text-align: center;
+.main_group_nav{
+    margin: 10px;
+    padding: 5px 10px;
     color: #FFF;
     position: relative;
 }
-.main_group_connect .icon_index_wrong{
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    cursor: pointer;
-}
+
 .main_group_ul{
     margin: 0 10px;
 }
@@ -548,71 +570,7 @@ input{
    padding: 5px;
    border-bottom: 1px dotted #CCC;
 }
-/*--- stream.phtml ---*/
-.stream_list_ul{
-    padding: 10px;
-}
-.stream_list_ul li{
-    padding: 25px 5px;
-    position: relative;
-    border-bottom: 3px solid #EEE;
-}
-.s_li_p_icon{
-    width: 120px;
-    position: absolute;
-    left: 5px;
-    top: 15px;
-}
-.s_li_p_user{
-    width: 120px;
-    position: absolute;
-    left: 5px;
-    top: 110px;
-    text-align: center;
-}
-.s_li_p_content{
-    width: 705px;
-    margin: 0 0 10px 135px;
-    min-height: 90px;
-}
-.s_li_s_time{
-    margin-left: 135px;
-	position: absolute;
-	bottom: 10px;
-	left: 10px;
-}
-.s_li_s_comment{
-    position: absolute;
-	right: 10px;
-	bottom: 10px;
-}
-.stream_list_link{
-    padding: 10px 10px 20px 10px;
-}
-.s_l_l_a{
-    display: inline-block;
-    padding: 3px 0;
-    width: 30px;
-    text-align: center;
-    border: 1px solid #CCC;
-    color: #999;
-    font-size: 12px;
-}
-.s_l_l_a:hover{
-    background: #999;
-    color: #FFF;
-}
-.s_l_l_a_select{
-    display: inline-block;
-    padding: 3px 0;
-    width: 30px;
-    text-align: center;
-    border: 1px solid #6ccacd;
-    font-size: 12px;
-    font-weight: bold;
-    background: #6ccacd;
-    color: #FFF;
-}
+
 
 /*--- ie7 ---*/
 *+html a{
