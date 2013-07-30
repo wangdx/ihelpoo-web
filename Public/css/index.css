@@ -1,6 +1,6 @@
 /*--- icon ---*/
 .btn_group_a {
-    background: url("../image/common/btn_group.png") no-repeat scroll 0 0 transparent;
+    background: url("../image/common/btn_group.png") no-repeat scroll 0 -80px transparent;
     color: #FFFFFF;
     display: block;
     height: 30px;
@@ -17,7 +17,6 @@
     display: block;
     height: 37px;
     line-height: 0;
-    margin: 83px 0 0 35px;
     overflow: hidden;
     text-indent: -9999px;
     width: 135px;
