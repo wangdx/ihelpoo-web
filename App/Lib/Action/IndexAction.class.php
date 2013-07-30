@@ -348,7 +348,7 @@ class IndexAction extends Action {
         $this->assign('title',$title);
         $this->assign('schoolname',$recordSchoolInfo['school']);
         $page = i_page_get_num();
-        $count = 10;
+        $count = 21;
         $offset = $count * $page;
         $UserLogin = M("UserLogin");
         $groupList = $UserLogin->where("i_user_login.type = 2 AND i_user_login.school = $recordSchoolInfo[id]")
