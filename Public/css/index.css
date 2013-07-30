@@ -530,6 +530,7 @@ input{
     padding: 10px;
     position: relative;
     height: 70px;
+    border-radius: 5px 5px 5px 5px;
 }
 .main_group_nav_school_p{
     border-bottom: 2px solid #666666;
@@ -554,7 +555,8 @@ input{
 .main_group_ul{
     margin: 10px 0;
     background: none repeat scroll 0 0 #FAFAFA;
-    padding: 15px 15px 20px;
+    padding: 15px 15px 25px;
+    border-radius: 5px 5px 5px 5px;
 }
 .main_group_ul li{
     padding: 10px 5px;
