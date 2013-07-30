@@ -552,9 +552,11 @@ input{
     position: absolute;
     left: 350px;
     top: 10px;
+    border-left: 1px solid #DDDDDD;
+    padding-left: 10px
 }
 .main_group_nav_info_ul li{
-    padding: 1px;
+    padding: 1px 0;
 }
 .main_group_nav_p{
     position: absolute;
