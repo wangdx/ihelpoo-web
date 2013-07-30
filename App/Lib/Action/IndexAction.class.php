@@ -383,6 +383,15 @@ class IndexAction extends Action {
         $this->assign('totalPages',$totalPages);
         $this->display();
     }
+    
+    public function applyverify()
+    {
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "申请校园组织、校园周边商家认证 ".$recordSchoolInfo['school']." 帮助主题社交网站";
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
+    	$this->assign('title',$title);
+    	$this->display();
+    }
 
     /**
      * invite
