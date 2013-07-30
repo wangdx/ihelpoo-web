@@ -529,7 +529,7 @@ input{
     margin: 0;
     padding: 10px;
     position: relative;
-    height: 75px;
+    height: 70px;
 }
 .main_group_nav_school_p{
     border-bottom: 2px solid #666666;
@@ -540,7 +540,7 @@ input{
 }
 .main_group_nav_ul{
     position: absolute;
-    top: 30px;
+    top: 40px;
 }
 .main_group_nav_ul li{
     display: inline-block;
@@ -548,8 +548,8 @@ input{
 }
 .main_group_nav_p{
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 25px;
+    top: 25px;
 }
 .main_group_ul{
     margin: 10px 0;
