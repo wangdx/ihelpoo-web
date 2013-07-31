@@ -365,7 +365,17 @@
             	echo i_time($record['time']);
 				echo "</a>";
 		 	}
-      } } ?>
+      } } else { 
+      		if ($record['say_type'] == '1') {
+				echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'>";
+            	echo i_time($record['time']);
+				echo "</a>";
+			} else {
+				echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>";
+            	echo i_time($record['time']);
+				echo "</a>";
+		 	}
+      } ?>
       <?php
       if (!empty($record['from'])) {
           if ("2" == $record['from']) {
