@@ -10,11 +10,16 @@
   	<p class="main_group_nav_p"><a href="__ROOT__/index/business" class="btn_iapply_a"></a></p>
   </div>
   <div>
+  <form method="post">
+  <?php if (!empty($_GET['type']) == 'group') { $type = 1 ; } else { $type = 2 ;}?>
   <ul>
-  	<li>真实姓名:</li>
-  	<li>联系手机:</li>
-  	<li><a>提交申请</a></li>
+  	<li>真实姓名: <input type="text" name="name" /> <input type="hidden" name="verify_type" value="<?php echo $type; ?>" /></li>
+  	<li>联系手机: <input type="text" name="mobile" /></li>
+  	<li>Q&#12288;&#12288;Q: <input type="text" name="qq" /></li>
+  	<li>备&#12288;&#12288;注: <textarea name="remark"></textarea></li>
+  	<li><a class="btn f12">提交申请</a></li>
   </ul>
+  </form>
   </div>
 </div>
 <script type="text/javascript" src=""></script>

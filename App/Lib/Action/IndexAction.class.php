@@ -387,9 +387,36 @@ class IndexAction extends Action {
     public function applyverify()
     {
     	$recordSchoolInfo = i_school_domain();
+    	$userloginid = session('userloginid');
     	$title = "申请校园组织、校园周边商家认证 ".$recordSchoolInfo['school']." 帮助主题社交网站";
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title',$title);
+    	
+    	if ($this->isPost()) {
+	    	$verify_type = trim(addslashes(htmlspecialchars(strip_tags($_POST["verify_type"]))));
+	    	$name = trim(addslashes(htmlspecialchars(strip_tags($_POST["name"]))));
+	    	$mobile = trim(addslashes(htmlspecialchars(strip_tags($_POST["mobile"]))));
+	    	$qq = trim(addslashes(htmlspecialchars(strip_tags($_POST["qq"]))));
+	    	$remark = trim(addslashes(htmlspecialchars(strip_tags($_POST["remark"]))));
+	    	if (!empty($name) && !empty($mobile) && !empty($verify_type)) {
+		    	$newuserApplyverifyData = array(
+			    	'id' => '',
+			    	'uid' => $userloginid,
+			    	'school_id' => $recordSchoolInfo['id'],
+			    	'verify_status' => 0,
+			    	'verify_type' => $verify_type,
+			    	'name' => $name,
+			    	'mobile' => $mobile,
+			    	'qq' => $qq,
+			    	'remark' => $remark,
+			    	'idcard' => '',
+			    	'time' => time()
+		    	);
+	    	}
+	    	$UserApplyverify = M("UserApplyverify");
+	    	$UserApplyverify->add($newuserApplyverifyData);
+	    	redirect('/index/applyverify', 3, 'ok...');
+    	}
     	$this->display();
     }
 
