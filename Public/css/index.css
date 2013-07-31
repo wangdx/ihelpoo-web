@@ -555,8 +555,8 @@ lable{
 }
 .main_group_nav_sub_ul{
     position: absolute;
-    top: 40px;
-    left: 0px;
+    top: 50px;
+    left: 15px;
 }
 .main_group_nav_sub_ul li{
     padding: 0 10px;
