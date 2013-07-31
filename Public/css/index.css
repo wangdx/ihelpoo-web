@@ -553,6 +553,14 @@ lable{
 .main_group_nav_info_ul li{
     padding: 1px 0;
 }
+.main_group_nav_sub_ul{
+    position: absolute;
+    top: 40px;
+    left: 0px;
+}
+.main_group_nav_sub_ul li{
+    padding: 0 10px;
+}
 .main_group_nav_p{
     position: absolute;
     right: 25px;
