@@ -391,7 +391,6 @@ class IndexAction extends Action {
     	$title = "申请校园组织、校园周边商家认证 ".$recordSchoolInfo['school']." 帮助主题社交网站";
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title',$title);
-    	
     	if ($this->isPost()) {
 	    	$verify_type = trim(addslashes(htmlspecialchars(strip_tags($_POST["verify_type"]))));
 	    	$name = trim(addslashes(htmlspecialchars(strip_tags($_POST["name"]))));
