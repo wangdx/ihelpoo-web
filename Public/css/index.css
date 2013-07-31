@@ -605,7 +605,7 @@ lable{
 
 /*--- applyverify ---*/
 .applyverify_ul{
-    margin: 50px 260px;
+    margin: 50px 200px;
 }
 .applyverify_ul li{
     padding: 10px;
@@ -615,7 +615,7 @@ lable{
 }
 .applyverify_ul .textarea_style{
     width: 500px;
-    width: 350px;
+    height: 350px;
     margin-left: 5px;
 }
 
