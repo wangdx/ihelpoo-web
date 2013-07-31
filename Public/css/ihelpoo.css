@@ -504,7 +504,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     border: 1px solid #D0D0D0;
     color: #666666;
     font-size: 14px;
-    margin: 8px 0;
     outline: medium none;
     padding: 5px;
     word-wrap: break-word;
@@ -523,7 +522,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     color: #666;
     resize: none;
     line-height: 21px;
-    margin: 8px 0;
     padding: 3px 5px;
     overflow-y: auto;
     border: 1px solid #D0D0D0;
