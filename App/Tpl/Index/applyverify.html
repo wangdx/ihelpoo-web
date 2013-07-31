@@ -4,11 +4,13 @@
   <div class="main_group_nav">
   	<p class="main_group_nav_school_p"><a href="__ROOT__/" class="fb black_l">{$schoolname}</a> <a href="__ROOT__/index/school" title="更多学校" class="f12">[切换]</a></p>
     <ul class="main_group_nav_sub_ul f12 black_l">
+	  	<li><?php if (!empty($_GET['type']) == 'group') { echo "申请校园组织用户"; } else { echo "申请校园周边商家用户"; } ?></li>
   	</ul>
   	<p class="main_group_nav_p"><a href="__ROOT__/index/business" class="btn_iapply_a"></a></p>
   </div>
   <div>
   <form method="post">
+  <?php if (!empty($_GET['type']) == 'group') { $type = 1 ; } else { $type = 2 ;} ?>
   <ul class="applyverify_ul">
   	<li>真实姓名: <input type="text" name="name" class="input_style" /> <input type="hidden" name="verify_type" value="<?php echo $type; ?>" /></li>
   	<li>联系手机: <input type="text" name="mobile" class="input_style" /></li>
