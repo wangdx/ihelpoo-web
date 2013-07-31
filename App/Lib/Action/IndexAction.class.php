@@ -90,6 +90,7 @@ class IndexAction extends Action {
     {
     	$title = "我帮圈圈 帮助主题社交网站 开通校园列表";
         $this->assign('title',$title);
+        exit('sss');
         //$this->display();
     }
 
