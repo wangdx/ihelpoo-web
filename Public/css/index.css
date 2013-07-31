@@ -1,3 +1,6 @@
+lable{
+    margin: 0 5px;
+}
 /*--- icon ---*/
 .btn_group_a {
     background: url("../image/common/btn_group.png") no-repeat scroll 0 -80px transparent;
@@ -246,27 +249,6 @@
 }
 
 
-lable{
-    margin: 0 5px;
-}
-input{    
-    -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
-    border: 1px solid #D0D0D0;
-    color: #666666;
-    font-size: 14px;
-    margin: 8px 0;
-    outline: medium none;
-    padding: 5px;
-    word-wrap: break-word;
-}
-input:focus{
-    color: #333;
-    border-color: #7BD6F6;
-    -moz-outline: 4px solid #E2F5FB;
-    -moz-outline-radius: 8px;
-    -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
-    box-shadow: 0 0 10px rgba(123, 214, 246, .6);
-}
 .index_out_box{
     border:1px dotted #EEE;
     background:#FFF;

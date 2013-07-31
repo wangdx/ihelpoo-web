@@ -84,11 +84,6 @@
     position: relative;
     padding: 10px 10px 10px 100px;
 }
-input{
-    padding: 3px 2px;
-    font-size: 14px;
-    color: #666;
-}
 #email, #nickname{
     width: 200px;
     position: relative;
