@@ -603,6 +603,21 @@ lable{
    border-bottom: 1px dotted #CCC;
 }
 
+/*--- applyverify ---*/
+.applyverify_ul{
+    margin: 20px;
+}
+.applyverify_ul li{
+    padding: 5px;
+}
+.applyverify_ul .input_style{
+    margin-left: 5px;
+}
+.applyverify_ul .textarea_style{
+    width: 500px;
+    width: 300px;
+}
+
 
 /*--- ie7 ---*/
 *+html a{
