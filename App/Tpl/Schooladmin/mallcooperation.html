@@ -3,7 +3,7 @@
 		<div><span class="icon_attention"></span><a href="__ROOT__/schooladmin/mallcooperation?suredel=<?php echo $_GET['del']; ?>">确认</a> <a href="__ROOT__/schooladmin/mallcooperation">取消</a></div>
 	<?php } ?>
 	<form method="post">
-		<ul class="mallset_index_ul">
+		<ul class="para_right_default_ul">
 			<li>名称: <input type="text" name="name" value="" class="input_style" /></li>
 			<li>网站: <input type="text" name="url" value="" class="input_style" /></li>
 			<li>排序: <input type="text" name="order" value="1" class="input_style" /></li>
@@ -13,7 +13,7 @@
 	<br />
 	<br />
 	<br />
-	<ul>
+	<ul class="para_right_ul">
 	<?php if (!empty($resultsMallCooperation)) {
 		foreach($resultsMallCooperation as $cooperation) {
 	?>
