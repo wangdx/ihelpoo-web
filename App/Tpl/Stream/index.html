@@ -343,15 +343,29 @@
 
     </p>
     <span class="s_li_s_time f12 gray">
-      <?php if( $streamway == "default") {
+      <?php
+      if ($streamway == "default") {
       	 if ($record['last_comment_ti'] != $record['time']) {
-             echo "<span title='发布时间:".i_time($record['time'])." 最新回应时间:".i_time($record['last_comment_ti'])."'>".i_time($record['last_comment_ti'])."<span class='icon_new'></span></span>";
-      	 } else {
-			 echo i_time($record['time']);
-		 }
+			if ($record['say_type'] == '1') {
+				echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'>";
+            	echo "<span title='发布时间:".i_time($record['time'])." 最新回应时间:".i_time($record['last_comment_ti'])."'>".i_time($record['last_comment_ti'])."<span class='icon_new'></span></span>";
+				echo "</a>";
+			} else {
+				echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>";
+				echo "<span title='发布时间:".i_time($record['time'])." 最新回应时间:".i_time($record['last_comment_ti'])."'>".i_time($record['last_comment_ti'])."<span class='icon_new'></span></span>";
+				echo "</a>";
+		 	}
       } else {
-      	echo i_time($record['time']);
-      }?>
+			if ($record['say_type'] == '1') {
+				echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'>";
+            	echo i_time($record['time']);
+				echo "</a>";
+			} else {
+				echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>";
+            	echo i_time($record['time']);
+				echo "</a>";
+		 	}
+      } ?>
       <?php
       if (!empty($record['from'])) {
           if ("2" == $record['from']) {
