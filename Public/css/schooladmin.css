@@ -109,6 +109,10 @@ a:hover{
     right: 0px;
 }
 
+.para_right_default_ul li{
+    padding: 5px 0;
+}
+
 /*--- orderusericon ---*/
 .usericon_up , .usericon_down{
     cursor: pointer;
