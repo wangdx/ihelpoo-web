@@ -39,6 +39,13 @@
     display: inline-block;
     font-size: 0;
 }
+.icon_timebar_out_div{
+    position: relative;
+}
+#icon_timebar_img{
+    position: absolute;
+    top: -15px;
+}
 
 /*--- ---*/
 .wo_top{
