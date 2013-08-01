@@ -590,6 +590,7 @@ lable{
 .h_r_ul_li_comtent_nickname{
     display: block;
     margin-bottom: 5px;
+    width: 200px;
 }
 .h_r_ul_li_hit{
     position: absolute;
