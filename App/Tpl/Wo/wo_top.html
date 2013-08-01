@@ -29,7 +29,7 @@
   <div class="wo_top">
     <p class="img_part_me">
       <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>">
-        <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url']) ?>" width="300" height="225" class="radius5" />
+        <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 'l') ?>" width="300" height="225" class="radius5" />
         <?php if ($userLogin['type'] == '3') { ?>
           <span class="grades"></span>
         <?php } else if ($userLogin['type'] == '2') { ?>
