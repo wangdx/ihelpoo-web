@@ -587,10 +587,10 @@ lable{
     width: 535px;
     border-right: 1px solid #EEE;
 }
-.h_r_ul_li_comtent_nickname{
+.h_r_ul_li_comtent_con{
     display: block;
-    margin-bottom: 5px;
-    width: 200px;
+    margin-top: 5px;
+    width: 535px;
 }
 .h_r_ul_li_hit{
     position: absolute;
