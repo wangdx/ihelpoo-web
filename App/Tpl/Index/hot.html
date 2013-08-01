@@ -46,12 +46,12 @@
       <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="40" />
       </a>
-      <p class="h_r_ul_li_comtent">
+      <p class="h_r_ul_li_comtent black_l">
         <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_comtent_nickname">
           <?php echo $record['nickname'] ?>
           <?php if (!empty($record['active'])) { echo "<span class='level".i_degree($record['active'])."'></span>"; } ?>
         </a>
-        <?php echo $ofunction->cut_str(strip_tags($record['content']), 33); ?>
+        <?php echo $ofunction->cut_str(strip_tags($record['content']), 34); ?>
         <?php if ($_GET['w'] == 'help' || $_GET['w'] == 'helpreply') { ?>
           <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_blank">详情</a>
         <?php } else if ($_GET['w'] == 'useractive' || $_GET['w'] == 'usercoins') { ?>
