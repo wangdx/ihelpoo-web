@@ -98,6 +98,7 @@
 	  if ($schoolDaysRatio > 100) {
 		$schoolDaysRatio = 100;
 	  }
+	  $schoolDaysWidth = 940 * $schoolDaysRatio / 100;
       $schoolDaysRatio = $schoolDaysRatio . "%";
       $greadnumber = i_gradeNum($userLogin['enteryear']);
       if ($greadnumber == '1') {
@@ -155,7 +156,7 @@
   </div>
   <script type="text/javascript">
     $().ready(function(){
-    	$('.icon_timebar_in_div').animate({width: <?php echo 940 * $schoolDaysRatio; ?>}, 800);
+    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
         $('#say_hello_close').click(function(){
             $(this).parent().hide();
         });
