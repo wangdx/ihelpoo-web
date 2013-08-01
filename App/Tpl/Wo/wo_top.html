@@ -41,7 +41,7 @@
     </p>
     <p>
     </p>
-    <p class="wo_top_p black_l">
+    <div class="wo_top_div black_l">
       <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 小窝
       <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a>
       <br />
@@ -91,14 +91,14 @@
       	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
       	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
       <?php } ?>
-    </p>
-    <ul class="wo_top_p_ul f12 blaxk_l">
+    </div>
+    <ul class="wo_top_div_ul f12 blaxk_l">
       <li>
-        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_p_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
+        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
         <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
       </li>
       <li>
-        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_p_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
+        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
         <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
       </li>
     </ul>
