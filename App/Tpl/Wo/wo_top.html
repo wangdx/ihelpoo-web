@@ -26,6 +26,14 @@
     	$selectIndex = 'class="wo_user_nav_ul_li_select"';
     }
 ?>
+  <script type="text/javascript">
+    $().ready(function(){
+    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysRatio; ?>}, 800);
+        $('#say_hello_close').click(function(){
+            $(this).parent().hide();
+        });
+    });
+  </script>
   <script type="text/javascript" src="__PUBLIC__/js/wo/wo.js"></script>
   <div class="wo_top">
     <p class="img_part_me">
@@ -135,14 +143,6 @@
   </ul>
   <div class="say_hello f12">
     <span id="say_hello_close" class="icon_quit" title="关闭"></span>
-    <script type="text/javascript">
-    $().ready(function(){
-    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysRatio; ?>}, 800);
-        $('#say_hello_close').click(function(){
-            $(this).parent().hide();
-        });
-    });
-    </script>
     <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a>
     <?php
         if ($userLogin['online'] == 0) {
