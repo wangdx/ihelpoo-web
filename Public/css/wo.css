@@ -1,3 +1,46 @@
+/*--- icon ---*/
+.icon_timebar_wn{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: 0 0;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_fj{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: -30px 0;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_hj{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: -60px 0;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_fd{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: -90px 0;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+
+/*--- ---*/
 .wo_top{
     position: relative;
 }
