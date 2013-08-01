@@ -96,6 +96,9 @@
       } else {
           $backgroundcolor = "#F60";
       }
+	  if ($schoolDaysRatio > 100) {
+		$schoolDaysRatio = 100;
+	  }
       $schoolDaysRatio = $schoolDaysRatio . "%";
       $greadnumber = i_gradeNum($userLogin['enteryear']);
       if ($greadnumber == '1') {
