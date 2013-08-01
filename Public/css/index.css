@@ -475,7 +475,7 @@ lable{
 }
 .icon_hot_second{
     background-image: url("../image/common/hot_rank.png");
-    background-position: -40px 0;
+    background-position: 0 -40px;
     height: 40px;
     width: 30px;
     vertical-align: middle;
@@ -485,7 +485,7 @@ lable{
 }
 .icon_hot_third{
     background-image: url("../image/common/hot_rank.png");
-    background-position: -80px 0;
+    background-position: 0 -80px;
     height: 40px;
     width: 30px;
     vertical-align: middle;
