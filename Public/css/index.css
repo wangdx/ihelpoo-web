@@ -571,6 +571,8 @@ lable{
     position: absolute;
     left: 135px;
     top: 15px;
+    width: 543px;
+    border-right: 1px solid #EEE;
 }
 .h_r_ul_li_comtent_nickname{
     display: block;
