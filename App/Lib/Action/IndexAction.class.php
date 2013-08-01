@@ -83,6 +83,7 @@ class IndexAction extends Action {
     	$recordsSchoolInfo = $SchoolInfo->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         $this->assign('title',$title);
+        $this->assign('schoolname',$recordSchoolInfo['school']);
         $this->display();
     }
     
@@ -91,6 +92,7 @@ class IndexAction extends Action {
     	$recordSchoolInfo = i_school_domain();
     	$title = "热门 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
+        $this->assign('schoolname',$recordSchoolInfo['school']);
 
         $RecordSay = M("RecordSay");
         $UserLogin = M("UserLogin");
@@ -424,6 +426,8 @@ class IndexAction extends Action {
      */
     public function invitenums()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
         $this->assign('title','我邀请的朋友 排行');
         $UserInvite = M("UserInvite");
