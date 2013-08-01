@@ -97,6 +97,16 @@
           $backgroundcolor = "#F60";
       }
       $schoolDaysRatio = $schoolDaysRatio . "%";
+      $greadnumber = i_gradeNum($userLogin['enteryear'])；
+      if ($greadnumber == '1') {
+		$timebaranimal = "<i class='icon_timebar_wn'></i>";
+      } else if ($greadnumber == '2') {
+		$timebaranimal = "<i class='icon_timebar_fj'></i>";
+      } else if ($greadnumber == '3') {
+		$timebaranimal = "<i class='icon_timebar_hj'></i>";
+      } else if ($greadnumber == '4') {
+		$timebaranimal = "<i class='icon_timebar_fd'></i>";
+      }
   ?>
   <div class="wo_user_timebar">
     <p style="margin: 30px 20px 20px 20px;" class="gray">
@@ -107,7 +117,7 @@
     <div style="border:1px solid #CCC ; width:100%; height:3px;" class="icon_timebar_out_div">
       <div style="background:<?php echo $backgroundcolor ?>; height:3px; float:left; width:<?php echo $schoolDaysRatio ?>" class="icon_timebar_in_div"></div>
     </div>
-    <i class="icon_timebar_wn"></i>
+    <?php echo $timebaranimal; ?>
   </div>
   <?php } ?>
   
