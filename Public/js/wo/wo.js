@@ -1,7 +1,7 @@
 $().ready(function(){
     showtime();
     secondShine('#secondpass');
-    var iconpositionwidth = $('.icon_timebar_in_div').width();
+    var iconpositionwidth = $('.icon_timebar_in_div').width() - 30;
     $('#icon_timebar_img').animate({left: iconpositionwidth}, 1000);
 });
 function showtime(){
