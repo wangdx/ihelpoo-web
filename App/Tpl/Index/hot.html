@@ -43,11 +43,11 @@
       <?php } else { ?>
       	  <i class="h_r_ul_li_num gray rank_nums_i"><?php echo $i; ?></i>
       <?php } ?>
-      <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="40" />
       </a>
       <p class="h_r_ul_li_comtent black_l">
-        <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_comtent_nickname">
+        <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_comtent_nickname">
           <?php echo $record['nickname'] ?>
           <?php if (!empty($record['active'])) { echo "<span class='level".i_degree($record['active'])."'></span>"; } ?>
         </a>

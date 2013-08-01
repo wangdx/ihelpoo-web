@@ -125,7 +125,7 @@
         <span style="position: absolute; left: 0; bottom: 0;" class="online<?php echo $user['online'] ?>"></span>
       </a>
     </p>
-    <span class="m_m_u_u_li_name"><a href="__ROOT__/stream/u/<?php echo $user['uid'] ?>" ><?php echo $ofunction->cut_str($user['nickname'],9); ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
+    <span class="m_m_u_u_li_name"><a href="__ROOT__/wo/<?php echo $user['uid'] ?>" ><?php echo $ofunction->cut_str($user['nickname'],9); ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
     </li>
   <?php endforeach ?>
   </ul>
