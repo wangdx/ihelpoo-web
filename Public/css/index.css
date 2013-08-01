@@ -463,6 +463,36 @@ lable{
 .main_hot{
     position: relative;
 }
+.icon_hot_first{
+    background-image: url("../image/common/hot_rank.png");
+    background-position: 0 0;
+    height: 40px;
+    width: 30px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_hot_second{
+    background-image: url("../image/common/hot_rank.png");
+    background-position: -40px 0;
+    height: 40px;
+    width: 30px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_hot_third{
+    background-image: url("../image/common/hot_rank.png");
+    background-position: -80px 0;
+    height: 40px;
+    width: 30px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
 .hot_left_ul{
     width: 150px;
     position: absolute;

@@ -29,16 +29,15 @@
   <ul class="hot_right_ul">
     <?php foreach ($recordList as $record) : ?>
     <li>
-      <?php if ($i <= 3) { ?>
-      	  <span class="h_r_ul_li_num reb_back">
-      <?php } else if ($i <= 10) {?>
-      	  <span class="h_r_ul_li_num blue_l">
-      <?php } else {?>
-          <span class="h_r_ul_li_num gray">
-      <?php }
-          echo $i++;
-      ?>
-      </span>
+      <?php if ($i == 1) { ?>
+          <i class="icon_hot_first"></i>
+      <?php } else if ($i == 2) { ?>
+      	  <i class="icon_hot_second"></i>
+      <?php } else if ($i == 3) { ?>
+          <i class="icon_hot_third"></i>
+      <?php } else { ?>
+      	  <span class="h_r_ul_li_num gray"><?php echo $i++; ?></span>
+      <?php } ?>
       <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="30" />
       </a>

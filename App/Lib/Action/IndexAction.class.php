@@ -86,13 +86,6 @@ class IndexAction extends Action {
         $this->display();
     }
     
-    public function test()
-    {
-    	$title = "我帮圈圈 帮助主题社交网站 开通校园列表";
-        $this->assign('title',$title);
-        $this->display();
-    }
-
     public function hot()
     {
     	$recordSchoolInfo = i_school_domain();
