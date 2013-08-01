@@ -54,9 +54,20 @@
       <?php } ?>
       <br />
       <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
+      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span>
       <span class="sex<?php echo $userLogin['sex'] ?>"></span>
       <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12">等级 <span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
+      <?php if ($recordUserInfo['realname_re'] == '2') { echo "<span class='f12 gray' style='cursor: pointer' title='数据库有匹配，已经实名认证'>已认证</span>"; }?>
+      <?php if (!empty($totalUserHonorNums)) { ?>
+		<a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="f12 gray" title="查看荣誉详情">
+			{$totalUserHonorNums}荣誉
+			<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
+		</a>
+	  <?php } ?>
       &nbsp;&nbsp;&nbsp;<a href="__ROOT__/support?level" class="f12 fb gray"><span class="icon_sigh"></span>升级规则</a>
+      <br />
+      <?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span>
+      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a>
       <br /><br />
       <?php if($priorityExist) { ?>
     	<span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>

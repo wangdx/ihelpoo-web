@@ -83,6 +83,13 @@ class WoAction extends Action {
         	$userLoginSchoolInfo = $SchoolInfo->find($userLogin['school']);
         	$this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
         }
+        
+        /**
+         * show user honor nums
+         */
+        $UserHonor = M("UserHonor");
+        $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
+        $this->assign('totalUserHonorNums', $totalUserHonorNums);
     }
 
     public function _empty()
