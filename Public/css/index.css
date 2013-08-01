@@ -383,6 +383,18 @@ lable{
 .main_mate_info_hot{
 	text-align: right;
 }
+.main_mate_info_hot a{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #F5F5F5;
+    color: #15B6D7;
+    font-weight: fb;
+    font-size: 16px;
+}
+.main_mate_info_hot_a_select{
+    background: #FFF;
+}
 .main_mate_info_user_nums{
     position: absolute;
 	right: 20px;
