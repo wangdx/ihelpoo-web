@@ -476,7 +476,7 @@ lable{
 }
 .hot_right_nav_div_title2{
     position: relative;
-    left: 20px;
+    left: 25px;
 }
 .hot_right_nav_div_title3{
     position: absolute;
@@ -548,14 +548,14 @@ lable{
     vertical-align: middle;
     width: 30px;
     position: absolute;
-    left: 0;
+    left: 10px;
     top: 15px;
 }
 
 .h_r_ul_li_num{
     position: absolute;
     right: 795px;
-    top: 15px;
+    top: 25px;
     font-size: 16px;
     font-weight: bold;
     font-style: italic;
@@ -563,13 +563,13 @@ lable{
 }
 .h_r_ul_li_img{
     position: absolute;
-    left: 50px;
+    left: 60px;
     top: 15px;
 }
 .h_r_ul_li_comtent{
     display: inline-block;
     position: absolute;
-    left: 120px;
+    left: 135px;
     top: 15px;
 }
 .h_r_ul_li_comtent_nickname{
@@ -578,13 +578,13 @@ lable{
 }
 .h_r_ul_li_hit{
     position: absolute;
-    right: 150px;
+    right: 10px;
     top: 15px;
 }
 .h_r_ul_li_time{
     position: absolute;
     right: 5px;
-    top: 15px;
+    bottom: 15px;
 }
 /*--- group.phtml ---*/
 .main_group_nav{
