@@ -36,7 +36,7 @@
       <?php } else if ($i == 3) { ?>
           <i class="icon_hot_third"></i>
       <?php } else { ?>
-      	  <span class="h_r_ul_li_num gray"><?php echo $i++; ?></span>
+      	  <span class="h_r_ul_li_num gray"><?php echo $i; ?></span>
       <?php } ?>
       <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="30" />
@@ -73,6 +73,7 @@
         <span class="f12 gray h_r_ul_li_time"><?php echo i_time($record['time']) ?></span>
       <?php } ?>
     </li>
+    <?php $i++; ?>
     <?php endforeach; ?>
   </ul>
   </div>
