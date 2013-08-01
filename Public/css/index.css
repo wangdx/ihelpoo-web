@@ -463,6 +463,25 @@ lable{
 .main_hot{
     position: relative;
 }
+.hot_right_nav_div{
+    padding: 5px 10px;
+    background: #f5f5f5;
+}
+.hot_right_nav_div_title1{
+    position: relative;
+}
+.hot_right_nav_div_title2{
+    position: relative;
+    left: 20px;
+}
+.hot_right_nav_div_title3{
+    position: relative;
+    left: 100px;
+}
+.hot_right_nav_div_title4{
+    position: relative;
+    left: 400px;
+}
 .icon_hot_first{
     background-image: url("../image/common/hot_rank.png");
     background-position: 0 0;
