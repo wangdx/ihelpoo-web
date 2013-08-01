@@ -72,13 +72,13 @@
 	      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a>
 	      <?php if (!empty($recordUserInfo['qq'])) { ?>
 	      <?php if (i_degree($userloginedrecord['active']) >= 3) { ?>
-	      <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $recordUserInfo['qq'] ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $recordUserInfo['qq'] ?>:46" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+	       | <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $recordUserInfo['qq'] ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $recordUserInfo['qq'] ?>:46" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
 	      <?php } else { ?>
-	            <span class="f12 gray">大于<a href="__ROOT__/support?level" target="_blank">3级</a>可以查看ta的QQ及在线状态 点击直接QQ聊天。</span>
+	       | <span class="f12 gray">大于<a href="__ROOT__/support?level" target="_blank">3级</a>可以查看ta的QQ及在线状态 点击直接QQ聊天。</span>
 	      <?php } ?>
 	      <?php } ?>
 	      <?php if (!empty($recordUserInfo['weibo'])) { ?>
-	      <a href="<?php echo $recordUserInfo['weibo'] ?>" target="_blank"><img src="__PUBLIC__/image/common/sina.png" /></a>
+	       | <a href="<?php echo $recordUserInfo['weibo'] ?>" target="_blank"><img src="__PUBLIC__/image/common/sina.png" /></a>
 	      <?php } ?>
 	      </li>
       </ul>
