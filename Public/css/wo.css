@@ -3,18 +3,18 @@
 }
 .img_part_me{
     position: relative;
-    width: 180px;
+    width: 300px;
     margin: 15px 20px 20px 20px;
 }
 .wo_top_p{
     position: absolute;
-    left: 230px;
+    left: 400px;
     top: 0px;
 }
 .wo_top_p_ul{
     position: absolute;
-    left: 215px;
-    top: 100px;
+    left: 385px;
+    top: 135px;
 }
 .wo_top_p_ul li{
     display: inline-block;
