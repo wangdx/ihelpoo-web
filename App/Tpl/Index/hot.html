@@ -51,13 +51,14 @@
           <?php echo $record['nickname'] ?>
           <?php if (!empty($record['active'])) { echo "<span class='level".i_degree($record['active'])."'></span>"; } ?>
         </a>
-        <span class="h_r_ul_li_comtent_con"><?php echo $ofunction->cut_str(strip_tags($record['content']), 34); ?></span>
+        <span class="h_r_ul_li_comtent_con"><?php echo $ofunction->cut_str(strip_tags($record['content']), 34); ?>
         <?php if ($_GET['w'] == 'help' || $_GET['w'] == 'helpreply') { ?>
           <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_blank">详情</a>
-        <?php } else if ($_GET['w'] == 'useractive' || $_GET['w'] == 'usercoins') { ?>
+        <?php } else if ($_GET['w'] == 'useractive') { ?>
         <?php } else { ?>
           <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_blank">详情</a>
         <?php } ?>
+        </span>
       </p>
 
       <?php if ($_GET['w'] == 'comment') { ?>
