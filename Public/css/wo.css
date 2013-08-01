@@ -28,6 +28,9 @@
     display: block;
     color: #37579E;
 }
+.wo_user_timebar{
+    margin: 15px 20px;
+}
 .wo_user_nav_ul{
     background: #EEE;
     border: 1px solid #DDDDDD;
