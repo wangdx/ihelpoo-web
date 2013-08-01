@@ -480,11 +480,7 @@ lable{
 }
 .hot_right_nav_div_title3{
     position: relative;
-    left: 100px;
-}
-.hot_right_nav_div_title4{
-    position: relative;
-    left: 400px;
+    left: 500px;
 }
 .icon_hot_first{
     background-image: url("../image/common/hot_rank.png");
