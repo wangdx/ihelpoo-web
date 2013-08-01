@@ -26,6 +26,7 @@
     	$selectIndex = 'class="wo_user_nav_ul_li_select"';
     }
 ?>
+  <script type="text/javascript" src="__PUBLIC__/js/wo/wo.js"></script>
   <div class="wo_top">
     <p class="img_part_me">
       <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>">
@@ -80,6 +81,35 @@
     <div class="wo_user_label f12">
     </div>
   </div>
+  <!-- school time bar part -->
+  <?php
+  $dateInfo = getdate();
+  $yearGape = $dateInfo['year'] - $userView['enteryear'];
+  if ($yearGape < 5 && $userView['type'] == '1') {
+      $passedSchoolDays = (($dateInfo['year'] - $userView['enteryear'] - 1) * 365) + $dateInfo['yday'] + 120;
+      $totalSchoolDays = (4 * 365 - 90);
+      $schoolDaysRatio = substr(($passedSchoolDays / $totalSchoolDays) * 100, 0, 5);
+      if ($schoolDaysRatio < 33) {
+          $backgroundcolor = "#9C0";
+      } else if ($schoolDaysRatio < 66){
+          $backgroundcolor = "#09F";
+      } else {
+          $backgroundcolor = "#F60";
+      }
+      $schoolDaysRatio = $schoolDaysRatio . "%";
+  ?>
+  <div>
+    <p style="margin: 30px 20px 20px 20px;" class="gray">
+      <span class="fi gray">今天是<?php echo date("Y年m月d", time()) ?>, 一年中的<?php echo $dateInfo['yday'] ?>天</span>
+      <span class="fb black_l"><?php echo $userView['nickname'] ?></span>的大学时光过去了<span class="f14 fb black_l"><?php echo $schoolDaysRatio ?></span>
+      <span id="timenow"></span> <span style="position: relative; margin-left:5px; "><span id="secondpass" class="f16 fb" style="position: absolute; width: 30px;" >-1</span></span>
+    </p>
+    <div style="border:1px solid #CCC ; width:100%; height:3px;">
+      <div style="background:<?php echo $backgroundcolor ?>; height:3px; float:left; width:<?php echo $schoolDaysRatio ?>"></div>
+    </div>
+  </div>
+  <?php } ?>
+  
   <ul class="wo_user_nav_ul">
     <li><a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" {$selectIndex}>信息流</a></li>
     <li><a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" {$selectHelp}>帮助</a></li>
