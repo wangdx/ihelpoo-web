@@ -10,8 +10,7 @@ function showtime(){
 	var timeValue = hours;
 	timeValue += ((minutes < 10) ? ":0" : ":") + minutes+""; 
 	timeValue += ((seconds < 10) ? ":0" : ":") + seconds+"";
-	var timetext=timeValue
-	document.getElementById("timenow").innerText = timetext;
+	$("#timenow").html(timeValue);
 	setTimeout('showtime()',1000);
 }
 function secondShine(name){
