@@ -524,7 +524,7 @@ class StreamAction extends Action
                     }
                 }
             } else {
-                redirect('/stream', 3, '还没有就读改专业的同学 3秒后页面跳转...');
+                redirect('/stream', 3, '还没有就读该专业的同学 3秒后页面跳转...');
             }
             $allUserString = substr($allUserString, 0, -1);
             $select->where("i_record_say.uid IN ($allUserString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
