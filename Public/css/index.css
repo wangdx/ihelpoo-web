@@ -549,7 +549,7 @@ lable{
     width: 30px;
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 15px;
 }
 
 .h_r_ul_li_num{
@@ -559,17 +559,22 @@ lable{
     font-size: 16px;
     font-weight: bold;
     font-style: italic;
+    text-align: center;
 }
 .h_r_ul_li_img{
     position: absolute;
-    left: 100px;
-    top: 10px;
+    left: 50px;
+    top: 15px;
 }
 .h_r_ul_li_comtent{
     display: inline-block;
     position: absolute;
-    left: 80px;
+    left: 120px;
     top: 15px;
+}
+.h_r_ul_li_comtent_nickname{
+    display: block;
+    margin-bottom: 5px;
 }
 .h_r_ul_li_hit{
     position: absolute;
