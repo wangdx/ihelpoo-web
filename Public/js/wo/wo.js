@@ -1,8 +1,6 @@
 $().ready(function(){
     showtime();
     secondShine('#secondpass');
-    var iconpositionwidth = $('.icon_timebar_in_div').width() - 35;
-    $('#icon_timebar_img').animate({left: iconpositionwidth}, 800);
 });
 function showtime(){
 	today = new Date(); 
