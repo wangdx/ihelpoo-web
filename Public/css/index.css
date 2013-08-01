@@ -479,8 +479,9 @@ lable{
     left: 20px;
 }
 .hot_right_nav_div_title3{
-    position: relative;
-    left: 500px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }
 .icon_hot_first{
     background-image: url("../image/common/hot_rank.png");
@@ -539,7 +540,18 @@ lable{
     position: relative;
     border-bottom: 2px dotted #CCC;
     padding: 10px 5px;
+    height: 50px;
 }
+.rank_nums_i{
+    display: block;
+    height: 40px;
+    vertical-align: middle;
+    width: 30px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
 .h_r_ul_li_num{
     position: absolute;
     right: 795px;
@@ -549,7 +561,9 @@ lable{
     font-style: italic;
 }
 .h_r_ul_li_img{
-    margin-left: 25px;
+    position: absolute;
+    left: 100px;
+    top: 10px;
 }
 .h_r_ul_li_comtent{
     display: inline-block;
