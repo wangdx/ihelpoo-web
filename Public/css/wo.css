@@ -62,12 +62,12 @@
     left: 400px;
     top: 0px;
 }
-.wo_top_p_ul{
+.wo_top_div_ul{
     position: absolute;
     left: 385px;
     top: 135px;
 }
-.wo_top_p_ul li{
+.wo_top_div_ul li{
     display: inline-block;
     position: relative;
     width: 50px;
@@ -75,7 +75,7 @@
     text-align: center;
     border-right: 1px solid #CCC;
 }
-.wo_top_p_ul_num{
+.wo_top_div_ul_num{
     display: block;
     color: #37579E;
 }
@@ -636,14 +636,14 @@
     border-radius: 3px;
 }
 /*ie7*/
-*+html .wo_top_p_ul li{
+*+html .wo_top_div_ul li{
     display: inline;
 }
 *+html .wo_user_nav_ul li{
     display: inline;
 }
 /*ie6*/
-*html .wo_top_p_ul li{
+*html .wo_top_div_ul li{
     display: inline;
 }
 *html .wo_user_nav_ul li{
