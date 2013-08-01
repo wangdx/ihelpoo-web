@@ -466,6 +466,10 @@ lable{
 .hot_right_nav_div{
     padding: 5px 10px;
     background: #f5f5f5;
+    margin: 10px 0 0 170px;
+}
+.hot_right_nav_div p{
+    display: inline-block;
 }
 .hot_right_nav_div_title1{
     position: relative;
