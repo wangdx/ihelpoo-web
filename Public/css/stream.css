@@ -398,14 +398,10 @@
     background: #6ccacd;
     color: #FFF;
 }
-#scroll_float_div{
-	position: absolute;
-	bottom: 20px;
-}
 *html .scroll_float_div{
 	text-align:right;
 }
-*html #scroll_float_div{
+*html .scroll_float_div{
 	position: fixed;
 	right: 10px;
 	bottom: 20px;
@@ -642,13 +638,11 @@
 	display: none;
 }
 /* scorll */
-#scroll_top_btn{
+.scroll_float_div{
     position: fixed;
     right: 20px;
     bottom: 50px;
     display: block;
-    font-size: 16px;
-    font-weight: bold;
     color: #FFFFFF;
 }
 #scroll_top_btn:hover{
