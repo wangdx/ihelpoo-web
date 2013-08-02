@@ -525,7 +525,7 @@ $().ready(function(){
     	var totalImageNums = $(this).parent().find("img").size();
     	if (totalImageNums > 1) {
     		
-    		$(this).parent().html($(this).get());
+    		$(this).parent().html($(this).parent().find("img").get(totalImageNums));
     		/*alert($(this).get());
     		var enlargeSwitch = $(this).attr('enlargeswitch');
 	    	if (enlargeSwitch != 'on') {
