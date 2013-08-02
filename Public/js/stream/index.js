@@ -675,9 +675,8 @@ $().ready(function(){
 		var bodyHeight = $('body').height();
 		var scrollHeight = $(this).scrollTop();
 		var pageHeight = $(this).height() - 60;
-		
 		var mainoffset = $('.main').offset();
-	    var mainpositionleft = mainoffset.left + 1;
+	    var mainpositionleft = mainoffset.left - 35;
 	    $("#scroll_top_btn").css({right : mainpositionleft});
 		if (bodyHeight == scrollHeight + pageHeight) {
 			//
