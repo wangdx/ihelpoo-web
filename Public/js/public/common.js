@@ -10,7 +10,7 @@ $().ready(function(){
      * nav hover
      */
     var mainposition = $('.main').position();
-    var mainpositionleft = mainposition + 150;
+    var mainpositionleft = mainposition.left + 150;
     alert(mainpositionleft);
     $("#header_nav_user").hover(
     	function(){
