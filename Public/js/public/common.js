@@ -25,6 +25,11 @@ $().ready(function(){
     			$("#nav_hover_list_div").slideUp("fast");
     		});
 	});
+    $(".header_left_arrow").hover(
+    	function(){
+    		$("#nav_hover_list_div").slideUp("fast");
+    	},function(){}
+    );
 
     /**
      * skin part
