@@ -523,6 +523,7 @@ $().ready(function(){
     var imageTempContent = '';
     $('.s_li_p_content_image img').live('click', function(){
     	var totalImageNums = $(this).parent().size();
+    	alert(totalImageNums);
     	if (totalImageNums > 1) {
     		alert(totalImageNums);
     	} else {
