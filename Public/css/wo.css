@@ -79,6 +79,9 @@
     bottom: 0;
     left: 200px;
 }
+.wo_top_div_quan a{
+    margin-right: 5px;
+}
 .wo_top_div_ul{
     position: absolute;
     bottom: 0px;
