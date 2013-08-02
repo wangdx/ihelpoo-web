@@ -253,7 +253,20 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header a,.headermall a{ color:#FFF; }
 
 .header .header_left_arrow{
-    margin:0 20px 0 5px;
+    display: inline-block;
+    height: 20px;
+    margin: 0 5px;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    top: -12px;
+    width: 50px;
+}
+.header .header_left_arrow:hover{
+    border-left: 2px solid #CC0000;
+    border-right: 2px solid #CC0000;
+    color: #333333;
+    background: #FFFFFF;
 }
 .header_right a{
     margin:0 0 0 10px;
