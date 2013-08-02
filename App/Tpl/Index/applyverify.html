@@ -4,21 +4,22 @@
   <div class="main_group_nav">
   	<p class="main_group_nav_school_p"><a href="__ROOT__/" class="fb black_l">{$schoolname}</a> <a href="__ROOT__/index/school" title="更多学校" class="f12">[切换]</a></p>
     <ul class="main_group_nav_sub_ul f12 black_l">
-	  	<li><?php if (!empty($_GET['type']) == 'group') { echo "申请校园组织用户"; } else { echo "申请校园周边商家用户"; } ?></li>
+	  	<li><?php if (!empty($_GET['type']) && $_GET['type'] == 'group') { echo "申请校园组织用户"; } else { echo "申请校园周边商家用户"; } ?></li>
   	</ul>
   	<p class="main_group_nav_p"><a href="__ROOT__/index/business" class="btn_iapply_a"></a></p>
   </div>
   <div>
-  <form method="post">
+  <form method="post" id="applyverifyform">
   <?php if (!empty($_GET['type']) == 'group') { $type = 1 ; } else { $type = 2 ;} ?>
   <ul class="applyverify_ul">
-  	<li>真实姓名: <input type="text" name="name" class="input_style" /><span class="red">*</span> <input type="hidden" name="verify_type" value="<?php echo $type; ?>" /></li>
-  	<li>联系手机: <input type="text" name="mobile" class="input_style" /><span class="red">*</span></li>
+  	<li>真实姓名: <input type="text" name="name" id="applyverify_name" class="input_style" /> <span class="red">*</span> <input type="hidden" name="verify_type" value="<?php echo $type; ?>" /></li>
+  	<li>联系手机: <input type="text" name="mobile" id="applyverify_mobile" class="input_style" /> <span class="red">*</span></li>
   	<li>Q &#12288;&#12288; Q: <input type="text" name="qq" class="input_style" /></li>
   	<li>备&#12288;&#12288;注: <textarea name="remark" class="textarea_style"></textarea></li>
-  	<li>&#12288;&#12288;&#12288;&#12288;&#12288;<a id="submit" class="btn f12">提交申请</a></li>
+  	<li>&#12288;&#12288;&#12288;&#12288;&#12288;<a id="submit" class="btn f12">提交申请</a> <span id="submit_info" class="f12 gray"></span></li>
   </ul>
   </form>
   </div>
 </div>
+<script type="text/javascript" src="__PUBLIC__/js/index/applyverify.js?id=1"></script>
 <include file="Public:footer" />
