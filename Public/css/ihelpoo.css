@@ -260,13 +260,23 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     position: relative;
     text-align: center;
     top: -12px;
-    width: 60px;
+    width: 55px;
 }
 .header .header_left_arrow:hover{
     border-left: 0px solid #CC0000;
     border-right: 0px solid #CC0000;
     color: #333333;
     background: #FFFFFF;
+}
+.header_left_noarrow{
+    display: inline-block;
+    height: 20px;
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    top: -12px;
+    width: 30px;
 }
 .header_right a{
     margin:0 0 0 10px;
