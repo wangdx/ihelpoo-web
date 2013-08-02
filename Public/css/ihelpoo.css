@@ -594,14 +594,18 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     left: 285px;
     padding: 10px;
     position: fixed;
-    top: 36px;
+    top: 38px;
     width: 500px;
     z-index: 11111;
     background: #FFF;
 }
+#nav_hover_list_div_ul{
+    font-size: 12px;
+    color: #CCC;
+}
 #nav_hover_list_div_ul li{
     display: inline-block;
-    margin: 10px;
+    margin: 10px 15px;
 }
 
 /*--- ie6 ---*/
