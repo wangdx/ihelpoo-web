@@ -9,11 +9,11 @@ $().ready(function(){
     /**
      * nav hover
      */
-    var mainposition = $('.main').position();
+    var mainposition = $('.main').position() + 150;
     alert(mainposition.left);
     $("#header_nav_user").hover(
     	function(){
-    		$("#nav_hover_list_div").slideDown("fast");
+    		$("#nav_hover_list_div").css({left:mainposition}).slideDown("fast");
     		$("#nav_hover_list_div_ul").html("<li><a>同学</a> | <a>校园组织</a> | <a>周边商家</a></li>");
     	},
       	function(){
