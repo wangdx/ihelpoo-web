@@ -598,6 +598,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     z-index: 11111;
     background: #FFF;
     border-radius: 0 0 3px 3px;
+    display: none;
 }
 #nav_hover_list_div_ul{
     font-size: 12px;
@@ -610,6 +611,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 #nav_hover_list_div_ul li a{
     font-size: 14px;
     margin: 10px;
+    color: #333;
 }
 
 /*--- ie6 ---*/
