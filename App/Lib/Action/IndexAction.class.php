@@ -399,6 +399,10 @@ class IndexAction extends Action {
 	    	$mobile = trim(addslashes(htmlspecialchars(strip_tags($_POST["mobile"]))));
 	    	$qq = trim(addslashes(htmlspecialchars(strip_tags($_POST["qq"]))));
 	    	$remark = trim(addslashes(htmlspecialchars(strip_tags($_POST["remark"]))));
+	    	$isexistUserApplyverify = $UserApplyverify->where("name = '$name' AND mobile = '$mobile'")->find();
+	    	if (!empty($isexistUserApplyverify['id'])) {
+	    		$this->ajaxReturn(0, "已经提交过了，请勿重复提交", "wrong");
+	    	}
 	    	if (!empty($name) && !empty($mobile) && !empty($verify_type)) {
 		    	$newuserApplyverifyData = array(
 			    	'id' => '',
@@ -414,10 +418,10 @@ class IndexAction extends Action {
 			    	'time' => time()
 		    	);
 		    	$UserApplyverify = M("UserApplyverify");
-		    	//$UserApplyverify->add($newuserApplyverifyData);
-		    	$this->ajaxReturn(0, "提交成功", 'yes');
+		    	$UserApplyverify->add($newuserApplyverifyData);
+		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} else {
-	    		$this->ajaxReturn(0, "出错了", 'wrong');
+	    		$this->ajaxReturn(0, "出错了", "wrong");
 	    	}
     	}
     	$this->display();
