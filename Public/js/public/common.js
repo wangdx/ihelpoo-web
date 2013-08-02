@@ -15,7 +15,11 @@ $().ready(function(){
     		$("#nav_hover_list_div_ul").html("<li><a>同学</a> <a>校园组织</a> <a>周边商家</a></li>");
     	},
       	function(){
-    		$("#nav_hover_list_div").slideUp("fast");
+    		$("#nav_hover_list_div").hover(function(){
+    			$("#nav_hover_list_div").show();
+    		},function(){
+    			$("#nav_hover_list_div").slideUp("fast");
+    		});
 	});
 
     /**
