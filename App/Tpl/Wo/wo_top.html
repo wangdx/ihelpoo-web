@@ -53,7 +53,6 @@
 	  <?php } ?>
       </span>
       <!-- <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a> -->
-      
       <div class="wo_top_div_school f12 gray">
 	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
 	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
@@ -66,7 +65,6 @@
 	      <?php } ?>
 	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
       </div>
-      
       <div class="wo_top_div_connect f12">
 	      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a>
 	      <?php if (!empty($recordUserInfo['qq'])) { ?>
@@ -80,19 +78,8 @@
 	       &#12288;<a href="<?php echo $recordUserInfo['weibo'] ?>" target="_blank"><img src="__PUBLIC__/image/common/sina.png" height="18" width="18" /></a>
 	      <?php } ?>
       </div>
-      
       <div class="wo_top_div_intro f12 gray">
       		<?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span>
-      </div>
-      <div class="wo_top_div_quan">
-	      <?php if($priorityExist) { ?>
-	    	<span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
-	      <?php } else if ($shieldExist) { ?>
-	    	<span class="f12 gray"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
-	      <?php } else { ?>
-	      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
-	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
-	      <?php } ?>
       </div>
       <ul class="wo_top_div_ul f12 blaxk_l">
 	      <li>
@@ -104,6 +91,16 @@
 	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
 	      </li>
       </ul>
+      <div class="wo_top_div_quan">
+	      <?php if($priorityExist) { ?>
+	    	<span class="f12 gray btn_quaned"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
+	      <?php } else if ($shieldExist) { ?>
+	    	<span class="f12 gray btn_quaned"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
+	      <?php } else { ?>
+	      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class="btn_quan f12">圈<?php echo $sexname ?></a>
+	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
+	      <?php } ?>
+      </div>
     </div>
     
     
