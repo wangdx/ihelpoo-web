@@ -158,8 +158,8 @@
 }
 .wo_main_ul{
     border-right: 1px solid #EEE;
-    padding-right: 10px;
-    width: 750px;
+    padding-right: 15px;
+    width: 745px;
 }
 .wo_main_ul li{
     padding: 12px 0 25px 0;
@@ -192,6 +192,7 @@
 }
 .wo_li_p_content{
     margin-left: 90px;
+    margin-bottom: 10px;
 }
 .s_li_p_content_image{
     width: 665px;;
@@ -238,7 +239,7 @@
 }
 .wo_li_s_time{
     position: absolute;
-    left: 85px;
+    left: 90px;
     bottom: 12px;
 }
 .wo_li_s_comment{
