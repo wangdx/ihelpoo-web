@@ -28,8 +28,8 @@ $().ready(function(){
 	});
     $("#header_nav_more").hover(
         function(){
-        	var mainposition = $('.main').position();
-        	var mainpositionleft = mainposition.left + 152;
+        	var mainoffset = $('.main').offset();
+    	    var mainpositionleft = mainoffset.left + 152;
         	$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
         	$("#nav_hover_list_div_ul").html("<li><a href='/help'>帮助</a> | <a href='/activity'>活动</a></li>");
         },
