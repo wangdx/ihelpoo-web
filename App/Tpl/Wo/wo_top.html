@@ -28,7 +28,6 @@
 ?>
   <div class="wo_top">
     <p class="img_part_me">
-      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>">
         <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 'l') ?>" width="300" height="225" class="radius5" />
         <?php if ($userLogin['type'] == '3') { ?>
           <span class="grades"></span>
@@ -37,13 +36,21 @@
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($userLogin['enteryear']) ?>"></span>
         <?php } ?>
-      </a>
     </p>
     <p>
     </p>
     <div class="wo_top_div black_l">
-      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 小窝
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a>
+      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" class="f16 black_l"><?php echo $userLogin['nickname'] ?></a>
+      <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12"><span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
+      <?php if ($recordUserInfo['realname_re'] == '2') { echo "<span class='f12 gray' style='cursor: pointer' title='数据库有匹配，已经实名认证'>已认证</span>"; } ?>
+      <?php if (!empty($totalUserHonorNums)) { ?>
+		<a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="f12 gray" title="查看荣誉详情">
+			{$totalUserHonorNums}荣誉
+			<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
+		</a>
+	  <?php } ?>
+      &nbsp;&nbsp;&nbsp;<a href="__ROOT__/support?level" class="f12 gray"><span class="icon_sigh"></span>升级规则</a>
+      <!-- <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a> -->
       <br />
       <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
     	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> 
@@ -56,15 +63,7 @@
       <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
       <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span>
       <span class="sex<?php echo $userLogin['sex'] ?>"></span>
-      <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12">等级 <span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
-      <?php if ($recordUserInfo['realname_re'] == '2') { echo "<span class='f12 gray' style='cursor: pointer' title='数据库有匹配，已经实名认证'>已认证</span>"; }?>
-      <?php if (!empty($totalUserHonorNums)) { ?>
-		<a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="f12 gray" title="查看荣誉详情">
-			{$totalUserHonorNums}荣誉
-			<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
-		</a>
-	  <?php } ?>
-      &nbsp;&nbsp;&nbsp;<a href="__ROOT__/support?level" class="f12 fb gray"><span class="icon_sigh"></span>升级规则</a>
+      
       <br /><br />
       <ul>
 	      <li><?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span></li>
