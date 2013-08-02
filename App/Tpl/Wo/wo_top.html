@@ -36,6 +36,7 @@
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($userLogin['enteryear']) ?>"></span>
         <?php } ?>
+        <i class="online<?php echo $userLogin['online'] ?>"></i>
     </p>
     <p>
     </p>
@@ -52,7 +53,7 @@
 		</a>
 	  <?php } ?>
       </span>
-      <!-- <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a> -->
+      
       <div class="wo_top_div_school f12 gray">
 	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
 	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
@@ -66,6 +67,7 @@
 	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
       </div>
       <div class="wo_top_div_connect f12">
+          <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天">悄悄话</a> | 
 	      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a>
 	      <?php if (!empty($recordUserInfo['qq'])) { ?>
 		      <?php if (i_degree($userloginedrecord['active']) >= 3) { ?>
