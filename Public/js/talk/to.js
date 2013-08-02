@@ -9,10 +9,10 @@ $().ready(function(){
     });
 
     function globalCallback(response) {
+        console.log("++++");
         if (response.state != "messageReceived") {
             return;
         }
-        console.log("++++");
     }
 
     function call(response) {
