@@ -263,8 +263,8 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     width: 50px;
 }
 .header .header_left_arrow:hover{
-    border-left: 2px solid #CC0000;
-    border-right: 2px solid #CC0000;
+    border-left: 0px solid #CC0000;
+    border-right: 0px solid #CC0000;
     color: #333333;
     background: #FFFFFF;
 }
@@ -278,7 +278,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .h_arrow{
     margin: 0 0 0 4px;
     position: absolute;
-    top: 9px;
+    top: 18px;
     line-height: 13px;
     display: inline-block;
     font-size: 13px;
