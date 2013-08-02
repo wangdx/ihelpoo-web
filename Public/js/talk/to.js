@@ -5,8 +5,12 @@ $().ready(function(){
     $.atmosphere.subscribe("http://comet.ihelpoo.com/comet/atmosphere/subscribe/10000-12419", globalCallback, $.atmosphere.request = {
         logLevel : 'debug',
         transport : 'long-polling',
-        callback : call
-    });
+        callback : call ,
+
+        enableXDR: true,
+    dropAtmosphereHeaders: true,
+    attachHeadersAsQueryString: true
+});
 
     function globalCallback(response) {
         console.log("++++");
