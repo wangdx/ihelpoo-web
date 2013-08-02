@@ -93,9 +93,9 @@
       </ul>
       <div class="wo_top_div_quan">
 	      <?php if($priorityExist) { ?>
-	    	<span class="f12 gray btn_quaned"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
+	    	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned" title="取消圈"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></a>
 	      <?php } else if ($shieldExist) { ?>
-	    	<span class="f12 gray btn_quaned"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
+	    	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned" title="取消屏蔽"><span class="icon_attention"></span>已经屏蔽</a>
 	      <?php } else { ?>
 	      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class="btn_quan f12">圈<?php echo $sexname ?></a>
 	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
