@@ -190,11 +190,11 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .btn_red{padding: 5px 15px; color: #FFF; background-color: #B20000; border-radius:3px; }
 .btn_red:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.btn_quan{padding: 1px 5px; color: #FFF; background-color: #6CCACD; border-radius:3px; cursor: pointer; }
-.btn_quan:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
+.btn_quaned{padding: 3px 10px; color: #666; background-color: #EEEEEE; border: 1px solid #CCC; border-radius:3px; cursor: pointer; }
+.btn_quaned:hover{color: #FFF; background-color: #999; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.btn_quaned{padding: 1px 5px; color: #FFF; background-color: #999; border-radius:3px; cursor: pointer; }
-.btn_quaned:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
+.btn_quan{padding: 3px 10px 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; }
+.btn_quan:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
 .login_status_online{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 0; display:inline-block; cursor: pointer; vertical-align: bottom; }
 .login_status_hidden{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 -16px; display:inline-block; cursor: pointer; vertical-align: bottom; }
@@ -253,7 +253,37 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header a,.headermall a{ color:#FFF; }
 
 .header .header_left_arrow{
-    margin:0 20px 0 5px;
+    display: inline-block;
+    height: 20px;
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    top: -12px;
+    width: 55px;
+}
+.header .header_left_arrow:hover{
+    border-left: 0px solid #CC0000;
+    border-right: 0px solid #CC0000;
+    color: #333333;
+    background: #FFFFFF;
+}
+.header .header_left_arrow_hover{
+    border-left: 0px solid #CC0000;
+    border-right: 0px solid #CC0000;
+    color: #333333;
+    background: #FFFFFF;
+}
+.header_left_noarrow{
+    display: inline-block;
+    height: 20px;
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    top: -12px;
+    width: 30px;
+    margin: 0 0 0 5px;
 }
 .header_right a{
     margin:0 0 0 10px;
@@ -265,7 +295,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .h_arrow{
     margin: 0 0 0 4px;
     position: absolute;
-    top: 9px;
+    top: 18px;
     line-height: 13px;
     display: inline-block;
     font-size: 13px;
@@ -544,7 +574,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header_main{ width:1000px; margin:0 auto; position:relative; }
 .header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
 *html .header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.gif) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_left{ margin-left:160px; }
+.header_left{ margin-left:154px; }
 *html .header_left{ margin-left:80px; }
 .header_right{ margin-right:0px; }
 .header a:hover,.headermall a:hover{ color:#FFFA85; }
@@ -555,6 +585,35 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .footer .about p{
     margin-bottom: 3px;
 }
+
+/*--- top vav_hover ---*/
+#nav_hover_list_div{
+    border: 2px solid #CC0000;
+    border-top: 0px;
+    height: 30px;
+    padding: 10px;
+    position: fixed;
+    top: 38px;
+    width: 500px;
+    z-index: 11111;
+    background: #FFF;
+    border-radius: 0 0 3px 3px;
+    display: none;
+}
+#nav_hover_list_div_ul{
+    font-size: 12px;
+    color: #CCC;
+}
+#nav_hover_list_div_ul li{
+    display: inline-block;
+    margin: 5px;
+}
+#nav_hover_list_div_ul li a{
+    font-size: 14px;
+    margin: 10px;
+    color: #666;
+}
+
 /*--- ie6 ---*/
 *+html .header{ position:relative; }
 *+html .main{ margin-top:30px; }

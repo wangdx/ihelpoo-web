@@ -398,15 +398,10 @@
     background: #6ccacd;
     color: #FFF;
 }
-#scroll_top_btn{
-	position: absolute;
-	right: 10px;
-	bottom: 20px;
-}
 *html .scroll_float_div{
 	text-align:right;
 }
-*html #scroll_top_btn{
+*html .scroll_float_div{
 	position: fixed;
 	right: 10px;
 	bottom: 20px;
@@ -643,18 +638,38 @@
 	display: none;
 }
 /* scorll */
-#scroll_top_btn{
+.scroll_float_div{
     position: fixed;
     right: 20px;
     bottom: 50px;
-    display: block;
-    font-size: 16px;
-    font-weight: bold;
     color: #FFFFFF;
+    display:none;
+}
+#scroll_top_btn{
+    display: block;
 }
 #scroll_top_btn:hover{
-    background-color: #DDD;
     color: #7BD6F6;
+    border-color:#7BD6F6;
+    -moz-outline:4px solid #E2F5FB;
+    -moz-outline-radius:8px;
+    -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6);
+    box-shadow:0 0 10px rgba(123, 214, 246, .6);
+}
+#scroll_suggestion_btn{
+    background: #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    height: 15px;
+    margin-top: 3px;
+    padding: 5px 0;
+    text-align: center;
+    width: 35px;
+}
+#scroll_suggestion_btn:hover{
+    color: #FFF;
     border-color:#7BD6F6;
     -moz-outline:4px solid #E2F5FB;
     -moz-outline-radius:8px;

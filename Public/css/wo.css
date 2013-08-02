@@ -1,22 +1,101 @@
+/*--- icon ---*/
+.icon_timebar_wn{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: 0 0;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_fj{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: 0 -30px;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_hj{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: 0 -60px;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_fd{
+    background-image: url("../image/common/wo_animal.png");
+    background-position: 0 -90px;
+    height: 30px;
+    width: 85px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_timebar_out_div{
+    position: relative;
+}
+#icon_timebar_img{
+    position: absolute;
+    top: -15px;
+    left: 0px;
+}
+
+/*--- ---*/
 .wo_top{
     position: relative;
 }
 .img_part_me{
     position: relative;
-    width: 180px;
+    width: 300px;
     margin: 15px 20px 20px 20px;
 }
-.wo_top_p{
+.img_part_me img{
+    border: 1px solid #EEE;
+}
+.img_part_me i{
     position: absolute;
-    left: 230px;
+    left: 5px;
+    bottom: 5px;
+}
+.wo_top_div{
+    position: absolute;
+    left: 360px;
     top: 0px;
+    width: 600px;
+    height: 225px;
 }
-.wo_top_p_ul{
+.wo_top_div_school{
+    margin: 10px 0;
+}
+.wo_top_div_connect{
+}
+.wo_top_div_intro{
+    margin: 20px 0;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 10px;
+}
+.wo_top_div_quan{
     position: absolute;
-    left: 215px;
-    top: 100px;
+    bottom: 10px;
+    left: 130px;
 }
-.wo_top_p_ul li{
+.wo_top_div_quan a{
+    margin-right: 5px;
+}
+.wo_top_div_ul{
+    position: absolute;
+    bottom: 0px;
+    left: -10px;
+}
+.wo_top_div_ul li{
     display: inline-block;
     position: relative;
     width: 50px;
@@ -24,9 +103,12 @@
     text-align: center;
     border-right: 1px solid #CCC;
 }
-.wo_top_p_ul_num{
+.wo_top_div_ul_num{
     display: block;
     color: #37579E;
+}
+.wo_user_timebar{
+    margin: 30px 20px;
 }
 .wo_user_nav_ul{
     background: #EEE;
@@ -44,17 +126,9 @@
     display: inline-block;
 }
 .wo_user_nav_ul_li_select{
-    background: #6ccacd;
+    background: #999;
     color: #FFF;
-}
-.wo_user_label{
-    position: absolute;
-    right: 30px;
-    top: 120px;
-}
-.wo_user_label_btn_back{
-    position: relative;
-    bottom:-3px;
+    border-radius: 2px;
 }
 .wo_main{
     margin: 20px;
@@ -89,14 +163,14 @@
 }
 .wo_main_ul{
     border-right: 1px solid #EEE;
-    padding-right: 10px;
-    width: 750px;
+    padding-right: 15px;
+    width: 745px;
 }
 .wo_main_ul li{
     padding: 12px 0 25px 0;
     border-bottom: 1px dotted #CCC;
     position: relative;
-    min-height: 80px;
+    min-height: 50px;
 }
 .wo_main_dynamic_ul{
     border-right: 1px solid #EEE;
@@ -123,6 +197,7 @@
 }
 .wo_li_p_content{
     margin-left: 90px;
+    margin-bottom: 10px;
 }
 .s_li_p_content_image{
     width: 665px;;
@@ -169,12 +244,12 @@
 }
 .wo_li_s_time{
     position: absolute;
-    left: 85px;
-    bottom: 15px;
+    left: 90px;
+    bottom: 12px;
 }
 .wo_li_s_comment{
     position: absolute;
-    bottom: 15px;
+    bottom: 12px;
     right: 0;
 }
 .wo_paging{
@@ -582,14 +657,14 @@
     border-radius: 3px;
 }
 /*ie7*/
-*+html .wo_top_p_ul li{
+*+html .wo_top_div_ul li{
     display: inline;
 }
 *+html .wo_user_nav_ul li{
     display: inline;
 }
 /*ie6*/
-*html .wo_top_p_ul li{
+*html .wo_top_div_ul li{
     display: inline;
 }
 *html .wo_user_nav_ul li{

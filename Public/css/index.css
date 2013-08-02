@@ -383,6 +383,19 @@ lable{
 .main_mate_info_hot{
 	text-align: right;
 }
+.main_mate_info_hot a{
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid #DDD;
+    background: #EEE;
+    color: #15B6D7;
+    font-weight: bold;
+    font-size: 14px;
+}
+.main_mate_info_hot .main_mate_info_hot_a_select{
+    background: #FFF;
+}
 .main_mate_info_user_nums{
     position: absolute;
 	right: 20px;
@@ -463,6 +476,56 @@ lable{
 .main_hot{
     position: relative;
 }
+.hot_right_nav_div{
+    padding: 5px 10px;
+    background: #f5f5f5;
+    margin: 10px 0 0 170px;
+}
+.hot_right_nav_div p{
+    display: inline-block;
+}
+.hot_right_nav_div_title1{
+    position: relative;
+}
+.hot_right_nav_div_title2{
+    position: relative;
+    left: 25px;
+}
+.hot_right_nav_div_title3{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.icon_hot_first{
+    background-image: url("../image/common/hot_rank.png");
+    background-position: 0 0;
+    height: 40px;
+    width: 30px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_hot_second{
+    background-image: url("../image/common/hot_rank.png");
+    background-position: 0 -40px;
+    height: 40px;
+    width: 30px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
+.icon_hot_third{
+    background-image: url("../image/common/hot_rank.png");
+    background-position: 0 -80px;
+    height: 40px;
+    width: 30px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+}
 .hot_left_ul{
     width: 150px;
     position: absolute;
@@ -490,33 +553,54 @@ lable{
     position: relative;
     border-bottom: 2px dotted #CCC;
     padding: 10px 5px;
+    height: 50px;
 }
+.rank_nums_i{
+    display: block;
+    height: 40px;
+    vertical-align: middle;
+    width: 30px;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
 .h_r_ul_li_num{
     position: absolute;
     right: 795px;
-    top: 15px;
+    top: 25px;
     font-size: 16px;
     font-weight: bold;
     font-style: italic;
+    text-align: center;
 }
 .h_r_ul_li_img{
-    margin-left: 25px;
+    position: absolute;
+    left: 60px;
+    top: 15px;
 }
 .h_r_ul_li_comtent{
     display: inline-block;
     position: absolute;
-    left: 80px;
+    left: 135px;
     top: 15px;
+    width: 535px;
+    border-right: 1px solid #EEE;
+}
+.h_r_ul_li_comtent_con{
+    display: block;
+    margin-top: 5px;
+    width: 530px;
 }
 .h_r_ul_li_hit{
     position: absolute;
-    right: 150px;
+    right: 10px;
     top: 15px;
 }
 .h_r_ul_li_time{
     position: absolute;
     right: 5px;
-    top: 15px;
+    bottom: 15px;
 }
 /*--- group.phtml ---*/
 .main_group_nav{

@@ -21,18 +21,17 @@ class WoAction extends Action {
         /**
          * wo/*.phtml top user nav
          */
-        $userId = 10000;
         if (!empty($_GET["_URL_"][2])) {
         	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         }
-    	if ($userId <= 10000) {
+        if ($userId < 10000) {
     		if (!empty($userloginid)) {
     			$userId = $userloginid;
     		}
     	}
     	
-        $IUserLogin = D("IUserLogin");
-        $userLogin = $IUserLogin->userExists($userId);
+        $UserLogin = M("UserLogin");
+        $userLogin = $UserLogin->find($userId);
         $this->assign('userLogin',$userLogin);
         $this->assign('title',$userLogin['nickname']." 的小窝");
 
@@ -83,6 +82,13 @@ class WoAction extends Action {
         	$userLoginSchoolInfo = $SchoolInfo->find($userLogin['school']);
         	$this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
         }
+        
+        /**
+         * show user honor nums
+         */
+        $UserHonor = M("UserHonor");
+        $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
+        $this->assign('totalUserHonorNums', $totalUserHonorNums);
     }
 
     public function _empty()
@@ -99,8 +105,8 @@ class WoAction extends Action {
     			$userId = $userloginid;
     		}
     	}
-        $IUserLogin = D("IUserLogin");
-        $userLogin = $IUserLogin->userExists($userId);
+        $UserLogin = M("UserLogin");
+        $userLogin = $UserLogin->find($userId);
         $this->assign('userLogin',$userLogin);
         $this->assign('title',$userLogin['nickname']." 的小窝");
 
@@ -115,6 +121,34 @@ class WoAction extends Action {
         $UserInfo = M("UserInfo");
         $recordUserInfo = $UserInfo->find($userId);
         $this->assign('recordUserInfo',$recordUserInfo);
+        
+        /**
+         * user edu info
+         */
+        $recordSchoolInfo = i_school_domain();
+        $this->assign('recordSchoolInfo', $recordSchoolInfo);
+        $OpAcademy = M("OpAcademy");
+        $OpSpecialty = M("OpSpecialty");
+        if (!empty($recordUserInfo['academy_op'])) {
+        	$userAcademy = $OpAcademy->where("id = $recordUserInfo[academy_op]")->find();
+        	$this->assign('userAcademy', $userAcademy);
+        }
+        if (!empty($recordUserInfo['specialty_op'])) {
+        	$userSpecialty = $OpSpecialty->where("id = $recordUserInfo[specialty_op]")->find();
+        	$this->assign('userSpecialty', $userSpecialty);
+        }
+        if ($userLogin['school'] != $recordSchoolInfo['id']) {
+        	$SchoolInfo = M("SchoolInfo");
+        	$userLoginSchoolInfo = $SchoolInfo->find($userLogin['school']);
+        	$this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
+        }
+        
+        /**
+         * show user honor nums
+         */
+        $UserHonor = M("UserHonor");
+        $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
+        $this->assign('totalUserHonorNums', $totalUserHonorNums);
 
         /**
          * priority & shield
@@ -135,6 +169,9 @@ class WoAction extends Action {
 	        }
         }
     	$RecordSay = M("RecordSay");
+    	
+    	$this->assign('thisschoolid', $recordSchoolInfo['id']);
+        $this->assign('schoolname', $recordSchoolInfo['school']);
 
         /**
          *
@@ -144,7 +181,7 @@ class WoAction extends Action {
         $offset = $page * $count;
         $sayRecord = $RecordSay->where("i_record_say.uid = $userId AND i_record_say.say_type IN (0, 9)")
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
-        ->field('sid,i_user_login.uid,say_type,content,image,url,comment_co,diffusion_co,hit_co,time,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+        ->field('sid,i_user_login.uid,say_type,content,image,url,comment_co,diffusion_co,hit_co,time,school_id,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url')
         ->order('i_record_say.time DESC')
    	    ->limit($offset,$count)->select();
    	    $this->assign('sayRecord',$sayRecord);

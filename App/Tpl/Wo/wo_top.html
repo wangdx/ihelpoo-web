@@ -28,8 +28,7 @@
 ?>
   <div class="wo_top">
     <p class="img_part_me">
-      <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>">
-        <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url']) ?>" width="180" height="135" class="radius5" />
+        <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 'l') ?>" width="300" height="225" class="radius5" />
         <?php if ($userLogin['type'] == '3') { ?>
           <span class="grades"></span>
         <?php } else if ($userLogin['type'] == '2') { ?>
@@ -37,49 +36,125 @@
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($userLogin['enteryear']) ?>"></span>
         <?php } ?>
-      </a>
+        <i class="online<?php echo $userLogin['online'] ?>"></i>
     </p>
     <p>
     </p>
-    <p class="wo_top_p black_l">
-      <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 小窝
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a>
-      <br />
-      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
-    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> 
-    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $userSpecialty['name']; ?></a>
-      <?php } else { ?>
-    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userAcademy['name']; ?></a>
-    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $userSpecialty['name']; ?></a>
-      <?php } ?>
-      <br />
-      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
-      <span class="sex<?php echo $userLogin['sex'] ?>"></span>
-      <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12">等级 <span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
-      &nbsp;&nbsp;&nbsp;<a href="__ROOT__/support?level" class="f12 fb gray"><span class="icon_sigh"></span>升级规则</a>
-      <br /><br />
-      <?php if($priorityExist) { ?>
-    	<span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
-      <?php } else if ($shieldExist) { ?>
-    	<span class="f12 gray"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
-      <?php } else { ?>
-      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
-      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
-      <?php } ?>
-    </p>
-    <ul class="wo_top_p_ul f12 blaxk_l">
-      <li>
-        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_p_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
-        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
-      </li>
-      <li>
-        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_p_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
-        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
-      </li>
-    </ul>
-    <div class="wo_user_label f12">
+    <div class="wo_top_div black_l">
+      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" class="f16 black fb"><?php echo $userLogin['nickname'] ?></a>
+      <a class="f12">(设置备注)</a>
+      <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12"><span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
+      <span class="fr f12 gray">
+      	<a href="__ROOT__/support?level" class="f12 gray">[升级规则]</a><?php if ($recordUserInfo['realname_re'] == '2') { echo " | <span class='f12 gray' style='cursor: pointer' title='数据库有匹配，已经实名认证'>[已认证]</span>"; } ?>
+      	<?php if (!empty($totalUserHonorNums)) { ?>
+		<a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="f12 gray" title="查看荣誉详情">
+			| {$totalUserHonorNums}荣誉
+			<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
+		</a>
+	  <?php } ?>
+      </span>
+      
+      <div class="wo_top_div_school f12 gray">
+	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
+	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
+	      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
+	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> | 
+	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
+	      <?php } else { ?>
+	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a> | 
+	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
+	      <?php } ?>
+	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
+      </div>
+      <div class="wo_top_div_connect f12">
+          <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天">悄悄话</a> | 
+	      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a>
+	      <?php if (!empty($recordUserInfo['qq'])) { ?>
+		      <?php if (i_degree($userloginedrecord['active']) >= 3) { ?>
+		       &#12288;<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $recordUserInfo['qq'] ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $recordUserInfo['qq'] ?>:46" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+		      <?php } else { ?>
+		       &#12288;<span class="f12 gray">大于<a href="__ROOT__/support?level" target="_blank">3级</a>可以查看ta的QQ，点击直接聊天。</span>
+		      <?php } ?>
+	      <?php } ?>
+	      <?php if (!empty($recordUserInfo['weibo'])) { ?>
+	       &#12288;<a href="<?php echo $recordUserInfo['weibo'] ?>" target="_blank"><img src="__PUBLIC__/image/common/sina.png" height="18" width="18" /></a>
+	      <?php } ?>
+      </div>
+      <div class="wo_top_div_intro f12 gray">
+      		<?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span>
+      </div>
+      <ul class="wo_top_div_ul f12 blaxk_l">
+	      <li>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
+	      </li>
+	      <li>
+	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
+	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
+	      </li>
+      </ul>
+      <div class="wo_top_div_quan">
+	      <?php if($priorityExist) { ?>
+	    	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned f12 gray" title="取消圈"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></a>
+	      <?php } else if ($shieldExist) { ?>
+	    	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned f12 gray" title="取消屏蔽"><span class="icon_attention"></span>已经屏蔽</a>
+	      <?php } else { ?>
+	      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class="btn_quan f12"><i class="icon_plus"></i>圈<?php echo $sexname ?></a>
+	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
+	      <?php } ?>
+      </div>
     </div>
+    
+    
   </div>
+  <!-- school time bar part -->
+  <?php
+  $dateInfo = getdate();
+  $yearGape = $dateInfo['year'] - $userLogin['enteryear'];
+  if ($yearGape < 5 && $userLogin['type'] == '1') {
+      $passedSchoolDays = (($dateInfo['year'] - $userLogin['enteryear'] - 1) * 365) + $dateInfo['yday'] + 120;
+      $totalSchoolDays = (4 * 365 - 90);
+      $schoolDaysRatio = substr(($passedSchoolDays / $totalSchoolDays) * 100, 0, 5);
+      if ($schoolDaysRatio < 33) {
+          $backgroundcolor = "#9C0";
+      } else if ($schoolDaysRatio < 66){
+          $backgroundcolor = "#09F";
+      } else {
+          $backgroundcolor = "#F60";
+      }
+	  if ($schoolDaysRatio > 100) {
+		$schoolDaysRatio = 100;
+	  }
+	  $schoolDaysWidth = 940 * $schoolDaysRatio / 100;
+      $schoolDaysRatio = $schoolDaysRatio . "%";
+      $greadnumber = i_gradeNum($userLogin['enteryear']);
+      if ($greadnumber == '1') {
+		$timebaranimal = "<i class='icon_timebar_wn' id='icon_timebar_img'></i>";
+      } else if ($greadnumber == '2') {
+		$timebaranimal = "<i class='icon_timebar_fj' id='icon_timebar_img'></i>";
+      } else if ($greadnumber == '3') {
+		$timebaranimal = "<i class='icon_timebar_hj' id='icon_timebar_img'></i>";
+      } else if ($greadnumber == '4') {
+		$timebaranimal = "<i class='icon_timebar_fd' id='icon_timebar_img'></i>";
+      }
+  ?>
+  <div class="wo_user_timebar">
+    <div style="margin: 30px 20px 20px 20px; position: relative;" class="gray f12">
+      <span class="fi gray">今天是<?php echo date("Y年m月d", time()) ?>, 一年中的<?php echo $dateInfo['yday'] ?>天</span>
+      <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span>的大学时光过去了<span class="f14 fb black_l"><?php echo $schoolDaysRatio ?></span>
+      <div style="position: absolute; right: 0px; top: 0px;" >
+      	<span id="timenow" class="f12"></span>
+      	<span style="position: absolute; right: 0px; top: 0px; "><span id="secondpass" class="f16 fb" style="position: absolute; width: 30px;" >-1</span></span>
+      </div>
+    </div>
+    <div style="border:1px solid #CCC ; width:100%; height:3px;" class="icon_timebar_out_div">
+      <div style="background:<?php echo $backgroundcolor ?>; height:3px; float:left; width:0" class="icon_timebar_in_div"></div>
+      <?php echo $timebaranimal; ?>    
+    </div>
+    
+  </div>
+  <?php } ?>
+  
   <ul class="wo_user_nav_ul">
     <li><a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" {$selectIndex}>信息流</a></li>
     <li><a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" {$selectHelp}>帮助</a></li>
@@ -90,13 +165,6 @@
   </ul>
   <div class="say_hello f12">
     <span id="say_hello_close" class="icon_quit" title="关闭"></span>
-    <script type="text/javascript">
-    $().ready(function(){
-        $('#say_hello_close').click(function(){
-            $(this).parent().hide();
-        });
-    });
-    </script>
     <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a>
     <?php
         if ($userLogin['online'] == 0) {
@@ -107,12 +175,22 @@
     ?>
     <?php if ($userLogin['online'] != 0) { ?>
     <p class="say_hello_p">
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=1" title="害羞"><img src="__PUBLIC__/image/emotion/q1.gif" title="害羞" height="24" width="24" /></a>
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=2" title="吐舌头"><img src="__PUBLIC__/image/emotion/q11.gif" title="吐舌头" height="24" width="24" /></a>
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=3" title="鲜花"><img src="__PUBLIC__/image/emotion/g1.gif" title="鲜花" height="24" width="24" /></a>
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=4" title="太阳"><img src="__PUBLIC__/image/emotion/g3.gif" title="太阳" height="24" width="24" /></a>
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=5" title="月亮"><img src="__PUBLIC__/image/emotion/g2.gif" title="月亮" height="24" width="24" /></a>
-      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=6" title="猪头"><img src="__PUBLIC__/image/emotion/g4.gif" title="猪头" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=1" title="微笑"><img src="__PUBLIC__/image/emotion/qq1.gif" title="害羞" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=2" title="羞嗒嗒"><img src="__PUBLIC__/image/emotion/wb87.gif" title="羞嗒嗒" height="22" width="22" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=3" title="w礼物"><img src="__PUBLIC__/image/emotion/wb64.gif" title="w礼物" height="22" width="22" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=4" title="太阳"><img src="__PUBLIC__/image/emotion/qq77.gif" title="太阳" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=5" title="月亮"><img src="__PUBLIC__/image/emotion/qq76.gif" title="月亮" height="24" width="24" /></a>
+      <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>?words=6" title="猪头"><img src="__PUBLIC__/image/emotion/qq63.gif" title="猪头" height="24" width="24" /></a>
     </p>
     <?php } ?>
   </div>
+  <script type="text/javascript">
+    $().ready(function(){
+    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
+    	$('#icon_timebar_img').animate({left: <?php echo $schoolDaysWidth - 35; ?>}, 800);
+        $('#say_hello_close').click(function(){
+            $(this).parent().hide();
+        });
+    });
+  </script>
+  <script type="text/javascript" src="__PUBLIC__/js/wo/wo.js"></script>

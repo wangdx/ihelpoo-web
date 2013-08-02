@@ -412,7 +412,7 @@
     		}
     		return $iconPath;
     	} else {
-    		return "http://ihelpoo.sinaapp.com/Public/image/common/0.jpg";
+    		return __ROOT__."/Public/image/common/0.jpg";
     	}
     }
 
