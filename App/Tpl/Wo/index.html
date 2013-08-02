@@ -2,6 +2,7 @@
 	Vendor('Ihelpoo.Videourlparser');
     Vendor('Ihelpoo.Emotion');
     $emotion = new Emotion();
+	$SchoolInfo = M("SchoolInfo");
 ?>
 <include file="Public:header" />
 <link href="__PUBLIC__/css/wo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
@@ -60,23 +61,44 @@
 		  <?php } } ?>
         </div>
 
-        <span class="wo_li_s_time f12 gray">
-          <?php echo i_time($record['time']) ?>
-          <?php
-          if (!empty($record['from'])) {
-              if ("2" == $record['from']) {
-              	  echo "来自我帮圈圈抓取程序";
-              } else if ("3" == $record['from']) {
-              	  echo "来自我帮圈圈Andriod客户端";
-              } else {
-              	  echo "来自".$record['from'];
-              }
-          }
+        <span class="s_li_s_time f12 gray">
+	      <?php
+			echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>";
+            echo i_time($record['time']);
+			echo "</a>";
           ?>
-        </span>
+	      <?php
+	      if (!empty($record['from'])) {
+          if ("2" == $record['from']) {
+          	  echo "来自我帮圈圈抓取程序";
+          } else if ("3" == $record['from']) {
+          	  echo "来自我帮圈圈Andriod客户端";
+          } else {
+          	  echo "来自<span title='".$record['from']."'>".$ofunction->cut_str($record['from'],10)."...</span>";
+          }
+      }
+      ?>
+	      <?php if ($record['school_id'] != $thisschoolid) { ?>
+	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_id']); ?>
+	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
+	      <?php } ?>
+	    </span>
+	    
         <span class="wo_li_s_comment f12 black_l">
-          <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_blank">评论</a>
-          <?php if (!empty($record['comment_co'])) echo "(".$record['comment_co'].")" ?> | 扩散 <?php echo $record['diffusion_co'] ?> | 浏览 <?php echo $record['hit_co'] ?>°
+          <a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="i-<?php echo $record['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; }?>
+      		</span></a> |
+	      <?php
+				echo " <a class='diffusion' value='i-".$record['sid']."'>扩散";
+				if (!empty($record['diffusion_co'])) {
+                	echo "(".$record['diffusion_co'].")";
+            	}
+				echo "</a> | ";
+        		echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>评论";
+            	if (!empty($record['comment_co'])) {
+                	echo "(".$record['comment_co'].")";
+            	}
+				echo "</a>";
+      	?>
         </span>
       </li>
     <?php endforeach; ?>
