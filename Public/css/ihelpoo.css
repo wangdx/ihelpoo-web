@@ -190,10 +190,10 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .btn_red{padding: 5px 15px; color: #FFF; background-color: #B20000; border-radius:3px; }
 .btn_red:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.btn_quan{padding: 3px 9px; color: #FFF; background-color: #6CCACD; border: 1px solid #CCC; border-radius:1px; cursor: pointer; }
+.btn_quan{padding: 3px 10px; color: #666; background-color: #6CCACD; border: 1px solid #CCC; border-radius:3px; cursor: pointer; }
 .btn_quan:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.btn_quaned{padding: 1px 5px; color: #FFF; background-color: #999; border-radius:3px; cursor: pointer; }
+.btn_quaned{padding: 3px 10px; color: #666; background-color: #999; border-radius:3px; cursor: pointer; }
 .btn_quaned:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
 .login_status_online{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 0; display:inline-block; cursor: pointer; vertical-align: bottom; }
