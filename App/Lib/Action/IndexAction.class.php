@@ -413,10 +413,12 @@ class IndexAction extends Action {
 			    	'idcard' => '',
 			    	'time' => time()
 		    	);
+		    	$UserApplyverify = M("UserApplyverify");
+		    	//$UserApplyverify->add($newuserApplyverifyData);
+		    	$this->ajaxReturn(0, "提交成功", 'yes');
+	    	} else {
+	    		$this->ajaxReturn(0, "出错了", 'wrong');
 	    	}
-	    	$UserApplyverify = M("UserApplyverify");
-	    	//$UserApplyverify->add($newuserApplyverifyData);
-	    	redirect('/index/applyverify', 3, 'ok...');
     	}
     	$this->display();
     }
