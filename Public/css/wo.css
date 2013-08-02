@@ -60,6 +60,11 @@
 .img_part_me img{
     border: 1px solid #EEE;
 }
+.img_part_me i{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 .wo_top_div{
     position: absolute;
     left: 360px;
