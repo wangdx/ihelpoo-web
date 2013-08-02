@@ -21,11 +21,10 @@ class WoAction extends Action {
         /**
          * wo/*.phtml top user nav
          */
-        $userId = 10000;
         if (!empty($_GET["_URL_"][2])) {
         	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         }
-    	if ($userId <= 10000) {
+        if ($userId < 10000) {
     		if (!empty($userloginid)) {
     			$userId = $userloginid;
     		}
