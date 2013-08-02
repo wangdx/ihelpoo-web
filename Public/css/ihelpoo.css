@@ -268,7 +268,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     color: #333333;
     background: #FFFFFF;
 }
-.header_left_arrow_hover{
+.header .header_left_arrow_hover{
     border-left: 0px solid #CC0000;
     border-right: 0px solid #CC0000;
     color: #333333;
