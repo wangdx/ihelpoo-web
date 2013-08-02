@@ -605,10 +605,10 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 #nav_hover_list_div_ul li{
     display: inline-block;
-    margin: 8px 15px;
 }
 #nav_hover_list_div_ul li a{
     font-size: 14px;
+    margin: 8px 15px;
 }
 
 /*--- ie6 ---*/
