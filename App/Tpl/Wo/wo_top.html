@@ -53,20 +53,20 @@
 	  <?php } ?>
       </span>
       <!-- <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a> -->
-      <br />
-      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
-    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> 
-    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $userSpecialty['name']; ?></a>
-      <?php } else { ?>
-    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userAcademy['name']; ?></a>
-    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $userSpecialty['name']; ?></a>
-      <?php } ?>
-      <br />
-      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
-      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span>
-      <span class="sex<?php echo $userLogin['sex'] ?>"></span>
       
-      <br /><br />
+      <div class="f12 gray">
+	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
+	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
+	      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
+	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> | 
+	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $userSpecialty['name']; ?></a>
+	      <?php } else { ?>
+	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $userAcademy['name']; ?></a> | 
+	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $userSpecialty['name']; ?></a>
+	      <?php } ?>
+	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
+      </div>
+      
       <ul>
 	      <li><?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span></li>
 	      <li>
