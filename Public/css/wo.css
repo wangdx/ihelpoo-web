@@ -62,6 +62,19 @@
     left: 360px;
     top: 0px;
     width: 600px;
+    height: 225px;
+}
+.wo_top_div_school{
+    margin: 10px 0;
+}
+.wo_top_div_intro{
+    margin: 20px 0;
+}
+.wo_top_div_connect{
+    margin: 10px 0;
+}
+.wo_top_div_quan{
+    margin: 10px 0;
 }
 .wo_top_div_ul{
     position: absolute;
