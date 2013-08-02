@@ -1,6 +1,30 @@
 $().ready(function(){
+
     var data_uid = $('#data_uid').val();
     var data_touid = $('#data_touid').val();
+    $.atmosphere.subscribe("http://comet.ihelpoo.com/comet/10000-12419", globalCallback, $.atmosphere.request = {
+        logLevel : 'debug',
+        transport : 'long-polling',
+        callback : call
+    });
+
+    function globalCallback(response) {
+        console.log("++++");
+        if (response.state != "messageReceived") {
+            return;
+        }
+    }
+
+    function call(response) {
+        console.log("Call to callbackJob2");
+        if (response.state != "messageReceived") {
+            return;
+        }
+        var data = getDataFromResponse(response);
+        if (data != null) {
+            console.log("---"+data);
+        }
+    }
     $('#' + data_touid).parent().parent().css({borderBottom: '3px solid #CCC'});
     var user_position = $('#' + data_touid).parent().parent().position();
     if (user_position != null) {
