@@ -792,6 +792,74 @@ class SchooladminAction extends Action {
         $this->display();
     }
     
+    public function applyverify()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','大家页面头像排序');
+    	
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+        $UserApplyverify = M("UserApplyverify");
+        
+        if (!empty($_GET['statuschange'])) {
+        	$statuschangeid = (int)$_GET['statuschange'];
+        	$recordUserApplyverify = $UserApplyverify->find($statuschangeid);
+        	if (!empty($recordUserApplyverify['id']) && $recordUserApplyverify['verify_status'] == '0') {
+        		$updateStatus = array(
+        			'id' => $recordUserApplyverify['id'],
+        			'verify_status' => '1',
+        		);
+        		$UserApplyverify->save($updateStatus);
+        		
+        		/**
+        		 * webmaster user operating record
+        		 */
+        		$SchoolRecord = M("SchoolRecord");
+        		$newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => '标记为处理 uid:'.$recordUserApplyverify['uid'].' +name:'.$recordUserApplyverify['name'].' +verify_type:'.$recordUserApplyverify['verify_type'],
+		            'time' => time()
+        		);
+        		$SchoolRecord->add($newSchoolRecordData);
+        		redirect('/schooladmin/applyverify', 1, 'update status type ok...');
+        	} else if (!empty($recordUserApplyverify['id']) && $recordUserApplyverify['verify_status'] == '1'){
+        		$updateStatus = array(
+        			'id' => $recordUserApplyverify['id'],
+        			'verify_status' => '0',
+        		);
+        		$UserApplyverify->save($updateStatus);
+        		
+        		/**
+        		 * webmaster user operating record
+        		 */
+        		$SchoolRecord = M("SchoolRecord");
+        		$newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => '标记为未处理 uid:'.$recordUserApplyverify['uid'].' +name:'.$recordUserApplyverify['name'].' +verify_type:'.$recordUserApplyverify['verify_type'],
+		            'time' => time()
+        		);
+        		$SchoolRecord->add($newSchoolRecordData);
+        		redirect('/schooladmin/applyverify', 1, 'update status type ok...');
+        	}
+        }
+        
+        $recordUserApplyverify = $UserApplyverify->where("school = $recordSchoolInfo[id]")->order("time DESC")->limit($offset,$count)->select();
+    	$this->assign('recordUserApplyverify', $recordUserApplyverify);
+    	$totalrecords = $UserApplyverify->where("school = $recordSchoolInfo[id]")->count();
+    	$this->assign('totalrecords', $totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages', $totalPages);
+    	$this->display();
+    }
+    
     public function orderusericon()
     {
     	$webmaster = logincheck();
