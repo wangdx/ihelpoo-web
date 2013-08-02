@@ -525,8 +525,9 @@ $().ready(function(){
     	var totalImageNums = $(this).parent().find("img").size();
     	if (totalImageNums > 1) {
     		
-    		$(this).parent().html($(this).parent().find("img").get(1));
-    		/*alert($(this).get());
+    		/**
+    		 * more than one image , should list next page
+    		 */
     		var enlargeSwitch = $(this).attr('enlargeswitch');
 	    	if (enlargeSwitch != 'on') {
 		    	var imageurl = $(this).attr('src');
@@ -538,9 +539,7 @@ $().ready(function(){
 		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" width="395" enlargeswitch="on" title="点击缩小" /></p>');
 	    	} else {
 	    		$(this).parent().html(imageTempContent);
-	    	}*/
-    		
-    		
+	    	}
     	} else {
 	    	var enlargeSwitch = $(this).attr('enlargeswitch');
 	    	if (enlargeSwitch != 'on') {
