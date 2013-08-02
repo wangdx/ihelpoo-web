@@ -165,7 +165,7 @@
     padding: 12px 0 25px 0;
     border-bottom: 1px dotted #CCC;
     position: relative;
-    min-height: 80px;
+    min-height: 50px;
 }
 .wo_main_dynamic_ul{
     border-right: 1px solid #EEE;
@@ -239,11 +239,11 @@
 .wo_li_s_time{
     position: absolute;
     left: 85px;
-    bottom: 15px;
+    bottom: 12px;
 }
 .wo_li_s_comment{
     position: absolute;
-    bottom: 15px;
+    bottom: 12px;
     right: 0;
 }
 .wo_paging{
