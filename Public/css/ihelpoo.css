@@ -589,13 +589,14 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 /*--- top vav_hover ---*/
 #nav_hover_list_div{
     border: 1px solid #CC0000;
+    border-top: 0px;
     height: 30px;
     left: 285px;
     padding: 10px;
     position: fixed;
     top: 36px;
     width: 500px;
-    z-index: 1111;
+    z-index: 11111;
     background: #FFF;
 }
 #nav_hover_list_div_ul li{
