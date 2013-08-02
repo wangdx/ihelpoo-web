@@ -59,8 +59,9 @@
 }
 .wo_top_div{
     position: absolute;
-    left: 400px;
+    left: 360px;
     top: 0px;
+    width: 600px;
 }
 .wo_top_div_ul{
     position: absolute;
