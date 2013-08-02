@@ -57,6 +57,9 @@
     width: 300px;
     margin: 15px 20px 20px 20px;
 }
+.img_part_me img{
+    border: 1px solid #EEE;
+}
 .wo_top_div{
     position: absolute;
     left: 360px;
