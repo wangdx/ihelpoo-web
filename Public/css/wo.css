@@ -121,8 +121,9 @@
     display: inline-block;
 }
 .wo_user_nav_ul_li_select{
-    background: #6ccacd;
+    background: #999;
     color: #FFF;
+    border-radius: 1px;
 }
 .wo_main{
     margin: 20px;
