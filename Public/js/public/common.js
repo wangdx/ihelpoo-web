@@ -11,7 +11,7 @@ $().ready(function(){
      */
     $("#header_nav_user").hover(
     	function(){
-    		var mainposition = $('.main').position();
+    		var mainposition = $('.main').offset();
     	    var mainpositionleft = mainposition.left + 152;
     	    alert(mainposition.left);
     		$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
