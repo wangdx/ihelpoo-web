@@ -796,7 +796,7 @@ class SchooladminAction extends Action {
     {
     	$webmaster = logincheck();
     	$recordSchoolInfo = i_school_domain();
-    	$this->assign('title','大家页面头像排序');
+    	$this->assign('title','校园组织、周边商家用户申请');
     	
     	$page = i_page_get_num();
         $count = 25;
