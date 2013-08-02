@@ -522,17 +522,22 @@ $().ready(function(){
      */
     var imageTempContent = '';
     $('.s_li_p_content_image img').live('click', function(){
-    	var enlargeSwitch = $(this).attr('enlargeswitch');
-    	if (enlargeSwitch != 'on') {
-	    	var imageurl = $(this).attr('src');
-	    	if (imageurl.match("ihelpoo-public") != '') {
-	    		var reg = new RegExp("thumb_","g");
-	    		var imageurllarge = imageurl.replace(reg,"");
-	    	}
-	    	imageTempContent = $(this).parent().html();
-	    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" width="395" enlargeswitch="on" title="点击缩小" /></p>');
+    	var totalImageNums = $(this).parent().size();
+    	if (totalImageNums > 1) {
+    		alert(totalImageNums);
     	} else {
-    		$(this).parent().html(imageTempContent);
+	    	var enlargeSwitch = $(this).attr('enlargeswitch');
+	    	if (enlargeSwitch != 'on') {
+		    	var imageurl = $(this).attr('src');
+		    	if (imageurl.match("ihelpoo-public") != '') {
+		    		var reg = new RegExp("thumb_","g");
+		    		var imageurllarge = imageurl.replace(reg,"");
+		    	}
+		    	imageTempContent = $(this).parent().html();
+		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" width="395" enlargeswitch="on" title="点击缩小" /></p>');
+	    	} else {
+	    		$(this).parent().html(imageTempContent);
+	    	}
     	}
     });
     $('.s_li_p_content_image_title_up').live('click', function(){
