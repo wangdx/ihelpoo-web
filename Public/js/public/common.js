@@ -16,7 +16,7 @@ $().ready(function(){
     	},
       	function(){
     		$("#nav_hover_list_div").hover(function(){
-    			$("#header_nav_user:focus");
+    			$("#header_nav_user").focus();
     			$("#nav_hover_list_div").show();
     		},function(){
     			$("#nav_hover_list_div").slideUp("fast");
