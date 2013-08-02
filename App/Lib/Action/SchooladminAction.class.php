@@ -851,9 +851,9 @@ class SchooladminAction extends Action {
         	}
         }
         
-        $recordUserApplyverify = $UserApplyverify->where("school = $recordSchoolInfo[id]")->order("time DESC")->limit($offset,$count)->select();
+        $recordUserApplyverify = $UserApplyverify->where("school_id = $recordSchoolInfo[id]")->order("time DESC")->limit($offset,$count)->select();
     	$this->assign('recordUserApplyverify', $recordUserApplyverify);
-    	$totalrecords = $UserApplyverify->where("school = $recordSchoolInfo[id]")->count();
+    	$totalrecords = $UserApplyverify->where("school_id = $recordSchoolInfo[id]")->count();
     	$this->assign('totalrecords', $totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages', $totalPages);
