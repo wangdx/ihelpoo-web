@@ -317,11 +317,11 @@
       <?php
       if (!empty($record['image'])) {
           $imageRecordArray = i_get_image($record['image'],'s');
-    	  echo '<p class="s_li_p_content_image">';
+    	  echo '<div class="s_li_p_content_image">';
 		  foreach($imageRecordArray as $imageRecord) {
              echo "<img src='".$imageRecord."' style='max-height:120px;max-width:150px;' title='查看大图' />";
           }
-          echo '</p>';
+          echo '</div>';
       }
       ?>
 
