@@ -65,8 +65,7 @@
 }
 .wo_top_div_ul{
     position: absolute;
-    left: 385px;
-    top: 190px;
+    bottom: 0px;
 }
 .wo_top_div_ul li{
     display: inline-block;
@@ -101,15 +100,6 @@
 .wo_user_nav_ul_li_select{
     background: #6ccacd;
     color: #FFF;
-}
-.wo_user_label{
-    position: absolute;
-    right: 30px;
-    top: 120px;
-}
-.wo_user_label_btn_back{
-    position: relative;
-    bottom:-3px;
 }
 .wo_main{
     margin: 20px;

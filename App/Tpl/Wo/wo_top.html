@@ -54,7 +54,7 @@
       </span>
       <!-- <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天"><span class="online<?php echo $userLogin['online'] ?>"></span></a> -->
       
-      <div class="f12 gray">
+      <div class="wo_top_div_school f12 gray">
 	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
 	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
 	      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
@@ -66,16 +66,15 @@
 	      <?php } ?>
 	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
       </div>
-      
-      <ul>
-	      <li><?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span></li>
+      <div class="wo_top_div_intro"><?php echo $recordUserInfo['introduction']; ?><span class="icon_write"></span></div>
+      <ul class="wo_top_div_connect">
 	      <li>
-	      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a>
+	      <a href="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>">真实联系方式</a> 
 	      <?php if (!empty($recordUserInfo['qq'])) { ?>
 	      <?php if (i_degree($userloginedrecord['active']) >= 3) { ?>
 	       <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $recordUserInfo['qq'] ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $recordUserInfo['qq'] ?>:46" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
 	      <?php } else { ?>
-	       <span class="f12 gray">大于<a href="__ROOT__/support?level" target="_blank">3级</a>可以查看ta的QQ及在线状态 点击直接QQ聊天。</span>
+	       <span class="f12 gray">大于<a href="__ROOT__/support?level" target="_blank">3级</a>可以查看ta的QQ，点击直接聊天。</span>
 	      <?php } ?>
 	      <?php } ?>
 	      <?php if (!empty($recordUserInfo['weibo'])) { ?>
@@ -83,28 +82,29 @@
 	      <?php } ?>
 	      </li>
       </ul>
-      <br />
-      <?php if($priorityExist) { ?>
-    	<span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
-      <?php } else if ($shieldExist) { ?>
-    	<span class="f12 gray"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
-      <?php } else { ?>
-      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
-      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
-      <?php } ?>
+      <div class="wo_top_div_quan">
+	      <?php if($priorityExist) { ?>
+	    	<span class="f12 gray"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></span> <a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del">取消</a>
+	      <?php } else if ($shieldExist) { ?>
+	    	<span class="f12 gray"><span class="icon_attention"></span>已经屏蔽</span> <a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">取消</a>
+	      <?php } else { ?>
+	      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class='btn_quan f12'>圈<?php echo $sexname ?></a>
+	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
+	      <?php } ?>
+      </div>
+      <ul class="wo_top_div_ul f12 blaxk_l">
+	      <li>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
+	      </li>
+	      <li>
+	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
+	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
+	      </li>
+      </ul>
     </div>
-    <ul class="wo_top_div_ul f12 blaxk_l">
-      <li>
-        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
-        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
-      </li>
-      <li>
-        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['fans']}</span></a>
-        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
-      </li>
-    </ul>
-    <div class="wo_user_label f12">
-    </div>
+    
+    
   </div>
   <!-- school time bar part -->
   <?php
