@@ -9,6 +9,8 @@ $().ready(function(){
     /**
      * nav hover
      */
+    var mainposition = $('.main').position();
+    alert(mainposition.left);
     $("#header_nav_user").hover(
     	function(){
     		$("#nav_hover_list_div").slideDown("fast");
