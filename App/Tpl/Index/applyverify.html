@@ -10,6 +10,13 @@
   </div>
   <div>
   <?php if ($_GET['succ'] == "ok") { ?>
+  <ul class="applyverify_ul">
+  	<li>
+  	<span class='icon_right'></span>申请成功，我们处理后会通知你。如有问题请请联系<a href="__ROOT__/about">{$schooladmin}站长</a>
+  	</li>
+  	<li>举报校园站长，请联系我帮圈圈团队。</li>
+  </ul>
+  <?php } else { ?>
   <form method="post" id="applyverifyform">
   <?php if (!empty($_GET['type']) == 'group') { $type = 1; } else { $type = 2; } ?>
   <ul class="applyverify_ul">
@@ -20,13 +27,6 @@
   	<li>&#12288;&#12288;&#12288;&#12288;&#12288;<a id="submit" class="btn f12">提交申请</a> <span id="submit_info" class="f12 gray"></span></li>
   </ul>
   </form>
-  <?php } else { ?>
-  <ul class="applyverify_ul">
-  	<li>
-  	<span class='icon_right'></span>申请成功，我们处理后会通知你。如有问题请请联系<a href="__ROOT__/about">{$schooladmin}站长</a>
-  	</li>
-  	<li>举报校园站长，请联系我帮圈圈团队。</li>
-  </ul>
   <?php } ?>
   </div>
 </div>
