@@ -644,6 +644,7 @@
     bottom: 50px;
     display: block;
     color: #FFFFFF;
+    display:none;
 }
 #scroll_top_btn:hover{
     color: #7BD6F6;
