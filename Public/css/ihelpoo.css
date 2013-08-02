@@ -590,6 +590,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     top: 36px;
     width: 500px;
     z-index: 1111;
+    background: #FFF;
 }
 #nav_hover_list_div_ul li{
     display: inline-block;
