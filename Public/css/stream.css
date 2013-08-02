@@ -642,9 +642,11 @@
     position: fixed;
     right: 20px;
     bottom: 50px;
-    display: block;
     color: #FFFFFF;
     display:none;
+}
+#scroll_top_btn{
+    display: block;
 }
 #scroll_top_btn:hover{
     color: #7BD6F6;
