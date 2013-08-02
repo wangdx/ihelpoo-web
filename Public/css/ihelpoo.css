@@ -588,7 +588,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 /*--- top vav_hover ---*/
 #nav_hover_list_div{
-    border: 1px solid #CC0000;
+    border: 2px solid #CC0000;
     border-top: 0px;
     height: 30px;
     left: 285px;
@@ -598,6 +598,11 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     width: 500px;
     z-index: 11111;
     background: #FFF;
+    border-radius: 0 0 3px 3px;
+    -moz-outline:4px solid #E2F5FB;
+    -moz-outline-radius:8px;
+    -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6);
+    box-shadow:0 0 10px rgba(123, 214, 246, .6);
 }
 #nav_hover_list_div_ul{
     font-size: 12px;
