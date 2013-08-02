@@ -9,10 +9,10 @@ $().ready(function(){
     /**
      * nav hover
      */
-    var mainposition = $('.main').position();
-    var mainpositionleft = mainposition.left + 152;
     $("#header_nav_user").hover(
     	function(){
+    		var mainposition = $('.main').position();
+    	    var mainpositionleft = mainposition.left + 152;
     		$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
     		$("#nav_hover_list_div_ul").html("<li><a href='/index/mate'>同学</a> | <a href='/index/group'>校园组织</a> | <a href='/index/business'>周边商家</a></li>");
     	},
@@ -25,11 +25,29 @@ $().ready(function(){
     			$("#nav_hover_list_div").slideUp("fast");
     		});
 	});
+    $("#header_nav_more").hover(
+        function(){
+        	var mainposition = $('.main').position();
+        	var mainpositionleft = mainposition.left + 152;
+        	$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
+        	$("#nav_hover_list_div_ul").html("<li><a href='/help'>帮助</a> | <a href='/activity'>活动</a></li>");
+        },
+        function(){
+        	$("#nav_hover_list_div").hover(function(){
+        		$("#header_nav_user").addClass('header_left_arrow_hover');
+        		$("#nav_hover_list_div").show();
+        	},function(){
+        		$("#header_nav_user").removeClass('header_left_arrow_hover');
+        		$("#nav_hover_list_div").slideUp("fast");
+        	});
+    });
     $(".nav_hover_up").hover(
     	function(){
     		$("#nav_hover_list_div").slideUp("fast");
     	},function(){}
     );
+    
+    
 
     /**
      * skin part
