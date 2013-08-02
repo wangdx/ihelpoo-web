@@ -1,0 +1,27 @@
+<include file="Public:headerwebmaster" />
+<script type="text/javascript" src="__PUBLIC__/js/schooladmin/orderusericon.js"></script>
+<div></div>
+<ul class="user_ul">
+<?php foreach($recordUserApplyverify as $applyverify) { ?>
+	<li>
+		<?php if ($applyverify['verify_status'] == "0") { ?>
+			<span class='f12 red'>未处理</span> 
+			<a href="?p=<?php echo $_GET['p']; ?>&statuschange=<?php echo $applyverify['id']; ?>" class="f12">标记为处理</a> 
+		<?php } else { ?> 
+			<span class='f12 green'>已处理</span> 
+			<a href="?p=<?php echo $_GET['p']; ?>&statuschange=<?php echo $applyverify['id']; ?>" class="f12">标记为未处理</a> 
+		<?php } ?> 
+		<span>[<?php if ($applyverify['verify_type'] == "1") { echo "校园组织"; } else { echo "申请商家"; } ?>]</span>
+		<span class="f12 gray">姓名:</span><?php echo $applyverify['name']; ?><a href="__ROOT__/wo/<?php echo $applyverify['uid'] ?>" target="_blank">(<?php echo $applyverify['uid'] ?>)</a> 
+		<span class="f12 gray">手机:</span><?php echo $applyverify['mobile']; ?> 
+		<span class="f12 gray">QQ:</span><?php echo $applyverify['qq']; ?> 
+		<span class="f12 gray">备注:</span><?php echo $applyverify['remark']; ?>
+		<span class="f12 gray"><?php echo i_time($applyverify['time']); ?></span>
+	</li>
+<?php } ?>
+</ul>
+<p class="f12 gray paging_p">共<?php echo $totalusers ?>条记录 <?php echo $totalPages ?>页</p>
+<div class="paging_div">
+  <?php if ($totalPages > 1) { i_page_show("schooladmin/applyverify", $totalPages); } ?>
+</div>
+<include file="Public:footerwebmaster" />
