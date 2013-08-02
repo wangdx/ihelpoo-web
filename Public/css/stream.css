@@ -656,6 +656,23 @@
     -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6);
     box-shadow:0 0 10px rgba(123, 214, 246, .6);
 }
+#scroll_suggestion_btn{
+    display: block;
+    width: 35px;
+    height: 15px;
+    text-align: center;
+    font-size: 12px;
+    padding: 0 10px;
+    background: #EEE;
+}
+#scroll_suggestion_btn:hover{
+    color: #7BD6F6;
+    border-color:#7BD6F6;
+    -moz-outline:4px solid #E2F5FB;
+    -moz-outline-radius:8px;
+    -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6);
+    box-shadow:0 0 10px rgba(123, 214, 246, .6);
+}
 
 /*--- diffusion part ---*/
 .diffusion_list{
