@@ -4,7 +4,7 @@
   <div class="main_group_nav">
   	<p class="main_group_nav_school_p"><a href="__ROOT__/" class="fb black_l">{$schoolname}</a> <a href="__ROOT__/index/school" title="更多学校" class="f12">[切换]</a></p>
     <ul class="main_group_nav_sub_ul f12 black_l">
-	  	<li><?php if (!empty($_GET['type']) == 'group') { echo "申请校园组织用户"; } else { echo "申请校园周边商家用户"; } ?></li>
+	  	<li><?php if (!empty($_GET['type']) && $_GET['type'] == 'group') { echo "申请校园组织用户"; } else { echo "申请校园周边商家用户"; } ?></li>
   	</ul>
   	<p class="main_group_nav_p"><a href="__ROOT__/index/business" class="btn_iapply_a"></a></p>
   </div>
