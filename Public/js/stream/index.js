@@ -683,13 +683,11 @@ $().ready(function(){
 			scrollTopSwitch = 'on';
 		} else if (scrollHeight < 500 && scrollTopSwitch == 'on') {
 			$('#scroll_top_btn').fadeOut('normal');
-			$('#scroll_top_btn_img').attr({'src': baseUrl + 'Public/image/common/gotop.gif', 'title': '爬回顶端 ：D'});
 			scrollTopSwitch = 'off';
 		}
 	});
 	$('#scroll_top_btn').click(function(){
 		$("html,body").animate({scrollTop: 0}, 800);
-		$("#scroll_top_btn_img").attr({'src': baseUrl + 'Public/image/common/gotop-action.gif', 'title': '努力爬ing...'});
 		scrollTopSwitch = 'off';
 	});
 
