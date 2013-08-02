@@ -657,13 +657,16 @@
     box-shadow:0 0 10px rgba(123, 214, 246, .6);
 }
 #scroll_suggestion_btn{
+    background: #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
     display: block;
-    width: 35px;
-    height: 15px;
-    text-align: center;
     font-size: 12px;
-    padding: 0 10px;
-    background: #EEE;
+    height: 15px;
+    margin-top: 3px;
+    padding: 5px 0;
+    text-align: center;
+    width: 35px;
 }
 #scroll_suggestion_btn:hover{
     color: #7BD6F6;
