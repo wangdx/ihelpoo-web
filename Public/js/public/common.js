@@ -22,6 +22,7 @@ $().ready(function(){
     			$("#nav_hover_list_div").show();
     		},function(){
     			$("#header_nav_user").removeClass('header_left_arrow_hover');
+    			$("#header_nav_more").removeClass('header_left_arrow_hover');
     			$("#nav_hover_list_div").slideUp("fast");
     		});
 	});
@@ -37,6 +38,7 @@ $().ready(function(){
         		$("#header_nav_more").addClass('header_left_arrow_hover');
         		$("#nav_hover_list_div").show();
         	},function(){
+        		$("#header_nav_user").removeClass('header_left_arrow_hover');
         		$("#header_nav_more").removeClass('header_left_arrow_hover');
         		$("#nav_hover_list_div").slideUp("fast");
         	});
