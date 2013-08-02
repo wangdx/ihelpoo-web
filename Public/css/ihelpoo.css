@@ -255,12 +255,12 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .header .header_left_arrow{
     display: inline-block;
     height: 20px;
-    margin: 0 5px;
+    margin: 0;
     padding: 10px 0;
     position: relative;
     text-align: center;
     top: -12px;
-    width: 50px;
+    width: 60px;
 }
 .header .header_left_arrow:hover{
     border-left: 0px solid #CC0000;
