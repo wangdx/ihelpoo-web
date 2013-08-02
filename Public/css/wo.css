@@ -62,8 +62,8 @@
 }
 .img_part_me i{
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 5px;
+    bottom: 3px;
 }
 .wo_top_div{
     position: absolute;
