@@ -67,11 +67,12 @@
 .wo_top_div_school{
     margin: 10px 0;
 }
+.wo_top_div_connect{
+}
 .wo_top_div_intro{
     margin: 20px 0;
-}
-.wo_top_div_connect{
-    margin: 10px 0;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 10px;
 }
 .wo_top_div_quan{
     margin: 10px 0;
