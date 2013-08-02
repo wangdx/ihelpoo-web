@@ -524,8 +524,8 @@ $().ready(function(){
     $('.s_li_p_content_image img').live('click', function(){
     	var totalImageNums = $(this).parent().find("img").size();
     	if (totalImageNums > 1) {
-    		alert($("img").get(0));
-    		alert($(this).get());
+    		alert($("img").get(0).attr('src'));
+    		alert($(this).get().attr('src'));
     		var enlargeSwitch = $(this).attr('enlargeswitch');
 	    	if (enlargeSwitch != 'on') {
 		    	var imageurl = $(this).attr('src');
