@@ -419,7 +419,7 @@ class IndexAction extends Action {
 			    	'time' => time()
 		    	);
 		    	$UserApplyverify->add($newuserApplyverifyData);
-		    	$this->ajaxReturn(0, "提交成功", "yes");
+		    	redirect('/index/applyverify?succ=ok', 0, 'ok...');
 	    	} else {
 	    		$this->ajaxReturn(0, "出错了", "wrong");
 	    	}
