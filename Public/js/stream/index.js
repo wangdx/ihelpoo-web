@@ -677,15 +677,15 @@ $().ready(function(){
 		var pageHeight = $(this).height() - 60;
 		var mainoffset = $('.main').offset();
 	    var mainpositionleft = mainoffset.left - 35;
-	    $("#scroll_top_btn").css({right : mainpositionleft});
+	    $("#scroll_float_div").css({right : mainpositionleft});
 		if (bodyHeight == scrollHeight + pageHeight) {
 			//
 		}
 		if (scrollHeight > 500 && scrollTopSwitch == 'off') {
-			$('#scroll_top_btn').fadeIn('fast');
+			$('#scroll_float_div').fadeIn('fast');
 			scrollTopSwitch = 'on';
 		} else if (scrollHeight < 500 && scrollTopSwitch == 'on') {
-			$('#scroll_top_btn').fadeOut('normal');
+			$('#scroll_float_div').fadeOut('normal');
 			scrollTopSwitch = 'off';
 		}
 	});
