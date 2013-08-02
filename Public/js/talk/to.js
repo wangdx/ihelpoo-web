@@ -9,6 +9,7 @@ $().ready(function(){
 
         enableXDR: true,
     dropAtmosphereHeaders: true,
+        readResponsesHeaders : false,
     attachHeadersAsQueryString: true
 });
 
