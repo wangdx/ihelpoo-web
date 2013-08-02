@@ -415,7 +415,7 @@ class IndexAction extends Action {
 		    	);
 	    	}
 	    	$UserApplyverify = M("UserApplyverify");
-	    	$UserApplyverify->add($newuserApplyverifyData);
+	    	//$UserApplyverify->add($newuserApplyverifyData);
 	    	redirect('/index/applyverify', 3, 'ok...');
     	}
     	$this->display();
