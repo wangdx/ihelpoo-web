@@ -11,10 +11,9 @@ $().ready(function(){
      */
     var mainposition = $('.main').position();
     var mainpositionleft = mainposition.left + 150;
-    alert(mainpositionleft);
     $("#header_nav_user").hover(
     	function(){
-    		$("#nav_hover_list_div").css({left:mainpositionleft}).slideDown("fast");
+    		$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
     		$("#nav_hover_list_div_ul").html("<li><a>同学</a> | <a>校园组织</a> | <a>周边商家</a></li>");
     	},
       	function(){
