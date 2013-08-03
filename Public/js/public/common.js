@@ -1,11 +1,12 @@
 $().ready(function(){
+	
+	/**
+     * skin part
+     */
+    showSkin();
+    
     flashPic('.message_shine');
 
-    /**
-     * pull message once
-     */
-    mseeageNumsOnce();
-    
     /**
      * nav hover
      */
@@ -53,43 +54,10 @@ $().ready(function(){
 		$("#nav_hover_list_div").slideUp("fast");
     });
     
-    
-
     /**
-     * skin part
+     * pull message once
      */
-    showSkin();
-    $("#change_skin").click(function(){
-    	$('#change_skin_save').remove();
-    	$(this).fadeTo("slow",0.1).delay(300).fadeTo("fast",1).after("<a class='radius3 f12 bg_l_yellow' id='change_skin_save'><span class='icon_attention'></span>保存</a>");
-    	changeSkin();
-    });
-    $('#change_skin_save').live("click", function(){
-    	var val_skin = $('#change_skin').attr("value");
-    	if (val_skin > '5' || val_skin < '0') {
-    		val_skin = '0';
-    	}
-    	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
-    	$(this).ajaxStart(function(){
-    	    $(this).after($infoLoading);
-        }).ajaxStop(function(){
-    	    $infoLoading.remove();
-        });
-    	$.ajax({
-            type: "POST",
-            url: baseUrl + "ajax/saveskin",
-            data: "skin_value=" + val_skin,
-            dataType: "json",
-            success:function(msg){
-            	if (msg.status == 'yes') {
-            		$("#change_skin_save").html("<span class='f12'><span class='icon_right'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
-            	} else {
-            		$("#change_skin_save").html("<span class='f12'><span class='icon_wrong'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
-            	}
-
-            }
-        });
-    });
+    mseeageNumsOnce();
 
     /**
      * chage online status
@@ -195,81 +163,84 @@ function mseeageNumsOnce() {
 	});
 }
 
-function changeSkin(){
-	$val = $("#change_skin").attr("value");
-	if ($val == '0') {
-		$("#change_skin").attr({ value: "1"});
-		$(".header").addClass("header_pink");
-		$("body").addClass("body_pink");
-		$(".main").addClass("main_pink");
-		$(".footer").addClass("footer_pink");
-	} else if ($val == '1') {
-		$("#change_skin").attr({ value: "2"});
-		$(".header").removeClass("header_pink");
-		$(".header").addClass("header_yellow");
-		$("body").removeClass("body_pink");
-		$("body").addClass("body_yellow");
-		$(".main").removeClass("main_pink");
-		$(".main").addClass("main_yellow");
-		$(".footer").removeClass("footer_pink");
-		$(".footer").addClass("footer_yellow");
-	} else if ($val == '2') {
-		$("#change_skin").attr({ value: "3"});
-		$(".header").removeClass("header_yellow");
-		$(".header").addClass("header_purple");
-		$("body").removeClass("body_yellow");
-		$("body").addClass("body_purple");
-		$(".main").removeClass("main_yellow");
-		$(".main").addClass("main_purple");
-		$(".footer").removeClass("footer_yellow");
-		$(".footer").addClass("footer_purple");
-	} else if ($val == '3') {
-		$("#change_skin").attr({ value: "4"});
-		$(".header").removeClass("header_purple");
-		$(".header").addClass("header_black");
-		$("body").removeClass("body_purple");
-		$("body").addClass("body_black");
-		$(".main").removeClass("main_purple");
-		$(".main").addClass("main_black");
-		$(".footer").removeClass("footer_purple");
-		$(".footer").addClass("footer_black");
-	} else if ($val == '4') {
-		$("#change_skin").attr({ value: "5"});
-		$("body").removeClass("body_black");
-		$(".main").removeClass("main_black");
-		$(".footer").removeClass("footer_black");
-	} else if ($val == '5') {
-		$("#change_skin").attr({ value: "0"});
-		$(".header").removeClass("header_black");
-		$("body").removeClass("body_black");
-		$(".main").removeClass("main_black");
-		$(".footer").removeClass("footer_black");
-	}
-}
 function showSkin(){
-	$val = $("#change_skin").attr("value");
-	if ($val == '1') {
-		$(".header").addClass("header_pink");
-		$("body").addClass("body_pink");
-		$(".main").addClass("main_pink");
-		$(".footer").addClass("footer_pink");
-	} else if ($val == '2') {
-		$(".header").addClass("header_yellow");
-		$("body").addClass("body_yellow");
-		$(".main").addClass("main_yellow");
-		$(".footer").addClass("footer_yellow");
-	} else if ($val == '3') {
-		$(".header").addClass("header_purple");
-		$("body").addClass("body_purple");
-		$(".main").addClass("main_purple");
-		$(".footer").addClass("footer_purple");
-	} else if ($val == '4') {
-		$(".header").addClass("header_black");
-		$("body").addClass("body_black");
-		$(".main").addClass("main_black");
-		$(".footer").addClass("footer_black");
-	} else if ($val == '5') {
-		$(".header").addClass("header_black");
+	var $valofskin = $("#headerskinvalue").attr("value");
+	var $changeheader = $(".header");
+	var $changemain = $(".main");
+	var $changelay_background = $("#layBackground");
+	var $changebody = $("body");
+	if ($valofskin == '0') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header");
+		$changemain.addClass("main");
+		$changelay_background.addClass("lay_background");
+		$changebody.addClass("body");
+	} else if ($valofskin == '1') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_1");
+		$changemain.addClass("main main_1");
+		$changelay_background.addClass("lay_background_1");
+		$changebody.addClass("body_1");
+	} else if ($valofskin == '2') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_2");
+		$changemain.addClass("main main_2");
+		$changelay_background.addClass("lay_background_2");
+		$changebody.addClass("body_2");
+	} else if ($valofskin == '3') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_3");
+		$changemain.addClass("main main_3");
+		$changelay_background.addClass("lay_background_3");
+		$changebody.addClass("body_3");
+	} else if ($valofskin == '4') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_4");
+		$changemain.addClass("main main_4");
+		$changelay_background.addClass("lay_background_4");
+		$changebody.addClass("body_4");
+	} else if ($valofskin == '5') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_5");
+		$changemain.addClass("main main_5");
+		$changelay_background.addClass("lay_background_5");
+		$changebody.addClass("body_5");
+	} else if ($valofskin == '6') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_6");
+		$changemain.addClass("main main_6");
+		$changelay_background.addClass("lay_background_6");
+		$changebody.addClass("body_6");
+	} else if ($valofskin == '7') {
+		$changeheader.removeClass();
+		$changemain.removeClass();
+		$changelay_background.removeClass();
+		$changebody.removeClass();
+		$changeheader.addClass("header header_7");
+		$changemain.addClass("main main_7");
+		$changelay_background.addClass("lay_background_7");
+		$changebody.addClass("body_7");
 	}
 }
 

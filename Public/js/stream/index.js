@@ -35,8 +35,8 @@ $().ready(function(){
 		var $changemain = $(".main");
 		var $changelay_background = $("#layBackground");
 		var $changebody = $("body");
-		$val = $(this).attr("value");
-		if ($val == '0') {
+		$valofskin = $(this).attr("value");
+		if ($valofskin == '0') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -45,7 +45,7 @@ $().ready(function(){
 			$changemain.addClass("main");
 			$changelay_background.addClass("lay_background");
 			$changebody.addClass("body");
-		} else if ($val == '1') {
+		} else if ($valofskin == '1') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -54,7 +54,7 @@ $().ready(function(){
 			$changemain.addClass("main main_1");
 			$changelay_background.addClass("lay_background_1");
 			$changebody.addClass("body_1");
-		} else if ($val == '2') {
+		} else if ($valofskin == '2') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -63,7 +63,7 @@ $().ready(function(){
 			$changemain.addClass("main main_2");
 			$changelay_background.addClass("lay_background_2");
 			$changebody.addClass("body_2");
-		} else if ($val == '3') {
+		} else if ($valofskin == '3') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -72,7 +72,7 @@ $().ready(function(){
 			$changemain.addClass("main main_3");
 			$changelay_background.addClass("lay_background_3");
 			$changebody.addClass("body_3");
-		} else if ($val == '4') {
+		} else if ($valofskin == '4') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -81,7 +81,7 @@ $().ready(function(){
 			$changemain.addClass("main main_4");
 			$changelay_background.addClass("lay_background_4");
 			$changebody.addClass("body_4");
-		} else if ($val == '5') {
+		} else if ($valofskin == '5') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -90,7 +90,7 @@ $().ready(function(){
 			$changemain.addClass("main main_5");
 			$changelay_background.addClass("lay_background_5");
 			$changebody.addClass("body_5");
-		} else if ($val == '6') {
+		} else if ($valofskin == '6') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -99,7 +99,7 @@ $().ready(function(){
 			$changemain.addClass("main main_6");
 			$changelay_background.addClass("lay_background_6");
 			$changebody.addClass("body_6");
-		} else if ($val == '7') {
+		} else if ($valofskin == '7') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
@@ -111,7 +111,7 @@ $().ready(function(){
 		}
     });
     $('#change_skin_save_btn').live("click", function(){
-    	var val_skin = $val;
+    	var val_skin = $valofskin;
     	if (val_skin > '5' || val_skin < '0') {
     		val_skin = '0';
     	}
@@ -129,6 +129,7 @@ $().ready(function(){
             success:function(msg){
             	if (msg.status == 'yes') {
             		$("#change_skin_save_info").html("<span class='f12'><span class='icon_right'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
+            		window.location = baseUrl + "stream";
             	} else {
             		$("#change_skin_save_info").html("<span class='f12'><span class='icon_wrong'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
             	}

@@ -11,7 +11,17 @@
   <script type="text/javascript" src="__PUBLIC__/js/public/common.js?id=1"></script>
 </head>
 <body>
-<div class="header f14 gray_l">
+<?php
+if (!empty($userloginedrecord['uid'])) {
+	if (!empty($changeskin)) {
+		$skinValue = $changeskin;
+	} else {
+		$skinValue = $userloginedrecord['skin'] == '' ? '0' : $userloginedrecord['skin'];
+	}
+} else {
+	$skinValue = 0;
+} ?>
+<div class="header f14 gray_l" id="headerskinvalue" value="<?php echo $skinValue; ?>" >
   <div class="header_main">
   <a href="__ROOT__/stream" class="header_logo" title="个人中心首页 我帮圈圈{$schoolname}"></a>
   <p class="header_left fl">
