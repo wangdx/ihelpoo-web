@@ -4,7 +4,7 @@ $().ready(function () {
 
     var data_uid = $('#data_uid').val();
     var data_touid = $('#data_touid').val();
-    connectedEndpointJob1 = $.atmosphere.subscribe("http://comet.ihelpoo.com/comet/atmosphere/subscribe/10000-12419", globalCallback, $.atmosphere.request = {
+    connectedEndpointJob1 = $.atmosphere.subscribe("http://comet.ihelpoo.com/0.9/chat/10000-12419", globalCallback, $.atmosphere.request = {
         logLevel: 'debug',
         transport: 'long-polling',
         callback: call,
