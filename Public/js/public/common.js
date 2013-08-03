@@ -12,7 +12,7 @@ $().ready(function(){
     $("#header_nav_user").hover(
     	function(){
     		var mainoffset = $('.main').offset();
-    	    var mainpositionleft = mainoffset.left + 180;
+    	    var mainpositionleft = mainoffset.left + 178;
     		$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
     		$("#nav_hover_list_div_ul").html("<li><a href='/index/mate'>同学</a> | <a href='/index/group'>校园组织</a> | <a href='/index/business'>周边商家</a></li>");
     	},
