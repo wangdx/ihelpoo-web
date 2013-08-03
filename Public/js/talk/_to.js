@@ -39,7 +39,7 @@ $(function () {
             var json = $.parseJSON(msg);
         } catch (e) {
             alert('not a json' + msg);
-            return;
+//            return;
         }
         var htmlIn = " <span class='f14 gray '>" + msg + "</span>"
             + " <span class='f12 gray'>" + msg + "</span><br />"
