@@ -34,9 +34,9 @@ $(function () {
 
         var msg = response.responseBody;
 
-        var htmlIn = " <span class='f14 gray '>" + msg.data.nickname + "</span>"
-            + " <span class='f12 gray'>" + msg.data.time + "</span><br />"
-            + msg.data.content + "<br /><br />";
+        var htmlIn = " <span class='f14 gray '>" + msg + "</span>"
+            + " <span class='f12 gray'>" + msg + "</span><br />"
+            + msg + "<br /><br />";
 
         $('#show_message_div').append(htmlIn);
         var boxHeight = $('#show_message_div').height();
