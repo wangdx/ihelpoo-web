@@ -20,10 +20,10 @@
 		<!-- content  -->
 		<div class="i_content">
 			<span class="i_content_img">
-		    	<?php echo "<a href='".__ROOT__."/stream/u/".$sayRecord['uid']."'><img src='".i_icon_check($itemUserLogin['uid'], $itemUserLogin['icon_url'], 's')."' height='30' class='radius3'  /></a>"; ?>
+		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."'><img src='".i_icon_check($itemUserLogin['uid'], $itemUserLogin['icon_url'], 's')."' height='30' class='radius3'  /></a>"; ?>
 		  	</span>
 			<span class="i_content_span_user">
-		    	<?php echo "<a href='".__ROOT__."/stream/u/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
+		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
 		    	<span class="f12 black_l">发布于
 		    		<?php echo i_time($sayRecord['time']);
     				if (!empty($sayRecord['from'])) {
@@ -41,9 +41,10 @@
 		  		</span>
 			</span>
 			<span class="fr f12 black_l i_content_span_info">
-			  	<?php echo "<span class='icon_words'></span> 评论".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?>°
+			  	<?php echo "<span class='icon_words'></span> 评论".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?>° 
+			  	<a class="plus" value="i-<?php echo $sayRecord['sid'] ?>">赞</a>(<?php echo $sayRecord['plus_co'] ?>)
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
-				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo $recordDiffusionNums ?>)
+				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo $sayRecord['diffusion_co']; ?>)
 				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
 				<?php } ?>
 		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
@@ -77,13 +78,26 @@
 				</p>
 			</div>
 
-			<?php if (!empty($recordDiffusionNums)) {?>
+			<?php if (!empty($sayRecord['diffusion_co'])) {?>
 			<ul class="i_record_diffusion black_l f12">
 				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 				<li>
-		        	<a href="__ROOT__/stream/u/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
+		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
 		        	扩散了这条信息. <?php if(!empty($recordDiffusion['view'])) echo '<- 并表示：'.$recordDiffusion['view'] ?>
 		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
+		    	<?php endforeach; ?>
+			</ul>
+			<?php } ?>
+			
+			<?php if (!empty($sayRecord['plus_co'])) {?>
+			<div class="f12">他们赞过了这条信息</div>
+			<ul class="i_record_diffusion black_l f12">
+				<?php foreach ($recordPlusArray as $recordPlus): ?>
+				<li>
+		        	<a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>" >
+		        		<img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="50" class="radius3" /><?php echo $recordPlus['nickname'] ?>
+		        	</a>
+		        	<span class="gray"><?php echo i_time($recordPlus['time']) ?></span></li>
 		    	<?php endforeach; ?>
 			</ul>
 			<?php } ?>
@@ -151,11 +165,11 @@
 		  <li>
 		  <?php } ?>
 		    <span class="i_c_l_u_li_spannum gray"><?php echo $i ?></span>
-		    <a href="__ROOT__/stream/u/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
+		    <a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
 		    	<img src="<?php echo i_icon_check($comment['uid'], $comment['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
 		    </a>
 		    <div class="i_c_l_u_li_div black_l">
-		    	<a href="__ROOT__/stream/u/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
+		    	<a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
 		    	<span class="f12 gray fb">
 		    	<?php
 		      		if (!empty($comment['toid'])) {

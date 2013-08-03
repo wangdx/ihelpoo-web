@@ -53,8 +53,8 @@ class ItemAction extends Action {
         //$userLogin = $dbUserLogin->userExists($user->uid);
         //$this->view->itemUserLogin = $userLogin = $dbUserLogin->userExists($sayRecord->uid);
 
-        $IUserLogin = D("IUserLogin");
-        $itemUserLogin = $IUserLogin->userExists($sayRecord['uid']);
+        $UserLogin = M("UserLogin");
+        $itemUserLogin = $UserLogin->find($sayRecord['uid']);
         $this->assign('title','详细内容 '.$recordSchoolInfo['school'].'信息流 by '.$itemUserLogin['nickname']);
         $this->assign('itemUserLogin',$itemUserLogin);
 
@@ -73,14 +73,24 @@ class ItemAction extends Action {
          * diffision part
          */
         $RecordDiffusion = M("RecordDiffusion");
-        $recordDiffusionNums = $RecordDiffusion->where("sid = $recordId")->count();
-        $this->assign('recordDiffusionNums', $recordDiffusionNums);
-        if (!empty($recordDiffusionNums)) {
+        if (!empty($sayRecord['diffusion_co'])) {
         	$recordDiffusionArray = $RecordDiffusion->where("sid = $recordId")->join('i_user_login ON i_record_diffusion.uid = i_user_login.uid')
 		    ->field('id,i_user_login.uid,i_record_diffusion.sid,i_record_diffusion.view,i_record_diffusion.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 		    ->order('i_record_diffusion.time DESC')
 		    ->select();
 		    $this->assign('recordDiffusionArray', $recordDiffusionArray);
+        }
+        
+        /**
+         * puls part
+         */
+        $RecordPlus = M("RecordPlus");
+        if (!empty($sayRecord['plus_co'])) {
+        	$recordPlusArray = $RecordPlus->where("sid = $recordId")->join('i_user_login ON i_record_plus.uid = i_user_login.uid')
+		    ->field('id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+		    ->order('i_record_plus.create_time DESC')
+		    ->select();
+		    $this->assign('recordPlusArray', $recordPlusArray);
         }
 
         /**
