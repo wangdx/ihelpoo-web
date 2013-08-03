@@ -34,8 +34,13 @@ $(function () {
 
 
         var msg = response.responseBody;
-        alert(response);
-        alert(response.responseBody);
+
+        try {
+            var json = jQuery.parseJSON(msg);
+        } catch (e) {
+            alert('not a json');
+            return;
+        }
         var htmlIn = " <span class='f14 gray '>" + msg + "</span>"
             + " <span class='f12 gray'>" + msg + "</span><br />"
             + msg + "<br /><br />";
