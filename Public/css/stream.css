@@ -705,7 +705,7 @@
     border: 1px solid #CCC;
 }
 .change_skin_select_a img:hover{
-    border: #FE6600;
+    border: 1px solid #FE6600;
 }
 .change_skin_select_a span{
     display: block;
