@@ -36,7 +36,16 @@ $().ready(function(){
 		var $changelay_background = $(".lay_background");
 		var $changebody = $("body");
 		$val = $(this).attr("value");
-		if ($val == '1') {
+		if ($val == '0') {
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header");
+			$changemain.addClass("main");
+			$changelay_background.addClass("lay_background");
+			$changebody.addClass("body");
+		} else if ($val == '1') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
 			$changelay_background.removeClass();
