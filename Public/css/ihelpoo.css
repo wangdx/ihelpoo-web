@@ -181,8 +181,9 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .default_c{color: #6CCACD;}
 .beautiful_c{color: #15B6D7;}
 /*---*/
-.btn{padding: 5px 15px; color: #FFF; background-color: #6CCACD; border-radius:3px; }
-.btn:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
+.btn{padding: 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; }
+.btn:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
+
 
 .btn_brown{padding: 5px 15px; color: #FFF; background-color: #B16E3A; border-radius:3px; }
 .btn_brown:hover{background-color: #FE6600; border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
@@ -631,9 +632,10 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 .close_x{
     width: 15px;
-    padding: 3px 0;
+    padding: 1px 0;
     text-align: center;
     color: #999;
+    font-size: 14px;
 }
 .close_x:hover{
     background: #8396A9;
