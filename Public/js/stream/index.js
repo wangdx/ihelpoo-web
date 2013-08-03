@@ -123,7 +123,7 @@ $().ready(function(){
     	}
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
     	$(this).ajaxStart(function(){
-    	    $(this).after($infoLoading);
+    		$("#change_skin_save_info").show().html($infoLoading);
         }).ajaxStop(function(){
     	    $infoLoading.remove();
         });
