@@ -36,9 +36,9 @@ $(function () {
         var msg = response.responseBody;
 
         try {
-            var json = jQuery.parseJSON(msg);
+            var json = $.parseJSON(msg);
         } catch (e) {
-            alert('not a json');
+            alert('not a json' + msg.data);
             return;
         }
         var htmlIn = " <span class='f14 gray '>" + msg + "</span>"
