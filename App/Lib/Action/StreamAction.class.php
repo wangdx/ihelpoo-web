@@ -779,6 +779,7 @@ class StreamAction extends Action
     	$commentSidString = $_POST['commentSid'];
     	$commentSidArray = explode("-", $commentSidString);
     	$commentSid = $commentSidArray['1'];
+    	$UserLogin = M("UserLogin");
     	if (!empty($commentSid)) {
     		$RecordComment = M("RecordComment");
     		$sayComment = $RecordComment->where("sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')
