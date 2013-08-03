@@ -212,7 +212,7 @@ class AjaxAction extends Action {
     				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
     			} else if ($userDegree < 4 && $skinValue > 3) {
     				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
-    			} else if ($userDegree < 8 && $skinValue > 5) {
+    			} else if ($userDegree < 5 && $skinValue > 5) {
     				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
     			} else {
 	    			$skinData = array(
