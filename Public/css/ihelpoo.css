@@ -572,9 +572,10 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 .header_main{ width:1000px; margin:0 auto; position:relative; }
-.header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
+.header_logo{ width:170px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
+.header_logo:hover{ width:170px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px -32px; display:block; position:absolute; left:0; top:-8px; }
 *html .header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.gif) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_left{ margin-left:154px; }
+.header_left{ margin-left:175px; }
 *html .header_left{ margin-left:80px; }
 .header_right{ margin-right:0px; }
 .header a:hover,.headermall a:hover{ color:#FFFA85; }
@@ -632,11 +633,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .body_pink{ background-color:#FFCFD6; }
 .body_purple{ background-color:#F3E9F7; }
 .body_black{ background-color:#666; }
-.header_logo1{ width:135px; height:32px; background:url(../image/common/logo_header1.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_logo2{ width:135px; height:32px; background:url(../image/common/logo_header2.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_logo3{ width:135px; height:32px; background:url(../image/common/logo_header3.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_logo4{ width:135px; height:32px; background:url(../image/common/logo_header4.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-*html .header_logo1,*html .header_logo2,*html .header_logo3,*html .header_logo4 { background:url(../image/common/logo_header.gif) no-repeat 0px 0px; }
+
 .header_pink{ height:16px; width:100%; padding:10px 0; background:url(../image/common/bg_nav_pink.png?id=1) repeat-x 0px 0px; border-bottom:2px solid #C00; position: fixed; z-index:9999; top:0; left:0 }
 .header_yellow{ height:16px; width:100%; padding:10px 0; background:url(../image/common/bg_nav_yellow.png?id=1) repeat-x 0px 0px; border-bottom:2px solid #C00; position: fixed; z-index:9999; top:0; left:0 }
 .header_purple{ height:16px; width:100%; padding:10px 0; background:url(../image/common/bg_nav_purple.png?id=1) repeat-x 0px 0px; border-bottom:2px solid #C00; position: fixed; z-index:9999; top:0; left:0 }
