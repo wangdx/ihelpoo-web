@@ -106,14 +106,14 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .circle_l_t{ background:#FFF; position:absolute; left:0; top:0px; height:1px; width:1px; display:block; }
 .circle_r_t{ background:#FFF; position:absolute; right:0; top:0px; height:1px; width:1px; display:block; }
 /*---*/
-.grade1{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 0; display:inline-block; position: absolute; right: 0; top: 0; }
-.grade2{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -35px; display:inline-block; position: absolute; right: 0; top: 0; }
-.grade3{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -70px; display:inline-block; position: absolute; right: 0; top: 0; }
-.grade4{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -105px; display:inline-block; position: absolute; right: 0; top: 0; }
-.grade5{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -140px; display:inline-block; position: absolute; right: 0; top: 0; }
-.grade6{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -175px; display:inline-block; position: absolute; right: 0; top: 0; }
-.gradeg{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -210px; display:inline-block; position: absolute; right: 0; top: 0; }
-.grades{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -245px; display:inline-block; position: absolute; right: 0; top: 0; }
+.grade1{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 0; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade2{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -35px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade3{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -70px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade4{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -105px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade5{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -140px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade6{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -175px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.gradeg{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -210px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grades{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -245px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 
 /*---*/
 .post_icon{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
