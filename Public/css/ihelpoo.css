@@ -693,6 +693,7 @@ color:#FFFA85;
     margin:60px auto 10px;
     padding:10px;
     border:1px solid #EEE;
+    background:#FFF;
 }
 .footer{
     clear:both;
@@ -852,7 +853,7 @@ color:#FFFA85;
     background:#000;
 }
 .main_4 .stream_right{
-    color: #000;
+    background: #333;
 }
 .main_4 .stream_right a,.main_4  a{
     color: #5E7C9B;
