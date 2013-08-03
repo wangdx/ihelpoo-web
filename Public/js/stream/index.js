@@ -97,8 +97,8 @@ $().ready(function(){
 			$changebody.removeClass();
 			$changeheader.addClass("header header_6");
 			$changemain.addClass("main main_6");
-			$changelay_background.addClass("lay_background_7");
-			$changebody.addClass("body_7");
+			$changelay_background.addClass("lay_background_6");
+			$changebody.addClass("body_6");
 		} else if ($val == '7') {
 			$changeheader.removeClass();
 			$changemain.removeClass();
