@@ -573,9 +573,9 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 .header_main{ width:1000px; margin:0 auto; position:relative; }
 .header_logo{ width:170px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_logo:hover{ width:170px; height:32px; background:url(../image/common/logo_header.png) no-repeat -32px 0px; display:block; position:absolute; left:0; top:-8px; }
+.header_logo:hover{ width:170px; height:32px; background:url(../image/common/logo_header.png) no-repeat 0px -32px; display:block; position:absolute; left:0; top:-8px; }
 *html .header_logo{ width:135px; height:32px; background:url(../image/common/logo_header.gif) no-repeat 0px 0px; display:block; position:absolute; left:0; top:-8px; }
-.header_left{ margin-left:154px; }
+.header_left{ margin-left:160px; }
 *html .header_left{ margin-left:80px; }
 .header_right{ margin-right:0px; }
 .header a:hover,.headermall a:hover{ color:#FFFA85; }
