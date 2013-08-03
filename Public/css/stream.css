@@ -681,11 +681,12 @@
 #change_skin_div{
     position: absolute;
     margin: 50px;
-    left: 100px;
-    top: 300px;
+    left: 300px;
+    top: 100px;
     width: 500px;
     height: 300px;
     border: 3px solid #EEE;
+    background: #f5f5f5;
     border-radius: 3px;
     padding: 5px;
     -moz-outline: 4px solid #E2F5FB;
