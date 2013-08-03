@@ -6,7 +6,8 @@ $().ready(function () {
     var data_touid = $('#data_touid').val();
     connectedEndpointJob1 = $.atmosphere.subscribe("http://comet.ihelpoo.com/c1/chat/10000-12419", globalCallback, $.atmosphere.request = {
         logLevel: 'debug',
-        transport: 'long-polling',
+        transport: 'websocket',
+        fallbackTransport: 'long-polling',
         callback: call,
         enableXDR: true,
         dropAtmosphereHeaders: true,
