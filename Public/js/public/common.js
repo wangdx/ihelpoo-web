@@ -48,7 +48,7 @@ $().ready(function(){
     		$("#nav_hover_list_div").slideUp("fast");
     	},function(){}
     );
-    $("html").mouseout(function(){
+    $("body").mouseleave(function(){
     	$("#header_nav_more").removeClass('header_left_arrow_hover');
 		$("#nav_hover_list_div").slideUp("fast");
     });
