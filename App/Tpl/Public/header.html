@@ -34,9 +34,9 @@
   	<?php if (!empty($userloginedrecord['uid'])) { ?>
 	    <a href="__ROOT__/wo" class="fb">{$userloginedrecord['nickname']}</a>
 	    <?php if ($userloginedrecord['online'] == 1) { ?>
-	    	<span id="header_online_status" value="{$userloginedrecord['online']}" class="gray" title="正常，点击切换为潜水状态" class="pointer">[在线]</span>
+	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="正常，点击切换为潜水状态" class="pointer black_l">[在线]</span>
 	    <?php } else { ?>
-	    	<span id="header_online_status" value="{$userloginedrecord['online']}" class="gray" title="潜水，点击切换为正常在线状态" class="pointer">[潜水]</span>
+	    	<span id="header_online_status" value="{$userloginedrecord['online']}" title="潜水，点击切换为正常在线状态" class="pointer gray">[潜水]</span>
 	    <?php } ?>
 	    <!-- <a href="__ROOT__/mallset/seller">买卖</a>
 	    <a href="__ROOT__/mutual/find">找人</a> -->
