@@ -646,9 +646,9 @@ $().ready(function(){
             type: "POST",
             url: baseUrl + "stream/ajaxcomment",
             data: {'commentSid':commmentSid},
-            datatype: "html",
+            dataType: "html",
             success:function(data){
-            	$(this).parent().parent().find('.s_li_s_comment').after("<ul>"+data+"</ul>");
+            	$(this).parent().parent().find('.s_li_s_comment').after("<ul>sdfds</ul>");
             }
         });
     	
