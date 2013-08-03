@@ -701,6 +701,12 @@
     margin: 10px 13px;
     position: relative;
 }
+*+html #change_skin_div_ul li{
+    display: inline;
+}
+*html #change_skin_div_ul li{
+    display: inline;
+}
 .change_skin_select_a img{
     width: 90px;
     height: 53px;
