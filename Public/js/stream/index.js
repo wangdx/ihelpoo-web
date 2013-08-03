@@ -649,7 +649,7 @@ $().ready(function(){
             data: {'commentSid':commmentSid},
             dataType: "html",
             success:function(data){
-            	$this.html("<ul>sdfds</ul>");
+            	$this.parent.after("<ul>sdfds</ul>");
             }
         });
     	
