@@ -82,7 +82,32 @@ $().ready(function(){
 			$changelay_background.addClass("lay_background_4");
 			$changebody.addClass("body_4");
 		} else if ($val == '5') {
-			$(".header").addClass("header_black");
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header header_5");
+			$changemain.addClass("main main_5");
+			$changelay_background.addClass("lay_background_5");
+			$changebody.addClass("body_5");
+		} else if ($val == '6') {
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header header_6");
+			$changemain.addClass("main main_6");
+			$changelay_background.addClass("lay_background_7");
+			$changebody.addClass("body_7");
+		} else if ($val == '7') {
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header header_7");
+			$changemain.addClass("main main_7");
+			$changelay_background.addClass("lay_background_7");
+			$changebody.addClass("body_7");
 		}
     });
     $('#change_skin_save_btn').live("click", function(){
