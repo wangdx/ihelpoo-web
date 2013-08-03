@@ -1,7 +1,7 @@
 $(function(){
     "use strict";
 
-    var socket = atmosphere;
+    var socket = $.atmosphere;
     var subSocket;
     var transport = 'websocket';
 
