@@ -649,7 +649,7 @@ $().ready(function(){
             data: {'commentSid':commmentSid},
             dataType: "html",
             success:function(data){
-            	$this.parent().after("<div>"+data+"</div>");
+            	$this.parent().after("<div style='margin:10px 0 0 120px'>"+data+"</div>");
             }
         });
     	
