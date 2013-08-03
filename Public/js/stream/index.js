@@ -41,8 +41,8 @@ $().ready(function(){
 			$changemain.removeClass();
 			$changelay_background.removeClass();
 			$changebody.removeClass();
-			$changeheader.addClass("header_1");
-			$changemain.addClass("main_1");
+			$changeheader.addClass("header header_1");
+			$changemain.addClass("main main_1");
 			$changelay_background.addClass("lay_background_1");
 			$changebody.addClass("body_1");
 		} else if ($val == '2') {
