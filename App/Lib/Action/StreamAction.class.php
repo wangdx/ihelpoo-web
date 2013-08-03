@@ -787,6 +787,7 @@ class StreamAction extends Action
 	        ->limit(10)->order('cid DESC')->select();
 	        foreach ($sayComment as $comment) {
 	        	echo '<div class="black_l">';
+		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
 		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a>';
 		    	echo '<span class="f12 gray fb">';
 		      	if (!empty($comment['toid'])) {
