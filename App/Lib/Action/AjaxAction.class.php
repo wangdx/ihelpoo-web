@@ -206,8 +206,14 @@ class AjaxAction extends Action {
     			$UserLogin = M("UserLogin");
     			$recordUserLogin = $UserLogin->find($userloginid);
     			$userDegree = i_degree($recordUserLogin['active']);
-    			if ($userDegree < 3) {
-    				$this->ajaxReturn(0, "3级才能更换皮肤", 'wrong');
+    			if ($userDegree < 2 && $skinValue > 0) {
+    				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
+    			} else if ($userDegree < 3 && $skinValue > 1) {
+    				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
+    			} else if ($userDegree < 4 && $skinValue > 3) {
+    				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
+    			} else if ($userDegree < 8 && $skinValue > 5) {
+    				$this->ajaxReturn(0, "你的等级还不够哦，加油升级吧", "wrong");
     			} else {
 	    			$skinData = array(
 	    				'uid' => $userloginid,
