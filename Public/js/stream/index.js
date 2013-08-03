@@ -36,30 +36,30 @@ $().ready(function(){
 			$(".header").removeClass();
 			$("body").removeClass();
 			$(".main").removeClass();
-			$(".header").addClass("header_pink");
-			$("body").addClass("body_pink");
-			$(".main").addClass("main_pink");
+			$(".header").addClass("header_pink header");
+			$("body").addClass("body_pink body");
+			$(".main").addClass("main_pink main");
 		} else if ($val == '2') {
 			$(".header").removeClass();
 			$("body").removeClass();
 			$(".main").removeClass();
-			$(".header").addClass("header_yellow");
-			$("body").addClass("body_yellow");
-			$(".main").addClass("main_yellow");
+			$(".header").addClass("header_yellow header");
+			$("body").addClass("body_yellow body");
+			$(".main").addClass("main_yellow main");
 		} else if ($val == '3') {
 			$(".header").removeClass();
 			$("body").removeClass();
 			$(".main").removeClass();
-			$(".header").addClass("header_purple");
-			$("body").addClass("body_purple");
-			$(".main").addClass("main_purple");
+			$(".header").addClass("header_purple header");
+			$("body").addClass("body_purple body");
+			$(".main").addClass("main_purple main");
 		} else if ($val == '4') {
 			$(".header").removeClass();
 			$("body").removeClass();
 			$(".main").removeClass();
-			$(".header").addClass("header_black");
-			$("body").addClass("body_black");
-			$(".main").addClass("main_black");
+			$(".header").addClass("header_black header");
+			$("body").addClass("body_black body");
+			$(".main").addClass("main_black main");
 		} else if ($val == '5') {
 			$(".header").addClass("header_black");
 		}
