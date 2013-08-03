@@ -888,6 +888,12 @@ color:#FFFA85;
 .body_4{
     background-color: #6A6F83;
 }
+.body_4 footer{
+    color: #FFF;
+}
+.body_4 footer a{
+    color: #5E7C9B;
+}
 
 .body_purple{ background-color:#F3E9F7; }
 .body_black{ background-color:#666; }
