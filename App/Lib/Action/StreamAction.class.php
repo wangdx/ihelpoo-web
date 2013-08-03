@@ -776,7 +776,9 @@ class StreamAction extends Action
     {
     	Vendor('Ihelpoo.Emotion');
     	$emotion = new Emotion();
-    	$commentSid = (int)$_POST['commentSid'];
+    	$commentSidString = $_POST['commentSid'];
+    	$commentSidArray = explode("-", $commentSidString);
+    	$commentSid = $commentSidArray['1'];
     	if (!empty($commentSid)) {
     		$RecordComment = M("RecordComment");
     		$sayComment = $RecordComment->where("sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')
