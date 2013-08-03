@@ -10,11 +10,11 @@
     $ofunction = new Ofunction();
     if (!empty($_GET['words'])) {
 	    if ($_GET['words'] == 1) {
-	        $say_hello_words = "[害羞]";
+	        $say_hello_words = "[微笑]";
 	    } else if ($_GET['words'] == 2) {
-	        $say_hello_words = "[吐舌头]";
+	        $say_hello_words = "[羞嗒嗒]";
 	    } else if ($_GET['words'] == 3) {
-	        $say_hello_words = "[鲜花]";
+	        $say_hello_words = "[w礼物]";
 	    } else if ($_GET['words'] == 4) {
 	        $say_hello_words = "[太阳]";
 	    } else if ($_GET['words'] == 5) {
@@ -51,7 +51,7 @@
 <div class="user_talk_info">
   <ul class="user_talk_info_ul">
     <li>
-      <a href="__ROOT__/stream/u/<?php echo $toUserRecord['uid'] ?>" style="display: inline-block; position: relative; width: 72px; height: 56px">
+      <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>" style="display: inline-block; position: relative; width: 72px; height: 56px">
         <img src="<?php echo i_icon_check($toUserRecord['uid'], $toUserRecord['icon_url'], 's') ?>" height="51" />
         <span class="online<?php echo $toUserRecord['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
       </a>
@@ -76,7 +76,7 @@
 </div>
 <div class="user_talk_main_box">
   <span class="gray u_t_m_b_talkto">
-    你正在和 <a href="__ROOT__/stream/u/<?php echo $toUserRecord['uid'] ?>"><?php echo $toUserRecord['nickname']; ?></a> 对话
+    你正在和 <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>"><?php echo $toUserRecord['nickname']; ?></a> 对话
     <span id="input_status" class="f12 black_l"></span>
   </span>
   <a href="__ROOT__/talk/history/<?php echo $toUserRecord['uid'] ?>" class="u_t_m_b_more"><span class="icon_plus"></span>更多对话记录</a>

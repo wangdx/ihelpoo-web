@@ -26,7 +26,7 @@
     <?php
     foreach ($talkHistories as $talkHistory) :
         echo "<li><span class='gray'>";
-        echo "<a href='".__ROOT__."/stream/u/".$talkHistory['uid']."'>";
+        echo "<a href='".__ROOT__."/wo/".$talkHistory['uid']."'>";
         if ($talkHistory['uid'] == $userloginedrecord['uid']) {
         	echo "您自己";
         } else {
@@ -34,7 +34,7 @@
         }
         echo "</a>";
         echo " to ";
-        echo "<a href='".__ROOT__."/stream/u/".$talkHistory['touid']."'>";
+        echo "<a href='".__ROOT__."/wo/".$talkHistory['touid']."'>";
         if ($talkHistory['touid'] == $userloginedrecord['uid']) {
         	echo "您";
         } else {
