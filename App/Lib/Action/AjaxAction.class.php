@@ -213,7 +213,7 @@ class AjaxAction extends Action {
 	    				'uid' => $userloginid,
 	    				'skin' => $skinValue
 	    			);
-	    			$IUserLogin->save($skinData);
+	    			$UserLogin->save($skinData);
 	    			$this->ajaxReturn(0,"保存皮肤成功",'yes');
     			}
     		}
