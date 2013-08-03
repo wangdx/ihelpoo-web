@@ -37,7 +37,7 @@ $().ready(function(){
 			$("body").removeClass();
 			$(".main").removeClass();
 			$(".header").addClass("header_pink header");
-			$("body").addClass("body_pink body");
+			$("body").addClass("body_pink");
 			$(".main").addClass("main_pink main");
 		} else if ($val == '2') {
 			$(".header").removeClass();
@@ -51,14 +51,14 @@ $().ready(function(){
 			$("body").removeClass();
 			$(".main").removeClass();
 			$(".header").addClass("header_purple header");
-			$("body").addClass("body_purple body");
+			$("body").addClass("body_purple");
 			$(".main").addClass("main_purple main");
 		} else if ($val == '4') {
 			$(".header").removeClass();
 			$("body").removeClass();
 			$(".main").removeClass();
 			$(".header").addClass("header_black header");
-			$("body").addClass("body_black body");
+			$("body").addClass("body_black");
 			$(".main").addClass("main_black main");
 		} else if ($val == '5') {
 			$(".header").addClass("header_black");
