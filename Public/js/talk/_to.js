@@ -2,8 +2,9 @@ $(function(){
     "use strict";
 
     var socket = $.atmosphere;
-    var subSocket;
+    var chatSocket;
     var transport = 'websocket';
+
 
     // We are now ready to cut the request
     var request = { url: document.location.toString() + 'chat',
@@ -26,7 +27,7 @@ $(function(){
 
 
 
-    connectedEndpointJob1 = $.atmosphere.subscribe("http://comet.ihelpoo.com/c1/chat/10000-12419", globalCallback, $.atmosphere.request = {
+    chatSocket = $.atmosphere.subscribe("http://comet.ihelpoo.com/c1/chat/10000-12419", globalCallback, $.atmosphere.request = {
         logLevel: 'debug',
         transport: 'websocket',
         fallbackTransport: 'long-polling',
@@ -69,8 +70,8 @@ $(function(){
     /**
      * send messgae
      */
-    $('#send_message').click(function () {  connectedEndpointJob1.push({data: 'message=hello, world'});
-        console.log(connectedEndpointJob1);
+    $('#send_message').click(function () {  chatSocket.push({data: 'message=hello, world'});
+        console.log(chatSocket);
         return false;
     });
 
