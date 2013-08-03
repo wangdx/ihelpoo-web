@@ -704,11 +704,15 @@
     height: 53px;
     border: 1px solid #CCC;
 }
+.change_skin_select_a img:hover{
+    border: #FE6600;
+}
 .change_skin_select_a span{
     display: block;
     margin-top: 5px;
     font-size: 12px;
     color: #999;
+    text-align: center;
 }
 .change_skin_save{
     margin: 0 10px;
