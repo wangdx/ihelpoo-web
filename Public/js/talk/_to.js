@@ -30,7 +30,7 @@ $(function () {
 
 
     request.onMessage = function (response) {
-        console.log("onmessage");
+        if(console)console.log("onmessage");
 
         var msg = response.responseBody;
 
@@ -72,19 +72,19 @@ $(function () {
 
 
     function call(response) {
-        console.log("Call to callbackJob2");
+        if(console)console.log("Call to callbackJob2");
         if (response.state != "messageReceived") {
             return;
         }
         var data = getDataFromResponse(response);
         if (data != null) {
-            console.log("---" + data);
+            if(console)console.log("---" + data);
         }
     }
 
     function getDataFromResponse(response) {
         var detectedTransport = response.transport;
-        console.log("[DEBUG] Real transport is <" + detectedTransport + ">");
+        if(console)console.log("[DEBUG] Real transport is <" + detectedTransport + ">");
         if (response.transport != 'polling' && response.state != 'connected' && response.state != 'closed') {
             if (response.status == 200) {
                 return response.responseBody;
