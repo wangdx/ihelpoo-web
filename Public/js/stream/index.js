@@ -34,7 +34,7 @@ $().ready(function(){
 		var $changeheader = $(".header");
 		var $changemain = $(".main");
 		var $changelay_background = $(".lay_background");
-		var $changebody = $(body);
+		var $changebody = $("body");
 		$val = $(this).attr("value");
 		if ($val == '1') {
 			$changeheader.removeClass();
