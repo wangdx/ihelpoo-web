@@ -876,6 +876,10 @@ color:#FFFA85;
 .main_4 .stream_right_add_userinfo {
     border-bottom: 1px solid #333;
 }
+.main_4 .grade_ratio_box_ul{
+    background: #333333;
+    border: 1px solid #666;
+}
 .lay_background_4{
     background-attachment: scroll;
     background-image: url("../image/common/stream_topbg4.jpg");
