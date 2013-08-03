@@ -17,17 +17,14 @@ $().ready(function(){
     		$("#nav_hover_list_div_ul").html("<li><a href='/index/mate'>同学</a> | <a href='/index/group'>校园组织</a> | <a href='/index/business'>周边商家</a></li>");
     	},
       	function(){
-    		$("#header_nav_user").removeClass('header_left_arrow_hover');
-			$("#nav_hover_list_div").slideUp("fast");
-    		
-	});
-    $("#nav_hover_list_div").hover(function(){
-		$("#header_nav_more").removeClass('header_left_arrow_hover');
-		$("#header_nav_user").addClass('header_left_arrow_hover');
-		$("#nav_hover_list_div").show();
-	},function(){
-		$("#header_nav_user").removeClass('header_left_arrow_hover');
-		$("#nav_hover_list_div").slideUp("fast");
+    		$("#nav_hover_list_div").hover(function(){
+    			$("#header_nav_more").removeClass('header_left_arrow_hover');
+    			$("#header_nav_user").addClass('header_left_arrow_hover');
+    			$("#nav_hover_list_div").show();
+    		},function(){
+    			$("#header_nav_user").removeClass('header_left_arrow_hover');
+    			$("#nav_hover_list_div").slideUp("fast");
+    		});
 	});
     $("#header_nav_more").hover(
         function(){
