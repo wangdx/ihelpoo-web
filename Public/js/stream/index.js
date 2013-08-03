@@ -641,7 +641,17 @@ $().ready(function(){
      * comment part
      */
     $('.comment_button').click(function(){
-    	$(this).parent().parent().find('.s_li_s_comment').after("<div><br /><br /><br /><br />dsfhdjkfhgjkdfhk</div>");
+    	var commmentSid = $(this).attr('value');
+    	$.ajax({
+            type: "POST",
+            url: baseUrl + "stream/ajaxcomment",
+            data: {'commentSid':commmentSid},
+            datatype: "html",
+            success:function(data){
+            	$(this).parent().parent().find('.s_li_s_comment').after("<div>"+data+"</div>");
+            }
+        });
+    	
     });
 
     /**
