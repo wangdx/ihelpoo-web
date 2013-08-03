@@ -861,6 +861,21 @@ color:#FFFA85;
 .main_4, .main_4 .black_l{
     color: #B5B9BE;
 }
+.main_4 .splitter_line_div{
+    border-top: 1px solid #555555;
+}
+.main_4 .stream_left {
+    border-left: 1px solid #555555;
+}
+.main_4 .stream_list_ul li {
+    border-bottom: 1px solid #333;
+}
+.main_4 .stream_right_add {
+    border-left: 1px solid #333;
+}
+.main_4 .stream_right_add_userinfo {
+    border-bottom: 1px solid #333;
+}
 .lay_background_4{
     background-attachment: scroll;
     background-image: url("../image/common/stream_topbg4.jpg");
