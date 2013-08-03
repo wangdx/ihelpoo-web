@@ -24,6 +24,13 @@
 $().ready(function(){
 
 	/**
+	 * skin
+	 */
+	var mainoffset = $('.main').offset();
+    var mainpositionleft = mainoffset.left + 190;
+	$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
+	
+	/**
      * pull message
      */
     mseeageNums();
