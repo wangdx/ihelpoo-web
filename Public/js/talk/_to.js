@@ -19,7 +19,7 @@ $(function () {
     var request = {
         url: "http://comet.ihelpoo.com/c1/chat/10000-12419",
         logLevel: 'debug',
-        transport: 'websocket',
+        transport: 'long-polling',
         fallbackTransport: 'long-polling',
         callback: call,
         enableXDR: true,
