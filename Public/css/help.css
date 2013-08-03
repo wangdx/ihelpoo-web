@@ -55,8 +55,8 @@
 }
 .m_h_left_div{
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 10px;
+    top: 10px;
     width: 180px;
     border: 1px solid #CCC;
     border-radius: 3px;
@@ -74,7 +74,7 @@
 }
 .m_h_middle_div{
     margin-left: 200px;
-    width: 600px;
+    width: 580px;
     min-height: 300px;
 }
 .m_h_middle_div h4{
@@ -99,7 +99,7 @@
     position: relative;
 }
 .m_h_middle_sub_div{
-    width: 600px;
+    width: 580px;
     margin-left: 200px;
 }
 .m_h_middle_sub_div h4{
@@ -130,8 +130,8 @@
 }
 .m_h_suer_sub_div{
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 10px;
+    top: 10px;
     width: 180px;
     border: 1px solid #CCC;
     border-radius: 3px;
