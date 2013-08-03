@@ -684,7 +684,7 @@
     top: 90px;
     width: 500px;
     height: 300px;
-    border: 3px solid #EEE;
+    border: 5px solid #EEE;
     background: #f5f5f5;
     border-radius: 3px;
     padding: 5px;
@@ -693,6 +693,28 @@
     -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
     box-shadow: 0 0 10px rgba(123, 214, 246, .6);
     z-index: 9999;
+}
+.change_skin_top_div{
+    background: #F5F5F5;
+    padding: 3px 5px;
+    position: relative;
+}
+#change_skin_close{
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
+#change_skin_div_ul{
+    margin: 10px;
+}
+#change_skin_div_ul li{
+    display: inline-block;
+    margin: 10px;
+}
+#change_skin_save{
+    margin: 0 10px;
+    padding: 10px;
+    border-top: 1px solid #EEE;
 }
 
 /*--- diffusion part ---*/

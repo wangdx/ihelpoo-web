@@ -629,6 +629,18 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .s_l_l_a:hover{ background: #999; color: #FFF;}
 .s_l_l_a_select{ display: inline-block; padding: 3px 0; width: 30px; text-align: center; border: 1px solid #6ccacd; font-size: 12px;font-weight: bold; background: #6ccacd; color: #FFF; }
 
+.close_x{
+    width: 15px;
+    padding: 3px 0;
+    text-align: center;
+    color: #999;
+}
+.close_x:hover{
+    background: #8396A9;
+    color: #FFF;
+    border-radius: 2px;
+}
+
 /*--- change color---*/
 .body_pink{ background-color:#FFCFD6; }
 .body_purple{ background-color:#F3E9F7; }
