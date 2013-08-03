@@ -30,6 +30,59 @@ $().ready(function(){
     var mainpositionleft = mainoffset.left + 190;
 	$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
 	
+	$("#change_skin_select_a").click(function(){
+		$val = $(this).attr("value");
+		if ($val == '1') {
+			$(".header").addClass("header_pink");
+			$("body").addClass("body_pink");
+			$(".main").addClass("main_pink");
+			$(".footer").addClass("footer_pink");
+		} else if ($val == '2') {
+			$(".header").addClass("header_yellow");
+			$("body").addClass("body_yellow");
+			$(".main").addClass("main_yellow");
+			$(".footer").addClass("footer_yellow");
+		} else if ($val == '3') {
+			$(".header").addClass("header_purple");
+			$("body").addClass("body_purple");
+			$(".main").addClass("main_purple");
+			$(".footer").addClass("footer_purple");
+		} else if ($val == '4') {
+			$(".header").addClass("header_black");
+			$("body").addClass("body_black");
+			$(".main").addClass("main_black");
+			$(".footer").addClass("footer_black");
+		} else if ($val == '5') {
+			$(".header").addClass("header_black");
+		}
+    });
+    $('#change_skin_save_btn').live("click", function(){
+    	var val_skin = $val;
+    	if (val_skin > '5' || val_skin < '0') {
+    		val_skin = '0';
+    	}
+    	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+    	$(this).ajaxStart(function(){
+    	    $(this).after($infoLoading);
+        }).ajaxStop(function(){
+    	    $infoLoading.remove();
+        });
+    	$.ajax({
+            type: "POST",
+            url: baseUrl + "ajax/saveskin",
+            data: "skin_value=" + val_skin,
+            dataType: "json",
+            success:function(msg){
+            	if (msg.status == 'yes') {
+            		$("#change_skin_save_info").html("<span class='f12'><span class='icon_right'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
+            	} else {
+            		$("#change_skin_save_info").html("<span class='f12'><span class='icon_wrong'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
+            	}
+            }
+        });
+    });
+	
+	
 	/**
      * pull message
      */
