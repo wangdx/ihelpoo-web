@@ -888,10 +888,10 @@ color:#FFFA85;
 .body_4{
     background-color: #6A6F83;
 }
-.body_4 footer{
+.body_4 .footer,.body_4 .black_l{
     color: #FFF;
 }
-.body_4 footer a{
+.body_4 .footer a{
     color: #5E7C9B;
 }
 
