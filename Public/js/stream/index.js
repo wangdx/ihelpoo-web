@@ -112,7 +112,7 @@ $().ready(function(){
     });
     $('#change_skin_save_btn').live("click", function(){
     	var val_skin = $valofskin;
-    	if (val_skin > '5' || val_skin < '0') {
+    	if (val_skin > '7' || val_skin < '0') {
     		val_skin = '0';
     	}
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});

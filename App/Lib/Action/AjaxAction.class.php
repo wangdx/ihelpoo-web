@@ -203,8 +203,8 @@ class AjaxAction extends Action {
     			$this->ajaxReturn(0,"没有登录呢",'wrong');
     		} else {
     			$skinValue = (int)$_POST['skin_value'];
-    			$IUserLogin = D("IUserLogin");
-    			$recordUserLogin = $IUserLogin->userExists($userloginid);
+    			$UserLogin = M("UserLogin");
+    			$recordUserLogin = $UserLogin->find($userloginid);
     			$userDegree = i_degree($recordUserLogin['active']);
     			if ($userDegree < 3) {
     				$this->ajaxReturn(0, "3级才能更换皮肤", 'wrong');
