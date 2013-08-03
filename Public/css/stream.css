@@ -703,7 +703,7 @@
     top: 3px;
 }
 #change_skin_div_ul{
-    margin: 10px;
+    margin: 10px 5px;
 }
 #change_skin_div_ul li{
     display: inline-block;
@@ -711,7 +711,7 @@
 }
 .change_skin_save{
     margin: 0 10px;
-    padding: 10px;
+    padding: 15px 5px;
     border-top: 1px solid #EEE;
 }
 
