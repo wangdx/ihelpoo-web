@@ -931,6 +931,22 @@
 .i_record_diffusion li{
     padding: 2px 0;
 }
+.i_record_plus{
+    border: 1px dotted #999;
+    border-top: 0px;
+    padding: 10px;
+    background: #f5f5f5;
+}
+.i_record_plus li{
+    padding: 2px 0;
+    display: inline-block;
+}
+*+html .i_record_plus li{
+    display: inline;
+}
+*html .i_record_plus li{
+    display: inline;
+}
 .i_comment_box{
     border-bottom: 3px solid #EEE;
     padding: 10px 5px;
