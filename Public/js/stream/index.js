@@ -27,7 +27,7 @@ $().ready(function(){
 	 * skin
 	 */
 	var mainoffset = $('.main').offset();
-    var mainpositionleft = mainoffset.left + 190;
+    var mainpositionleft = mainoffset.left + 240;
 	$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
 	
 	$(".change_skin_select_a").click(function(){
