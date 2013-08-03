@@ -942,6 +942,7 @@
 .i_record_plus li{
     padding: 2px 0;
     display: inline-block;
+    margin: 0 10px;
 }
 .i_record_plus li span{
     display: block;
