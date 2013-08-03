@@ -71,7 +71,7 @@ $().ready(function(){
 			$changeheader.addClass("header header_3");
 			$changemain.addClass("main main_3");
 			$changelay_background.addClass("lay_background_3");
-			$changebody.addClass("body_2");
+			$changebody.addClass("body_3");
 		} else if ($val == '4') {
 			$(".header").removeClass();
 			$("body").removeClass();
