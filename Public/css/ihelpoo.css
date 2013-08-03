@@ -851,11 +851,14 @@ color:#FFFA85;
     border:1px solid #FCD3DB;
     background:#000;
 }
+.main_4 .stream_right{
+    color: #000;
+}
+.main_4 .stream_right a,.main_4  a{
+    color: #5E7C9B;
+}
 .main_4, .main_4 .black_l{
     color: #B5B9BE;
-}
-.main_4 .stream_right a{
-    color: #5E7C9B;
 }
 .lay_background_4{
     background-attachment: scroll;
