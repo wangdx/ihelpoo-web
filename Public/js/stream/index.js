@@ -641,7 +641,7 @@ $().ready(function(){
      * comment part
      */
     $('.comment_button').click(function(){
-    	$(this).parent().parent().find('.s_li_p_content').append("<div><br /><br /><br /><br />dsfhdjkfhgjkdfhk</div>");
+    	$(this).parent().parent().find('.s_li_s_comment').append("<div><br /><br /><br /><br />dsfhdjkfhgjkdfhk</div>");
     });
 
     /**
