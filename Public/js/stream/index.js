@@ -64,12 +64,14 @@ $().ready(function(){
 			$changelay_background.addClass("lay_background_2");
 			$changebody.addClass("body_2");
 		} else if ($val == '3') {
-			$(".header").removeClass();
-			$("body").removeClass();
-			$(".main").removeClass();
-			$(".header").addClass("header_purple header");
-			$("body").addClass("body_purple");
-			$(".main").addClass("main_purple main");
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header header_3");
+			$changemain.addClass("main main_3");
+			$changelay_background.addClass("lay_background_3");
+			$changebody.addClass("body_2");
 		} else if ($val == '4') {
 			$(".header").removeClass();
 			$("body").removeClass();
