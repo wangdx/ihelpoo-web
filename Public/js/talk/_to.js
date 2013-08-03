@@ -5,13 +5,21 @@ $(function () {
     var chatSocket;
     var transport = 'websocket';
 
+    /**
+     * send messgae
+     */
+    $('#send_message').click(function () {
+        var newContent = $('#send_message_textarea').val();
+        chatSocket.push({data: "message=" + newContent});
+        return false;
+    });
 
 
     // We are now ready to cut the request
     var request = {
         url: "http://comet.ihelpoo.com/c1/chat/10000-12419",
         logLevel: 'debug',
-        transport: 'long-polling',
+        transport: 'websocket',
         fallbackTransport: 'long-polling',
         callback: call,
         enableXDR: true,
@@ -85,15 +93,5 @@ $(function () {
         return null;
     }
 
-    /**
-     * send messgae
-     */
-    $('#send_message').click(function () {
-        var newContent = $('#send_message_textarea').val();
-        alert(newContent);
-        chatSocket.push({data: 'message=' + newContent});
-        alert("+++");
-        return false;
-    });
 
 });
