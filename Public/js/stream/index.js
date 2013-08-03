@@ -648,7 +648,7 @@ $().ready(function(){
             data: {'commentSid':commmentSid},
             datatype: "html",
             success:function(data){
-            	$(this).parent().parent().find('.s_li_s_comment').after("<div>"+data+"</div>");
+            	$(this).parent().parent().find('.s_li_s_comment').after("<ul>"+data+"</ul>");
             }
         });
     	
