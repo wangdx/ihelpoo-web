@@ -32,8 +32,9 @@ $(function () {
     request.onMessage = function (response) {
 //        if(console)console.log("onmessage");
 
-        var msg = response.responseBody;
 
+        var msg = response.responseBody;
+        alert(msg);
         var htmlIn = " <span class='f14 gray '>" + msg + "</span>"
             + " <span class='f12 gray'>" + msg + "</span><br />"
             + msg + "<br /><br />";
