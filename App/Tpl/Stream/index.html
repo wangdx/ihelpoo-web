@@ -413,7 +413,7 @@
                 echo "(".$record['diffusion_co'].")";
             }
 			echo "</a> | ";
-        	echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>评论";
+        	echo "<a class='comment_button' value='i-".$record['sid']."'>评论";
             if (!empty($record['comment_co'])) {
                 echo "(".$record['comment_co'].")";
             }

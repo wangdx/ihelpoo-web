@@ -636,6 +636,13 @@ $().ready(function(){
     $('.diffusion_list_sure').live("click", function(){
         $('#infotextareacheck').slideUp('normal');
     });
+    
+    /**
+     * comment part
+     */
+    $('.comment_button').click(function(){
+    	$('.s_li_p_content').append("dsfhdjkfhgjkdfhk");
+    });
 
     /**
      * enlarge image
