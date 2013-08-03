@@ -785,7 +785,6 @@ class StreamAction extends Action
 	        ->field('cid,i_user_login.uid,sid,toid,content,image,diffusion_co,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	        ->limit(10)->order('cid DESC')->select();
 	        foreach ($sayComment as $comment) {
-	        	echo "<li>";
 	        	echo '<div class="i_c_l_u_li_div black_l">';
 		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a>';
 		    	echo '<span class="f12 gray fb">';
@@ -812,7 +811,6 @@ class StreamAction extends Action
 			    }
 		    	echo '</span>';
 		    	echo '</div>';
-	        	echo "</li>";
 	        }
     	}
     }
