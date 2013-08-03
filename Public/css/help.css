@@ -1,6 +1,8 @@
 .main_help_box{
     background: #FFF;
     padding: 10px;
+    margin: 10px auto;
+    width: 980px;
 }
 .help_nav{
     width:1000px;
