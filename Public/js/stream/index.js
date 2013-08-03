@@ -31,14 +31,20 @@ $().ready(function(){
 	$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
 	
 	$(".change_skin_select_a").click(function(){
+		var $changeheader = $(".header");
+		var $changemain = $(".main");
+		var $changelay_background = $(".lay_background");
+		var $changebody = $(body);
 		$val = $(this).attr("value");
 		if ($val == '1') {
-			$(".header").removeClass();
-			$("body").removeClass();
-			$(".main").removeClass();
-			$(".header").addClass("header_pink header");
-			$("body").addClass("body_pink");
-			$(".main").addClass("main_pink main");
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header_1");
+			$changemain.addClass("main_1");
+			$changelay_background.addClass("lay_background_1");
+			$changebody.addClass("body_1");
 		} else if ($val == '2') {
 			$(".header").removeClass();
 			$("body").removeClass();
