@@ -9,7 +9,6 @@ $(function(){
     // We are now ready to cut the request
     var request = {
         url: "http://comet.ihelpoo.com/c1/chat/10000-12419",
-
         logLevel: 'debug',
         transport: 'websocket',
         fallbackTransport: 'long-polling',
