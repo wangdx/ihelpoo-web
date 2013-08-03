@@ -26,9 +26,15 @@ $().ready(function(){
 	/**
 	 * skin
 	 */
-	var mainoffset = $('.main').offset();
-    var mainpositionleft = mainoffset.left + 240;
-	$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
+	$("#change_skin").click(function(){
+		var mainoffset = $('.main').offset();
+	    var mainpositionleft = mainoffset.left + 240;
+		$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
+	});
+	
+	$("#change_skin_close").click(function(){
+		$("#change_skin_div").slideUp("fast");
+	});
 	
 	$(".change_skin_select_a").click(function(){
 		var $changeheader = $(".header");

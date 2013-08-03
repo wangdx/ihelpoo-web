@@ -681,6 +681,7 @@
     -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
     box-shadow: 0 0 10px rgba(123, 214, 246, .6);
     z-index: 9999;
+    display: none;
 }
 .change_skin_top_div{
     background: #EEE;
