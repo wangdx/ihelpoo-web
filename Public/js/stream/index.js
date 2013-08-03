@@ -30,7 +30,7 @@ $().ready(function(){
     var mainpositionleft = mainoffset.left + 190;
 	$("#change_skin_div").css({left : mainpositionleft}).slideDown("fast");
 	
-	$("#change_skin_select_a").click(function(){
+	$(".change_skin_select_a").click(function(){
 		$val = $(this).attr("value");
 		if ($val == '1') {
 			$(".header").addClass("header_pink");
