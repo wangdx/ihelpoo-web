@@ -7,13 +7,18 @@ $(function(){
 
 
     // We are now ready to cut the request
-    var request = { url: document.location.toString() + 'chat',
-        contentType : "application/json",
-        logLevel : 'debug',
-        transport : transport ,
-        trackMessageLength : true,
-        reconnectInterval : 5000,
-        fallbackTransport: 'long-polling'};
+    var request = {
+        url: "http://comet.ihelpoo.com/c1/chat/10000-12419",
+
+        logLevel: 'debug',
+        transport: 'websocket',
+        fallbackTransport: 'long-polling',
+        callback: call,
+        enableXDR: true,
+        dropAtmosphereHeaders: true,
+        readResponsesHeaders: false,
+        attachHeadersAsQueryString: true
+    };
 
 
     request.onOpen = function(response) {
@@ -25,18 +30,20 @@ $(function(){
         console.log("onmessage");
     };
 
+    chatSocket = socket.subscribe(request);
 
 
-    chatSocket = $.atmosphere.subscribe("http://comet.ihelpoo.com/c1/chat/10000-12419", globalCallback, $.atmosphere.request = {
-        logLevel: 'debug',
-        transport: 'websocket',
-        fallbackTransport: 'long-polling',
-        callback: call,
-        enableXDR: true,
-        dropAtmosphereHeaders: true,
-        readResponsesHeaders: false,
-        attachHeadersAsQueryString: true
-    });
+
+//    chatSocket = $.atmosphere.subscribe("http://comet.ihelpoo.com/c1/chat/10000-12419", globalCallback, $.atmosphere.request = {
+//        logLevel: 'debug',
+//        transport: 'websocket',
+//        fallbackTransport: 'long-polling',
+//        callback: call,
+//        enableXDR: true,
+//        dropAtmosphereHeaders: true,
+//        readResponsesHeaders: false,
+//        attachHeadersAsQueryString: true
+//    });
 
     function globalCallback(response) {
         console.log("++++");
@@ -70,7 +77,8 @@ $(function(){
     /**
      * send messgae
      */
-    $('#send_message').click(function () {  chatSocket.push({data: 'message=hello, world'});
+    $('#send_message').click(function () {
+        chatSocket.push({data: 'message=hello, world'});
         console.log(chatSocket);
         return false;
     });
