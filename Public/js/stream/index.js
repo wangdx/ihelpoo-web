@@ -641,14 +641,15 @@ $().ready(function(){
      * comment part
      */
     $('.comment_button').click(function(){
-    	var commmentSid = $(this).attr('value');
+    	var $this = $(this);
+    	var commmentSid = $this.attr('value');
     	$.ajax({
             type: "POST",
             url: baseUrl + "stream/ajaxcomment",
             data: {'commentSid':commmentSid},
             dataType: "html",
             success:function(data){
-            	$(this).parent().parent().find('.s_li_s_comment').after("<ul>sdfds</ul>");
+            	$this.parent().parent().find('.s_li_s_comment').after("<ul>sdfds</ul>");
             }
         });
     	
