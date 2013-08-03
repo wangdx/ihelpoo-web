@@ -975,6 +975,9 @@ color:#FFFA85;
 .body_6{
     background-color: #000;
 }
+.body_6 .help_nav_ul li a, .body_4 .help_nav_ul li a{
+    color: #FFF;
+}
 
 /*--- skinbrowngirl ---*/
 .header_7{
