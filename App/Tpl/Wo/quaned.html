@@ -15,10 +15,10 @@
   <ul class="quan_ul">
   <?php foreach ($userPriorityeds as $userPriority) : ?>
   <li>
-      <a href="__ROOT__/stream/u/<?php echo $userPriority['uid'] ?>">
+      <a href="__ROOT__/wo/<?php echo $userPriority['uid'] ?>">
         <img src="<?php echo i_icon_check($userPriority['uid'], $userPriority['icon_url'], 's'); ?>" width="68" class="radius3" />
       </a>
-      <a href="__ROOT__/stream/u/<?php echo $userPriority['uid'] ?>"><?php echo $userPriority['nickname'] ?></a>
+      <a href="__ROOT__/wo/<?php echo $userPriority['uid'] ?>"><?php echo $userPriority['nickname'] ?></a>
       <span class="sex<?php echo $userPriority['sex'] ?>"></span>
       <span class="f12 gray"><?php echo i_grade($userPriority['enteryear']) ?></span>
       <span class="level<?php echo i_degree($userPriority['active']) ?>" title="等级: level<?php echo i_degree($userPriority['active']) ?>"></span> &nbsp;
