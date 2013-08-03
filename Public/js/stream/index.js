@@ -33,7 +33,7 @@ $().ready(function(){
 	$(".change_skin_select_a").click(function(){
 		var $changeheader = $(".header");
 		var $changemain = $(".main");
-		var $changelay_background = $(".lay_background");
+		var $changelay_background = $("#layBackground");
 		var $changebody = $("body");
 		$val = $(this).attr("value");
 		if ($val == '0') {
