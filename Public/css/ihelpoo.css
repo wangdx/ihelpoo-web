@@ -849,7 +849,7 @@ color:#FFFA85;
     width:980px;
     margin:30px auto 10px;
     padding:10px;
-    border:1px solid #FCD3DB;
+    border:1px solid #000;
     background:#000;
 }
 .main_4 .stream_right{
@@ -879,6 +879,9 @@ color:#FFFA85;
 .main_4 .grade_ratio_box_ul{
     background: #333333;
     border: 1px solid #666;
+}
+.main_4 wo_main_ul{
+    border-color: #333;
 }
 .main_4 .s_l_l_a {
     border: 1px solid #666666;
