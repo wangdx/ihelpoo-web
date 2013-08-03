@@ -5,14 +5,6 @@ $(function () {
     var chatSocket;
     var transport = 'websocket';
 
-    /**
-     * send messgae
-     */
-    $('#send_message').click(function () {
-        var newContent = $('#send_message_textarea').val();
-        chatSocket.push({data: 'message=' + newContent});
-        return false;
-    });
 
 
     // We are now ready to cut the request
@@ -93,5 +85,15 @@ $(function () {
         return null;
     }
 
+    /**
+     * send messgae
+     */
+    $('#send_message').click(function () {
+        var newContent = $('#send_message_textarea').val();
+        alert(newContent);
+        chatSocket.push({data: 'message=' + newContent});
+        alert("+++");
+        return false;
+    });
 
 });
