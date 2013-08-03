@@ -73,12 +73,14 @@ $().ready(function(){
 			$changelay_background.addClass("lay_background_3");
 			$changebody.addClass("body_3");
 		} else if ($val == '4') {
-			$(".header").removeClass();
-			$("body").removeClass();
-			$(".main").removeClass();
-			$(".header").addClass("header_black header");
-			$("body").addClass("body_black");
-			$(".main").addClass("main_black main");
+			$changeheader.removeClass();
+			$changemain.removeClass();
+			$changelay_background.removeClass();
+			$changebody.removeClass();
+			$changeheader.addClass("header header_4");
+			$changemain.addClass("main main_4");
+			$changelay_background.addClass("lay_background_4");
+			$changebody.addClass("body_4");
 		} else if ($val == '5') {
 			$(".header").addClass("header_black");
 		}

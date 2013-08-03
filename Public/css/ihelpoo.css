@@ -831,7 +831,38 @@ color:#FFFA85;
 .body_3{
     background-color: #F3E9F7;
 }
-
+/*--- black light ---*/
+.header_4{
+    height:16px;
+    width:100%;
+    padding:10px 0;
+    background:url(../image/common/bg_nav_black.png?id=1) repeat-x 0px 0px;
+    border-bottom:2px solid #C00;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:9999;
+}
+.main_4{
+    min-height:500px;
+    width:980px;
+    margin:30px auto 10px;
+    padding:10px;
+    border:1px solid #FCD3DB;
+    background:#000;
+}
+.lay_background_4{
+    background-attachment: scroll;
+    background-image: url("../image/common/stream_topbg4.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-top: 35px;
+    position: relative;
+    top: 0;
+}
+.body_4{
+    background-color: #B5B9BE;
+}
 
 .body_purple{ background-color:#F3E9F7; }
 .body_black{ background-color:#666; }
