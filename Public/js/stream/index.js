@@ -134,10 +134,10 @@ $().ready(function(){
             dataType: "json",
             success:function(msg){
             	if (msg.status == 'yes') {
-            		$("#change_skin_save_info").fadeIn("fast").html("<span class='f12'><span class='icon_right'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
+            		$("#change_skin_save_info").fadeIn("fast").html("<span class='f12'><span class='icon_right'></span> " + msg.info + "</span>").delay(1000).fadeOut("slow");
             		window.location = baseUrl + "stream";
             	} else {
-            		$("#change_skin_save_info").fadeIn("fast").html("<span class='f12'><span class='icon_wrong'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
+            		$("#change_skin_save_info").fadeIn("fast").html("<span class='f12'><span class='icon_wrong'></span> " + msg.info + "</span>").delay(1000).fadeOut("slow");
             	}
             }
         });
