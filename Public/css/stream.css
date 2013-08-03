@@ -677,6 +677,21 @@
     box-shadow:0 0 10px rgba(123, 214, 246, .6);
 }
 
+/*--- change skin ---*/
+#change_skin_div{
+    position: absolute;
+    margin: 50px;
+    left: 100px;
+    width: 500px;
+    height: 300px;
+    border: 3px solid #7BD6F6;
+    -moz-outline: 4px solid #E2F5FB;
+    -moz-outline-radius: 8px;
+    -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+    box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+    z-index: 9999;
+}
+
 /*--- diffusion part ---*/
 .diffusion_list{
     width: 300px;
