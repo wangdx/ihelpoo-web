@@ -721,12 +721,13 @@
     font-size: 12px;
     color: #FFF;
     text-align: center;
-    padding: 2px 3px;
+    padding: 1px 3px;
     background: #C00;
     border-radius: 3px;
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 3px;
+    right: 3px;
+    font-style: normal;
 }
 .change_skin_save{
     margin: 0 10px;
