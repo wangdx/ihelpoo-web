@@ -656,6 +656,7 @@ $().ready(function(){
 //	            global: false,
 	            dataType: "html",
 	            success:function(data){
+	            	$commentViewDivBox.slideDown("fast").html("");
 	            	$commentViewDivBox.slideDown("fast").html(data);
 //	            	$.ajax({global:true});
 	            }
