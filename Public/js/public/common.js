@@ -86,7 +86,7 @@ $().ready(function(){
      * ajax info div position
      */
     var mainoffset = $('.main').offset();
-    var mainpositionleft = mainoffset.left + 240;
+    var mainpositionleft = mainoffset.left + 260;
 	$("#ajax_info_div").css({left : mainpositionleft});
 });
 function getStringLength(str) {
