@@ -349,20 +349,26 @@
 .comment_view_div_box_reply{
     margin-bottom: 10px;
     position: relative;
+    height: 80px;
 }
 .comment_view_div_box_reply_textarea{
     width: 400px;
-    height: 75px;
+    height: 60px;
     border-radius: 3px;
 }
 #comment_textareaicon{
     position: absolute;
-    left: 2px;
+    left: 5px;
     bottom: 3px;
+}
+.comment_view_div_box_reply_submit{
+    position: absolute;
+    right: 10px;
+    top: 55px;
 }
 #comment_textareaimg{
     position: absolute;
-    left: 20px;
+    left: 30px;
     bottom: 3px;
 }
 .comment_view_div_box{
