@@ -653,7 +653,7 @@ $().ready(function(){
 	            data: {'commentSid':commmentSid},
 	            dataType: "html",
 	            success:function(data){
-	            	$commentViewDivBox.html(data);
+	            	$commentViewDivBox.slideDown("fast").html(data);
 	            }
 	        });
     	} else {
