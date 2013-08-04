@@ -678,9 +678,9 @@ $().ready(function(){
     	},1000);
     }).mouseleave(function(){
     	clearTimeout(t_plus);
-    	$('.user_info_div').hover(function(){},
+    	$('.record_plus_div').hover(function(){},
     	function(){
-    		$(this).fadeOut("slow");
+    		$(this).fadeOut("fast");
     	});
     });
     
