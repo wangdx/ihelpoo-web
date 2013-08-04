@@ -345,6 +345,21 @@
 	//bottom: 15px;
 	//right: 10px;
 }
+
+.comment_view_div_box_reply{
+    margin-bottom: 10px;
+    position: relative;
+}
+.comment_view_div_box_reply_textarea{
+    width: 300px;
+    height: 80px;
+    border-radius: 3px;
+}
+#comment_textareaicon{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
 .comment_view_div_box{
     margin:10px 0 0 115px;
     border:1px solid #EEE;
