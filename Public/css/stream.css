@@ -367,13 +367,14 @@
     right: 30px;
     bottom: 0;
     width: 200px;
+    display: none;
 }
 .comment_reply_verification_stream_code_img{
     vertical-align: text-bottom;
 }
 .comment_reply_verification_streamcode{
     width: 60px;
-    padding: 2px 3px;
+    padding: 3px;
     -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
     border: 1px solid #D0D0D0;
     color: #666666;
@@ -381,6 +382,7 @@
     outline: medium none;
     word-wrap: break-word;
     vertical-align: text-bottom;
+    margin-left: 5px;
 }
 
 .comment_reply_submit{
@@ -1217,7 +1219,7 @@
 }
 .comment_reply_verificationcode{
     width: 60px;
-    padding: 2px 3px;
+    padding: 3px;
     -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
     border: 1px solid #D0D0D0;
     color: #666666;
@@ -1225,6 +1227,7 @@
     outline: medium none;
     word-wrap: break-word;
     vertical-align: text-bottom;
+    margin-left: 5px;
 }
 .i_comment_list_num{
     margin: 10px;
