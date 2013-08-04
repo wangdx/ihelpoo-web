@@ -356,10 +356,14 @@
     border-bottom: 1px solid #EEE;
     position: relative;
 }
+.c_v_d_b_ul_li_content{
+    margin: 0 0 15px 50px;
+}
+
 .c_v_d_b_ul_li_content_reply{
     position: absolute;
     right: 5px;
-    top: 5px;
+    bottom: 5px;
 }
 
 .steam_repate_li_show{

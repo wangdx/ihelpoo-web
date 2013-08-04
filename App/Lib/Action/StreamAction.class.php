@@ -790,6 +790,8 @@ class StreamAction extends Action
 	        foreach ($sayComment as $comment) {
 	        	echo '<li>';
 		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
+		    	
+		    	echo '<p class="c_v_d_b_ul_li_content f12">';
 		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a>';
 		    	echo '<span class="f12 gray fb">';
 		      	if (!empty($comment['toid'])) {
@@ -797,8 +799,8 @@ class StreamAction extends Action
          		 	echo "[回复:".$commentReplyUser['nickname']."]";
 				} 
 		    	echo '</span>';
-		    	echo '<p class="c_v_d_b_ul_li_content">';
 		    	echo $emotion->transEmotion(stripslashes($comment['content']));
+		    	echo '<span class="gray">('.i_time($comment['time']).')</span>';
 		    	echo '</p>';
 				if (!empty($comment['image'])) {
 					echo '<p class="c_v_d_b_ul_li_content_image">';
@@ -806,7 +808,6 @@ class StreamAction extends Action
 					echo '<img src="'.i_image_thumbnail($comment['image']).'" class="" />';
 					echo '</a></p>';
 				}
-		    	echo '<span class="f12 gray">'.i_time($comment['time']).'</span>';
 		    	echo '<span class="f12 c_v_d_b_ul_li_content_reply">';
 		    	if ($comment['uid'] == $userloginid || $comment['record_owneruid'] == $userloginid) {
 				    echo '<input type="hidden" class="reply_delete_cid" name="delcomment" value="'.$comment['cid'].'" />';
