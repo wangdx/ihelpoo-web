@@ -657,7 +657,7 @@ $().ready(function(){
 	            }
 	        });
     	} else {
-    		$this.attr({btnisclick: 'false'});
+    		$this.attr({isclick: 'false'});
     		$commentViewDivBox.slideUp("fast");
     	}
     });
