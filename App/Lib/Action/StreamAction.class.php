@@ -898,13 +898,12 @@ class StreamAction extends Action
         $userloginid = session('userloginid');
         $sid = $sidStringArr['1'];
         $RecordPlus = M('RecordPlus');
-        $resultsRecordPlus = $RecordPlus->where("sid = $sid")->select();
-        /*->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
+        $resultsRecordPlus = $RecordPlus->where("sid = $sid")
+        ->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
         ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,icon_url")
         ->limit(5)
         ->order("create_time DESC")
-        ->select();*/
-        var_dump($resultsRecordPlus);
+        ->select();
         if (!empty($resultsRecordPlus)) {
 	        echo '<ul class="stream_plus_users_ul">';
 	        foreach ($resultsRecordPlus as $recordPlus) {
