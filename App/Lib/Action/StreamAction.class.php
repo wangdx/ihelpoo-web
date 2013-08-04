@@ -794,6 +794,10 @@ class StreamAction extends Action
 	        echo '<div class="comment_view_div_box_reply" sid='.$commentSid.'>';
 	        echo '<textarea class="comment_view_div_box_reply_textarea textarea_style"></textarea>';
 	        echo '<span class="post_icon comment_textareaicon_reply" title="表情"></span>';
+	        echo '<span class="comment_reply_verification_stream">';
+		    echo '<img class="comment_reply_verification_stream_code_img" src="" />';
+		    echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
+		    echo '</span>';
 	        echo '<a class="comment_reply_submit btn">评论</a>';
 	        echo '</div>';
 	        echo '<ul class="comment_view_div_box_ul">';
@@ -829,6 +833,9 @@ class StreamAction extends Action
 	        		echo '<div class="comment_view_div_box_replyinner" sid='.$comment['sid'].' cid='.$comment['cid'].' toid='.$comment['uid'].'>';
 	        		echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
 	        		echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
+	        		echo '<span class="comment_reply_verification_stream">';
+	        		echo '<img class="comment_reply_verification_stream_code_img" src="" />';
+	        		echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
 	        		echo '<a class="comment_reply_submit btn">回复</a>';
 	        		echo '</div>';
 			    }

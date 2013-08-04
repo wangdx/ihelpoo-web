@@ -361,6 +361,24 @@
     left: 0px;
     bottom: 3px;
 }
+
+.comment_reply_verification_stream{
+    position: absolute;
+    right: 60px;
+    bottom: 0;
+    width: 200px;
+}
+.comment_reply_verification_stream_code_img{
+    vertical-align: text-bottom;
+}
+.comment_reply_verification_streamcode{
+    width: 60px;
+    padding: 2px 3px;
+    color: #666;
+    font-size: 12px;
+    vertical-align: text-bottom;
+}
+
 .comment_reply_submit{
     position: absolute;
     right: 0;
