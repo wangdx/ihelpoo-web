@@ -1042,7 +1042,7 @@ color:#FFFA85;
     height: 150px;
     border: 3px solid #CCC;
     background: #FFF;
-    position: absolute;
+    position: fixed;
     top: 120px;
     z-index: 11111;
 }
