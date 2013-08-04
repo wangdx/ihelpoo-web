@@ -649,6 +649,8 @@ class ItemAction extends Action {
     				/**
     				 * print_r json
     				 */
+	                Vendor('Ihelpoo.Emotion');
+	                $emotion = new Emotion();
     				$toUserLogin = $UserLogin->find($toid);
     				$jsonEncode = array(
 	                    'uid' => $userloginid,
@@ -658,7 +660,7 @@ class ItemAction extends Action {
 	                    'cid' => $affetced,
 	                    'toid' => $toid,
 	                    'toidnickname' => $toUserLogin['nickname'],
-	                    'content' => $commentcontent,
+	                    'content' => $emotion->transEmotion(stripslashes($comment['content'])),
     					'image' => $imageurl,
 	                    'time' => i_time(time())
     				);
