@@ -423,27 +423,31 @@ $().ready(function(){
 	            		$this.parent().find('.comment_reply_verification_stream').fadeIn('fast');
 	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi' });
 	            		$this.parent().find('.comment_reply_verification_streamcode').val('');
-	            	} /*else if (msg.status == 'yes') {
-	                    $comment_reply_div_box.slideUp('fast');
-	                    $comment_reply_form.find('.comment_reply_textarea').val('');
-	                    $("#ajax_info_div").fadeIn('fast').html('回复成功').delay(800).fadeOut('fast');
-	                    var commentContent = "<li class='bg_l_yellow'>";
-	                    commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
-	                    commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
-	                    commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
-	                    commentContent += "<div class='i_c_l_u_li_div black_l'>";
-	                    commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
+	            	} else if (msg.status == 'yes') {
+	                    $('.comment_view_div_box_replyinner').slideUp('fast');
+	                    $('.comment_view_div_box_reply_textarea').val('');
+	                    $('.comment_view_div_box_replyinner_textarea').val('');
+	                    
+	                    var commentContent = '<li>'
+	                    + '<a href="/wo/' + msg.data.uid + '" class="getuserinfo c_v_d_b_ul_li_icon" userid="' + msg.data.uid + '"><img src="' + msg.data.uidicon + '" height="30" class="radius3" /></a>'
+	                    + '<p class="c_v_d_b_ul_li_content">'
+	                    + '<a href="/wo/' + msg.data.uid + '" class="getuserinfo" userid="' + msg.data.uid + '">' + msg.data.uidnickname + ':</a> '
+	                    + '<span class="gray fb">';
 	                    if (msg.data.toid != '') {
-	                        commentContent += "<span class='f12 gray fb'>[回复:" + msg.data.toidnickname + "]</span>";
+	                        commentContent += '[回复:' + msg.data.toidnickname + ']';
 	                    }
-	                    commentContent += msg.data.content;
-	                    commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
-	                    $('.i_comment_list_ul').append(commentContent);
-	                    var bodyHeight = $("body").height();
-	                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+	                    commentContent += '</span>'
+	                    + msg.data.content
+	                    + ' <span class="gray">(' + msg.data.time + ')</span>'
+	                    + '</p>'
+	                    + '<span class="c_v_d_b_ul_li_content_reply">'
+	                    + '<a class="c_v_d_b_ul_li_content_del gray" value="' + msg.data.cid + '">删除</a>'
+	    		    	+ '</span>';
+	    		    	
+	                    $('.comment_view_div_box_ul').append(commentContent);
 	                } else {
-	                    $("#ajax_info_div").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
-	                }*/
+	                    ajaxInfo(msg.info);
+	                }
 	            }
 	        });
         }

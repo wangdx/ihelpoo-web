@@ -655,11 +655,12 @@ class ItemAction extends Action {
 	                    'uidnickname' => $recordUserLogin['nickname'],
     					'uidicon' => i_icon_check($userloginid, $recordUserLogin['icon_url'], 's'),
 	                    'sid' => $sid,
+	                    'cid' => $affetced,
 	                    'toid' => $toid,
 	                    'toidnickname' => $toUserLogin['nickname'],
 	                    'content' => $commentcontent,
     					'image' => $imageurl,
-	                    'time' => date("Y-m-d H:i", time()),
+	                    'time' => i_time(time())
     				);
     				$this->ajaxReturn($jsonEncode,"评论成功",'yes');
     			}
