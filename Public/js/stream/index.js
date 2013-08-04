@@ -642,17 +642,24 @@ $().ready(function(){
      */
     $('.comment_button').click(function(){
     	var $this = $(this);
+    	var $commentViewDivBox = $(this).parent().parent().find(".comment_view_div_box")
     	var commmentSid = $this.attr('value');
-    	$.ajax({
-            type: "POST",
-            url: baseUrl + "stream/ajaxcomment",
-            data: {'commentSid':commmentSid},
-            dataType: "html",
-            success:function(data){
-            	$this.parent().after("<div style='margin:10px 0 0 115px;border:1px solid #EEE;background:#f5f5f5;padding:10px;'>"+data+"</div>");
-            }
-        });
-    	
+    	var commentBtnIsClick = $this.attr('isclick');
+    	if (commentBtnIsClick == 'false') {
+    		$this.attr({isclick: 'true'});
+	    	$.ajax({
+	            type: "POST",
+	            url: baseUrl + "stream/ajaxcomment",
+	            data: {'commentSid':commmentSid},
+	            dataType: "html",
+	            success:function(data){
+	            	$commentViewDivBox.html(data);
+	            }
+	        });
+    	} else {
+    		$this.attr({btnisclick: 'false'});
+    		$commentViewDivBox.slideUp("fast");
+    	}
     });
 
     /**
