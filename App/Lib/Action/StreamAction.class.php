@@ -800,7 +800,7 @@ class StreamAction extends Action
 				} 
 		    	echo '</span>';
 		    	echo $emotion->transEmotion(stripslashes($comment['content']));
-		    	echo '<span class="gray">('.i_time($comment['time']).')</span>';
+		    	echo ' <span class="gray">('.i_time($comment['time']).')</span>';
 		    	echo '</p>';
 				if (!empty($comment['image'])) {
 					echo '<p class="c_v_d_b_ul_li_content_image">';
