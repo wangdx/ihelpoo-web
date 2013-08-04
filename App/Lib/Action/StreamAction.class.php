@@ -790,9 +790,9 @@ class StreamAction extends Action
 	        echo '<ul class="comment_view_div_box_ul">';
 	        foreach ($sayComment as $comment) {
 	        	echo '<li>';
-		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo c_v_d_b_ul_li_icon" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
+		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo c_v_d_b_ul_li_icon" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
 		    	echo '<p class="c_v_d_b_ul_li_content">';
-		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a> ';
+		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a> ';
 		    	echo '<span class="gray fb">';
 		      	if (!empty($comment['toid'])) {
 		  			$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
