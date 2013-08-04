@@ -638,7 +638,7 @@ $().ready(function(){
     });
     
     /**
-     * comment part
+     * ajax comment part
      */
     $('.comment_button').click(function(){
     	var $this = $(this);
