@@ -648,8 +648,6 @@ $().ready(function(){
     		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
     		$this.ajaxStart(function(){
     			$commentViewDivBox.slideDown("fast").html($infoLoading);
-            }).ajaxStop(function(){
-    			$commentViewDivBox.slideUp("fast");
             });
     		$.ajax({
 	            type: "POST",
@@ -659,7 +657,7 @@ $().ready(function(){
 	            dataType: "html",
 	            success:function(data){
 	            	$commentViewDivBox.slideDown("fast").html(data);
-	            	$.ajax({global:true});
+//	            	$.ajax({global:true});
 	            }
 	        });
     	} else {
