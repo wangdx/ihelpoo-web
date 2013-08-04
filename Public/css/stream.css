@@ -397,6 +397,13 @@
 .c_v_d_b_ul_li_content{
     margin: 0 0 15px 50px;
 }
+.c_v_d_b_ul_li_content_image{
+     margin: 0 0 10px 50px;
+}
+.c_v_d_b_ul_li_content_image img{
+    border: 1px solid #666;
+    border-radius: 3px;
+}
 .c_v_d_b_ul_li_content_reply{
     position: absolute;
     right: 0px;
