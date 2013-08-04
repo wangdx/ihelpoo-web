@@ -117,7 +117,11 @@ function flashPic(name){
         });
     });
 }
-
+function ajaxInfo(htmlobj) {
+	$("#ajax_info_div_outer").fadeIn('fast');
+    $("#ajax_info_div").fadeIn('fast');
+    $("#ajax_info_div_msg").fadeIn('fast').html(htmlobj);
+}
 function mseeageNumsOnce() {
 	$.ajax({
         type: "POST",
