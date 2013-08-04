@@ -352,7 +352,7 @@
     height: 95px;
 }
 .comment_view_div_box_reply_textarea{
-    width: 400px;
+    width: 460px;
     height: 60px;
     border-radius: 3px;
 }
@@ -368,8 +368,8 @@
 }
 .comment_view_div_box_reply_submit{
     position: absolute;
-    right: 20px;
-    top: 45px;
+    right: 0;
+    bottom: 0;
 }
 
 .comment_view_div_box{
