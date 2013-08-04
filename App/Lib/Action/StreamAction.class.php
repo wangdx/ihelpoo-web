@@ -836,6 +836,7 @@ class StreamAction extends Action
 	        		echo '<span class="comment_reply_verification_stream">';
 	        		echo '<img class="comment_reply_verification_stream_code_img" src="" />';
 	        		echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
+	        		echo '</span>';
 	        		echo '<a class="comment_reply_submit btn">回复</a>';
 	        		echo '</div>';
 			    }
