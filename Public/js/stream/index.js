@@ -646,7 +646,9 @@ $().ready(function(){
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
     		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
-	    	$.ajax({
+	    	$.ajaxStart(function(){
+    			$commentViewDivBox.slideDown("fast").html($infoLoading);
+            }).ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
 	            global: false,
@@ -655,9 +657,7 @@ $().ready(function(){
 	            success:function(data){
 	            	$commentViewDivBox.slideDown("fast").html(data);
 	            }
-	        }).ajaxStart(function(){
-    			$commentViewDivBox.slideDown("fast").html($infoLoading);
-            });
+	        });
     	} else {
     		$this.attr({isclick: 'false'});
     		$commentViewDivBox.slideUp("fast");
