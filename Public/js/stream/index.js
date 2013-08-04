@@ -640,7 +640,7 @@ $().ready(function(){
      */
     $('.comment_button').click(function(){
     	var $this = $(this);
-    	$this.parent().find(".comment_view_div_box").hide();
+    	$(".comment_view_div_box").hide();
     	var $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box")
     	var commmentSid = $this.attr('value');
     	var commentBtnIsClick = $this.attr('isclick');
@@ -654,12 +654,9 @@ $().ready(function(){
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
 	            data: {'commentSid':commmentSid},
-//	            global: false,
 	            dataType: "html",
 	            success:function(data){
-	            	$commentViewDivBox.slideDown("fast").html("");
 	            	$commentViewDivBox.slideDown("fast").html(data);
-//	            	$.ajax({global:true});
 	            }
 	        });
     	} else {
