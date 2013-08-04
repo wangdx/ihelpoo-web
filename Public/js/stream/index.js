@@ -646,7 +646,7 @@ $().ready(function(){
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
     		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
-    		$commentViewDivBox.slideDown("fast").html($infoLoading);
+    		$commentViewDivBox.slideDown("fast").html($infoLoading + " <span class='f12 gray'>正在加载中，请稍等...</span>");
     		$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
