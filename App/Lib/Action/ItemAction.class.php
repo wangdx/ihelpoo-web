@@ -660,7 +660,7 @@ class ItemAction extends Action {
 	                    'cid' => $affetced,
 	                    'toid' => $toid,
 	                    'toidnickname' => $toUserLogin['nickname'],
-	                    'content' => $emotion->transEmotion(stripslashes($comment['content'])),
+	                    'content' => $emotion->transEmotion(stripslashes($commentcontent)),
     					'image' => $imageurl,
 	                    'time' => i_time(time())
     				);
