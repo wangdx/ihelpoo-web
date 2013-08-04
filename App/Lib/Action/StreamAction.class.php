@@ -896,7 +896,7 @@ class StreamAction extends Action
     	}
     	$sidStringArr = explode("-", $_POST['sidString']);
         $userloginid = session('userloginid');
-        $sid = $sidStringArr[1];
+        $sid = $sidStringArr['1'];
         $RecordPlus = M('RecordPlus');
         $resultsRecordPlus = $RecordPlus->where("sid = $sid")->select();
         /*->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
