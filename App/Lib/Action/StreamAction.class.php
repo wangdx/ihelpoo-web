@@ -792,11 +792,11 @@ class StreamAction extends Action
 	        	echo '<li>';
 		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo c_v_d_b_ul_li_icon" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
 		    	echo '<p class="c_v_d_b_ul_li_content">';
-		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a> ';
+		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].':</a> ';
 		    	echo '<span class="gray fb">';
 		      	if (!empty($comment['toid'])) {
 		  			$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
-         		 	echo "[回复:".$commentReplyUser['nickname']."]";
+         		 	echo "[回复:".$commentReplyUser['nickname']."] ";
 				} 
 		    	echo '</span>';
 		    	echo $emotion->transEmotion(stripslashes($comment['content']));
@@ -821,7 +821,7 @@ class StreamAction extends Action
 	        }
 	        echo '</ul>';
 	        if ($sayCommentNums > 10) {
-	        	echo "<div>后面还有".($sayCommentNums - 10)."条评论，<a href='/item/say/".$commentSid."'>点击查看>></a></div>";
+	        	echo "<div>后面还有".($sayCommentNums - 10)."条评论，<a href='/item/say/".$commentSid."'>点击查看&gt;&gt;</a></div>";
 	        }
     	}
     }
