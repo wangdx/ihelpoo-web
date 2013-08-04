@@ -646,9 +646,10 @@ $().ready(function(){
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
     		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
-	    	$.ajaxStart(function(){
+    		$this.ajaxStart(function(){
     			$commentViewDivBox.slideDown("fast").html($infoLoading);
-            }).ajax({
+            });
+    		$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
 	            global: false,
