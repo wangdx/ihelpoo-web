@@ -383,7 +383,7 @@ $().ready(function(){
     	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
     	$(this).addClass('bg_emotionbox_page_select');
     	$page = $(this).attr("value");
-        $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
+        $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
     
     /**
