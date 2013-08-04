@@ -638,7 +638,7 @@ $().ready(function(){
     /**
      * ajax comment part
      */
-    $('.comment_button').unbind().click(function(){
+    $('.comment_button').unbind("click").click(function(){
     	var $this = $(this);
     	var commmentSid = $this.attr('value');
     	var commentBtnIsClick = $this.attr('isclick');
