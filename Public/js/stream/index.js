@@ -663,7 +663,7 @@ $().ready(function(){
     $(".plus_button").mouseenter(function(e){
     	$this = $(this);
     	t=setTimeout(function(){
-    		var sidstring = $this.attr('value');
+    		var sidString = $this.attr('value');
     		var positionleft = e.pageX + 10;
         	var positiontop = e.pageY + 10;
     		$.ajax({
