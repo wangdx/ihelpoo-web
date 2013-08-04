@@ -659,7 +659,7 @@ $().ready(function(){
 	            dataType: "html",
 	            success:function(data){
 	            	$commentViewDivBox.slideDown("fast").html(data);
-//	            	$.ajax({global:true});
+	            	$.ajax({global:true});
 	            }
 	        });
     	} else {
