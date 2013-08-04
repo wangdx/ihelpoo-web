@@ -665,7 +665,7 @@ $().ready(function(){
     $('.comment_view_div_box_ul li').live('hover', function(){
         $(this).find('.c_v_d_b_ul_li_content_del').show();
     }, function(){
-        $(this).find('.c_v_d_b_ul_li_content_del').hide();
+        $(this).hide();
     });
     
 
