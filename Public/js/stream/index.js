@@ -330,8 +330,8 @@ $().ready(function(){
         return false;
     });
     $('.emotionbox_change_page').click(function(){
-    	$(".emotionbox_change_page").removeClass('bg_gray');
-    	$(this).addClass('bg_gray');
+    	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+    	$(this).addClass('bg_emotionbox_page_select');
     	$page = $(this).attr("value");
         $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
@@ -344,9 +344,9 @@ $().ready(function(){
     	var positiontop = e.pageY + 10;
     	$replytextarea = $(this).parent().find('.textarea_style');
         var emotionboxhtml = '<p class="emotionbox_close_p">'
-		+ '<a class="emotionbox_change_page bg_gray gray" title="基本表情" value="1">基本表情</a>'
-		+ '<a class="emotionbox_change_page gray" title="微博" value="2">微博</a>'
-		+ '<a class="emotionbox_change_page gray" title="兔斯基" value="3">兔斯基</a>'
+		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
+		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
+		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
 		+ '<span id="emotionbox_close" class="replyemotionbox_close close_x" title="关闭">×</span>'
 		+ '</p><ul class="emotionbox_show_ul"></ul>';
         $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
@@ -358,9 +358,9 @@ $().ready(function(){
     	var positiontop = e.pageY + 10;
     	$replytextarea = $(this).parent().find('.textarea_style');
         var emotionboxhtml = '<p class="emotionbox_close_p">'
-		+ '<a class="emotionbox_change_page bg_gray gray" title="基本表情" value="1">基本表情</a>'
-		+ '<a class="emotionbox_change_page gray" title="微博" value="2">微博</a>'
-		+ '<a class="emotionbox_change_page gray" title="兔斯基" value="3">兔斯基</a>'
+		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
+		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
+		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
 		+ '<span id="emotionbox_close" class="replyemotionbox_close close_x" title="关闭">×</span>'
 		+ '</p><ul class="emotionbox_show_ul"></ul>';
         $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
