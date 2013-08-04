@@ -351,15 +351,19 @@
     background:#f5f5f5;
     padding:10px;
 }
+.comment_view_div_box_ul{
+    margin-bottom: 10px;
+}
 .comment_view_div_box_ul li{
-    padding: 5px;
+    padding: 10px 0;
     border-bottom: 1px solid #EEE;
     position: relative;
+    min-height: 10px;
 }
 .c_v_d_b_ul_li_icon{
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: 0px;
+    top: 10px;
 }
 .c_v_d_b_ul_li_content{
     margin: 0 0 15px 50px;
@@ -367,8 +371,8 @@
 
 .c_v_d_b_ul_li_content_reply{
     position: absolute;
-    right: 5px;
-    bottom: 5px;
+    right: 0px;
+    bottom: 10px;
 }
 
 .steam_repate_li_show{
