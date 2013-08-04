@@ -827,7 +827,7 @@ class StreamAction extends Action
 			    } 
 		    	echo '</span>';
 	        	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
-	        		echo '<div class="comment_view_div_box_replyinner" sid='.$comment['sid'].' cid='.$comment['cid'].' toid='.$comment['toid'].'>';
+	        		echo '<div class="comment_view_div_box_replyinner" sid='.$comment['sid'].' cid='.$comment['cid'].' toid='.$comment['uid'].'>';
 	        		echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
 	        		echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
 	        		echo '<a class="comment_reply_submit btn">回复</a>';
