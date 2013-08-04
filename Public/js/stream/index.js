@@ -369,7 +369,7 @@ $().ready(function(){
     	$(".emotionbox_change_page").removeClass('bg_gray');
     	$(this).addClass('bg_gray');
     	$page = $(this).attr("value");
-        $(this).parent().find(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
+        $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 
     /**
