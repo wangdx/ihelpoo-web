@@ -455,20 +455,31 @@ $().ready(function(){
      */
     $('.c_v_d_b_ul_li_content_del').live('click', function(){
     	var deletecid = $(this).attr("value");
+    	$deleteCommentLi = $(this).parent().parent();
+    	$deleteCommentLi.css("backgroundColor", "#FFFA85");
     	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确实</a><a class='btn_cancel'>取消</a>";
     	ajaxInfo(infohtml);
     });
     
     $('#delete_comment').live('click', function(){
     	var deletecid = $(this).attr("value");
-    	alert(deletecid);
-    	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").fadeOut("fast");
+    	$.ajax({
+            type: "POST",
+            url: baseUrl + "item/del",
+            data: "delcomment=" + deletecid,
+            dataType: "json",
+            success:function(msg){
+                $deleteCommentLi.slideUp('fast');
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
+            }
+        });
     });
     
     $('.btn_cancel').live('click', function(){
     	$("#ajax_info_div").fadeOut("fast");
 		$("#ajax_info_div_outer").fadeOut("fast");
+		$deleteCommentLi.css("backgroundColor", "#FFF");
     });
     
 

@@ -819,7 +819,6 @@ class StreamAction extends Action
 				}
 		    	echo '<span class="c_v_d_b_ul_li_content_reply">';
 		    	if ($comment['uid'] == $userloginid || $comment['record_owneruid'] == $userloginid) {
-				    echo '<input type="hidden" class="reply_delete_cid" name="delcomment" value="'.$comment['cid'].'" />';
 				    echo '<a class="c_v_d_b_ul_li_content_del gray" value="'.$comment['cid'].'">删除</a>';
 			    }
 		    	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
