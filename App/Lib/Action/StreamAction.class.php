@@ -904,7 +904,7 @@ class StreamAction extends Action
         ->limit(5)
         ->order("create_time DESC")
         ->select();
-        var_dump($resultsRecordPlus);
+        var_dump($sid);
         if (!empty($resultsRecordPlus)) {
 	        echo '<ul class="stream_plus_users_ul">';
 	        foreach ($resultsRecordPlus as $recordPlus) {
