@@ -1034,13 +1034,16 @@
 }
 /*--- record plus ---*/
 .record_plus_div{
-    border: 1px solid #DDD;
     background: #F9F9F9;
     width: 220px;
     min-height: 18px;
     border-radius: 3px;
     padding: 5px;
     display: none;
+    -moz-outline-radius: 8px 8px 8px 8px;
+    border: 5px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 10px rgba(123, 214, 246, 0.6);
 }
 .stream_plus_users_p{
     font-size: 12px;
@@ -1048,7 +1051,7 @@
 }
 .stream_plus_users_ul{
     margin-top: 5px;
-    border-top: 1px solid #DDD;
+    border-top: 1px solid #EEE;
 }
 .stream_plus_users_ul li{
     display: inline-block;
