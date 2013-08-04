@@ -455,7 +455,7 @@ $().ready(function(){
      */
     $('.c_v_d_b_ul_li_content_del').live('click', function(){
     	var deletecid = $(this).attr("value");
-    	var infohtml = "<p>确定删除<a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确实</a><a class='btn_cancel'>取消</a></p>";
+    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确实</a><a class='btn_cancel'>取消</a>";
     	ajaxInfo(infohtml);
     });
     
