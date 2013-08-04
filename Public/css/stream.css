@@ -374,11 +374,10 @@
 
 .comment_view_div_box{
     margin:10px 0 0 115px;
-    border:1px solid #EEE;
-    background:#f5f5f5;
+    border:1px solid #DDD;
+    border-radius:3px;
     padding:20px;
     display:none;
-    border-radius: 3px;
 }
 .comment_view_div_box_ul{
     margin-bottom: 10px;
