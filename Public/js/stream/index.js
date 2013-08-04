@@ -347,7 +347,7 @@ $().ready(function(){
 		+ '<a class="emotionbox_change_page bg_gray gray" title="基本表情" value="1">基本表情</a>'
 		+ '<a class="emotionbox_change_page gray" title="微博" value="2">微博</a>'
 		+ '<a class="emotionbox_change_page gray" title="兔斯基" value="3">兔斯基</a>'
-		+ '<span class="replyemotionbox_close close_x" title="关闭">×</span>'
+		+ '<span id="emotionbox_close" class="replyemotionbox_close close_x" title="关闭">×</span>'
 		+ '</p><ul class="emotionbox_show_ul"></ul>';
         $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
