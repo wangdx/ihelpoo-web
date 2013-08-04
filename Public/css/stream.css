@@ -988,6 +988,7 @@
     border-radius: 3px;
     padding: 10px;
     display: none;
+    z-index: 1111;
 }
 .user_info_top_div{
     border-bottom: 1px dotted #CCC;
@@ -1035,8 +1036,8 @@
 .record_plus_div{
     border: 1px solid #DDD;
     background: #F5F5F5;
-    width: 200px;
-    min-height: 30;
+    width: 220px;
+    min-height: 30px;
     border-radius: 3px;
     padding: 5px;
     display: none;
