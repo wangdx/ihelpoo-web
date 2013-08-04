@@ -321,7 +321,7 @@ $().ready(function(){
     });
     $('.emotionbox_show_ul img').live("click", function(){
         var imgtitle = $(this).attr('title');
-        imgtitlemark = '[' + imgtitle + ']';
+        var imgtitlemark = '[' + imgtitle + ']';
         var textareanow = $('#s_t_textarea').val() + imgtitlemark;
         $('#s_t_textarea').val(textareanow);
         $('#emotionbox').fadeOut('fast');
@@ -373,8 +373,8 @@ $().ready(function(){
     });
     $('.emotionbox_show_ul img').live("click", function(){
         var imgtitle = $(this).attr('title');
-        imgtitlemark = '[' + imgtitle + ']';
-        var textareanow = $replytextarea.val() + imgtitlemark;
+        var imgtitlemarkin = '[' + imgtitle + ']';
+        var textareanow = $replytextarea.val() + imgtitlemarkin;
         $replytextarea.val(textareanow);
         $(".replyemotionbox").fadeOut('fast');
         return false;
