@@ -645,6 +645,11 @@ $().ready(function(){
     	var commentBtnIsClick = $this.attr('isclick');
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
+    		$(this).ajaxStart(function(){
+    			$commentViewDivBox.slideDown("fast").html($infoLoading);
+            }).ajaxComplete(function(){
+            	$infoLoading.remove();
+            });
 	    	$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",

@@ -787,6 +787,16 @@ class StreamAction extends Action
     		$sayComment = $RecordComment->where("i_record_comment.sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
 	        ->field('cid,i_record_comment.uid,i_record_say.uid as record_owneruid,i_record_comment.sid,toid,i_record_comment.content,i_record_comment.image,i_record_comment.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	        ->limit(10)->order('cid DESC')->select();
+	        
+	        /**
+	         * return html
+	         */
+	        echo '<div class="comment_view_div_box_reply">';
+	        echo '<textarea class="comment_view_div_box_reply_textarea textarea_style"></textarea>';
+	        echo '<span class="post_icon" id="comment_textareaicon" title="表情"></span>';
+	        echo '<span class="post_img" id="comment_textareaimg" title="图片"></span>';
+	        echo '<a class="comment_view_div_box_reply_submit btn">评论</a>';
+	        echo '</div>';
 	        echo '<ul class="comment_view_div_box_ul">';
 	        foreach ($sayComment as $comment) {
 	        	echo '<li>';
