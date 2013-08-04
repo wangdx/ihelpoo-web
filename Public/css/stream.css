@@ -349,7 +349,7 @@
 .comment_view_div_box_reply{
     margin-bottom: 10px;
     position: relative;
-    height: 80px;
+    height: 95px;
 }
 .comment_view_div_box_reply_textarea{
     width: 400px;
@@ -358,19 +358,20 @@
 }
 #comment_textareaicon{
     position: absolute;
-    left: 5px;
+    left: 0px;
+    bottom: 3px;
+}
+#comment_textareaimg{
+    position: absolute;
+    left: 25px;
     bottom: 3px;
 }
 .comment_view_div_box_reply_submit{
     position: absolute;
-    right: 10px;
-    top: 55px;
+    right: 20px;
+    top: 45px;
 }
-#comment_textareaimg{
-    position: absolute;
-    left: 30px;
-    bottom: 3px;
-}
+
 .comment_view_div_box{
     margin:10px 0 0 115px;
     border:1px solid #EEE;
@@ -380,6 +381,7 @@
 }
 .comment_view_div_box_ul{
     margin-bottom: 10px;
+    border-top: 1px solid #DDDDDD;
 }
 .comment_view_div_box_ul li{
     padding: 10px 0;
