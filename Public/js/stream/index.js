@@ -654,11 +654,7 @@ $().ready(function(){
         $("#textareacontent").val(textareacontentdata);
 
         var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '提交中...请稍等'});
-        $(this).ajaxStart(function(){
-        	$('#infotextareacheck').slideDown("fast").html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#infotextareacheck').slideDown("fast").html($infoLoading);
         
         if (textareacontent.length > 0) {
         	var letterlimits = 222 - textareacontent.length;
