@@ -653,6 +653,7 @@ $().ready(function(){
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
 	            data: {'commentSid':commmentSid},
+	            globe: "flase",
 	            dataType: "html",
 	            success:function(data){
 	            	$commentViewDivBox.slideDown("fast").html(data);
