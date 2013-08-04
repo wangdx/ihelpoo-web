@@ -350,6 +350,7 @@
     border:1px solid #EEE;
     background:#f5f5f5;
     padding:10px;
+    display: none;
 }
 .comment_view_div_box_ul{
     margin-bottom: 10px;
@@ -368,7 +369,9 @@
 .c_v_d_b_ul_li_content{
     margin: 0 0 15px 50px;
 }
-
+.c_v_d_b_ul_li_content_del{
+    display: none;
+}
 .c_v_d_b_ul_li_content_reply{
     position: absolute;
     right: 0px;
