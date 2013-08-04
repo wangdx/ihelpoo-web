@@ -904,13 +904,16 @@ class StreamAction extends Action
         ->limit(5)
         ->order("create_time DESC")
         ->select();
-        echo '<ul class="stream_plus_users_ul">';
-        foreach ($resultsRecordPlus as $recordPlus) {
-        	echo '<li>';
-		    echo '<a href="/wo/'.$recordPlus['uid'].'" class="getuserinfo" userid="'.$recordPlus['uid'].'"><img src="'.i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's').'" height="25" class="radius3" /></a>';
-		    echo '</li>';
+        var_dump($resultsRecordPlus);
+        if (!empty($resultsRecordPlus)) {
+	        echo '<ul class="stream_plus_users_ul">';
+	        foreach ($resultsRecordPlus as $recordPlus) {
+	        	echo '<li>';
+			    echo '<a href="/wo/'.$recordPlus['uid'].'" class="getuserinfo" userid="'.$recordPlus['uid'].'"><img src="'.i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's').'" height="25" class="radius3" /></a>';
+			    echo '</li>';
+	        }
+	        echo '</ul>';
         }
-        echo '</ul>';
     }
 
     public function addPlusRecord($sid){
