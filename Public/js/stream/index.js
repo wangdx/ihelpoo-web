@@ -353,6 +353,20 @@ $().ready(function(){
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
         return false;
     });
+    $(".comment_textareaicon_replyinner").live('click', function(e){
+        var positionleft = e.pageX + 10;
+    	var positiontop = e.pageY + 10;
+    	$replytextarea = $(this).parent().find('.textarea_style');
+        var emotionboxhtml = '<p class="emotionbox_close_p">'
+		+ '<a class="emotionbox_change_page bg_gray gray" title="基本表情" value="1">基本表情</a>'
+		+ '<a class="emotionbox_change_page gray" title="微博" value="2">微博</a>'
+		+ '<a class="emotionbox_change_page gray" title="兔斯基" value="3">兔斯基</a>'
+		+ '<span id="emotionbox_close" class="replyemotionbox_close close_x" title="关闭">×</span>'
+		+ '</p><ul class="emotionbox_show_ul"></ul>';
+        $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
+        $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
+        return false;
+    });
     $(".replyemotionbox_close").live('click', function(){
     	 $(".replyemotionbox").slideUp('fast');
     	 return false;
