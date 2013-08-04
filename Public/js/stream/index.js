@@ -409,9 +409,9 @@ $().ready(function(){
 	        var toid = $this.parent().attr("toid");
 	        var textareacontent = textareacontentdata;
 	        var imageurl = '';
-	        var verificationcode = '999';
+	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("toid");
 	        var atusers = atresult;
-	        
+	        alert(verificationcode);
 	        $.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/sayajax",
