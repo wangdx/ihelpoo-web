@@ -783,8 +783,8 @@ class StreamAction extends Action
     	$UserLogin = M("UserLogin");
     	if (!empty($commentSid)) {
     		$RecordComment = M("RecordComment");
-    		$sayComment = $RecordComment->where("sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')
-	        ->field('cid,i_user_login.uid,sid,toid,content,image,diffusion_co,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+    		$sayComment = $RecordComment->where("sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
+	        ->field('cid,i_record_comment.uid,i_record_say.uid as record_owneruid,i_record_comment.sid,toid,content,image,diffusion_co,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	        ->limit(10)->order('cid DESC')->select();
 	        echo '<ul class="comment_view_div_box_ul">';
 	        foreach ($sayComment as $comment) {
@@ -808,7 +808,7 @@ class StreamAction extends Action
 				}
 		    	echo '<span class="f12 gray">'.i_time($comment['time']).'</span>';
 		    	echo '<span class="f12 c_v_d_b_ul_li_content_reply">';
-		    	if ($comment['uid'] == $userloginid || $sayRecord['uid'] == $userloginid) {
+		    	if ($comment['uid'] == $userloginid || $comment['record_owneruid'] == $userloginid) {
 				    echo '<input type="hidden" class="reply_delete_cid" name="delcomment" value="'.$comment['cid'].'" />';
 				    echo '<a class="red_l c_v_d_b_ul_li_content_del" value="'.$comment['cid'].'">删除</a> ';
 			    }
