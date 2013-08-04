@@ -905,12 +905,14 @@ class StreamAction extends Action
         ->order("create_time DESC")
         ->select();
         if (!empty($resultsRecordPlus)) {
+        	echo '<p class="stream_plus_users_p">他们赞过了这条信息</p>';
 	        echo '<ul class="stream_plus_users_ul">';
 	        foreach ($resultsRecordPlus as $recordPlus) {
 	        	echo '<li>';
 			    echo '<a href="/wo/'.$recordPlus['uid'].'" class="getuserinfo" userid="'.$recordPlus['uid'].'"><img src="'.i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's').'" height="25" class="radius3" /></a>';
 			    echo '</li>';
 	        }
+	        echo '<li><a href="/item/say/'.$sid.'" class="f12">更多</a></li>';
 	        echo '</ul>';
         }
     }
