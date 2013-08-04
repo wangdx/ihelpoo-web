@@ -379,14 +379,14 @@
     border-top: 1px solid #DDDDDD;
 }
 .comment_view_div_box_ul li{
-    padding: 10px 0;
+    padding: 10px 5px;
     border-bottom: 1px solid #EEE;
     position: relative;
     min-height: 10px;
 }
 .c_v_d_b_ul_li_icon{
     position: absolute;
-    left: 0px;
+    left: 5px;
     top: 10px;
 }
 .c_v_d_b_ul_li_content{
