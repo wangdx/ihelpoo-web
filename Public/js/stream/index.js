@@ -419,12 +419,11 @@ $().ready(function(){
 	            dataType: "json",
 	            success:function(msg){
 	            	alert(msg.info);
-	            	/*if (msg.status == 'verifi') {
-	            		$("#ajax_info_div").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
-	            		$this.parent().find('.comment_reply_verification').fadeIn('fast');
-	            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
-	            		$this.parent().find('.comment_reply_verificationcode').val('');
-	            	} else if (msg.status == 'yes') {
+	            	if (msg.status == 'verifi') {
+	            		$this.parent().find('.comment_reply_verification_stream').fadeIn('fast');
+	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi' });
+	            		$this.parent().find('.comment_reply_verification_streamcode').val('');
+	            	} /*else if (msg.status == 'yes') {
 	                    $comment_reply_div_box.slideUp('fast');
 	                    $comment_reply_form.find('.comment_reply_textarea').val('');
 	                    $("#ajax_info_div").fadeIn('fast').html('回复成功').delay(800).fadeOut('fast');
