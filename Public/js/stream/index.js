@@ -661,9 +661,9 @@ $().ready(function(){
     });
     
     $('.comment_view_div_box_ul li').hover(function(){
-        $(this).hide();
+        $(this).show();
     }, function(){
-    	$(this).show();
+    	$(this).hide();
     });
     
 
