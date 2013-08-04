@@ -395,7 +395,12 @@
       <?php } ?>
     </span>
     <span class="s_li_s_comment f12 gray">
-      <a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="i-<?php echo $record['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; }?>
+      <?php if ($record['say_type'] == '1') { ?>
+      	<a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="ih-<?php echo $record['sid']; ?>">
+      <?php } else { ?>
+      	<a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="i-<?php echo $record['sid']; ?>">
+      <?php } ?>
+      <i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; }?>
       </span></a> |
       <?php
         if ($record['say_type'] == '1') {
