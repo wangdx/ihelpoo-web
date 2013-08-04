@@ -364,7 +364,7 @@
 
 .comment_reply_verification_stream{
     position: absolute;
-    right: 60px;
+    right: 30px;
     bottom: 0;
     width: 200px;
 }
@@ -374,8 +374,12 @@
 .comment_reply_verification_streamcode{
     width: 60px;
     padding: 2px 3px;
-    color: #666;
+    -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
+    border: 1px solid #D0D0D0;
+    color: #666666;
     font-size: 12px;
+    outline: medium none;
+    word-wrap: break-word;
     vertical-align: text-bottom;
 }
 
@@ -1214,8 +1218,12 @@
 .comment_reply_verificationcode{
     width: 60px;
     padding: 2px 3px;
-    color: #666;
+    -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
+    border: 1px solid #D0D0D0;
+    color: #666666;
     font-size: 12px;
+    outline: medium none;
+    word-wrap: break-word;
     vertical-align: text-bottom;
 }
 .i_comment_list_num{
