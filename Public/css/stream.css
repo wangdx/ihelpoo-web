@@ -556,9 +556,13 @@
     border-width: 1px 1px 0;
 }
 #emotionbox_close{
-    cursor: pointer;
     position: absolute;
     right: 0;
+    top: 5px;
+}
+.replyemotionbox_close{
+    position: absolute;
+    right: 5px;
     top: 5px;
 }
 .i_c_b_form_icon_p{
