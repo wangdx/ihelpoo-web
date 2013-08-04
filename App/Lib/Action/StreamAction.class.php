@@ -912,7 +912,11 @@ class StreamAction extends Action
 			    echo '<a href="/wo/'.$recordPlus['uid'].'" title="'.$recordPlus['nickname'].'"><img src="'.i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's').'" height="25" class="radius3" /></a>';
 			    echo '</li>';
 	        }
-	        echo '<li><a href="/item/say/'.$sid.'" class="f12">更多</a></li>';
+	        if ($sidStringArr['0'] == 'i') {
+	        	echo '<li><a href="/item/say/'.$sid.'" class="f12">更多</a></li>';
+	        } else {
+	        	echo '<li><a href="/item/help/'.$sid.'" class="f12">更多</a></li>';
+	        }
 	        echo '</ul>';
         } else {
         	echo '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
