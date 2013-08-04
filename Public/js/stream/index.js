@@ -663,9 +663,9 @@ $().ready(function(){
     });
     
     $('.comment_view_div_box_ul li').live('hover', function(){
-        $(this).find('.c_v_d_b_ul_li_content_reply').find('.c_v_d_b_ul_li_content_del_span').show();
+        $('.c_v_d_b_ul_li_content_del_span').show();
     }, function(){
-        $(this).find('.c_v_d_b_ul_li_content_reply').find('.c_v_d_b_ul_li_content_del_span').hide();
+        $(this).find('.c_v_d_b_ul_li_content_del_span').hide();
     });
     
 
