@@ -154,7 +154,7 @@ $().ready(function(){
     var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
     var contentOk = 'no';
 	var imageNums = 0;
-    $('.stream_list_ul li').hover(function(){
+    $('.stream_list_ul_li').hover(function(){
         $(this).find('.priority_shield').show();
     }, function(){
         $(this).find('.priority_shield').hide();

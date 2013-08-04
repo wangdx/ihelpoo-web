@@ -254,9 +254,9 @@
   <ul class="stream_list_ul">
   <?php foreach ($recordSay as $record):
   if ($record['repatenums'] == 1 && $streamway == "default") { ?>
-  	<li class="steam_repate_li">
+  	<li class="steam_repate_li stream_list_ul_li">
   <?php } else { ?>
-    <li>
+    <li class="stream_list_ul_li">
   <?php } ?>
     <p class="s_li_p_icon">
       <a href="__ROOT__/wo/<?php echo $record['uid'] ?>">
