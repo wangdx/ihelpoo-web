@@ -905,7 +905,7 @@ class StreamAction extends Action
         ->order("create_time DESC")
         ->select();
         if (!empty($resultsRecordPlus)) {
-        	echo '<p class="stream_plus_users_p">他们赞过了这条信息</p>';
+        	echo '<p class="stream_plus_users_p gray">他们赞过了这条信息</p>';
 	        echo '<ul class="stream_plus_users_ul">';
 	        foreach ($resultsRecordPlus as $recordPlus) {
 	        	echo '<li>';

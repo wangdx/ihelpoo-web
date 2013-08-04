@@ -1037,7 +1037,7 @@
     border: 1px solid #DDD;
     background: #F9F9F9;
     width: 220px;
-    min-height: 20px;
+    min-height: 18px;
     border-radius: 3px;
     padding: 5px;
     display: none;
@@ -1045,6 +1045,10 @@
 .stream_plus_users_p{
     font-size: 12px;
     padding: 0 5px;
+}
+.stream_plus_users_ul{
+    margin-top: 5px;
+    border-top: 1px solid #DDD;
 }
 .stream_plus_users_ul li{
     display: inline-block;
