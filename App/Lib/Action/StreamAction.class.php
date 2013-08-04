@@ -900,7 +900,7 @@ class StreamAction extends Action
         $RecordPlus = M('RecordPlus');
         $resultsRecordPlus = $RecordPlus->where("sid = $sid")
         ->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
-        ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,icon_url")
+        ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,nickname,icon_url")
         ->limit(5)
         ->order("create_time DESC")
         ->select();
