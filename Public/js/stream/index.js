@@ -385,6 +385,71 @@ $().ready(function(){
     	$page = $(this).attr("value");
         $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
+    
+    /**
+     * comment
+     */
+    $('.comment_reply_submit').click(function(){
+    	var $this = $(this);
+        var i_comment_textarea = $(this).parent().find('textarea').val();
+        if (i_comment_textarea == '') {
+            $("#ajax_info_div").fadeIn('fast').html('写点东西吧，评论不能为空').delay(800).fadeOut('fast');
+        } else if (i_comment_textarea.length > 200) {
+        	$("#ajax_info_div").fadeIn('fast').html('内容太长了 不能超过200个字符').delay(800).fadeOut('fast');
+        } else {
+        	i_comment_textarea = i_comment_textarea + ' ';
+	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
+	        var atresult = i_comment_textarea.match(atpattern);
+	        var re = new RegExp("(@[\\u4E00-\\u9FA5A-Za-z0-9_.]+)", "g");
+	        var s = "<a class=\"getuserinfo\">$1</a>";
+	        var textareacontentdata = i_comment_textarea.replace(re, s);
+	        
+	        var sid = $this.parent().attr("sid");
+	        var cid = $this.parent().attr("cid");
+	        var toid = $this.parent().attr("toid");
+	        var textareacontent = textareacontentdata;
+	        var imageurl = '';
+	        var verificationcode = '999';
+	        var atusers = atresult;
+	        
+	        $.ajax({
+	            type: "POST",
+	            url: baseUrl + "item/sayajax",
+	            data: {'sid' : sid , 'cid' : cid , 'toid' : toid , 'textareacontent' : textareacontent , 'imageurl' : imageurl , 'verificationcode' : verificationcode , 'atusers' : atusers},
+	            dataType: "json",
+	            success:function(msg){
+	            	alert(msg.info);
+	            	/*if (msg.status == 'verifi') {
+	            		$("#ajax_info_div").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
+	            		$this.parent().find('.comment_reply_verification').fadeIn('fast');
+	            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
+	            		$this.parent().find('.comment_reply_verificationcode').val('');
+	            	} else if (msg.status == 'yes') {
+	                    $comment_reply_div_box.slideUp('fast');
+	                    $comment_reply_form.find('.comment_reply_textarea').val('');
+	                    $("#ajax_info_div").fadeIn('fast').html('回复成功').delay(800).fadeOut('fast');
+	                    var commentContent = "<li class='bg_l_yellow'>";
+	                    commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
+	                    commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
+	                    commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
+	                    commentContent += "<div class='i_c_l_u_li_div black_l'>";
+	                    commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
+	                    if (msg.data.toid != '') {
+	                        commentContent += "<span class='f12 gray fb'>[回复:" + msg.data.toidnickname + "]</span>";
+	                    }
+	                    commentContent += msg.data.content;
+	                    commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
+	                    $('.i_comment_list_ul').append(commentContent);
+	                    var bodyHeight = $("body").height();
+	                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+	                } else {
+	                    $("#ajax_info_div").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+	                }*/
+	            }
+	        });
+        }
+    });
+    
 
     /**
      * image part

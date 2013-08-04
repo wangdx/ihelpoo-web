@@ -791,10 +791,10 @@ class StreamAction extends Action
 	        /**
 	         * return html
 	         */
-	        echo '<div class="comment_view_div_box_reply">';
+	        echo '<div class="comment_view_div_box_reply" sid='.$comment['sid'].'>';
 	        echo '<textarea class="comment_view_div_box_reply_textarea textarea_style"></textarea>';
 	        echo '<span class="post_icon comment_textareaicon_reply" title="表情"></span>';
-	        echo '<a class="comment_view_div_box_reply_submit btn">评论</a>';
+	        echo '<a class="comment_reply_submit btn">评论</a>';
 	        echo '</div>';
 	        echo '<ul class="comment_view_div_box_ul">';
 	        foreach ($sayComment as $comment) {
@@ -827,10 +827,10 @@ class StreamAction extends Action
 			    } 
 		    	echo '</span>';
 	        	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
-	        		echo '<div class="comment_view_div_box_replyinner">';
+	        		echo '<div class="comment_view_div_box_replyinner" sid='.$comment['sid'].' cid='.$comment['cid'].' toid='.$comment['toid'].'>';
 	        		echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
 	        		echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
-	        		echo '<a class="comment_view_div_box_replyinner_submit btn">回复</a>';
+	        		echo '<a class="comment_reply_submit btn">回复</a>';
 	        		echo '</div>';
 			    }
 		    	echo '</li>';

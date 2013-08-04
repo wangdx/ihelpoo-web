@@ -361,7 +361,7 @@
     left: 0px;
     bottom: 3px;
 }
-.comment_view_div_box_reply_submit{
+.comment_reply_submit{
     position: absolute;
     right: 0;
     bottom: 0;
@@ -421,11 +421,6 @@
     position: absolute;
     left: 0px;
     bottom: 3px;
-}
-.comment_view_div_box_replyinner_submit{
-    position: absolute;
-    right: 0;
-    bottom: 0;
 }
 
 .steam_repate_li_show{
