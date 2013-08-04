@@ -638,15 +638,16 @@ $().ready(function(){
     /**
      * ajax comment part
      */
-    $('.comment_button').unbind("click").click(function(){
+    $('.comment_button').click(function(){
     	var $this = $(this);
+    	$this.parent().find(".comment_view_div_box").hide();
+    	var $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box")
     	var commmentSid = $this.attr('value');
     	var commentBtnIsClick = $this.attr('isclick');
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
     		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
     		$this.ajaxStart(function(){
-    	    	var $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box")
     			$commentViewDivBox.slideDown("fast").html($infoLoading);
             });
     		$.ajax({
@@ -656,7 +657,6 @@ $().ready(function(){
 //	            global: false,
 	            dataType: "html",
 	            success:function(data){
-	            	var $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box")
 	            	$commentViewDivBox.slideDown("fast").html("");
 	            	$commentViewDivBox.slideDown("fast").html(data);
 //	            	$.ajax({global:true});
