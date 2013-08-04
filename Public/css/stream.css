@@ -529,6 +529,9 @@
 	left: 0;
     width: 330px;
 }
+.emotionbox_show_ul{
+    padding: 5px;
+}
 .emotionbox_show_ul li{
     padding: 3px 8px;
 }
