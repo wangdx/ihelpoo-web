@@ -645,7 +645,7 @@ $().ready(function(){
     	var commentBtnIsClick = $this.attr('isclick');
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
-    		$commentViewDivBox.slideDown("fast").html("<img src='Public/image/common/ajax_wait.gif' /> <span class='f12 gray'>正在加载中，请稍等...</span>");
+    		$commentViewDivBox.slideDown("fast").html("<img src='/Public/image/common/ajax_wait.gif' /> <span class='f12 gray'>正在加载中，请稍等...</span>");
     		$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
