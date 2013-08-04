@@ -1047,3 +1047,16 @@ color:#FFFA85;
     top: 100px;
     z-index: 11111;
 }
+#ajax_info_div_info{
+    background: #F5F5F5;
+    padding: 5px;
+    position: relative;
+}
+#ajax_info_div_close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+#ajax_info_div_msg{
+    padding: 15px;
+}

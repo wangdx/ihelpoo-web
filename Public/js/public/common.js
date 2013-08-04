@@ -4,7 +4,6 @@ $().ready(function(){
      * skin part
      */
     showSkin();
-    
     flashPic('.message_shine');
 
     /**
@@ -82,6 +81,13 @@ $().ready(function(){
             }
         });
     });
+    
+    /**
+     * ajax info div position
+     */
+    var mainoffset = $('.main').offset();
+    var mainpositionleft = mainoffset.left + 240;
+	$("#ajax_info_div").css({left : mainpositionleft});
 });
 function getStringLength(str) {
 	var totalLength = 0;
