@@ -1026,7 +1026,7 @@ color:#FFFA85;
 .fliter_gray{ -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: gray; }
 
 #ajax_info_div_outer{
-    width: 2000px;
+    width: 3000px;
     height: 1500px;
     background: #000;
     filter:alpha(opacity=30); 
@@ -1035,7 +1035,7 @@ color:#FFFA85;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1111;
+    z-index: 11111;
 }
 #ajax_info_div{
     width: 350px;
@@ -1045,5 +1045,5 @@ color:#FFFA85;
     background: #F5F5F5;
     position: absolute;
     top: 100px;
-    z-index: 1111;
+    z-index: 11111;
 }
