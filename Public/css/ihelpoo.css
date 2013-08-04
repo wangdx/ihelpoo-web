@@ -1040,7 +1040,7 @@ color:#FFFA85;
 }
 #ajax_info_div{
     width: 350px;
-    height: 150px;
+    min-height: 100px;
     border: 3px solid #CCC;
     background: #FFF;
     position: fixed;
@@ -1060,5 +1060,6 @@ color:#FFFA85;
     top: 5px;
 }
 #ajax_info_div_msg{
-    padding: 15px;
+    padding: 25px 15px;
+    text-align: center;
 }
