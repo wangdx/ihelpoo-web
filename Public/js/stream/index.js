@@ -343,26 +343,25 @@ $().ready(function(){
         var positionleft = e.pageX + 10;
     	var positiontop = e.pageY + 10;
     	$replytextarea = $(this).parent().find('.textarea_style');
-    	$replytextareaiconbox = $(this).parent().parent();
         var emotionboxhtml = '<p class="emotionbox_close_p">'
 		+ '<a class="emotionbox_change_page bg_gray gray" title="基本表情" value="1">基本表情</a>'
 		+ '<a class="emotionbox_change_page gray" title="微博" value="2">微博</a>'
 		+ '<a class="emotionbox_change_page gray" title="兔斯基" value="3">兔斯基</a>'
-		+ '<span id="emotionbox_close" class="replyemotionbox_close close_x" title="关闭"></span>'
+		+ '<span id="emotionbox_close" class="replyemotionbox_close close_x" title="关闭">×</span>'
 		+ '</p><ul class="emotionbox_show_ul"></ul>';
         $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
         return false;
     });
     $(".replyemotionbox_close").click(function(){
-    	$replytextareaiconbox.slideUp('fast');
+    	 $(".replyemotionbox").slideUp('fast');
     });
     $('.emotionbox_show_ul img').live("click", function(){
         var imgtitle = $(this).attr('title');
         imgtitlemark = '[' + imgtitle + ']';
         var textareanow = $replytextarea.val() + imgtitlemark;
         $replytextarea.val(textareanow);
-        $replytextareaiconbox.fadeOut('fast');
+        $(".replyemotionbox").fadeOut('fast');
         return false;
     });
     $('.emotionbox_change_page').click(function(){
