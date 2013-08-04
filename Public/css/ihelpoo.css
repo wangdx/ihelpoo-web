@@ -1032,6 +1032,9 @@ color:#FFFA85;
     filter:alpha(opacity=30); 
     -moz-opacity:0.3; 
     opacity:0.3;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 #ajax_info_div{
     width: 350px;
@@ -1039,4 +1042,7 @@ color:#FFFA85;
     border: 3px solid #CCC;
     padding: 10px;
     background: #F5F5F5;
+    position: absolute;
+    left: 300px;
+    top: 100px;
 }
