@@ -660,7 +660,7 @@ $().ready(function(){
     	}
     });
     
-    $('.comment_view_div_box_ul li').hover(function(){
+    $('.comment_view_div_box_ul li').live('hover', function(){
         $(this).show();
     }, function(){
     	$(this).hide();
