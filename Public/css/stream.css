@@ -553,6 +553,16 @@
     cursor: pointer;
     padding: 1px;
 }
+.emotionbox_show_ul_inner{
+    padding: 5px;
+}
+.emotionbox_show_ul_inner li{
+    padding: 3px 8px;
+}
+.emotionbox_show_ul_inner li img{
+    cursor: pointer;
+    padding: 1px;
+}
 .emotionbox_close_p{
     background: #EEEEEE;
     padding: 10px 10px 5px;
