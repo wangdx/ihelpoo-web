@@ -640,16 +640,13 @@ $().ready(function(){
      */
     $('.comment_button').click(function(){
     	var $this = $(this);
-//    	$(".comment_view_div_box").unbind();
     	var $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box")
     	var commmentSid = $this.attr('value');
     	var commentBtnIsClick = $this.attr('isclick');
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
     		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
-//    		$this.ajaxStart(function(){
-    			$commentViewDivBox.slideDown("fast").html($infoLoading);
-//            });
+    		$commentViewDivBox.slideDown("fast").html($infoLoading);
     		$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
