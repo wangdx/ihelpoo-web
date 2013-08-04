@@ -774,6 +774,7 @@ class StreamAction extends Action
     
     public function ajaxcomment()
     {
+    	$userloginid = session('userloginid');
     	Vendor('Ihelpoo.Emotion');
     	$emotion = new Emotion();
     	$commentSidString = $_POST['commentSid'];
@@ -785,8 +786,9 @@ class StreamAction extends Action
     		$sayComment = $RecordComment->where("sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')
 	        ->field('cid,i_user_login.uid,sid,toid,content,image,diffusion_co,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	        ->limit(10)->order('cid DESC')->select();
+	        echo '<ul class="comment_view_div_box_ul">';
 	        foreach ($sayComment as $comment) {
-	        	echo '<div class="black_l">';
+	        	echo '<li>';
 		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
 		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a>';
 		    	echo '<span class="f12 gray fb">';
@@ -795,25 +797,28 @@ class StreamAction extends Action
          		 	echo "[回复:".$commentReplyUser['nickname']."]";
 				} 
 		    	echo '</span>';
+		    	echo '<p class="c_v_d_b_ul_li_content">';
 		    	echo $emotion->transEmotion(stripslashes($comment['content']));
+		    	echo '</p>';
 				if (!empty($comment['image'])) {
-				echo '<p class="">';
-				echo '<a href="'.$comment['image'].'" title="点击查看原图" target="_blank">';
-				echo '<img src="'.i_image_thumbnail($comment['image']).'" class="" />';
-				echo '</a></p>';
+					echo '<p class="c_v_d_b_ul_li_content_image">';
+					echo '<a href="'.$comment['image'].'" title="点击查看原图" target="_blank">';
+					echo '<img src="'.i_image_thumbnail($comment['image']).'" class="" />';
+					echo '</a></p>';
 				}
 		    	echo '<span class="f12 gray">'.i_time($comment['time']).'</span>';
-		    	echo '<span class="f12 fr">';
-			    if (!empty($comment['uid']) && $comment['uid'] != $userloginedrecord['uid']) {
-			    echo '<a class="">回复</a> <span class="icon_plus"></span>';
+		    	echo '<span class="f12 c_v_d_b_ul_li_content_reply">';
+			    if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
+			    	echo '<a class="">回复</a> <span class="icon_plus"></span>';
 			    } 
-			    if ($comment['uid'] == $userloginedrecord['uid'] || $userloginedrecord['uid']== $sayRecord['uid']) {
-			    echo '<input type="hidden" class="reply_delete_cid" name="delcomment" value="'.$comment['cid'].'" />';
-			    echo '<a class="red_l">删除</a>';
+			    if ($comment['uid'] == $userloginid || $userloginid == $sayRecord['uid']) {
+				    echo '<input type="hidden" class="reply_delete_cid" name="delcomment" value="'.$comment['cid'].'" />';
+				    echo '<a class="red_l c_v_d_b_ul_li_content_del" value="'.$comment['cid'].'">删除</a>';
 			    }
 		    	echo '</span>';
-		    	echo '</div>';
+		    	echo '</li>';
 	        }
+	        echo '</ul>';
     	}
     }
 
