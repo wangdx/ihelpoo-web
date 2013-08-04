@@ -613,9 +613,7 @@ $().ready(function(){
         });
     });
     $('.diffusion_view_btn').click(function(){
-
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
-
         var diffusionSid = $('.diffusion').attr('value');
         var $thisDiffusion = $('.diffusion');
         $.ajax({
@@ -663,9 +661,9 @@ $().ready(function(){
     });
     
     $('.comment_view_div_box_ul li').live('hover', function(){
-        $('.c_v_d_b_ul_li_content_del_span').show();
+        $(this).show();
     }, function(){
-        $('.c_v_d_b_ul_li_content_del_span').hide();
+        $(this).hide();
     });
     
 
