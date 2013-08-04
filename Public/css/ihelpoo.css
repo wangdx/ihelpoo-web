@@ -184,9 +184,9 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .btn{padding: 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; }
 .btn:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.btn_sure{padding: 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; }
+.btn_sure{padding: 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; font-size: 12px; }
 .btn_sure:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
-.btn_cancel{padding: 3px 5px; border-radius:3px; color: #666; cursor: pointer; background-color: #F5F5F5; border: 1px solid #EEE; }
+.btn_cancel{padding: 3px 5px; border-radius:3px; color: #666; cursor: pointer; background-color: #F5F5F5; border: 1px solid #DDD; font-size: 12px; }
 .btn_cancel:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
 .btn_brown{padding: 5px 15px; color: #FFF; background-color: #B16E3A; border-radius:3px; }
@@ -1066,4 +1066,17 @@ color:#FFFA85;
 #ajax_info_div_msg{
     padding: 25px 15px;
     text-align: center;
+}
+#ajax_info_div_msg p{
+    margin-bottom: 20px;
+}
+#ajax_info_div_msg .btn_sure{
+    position: absolute;
+    bottom: 10px;
+    right: 80px;
+}
+#ajax_info_div_msg .btn_cancel{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
