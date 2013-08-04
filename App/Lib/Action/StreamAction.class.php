@@ -793,8 +793,8 @@ class StreamAction extends Action
 	         */
 	        echo '<div class="comment_view_div_box_reply">';
 	        echo '<textarea class="comment_view_div_box_reply_textarea textarea_style"></textarea>';
-	        echo '<span class="post_icon" id="comment_textareaicon" title="表情"></span>';
-	        echo '<span class="post_img" id="comment_textareaimg" title="图片"></span>';
+	        echo '<span class="post_icon comment_textareaicon_reply" title="表情"></span>';
+	        echo '<span class="post_img comment_textareaimg" title="图片"></span>';
 	        echo '<a class="comment_view_div_box_reply_submit btn">评论</a>';
 	        echo '</div>';
 	        echo '<ul class="comment_view_div_box_ul">';
