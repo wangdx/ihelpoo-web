@@ -827,6 +827,13 @@ class StreamAction extends Action
 			    	echo ' <i class="icon_plus"></i> <a class="">回复</a>';
 			    } 
 		    	echo '</span>';
+	        	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
+	        		echo '<div class="comment_view_div_box_replyinner">';
+	        		echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
+	        		echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
+	        		echo '<a class="comment_view_div_box_replyinner_submit btn">评论</a>';
+	        		echo '</div>';
+			    }
 		    	echo '</li>';
 	        }
 	        echo '</ul>';

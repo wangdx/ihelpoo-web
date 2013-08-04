@@ -401,13 +401,35 @@
      margin: 0 0 10px 50px;
 }
 .c_v_d_b_ul_li_content_image img{
-    border: 1px solid #666;
+    border: 1px solid #999;
     border-radius: 3px;
 }
 .c_v_d_b_ul_li_content_reply{
     position: absolute;
     right: 0px;
     bottom: 10px;
+}
+
+.comment_view_div_box_replyinner{
+    margin-bottom: 10px;
+    position: relative;
+    height: 95px;
+    margin: 10px 0 50px;
+}
+.comment_view_div_box_replyinner_textarea{
+    width: 410px;
+    height: 30px;
+    border-radius: 3px;
+}
+.comment_textareaicon_replyinner{
+    position: absolute;
+    left: 0px;
+    bottom: 3px;
+}
+.comment_view_div_box_replyinner_submit{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .steam_repate_li_show{
