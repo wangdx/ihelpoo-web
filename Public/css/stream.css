@@ -356,6 +356,11 @@
     border-bottom: 1px solid #EEE;
     position: relative;
 }
+.c_v_d_b_ul_li_icon{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
 .c_v_d_b_ul_li_content{
     margin: 0 0 15px 50px;
 }

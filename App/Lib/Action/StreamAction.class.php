@@ -783,17 +783,17 @@ class StreamAction extends Action
     	$UserLogin = M("UserLogin");
     	if (!empty($commentSid)) {
     		$RecordComment = M("RecordComment");
+    		$sayCommentNums = $RecordComment->where("sid = $commentSid")->count();
     		$sayComment = $RecordComment->where("i_record_comment.sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
 	        ->field('cid,i_record_comment.uid,i_record_say.uid as record_owneruid,i_record_comment.sid,toid,i_record_comment.content,i_record_comment.image,i_record_comment.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	        ->limit(10)->order('cid DESC')->select();
 	        echo '<ul class="comment_view_div_box_ul">';
 	        foreach ($sayComment as $comment) {
 	        	echo '<li>';
-		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
-		    	
-		    	echo '<p class="c_v_d_b_ul_li_content f12">';
-		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a>';
-		    	echo '<span class="f12 gray fb">';
+		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo c_v_d_b_ul_li_icon" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
+		    	echo '<p class="c_v_d_b_ul_li_content">';
+		    	echo '<a href="__ROOT__/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].'</a> ';
+		    	echo '<span class="gray fb">';
 		      	if (!empty($comment['toid'])) {
 		  			$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
          		 	echo "[回复:".$commentReplyUser['nickname']."]";
@@ -808,7 +808,7 @@ class StreamAction extends Action
 					echo '<img src="'.i_image_thumbnail($comment['image']).'" class="" />';
 					echo '</a></p>';
 				}
-		    	echo '<span class="f12 c_v_d_b_ul_li_content_reply">';
+		    	echo '<span class="c_v_d_b_ul_li_content_reply">';
 		    	if ($comment['uid'] == $userloginid || $comment['record_owneruid'] == $userloginid) {
 				    echo '<input type="hidden" class="reply_delete_cid" name="delcomment" value="'.$comment['cid'].'" />';
 				    echo '<a class="red_l c_v_d_b_ul_li_content_del" value="'.$comment['cid'].'">删除</a> ';
@@ -820,6 +820,9 @@ class StreamAction extends Action
 		    	echo '</li>';
 	        }
 	        echo '</ul>';
+	        if ($sayCommentNums > 10) {
+	        	echo "<div>后面还有".($sayCommentNums - 10)."条评论，<a href='/item/say/".$commentSid."'>点击查看>></a></div>";
+	        }
     	}
     }
 
