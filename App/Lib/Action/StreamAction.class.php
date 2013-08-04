@@ -852,9 +852,9 @@ class StreamAction extends Action
     }
 
     public function plusToggle(){
-       if(empty($_POST['plusSid'])){
-           exit();
-       }
+    	if(empty($_POST['plusSid'])){
+    		exit();
+    	}
         $plusSidArr = explode("-", $_POST['plusSid']);
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
@@ -882,14 +882,35 @@ class StreamAction extends Action
             $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
 
-
-
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], 1);
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
 
             echo $recordSay['plus_co'];
         }
         exit();
+    }
+    
+    public function plusView(){
+    	if(empty($_POST['sidString'])){
+    		exit();
+    	}
+    	$sidStringArr = explode("-", $_POST['sidString']);
+        $userloginid = session('userloginid');
+        $sid = $sidStringArr[1];
+        $RecordPlus = M('RecordPlus');
+        $resultsRecordPlus = $RecordPlus->where("sid = $sid")
+        ->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
+        ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,icon_url")
+        ->limit(5)
+        ->order("create_time DESC")
+        ->select();
+        echo '<ul class="stream_plus_users_ul">';
+        foreach ($resultsRecordPlus as $recordPlus) {
+        	echo '<li>';
+		    echo '<a href="/wo/'.$recordPlus['uid'].'" class="getuserinfo" userid="'.$recordPlus['uid'].'"><img src="'.i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's').'" height="25" class="radius3" /></a>';
+		    echo '</li>';
+        }
+        echo '</ul>';
     }
 
     public function addPlusRecord($sid){

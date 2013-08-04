@@ -658,6 +658,33 @@ $().ready(function(){
             }
         });
     });
+    
+    var t_plus;
+    $(".plus_button").mouseenter(function(e){
+    	$this = $(this);
+    	t=setTimeout(function(){
+    		var sidstring = $this.attr('value');
+    		var positionleft = e.pageX + 10;
+        	var positiontop = e.pageY + 10;
+    		$.ajax({
+                type: "POST",
+        		dataType: "html",
+        		url: baseUrl + "stream/plusView",
+        		data:{sidString: sidString},
+        		success:function(data){
+                	$('.user_info_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(data);
+                }
+            });
+    	},1000);
+    }).mouseleave(function(){
+    	clearTimeout(t_plus);
+    	$('.user_info_div').hover(function(){},
+    	function(){
+    		$(this).fadeOut("slow");
+    	});
+    });
+    
+    
     $('.diffusion_view_btn').click(function(){
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
         var diffusionSid = $('.diffusion').attr('value');
