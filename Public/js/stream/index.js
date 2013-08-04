@@ -514,7 +514,7 @@ $().ready(function(){
 			$('#post_help_reword').slideUp('fast');
 		},
 		function(){
-			$('#post_groupmsgpush_li').slideUp('up');
+			$('#post_groupmsgpush_li').slideUp('fast');
 			$('#groupmsgpush_system').removeAttr('checked');
 			$('#groupmsgpush_mail').removeAttr('checked');
 		}
@@ -660,6 +660,18 @@ $().ready(function(){
     		$commentViewDivBox.slideUp("fast");
     	}
     });
+    
+    $('.c_v_d_b_ul_li_content_reply').live('toggle',
+    	function(){
+    		var $commentViewDivBoxReply = $(this).parent().parent().find('.comment_view_div_box_replyinner');
+    		$commentViewDivBoxReply.slideDown('fast');
+    	},
+		function(){
+    		var $commentViewDivBoxReply = $(this).parent().parent().find('.comment_view_div_box_replyinner');
+    		$commentViewDivBoxReply.slideUp('fast');
+    	}
+    );
+    
     
     /**
      * enlarge image
