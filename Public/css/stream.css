@@ -1035,16 +1035,16 @@
 /*--- record plus ---*/
 .record_plus_div{
     border: 1px solid #DDD;
-    background: #F5F5F5;
+    background: #F9F9F9;
     width: 220px;
-    min-height: 30px;
+    min-height: 20px;
     border-radius: 3px;
     padding: 5px;
     display: none;
 }
 .stream_plus_users_p{
-    margin-bottom: 5px;
     font-size: 12px;
+    padding: 0 5px;
 }
 .stream_plus_users_ul li{
     display: inline-block;

@@ -915,7 +915,7 @@ class StreamAction extends Action
 	        echo '<li><a href="/item/say/'.$sid.'" class="f12">更多</a></li>';
 	        echo '</ul>';
         } else {
-        	echo '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧</p>';
+        	echo '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
         }
     }
 
