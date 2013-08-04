@@ -640,7 +640,7 @@ $().ready(function(){
      */
     $('.comment_button').click(function(){
     	var $this = $(this);
-    	$(".comment_view_div_box").hide();
+    	$(".comment_view_div_box").slideUp("fast");
     	var $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box")
     	var commmentSid = $this.attr('value');
     	var commentBtnIsClick = $this.attr('isclick');
