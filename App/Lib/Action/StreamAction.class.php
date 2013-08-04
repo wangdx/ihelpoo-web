@@ -783,7 +783,7 @@ class StreamAction extends Action
     	$UserLogin = M("UserLogin");
     	if (!empty($commentSid)) {
     		$RecordComment = M("RecordComment");
-    		$sayComment = $RecordComment->where("sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
+    		$sayComment = $RecordComment->where("i_record_comment.sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
 	        ->field('cid,i_record_comment.uid,i_record_say.uid as record_owneruid,i_record_comment.sid,toid,i_record_comment.content,i_record_comment.image,i_record_comment.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	        ->limit(10)->order('cid DESC')->select();
 	        echo '<ul class="comment_view_div_box_ul">';
