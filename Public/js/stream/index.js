@@ -645,10 +645,10 @@ $().ready(function(){
     	var commentBtnIsClick = $this.attr('isclick');
     	if (commentBtnIsClick == 'false') {
     		$this.attr({isclick: 'true'});
-    		//var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
-    		//$this.ajaxStart(function(){
-    		//	$commentViewDivBox.slideDown("fast").html($infoLoading);
-            //});
+    		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '评论加载中...请稍等'});
+    		$this.ajaxStart(function(){
+    			$commentViewDivBox.slideDown("fast").html($infoLoading);
+            });
     		$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
