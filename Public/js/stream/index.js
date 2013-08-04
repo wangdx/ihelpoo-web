@@ -450,6 +450,27 @@ $().ready(function(){
         }
     });
     
+    /**
+     * commment delete
+     */
+    $('.c_v_d_b_ul_li_content_del').live('click', function(){
+    	var deletecid = $this.attr("value");
+    	var infohtml = "<p>确定删除<a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确实</a><a class='btn_cancel'>取消</a></p>";
+    	ajaxInfo(infohtml);
+    });
+    
+    $('#delete_comment').live('click', function(){
+    	var deletecid = $this.attr("value");
+    	alert(deletecid);
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+    });
+    
+    $('.btn_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+    });
+    
 
     /**
      * image part
