@@ -351,14 +351,19 @@
     position: relative;
 }
 .comment_view_div_box_reply_textarea{
-    width: 300px;
-    height: 80px;
+    width: 400px;
+    height: 75px;
     border-radius: 3px;
 }
 #comment_textareaicon{
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    left: 2px;
+    bottom: 3px;
+}
+#comment_textareaimg{
+    position: absolute;
+    left: 20px;
+    bottom: 3px;
 }
 .comment_view_div_box{
     margin:10px 0 0 115px;
