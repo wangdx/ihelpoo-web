@@ -672,7 +672,7 @@ $().ready(function(){
         		url: baseUrl + "stream/plusView",
         		data:{sidString: sidString},
         		success:function(data){
-                	$('.user_info_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(data);
+                	$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(data);
                 }
             });
     	},1000);
