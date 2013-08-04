@@ -654,7 +654,7 @@ $().ready(function(){
 	    	$.ajax({
 	            type: "POST",
 	            url: baseUrl + "stream/ajaxcomment",
-	            global: false,
+	            global: true,
 	            data: {'commentSid':commmentSid},
 	            dataType: "html",
 	            success:function(data){
