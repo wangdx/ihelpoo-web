@@ -720,7 +720,7 @@ $().ready(function(){
      * get userinfo
      */
     var t;
-    $(".getuserinfo").mouseenter(function(e){
+    $(".getuserinfo").live('mouseenter', function(e){
     	$this = $(this);
     	t=setTimeout(function(){
     		var userid = $this.attr('userid');
