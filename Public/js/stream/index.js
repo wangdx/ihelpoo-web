@@ -353,7 +353,7 @@ $().ready(function(){
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
         return false;
     });
-    $(".replyemotionbox_close").click(function(){
+    $(".replyemotionbox_close").live('click', function(){
     	 $(".replyemotionbox").slideUp('fast');
     	 return false;
     });
@@ -365,7 +365,7 @@ $().ready(function(){
         $(".replyemotionbox").fadeOut('fast');
         return false;
     });
-    $('.emotionbox_change_page').click(function(){
+    $('.emotionbox_change_page').live('click', function(){
     	$(".emotionbox_change_page").removeClass('bg_gray');
     	$(this).addClass('bg_gray');
     	$page = $(this).attr("value");
