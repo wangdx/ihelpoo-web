@@ -1069,14 +1069,15 @@ color:#FFFA85;
 }
 #ajax_info_div_msg p{
     margin-bottom: 20px;
+    min-height: 30px;
 }
 #ajax_info_div_msg .btn_sure{
     position: absolute;
-    bottom: 10px;
-    right: 80px;
+    bottom: 15px;
+    right: 70px;
 }
 #ajax_info_div_msg .btn_cancel{
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 15px;
+    right: 20px;
 }
