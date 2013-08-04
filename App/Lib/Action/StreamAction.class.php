@@ -845,6 +845,8 @@ class StreamAction extends Action
 	        echo '</ul>';
 	        if ($sayCommentNums > 10) {
 	        	echo "<div>后面还有".($sayCommentNums - 10)."条评论，<a href='/item/say/".$commentSid."'>点击查看&gt;&gt;</a></div>";
+	        } else {
+	        	echo "<div><a href='/item/say/".$commentSid."'>新窗口打开&gt;&gt;</a></div>";
 	        }
     	}
     }
