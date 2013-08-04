@@ -405,16 +405,16 @@
     border-radius: 3px;
 }
 .c_v_d_b_ul_li_content_reply{
-    position: absolute;
-    right: 0px;
-    bottom: 10px;
+    display: block;
+    margin: 0 0 0 50px;
+    text-align: right;
 }
 
 .comment_view_div_box_replyinner{
     margin-bottom: 10px;
     position: relative;
-    height: 95px;
-    margin: 10px 0 50px;
+    height: 65px;
+    margin: 10px 0 0 50px;
 }
 .comment_view_div_box_replyinner_textarea{
     width: 410px;
