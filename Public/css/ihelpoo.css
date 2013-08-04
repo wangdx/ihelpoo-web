@@ -1036,6 +1036,7 @@ color:#FFFA85;
     top: 0;
     left: 0;
     z-index: 11111;
+    display: none;
 }
 #ajax_info_div{
     width: 350px;
@@ -1045,6 +1046,7 @@ color:#FFFA85;
     position: fixed;
     top: 120px;
     z-index: 11111;
+    display: none;
 }
 #ajax_info_div_info{
     background: #F5F5F5;

@@ -394,10 +394,10 @@ $().ready(function(){
         var i_comment_textarea = $(this).parent().find('textarea').val();
         if (i_comment_textarea == '') {
             $("#ajax_info_div").fadeIn('fast');
-            $("#ajax_info_div_msg").html('写点东西吧，评论不能为空');
+            $("#ajax_info_div_msg").fadeIn('fast').html('写点东西吧，评论不能为空');
         } else if (i_comment_textarea.length > 200) {
         	$("#ajax_info_div").fadeIn('fast');
-            $("#ajax_info_div_msg").html('内容太长了 不能超过200个字符');
+            $("#ajax_info_div_msg").fadeIn('fast').html('内容太长了 不能超过200个字符');
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
