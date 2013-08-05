@@ -153,9 +153,9 @@ $().ready(function(){
         					}
     					}
     					if (msg.data.remark != null) {
-    						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击修改备注'>"+msg.data.remark+"</a>";
+    						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击修改备注'>("+msg.data.remark+")</a>";
     					} else {
-    						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击设置备注'>备注</a>";
+    						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击设置备注'>(备注)</a>";
     					}
     					var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
     					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
@@ -243,6 +243,11 @@ $().ready(function(){
     $('#user_remark_submit').live('click', function(){
     	var newremarkname = $('#newremarkname').val();
     	var newuserid = $('.user_info_top_div').attr('userid');
+    	if (newremarkname == '') {
+			var newremarknameinfo = '已清空备注';
+		} else {
+			var newremarknameinfo = newremarkname;
+		}
     	$.ajax({
             type: "POST",
     		dataType: "json",
@@ -251,10 +256,10 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == '1') {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>更新备注成功</p>");
-    				$('#user_remark_set').html(newremarkname);
+    				$('#user_remark_set').html("("+newremarknameinfo+")");
     			} else if (msg.status == '2') {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>备注成功</p>");
-    				$('#user_remark_set').html(newremarkname);
+    				$('#user_remark_set').html("("+newremarknameinfo+")");
     			} else {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_wrong'></span>备注失败 稍后再试</p>");
     			}
