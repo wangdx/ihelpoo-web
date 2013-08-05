@@ -440,6 +440,11 @@ lable{
     padding: 10px 0;
     border-top: 3px solid #CCC;
 }
+.m_m_u_u_li_checkbox_span{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
 /*--- a select---*/
 .s_l_l_a{
     display: inline-block;

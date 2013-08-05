@@ -127,6 +127,7 @@
       </a>
     </p>
     <span class="m_m_u_u_li_name"><a href="__ROOT__/wo/<?php echo $user['uid'] ?>" ><?php echo $ofunction->cut_str($user['nickname'],9); ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
+    <span class="m_m_u_u_li_checkbox_span"><input class="m_m_u_u_li_checkbox_input" type="checkbox" value="<?php echo $user['uid'] ?>" /></span>
     </li>
   <?php endforeach ?>
   </ul>
