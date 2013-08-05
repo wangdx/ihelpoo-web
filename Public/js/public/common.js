@@ -204,9 +204,11 @@ $().ready(function(){
     		url: baseUrl + "ajax/quanta",
     		data:{uid: userid},
     		success:function(msg){
-    			alert(msg.info);
+    			ajaxInfo(msg.info);
     			if (msg.status == 'ok') {
     				$this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
+    			} else {
+    				ajaxInfo(msg.info);
     			}
     		}
     	});
@@ -223,9 +225,11 @@ $().ready(function(){
     		url: baseUrl + "ajax/quantacancel",
     		data:{uid: userid},
     		success:function(msg){
-    			alert(msg.info);
+    			ajaxInfo(msg.info);
     			if (msg.status == 'ok') {
     				$this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta");
+    			} else {
+    				ajaxInfo(msg.info);
     			}
     		}
     	});
