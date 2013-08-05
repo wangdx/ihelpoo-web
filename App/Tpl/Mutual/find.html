@@ -23,15 +23,16 @@
     <?php } ?>
   </li>
   <?php endforeach; ?>
-  <?php if ($searchNameNums == '0') {?>
-  <li><span class="icon_pump"></span> sorry! 没有找到相关用户 :( </li>
-  <?php } ?>
   </ul>
   <?php } else { ?>
   <p class="find_p_searchmore">
-    <a href="__ROOT__/index/mate" title="更多好玩的人点这里">
-      <img src="__PUBLIC__/image/common/search_more.jpg" />
-    </a>
+  	<?php if (empty($searchNameNums) && !empty($_GET['username'])) { ?>
+  		<span class="icon_pump"></span> sorry! 没有找到相关用户 :( 
+  	<?php } else { ?>
+	    <a href="__ROOT__/index/mate" title="更多好玩的人点这里">
+	      <img src="__PUBLIC__/image/common/search_more.jpg" />
+	    </a>
+    <?php } ?>
   </p>
   <?php } ?>
   <?php if($searchResult) { ?>
