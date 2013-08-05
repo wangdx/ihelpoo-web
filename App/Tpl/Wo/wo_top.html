@@ -93,18 +93,17 @@
 	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
 	      </li>
       </ul>
-      <div class="wo_top_div_quan">
+      <div class="wo_top_div_quan f12">
 	      <?php if($priorityExist) { ?>
-	    	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned f12 gray" title="取消圈"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></a>
+	    	<a class="btn_quaned f12 gray do_quantacancel_wo" title="取消圈" userid="<?php echo $userLogin['uid'] ?>"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></a>
 	      <?php } else if ($shieldExist) { ?>
-	    	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned f12 gray" title="取消屏蔽"><span class="icon_attention"></span>已经屏蔽</a>
+	    	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned" title="取消屏蔽"><span class="icon_attention"></span>已经屏蔽</a>
 	      <?php } else { ?>
-	      	<a href="__ROOT__/mutual/priority/<?php echo $userLogin['uid'] ?>" class="btn_quan f12"><i class="icon_plus"></i>圈<?php echo $sexname ?></a>
-	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned f12">屏蔽<?php echo $sexname ?></a>
+	      	<a class="btn_quan f12 do_quanta_wo" userid="<?php echo $userLogin['uid'] ?>"><i class="icon_plus"></i>圈<?php echo $sexname ?></a>
+	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned">屏蔽<?php echo $sexname ?></a>
 	      <?php } ?>
       </div>
     </div>
-    
     
   </div>
   <!-- school time bar part -->
