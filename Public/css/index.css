@@ -377,6 +377,17 @@ lable{
     padding: 10px 5px;
 	position: relative;
 }
+#quan_p_switch_btn{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background: #F5F5F5;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 2px;
+    border: 1px solid #DDD;
+}
+
 .main_mate_info_hot{
 	text-align: right;
 }
