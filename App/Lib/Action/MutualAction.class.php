@@ -431,7 +431,7 @@ class MutualAction extends Action {
         if (preg_match("/username/iUs", $_SERVER["REQUEST_URI"])) {
         	$username = trim(addslashes(htmlspecialchars(strip_tags($_GET["username"]))));
 		    $p = (int)htmlspecialchars(trim($_GET["p"]));
-		    $p = $p <= 0 ? '1' : $p;
+		    $p = $p <= 0 ? 1 : $p;
             if (!empty($username) && is_int($p)) {
             	$UserLogin = M("UserLogin");
                 $searchname = $username;
