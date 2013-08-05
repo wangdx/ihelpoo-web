@@ -251,10 +251,10 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == '1') {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>更新备注成功</p>");
-    				$('.user_info_top_div_nickname_p a').html(newremarkname);
+    				$('#user_remark_set').html(newremarkname);
     			} else if (msg.status == '2') {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>备注成功</p>");
-    				$('.user_info_top_div_nickname_p a').html(newremarkname);
+    				$('#user_remark_set').html(newremarkname);
     			} else {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_wrong'></span>备注失败 稍后再试</p>");
     			}
