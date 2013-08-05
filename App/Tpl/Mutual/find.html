@@ -16,7 +16,7 @@
   	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
     <a href="__ROOT__/wo/<?php echo $result['uid'] ?>" ><?php echo $result['nickname'] ?></a>
     <?php if($result['id'] != $thisschoolid) { ?>
-    <a href="http://<?php echo $result['domain_main'] == NULL $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
+    	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
     <?php } ?>
   </li>
   <?php endforeach; ?>
