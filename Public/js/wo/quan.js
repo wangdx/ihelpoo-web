@@ -18,10 +18,18 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == 'ok') {
     				$this.parent().slideUp("fast");
+    				$("#ajax_info_div").fadeOut("fast");
+    				$("#ajax_info_div_outer").fadeOut("fast");
     			} else {
     				ajaxInfo(msg.info);
     			}
     		}
     	});
 	});
+	
+	$('.btn_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+		$deleteCommentLi.css("backgroundColor", "#FFF");
+    });
 });
