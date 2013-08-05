@@ -22,7 +22,7 @@
       <span class="level<?php echo i_degree($userPriority['active']) ?>" title="等级: level<?php echo i_degree($userPriority['active']) ?>"></span> &nbsp;
       <span class="gray f12"><?php echo $sexname ?>圈的时间: <?php echo i_time($userPriority['time']) ?></span>
       <?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
-          <a class="f12 wo_quan_cancel_a" value="<?php echo $userLogin['uid']; ?>">取消圈</a>
+          <a class="f12 wo_quan_cancel_a" value="<?php echo $userPriority['uid']; ?>">取消圈</a>
       <?php } ?>
   </li>
   <?php endforeach ?>
