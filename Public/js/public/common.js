@@ -233,8 +233,8 @@ $().ready(function(){
     	});
     });
     
-    $("div:not(.user_info_div)").click(function(){
-    	$('.user_info_div').hide();
+    $("body").click(function(){
+    	//$('.user_info_div').hide();
     	$('.record_plus_div').hide();
     });
     
