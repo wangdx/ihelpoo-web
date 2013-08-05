@@ -139,7 +139,7 @@ $().ready(function(){
     						if (msg.data.user_relation == 'priority') {
         						var relationhtml = "<a class='btn_quaned do_quantacancel' title='取消圈他'>已圈他</a>";
         					} else if (msg.data.user_relation == 'shield') {
-        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='btn_quaned' target='_blank'>已经屏蔽了他</a>";
+        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+"' class='btn_quaned' target='_blank'>已经屏蔽了他</a>";
         					} else {
         						var relationhtml = "<a class='btn_quan do_quanta'><span class='icon_plus'></span>圈他</a>";
         					}
@@ -147,7 +147,7 @@ $().ready(function(){
     						if (msg.data.user_relation == 'priority') {
         						var relationhtml = "<a class='btn_quaned do_quantacancel' title='取消圈她'>已圈她</a>";
         					} else if (msg.data.user_relation == 'shield') {
-        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='btn_quaned' target='_blank'>已经屏蔽了她</a>";
+        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+"' class='btn_quaned' target='_blank'>已经屏蔽了她</a>";
         					} else {
         						var relationhtml = "<a class='btn_quan do_quanta'><span class='icon_plus'></span>圈她</a>";
         					}
