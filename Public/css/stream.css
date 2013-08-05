@@ -992,9 +992,9 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .user_info_top_div{
-    border-bottom: 1px dotted #CCC;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     position: relative;
 }
 .user_info_top_div_img_a{
@@ -1018,7 +1018,7 @@
 }
 .user_info_top_div_quan_p{
     position: absolute;
-    top: 30px;
+    top: 27px;
     left: 75px;
 }
 .user_info_main_div ul li{
