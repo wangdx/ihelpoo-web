@@ -436,10 +436,12 @@ lable{
 .main_mate_stream_specialty_a{
     position: absolute;
     right: 0;
-    bottom: 10px;
+    bottom: 15px;
     border-radius: 2px;
     background: #15B6D7;
     color: #FFF;
+    font-size: 12px;
+    padding: 2px 3px;
 }
 .main_mate_user_ul{
     margin: 10px auto;
