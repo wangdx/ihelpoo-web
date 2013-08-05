@@ -137,19 +137,19 @@ $().ready(function(){
     				} else {
     					if (msg.data.sex == 1) {
     						if (msg.data.user_relation == 'priority') {
-        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"?del' target='_blank' class='btn_quaned' title='取消圈他'>已圈他</a>";
+        						var relationhtml = "<a class='btn_quaned do_quantacancel' title='取消圈他'>已圈他</a>";
         					} else if (msg.data.user_relation == 'shield') {
-        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='red_l' title='取消屏蔽' target='_blank'>已经屏蔽了他</a>";
+        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='btn_quaned' title='取消屏蔽' target='_blank'>已经屏蔽了他</a>";
         					} else {
-        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'><span class='icon_plus'></span>圈他</a>";
+        						var relationhtml = "<a class='btn_quan do_quanta'><span class='icon_plus'></span>圈他</a>";
         					}
     					} else {
     						if (msg.data.user_relation == 'priority') {
-        						var relationhtml = "<span href='"+baseUrl+"mutual/priority/"+msg.data.uid+"?del' class='btn_quaned' title='取消圈她'>已圈她</span>";
+        						var relationhtml = "<a class='btn_quaned do_quantacancel' title='取消圈她'>已圈她</a>";
         					} else if (msg.data.user_relation == 'shield') {
-        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='red_l' title='取消屏蔽' target='_blank'>已经屏蔽了她</a>";
+        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='btn_quaned' title='取消屏蔽' target='_blank'>已经屏蔽了她</a>";
         					} else {
-        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'><span class='icon_plus'></span>圈她</a>";
+        						var relationhtml = "<a class='btn_quan do_quanta'><span class='icon_plus'></span>圈她</a>";
         					}
     					}
     					if (msg.data.remark != null) {
@@ -187,6 +187,23 @@ $().ready(function(){
     	$('.user_info_div').hover(function(){},
     	function(){
     		$(this).fadeOut("slow");
+    	});
+    });
+    
+    /**
+     * quan && quan cancel
+     */
+    $(".getuserinfo").live('click', function(){
+    	$this = $(this);
+    	var userid = $this.attr('userid');
+    	$.ajax({
+    		type: "POST",
+    		dataType: "json",
+    		url: baseUrl + "ajax/quanta",
+    		data:{uid: userid},
+    		success:function(msg){
+
+    		}
     	});
     });
     
