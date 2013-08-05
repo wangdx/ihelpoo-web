@@ -698,6 +698,177 @@ class AjaxAction extends Action {
         	$this->ajaxReturn(0,0,'post');
         }
     }
+    
+    /**
+     * ajax quan
+     */
+    public function quanta()
+    {
+    	$userloginid = session('userloginid');
+        $UserLogin = M("UserLogin");
+        $UserInfo = M("UserInfo");
+        $UserPriority = M("UserPriority");
+        
+        $quanUid = (int)$_POST['uid'];
+        $quanUidString = $_POST['uidstring'];
+        $quanUidArray = explode(',', $quanuidString);
+        $quanUidArray = array_unique($quanUidArray);
+        if (!empty($quanUid)) {
+        	$recordUserLogin = $UserLogin->find($quanUid);
+        	if (empty($recordUserLogin)) {
+        		$this->ajaxReturn(0,'你要圈的用户不存在','error');
+        	}
+        	if ($quanUid == $userloginid) {
+        		$this->ajaxReturn(0,'自己不能圈自己噢','error');
+        	}
+        	$isPriorityExist = $UserPriority->where("uid = $userloginid AND pid = $quanUid")->find();
+        	if ($isPriorityExist) {
+        		$this->ajaxReturn(0,'你已经圈了ta','error');
+        	}
+        	$isShieldExist = $UserPriority->where("uid = $userloginid AND sid = $quanUid")->find();
+        	if ($isShieldExist) {
+        		$this->ajaxReturn(0,'你已经屏蔽了ta，取消屏蔽后才能圈','error');
+        	}
+        	 
+        	/**
+        	 * begin insert priority data
+        	 */
+        	$priorityInsertData = array(
+	            'id' => '',
+	            'uid' => $userloginid,
+	            'pid' => $quanUid,
+	        	'pid_type' => $recordUserLogin['type'],
+	            'time' => time(),
+        	);
+        	$isPriorityDataInserted = $UserPriority->add($priorityInsertData);
+        	if ($isPriorityDataInserted) {
+        		
+        		/**
+        		 * update i_user_info follow fans nums
+        		 */
+        		$userInfoPriority = $UserInfo->find($userloginid);
+        		$userInfoPrioritied = $UserInfo->find($quanUid);
+        		$newUserInfoPriorityData = array(
+		        	'uid' => $userloginid,
+		        	'follow' => $userInfoPriority['follow'] + 1,
+        		);
+        		$UserInfo->save($newUserInfoPriorityData);
+        		$newUserInfoPrioritiedData = array(
+		        	'uid' => $quanUid,
+		        	'fans' => $userInfoPrioritied['fans'] + 1,
+        		);
+        		$UserInfo->save($newUserInfoPrioritiedData);
+        		
+        		//TODO
+        		/**
+        		 * send system message to prioritied user
+        		 *
+         		 * send system message to prioriti user for user type 2
+                 * if ($userLogin['type'] == 2) 
+	             * $msgPriorityUserType2Content = "你加入了 ".$userLogin['nickname']." 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
+        		 */
+        		
+        		$this->ajaxReturn(0,'成功圈了ta','ok');
+        	}
+        }
+        
+        /**
+         * quan more then one person
+         */
+        if (!empty($quanUidArray)) {
+        	foreach ($quanUidArray as $quanUid) {
+	        	$recordUserLogin = $UserLogin->find($quanUid);
+	        	if (empty($recordUserLogin)) {
+	        		$this->ajaxReturn(0,'你要圈的用户不存在','error');
+	        	}
+	        	if ($quanUid == $userloginid) {
+	        		$this->ajaxReturn(0,'自己不能圈自己噢','error');
+	        	}
+	        	$isPriorityExist = $UserPriority->where("uid = $userloginid AND pid = $quanUid")->find();
+	        	if ($isPriorityExist) {
+	        		$this->ajaxReturn(0,'你已经圈了ta','error');
+	        	}
+	        	$isShieldExist = $UserPriority->where("uid = $userloginid AND sid = $quanUid")->find();
+	        	if ($isShieldExist) {
+	        		$this->ajaxReturn(0,'你已经屏蔽了ta，取消屏蔽后才能圈','error');
+	        	}
+	        	 
+	        	/**
+	        	 * begin insert priority data
+	        	 */
+	        	$priorityInsertData = array(
+		            'id' => '',
+		            'uid' => $userloginid,
+		            'pid' => $quanUid,
+		        	'pid_type' => $recordUserLogin['type'],
+		            'time' => time(),
+	        	);
+	        	$isPriorityDataInserted = $UserPriority->add($priorityInsertData);
+	        	if ($isPriorityDataInserted) {
+	        		
+	        		/**
+	        		 * update i_user_info follow fans nums
+	        		 */
+	        		$userInfoPriority = $UserInfo->find($userloginid);
+	        		$userInfoPrioritied = $UserInfo->find($quanUid);
+	        		$newUserInfoPriorityData = array(
+			        	'uid' => $userloginid,
+			        	'follow' => $userInfoPriority['follow'] + 1,
+	        		);
+	        		$UserInfo->save($newUserInfoPriorityData);
+	        		$newUserInfoPrioritiedData = array(
+			        	'uid' => $quanUid,
+			        	'fans' => $userInfoPrioritied['fans'] + 1,
+	        		);
+	        		$UserInfo->save($newUserInfoPrioritiedData);
+	        		
+	        		//TODO
+	        		/**
+	        		 * send system message to prioritied user
+	        		 *
+	         		 * send system message to prioriti user for user type 2
+	                 * if ($userLogin['type'] == 2) 
+		             * $msgPriorityUserType2Content = "你加入了 ".$userLogin['nickname']." 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
+	        		 */
+	        	}
+        	}
+        	$this->ajaxReturn(0,'成功圈了他们','ok');
+        }
+    }
+    
+    public function quantacancel()
+    {
+    	$userloginid = session('userloginid');
+        $UserInfo = M("UserInfo");
+        $UserPriority = M("UserPriority");
+        $quanUid = (int)$_POST['uid'];
+        if (!empty($quanUid)) {
+        	$isPriorityExist = $UserPriority->where("uid = $userloginid AND pid = $quanUid")->find();
+        	if ($isPriorityExist) {
+        		$isDelPriorityData = $UserPriority->where("uid = $userloginid AND pid = $quanUid")->delete();
+        		
+        		/**
+		         * update i_user_info follow fans nums
+		         */
+		        $userInfoPriority = $UserInfo->find($userloginid);
+		        $userInfoPrioritied = $UserInfo->find($quanUid);
+		        $newUserInfoPriorityData = array(
+		        	'uid' => $userloginid,
+		        	'follow' => $userInfoPriority['follow'] - 1,
+		        );
+		        $UserInfo->save($newUserInfoPriorityData);
+		        $newUserInfoPrioritiedData = array(
+		        	'uid' => $quanUid,
+		        	'fans' => $userInfoPrioritied['fans'] - 1,
+		        );
+		        $UserInfo->save($newUserInfoPrioritiedData);
+		        $this->ajaxReturn(0,'成功取消圈','ok');
+        	} else {
+        		$this->ajaxReturn(0,'出错了','error');
+        	}
+        }
+    }
+    
 }
 
 ?>

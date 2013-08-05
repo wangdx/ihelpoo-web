@@ -156,16 +156,16 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .online1{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px 0px; display:inline-block; }
 .online2{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
 /*---*/
-.level1{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px 0px; display:inline-block; }
-.level2{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -12px; display:inline-block; }
-.level3{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -24px; display:inline-block; }
-.level4{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -36px; display:inline-block; }
-.level5{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -48px; display:inline-block; }
-.level6{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -60px; display:inline-block; }
-.level7{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -72px; display:inline-block; }
-.level8{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -84px; display:inline-block; }
-.level9{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -96px; display:inline-block; }
-.level10{ width: 12px; height: 12px; background:url(../image/common/level.png) no-repeat 0px -108px; display:inline-block; }
+.level1{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px 0px; display:inline-block; }
+.level2{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -14px; display:inline-block; }
+.level3{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -28px; display:inline-block; }
+.level4{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -42px; display:inline-block; }
+.level5{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -56px; display:inline-block; }
+.level6{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -70px; display:inline-block; }
+.level7{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -84px; display:inline-block; }
+.level8{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -98px; display:inline-block; }
+.level9{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -112px; display:inline-block; }
+.level10{ width: 12px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -126px; display:inline-block; }
 
 /*---*/
 .dot_choose{display: inline-block; width: 13px; height: 5px; background: #C00; margin: 6px; float: right; position: absolute; right: 10px; top: 5px;}

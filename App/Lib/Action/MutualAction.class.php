@@ -65,14 +65,14 @@ class MutualAction extends Action {
              */
             $shieldUid = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
             if (empty($shieldUid)) {
-                redirect('/stream/u', 3, 'shield uid arguement is NULL');
+                redirect('/wo', 3, 'shield uid arguement is NULL');
             }
             $userLogin = $IUserLogin->userExists($shieldUid);
             if (empty($userLogin)) {
-        	    redirect('/stream/u', 3, 'user is not exist');
+        	    redirect('/wo', 3, 'user is not exist');
             }
             if ($userloginid == $shieldUid) {
-            	redirect('/stream/u', 3, '自己不能屏蔽自己噢...3秒后页面跳转');
+            	redirect('/wo', 3, '自己不能屏蔽自己噢...3秒后页面跳转');
             }
 
 
@@ -82,9 +82,9 @@ class MutualAction extends Action {
        	    if (isset($_GET['del'])) {
        	        $isDelShieldData = $UserPriority->where("uid = $userloginid AND sid = $shieldUid")->delete();
        	        if ($isDelShieldData) {
-       	            redirect('/stream/u/'.$shieldUid, 3, '取消屏蔽成功，3秒后页面跳转');
+       	            redirect('/wo/'.$shieldUid, 3, '取消屏蔽成功，3秒后页面跳转');
        	        } else {
-       	            redirect('/stream/u', 3, 'Delete shield data failed');
+       	            redirect('/wo', 3, 'Delete shield data failed');
        	        }
        	    }
 
@@ -95,11 +95,11 @@ class MutualAction extends Action {
              */
             $isShieldExist = $UserPriority->where("uid = $userloginid AND sid = $shieldUid")->find();
             if ($isShieldExist) {
-                redirect('/stream/u/'.$shieldUid, 3, '已经屏蔽他了');
+                redirect('/wo/'.$shieldUid, 3, '已经屏蔽他了');
             }
             $isPriorityExist = $UserPriority->where("uid = $userloginid AND pid = $shieldUid")->find();
             if ($isPriorityExist) {
-                redirect('/stream/u/'.$shieldUid, 3, '已经圈了他，取消圈后才能屏蔽');
+                redirect('/wo/'.$shieldUid, 3, '已经圈了他，取消圈后才能屏蔽');
             }
 
             /**
@@ -150,7 +150,7 @@ class MutualAction extends Action {
 	            );
 	            $MsgActive->add($msgActiveArray);
             }
-            redirect('/stream/u/'.$shieldUid, 3, '屏蔽成功，3秒后页面跳转');
+            redirect('/wo/'.$shieldUid, 3, '屏蔽成功，3秒后页面跳转');
         }
         $this->display();
     }
@@ -171,14 +171,14 @@ class MutualAction extends Action {
          */
         $priorityUid = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         if (empty($priorityUid)) {
-        	redirect('/stream/u', 3, 'shield uid arguement is NULL');
+        	redirect('/wo', 3, 'shield uid arguement is NULL');
         }
         $userLogin = $IUserLogin->userExists($priorityUid);
         if (empty($userLogin)) {
-        	redirect('/stream/u', 3, '你要圈的 用户不存在');
+        	redirect('/wo', 3, '你要圈的 用户不存在');
         }
         if ($userloginid == $priorityUid) {
-        	redirect('/stream/u', 3, '自己不能圈自己噢...3秒后页面跳转');
+        	redirect('/wo', 3, '自己不能圈自己噢...3秒后页面跳转');
         }
 
         /**
@@ -203,7 +203,7 @@ class MutualAction extends Action {
 		        	'fans' => $userInfoPrioritied['fans'] - 1,
 		        );
 		        $UserInfo->save($newUserInfoPrioritiedData);
-        		redirect('/stream/u/'.$priorityUid, 3, '成功取消圈了，3秒后页面跳转');
+        		redirect('/wo/'.$priorityUid, 3, '成功取消圈了，3秒后页面跳转');
         	} else {
         		exit("Delete priority data failed");
         	}
@@ -216,11 +216,11 @@ class MutualAction extends Action {
          */
         $isPriorityExist = $UserPriority->where("uid = $userloginid AND pid = $priorityUid")->find();
         if ($isPriorityExist) {
-        	redirect('/stream/u/'.$priorityUid, 3, '你已经圈了他');
+        	redirect('/wo/'.$priorityUid, 3, '你已经圈了他');
         }
         $isShieldExist = $UserPriority->where("uid = $userloginid AND sid = $priorityUid")->find();
         if ($isShieldExist) {
-        	redirect('/stream/u/'.$priorityUid, 3, '你已经屏蔽了他，取消屏蔽后才能圈');
+        	redirect('/wo/'.$priorityUid, 3, '你已经屏蔽了他，取消屏蔽后才能圈');
         }
 
         /**
@@ -289,7 +289,7 @@ class MutualAction extends Action {
         	'fans' => $userInfoPrioritied['fans'] + 1,
         );
         $UserInfo->save($newUserInfoPrioritiedData);
-        redirect('/stream/u/'.$priorityUid, 3, '成功圈了他，3秒后页面跳转...');
+        redirect('/wo/'.$priorityUid, 3, '成功圈了他，3秒后页面跳转...');
     }
 
     /**
@@ -478,7 +478,6 @@ class MutualAction extends Action {
         }
     	$this->display();
     }
-
 }
 
 ?>
