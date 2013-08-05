@@ -718,6 +718,13 @@ $().ready(function(){
     		$(this).val('');
     	}
     });
+    $('.diffusion_view_textarea').focusout(function(){
+    	$(this).next().text('直接扩散');
+    	var textareaValue = $(this).val();
+    	if (textareaValue == '') {
+    		$(this).val('说点什么吧...');
+    	}
+    });
     
     /**
      * ajax comment part

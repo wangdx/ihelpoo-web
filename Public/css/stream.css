@@ -1083,7 +1083,7 @@
 	word-wrap: break-word;
 }
 .diffusion_view_div_box textarea:focus{
-    width: 425px;
+    width: 350px;
     height: 30px;
 	border-color: #7BD6F6;
 	-moz-outline: 4px solid #E2F5FB;
