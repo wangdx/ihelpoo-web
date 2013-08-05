@@ -13,7 +13,9 @@
   <ul class="find_ul">
   <?php foreach ($searchResult as $result) : ?>
   <li>
-    <a href="__ROOT__/stream/u/<?php echo $result['uid'] ?>" ><?php echo $result['nickname'] ?></a>
+  	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
+    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>" ><?php echo $result['nickname'] ?></a>
+    <span class="f12 gray"><?php echo $result['schoolname'] ?></span>
   </li>
   <?php endforeach; ?>
   <?php if ($searchNameNums == '0') {?>

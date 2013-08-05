@@ -4,15 +4,15 @@
 <div class="mutual_rc">
   <?php if (!empty($userInfoconn)) { ?>
   <p class="mutual_rc_img_p">
-    <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>">
+    <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>">
       <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 's') ?>" width="50" />
     </a>
-    <span class="mutual_rc_img_p_span"><a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 的真实联系方式</span>
+    <span class="mutual_rc_img_p_span"><a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 的真实联系方式</span>
     <span class="mutual_rc_img_p_hometown gray">HOMETOWN <?php echo $province." ".$city ?></span>
   </p>
   <?php if(isset($_GET['please'])) { ?>
   <div class="mutual_rc_please_div f12">
-    是否给 <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 我的真实联系信息?
+    是否给 <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 我的真实联系信息?
     <form action="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>" method="post" >
       <input type="hidden" name="withid" value="<?php echo $userLogin['uid'] ?>" />
       <input type="hidden" name="way" value="single" />
@@ -37,11 +37,11 @@
   <?php } else { ?>
   <p class="mutual_rc_img_p">
     <img src="<?php echo i_icon_check($userLogin['uid'],$userLogin['icon_url'],'s') ?>" width="50" />
-    <span class="mutual_rc_img_p_span"><a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 的真实联系方式</span>
+    <span class="mutual_rc_img_p_span"><a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 的真实联系方式</span>
   </p>
   <?php if(isset($_GET['please'])) { ?>
   <div class="mutual_rc_please_div f12">
-    是否给 <a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 我的真实联系信息?
+    是否给 <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>"><?php echo $userLogin['nickname'] ?></a> 我的真实联系信息?
     <form action="__ROOT__/mutual/rc/<?php echo $userLogin['uid'] ?>" method="post" >
       <input type="hidden" name="withid" value="<?php echo $userLogin['uid'] ?>" />
       <input type="hidden" name="way" value="single" />

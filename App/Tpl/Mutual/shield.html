@@ -11,10 +11,10 @@
       foreach ($userShielded as $userShield) :
   ?>
   <li>
-    <a href="__ROOT__/stream/u/<?php echo $userShield['sid'] ?>">
+    <a href="__ROOT__/wo/<?php echo $userShield['sid'] ?>">
       <img src="<?php echo i_icon_check($userShield['sid'], $userShield['icon_url'], 's') ?>" width="50" />
     </a>
-    <a href="__ROOT__/stream/u/<?php echo $userShield['sid'] ?>"><?php echo $userShield['nickname'] ?></a>
+    <a href="__ROOT__/wo/<?php echo $userShield['sid'] ?>"><?php echo $userShield['nickname'] ?></a>
     <span class="gray f12">时间: <?php echo i_time($userShield['time']) ?></span>
     <?php if (isset($_GET['list'])) {?>
       <a href="__ROOT__/mutual/shield/<?php echo $userShield['sid']; ?>?del" class="f12">取消屏蔽</a>

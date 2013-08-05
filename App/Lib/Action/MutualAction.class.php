@@ -443,16 +443,9 @@ class MutualAction extends Action {
                 $count = 15;
                 $offset = $page * $count;
 
-                /**
-                 * debug here, i write an sql below
-                 */
-                //$searchNameSql = "SELECT * FROM `i_user_login` WHERE `nickname` LIKE '%".$searchname."%' LIMIT $offset, $count";
-                //$searchResult = $UserLogin->query($searchNameSql);
-                $searchResult = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->select();
+                $searchResult = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->join("i_record_school ON i_user_login.school = i_record_school.id")->limit($offset, $count)->select();
                 if ($searchResult) {
-                    $searchNameNumsSql = "SELECT COUNT(uid) FROM `i_user_login` WHERE `nickname` LIKE '%".$searchname."%'";
-                    $searchNameNums = $UserLogin->query($searchNameNumsSql);
-                    $searchNameNums = $searchNameNums[0]['COUNT(uid)'];
+                    $searchNameNums = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->count();
                     $this->assign('searchNameNums',$searchNameNums);
                     $totalPages = ceil($searchNameNums / $count);
                     $this->assign('totalPages',$totalPages);
