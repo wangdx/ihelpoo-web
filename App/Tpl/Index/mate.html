@@ -17,14 +17,14 @@
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
     	<span class="f12">
 	    <?php if ($_GET['sex'] == 1) { ?>
-	    	<span class="sex1"></span><a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="fb">只看男生</a>
-	    	<span class="sex2"></span><a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}">女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex1"></span>只看男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>女生</a>
 	    <?php } else if ($_GET['sex'] == 2) { ?>
-	    	<span class="sex1"></span><a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}">男生</a>
-	    	<span class="sex2"></span><a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="fb">只看女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex1"></span>男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex2"></span>只看女生</a>
 	    <?php } else { ?>
-	    	<span class="sex1"></span><a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}">只看男生</a>
-	    	<span class="sex2"></span><a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}">只看女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex1"></span>只看男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>只看女生</a>
 	    <?php } ?>
 	    </span>
     <?php } ?>
@@ -114,7 +114,6 @@
     </li>
     </ul>
     <?php } ?>
-    <a id="quan_p_switch_btn">开启多选圈人</a>
   </div>
   <ul class="main_mate_user_ul">
   <?php foreach ($userList as $user) :?>
@@ -127,7 +126,6 @@
       </a>
     </p>
     <span class="m_m_u_u_li_name"><a href="__ROOT__/wo/<?php echo $user['uid'] ?>" ><?php echo $ofunction->cut_str($user['nickname'],9); ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
-    <span class="m_m_u_u_li_checkbox_span"><input class="m_m_u_u_li_checkbox_input" type="checkbox" value="<?php echo $user['uid'] ?>" /></span>
     </li>
   <?php endforeach ?>
   </ul>
