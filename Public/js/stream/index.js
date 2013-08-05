@@ -694,7 +694,6 @@ $().ready(function(){
         	$diffusion_view = '';
         }
         var diffusionSid = $diffusionRecordObj.attr('value');
-        var $thisDiffusion = $('.diffusion');
         $.ajax({
             type: "POST",
             url: baseUrl + "stream/ajax",
@@ -703,7 +702,7 @@ $().ready(function(){
             success:function(data){
                 $('#infotextareacheck').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');
                 if (data != '你已经扩散了这条信息') {
-                    $thisDiffusion.append('<span class="red_l">+1</span>');
+                	$diffusionRecordObj.append('<span class="red_l">+1</span>');
                 }
             }
         });
