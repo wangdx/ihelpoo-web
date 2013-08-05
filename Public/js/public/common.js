@@ -233,6 +233,33 @@ $().ready(function(){
     	});
     });
     
+    /**
+     * remark
+     */
+    $('#user_remark_set').live('click', function(){
+    	var inputremarkhtml = "<p class='newremarkname_p'><input type='text' id='newremarkname' class='input_style' /> <a id='user_remark_submit' class='btn f12'>确定</a></p>";
+	    $('.user_info_main_div').html(inputremarkhtml);
+	});
+    $('#user_remark_submit').live('click', function(){
+    	var newremarkname = $('#newremarkname').val();
+    	var newuserid = $('.user_info_top_div').attr('userid');
+    	$.ajax({
+            type: "POST",
+    		dataType: "json",
+    		url: baseUrl + "ajax/newremark",
+    		data:{newuserid: newuserid, newremarkname: newremarkname},
+    		success:function(msg){
+    			if (msg.status == '1') {
+    				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>更新备注成功</p>");
+    			} else if (msg.status == '2') {
+    				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>备注成功</p>");
+    			} else {
+    				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_wrong'></span>备注失败 稍后再试</p>");
+    			}
+    		}
+    	});
+    });
+    
     $("body").click(function(){
     	//$('.user_info_div').hide();
     	$('.record_plus_div').hide();
