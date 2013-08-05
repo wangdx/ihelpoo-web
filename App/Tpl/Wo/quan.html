@@ -29,11 +29,7 @@
   </ul>
   <div class="i_list_link">
     <p class="i_list_num f12 gray">共<?php echo $totalPages ?>页  <?php echo $userPrioritiedNums; ?>人</p>
-    <?php
-    if ($totalPages > 1) {
-        i_page_show("wo/quan/".$userLogin['uid'], $totalPages);
-    }
-    ?>
+    <?php if ($totalPages > 1) { i_page_show("wo/quan/".$userLogin['uid'], $totalPages); } ?>
   </div>
   </div>
 </div>
