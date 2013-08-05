@@ -1083,6 +1083,7 @@
 	word-wrap: break-word;
 }
 .diffusion_view_div_box textarea:focus{
+    width: 320px;
 	border-color: #7BD6F6;
 	-moz-outline: 4px solid #E2F5FB;
 	-moz-outline-radius: 8px;
@@ -1092,8 +1093,8 @@
 .diffusion_view_btn{
     font-size: 12px;
     position: absolute;
-    left: 130px;
-    top: 0px;
+    left: 320px;
+    top: 2px;
 }
 
 /*--- item ---*/
