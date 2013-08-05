@@ -117,7 +117,7 @@ $().ready(function(){
     /**
      * get userinfo
      */
-    var t;
+    var t_userinfo;
     $(".getuserinfo").live('mouseenter', function(e){
     	$this = $(this);
     	t=setTimeout(function(){
@@ -139,17 +139,17 @@ $().ready(function(){
     						if (msg.data.user_relation == 'priority') {
         						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"?del' target='_blank' class='btn_quaned' title='取消圈他'>已圈他</a>";
         					} else if (msg.data.user_relation == 'shield') {
-        						var relationhtml = "<a href='"+baseUrl+"stream/u/"+msg.data.uid+" class='red_l' title='取消屏蔽' target='_blank'>已经屏蔽了他</a>";
+        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='red_l' title='取消屏蔽' target='_blank'>已经屏蔽了他</a>";
         					} else {
-        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'>圈他</a>";
+        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'><span class='icon_plus'></span>圈他</a>";
         					}
     					} else {
     						if (msg.data.user_relation == 'priority') {
         						var relationhtml = "<span href='"+baseUrl+"mutual/priority/"+msg.data.uid+"?del' class='btn_quaned' title='取消圈她'>已圈她</span>";
         					} else if (msg.data.user_relation == 'shield') {
-        						var relationhtml = "<a href='"+baseUrl+"stream/u/"+msg.data.uid+" class='red_l' title='取消屏蔽' target='_blank'>已经屏蔽了她</a>";
+        						var relationhtml = "<a href='"+baseUrl+"wo/"+msg.data.uid+" class='red_l' title='取消屏蔽' target='_blank'>已经屏蔽了她</a>";
         					} else {
-        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'>圈她</a>";
+        						var relationhtml = "<a href='"+baseUrl+"mutual/priority/"+msg.data.uid+"' target='_blank' class='btn_quan'><span class='icon_plus'></span>圈她</a>";
         					}
     					}
     					if (msg.data.remark != null) {
@@ -158,7 +158,7 @@ $().ready(function(){
     						var userremarkhtml = "<a class='f12 black_l' id='user_remark_set' title='点击设置备注'>备注</a>";
     					}
     					var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
-    					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"stream/u/"+msg.data.uid+"' target='_blank'>"
+    					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
     					+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     					+ "		    <span class='online"+msg.data.online+"'></span></a>"
     					+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" <span class='gray'>("+msg.data.type+")</span> <span class='level"+msg.data.degree+"'></span></p>"
@@ -183,7 +183,7 @@ $().ready(function(){
             });
     	},1000);
     }).mouseleave(function(){
-    	clearTimeout(t);
+    	clearTimeout(t_userinfo);
     	$('.user_info_div').hover(function(){},
     	function(){
     		$(this).fadeOut("slow");
