@@ -680,6 +680,7 @@ $().ready(function(){
      */
     $('.diffusion').toggle(
         function(){
+        	$diffusionRecordObj = $(this);
             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
         },
         function(){
@@ -692,7 +693,7 @@ $().ready(function(){
         if ($diffusion_view == '说点什么吧...') {
         	$diffusion_view = '';
         }
-        var diffusionSid = $('.diffusion').attr('value');
+        var diffusionSid = $diffusionRecordObj.attr('value');
         var $thisDiffusion = $('.diffusion');
         $.ajax({
             type: "POST",
