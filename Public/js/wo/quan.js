@@ -3,7 +3,7 @@ $().ready(function(){
 		var deluserid = $(this).attr('value');
 		var infohtml = "<p>确定取消圈ta ？</p> <a class='btn_sure' id='sure_cancel_quan' value='"+deluserid+"'>确定</a><a class='btn_cancel'>取消</a>";
     	ajaxInfo(infohtml);
-    	$cancelli = $this.parent();
+    	$cancelLi = $(this).parent();
     });
 	
 	$("#sure_cancel_quan").live('click', function(){
@@ -18,8 +18,8 @@ $().ready(function(){
     		data:{uid: userid},
     		success:function(msg){
     			if (msg.status == 'ok') {
-    				$cancelli.css("backgroundColor", "#FFF");
-    				$cancelli.slideUp("fast");
+    				$cancelLi.css("backgroundColor", "#FFF");
+    				$cancelLi.slideUp("fast");
     				$("#ajax_info_div").fadeOut("fast");
     				$("#ajax_info_div_outer").fadeOut("fast");
     			} else {
