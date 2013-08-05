@@ -426,8 +426,11 @@ class MutualAction extends Action {
      */
     public function find()
     {
-        $userloginid = session('userloginid');
-        $this->assign('title','找人 找校友');
+    	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
+        $this->assign('thisschoolid', $recordSchoolInfo['id']);
+        $this->assign('schoolname', $recordSchoolInfo['school']);
+        $this->assign('title','找人 找校友 '.$recordSchoolInfo['school']);
         if (preg_match("/username/iUs", $_SERVER["REQUEST_URI"])) {
         	$username = trim(addslashes(htmlspecialchars(strip_tags($_GET["username"]))));
 		    $p = (int)htmlspecialchars(trim($_GET["p"]));
