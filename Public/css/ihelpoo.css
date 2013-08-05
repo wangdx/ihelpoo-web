@@ -1081,3 +1081,57 @@ color:#FFFA85;
     bottom: 15px;
     right: 20px;
 }
+
+/*--- userinfo ---*/
+.user_info_div{
+    border: 3px solid #DDDDDD;
+    background: #FAFAFA;
+    width: 300px;
+    min-height: 125px;
+    border-radius: 3px;
+    padding: 10px;
+    display: none;
+    z-index: 1111;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.user_info_top_div{
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.user_info_top_div_img_a{
+    display: block;
+    width: 68px;
+    height: 51px;
+    position: relative;
+}
+.user_info_top_div_img_a img{
+    border-radius: 3px;
+}
+.user_info_top_div_img_a span{
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+}
+.user_info_top_div_nickname_p{
+    position: absolute;
+    top: 0px;
+    left: 75px;
+}
+.user_info_top_div_quan_p{
+    position: absolute;
+    top: 27px;
+    left: 75px;
+}
+.user_info_main_div ul li{
+    padding: 2px 5px;
+    color: #666;
+}
+.newremarkname_p{
+    margin: 20px;
+}
+#newremarkname{
+    border-radius: 2px;
+    padding: 3px;
+}
