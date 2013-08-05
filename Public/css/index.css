@@ -380,7 +380,7 @@ lable{
 .main_mate_info_sex{
     background: #F5F5F5;
     font-size: 12px;
-    padding: 1xp 2px;
+    padding: 1px 2px;
     border-radius: 2px;
     display: inline-block;
     color: #666;
@@ -398,7 +398,7 @@ lable{
 .main_mate_info_sex_select{
     background: #BBB;
     font-size: 12px;
-    padding: 1xp 2px;
+    padding: 1px 2px;
     border-radius: 2px;
     display: inline-block;
     color: #FFF;
