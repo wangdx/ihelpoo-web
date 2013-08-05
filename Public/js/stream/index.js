@@ -722,10 +722,11 @@ $().ready(function(){
     	}
     });
     $('.diffusion_view_textarea').focusout(function(){
-    	$(this).next().text('直接扩散');
     	var textareaValue = $(this).val();
     	if (textareaValue == '') {
     		$(this).val('说点什么吧...');
+    		$(this).next().text('直接扩散');
+    		$(this).css({width: '200px', height: '18px'});
     	}
     });
     
