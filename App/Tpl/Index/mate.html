@@ -119,7 +119,11 @@
   <?php foreach ($userList as $user) :?>
     <li>
     <p style="position: relative; width: 180px; display: inline-block">
-      <a href="__ROOT__/wo/<?php echo $user['uid'] ?>" class="getuserinfo" userid="<?php echo $user['uid'] ?>">
+    <?php if (!empty($userloginedrecord['uid'])) { ?>
+      	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>" class="getuserinfo" userid="<?php echo $user['uid'] ?>">
+    <?php } else { ?>
+    	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>">
+    <?php } ?>
         <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 'm') ?>" width="180" height="135" />
         <span class="grade<?php echo i_gradenum($user['enteryear']) ?>"></span>
         <span style="position: absolute; left: 0; bottom: 0;" class="online<?php echo $user['online'] ?>"></span>
