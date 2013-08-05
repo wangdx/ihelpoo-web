@@ -157,12 +157,18 @@ $().ready(function(){
     					} else {
     						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击设置备注'>(备注)</a>";
     					}
+    					if (msg.data.constellation != null) {
+    						var userconstellation = msg.data.constellation;
+    					} else {
+    						var userconstellation = '';
+    					}
+    					
     					var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
     					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
     					+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     					+ "		    <span class='online"+msg.data.online+"'></span></a>"
     					+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" <span class='level"+msg.data.degree+"'></span></p>"
-    					+ "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>"+msg.data.follow+"</span> 圈子:<span class='fb f14'>"+msg.data.fans+"</span> "+msg.data.constellation+"<span class='sex"+msg.data.sex+"'></span> "+relationhtml+"</p>"
+    					+ "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>"+msg.data.follow+"</span> 圈子:<span class='fb f14'>"+msg.data.fans+"</span> "+userconstellation+"<span class='sex"+msg.data.sex+"'></span> "+relationhtml+"</p>"
     					+ "		</div>"
     					+ "		<div class='user_info_main_div'>"
     					+ "			<ul>";
