@@ -386,6 +386,7 @@ lable{
     padding: 3px 5px;
     border-radius: 2px;
     display: block;
+    color: #FFF;
 }
 #quan_p_switch_btn:hover{
     -moz-outline: 4px solid #E2F5FB;
