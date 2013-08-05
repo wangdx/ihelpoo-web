@@ -14,8 +14,7 @@
     <a href="__ROOT__/lab/maponline">3D地图在线</a> | 
     <a href="__ROOT__/index/group" class="f12 gray">组织</a> + 
     <a href="__ROOT__/index/business" class="f12 gray">商家</a>
-    <span class="main_mate_info_user_nums f12 black_l">
-    	<?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
+    <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
     	<span class="f12">
 	    <?php if ($_GET['sex'] == 1) { ?>
 	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex1"></span>只看男生</a>
@@ -28,7 +27,8 @@
 	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>只看女生</a>
 	    <?php } ?>
 	    </span>
-    	<?php } ?>
+    <?php } ?>
+    <span class="main_mate_info_user_nums f12 black_l">
     	<span class="icon_plus"></span>我帮圈圈{$schoolname}现有<?php echo $allUserNums ?>位童鞋
     </span>
     <?php if ($_GET['w'] == "academy") { ?>
