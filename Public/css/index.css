@@ -382,7 +382,7 @@ lable{
     font-size: 12px;
     padding: 3px 5px;
     border-radius: 2px;
-    display: block;
+    display: inline-block;
     color: #FFF;
 }
 .main_mate_info_sex:hover{
@@ -396,7 +396,7 @@ lable{
     font-size: 12px;
     padding: 3px 5px;
     border-radius: 2px;
-    display: block;
+    display: inline-block;
     color: #666;
 }
 
