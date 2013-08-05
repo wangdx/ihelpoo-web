@@ -853,13 +853,6 @@ $().ready(function(){
         });
     });
     
-    $('.btn_cancel').live('click', function(){
-    	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").fadeOut("fast");
-		$deleteCommentLi.css("backgroundColor", "#FFF");
-    });
-    
-    
     /**
      * enlarge image
      */
