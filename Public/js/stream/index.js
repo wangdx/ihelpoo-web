@@ -715,6 +715,7 @@ $().ready(function(){
     
     $('.diffusion_view_textarea').focus(function(){
     	$(this).next().text('扩散');
+    	$(this).css({width: '350px', height: '30px'});
     	var textareaValue = $(this).val();
     	if (textareaValue == '说点什么吧...') {
     		$(this).val('');
