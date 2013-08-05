@@ -20,7 +20,7 @@ $().ready(function(){
     				$this.removeClass().addClass("btn_quaned do_quantacancel_wo").html("已圈ta");
     			} else {
     				ajaxInfo(msg.info);
-    				$this.html("圈ta");
+    				$this.html("<span class='icon_plus'></span>圈ta");
     			}
     		}
     	});
