@@ -93,6 +93,27 @@ $().ready(function(){
 		$("#ajax_info_div_outer").fadeOut("fast");
 	});
 	
+	/**
+	 * header search
+	 */
+	$("#inputSearchBox").focus(function(){
+    	var textareaValue = $(this).val();
+    	if (textareaValue == '找人') {
+    		$(this).val('');
+    	}
+    });
+    $("#inputSearchBox").focusout(function(){
+    	var textareaValue = $(this).val();
+    	if (textareaValue == '') {
+    		$(this).val('找人');
+    	}
+    });
+    
+    $("#inputSearchButton").click(function(){
+    	var searchWords = $("#inputSearchBox").val();
+    	window.location = baseUrl + "mutual/find?username=" + searchWords;
+    });
+	
 });
 function getStringLength(str) {
 	var totalLength = 0;
