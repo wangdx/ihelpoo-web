@@ -446,8 +446,9 @@ class MutualAction extends Action {
                 /**
                  * debug here, i write an sql below
                  */
-                $searchNameSql = "SELECT * FROM `i_user_login` WHERE `nickname` LIKE '%".$searchname."%' LIMIT $offset, $count";
-                $searchResult = $UserLogin->query($searchNameSql);
+                //$searchNameSql = "SELECT * FROM `i_user_login` WHERE `nickname` LIKE '%".$searchname."%' LIMIT $offset, $count";
+                //$searchResult = $UserLogin->query($searchNameSql);
+                $searchResult = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->select();
                 if ($searchResult) {
                     $searchNameNumsSql = "SELECT COUNT(uid) FROM `i_user_login` WHERE `nickname` LIKE '%".$searchname."%'";
                     $searchNameNums = $UserLogin->query($searchNameNumsSql);
