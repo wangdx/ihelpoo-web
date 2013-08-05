@@ -20,6 +20,7 @@ $().ready(function(){
     				$this.removeClass().addClass("btn_quaned do_quantacancel_wo").html("已圈ta");
     			} else {
     				ajaxInfo(msg.info);
+    				$this.html("圈ta");
     			}
     		}
     	});
@@ -40,6 +41,7 @@ $().ready(function(){
     				$this.removeClass().addClass("btn_quan do_quanta_wo").html("<span class='icon_plus'></span>圈ta");
     			} else {
     				ajaxInfo(msg.info);
+    				$this.html("取消圈ta");
     			}
     		}
     	});
