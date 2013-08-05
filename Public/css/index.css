@@ -387,7 +387,7 @@ lable{
     border: 1px solid #DDD;
 }
 .main_mate_info_sex span, .main_mate_info_sex_select span{
-    vertical-align: text-bottom;
+    vertical-align: top;
 }
 .main_mate_info_sex:hover{
     -moz-outline: 4px solid #E2F5FB;
@@ -402,7 +402,11 @@ lable{
     border-radius: 2px;
     display: inline-block;
     color: #666;
-    border: 1px solid #15B6D7;
+    border: 1px solid #DDD;
+    -moz-outline: 4px solid #E2F5FB;
+    -moz-outline-radius: 8px;
+    -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+    box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 }
 
 .main_mate_info_hot{
