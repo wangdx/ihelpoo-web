@@ -394,7 +394,7 @@ $().ready(function(){
             $('.img_upload_form_div').slideDown('fast');
         },
         function(){
-            $('.img_upload_form_div').slideUp('up');
+            $('.img_upload_form_div').slideUp('fast');
         }
     );
 
@@ -678,18 +678,20 @@ $().ready(function(){
     /**
      * diffusion part
      */
-    $('.diffusion').click(function(){
-        $('.diffusion_view_div_box').slideUp('slow');
-        diffusion_view_div_box = $(this).parent().parent().find('.diffusion_view_div_box');
-        diffusion_view_div_box.slideDown('fast');
-    });
-//    $('.diffusion_view_div_box').mouseout(function(){
-//        $(this).slideUp('slow');
-//    });
-    
+    $('.diffusion').toggle(
+        function(){
+            $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
+        },
+        function(){
+        	$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
+        }
+    );
     
     $('.diffusion_view_btn').click(function(){
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
+        if ($diffusion_view == '说点什么吧...') {
+        	$diffusion_view = '';
+        }
         var diffusionSid = $('.diffusion').attr('value');
         var $thisDiffusion = $('.diffusion');
         $.ajax({
