@@ -1089,6 +1089,12 @@
 	-webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 	box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 }
+.diffusion_view_btn{
+    font-size: 12px;
+    position: absolute;
+    left: 130px;
+    top: 0px;
+}
 
 /*--- item ---*/
 /*--- say.phtml ---*/
