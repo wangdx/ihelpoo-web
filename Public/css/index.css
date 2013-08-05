@@ -396,17 +396,13 @@ lable{
     box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 }
 .main_mate_info_sex_select{
-    background: #F5F5F5;
+    background: #BBB;
     font-size: 12px;
     padding: 2px 5px;
     border-radius: 2px;
     display: inline-block;
-    color: #666;
-    border: 1px solid #DDD;
-    -moz-outline: 4px solid #E2F5FB;
-    -moz-outline-radius: 8px;
-    -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
-    box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+    color: #FFF;
+    border: 1px solid #BBB;
 }
 
 .main_mate_info_hot{
