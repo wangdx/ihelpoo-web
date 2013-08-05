@@ -1097,13 +1097,14 @@ class StreamAction extends Action
 
     public function outputMessage($userPriorityNums, $userPriorityObj)
     {
-        echo "已扩散给 <a href='" . __ROOT__ . "/mutual/priority?me'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
+    	$userloginid = session('userloginid');
+        echo "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
         if (empty($userPriorityNums)) {
             exit();
         }
         foreach ($userPriorityObj as $idx => $userPriority) {
             if ($idx >= 10) break;
-            echo $userPriority['nickname'] . "<br />";
+            echo "<a href='/wo/".$userPriority['uid']."' class='f12'>".$userPriority['nickname']."</a> <br />";
         }
         echo "...";
         return $userPriority;
