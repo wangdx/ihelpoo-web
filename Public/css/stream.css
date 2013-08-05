@@ -981,7 +981,7 @@
 }
 /*--- userinfo ---*/
 .user_info_div{
-    border: 3px solid #CCC;
+    border: 3px solid #DDDDDD;
     background: #FAFAFA;
     width: 300px;
     min-height: 125px;
@@ -989,6 +989,7 @@
     padding: 10px;
     display: none;
     z-index: 1111;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .user_info_top_div{
     border-bottom: 1px dotted #CCC;
@@ -1043,7 +1044,7 @@
     -moz-outline-radius: 8px 8px 8px 8px;
     border: 3px solid #DDDDDD;
     border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 0 10px rgba(123, 214, 246, 0.6);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .stream_plus_users_p{
     font-size: 12px;
