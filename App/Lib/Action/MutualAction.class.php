@@ -446,7 +446,7 @@ class MutualAction extends Action {
                 $count = 15;
                 $offset = $page * $count;
 
-                $searchResult = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->join("i_school_info ON i_user_login.school = i_school_info.id")->limit($offset, $count)->select();
+                $searchResult = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->join("i_school_info ON i_user_login.school = i_school_info.id")->limit($offset, $count)->order("active DESC")->select();
                 if ($searchResult) {
                     $searchNameNums = $UserLogin->where("`nickname` LIKE '%".$searchname."%'")->count();
                     $this->assign('searchNameNums',$searchNameNums);
