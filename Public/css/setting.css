@@ -483,9 +483,7 @@
     margin: 20px;
 }
 #newremarkname{
-    padding: 2px;
-    font-size: 12px;
-    color: #666666;
+    border-radius: 2px;
 }
 /*--- realfirst.phtml ---*/
 .realfirst{
