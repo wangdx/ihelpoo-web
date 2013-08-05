@@ -52,7 +52,7 @@ $().ready(function(){
      */
     $(".remark_wo_top_a").click(function(){
 		var userid = $(this).attr('userid');
-		var infohtml = "<p>请输入新备注名字: <input class='input_style' id='wo_top_new_remark' /> </p> <a class='btn_sure' id='wo_top_sure_remark' value='"+userid+"'>确定</a><a class='btn_cancel'>取消</a>";
+		var infohtml = "<p align='right'>请输入新备注名字: <br /> <input class='input_style' id='wo_top_new_remark' /> <br /><br /></p><a class='btn_sure' id='wo_top_sure_remark' value='"+userid+"'>确定</a><a class='btn_cancel'>取消</a>";
 		ajaxInfo(infohtml);
     });
     
@@ -68,9 +68,9 @@ $().ready(function(){
 			data:{newuserid: newuserid, newremarkname: newremarkname},
 			success:function(msg){
 				if (msg.status == '1') {
-					$('.remark_wo_top_a').html(newremarkname);
+					$('.remark_wo_top_a').html("("+newremarkname+")");
 				} else if (msg.status == '2') {
-					$('.remark_wo_top_a').html(newremarkname);
+					$('.remark_wo_top_a').html("("+newremarkname+")");
 				} else {
 					ajaxInfo("备注失败 稍后再试");
 				}
