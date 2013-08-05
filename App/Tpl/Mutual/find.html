@@ -14,7 +14,11 @@
   <?php foreach ($searchResult as $result) : ?>
   <li>
   	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
-    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>" ><?php echo $result['nickname'] ?></a>
+    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>" ><?php echo $result['nickname'] ?></a> 
+    <span class="sex<?php echo $result['sex'] ?>"></span> 
+    <?php echo i_constellation($result['birthday']); echo i_sex($result['sex']) ?> | 
+    <span class="f12 gray"><?php echo i_grade($result['enteryear']) ?></span> 
+    <span class="level<?php echo i_degree($result['active']) ?>" title="等级: level<?php echo i_degree($result['active']) ?>"></span> &nbsp; 
     <?php if($result['id'] != $thisschoolid) { ?>
     	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
     <?php } ?>
