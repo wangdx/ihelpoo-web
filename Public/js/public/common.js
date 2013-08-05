@@ -233,7 +233,7 @@ $().ready(function(){
     	});
     });
     
-    $(".user_info_div:not(div)").click(function(){
+    $("div:not(.user_info_div)").click(function(){
     	$('.user_info_div').hide();
     	$('.record_plus_div').hide();
     });
