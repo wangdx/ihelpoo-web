@@ -378,12 +378,16 @@ lable{
 	position: relative;
 }
 .main_mate_info_sex{
-    background: #15B6D7;
+    background: #F5F5F5;
     font-size: 12px;
-    padding: 3px 5px;
+    padding: 2px 5px;
     border-radius: 2px;
     display: inline-block;
-    color: #FFF;
+    color: #666;
+    border: 1px solid #DDD;
+}
+.main_mate_info_sex span, .main_mate_info_sex_select span{
+    vertical-align: text-bottom;
 }
 .main_mate_info_sex:hover{
     -moz-outline: 4px solid #E2F5FB;
@@ -394,10 +398,11 @@ lable{
 .main_mate_info_sex_select{
     background: #F5F5F5;
     font-size: 12px;
-    padding: 3px 5px;
+    padding: 2px 5px;
     border-radius: 2px;
     display: inline-block;
     color: #666;
+    border: 1px solid #15B6D7;
 }
 
 .main_mate_info_hot{
