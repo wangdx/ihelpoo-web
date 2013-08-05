@@ -153,15 +153,15 @@ $().ready(function(){
         					}
     					}
     					if (msg.data.remark != null) {
-    						var userremarkhtml = "<a class='f12 black_l' id='user_remark_set' title='点击修改备注'>"+msg.data.remark+"</a>";
+    						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击修改备注'>"+msg.data.remark+"</a>";
     					} else {
-    						var userremarkhtml = "<a class='f12 black_l' id='user_remark_set' title='点击设置备注'>备注</a>";
+    						var userremarkhtml = "<a class='f12' id='user_remark_set' title='点击设置备注'>备注</a>";
     					}
     					var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
     					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
     					+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     					+ "		    <span class='online"+msg.data.online+"'></span></a>"
-    					+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" <span class='gray'>("+msg.data.type+")</span> <span class='level"+msg.data.degree+"'></span></p>"
+    					+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" <span class='level"+msg.data.degree+"'></span></p>"
     					+ "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>"+msg.data.follow+"</span> 圈子:<span class='fb f14'>"+msg.data.fans+"</span> "+msg.data.constellation+"<span class='sex"+msg.data.sex+"'></span> "+relationhtml+"</p>"
     					+ "		</div>"
     					+ "		<div class='user_info_main_div'>"
@@ -251,8 +251,10 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == '1') {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>更新备注成功</p>");
+    				$('.user_info_top_div_nickname_p a').html(newremarkname);
     			} else if (msg.status == '2') {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_right'></span>备注成功</p>");
+    				$('.user_info_top_div_nickname_p a').html(newremarkname);
     			} else {
     				$('.user_info_main_div').html("<p class='newremarkname_p'><span class='icon_wrong'></span>备注失败 稍后再试</p>");
     			}

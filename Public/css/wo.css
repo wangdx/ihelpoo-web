@@ -330,6 +330,7 @@
 }
 #newremarkname{
     border-radius: 2px;
+    padding: 3px;
 }
 
 /*--- help.phtml ---*/
