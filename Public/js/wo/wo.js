@@ -61,6 +61,11 @@ $().ready(function(){
 		$("#ajax_info_div_outer").fadeOut("fast");
 		var newuserid = $(this).attr("value");
 		var newremarkname = $("#wo_top_new_remark").attr("value");
+		if (newremarkname == '') {
+			var newremarknameinfo = '已清空备注';
+		} else {
+			var newremarknameinfo = newremarkname;
+		}
 		$.ajax({
 			type: "POST",
 			dataType: "json",
@@ -68,9 +73,9 @@ $().ready(function(){
 			data:{newuserid: newuserid, newremarkname: newremarkname},
 			success:function(msg){
 				if (msg.status == '1') {
-					$('.remark_wo_top_a').html("("+newremarkname+")");
+					$('.remark_wo_top_a').html("("+newremarknameinfo+")");
 				} else if (msg.status == '2') {
-					$('.remark_wo_top_a').html("("+newremarkname+")");
+					$('.remark_wo_top_a').html("("+newremarknameinfo+")");
 				} else {
 					ajaxInfo("备注失败 稍后再试");
 				}
