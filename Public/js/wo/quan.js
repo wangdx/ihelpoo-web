@@ -1,6 +1,6 @@
 $().ready(function(){
 	$(".wo_quan_cancel_a").click(function(){
-		var deluserid = $(this).attr('userid');
+		var deluserid = $(this).attr('value');
 		var infohtml = "<p>确定取消圈？</p> <a class='btn_sure' id='sure_cancel_quan' value='"+deluserid+"'>确定</a><a class='btn_cancel'>取消</a>";
     	ajaxInfo(infohtml);
     });
