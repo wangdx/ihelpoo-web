@@ -183,8 +183,8 @@
 }
 #s_t_submit{
     position: absolute;
-    top: 86px;
-    left: 570px;
+    top: 90px;
+    left: 565px;
 }
 .at_auto_match_ul{
     font-size: 12px;
@@ -1092,7 +1092,7 @@
 .diffusion_view_btn{
     font-size: 12px;
     position: relative;
-    top: -5px;
+    top: -7px;
     left: 5px;
 }
 
