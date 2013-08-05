@@ -89,6 +89,13 @@ class WoAction extends Action {
         $UserHonor = M("UserHonor");
         $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
         $this->assign('totalUserHonorNums', $totalUserHonorNums);
+        
+        /**
+         * show remark 
+         */
+        $UserRemark = M("UserRemark");
+        $recordUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $userId")->find();
+        $this->assign('recordUserRemark', $recordUserRemark);
     }
 
     public function _empty()
@@ -173,6 +180,13 @@ class WoAction extends Action {
     	$this->assign('thisschoolid', $recordSchoolInfo['id']);
         $this->assign('schoolname', $recordSchoolInfo['school']);
 
+        /**
+         * show remark 
+         */
+        $UserRemark = M("UserRemark");
+        $recordUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $userId")->find();
+        $this->assign('recordUserRemark', $recordUserRemark);
+        
         /**
          *
          */

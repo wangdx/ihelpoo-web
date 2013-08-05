@@ -47,6 +47,42 @@ $().ready(function(){
     	});
     });
     
+    /**
+     * remark
+     */
+    $(".remark_wo_top_a").click(function(){
+		var userid = $(this).attr('userid');
+		var infohtml = "<p>请输入新备注名字: <input class='input_style' id='wo_top_new_remark' /> </p> <a class='btn_sure' id='wo_top_sure_remark' value='"+userid+"'>确定</a><a class='btn_cancel'>取消</a>";
+		ajaxInfo(infohtml);
+    });
+    
+    $("#wo_top_sure_remark").live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+		var newuserid = $(this).attr("value");
+		var newremarkname = $("#wo_top_new_remark").attr("value");
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: baseUrl + "ajax/newremark",
+			data:{newuserid: newuserid, newremarkname: newremarkname},
+			success:function(msg){
+				if (msg.status == '1') {
+					$('.remark_wo_top_a').html(newremarkname);
+				} else if (msg.status == '2') {
+					$('.remark_wo_top_a').html(newremarkname);
+				} else {
+					ajaxInfo("备注失败 稍后再试");
+				}
+			}
+		});
+    });
+    
+    $(".btn_cancel").live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+    });
+    
 });
 function showtime(){
 	today = new Date(); 
