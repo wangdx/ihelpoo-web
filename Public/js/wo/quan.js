@@ -18,7 +18,7 @@ $().ready(function(){
     		data:{uid: userid},
     		success:function(msg){
     			if (msg.status == 'ok') {
-    				$cancelLi.css("backgroundColor", "#FFF");
+    				$cancelLi.css("backgroundColor", "#FFFA85");
     				$cancelLi.slideUp("fast");
     				$("#ajax_info_div").fadeOut("fast");
     				$("#ajax_info_div_outer").fadeOut("fast");
