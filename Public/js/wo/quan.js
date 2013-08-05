@@ -7,7 +7,7 @@ $().ready(function(){
 	
 	$("#sure_cancel_quan").live('click', function(){
 		var $this = $(this);
-		var userid = $this.attr('userid');
+		var userid = $this.attr('value');
 		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
     	$this.html($infoLoading);
     	$.ajax({
