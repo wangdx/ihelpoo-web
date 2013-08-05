@@ -700,7 +700,8 @@ $().ready(function(){
             data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
             datatype: "html",
             success:function(data){
-                $('#infotextareacheck').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');
+            	var infohtml = "<p>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            	ajaxInfo(infohtml);
                 if (data != '你已经扩散了这条信息') {
                 	$diffusionRecordObj.append('<span class="red_l">+1</span>');
                 }
@@ -833,7 +834,7 @@ $().ready(function(){
     	var deletecid = $(this).attr("value");
     	$deleteCommentLi = $(this).parent().parent();
     	$deleteCommentLi.css("backgroundColor", "#FFFA85");
-    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确实</a><a class='btn_cancel'>取消</a>";
+    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确定</a><a class='btn_cancel'>取消</a>";
     	ajaxInfo(infohtml);
     });
     
