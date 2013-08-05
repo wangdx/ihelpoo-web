@@ -711,6 +711,14 @@ $().ready(function(){
         $('#infotextareacheck').slideUp('normal');
     });
     
+    $('.diffusion_view_textarea').focus(function(){
+    	$(this).next().text('扩散');
+    	var textareaValue = $(this).val();
+    	if (textareaValue == '说点什么吧...') {
+    		$(this).val('');
+    	}
+    });
+    
     /**
      * ajax comment part
      */
