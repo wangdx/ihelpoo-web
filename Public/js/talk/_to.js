@@ -11,7 +11,7 @@ $(function () {
 
 
     var typingStuff = '';
-    $("textarea#send_message_textarea").bind('keyup', function(){
+    $("textarea#send_message_textarea").bind('keydown', function(){
         typingStuff = $("textarea#send_message_textarea").val();
         console.log("keyup+++++++++");
     });
