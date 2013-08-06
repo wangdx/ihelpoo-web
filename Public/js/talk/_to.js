@@ -27,6 +27,7 @@ $(function () {
     var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
     function typing(){
+        console.log("---------------------"+noActionInterval);
         $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
         clearTimeout(noTypeTimeout);
         noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
