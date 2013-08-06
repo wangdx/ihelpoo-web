@@ -15,7 +15,9 @@ class WoAction extends Action {
     		$UserLogin = M("UserLogin");
     		$userloginedrecord = $UserLogin->find($userloginid);
     		$this->assign('userloginedrecord',$userloginedrecord);
-    	}
+    	} else {
+            redirect('/user/notlogin', 0, '你还没有登录呢...');
+        }
         header("Content-Type:text/html; charset=utf-8");
 
         /**
