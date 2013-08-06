@@ -13,7 +13,7 @@
 <ul class="s_bind_ul f12 black_l" id="invite_one_part">
   <li class="fb black">邀请好友</li>
   <li>请复制下面内容到论坛，QQ群，微博...或者直接点击分享按钮:)</li>
-  <li><textarea class="invite_textarea_word">湖北民族学院专属社交网站 我帮圈圈 新版本上线啦，欢迎大家加入我帮圈圈。吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，交往你感觉对头的，学长学姐学弟学妹都会在这里，还差你呢~  http://www.ihelpoo.com/user/register/<?php echo $userloginedrecord['uid']; ?></textarea></li>
+  <li><textarea class="invite_textarea_word">湖北民族学院专属社交网站 我帮圈圈 新版本上线啦，欢迎大家加入我帮圈圈。吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，交往你感觉对头的，学长学姐学弟学妹都会在这里，还差你呢~  http://<?php echo $_SERVER['HTTP_HOST']; ?>/user/register/<?php echo $userloginedrecord['uid']; ?></textarea></li>
   <li>
    	<div class="invite_share_btn_div">
 		<!-- JiaThis Button BEGIN -->
@@ -26,7 +26,7 @@
 		</div>
 		<script type="text/javascript" >
 		var jiathis_config={
-			url:"http://www.ihelpoo.com/user/register/<?php echo $userloginedrecord['uid']; ?>",
+			url:"http://<?php echo $_SERVER['HTTP_HOST']; ?>/user/register/<?php echo $userloginedrecord['uid']; ?>",
 			summary:"",
 			title:"湖北民族学院专属社交网站 我帮圈圈 新版本上线啦，欢迎大家加入我帮圈圈。吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，交往你感觉对头的，学长学姐学弟学妹都会在这里，还差你呢~ ",
 			hideMore:false

@@ -466,6 +466,8 @@ class MutualAction extends Action {
     {
     	$userloginid = session('userloginid');
         $this->assign('title','我邀请的朋友');
+        $recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
         $UserInvite = M("UserInvite");
         $totalInviteUserNums = $UserInvite->where("uid = $userloginid")->count();
         $this->assign('totalInviteUserNums',$totalInviteUserNums);

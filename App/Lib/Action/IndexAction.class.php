@@ -437,9 +437,7 @@ class IndexAction extends Action {
     	$userloginid = session('userloginid');
         $this->assign('title','我邀请的朋友 排行');
         $UserInvite = M("UserInvite");
-        $totalInviteUserNums = $UserInvite->count();
-        $this->assign('totalInviteUserNums',$totalInviteUserNums);
-        $selectSql = "SELECT i_user_invite.uid, COUNT(i_user_invite.uid) AS invite_nums, award, nickname, icon_url FROM `i_user_invite`, `i_user_login` WHERE `award` = '1' AND i_user_invite.uid = i_user_login.uid GROUP BY uid  ORDER BY invite_nums DESC";
+        $selectSql = "SELECT i_user_invite.uid, COUNT(i_user_invite.uid) AS invite_nums, award, nickname, icon_url, school FROM `i_user_invite`, `i_user_login` WHERE `award` = '1' AND `school` = $recordSchoolInfo[id] AND i_user_invite.uid = i_user_login.uid GROUP BY uid  ORDER BY invite_nums DESC";
         $selectSqlResult = $UserInvite->query($selectSql);
         $this->assign('resultUserInvite',$selectSqlResult);
     	$this->display();
