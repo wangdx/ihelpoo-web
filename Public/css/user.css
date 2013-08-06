@@ -19,6 +19,7 @@
 }
 .registe_toptext{
     margin-bottom: 20px;
+    background:url(../image/common/register_top.png) no-repeat 0 0;
 }
 .registe_toptext p{
     text-align: center;
