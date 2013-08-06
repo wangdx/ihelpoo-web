@@ -10,15 +10,15 @@ $(function () {
     $('#send_message').click(chat.send);
 
 
-    var typingStuff = null;
-    $("#send_message_textarea").bind('keyup', function(){
-        typingStuff = $("#send_message_textarea").val();
+    var typingStuff = '';
+    $("textarea#send_message_textarea").bind('keyup', function(){
+        typingStuff = $("textarea#send_message_textarea").val();
     });
 
 
     var noActionInterval = 15; // seconds
-    $("#send_message_textarea").bind('keypress', function () {
-        if(typingStuff != ''){
+    $("textarea#send_message_textarea").bind('keypress', function () {
+        if(typingStuff && typingStuff.length > -1){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
