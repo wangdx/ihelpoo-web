@@ -7,6 +7,8 @@ $(function () {
 
     chat.join($('#data_uid').val(), $('#data_touid').val());
 
+    $('#send_message').click(chat.send);
+
 
     // restore some values
     if (state) {
