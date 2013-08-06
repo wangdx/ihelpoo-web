@@ -208,19 +208,23 @@
     display: none;
 }
 .setting_school_list_div{
-    border: 5px solid #DDD;
-    background: #EDF4FB;
     border-radius: 3px;
     padding: 10px 15px;
     width: 300px;
     margin: 0 auto;
     text-align: left;
     position: relative;
+
+    -moz-outline-radius: 8px 8px 8px 8px;
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 5px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 10px rgba(123, 214, 246, 0.6);  
 }
 #setting_school_close_span{
     position: absolute;
-    right: 2px;
-    top: 2px;
+    right: 3px;
+    top: 3px;
 }
 .setting_school_list_div ul li{
     display: inline-block;
