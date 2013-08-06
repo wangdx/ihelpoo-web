@@ -10,29 +10,29 @@ $(function () {
     $('#send_message').click(chat.send);
 
 
-    var noTypeTimeout = null;
-    $("#send_message_textarea").bind('input', function () {
 
-        var noActionInterval = 15; // seconds
+    var noActionInterval = 15; // seconds
+    $("#send_message_textarea").bind('keypress', function () {
+        typing();
+
         var typingStuff = $("#send_message_textarea").val();
-        if (!typingStuff) {
-            noActionInterval = 5;
-        } else {
+        if(!typingStuff){
             noActionInterval = 15;
+        }else{
+            noActionInterval = 5;
         }
-
-        setTimeout(inActive, noActionInterval * 1000);
-        typing(noActionInterval);
     });
 
 
-    function typing(noActionInterval) {
+    var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
+
+    function typing(){
         $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
         clearTimeout(noTypeTimeout);
         noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
     }
 
-    function inActive() {
+    function inActive(){
         $('#input_status').text('');
     }
 
