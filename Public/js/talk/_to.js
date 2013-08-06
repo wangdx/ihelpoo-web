@@ -151,7 +151,7 @@ function Chat(state) {
 
     function _subscribe() {
         _chatSubscription = $.cometd.subscribe('/chat/p2p', _self.receive);
-//        _membersSubscription = $.cometd.subscribe('/members/demo', _self.members);
+        _membersSubscription = $.cometd.subscribe('/members/demo', _self.members);
     }
 
     function _connectionInitialized() {
