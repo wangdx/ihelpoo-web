@@ -12,22 +12,26 @@
 	<br />
 	<p><strong>我帮圈圈想做什么？</strong></p>
 	<p class="f12">我帮圈圈是一个针对{$schoolname}，完全自主设计开发的以帮助为中心的社交网站。<br /><br />
+	我帮圈圈强调SNS社交，注重信息汇聚的价值，热爱生活、乐意帮助，更重要的是期待遇见:) <br />
+	我帮圈圈更愿意帮助热爱帮助别人的童鞋，希望建立一个以帮助为中心的活跃的校园社交平台。<br />
+	希望大家一起能帮你解决一些问题。希望您找到需要的讯息。希望您找到幸福:D
+	</p>
+	<br />
 	<?php echo $schoolabout; ?>
 	<br />
 	<br />
 	<p><strong>站长</strong></p>
 	<?php foreach($schoolwebmaster as $webmaster) { ?>
 		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank">
-			<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="80" height="60" class="radius3" />
+			<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="60" height="45" class="radius3" />
 		</a>
 		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank"><?php echo $webmaster['nickname']; ?></a>
 		<?php echo $webmaster["position"] == "m" ? "[站长]" : "[副站长]"; ?>
 		<?php echo $webmaster["description"]; ?>
 		email:<?php echo $webmaster["email"]; ?>
 	<?php } ?>
-	</p>
 	<br />
-	<p><strong>联系站长</strong></p>
+	<p><strong>联系</strong></p>
 	<p class="f12">诚挚欢迎校园周边企业、单位组织、社会校园团体、有影响力个人和{$schoolname}我帮圈圈合作交流，组织活动。</p>
 	<p class="f12">校园商业合作、运营请联系{$schoolname}站长。</p>
 	<br />
@@ -42,7 +46,8 @@
 	<p class="f12">如果您将会是牛逼的有想法的战友。<a href="__ROOT__/about/artical">看这里</a></p>
 	<br />
 	<p><strong>合作共建地方化校园SNS</strong></p>
-	<p class="f12">联系我帮圈圈团队，把我帮圈圈搬到你们学校，共建地方化校园SNS，你们运营，我帮圈圈团队负责技术，共同分享运营成果 <a href="http://iuc.ihelpoo.com" target="_blank">我帮圈圈IUC</a><span class="icon_new"></span></p>
+	<p class="f12">联系我帮圈圈团队，把我帮圈圈搬到你们学校，共建地方化校园SNS，你们运营，我帮圈圈团队负责技术，共同分享运营成果。</p>
+	<p class="f12"><a href="http://iuc.ihelpoo.com" target="_blank">查看</a>已经开通校园列表。地区负责人：北京，郑州，武汉</p>
 	<p class="f12">联系方式email: admin@tvery.com 121670155@qq.com</p>
 	<br />
 	<br />
