@@ -41,7 +41,12 @@ $().ready(function(){
     			var mainpositionleft = mainhelpoffset.left + 173;
     		}
         	$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
-        	$("#nav_hover_list_div_ul").html("<li><a href='/help'>帮助</a> | <a href='/activity'>活动</a></li>");
+        	var stream_header_top_schoolad = $("#stream_header_top_schoolad").html();
+        	if (stream_header_top_schoolad != null) {
+        		$("#nav_hover_list_div_ul").html("<li><a href='/help'>帮助</a> | <a href='/activity'>活动</a></li>" + stream_header_top_schoolad);
+        	} else {
+        		$("#nav_hover_list_div_ul").html("<li><a href='/help'>帮助</a> | <a href='/activity'>活动</a></li>");
+        	}
         },
         function(){
         	$("#nav_hover_list_div").hover(function(){
