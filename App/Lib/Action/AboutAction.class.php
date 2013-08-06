@@ -58,6 +58,13 @@ class AboutAction extends Action {
     	}
         $this->display();
     }
+    
+    public function sns()
+    {
+    	$title = "作共建地方化校园SNS";
+    	$this->assign('title', $title);
+    	$this->display();
+    }
 
 }
 
