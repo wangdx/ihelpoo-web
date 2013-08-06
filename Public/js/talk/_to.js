@@ -10,23 +10,23 @@ $(function () {
     $('#send_message').click(chat.send);
 
 
-    var noTypeTimeout = null;
+
+    var noActionInterval = 15; // seconds
     $("#send_message_textarea").bind('keypress', function () {
 
-        var noActionInterval = 15; // seconds
         var typingStuff = $("#send_message_textarea").val();
         if(!typingStuff){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
         }
-        noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
-        typing(noActionInterval);
+        typing();
     });
 
 
+    var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
-    function typing(noActionInterval){
+    function typing(){
         $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
         clearTimeout(noTypeTimeout);
         noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
