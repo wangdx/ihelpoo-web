@@ -1,12 +1,5 @@
-.headermall .header_left_arrow {
-    display: inline-block;
-    height: 20px;
-    margin: 0;
-    padding: 10px 0;
-    position: relative;
-    text-align: center;
-    top: -12px;
-    width: 55px;
+.header_left a{
+    margin-right: 10px;
 }
 .mainmall{
     background: #FFFFFF;
