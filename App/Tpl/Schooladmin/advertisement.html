@@ -1,4 +1,7 @@
 <include file="Public:headerwebmaster" />
+	<?php if (!empty($_GET['delid'])) { ?>
+  		<span class="icon_attention"></span> 是否删除? <a href="?suredel=<?php echo $_GET['delid']; ?>">是</a> <a href="__ROOT__/schooladmin/advertisement">否</a>
+  	<?php } ?>
 	<form method="post">
 		<ul class="">
 			<li>
@@ -19,13 +22,21 @@
 		<li>2. “头部更多”广告部分，建议只用文字</li>
 		<li>3. 需要上传图片的请在<a href="/schooladmin/indexbgimg">上传图片</a>栏目上传图片，再取得图片连接放入html</li>
 	</ul>
-	<?php if (!empty($schoolid)) { ?>
-	<br />
-	<ul>
-	<li>已上传图片列表:</li>
-	<?php foreach ($imagestoragelist as $imagestorage) { ?>
-	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorageurlfolder,$imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?></li>
-	<?php } ?>
-	</ul>
+	<?php if (!empty($recordSchoolAd)) { ?>
+		<br />
+		<ul class="para_right_ul">
+	    <?php foreach ($recordSchoolAd as $schoolAd) : ?>
+	    <li>
+	    	<span class="f12 fb">广告类型:</span> <?php echo $schoolAd['type'] == "1" ? "[头部更多]" : "[stream右边]"; ?> 
+	    	<span class="f12 fb">广告内容:</span> <?php echo $schoolAd['content']; ?> 
+	    	<span class="gray"><?php echo i_time($schoolAd['time']); ?></span> 
+		    <a href="?delid=<?php echo $schoolAd['id']; ?>">删除</a>
+	    </li>
+	    <?php endforeach; ?>
+	    </ul>
+	    <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条记录 <?php echo $totalPages ?>页</p>
+	    <div class="paging_div">
+	    <?php if ($totalPages > 1) { i_page_show("schooladmin/advertisement", $totalPages); } ?>
+	  </div>
 	<?php } ?>
 <include file="Public:footerwebmaster" />

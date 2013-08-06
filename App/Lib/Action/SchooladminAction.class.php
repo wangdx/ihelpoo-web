@@ -284,10 +284,66 @@ class SchooladminAction extends Action {
     	$schoolid = $recordSchoolInfo['id'];
     	$SchoolAd = M("SchoolAd");
     	
+    	if ($this->isPost()) {
+    		$adtype = (int)$_POST['adtype'];
+    		$adcontent = trim(addslashes($_POST['adcontent']));
+    		if (!empty($adtype) && !empty($adcontent)) {
+    			$newAdArray = array(
+    				'id' => '',
+    				'sid' => $recordSchoolInfo['id'],
+    				'type' => $adtype,
+    				'content' => $adcontent,
+    				'time' => time()
+    			);
+    			$SchoolAd->add($newAdArray);
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => '添加广告 adtype'.$adtype.' - adconent'.$adcontent,
+		            'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    		}
+    	}
+    	
+    	/**
+    	 * delete advertisement
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteSchoolAd = $SchoolAd->where("id = $suredelid AND sid = $schoolid")->find();
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+		                'id' => '',
+		                'sys_id' => '',
+		                'uid' => $webmaster['uid'],
+		                'sid' => $recordSchoolInfo['id'],
+		                'record' => '删除广告 time:'.$deleteSchoolAd['type'].' content'.$deleteSchoolAd['content'],
+		                'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			$SchoolAd->where("id = $suredelid AND sid = $schoolid")->delete();
+    			redirect('/schooladmin/advertisement', 1, '删除广告成功 ok...');
+    		}
+    	}
+    	
     	$page = i_page_get_num();
 	    $count = 15;
 	    $offset = $page * $count;
     	$recordSchoolAd = $SchoolAd->where("sid = $schoolid")->order("time DESC")->limit($offset,$count)->select();
+    	$this->assign('recordSchoolAd', $recordSchoolAd);
     	
     	/**
     	 * page link
