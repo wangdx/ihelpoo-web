@@ -12,9 +12,8 @@ $(function () {
 
     // restore some values
     if (state) {
-        $('#username').val(state.username);
-        $('#useServer').attr('checked', state.useServer);
-        $('#altServer').val(state.altServer);
+        $('#data_uid').val(state.from);
+        $('#data_touid').val(state.to);
     }
 });
 
