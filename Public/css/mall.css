@@ -31,7 +31,9 @@
     border: 1px solid #EEE;
     position: absolute;
     left: 0;
-    top: 670px;
+    top: 665px;
+    width: 205px;
+    border-radius: 3px;
 }
 .mallindex_left_sub p{
     padding: 10px 15px;
