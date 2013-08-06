@@ -13,12 +13,18 @@ $(function () {
         typing();
     });
 
-    var noTypeTimeout = setTimeout(inActive, 5000);
+    var noActionInterval = 5; // seconds
+    var typingStuff = $("#send_message_textarea").val();
+    if(typingStuff != ""){
+        noActionInterval = 15;
+    }
+
+    var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
     function typing(){
         $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
         clearTimeout(noTypeTimeout);
-        noTypeTimeout = setTimeout(inActive, 5000);
+        noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
     }
 
     function inActive(){
