@@ -23,7 +23,7 @@
   </p>
   <p class="header_right fr f12">
   	<?php if (!empty($userloginedrecord['uid'])) { ?>
-    	<span class="icon_pump"></span><a href="__ROOT__/stream">圈圈个人中心</a> | <a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a><?php if (!empty($userloginedrecordUserShop['uid'])) { ?> <a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">小店首页</a><?php } ?>
+    	<span class="icon_pump"></span><a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a><?php if (!empty($userloginedrecordUserShop['uid'])) { ?> <a href="__ROOT__/mall/shop/{$userloginedrecord['uid']}">小店首页</a><?php } ?>
     	<?php if (!empty($userloginedrecordUserShop['uid'])) { ?>
     		<a href="__ROOT__/mallset/seller">买卖交易</a>
     	<?php } else { ?>
