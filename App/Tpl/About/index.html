@@ -17,11 +17,13 @@
 	<br />
 	<p><strong>站长</strong></p>
 	<?php foreach($schoolwebmaster as $webmaster) { ?>
-	<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank">
-		<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="80" height="60" class="radius3" />
-	</a>
-	<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank"><?php echo $webmaster['nickname']; ?></a> <?php var_dump($webmaster); ?>
-	<?php echo $webmaster['description']; ?>
+		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank">
+			<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="80" height="60" class="radius3" />
+		</a>
+		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank"><?php echo $webmaster['nickname']; ?></a>
+		<?php echo $webmaster["position"] == "m" ? "[站长]" : "[副站长]"; ?>
+		<?php echo $webmaster["description"]; ?>
+		email:<?php echo $webmaster["email"]; ?>
 	<?php } ?>
 	<br />
 	<span class="f12 gray">
