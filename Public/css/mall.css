@@ -1,3 +1,6 @@
+.header_left a{
+    margin-right: 8px;
+}
 .mainmall{
     background: #FFFFFF;
     border: 0 none;
@@ -78,10 +81,12 @@
     padding: 10px 0;
     text-align: center;
 }
-.m_r_n_ul_li_select{
+.mallindex_right_nav_ul li .m_r_n_ul_li_select{
     background-color:#CCC;
     color: #FFF;
     font-weight: bold;
+    border: 1px solid #AAA;
+    padding: 9px 0;
 }
 .mallindex_cooperation{
     width: 100%;
