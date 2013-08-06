@@ -348,6 +348,7 @@ class AjaxAction extends Action {
         				$this->ajaxReturn(0,"用户不存在",0);
         			}
     			}
+    			
     			$UserInfo = M("UserInfo");
     			$SchoolInfo = M("SchoolInfo");
     			$OpAcademy = M("OpAcademy");
@@ -381,10 +382,12 @@ class AjaxAction extends Action {
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
     				$resultUserRemarkremark = empty($resultUserRemark['remark']) ? NULL : $resultUserRemark['remark'];
+    				Vendor('Ihelpoo.Ofunction');
+    				$ofunction = new Ofunction();
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
-    					'nickname' => $recordUserLogin['nickname'],
-    					'remark' => $resultUserRemarkremark,
+    					'nickname' => $ofunction->cut_str($recordUserLogin['nickname'],9),
+    					'remark' => $ofunction->cut_str($resultUserRemarkremark,6),
     					'sex' => $recordUserLogin['sex'],
     					'constellation' => i_constellation($recordUserLogin['birthday']),
     					'type' => $userType,
@@ -402,7 +405,6 @@ class AjaxAction extends Action {
     					'follow' => $recordUserInfoFollow,
     					'user_relation' => '',
     				);
-    				
     				
     				/**
     				 * domain
