@@ -24,6 +24,7 @@
     position: absolute;
     left: 0;
     top: 0;
+    border-radius: 3px;
 }
 .mallindex_left_sub{
     width: 200px;
@@ -80,7 +81,8 @@
     width: 187px;
     padding: 10px 0;
     text-align: center;
-    margin: 1.4749px;
+    margin: 1px;
+    border-radius: 3px;
 }
 .mallindex_right_nav_ul li .m_r_n_ul_li_select{
     background-color:#CCC;
@@ -93,6 +95,7 @@
     min-height: 80px;
     margin: 10px 0;
     border: 3px solid #EEEEEE;
+    border-radius: 3px;
 }
 .mallindex_cooperation_p{
     border-bottom: 1px dotted #CCCCCC;
@@ -164,6 +167,7 @@
     border: 1px solid #EEEEEE;
     margin: 10px 0;
     padding: 10px;
+    border-radius: 3px;
 }
 .mall_category_ul li{
     display: inline-block;
