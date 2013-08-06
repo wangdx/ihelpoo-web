@@ -17,6 +17,8 @@ class TalkAction extends Action {
     		$userloginedrecord = $UserLogin->find($userloginid);
     		$this->assign('userloginedrecord',$userloginedrecord);
 
+
+
     		/**
     		 *
     		 * update user input status

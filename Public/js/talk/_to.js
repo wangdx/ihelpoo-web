@@ -1,50 +1,125 @@
 $(function () {
-    "use strict";
+    // Check if there was a saved application state
+    var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
+    var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
+    var chat = new Chat(state);
 
-    var socket = $.atmosphere;
-    var chatSocket;
-    var transport = 'websocket';
-
-    /**
-     * send messgae
-     */
-    $('#send_message').click(function () {
-        var newContent = $('#send_message_textarea').val();
-        chatSocket.push({data: "message=" + newContent});
-        return false;
-    });
+    chat.join($('#data_uid').val(), $('#data_touid').val());
 
 
-    // We are now ready to cut the request
-    var request = {
-        url: "http://comet.ihelpoo.com/c1/chat/10000-12419",
-        logLevel: 'debug',
-        transport: 'websocket',
-        fallbackTransport: 'long-polling',
-        callback: call,
-        enableXDR: true,
-        dropAtmosphereHeaders: true,
-        readResponsesHeaders: false,
-        attachHeadersAsQueryString: true
+    // restore some values
+    if (state) {
+        $('#username').val(state.username);
+        $('#useServer').attr('checked', state.useServer);
+        $('#altServer').val(state.altServer);
+    }
+});
+
+function Chat(state) {
+    var _self = this;
+    var _wasConnected = false;
+    var _connected = false;
+    var _from;
+    var _to;
+    var _lastUser;
+    var _disconnecting;
+    var _chatSubscription;
+    var _membersSubscription;
+
+    this.join = function (from, to) {
+        _disconnecting = false;
+        _from = from;
+        _to = to;
+        if (!_from) {
+            alert('还未登录');
+            return;
+        }
+
+        var cometdURL = location.protocol + "//" + location.host + config.contextPath + "/cometd";
+
+        $.cometd.websocketEnabled = true;
+        $.cometd.configure({
+            url: cometdURL,
+            logLevel: 'debug'
+        });
+        $.cometd.handshake();
+        $('#send_message_textarea').focus();
     };
 
+    this.leave = function () {
+        $.cometd.batch(function () {
+            $.cometd.publish('/chat/demo', {
+                user: _from,
+                membership: 'leave',
+                chat: _from + ' has left'
+            });
+            _unsubscribe();
+        });
+        $.cometd.disconnect();
 
-    request.onMessage = function (response) {
-//        if(console)console.log("onmessage");
+        _from = null;
+        _lastUser = null;
+        _disconnecting = true;
+    };
 
+    this.send = function () {
+        var chat = $('#send_message_textarea').val();
+        var image = $('#image_upload_url').val();
+        if (!chat || !chat.length) return;
+        $.cometd.publish('/service/p2ps', {
+            room: '/chat/p2p',
+            from: _from,
+            to: _to,
+            chat: chat,
+            image: image
+        });
+    };
 
-        var msg = response.responseBody;
+    this.receive = function (message) {
+        var fromUser = message.data.fromUser;
+        var toUser = message.data.toUser;
+        var from = message.data.from;
+        var to = message.data.to;
+        var membership = message.data.membership;
+        var chat = message.data.chat;
+        var image = message.data.image;
+        var imageThumb = message.data.imageThumb;
+        var time = message.data.time;
 
-        try {
-            var json = $.parseJSON(msg);
-        } catch (e) {
-            alert('not a json' + msg);
-//            return;
+        if (!membership && fromUser == _lastUser) {
+            fromUser = '...';
+        } else {
+            _lastUser = fromUser;
+            fromUser += ':';
         }
-        var htmlIn = " <span class='f14 gray '>" + msg + "</span>"
-            + " <span class='f12 gray'>" + msg + "</span><br />"
-            + msg + "<br /><br />";
 
+        var chat = $('#chat');
+        if (membership) {
+            chat.append('<span class=\"membership\"><span class=\"from\">' + fromUser + '&nbsp;</span><span class=\"text\">' + text + '</span></span><br/>');
+            _lastUser = null;
+        }
+        else if (message.data.scope == 'private') {
+            chat.append('<span class=\"private\"><span class=\"from\">' + fromUser + '&nbsp;</span><span class=\"text\">[private]&nbsp;' + text + '</span></span><br/>');
+            chat.append('<img src=\"' + $imageUrl + '\" />');
+        }
+        else {
+            chat.append('<span class=\"from\">' + fromUser + '&nbsp;</span><span class=\"text\">' + text + '</span><br/>');
+        }
+
+        // There seems to be no easy way in jQuery to handle the scrollTop property
+        chat[0].scrollTop = chat[0].scrollHeight - chat.outerHeight();
+
+
+        if (msg.data.image != '') {
+            var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
+                + " <span class='f12 gray'>" + time + "</span><br />"
+                + chat + "<br />"
+                + "<a href='" + image + "' target='_target'><img src='" + imagethumb + "' style='max-width:150px;' title='查看原图' /></a><br /><br />";
+        } else {
+            var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
+                + " <span class='f12 gray'>" + time + "</span><br />"
+                + chat + "<br /><br />";
+        }
         $('#show_message_div').append(htmlIn);
         var boxHeight = $('#show_message_div').height();
         $('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
@@ -52,53 +127,130 @@ $(function () {
         $('#image_upload_url').val('');
         $('#image_upload_list_ul').empty();
         $('.img_upload_comment_form_div').slideUp('fast');
+//        imageNums = 0;
     };
 
-
-    request.onOpen = function (response) {
-//        if (console) {
-//            console.log("[INFO]: opening to talk");
-//        }
-        transport = response.transport;
+    /**
+     * Updates the members list.
+     * This function is called when a message arrives on channel /chat/members
+     */
+    this.members = function (message) {
+        var list = '';
+        $.each(message.data, function () {
+            list += this + '<br />';
+        });
+        $('#members').html(list);
     };
 
-
-    request.onReopen = function (response) {
-//        if (console) {
-//            console.log("[INFO]: reopen to talk");
-//        }
-    };
-
-    request.onTransportFailure = function (errorMsg, request) {
-        if (window.EventSource) {
-            request.fallbackTransport = "sse";
+    function _unsubscribe() {
+        if (_chatSubscription) {
+            $.cometd.unsubscribe(_chatSubscription);
         }
-    };
-
-    chatSocket = socket.subscribe(request);
-
-
-    function call(response) {
-        //if(console)console.log("Call to callbackJob2");
-        if (response.state != "messageReceived") {
-            return;
+        _chatSubscription = null;
+        if (_membersSubscription) {
+            $.cometd.unsubscribe(_membersSubscription);
         }
-        var data = getDataFromResponse(response);
-        if (data != null) {
-            //if(console)console.log("---" + data);
-        }
+        _membersSubscription = null;
     }
 
-    function getDataFromResponse(response) {
-        var detectedTransport = response.transport;
-        //if(console)console.log("[DEBUG] Real transport is <" + detectedTransport + ">");
-        if (response.transport != 'polling' && response.state != 'connected' && response.state != 'closed') {
-            if (response.status == 200) {
-                return response.responseBody;
+    function _subscribe() {
+        _chatSubscription = $.cometd.subscribe('/chat/p2p', _self.receive);
+//        _membersSubscription = $.cometd.subscribe('/members/demo', _self.members);
+    }
+
+    function _connectionInitialized() {
+        // first time connection for this client, so subscribe tell everybody.
+        $.cometd.batch(function () {
+            _subscribe();
+            $.cometd.publish('/chat/p2p', {   //TODO this should be a system service
+                user: _from,
+                membership: 'join',
+                chat: _from + ' has joined'
+            });
+        });
+    }
+
+    function _connectionEstablished() {
+        // connection establish (maybe not for first time), so just
+        // tell local user and update membership
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Opened'
+            }
+        });
+        $.cometd.publish('/service/members', {
+            user: _from,
+            room: '/chat/p2p'
+        });
+    }
+
+    function _connectionBroken() {
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Broken'
+            }
+        });
+        $('#members').empty();
+    }
+
+    function _connectionClosed() {
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Closed'
+            }
+        });
+    }
+
+    function _metaConnect(message) {
+        if (_disconnecting) {
+            _connected = false;
+            _connectionClosed();
+        }
+        else {
+            _wasConnected = _connected;
+            _connected = message.successful === true;
+            if (!_wasConnected && _connected) {
+                _connectionEstablished();
+            }
+            else if (_wasConnected && !_connected) {
+                _connectionBroken();
             }
         }
-        return null;
     }
 
+    function _metaHandshake(message) {
+        if (message.successful) {
+            _connectionInitialized();
+        }
+    }
 
-});
+    $.cometd.addListener('/meta/handshake', _metaHandshake);
+    $.cometd.addListener('/meta/connect', _metaConnect);
+
+// Restore the state, if present
+    if (state) {
+        setTimeout(function () {
+            // This will perform the handshake
+            _self.join(state.username);
+        }, 0);
+    }
+
+    $(window).unload(function () {
+        if ($.cometd.reload) {
+            $.cometd.reload();
+            // Save the application state only if the user was chatting
+            if (_wasConnected && _from) {
+                var expires = new Date();
+                expires.setTime(expires.getTime() + 5 * 1000);
+                org.cometd.COOKIE.set('org.cometd.demo.state', org.cometd.JSON.toJSON({
+                    username: _from
+                }), { 'max-age': 5, expires: expires });
+            }
+        } else {
+            $.cometd.disconnect();
+        }
+    });
+};
