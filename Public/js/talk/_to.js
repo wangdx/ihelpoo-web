@@ -9,16 +9,20 @@ $(function () {
 
     $('#send_message').click(chat.send);
 
-    $("#send_message_textarea").bind('keyup', function () {
-        typing();
-    });
+
 
     var noActionInterval = 5; // seconds
-    var typingStuff = $("#send_message_textarea").val();
-    if(!typingStuff){
-        console.log("+++");
-        noActionInterval = 15;
-    }
+    $("#send_message_textarea").bind('keyup', function () {
+        typing();
+
+        var typingStuff = $("#send_message_textarea").val();
+        if(!typingStuff){
+            noActionInterval = 15;
+        }else{
+            noActionInterval = 5;
+        }
+    });
+
 
     var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
