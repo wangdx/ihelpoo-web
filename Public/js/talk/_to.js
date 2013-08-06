@@ -18,9 +18,7 @@ $(function () {
 
     var noActionInterval = 15; // seconds
     $("#send_message_textarea").bind('keypress', function () {
-
-        console.log("+++++++++++++++++++"+typingStuff+" "+!typingStuff);
-        if(!typingStuff){
+        if(typingStuff != ''){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
