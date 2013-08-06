@@ -175,8 +175,7 @@ $().ready(function(){
     						var userconstellation = '';
     					}
     					
-    					var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
-    					+ "			<span class='close_x user_info_div_close' title='关闭'>×</span>"
+    					var inhtml = "<span class='close_x user_info_div_close' title='关闭'>×</span><div class='user_info_top_div' userid='"+msg.data.uid+"'>"
     					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
     					+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     					+ "		    <span class='online"+msg.data.online+"'></span></a>"
