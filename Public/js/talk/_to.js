@@ -1,7 +1,8 @@
 $(function () {
     // Check if there was a saved application state
-    var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
-    var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
+//    var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
+//    var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
+    var state = null;
     var chat = new Chat(state);
 
     chat.join($('#data_uid').val(), $('#data_touid').val());
@@ -250,7 +251,7 @@ function Chat(state) {
             if (_wasConnected && _from) {
                 var expires = new Date();
                 expires.setTime(expires.getTime() + 5 * 1000);
-                org.cometd.COOKIE.set('org.cometd.demo.state', org.cometd.JSON.toJSON({
+                org.cometd.COOKIE.set('com.ihelpoo.comet.p2p.state', org.cometd.JSON.toJSON({
                     username: _from
                 }), { 'max-age': 5, expires: expires });
             }
