@@ -381,10 +381,11 @@ class AjaxAction extends Action {
     				$recordOpSpecialtyName = $recordOpSpecialty['name'] == NULL ? '':$recordOpSpecialty['name'];
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
-    				$resultUserRemark['remark'] =  $ofunction->cut_str($resultUserRemark['remark'], 5);
-    				$resultUserRemarkremark = empty($resultUserRemark['remark']) ? NULL : $resultUserRemark['remark'];
+    				
     				Vendor('Ihelpoo.Ofunction');
     				$ofunction = new Ofunction();
+    				$resultUserRemark['remark'] =  $ofunction->cut_str($resultUserRemark['remark'], 5);
+    				$resultUserRemarkremark = empty($resultUserRemark['remark']) ? NULL : $resultUserRemark['remark'];
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
     					'nickname' => $ofunction->cut_str($recordUserLogin['nickname'],8),
