@@ -175,7 +175,7 @@ function Chat(state) {
             }
         });
         $.cometd.publish('/service/members', {
-            user: _from,
+            from: _from,
             room: '/chat/p2p'
         });
     }
