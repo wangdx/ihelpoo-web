@@ -12,10 +12,10 @@ $(function () {
 
 
 
-    var noActionInterval = 15; // seconds
+    var noActionInterval = 16; // seconds
     $("textarea#send_message_textarea").keypress(function () {
         var typingStuff = $("textarea#send_message_textarea").val();
-        if(typingStuff){
+        if(typingStuff || noActionInterval == 16){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
