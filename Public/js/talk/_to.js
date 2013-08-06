@@ -233,7 +233,7 @@ function Chat(state) {
     $.cometd.addListener('/meta/connect', _metaConnect);
 
 // Restore the state, if present
-    if (true) {
+    if (state) {
         setTimeout(function () {
             // This will perform the handshake
             _self.join(state.from, state.to);
