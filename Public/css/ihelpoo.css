@@ -1123,6 +1123,13 @@ color:#FFFA85;
     position: absolute;
     top: 27px;
     left: 75px;
+    width: 240px;
+    height: 22px;
+}
+.user_info_top_div_quan_p_do{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
 }
 .user_info_main_div ul li{
     padding: 2px 5px;
