@@ -27,8 +27,8 @@
 		<ul class="para_right_ul">
 	    <?php foreach ($recordSchoolAd as $schoolAd) : ?>
 	    <li>
-	    	<span class="f12 fb">广告类型:</span> <?php echo $schoolAd['type'] == "1" ? "[头部更多]" : "[stream右边]"; ?> 
-	    	<span class="f12 fb">广告内容:</span> <?php echo $schoolAd['content']; ?> 
+	    	<span class="f12 fb gray">广告类型:</span> <?php echo $schoolAd['type'] == "1" ? "[头部更多]" : "[stream右边]"; ?> 
+	    	<span class="f12 fb gray">广告内容:</span> <?php echo $schoolAd['content']; ?> 
 	    	<span class="gray"><?php echo i_time($schoolAd['time']); ?></span> 
 		    <a href="?delid=<?php echo $schoolAd['id']; ?>">删除</a>
 	    </li>
