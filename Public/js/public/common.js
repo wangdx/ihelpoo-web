@@ -86,12 +86,14 @@ $().ready(function(){
      * ajax info div position
      */
     var mainoffset = $('.main').offset();
-    var mainpositionleft = mainoffset.left + 330;
-	$("#ajax_info_div").css({left : mainpositionleft});
-	$("#ajax_info_div_close").live("click", function(){
-		$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").fadeOut("fast");
-	});
+    if (mainoffset != null) {
+	    var mainpositionleft = mainoffset.left + 330;
+		$("#ajax_info_div").css({left : mainpositionleft});
+		$("#ajax_info_div_close").live("click", function(){
+			$("#ajax_info_div").fadeOut("fast");
+			$("#ajax_info_div_outer").fadeOut("fast");
+		});
+    }
 	
 	/**
 	 * header search
