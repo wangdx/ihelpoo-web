@@ -35,7 +35,8 @@ function Chat(state) {
             return;
         }
 
-        var cometdURL = location.protocol + "//" + location.host + config.contextPath + "/cometd";
+//        var cometdURL = location.protocol + "//" + location.host + config.contextPath + "/cometd";
+        var cometdURL = location.protocol + "//" + "comet.ihelpoo.com" + config.contextPath + "/cometd";
 
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
