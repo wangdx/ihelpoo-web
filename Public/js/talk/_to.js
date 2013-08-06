@@ -9,6 +9,21 @@ $(function () {
 
     $('#send_message').click(chat.send);
 
+    $("#send_message_textarea").bind('keyup', function () {
+        typing();
+    });
+
+    var noTypeTimeout = setTimeout(inActive, 5000);
+
+    function typing(){
+        $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
+        clearTimeout(noTypeTimeout);
+        noTypeTimeout = setTimeout(inActive, 5000);
+    }
+
+    function inActive(){
+        $('#input_status').text('');
+    }
 
     // restore some values
     if (state) {
@@ -238,7 +253,7 @@ function Chat(state) {
                 expires.setTime(expires.getTime() + 5 * 1000);
                 org.cometd.COOKIE.set('com.ihelpoo.comet.p2p.state', org.cometd.JSON.toJSON({
                     from: _from,
-                    to:_to
+                    to: _to
                 }), { 'max-age': 5, expires: expires });
             }
         } else {
