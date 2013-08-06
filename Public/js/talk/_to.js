@@ -56,7 +56,7 @@ function Chat(state) {
     this.leave = function () {
         $.cometd.batch(function () {
             $.cometd.publish('/chat/p2p', {
-                user: _from,
+                from: _from,
                 membership: 'leave',
                 chat: _from + ' has left'
             });
@@ -158,7 +158,7 @@ function Chat(state) {
         $.cometd.batch(function () {
             _subscribe();
             $.cometd.publish('/chat/p2p', {   //TODO this should be a system service
-                user: _from,
+                from: _from,
                 membership: 'join',
                 chat: _from + ' has joined'
             });
@@ -203,21 +203,27 @@ function Chat(state) {
         if (_disconnecting) {
             _connected = false;
             _connectionClosed();
+            console.log("111111");
         }
         else {
+            console.log("22222");
             _wasConnected = _connected;
             _connected = message.successful === true;
             if (!_wasConnected && _connected) {
+                console.log("33333");
                 _connectionEstablished();
             }
             else if (_wasConnected && !_connected) {
+                console.log("444444");
                 _connectionBroken();
             }
         }
     }
 
     function _metaHandshake(message) {
+        console.log("55555");
         if (message.successful) {
+            console.log("66666");
             _connectionInitialized();
         }
     }
