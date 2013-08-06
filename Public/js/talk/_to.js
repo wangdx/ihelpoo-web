@@ -38,6 +38,10 @@ function Chat(state) {
 //        var cometdURL = location.protocol + "//" + location.host + config.contextPath + "/cometd";
         var cometdURL = location.protocol + "//" + "comet.ihelpoo.com" + config.contextPath + "/cometd";
 
+        if(console){
+            console.log(cometdURL);
+        }
+
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
             url: cometdURL,
