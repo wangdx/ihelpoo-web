@@ -171,7 +171,7 @@ function Chat(state) {
         // tell local user and update membership
         _self.receive({
             data: {
-                user: 'system',
+                from: 'system',
                 chat: 'Connection to Server Opened'
             }
         });
@@ -227,7 +227,7 @@ function Chat(state) {
     $.cometd.addListener('/meta/connect', _metaConnect);
 
 // Restore the state, if present
-    if (state) {
+    if (true) {
         setTimeout(function () {
             // This will perform the handshake
             _self.join(state.username);
