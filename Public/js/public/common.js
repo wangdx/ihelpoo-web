@@ -35,10 +35,10 @@ $().ready(function(){
         function(){
         	var mainoffset = $('.main').offset();
         	if (mainoffset != null) {
-    			var mainpositionleft = mainoffset.left + 152;
+    			var mainpositionleft = mainoffset.left + 173;
     		} else {
     			var mainhelpoffset = $('.main_help').offset();
-    			var mainpositionleft = mainhelpoffset.left + 152;
+    			var mainpositionleft = mainhelpoffset.left + 173;
     		}
         	$("#nav_hover_list_div").css({left : mainpositionleft}).slideDown("fast");
         	$("#nav_hover_list_div_ul").html("<li><a href='/help'>帮助</a> | <a href='/activity'>活动</a></li>");
