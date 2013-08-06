@@ -10,6 +10,8 @@ class AboutAction extends Action {
 
     protected function _initialize()
     {
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname', $recordSchoolInfo['school']);
         header("Content-Type:text/html; charset=utf-8");
     }
     
