@@ -803,3 +803,11 @@
     right: 0px;
     top: 5px;
 }
+
+.mainmall .s_l_l_a_select{
+    background: #C00;
+    border: 1px solid #C00;
+}
+.i_paging_div{
+    margin: 5px 0;
+}
