@@ -106,7 +106,7 @@ function Chat(state) {
         }
 
 
-        if (msg.data.image != '') {
+        if (image != '') {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
                 + " <span class='f12 gray'>" + time + "</span><br />"
                 + chat + "<br />"
