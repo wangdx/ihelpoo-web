@@ -11,12 +11,11 @@ $(function () {
 
 
 
-    var noActionInterval = 5; // seconds
+    var noActionInterval = 15; // seconds
     $("#send_message_textarea").bind('keyup', function () {
         typing();
 
-        var typingStuff = $("#send_message_textarea").val();
-        if(!typingStuff){
+        if(!$("#send_message_textarea").val()){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
