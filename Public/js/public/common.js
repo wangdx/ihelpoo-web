@@ -202,7 +202,7 @@ $().ready(function(){
      */
     $(".do_quanta").live('click', function(){
     	$this = $(this);
-    	var userid = $this.parent().parent().attr('userid');
+    	var userid = $(".user_info_top_div").attr('userid');
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
     	$this.html($infoLoading);
     	$.ajax({
@@ -222,7 +222,7 @@ $().ready(function(){
     
     $(".do_quantacancel").live('click', function(){
     	$this = $(this);
-    	var userid = $this.parent().parent().attr('userid');
+    	var userid = $(".user_info_top_div").attr('userid');
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
     	$this.html($infoLoading);
     	$.ajax({
