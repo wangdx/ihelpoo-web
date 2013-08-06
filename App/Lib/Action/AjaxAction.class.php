@@ -386,8 +386,8 @@ class AjaxAction extends Action {
     				$ofunction = new Ofunction();
     				$userInfoArray = array(
     					'uid' => $recordUserLogin['uid'],
-    					'nickname' => $ofunction->cut_str($recordUserLogin['nickname'],9),
-    					'remark' => $ofunction->cut_str($resultUserRemarkremark,6),
+    					'nickname' => $ofunction->cut_str($recordUserLogin['nickname'],8),
+    					'remark' => $ofunction->cut_str($resultUserRemarkremark,5),
     					'sex' => $recordUserLogin['sex'],
     					'constellation' => i_constellation($recordUserLogin['birthday']),
     					'type' => $userType,
