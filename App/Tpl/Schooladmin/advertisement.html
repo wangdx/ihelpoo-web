@@ -19,8 +19,9 @@
 	<ul>
 		<li>注意:</li>
 		<li>1. 广告支持html。最多255个字符</li>
-		<li>2. “头部更多”广告部分，建议只用文字</li>
-		<li>3. 需要上传图片的请在<a href="/schooladmin/indexbgimg">上传图片</a>栏目上传图片，再取得图片连接放入html</li>
+		<li>2. “头部更多”广告部分，建议只用文字，最多显示最新6条广告</li>
+		<li>3. “stream右边”广告部分，最大宽度140px，最多显示最新3条广告</li>
+		<li>4. 需要上传图片的请在<a href="/schooladmin/indexbgimg">上传图片</a>栏目上传图片，再取得图片连接放入html</li>
 	</ul>
 	<?php if (!empty($recordSchoolAd)) { ?>
 		<br />
@@ -28,7 +29,7 @@
 	    <?php foreach ($recordSchoolAd as $schoolAd) : ?>
 	    <li>
 	    	<span class="f12 fb gray">广告类型:</span> <?php echo $schoolAd['type'] == "1" ? "[头部更多]" : "[stream右边]"; ?> 
-	    	<span class="f12 fb gray">广告内容:</span> <?php echo $schoolAd['content']; ?> 
+	    	<span class="f12 fb gray">广告内容:</span> <?php echo stripslashes($schoolAd['content']); ?> 
 	    	<span class="gray"><?php echo i_time($schoolAd['time']); ?></span> 
 		    <a href="?delid=<?php echo $schoolAd['id']; ?>">删除</a>
 	    </li>
