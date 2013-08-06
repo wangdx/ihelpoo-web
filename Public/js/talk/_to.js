@@ -15,7 +15,7 @@ $(function () {
 
     var noActionInterval = 5; // seconds
     var typingStuff = $("#send_message_textarea").val();
-    if(typingStuff != ""){
+    if(!typingStuff){
         console.log("+++");
         noActionInterval = 15;
     }
