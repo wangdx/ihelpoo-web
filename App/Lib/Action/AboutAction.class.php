@@ -24,7 +24,7 @@ class AboutAction extends Action {
     	$this->assign('schoolabout',$recordSchoolSystem['about']);
     	
     	$SchoolWebmaster = M("SchoolWebmaster");
-    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join("i_user_login ON i_school_webmaster.uid = i_user_login.uid")->select();
+    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join("i_user_login ON i_school_webmaster.uid = i_user_login.uid")->order("position DESC")->select();
     	$this->assign('schoolwebmaster',$recordSchoolWebmaster);
     	$this->display();
     }
