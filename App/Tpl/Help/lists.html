@@ -39,13 +39,7 @@
 
   <div class="help_paging">
     <p class="help_paging_p f12 gray">共<?php echo $totalHelpNums ?>条帮助 <?php echo $totalPages ?>页</p>
-    <span>
-      <?php
-      if ($totalPages > 1) {
-          i_page_show("help/lists", $totalPages);
-      }
-      ?>
-    </span>
+    <span><?php if ($totalPages > 1) { i_page_show("help/lists", $totalPages); } ?></span>
   </div>
 </div>
 </div>
