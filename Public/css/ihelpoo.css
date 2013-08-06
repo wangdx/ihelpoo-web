@@ -1136,7 +1136,7 @@ color:#FFFA85;
     color: #999;
 }
 .user_info_span_constellation span{
-    vertical-align: middle;     
+    vertical-align: text-bottom;     
 }
 .newremarkname_p{
     margin: 20px;
