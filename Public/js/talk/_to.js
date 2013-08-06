@@ -101,21 +101,9 @@ function Chat(state) {
             fromUser += ':';
         }
 
-        var chat = $('#chat');
         if (membership) {
-            chat.append('<span class=\"membership\"><span class=\"from\">' + fromUser + '&nbsp;</span><span class=\"text\">' + text + '</span></span><br/>');
             _lastUser = null;
         }
-        else if (message.data.scope == 'private') {
-            chat.append('<span class=\"private\"><span class=\"from\">' + fromUser + '&nbsp;</span><span class=\"text\">[private]&nbsp;' + text + '</span></span><br/>');
-            chat.append('<img src=\"' + $imageUrl + '\" />');
-        }
-        else {
-            chat.append('<span class=\"from\">' + fromUser + '&nbsp;</span><span class=\"text\">' + text + '</span><br/>');
-        }
-
-        // There seems to be no easy way in jQuery to handle the scrollTop property
-        chat[0].scrollTop = chat[0].scrollHeight - chat.outerHeight();
 
 
         if (msg.data.image != '') {
