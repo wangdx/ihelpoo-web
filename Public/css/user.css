@@ -20,9 +20,12 @@
 .registe_toptext{
     background: url(../image/common/register_top.png) no-repeat 0 0;
     position: relative;
+    height: 90px;
 }
 .registe_toptext_school_p{
-    
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
 }
 .registe_toptext_user{
     margin-bottom: 20px;
