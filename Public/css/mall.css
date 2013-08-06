@@ -811,3 +811,37 @@
 .i_paging_div{
     margin: 5px 0;
 }
+
+/*--- icon ---*/
+.icon_mall_brand, .icon_mall_time, .icon_mall_diamond, .icon_mall_jz, .icon_mall_life, .icon_mall_tour, .icon_mall_new{
+    background: url(../image/common/mall_icon.png) no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 18px;
+    width: 20px;
+    margin-right: 18px;
+    margin-top: 6px;
+}
+.icon_mall_brand{
+    background-position: -47px 0;
+}
+.icon_mall_time{
+    background-position: -47px -19px;
+}
+.icon_mall_diamond{
+    background-position: -47px -58px;
+}
+.icon_mall_jz{
+    background-position: -47px -38px;
+    margin-right: 17px;
+    width: 21px;
+}
+.icon_mall_life{
+    background-position: -47px -76px;
+}
+.icon_mall_tour{
+    background-position: -47px -95px;
+}
+.icon_mall_new{
+    background-position: -47px -118px;
+}
+
