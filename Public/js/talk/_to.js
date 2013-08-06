@@ -16,7 +16,7 @@ $(function () {
 
         var typingStuff = $("#send_message_textarea").val();
         console.log("+++++++++++++++++++"+typingStuff+" "+!typingStuff);
-        if(!typingStuff){
+        if(typingStuff != ''){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
