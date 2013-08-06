@@ -194,6 +194,7 @@ $().ready(function(){
     					+ "             <li>寝室: <a target='_blank' href='"+msg.data.domain+"index/mate?w=dormitory&n="+msg.data.dormitory_id+"'>"+msg.data.dormitory+"</a></li>"
     					+ "             <li>"+msg.data.introduction+"</li>"
     					+ "			</ul>"
+    					+ "			<span class='close_x user_info_div_close' title="关闭">×</span>"
     					+ "		</div>";
     					$('.user_info_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(inhtml);
     					return false;
@@ -205,8 +206,12 @@ $().ready(function(){
     	clearTimeout(t_userinfo);
     	$('.user_info_div').hover(function(){},
     	function(){
-    		$(this).fadeOut("slow");
+    		$(this).fadeOut("fast");
     	});
+    });
+    
+    $(".user_info_div_close").live('click', function(){
+    	$(".user_info_div").fadeOut("fast");
     });
     
     /**
