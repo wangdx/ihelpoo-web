@@ -1128,6 +1128,11 @@ color:#FFFA85;
     padding: 2px 5px;
     color: #666;
 }
+.user_info_span_constellation{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
 .newremarkname_p{
     margin: 20px;
 }
