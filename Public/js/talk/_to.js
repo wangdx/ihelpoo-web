@@ -209,6 +209,7 @@ function Chat(state) {
             console.log("22222");
             _wasConnected = _connected;
             _connected = message.successful === true;
+            console.log("_wasConnected "+_wasConnected +" _connected "+_connected);
             if (!_wasConnected && _connected) {
                 console.log("33333");
                 _connectionEstablished();
