@@ -176,6 +176,7 @@ $().ready(function(){
     					}
     					
     					var inhtml = "<div class='user_info_top_div' userid='"+msg.data.uid+"'>"
+    					+ "			<span class='close_x user_info_div_close' title='关闭'>×</span>"
     					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
     					+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     					+ "		    <span class='online"+msg.data.online+"'></span></a>"
@@ -194,7 +195,6 @@ $().ready(function(){
     					+ "             <li>寝室: <a target='_blank' href='"+msg.data.domain+"index/mate?w=dormitory&n="+msg.data.dormitory_id+"'>"+msg.data.dormitory+"</a></li>"
     					+ "             <li>"+msg.data.introduction+"</li>"
     					+ "			</ul>"
-    					+ "			<span class='close_x user_info_div_close' title='关闭'>×</span>"
     					+ "		</div>";
     					$('.user_info_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(inhtml);
     					return false;
