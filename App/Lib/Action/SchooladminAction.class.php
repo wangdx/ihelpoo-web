@@ -311,6 +311,7 @@ class SchooladminAction extends Action {
     			);
     			$SchoolRecord->add($newSchoolRecordData);
     		}
+    		redirect('/schooladmin/advertisement', 1, '添加广告成功 ok...');
     	}
     	
     	/**
