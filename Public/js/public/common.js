@@ -167,7 +167,7 @@ $().ready(function(){
     					+ "		  <a class='user_info_top_div_img_a' href='"+baseUrl+"wo/"+msg.data.uid+"' target='_blank'>"
     					+ "		    <img width='60' height='45' src='"+msg.data.icon_url+"' />"
     					+ "		    <span class='online"+msg.data.online+"'></span></a>"
-    					+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" &nbsp; <span class='gray'><span class='level"+msg.data.degree+"'></span>" +userconstellation+"<span class='sex"+msg.data.sex+"'></span></span></p>"
+    					+ "		  <p class='user_info_top_div_nickname_p'><a href='"+baseUrl+"wo/"+msg.data.uid+"' class='f14 fb' target='_blank'>"+msg.data.nickname+"</a> "+userremarkhtml+" &nbsp; <span class='level"+msg.data.degree+"'></span> &nbsp; <span class='gray'>" +userconstellation+"<span class='sex"+msg.data.sex+"'></span></span></p>"
     					+ "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>"+msg.data.follow+"</span> 圈子:<span class='fb f14'>"+msg.data.fans+"</span> &nbsp; "+relationhtml+" &nbsp; <a href='/talk/to"+msg.data.uid+"' class='btn_quaned'>悄悄话</a></p>"
     					+ "		</div>"
     					+ "		<div class='user_info_main_div'>"
