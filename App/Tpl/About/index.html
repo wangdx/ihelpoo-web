@@ -17,6 +17,7 @@
 	希望大家一起能帮你解决一些问题。希望您找到需要的讯息。希望您找到幸福:D
 	</p>
 	<br />
+	<br />
 	<p class="f12"><?php echo $schoolabout; ?></p>
 	<p><strong>站长</strong></p>
 	<ul class="about_webmaster_ul">
@@ -26,11 +27,12 @@
 			<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="60" height="45" class="radius3" />
 		</a>
 		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank"><?php echo $webmaster['nickname']; ?></a>
-		<span class="f12"><?php echo $webmaster["position"] == "m" ? "[站长]" : "[副站长]"; ?> email:<?php echo $webmaster["email"]; ?></span>
-		<p class="about_webmaster_ul_li_p"><?php echo $webmaster["description"]; ?></p>
+		<span class="f12 gray"><?php echo $webmaster["position"] == "m" ? "[站长]" : "[副站长]"; ?></span> <span class="f12"><?php echo $webmaster["email"]; ?></span> <span class="f12 gray"><?php echo $webmaster["description"]; ?></span>
 		</li>
 	<?php } ?>
 	</ul>
+	<br />
+	<br />
 	<p><strong>联系</strong></p>
 	<p class="f12">诚挚欢迎校园周边企业、单位组织、社会校园团体、有影响力个人和{$schoolname}我帮圈圈合作交流，组织活动。</p>
 	<p class="f12">校园商业合作、运营请联系{$schoolname}站长。</p>
