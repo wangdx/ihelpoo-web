@@ -13,12 +13,14 @@ $(function () {
     var typingStuff = '';
     $("textarea#send_message_textarea").bind('keyup', function(){
         typingStuff = $("textarea#send_message_textarea").val();
+        console.log("keyup+++++++++");
     });
 
 
     var noActionInterval = 15; // seconds
     $("textarea#send_message_textarea").bind('keypress', function () {
-        if(!typingStuff){
+        console.log("keypress*******");
+        if(typingStuff){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
