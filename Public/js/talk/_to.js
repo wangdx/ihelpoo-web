@@ -40,10 +40,6 @@ function Chat(state) {
 //        var cometdURL = location.protocol + "//" + location.host + config.contextPath + "/cometd";
         var cometdURL = location.protocol + "//" + "comet.ihelpoo.com/c1/cometd";
 
-        if(console){
-            console.log(cometdURL);
-        }
-
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
             url: cometdURL,
@@ -174,7 +170,6 @@ function Chat(state) {
 //                chat: 'Connection to Server Opened'
 //            }
 //        });
-        console.log("+++++++++123123");
         $.cometd.publish('/service/members', {
             from: _from,
             room: '/chat/p2p'
@@ -204,28 +199,21 @@ function Chat(state) {
         if (_disconnecting) {
             _connected = false;
             _connectionClosed();
-            console.log("111111");
         }
         else {
-            console.log("22222");
             _wasConnected = _connected;
             _connected = message.successful === true;
-            console.log("_wasConnected "+_wasConnected +" _connected "+_connected);
             if (!_wasConnected && _connected) {
-                console.log("33333");
                 _connectionEstablished();
             }
             else if (_wasConnected && !_connected) {
-                console.log("444444");
                 _connectionBroken();
             }
         }
     }
 
     function _metaHandshake(message) {
-        console.log("55555");
         if (message.successful) {
-            console.log("66666");
             _connectionInitialized();
         }
     }
