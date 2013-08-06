@@ -17,9 +17,9 @@ $(function () {
 
         var typingStuff = $("#send_message_textarea").val();
         if(!typingStuff){
-            noActionInterval = 15;
-        }else{
             noActionInterval = 5;
+        }else{
+            noActionInterval = 15;
         }
     });
 
