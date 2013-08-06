@@ -168,12 +168,12 @@ function Chat(state) {
     function _connectionEstablished() {
         // connection establish (maybe not for first time), so just
         // tell local user and update membership
-        _self.receive({
-            data: {
-                from: 'system',
-                chat: 'Connection to Server Opened'
-            }
-        });
+//        _self.receive({
+//            data: {
+//                from: 'system',
+//                chat: 'Connection to Server Opened'
+//            }
+//        });
         console.log("+++++++++123123");
         $.cometd.publish('/service/members', {
             from: _from,
