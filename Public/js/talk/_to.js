@@ -13,14 +13,15 @@ $(function () {
 
     var noActionInterval = 15; // seconds
     $("#send_message_textarea").bind('input', function () {
-        typing();
 
         var typingStuff = $("#send_message_textarea").val();
         if(!typingStuff){
-            noActionInterval = 5;
-        }else{
             noActionInterval = 15;
+        }else{
+            noActionInterval = 5;
         }
+
+        typing();
     });
 
 
