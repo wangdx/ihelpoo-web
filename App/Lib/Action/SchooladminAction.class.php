@@ -276,6 +276,30 @@ class SchooladminAction extends Action {
     	$this->display();
     }
     
+    public function advertisement()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title', '学院管理');
+    	$schoolid = $recordSchoolInfo['id'];
+    	$SchoolAd = M("SchoolAd");
+    	
+    	$page = i_page_get_num();
+	    $count = 15;
+	    $offset = $page * $count;
+    	$recordSchoolAd = $SchoolAd->where("sid = $schoolid")->order("time DESC")->limit($offset,$count)->select();
+    	
+    	/**
+    	 * page link
+    	 */
+    	$totalReocrdNums = $SchoolAd->where("sid = $schoolid")->count();
+    	$this->assign('totalRecordNums', $totalReocrdNums);
+    	$totalPages = ceil($totalReocrdNums / $count);
+    	$this->assign('totalPages', $totalPages);
+		
+    	$this->display();
+    }
+    
     /**
      * school management
      */
