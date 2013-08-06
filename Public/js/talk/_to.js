@@ -10,13 +10,18 @@ $(function () {
     $('#send_message').click(chat.send);
 
 
+    var typingStuff = null;
+    $("#send_message_textarea").bind('keyup', function(){
+        typingStuff = $("#send_message_textarea").val();
+    });
+
 
     var noActionInterval = 15; // seconds
     $("#send_message_textarea").bind('keypress', function () {
 
         var typingStuff = $("#send_message_textarea").val();
         console.log("+++++++++++++++++++"+typingStuff+" "+!typingStuff);
-        if(typingStuff != ''){
+        if(!typingStuff){
             noActionInterval = 15;
         }else{
             noActionInterval = 5;
