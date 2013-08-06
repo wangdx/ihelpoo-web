@@ -495,6 +495,15 @@
 			<li><a href="__ROOT__/mutual/invite"><i class="ico_specialcare"></i>邀请好友加入</a></li>
 		</ul>
 	</div>
+	<?php if (!empty($streamRightSchoolAd)) { ?>
+		<?php foreach($streamRightSchoolAd as $schoolAd) { ?>
+		<div class="stream_right_add_userinfo">
+			<ul class="stream_right_add_ul black_l f12">
+				<li><?php echo stripslashes($schoolAd); ?></li>
+			</ul>
+		</div>
+		<?php } ?>
+	<?php } ?>
 </div>
 <!-- right_add/ -->
 <div id="infotextareacheck"></div>

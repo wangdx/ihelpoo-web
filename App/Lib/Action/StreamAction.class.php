@@ -707,7 +707,13 @@ class StreamAction extends Action
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
         $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
         $this->assign('indexSpreadInfoVaule', $indexSpreadInfoVaule);
-
+        
+        /**
+         * school advertisement
+         */
+        $SchoolAd = M("SchoolAd");
+        $streamRightSchoolAd = $SchoolAd->where("type = '2' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(3)->select();
+        $this->assign('streamRightSchoolAd', $streamRightSchoolAd);
         $this->display();
     }
 
