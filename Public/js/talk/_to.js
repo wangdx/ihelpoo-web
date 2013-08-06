@@ -174,6 +174,7 @@ function Chat(state) {
                 chat: 'Connection to Server Opened'
             }
         });
+        console.log("+++++++++123123");
         $.cometd.publish('/service/members', {
             from: _from,
             room: '/chat/p2p'
