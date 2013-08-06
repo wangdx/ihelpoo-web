@@ -16,10 +16,12 @@
 	<br />
 	<br />
 	<p><strong>站长</strong></p>
-	<a href="__ROOT__/wo/<?php echo $schoolwebmaster['uid']; ?>" target="_blank">
-		<img src="<?php echo i_icon_check($schoolwebmaster['uid'], $schoolwebmaster['icon_url']); ?>" width="80" height="60" class="radius3" />
+	<?php foreach($schoolwebmaster as $webmaster) { ?>
+	<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank">
+		<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="80" height="60" class="radius3" />
 	</a>
-	<a href="__ROOT__/wo/<?php echo $schoolwebmaster['uid']; ?>" target="_blank"><?php echo $schoolwebmaster['nickname']; ?></a>
+	<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank"><?php echo $webmaster['nickname']; ?></a>
+	<?php } ?>
 	<br />
 	<span class="f12 gray">
 	如果您将会是合适的投资人，如果您将会是牛逼的有想法的战友。<a href="__ROOT__/about/artical">看这里</a><br />
