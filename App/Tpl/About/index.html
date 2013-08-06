@@ -18,18 +18,19 @@
 	</p>
 	<br />
 	<p class="f12"><?php echo $schoolabout; ?></p>
-	<br />
 	<p><strong>站长</strong></p>
+	<ul class="about_webmaster_ul">
 	<?php foreach($schoolwebmaster as $webmaster) { ?>
+		<li>
 		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank">
 			<img src="<?php echo i_icon_check($webmaster['uid'], $webmaster['icon_url']); ?>" width="60" height="45" class="radius3" />
 		</a>
 		<a href="__ROOT__/wo/<?php echo $webmaster['uid']; ?>" target="_blank"><?php echo $webmaster['nickname']; ?></a>
-		<?php echo $webmaster["position"] == "m" ? "[站长]" : "[副站长]"; ?>
-		<?php echo $webmaster["description"]; ?>
-		email:<?php echo $webmaster["email"]; ?>
+		<span class="f12"><?php echo $webmaster["position"] == "m" ? "[站长]" : "[副站长]"; ?> email:<?php echo $webmaster["email"]; ?></span>
+		<p class="about_webmaster_ul_li_p"><?php echo $webmaster["description"]; ?></p>
+		</li>
 	<?php } ?>
-	<br />
+	</ul>
 	<p><strong>联系</strong></p>
 	<p class="f12">诚挚欢迎校园周边企业、单位组织、社会校园团体、有影响力个人和{$schoolname}我帮圈圈合作交流，组织活动。</p>
 	<p class="f12">校园商业合作、运营请联系{$schoolname}站长。</p>
@@ -44,8 +45,8 @@
 	<p class="f12">欢迎微言笃行的有想法、有能力的实干者加入我帮圈圈。一起服务于人，开心自己。</p>
 	<p class="f12">如果您将会是牛逼的有想法的战友。<a href="__ROOT__/about/artical">看这里</a></p>
 	<br />
-	<p><strong>合作共建地方化校园SNS</strong></p>
-	<p class="f12">联系我帮圈圈团队，把我帮圈圈搬到你们学校，共建地方化校园SNS，你们运营，我帮圈圈团队负责技术，共同分享运营成果。</p>
+	<p><strong>共建地方化校园SNS</strong></p>
+	<p class="f12">联系我帮圈圈，把我帮圈圈搬到你们学校，合作共建地方化校园SNS，你们运营，我帮圈圈团队负责技术，共同分享运营成果。</p>
 	<p class="f12"><a href="http://iuc.ihelpoo.com" target="_blank">查看</a>已经开通校园列表。地区负责人：北京，郑州，武汉</p>
 	<p class="f12">联系方式email: admin@tvery.com 121670155@qq.com</p>
 	<br />
