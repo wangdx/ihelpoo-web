@@ -209,12 +209,11 @@
 }
 .setting_school_list_div{
     border-radius: 3px;
-    padding: 10px 15px;
+    padding: 15px 20px;
     width: 300px;
     margin: 0 auto;
     text-align: left;
     position: relative;
-
     -moz-outline-radius: 8px 8px 8px 8px;
     background: none repeat scroll 0 0 #F5F5F5;
     border: 5px solid #DDDDDD;
@@ -224,7 +223,11 @@
 #setting_school_close_span{
     position: absolute;
     right: 3px;
-    top: 3px;
+    top: 1px;
+}
+#setting_school_close_span .close_x{
+    width: 14px;
+    text-align: center;
 }
 .setting_school_list_div ul li{
     display: inline-block;
