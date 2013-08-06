@@ -1,7 +1,7 @@
 $(function () {
     // Check if there was a saved application state
-//    var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
-//    var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
+    var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
+    var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
     var state = null;
     var chat = new Chat(state);
 
@@ -230,7 +230,7 @@ function Chat(state) {
     if (true) {
         setTimeout(function () {
             // This will perform the handshake
-            _self.join(state.username);
+            _self.join(state.from, state.to);
         }, 0);
     }
 
@@ -242,7 +242,8 @@ function Chat(state) {
                 var expires = new Date();
                 expires.setTime(expires.getTime() + 5 * 1000);
                 org.cometd.COOKIE.set('com.ihelpoo.comet.p2p.state', org.cometd.JSON.toJSON({
-                    username: _from
+                    from: _from,
+                    to:_to
                 }), { 'max-age': 5, expires: expires });
             }
         } else {
