@@ -12,11 +12,7 @@ $(function () {
 
 
     var noActionInterval = 15; // seconds
-<<<<<<< HEAD
     $("#send_message_textarea").bind('input', function () {
-=======
-    $("#send_message_textarea").bind('keypress', function () {
->>>>>>> 3b32b56cd4b92d183cad6e31f903d8291bb2334e
         typing();
 
         var typingStuff = $("#send_message_textarea").val();
