@@ -1130,8 +1130,13 @@ color:#FFFA85;
 }
 .user_info_span_constellation{
     position: absolute;
-    right: 5px;
-    top: 10px;
+    right: -5px;
+    top: -5px;
+    font-size: 12px;
+    color: #999;
+}
+.user_info_span_constellation span{
+    vertical-align: middle;     
 }
 .newremarkname_p{
     margin: 20px;
