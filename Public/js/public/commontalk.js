@@ -120,14 +120,14 @@ function mseeageNums() {
 					var boxHeight = $('#show_message_div').height();
 					$('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
 				}
-				setTimeout('mseeageNums()', acquiremilliseconds);
+//				setTimeout('mseeageNums()', acquiremilliseconds);
 			} else {
 				alert(msg.data.info);
 			}
 		},
 		timeout: 10000,
 		error: function() {
-			setTimeout('mseeageNums()', 1000);
+//			setTimeout('mseeageNums()', 1000);
 		}
 	});
 }
