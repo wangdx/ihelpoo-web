@@ -173,6 +173,11 @@
     right: 3px;
     top: 1px;
 }
+#setting_school_close_span .close_x{
+    width: 14px;
+    text-align: center;
+    display: block;
+}
 .setting_school_list_div ul li{
     display: inline-block;
     margin: 3px 5px;
