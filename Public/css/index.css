@@ -816,12 +816,12 @@ lable{
 }
 
 /*--- schoollist ---*/
-.school_list_ul{
-    margin: 20px 0;
-}
-.school_list_ul p{
+.school_list_info_div p{
     margin: 5px 0;
     text-indent: 20px;
+}
+.school_list_ul{
+    margin: 20px 0;
 }
 .school_list_ul li{
     padding: 10px 0;
