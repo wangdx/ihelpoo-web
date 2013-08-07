@@ -72,3 +72,19 @@
 .about_webmaster_ul_li_p{
     margin: 5px 0;
 }
+
+/*--- about snsapply ---*/
+.about_snsapply_ul{
+    margin: 20px 0;
+}
+.about_snsapply_ul li{
+    padding: 10px 0;
+}
+.about_snsapply_ul li p{
+    margin-bottom: 5px;
+}
+.about_snsapply_ul li .textarea_style{
+    width: 800px;
+    height: 200px;
+    border-radius: 3px;
+}
