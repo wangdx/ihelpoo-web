@@ -74,6 +74,9 @@
 }
 
 /*--- about snsapply ---*/
+.about_snsapply_nav_div{
+    margin-bottom: 10px;
+}
 .about_snsapply_info{
     background: #DFF0D8;
     border: 1px solid #D6E9C6;
