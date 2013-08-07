@@ -363,6 +363,11 @@ class RooterAction extends Action {
         			);
         			$AdminUserrecord->add($newAdminUserrecordData);
         		}
+        		
+        		//TODO
+        		/**
+        		 * if !empty uid send system msg to him, told wo have read this, well connect him soon
+        		 */
         		redirect('/rooter/schoolapplyverify', 1, 'update status type ok...');
         	} else if (!empty($recordSchoolApplyverify['id']) && ($recordSchoolApplyverify['verify_status'] == '2' || $recordSchoolApplyverify['verify_status'] == '1')) {
         		$updateStatus = array(
