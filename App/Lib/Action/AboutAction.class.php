@@ -129,6 +129,13 @@ class AboutAction extends Action {
 			    	'time' => time()
 		    	);
 		    	$SchoolApplyverify->add($newApplyverifyData);
+		    	
+		    	/**
+		    	 * send email to coo
+		    	 */
+		    	Vendor('Ihelpoo.Email');
+		    	$emailObj = new Email();
+		    	$emailObj->mallNotice('121670155@qq.com', 'cho', '有新学校申请开通我帮圈圈:)');
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} 
 	    	$this->ajaxReturn(0, "出错了", "wrong");
