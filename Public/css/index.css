@@ -817,8 +817,7 @@ lable{
 
 /*--- schoollist ---*/
 .school_list_info_div p{
-    margin: 5px 0;
-    text-indent: 20px;
+    margin: 10px 0;
 }
 .school_list_ul{
     margin: 20px 0;
@@ -827,7 +826,7 @@ lable{
     padding: 10px 0;
 }
 .school_list_ul li a{
-    margin: 5px;
+    margin-right: 5px;
 }
 .school_list_ul_initial_p{
     margin-bottom: 5px;
