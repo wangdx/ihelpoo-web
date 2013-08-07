@@ -70,6 +70,72 @@ class AboutAction extends Action {
     {
     	$title = "合作申请，作共建地方化校园SNS";
     	$this->assign('title', $title);
+    	$userloginid = session('userloginid');
+    	if (!empty($userloginid)) {
+    		i_db_update_activetime($userloginid);
+    		$UserLogin = M("UserLogin");
+    		$userloginedrecord = $UserLogin->find($userloginid);
+    		$this->assign('userloginedrecord',$userloginedrecord);
+    		$SchoolApplyverify = M("SchoolApplyverify");
+	    	$recordSchoolApplyverify = $SchoolApplyverify->where("uid = '$userloginid'")->find();
+	    	$this->assign('recordSchoolApplyverify',$recordSchoolApplyverify);
+    	}
+    	
+    	if ($this->isPost()) {
+	    	$question1 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question1"]))));
+	    	$question2 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question2"]))));
+	    	$question3 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question3"]))));
+	    	$question4 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question4"]))));
+	    	$question5 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question5"]))));
+	    	$question6 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question6"]))));
+	    	$question7 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question7"]))));
+	    	$question8 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question8"]))));
+	    	$question9 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question9"]))));
+	    	$question10 = trim(addslashes(htmlspecialchars(strip_tags($_POST["question10"]))));
+	    	
+	    	if (!empty($recordSchoolApplyverify['id'])) {
+	    		$updateApplyverifyData = array(
+	    			'id' => $recordSchoolApplyverify['id'],
+	    			'verify_status' => 1,
+	    			'question1' => $question1,
+	    			'question2' => $question2,
+	    			'question3' => $question3,
+	    			'question4' => $question4,
+	    			'question5' => $question5,
+	    			'question6' => $question6,
+	    			'question7' => $question7,
+	    			'question8' => $question8,
+	    			'question9' => $question9,
+	    			'question10' => $question10,
+	    			'time' => time(),
+	    		);
+	    		$SchoolApplyverify->save($updateApplyverifyData);
+	    		$this->ajaxReturn(0, "更新成功", "yes");
+	    	}
+	    	if (!empty($name) && !empty($mobile) && !empty($verify_type)) {
+		    	$newApplyverifyData = array(
+			    	'id' => '',
+			    	'uid' => $userloginid,
+			    	'verify_status' => 0,
+			    	'question1' => $question1,
+	    			'question2' => $question2,
+	    			'question3' => $question3,
+	    			'question4' => $question4,
+	    			'question5' => $question5,
+	    			'question6' => $question6,
+	    			'question7' => $question7,
+	    			'question8' => $question8,
+	    			'question9' => $question9,
+	    			'question10' => $question10,
+			    	'time' => time()
+		    	);
+		    	$SchoolApplyverify->add($newApplyverifyData);
+		    	$this->ajaxReturn(0, "提交成功", "yes");
+	    	} else {
+	    		$this->ajaxReturn(0, "出错了", "wrong");
+	    	}
+    	}
+    	
     	$this->display();
     }
 

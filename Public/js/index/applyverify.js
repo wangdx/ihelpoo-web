@@ -3,11 +3,7 @@ $().ready(function(){
     $("#submit").click(function(){
         var applyverifyName = $("#applyverify_name").val();
         var applyverifyMobile = $("#applyverify_mobile").val();
-        $(this).ajaxStart(function(){
-    	    $("#submit_info").html($infoLoading);
-        }).ajaxStop(function(){
-    	    $infoLoading.remove();
-        });
+    	$("#submit_info").html($infoLoading);
         if (applyverifyName == "") {
         	$("#submit_info").html('姓名不能为空');
         } else if (applyverifyMobile == "") {
