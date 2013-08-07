@@ -7,6 +7,7 @@
 		<p class="f12">我帮圈圈SNS社区以校园划圈，各个校园数据和后台管理独立，联系我帮圈圈把我帮圈圈搬到你们学校，合作共建地方化校园SNS。校园站长和其团队主导运营，我帮圈圈团队负责技术，共同分享运营成果。<a href="/about/sns">详细...</a></p>
 	  </div>
 	  <ul class="school_list_ul">
+	  <li><p class="fb f14 school_list_ul_initial_p">已开通校园列表</p></li>
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php if ($initialShow == $school['initial']) { ?>
 		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
