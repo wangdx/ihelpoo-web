@@ -81,10 +81,11 @@
     padding: 10px 0;
 }
 .about_snsapply_ul li p{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .about_snsapply_ul li .textarea_style{
-    width: 800px;
-    height: 200px;
+    width: 600px;
+    height: 100px;
+    margin: 5px;
     border-radius: 3px;
 }
