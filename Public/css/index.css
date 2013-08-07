@@ -819,8 +819,15 @@ lable{
 .school_list_ul{
     margin: 20px 0;
 }
+.school_list_ul p{
+    margin: 5px 0;
+    text-indent: 20px;
+}
 .school_list_ul li{
-    padding: 10px;
+    padding: 10px 0;
+}
+.school_list_ul li a{
+    margin: 5px;
 }
 .school_list_ul_initial_p{
     margin-bottom: 5px;
