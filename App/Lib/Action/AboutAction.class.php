@@ -111,8 +111,7 @@ class AboutAction extends Action {
 	    		);
 	    		$SchoolApplyverify->save($updateApplyverifyData);
 	    		$this->ajaxReturn(0, "更新成功", "yes");
-	    	}
-	    	if (!empty($name) && !empty($mobile) && !empty($verify_type)) {
+	    	} else {
 		    	$newApplyverifyData = array(
 			    	'id' => '',
 			    	'uid' => $userloginid,
@@ -131,11 +130,9 @@ class AboutAction extends Action {
 		    	);
 		    	$SchoolApplyverify->add($newApplyverifyData);
 		    	$this->ajaxReturn(0, "提交成功", "yes");
-	    	} else {
-	    		$this->ajaxReturn(0, "出错了", "wrong");
-	    	}
+	    	} 
+	    	$this->ajaxReturn(0, "出错了", "wrong");
     	}
-    	
     	$this->display();
     }
 
