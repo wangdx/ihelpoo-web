@@ -817,8 +817,14 @@ lable{
 
 /*--- schoollist ---*/
 .school_list_info_div{
-    border-bottom: 1px solid #EEE;
-    padding-bottom: 15px;
+    background: none repeat scroll 0 0 #DFF0D8;
+    border: 1px solid #D6E9C6;
+    border-radius: 5px 5px 5px 5px;
+    color: #468847;
+    margin: 0 0 10px;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
 }
 .school_list_info_div p{
     margin: 10px 0;
