@@ -84,7 +84,7 @@ class IndexAction extends Action {
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	
     	$SchoolInfo = M("SchoolInfo");
-    	$recordsSchoolInfo = $SchoolInfo->select();
+    	$recordsSchoolInfo = $SchoolInfo->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
         $this->display();
