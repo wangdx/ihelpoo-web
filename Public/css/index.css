@@ -817,14 +817,14 @@ lable{
 
 /*--- schoollist ---*/
 .school_list_info_div{
-    margin: 20px 0;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 15px;
 }
 .school_list_info_div p{
     margin: 10px 0;
 }
 .school_list_ul{
-    border-bottom: 1px solid #EEE;
-    padding-bottom: 15px;
+    margin: 20px 0;
 }
 .school_list_ul li{
     padding: 10px 0;
