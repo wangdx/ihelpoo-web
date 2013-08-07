@@ -816,6 +816,10 @@ lable{
 }
 
 /*--- schoollist ---*/
+.school_list_info_div{
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 15px;
+}
 .school_list_info_div p{
     margin: 10px 0;
 }
