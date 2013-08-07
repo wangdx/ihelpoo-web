@@ -10,6 +10,33 @@ $(function () {
     $('#send_message').click(chat.send);
 
 
+
+
+    var noActionInterval = 16; // seconds
+    $("textarea#send_message_textarea").keypress(function () {
+        var typingStuff = $("textarea#send_message_textarea").val();
+        if(typingStuff && typingStuff.length > 5){
+            noActionInterval = 15;
+        }else{
+            noActionInterval = 5;
+        }
+        typing();
+    });
+
+
+    var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
+
+    function typing(){
+        console.log("---------------------"+noActionInterval);
+        $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
+        clearTimeout(noTypeTimeout);
+        noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
+    }
+
+    function inActive(){
+        $('#input_status').text('');
+    }
+
     // restore some values
     if (state) {
         $('#data_uid').val(state.from);
@@ -238,7 +265,7 @@ function Chat(state) {
                 expires.setTime(expires.getTime() + 5 * 1000);
                 org.cometd.COOKIE.set('com.ihelpoo.comet.p2p.state', org.cometd.JSON.toJSON({
                     from: _from,
-                    to:_to
+                    to: _to
                 }), { 'max-age': 5, expires: expires });
             }
         } else {

@@ -123,7 +123,8 @@ $().ready(function () {
     /**
      * send messgae
      */
-    $('#send_message').click(function () {  connectedEndpointJob1.push({data: 'message=hello, world'});
+    $('#send_message').click(function () {
+        connectedEndpointJob1.push({data: 'message=hello, world'});
         console.log(connectedEndpointJob1);
         return false;
 
