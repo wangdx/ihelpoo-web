@@ -65,6 +65,13 @@ class AboutAction extends Action {
     	$this->assign('title', $title);
     	$this->display();
     }
+    
+    public function snsapply()
+    {
+    	$title = "合作申请，作共建地方化校园SNS";
+    	$this->assign('title', $title);
+    	$this->display();
+    }
 
 }
 
