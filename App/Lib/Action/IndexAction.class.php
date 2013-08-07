@@ -79,11 +79,14 @@ class IndexAction extends Action {
     public function school()
     {
     	$title = "我帮圈圈 帮助主题社交网站 开通校园列表";
+    	$this->assign('title',$title);
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
+    	
     	$SchoolInfo = M("SchoolInfo");
     	$recordsSchoolInfo = $SchoolInfo->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
-        $this->assign('title',$title);
-        $this->assign('schoolname',$recordSchoolInfo['school']);
+        
         $this->display();
     }
     
