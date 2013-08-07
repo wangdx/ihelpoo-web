@@ -339,6 +339,7 @@ class RooterAction extends Action {
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
     		$school = $_POST['school'];
+    		$initial = $_POST['initial'];
     		$domain = $_POST['domain'];
     		$domain_main = $_POST['domain_main'];
     		$remark = $_POST['remark'];
@@ -351,6 +352,7 @@ class RooterAction extends Action {
     			$updateSchoolData = array(
     				'id' => $id,
     				'school' => $school,
+    				'initial' => $initial,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark
@@ -379,6 +381,7 @@ class RooterAction extends Action {
     			$newSchoolData = array(
     				'id' => '',
     				'school' => $school,
+    				'initial' => $initial,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark,
