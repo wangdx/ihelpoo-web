@@ -5,12 +5,12 @@
   <ul class="">
   <?php foreach ($recordsSchoolInfo as $school) :?>
   	<?php if ($initialShow == $school['initial']) { ?>
-	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="主域名:<?php echo $school['domain_main']; ?> 备用域名:<?php echo $school['domain']; ?> (<?php echo $school['remark']; ?>)"><?php echo $school['school']; ?></a>
+	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="主域名:<?php echo $school['domain_main']; ?> 备用域名:<?php echo $school['domain']; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
     <?php } else { ?>
     </li>
     <li>
-    	<p class="fb f14"><?php echo $school['initial']; ?></p>
-	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="主域名:<?php echo $school['domain_main']; ?> 备用域名:<?php echo $school['domain']; ?> (<?php echo $school['remark']; ?>)"><?php echo $school['school']; ?></a>
+    	<p class="fb f14"><?php echo strtoupper($school['initial']); ?></p>
+	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="主域名:<?php echo $school['domain_main']; ?> 备用域名:<?php echo $school['domain']; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
 	    <?php $initialShow = $school['initial']; ?>
     <?php } ?>
   <?php endforeach; ?>
