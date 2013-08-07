@@ -88,6 +88,9 @@
     text-align: center;
     width: 100%;
 }
+.about_snsapply_info_ul li{
+    padding: 5px;
+}
 .about_snsapply_ul{
     margin: 20px 0;
 }
