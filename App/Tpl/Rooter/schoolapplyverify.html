@@ -1,0 +1,69 @@
+<include file="Public:headerrooter" />
+<?php if (!empty($detailSchoolApplyverify)) { ?>
+	<ul class="user_ul">
+	<li>
+  		<p>1. 是团队申请，还是个人？如果是个人申请，请说明你如何快速组建并管理一个校园运营团队，如何带领团队做事情？</p>
+  		<textarea name="question1" class="textarea_style" id="question1"><?php echo $detailSchoolApplyverify[question1]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>2. 请提供核心团队成员的姓名（包括手机号、QQ和电子邮箱）、出生年月、籍贯、学校、学习或工作履历、在团队中担任的职责（建议一个站长，两个副站长助手，其余事情可以外包。必须详细）。若有博客、微博、人人，请提供URL链接。若有值得一书的奖励，或特别成就，不妨也让我们吃惊下。</p>
+  		<textarea name="question2" class="textarea_style" id="question2"><?php echo $detailSchoolApplyverify[question2]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>3. 团队成员是否主导或参与任何项目（无论成败）？自己在学习或工作外是否做过任何有趣的项目？若有请提供项目介绍，项目链接及团队成员在其中担任的角色。若为管理角色，请说明曾直接管理多少人？</p>
+  		<textarea name="question3" class="textarea_style" id="question3"><?php echo $detailSchoolApplyverify[question3]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>4. 团队成员怎么认识的？认识多久？你们各自的成长经历及家庭背景是怎么样的？作为团队合作了多久？团队中成员谁是全职还是兼职做这件事情，其可承诺的投入程度是怎么样的？</p>
+  		<textarea name="question4" class="textarea_style" id="question4"><?php echo $detailSchoolApplyverify[question4]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>5. 是什么驱使你们必须要做这件事情？你们手中有什么特别的资源来促进和支持该项目？</p>
+  		<textarea name="question5" class="textarea_style" id="question5"><?php echo $detailSchoolApplyverify[question5]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>6. 你们学校内或周边有哪些同类网站，你们跟竞争对手最大的差别在哪里，你们为什么可以做得更好？最担心的是什么？</p>
+  		<textarea name="question6" class="textarea_style" id="question6"><?php echo $detailSchoolApplyverify[question6]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>7. 你们准备怎么推广运营，在你们学校做这件事情？除了传统的广告收入之外，你们怎么靠我帮圈圈赚钱，未来有没其他可预期的商业模式？有没有校园政策风险？</p>
+  		<textarea name="question7" class="textarea_style" id="question7"><?php echo $detailSchoolApplyverify[question7]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>8. 如果有收入你们打算怎么使用主体经费？你们认为自己开多少薪水最合适？</p>
+  		<textarea name="question8" class="textarea_style" id="question8"><?php echo $detailSchoolApplyverify[question8]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>9. 你们自己能投入多少资金？你们希望向我帮圈圈申请多少启动资金？这笔资金最长可以支撑多久？将达到什么目标？除了资金，你们觉得这个项目最大的困难或障碍是什么？打算如何克服？</p>
+  		<textarea name="question9" class="textarea_style" id="question9"><?php echo $detailSchoolApplyverify[question9]; ?></textarea>
+  	</li>
+  	<li>
+  		<p>10. 为什么我帮圈圈应该选择你们？你们需要我帮圈圈提供哪些方面的辅助？你们对我帮圈圈有什么建议？</p>
+  		<textarea name="question10" class="textarea_style" id="question10"><?php echo $detailSchoolApplyverify[question10]; ?></textarea>
+  	</li>
+	</ul>
+<?php } else { ?>
+	<ul class="user_ul">
+	<?php foreach($recordSchoolApplyverify as $applyverify) { ?>
+		<li>
+			<?php if ($applyverify['verify_status'] == "0") { ?>
+				<span class='f12 red'>未处理</span> 
+				<a href="?p=<?php echo $_GET['p']; ?>&statuschange=<?php echo $applyverify['id']; ?>" class="f12">标记为处理</a> 
+			<?php } else if ($applyverify['verify_status'] == "1") { ?>
+				<span class='f12 red'>有更新</span> 
+				<a href="?p=<?php echo $_GET['p']; ?>&statuschange=<?php echo $applyverify['id']; ?>" class="f12">标记为处理</a> 
+			<?php } else { ?> 
+				<span class='f12 green'>已处理</span> 
+				<a href="?p=<?php echo $_GET['p']; ?>&statuschange=<?php echo $applyverify['id']; ?>" class="f12">标记为未处理</a> 
+			<?php } ?> 
+			<span class="f12 gray">uid:</span><a href="__ROOT__/wo/<?php echo $applyverify['uid'] ?>" target="_blank">(<?php echo $applyverify['uid']; ?>)</a>
+			<a href="?p=<?php echo $_GET['p']; ?>&detail=<?php echo $applyverify['id']; ?>">详情</a> 
+		</li>
+	<?php } ?>
+	</ul>
+	<p class="f12 gray paging_p">共<?php echo $totalusers ?>条记录 <?php echo $totalPages ?>页</p>
+	<div class="paging_div">
+	  <?php if ($totalPages > 1) { i_page_show("schooladmin/applyverify", $totalPages); } ?>
+	</div>
+<?php } ?>
+<include file="Public:footerrooter" />

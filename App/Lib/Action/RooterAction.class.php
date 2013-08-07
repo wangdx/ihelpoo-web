@@ -330,6 +330,78 @@ class RooterAction extends Action {
     /**
      * school management
      */
+    public function schoolapplyverify()
+    {
+    	$admin = logincheck();
+    	$this->assign('title','申请开通学校');
+    	
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+        $SchoolApplyverify = M("SchoolApplyverify");
+        
+        if (!empty($_GET['statuschange'])) {
+        	$statuschangeid = (int)$_GET['statuschange'];
+        	$recordSchoolApplyverify = $SchoolApplyverify->find($statuschangeid);
+        	if (!empty($recordSchoolApplyverify['id'])) {
+        		$updateStatus = array(
+        			'id' => $recordSchoolApplyverify['id'],
+        			'verify_status' => '2',
+        		);
+        		$SchoolApplyverify->save($updateStatus);
+        		
+        		/**
+        		 * admin user operating record
+        		 */
+        		if (!empty($admin['uid'])) {
+        			$AdminUserrecord = M("AdminUserrecord");
+        			$newAdminUserrecordData = array(
+						'id' => '',
+						'uid' => $admin['uid'],
+						'record' => '标记为处理 schoolapply id:'.$recordSchoolApplyverify['id'],
+						'time' => time(),
+        			);
+        			$AdminUserrecord->add($newAdminUserrecordData);
+        		}
+        		redirect('/rooter/schoolapplyverify', 1, 'update status type ok...');
+        	} else if (!empty($recordSchoolApplyverify['id']) && ($recordSchoolApplyverify['verify_status'] == '2' || $recordSchoolApplyverify['verify_status'] == '1')) {
+        		$updateStatus = array(
+        			'id' => $recordSchoolApplyverify['id'],
+        			'verify_status' => '0',
+        		);
+        		$SchoolApplyverify->save($updateStatus);
+        		
+        		/**
+        		 * admin user operating record
+        		 */
+        		if (!empty($admin['uid'])) {
+        			$AdminUserrecord = M("AdminUserrecord");
+        			$newAdminUserrecordData = array(
+						'id' => '',
+						'uid' => $admin['uid'],
+						'record' => '标记为未处理 schoolapply id:'.$recordSchoolApplyverify['id'],
+						'time' => time(),
+        			);
+        			$AdminUserrecord->add($newAdminUserrecordData);
+        		}
+        		redirect('/rooter/schoolapplyverify', 1, 'update status type ok...');
+        	}
+        }
+        
+        if (!empty($_GET['detail'])) {
+        	$detailid = $_GET['detail'];
+        	$detailSchoolApplyverify = $SchoolApplyverify->find($detailid);
+        	$this->assign('detailSchoolApplyverify', $detailSchoolApplyverify);
+        } else {
+        	$recordSchoolApplyverify = $SchoolApplyverify->order("time DESC")->limit($offset,$count)->select();
+        	$this->assign('recordSchoolApplyverify', $recordSchoolApplyverify);
+        	$totalrecords = $SchoolApplyverify->count();
+        	$this->assign('totalrecords', $totalrecords);
+        	$totalPages = ceil($totalrecords / $count);
+        	$this->assign('totalPages', $totalPages);
+        }
+    	$this->display();
+    }
     
     public function schoolinfo()
     {
