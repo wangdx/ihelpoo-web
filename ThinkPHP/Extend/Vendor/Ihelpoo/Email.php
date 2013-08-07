@@ -47,9 +47,9 @@ class Email
      */
     public function invite($toEmail, $toNickname = NULL)
     {
-        $toSubject = "湖北民族学院帮助主题社交网站 - 我帮圈圈 期待您的加入";
-        $toContent = "<p>亲！民院的童鞋 <span style='font-size:12px; color:gray'>(或是由于我们收集数据错误, 导致这封email来到您邮箱的网上的朋友)</span></p>
-                      <p>我们是湖北民族学院帮助主题社交网站 我帮圈圈 网站的开发人员。 经过近一年的摸索, 几个版本的更替，酷暑寒冬中的挥汗...我帮圈圈第三版本上线了!</p>
+        $toSubject = "我帮圈圈帮助主题社交网站 - 期待您的加入";
+        $toContent = "<p>亲！童鞋 <span style='font-size:12px; color:gray'>(或是由于我们收集数据错误, 导致这封email来到您邮箱的网上的朋友)</span></p>
+                      <p>我们是校园帮助主题社交网站 我帮圈圈 网站的开发人员。 经过近一年的摸索, 几个版本的更替，酷暑寒冬中的挥汗...我帮圈圈第三版本上线了!</p>
                       <p>在此诚邀您关注, 期待您的<a href='http://".$this->ihelpoo."/'>加入...</a></p>
                       <p style='color:gray; font-size:12px'>
                       希望大家一起能帮您解决一些问题...<br />
@@ -59,7 +59,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       天天开心:D 祝好
                       </p>
@@ -96,7 +96,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -125,7 +125,7 @@ class Email
     public function welcome($toEmail, $toNickname)
     {
         $toSubject = "欢迎加入我帮圈圈";
-        $toContent = "<p>欢迎加入我帮圈圈 - 湖北民族学院帮助主题社交网站。</p>
+        $toContent = "<p>欢迎加入我帮圈圈 - 校园帮助主题社交网站。</p>
                       <p style='font-size:12px'>
                       在这里~ 大家一起能帮您解决一些问题...<br />
                       在这里~ 您能找到需要的讯息...<br />
@@ -135,7 +135,7 @@ class Email
                       <p><a href='http://".$this->ihelpoo."/'>开始您的故事吧!</a></p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -151,7 +151,7 @@ class Email
                       (邮箱验证后才能帮助您快速找回密码, 给".$toNickname."提供一些必要的消息...总之很重要, 希望您火速验证)</p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -169,7 +169,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -187,7 +187,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -203,7 +203,7 @@ class Email
                       <p>我帮圈圈是针对民院的社交平台, 这里都是校友, 我们也会做好隐私保护工作。希望您能提供真实姓名</p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -221,7 +221,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -235,7 +235,7 @@ class Email
         $toContent = "<p>".$toNickname." 童鞋  <br />您的求助有了新回复, 有童鞋来帮助您啦! 看能对您有什么促进不? <a href='http://".$this->ihelpoo."/'>快来看看吧!</a></p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -251,7 +251,7 @@ class Email
                      <p><span style='color:gray; font-size:12px'>如果没能帮到您什么 我帮圈圈表示歉意, 希望下次能为您做些什么。超时的帮助将会自动关闭，谢谢支持 :)</span></p>
                      <br />
                      <p style='color:gray; font-size:12px; font-style:italic;'>
-                     湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                     校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                      <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                      ".$toNickname."天天开心:D 祝好
                      </p>";
@@ -269,7 +269,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -287,7 +287,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -305,7 +305,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -323,7 +323,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
@@ -341,7 +341,7 @@ class Email
                       </p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
-                      湖北民族学院帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
+                      校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
                       <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";

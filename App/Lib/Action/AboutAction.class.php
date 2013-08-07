@@ -110,6 +110,11 @@ class AboutAction extends Action {
 	    			'time' => time(),
 	    		);
 	    		$SchoolApplyverify->save($updateApplyverifyData);
+	    		
+	    		/**
+		    	 * send email to coo
+		    	 */
+		    	i_sendmail('admin@tvery.com','system to cho','有学校更新了申请开通我帮圈圈:)');
 	    		$this->ajaxReturn(0, "更新成功", "yes");
 	    	} else {
 		    	$newApplyverifyData = array(
@@ -133,9 +138,7 @@ class AboutAction extends Action {
 		    	/**
 		    	 * send email to coo
 		    	 */
-		    	Vendor('Ihelpoo.Email');
-		    	$emailObj = new Email();
-		    	$emailObj->mallNotice('admin@tvery.com', 'cho', '有新学校申请开通我帮圈圈:)');
+		    	i_sendmail('admin@tvery.com','system to cho','有新学校申请开通我帮圈圈:)');
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} 
 	    	$this->ajaxReturn(0, "出错了", "wrong");
