@@ -21,13 +21,13 @@ $(function () {
     var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
     function typing(){
-        this.updateInputStatus('对方正在输入...');
+        chat.updateInputStatus('对方正在输入...');
         clearTimeout(noTypeTimeout);
         noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
     }
 
     function inActive(){
-        this.updateInputStatus('');
+        chat.updateInputStatus('');
     }
 
     // restore some values
