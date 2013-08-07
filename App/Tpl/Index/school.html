@@ -11,8 +11,8 @@
     	<p class="fb f14"><?php echo $school['initial']; ?></p>
 	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="主域名:<?php echo $school['domain_main']; ?> 备用域名:<?php echo $school['domain']; ?> (<?php echo $school['remark']; ?>)"><?php echo $school['school']; ?></a>
 	    <?php $initialShow = $school['initial']; ?>
-    </li>
     <?php } ?>
+    </li>
   <?php endforeach; ?>
   </ul>
 </div>
