@@ -814,3 +814,14 @@ lable{
     border-bottom: 3px solid #CCC;
 	height:120px;
 }
+
+/*--- schoollist ---*/
+.school_list_ul{
+    margin: 20px 0;
+}
+.school_list_ul li{
+    padding: 10px;
+}
+.school_list_ul_initial_p{
+    margin-bottom: 5px;
+}

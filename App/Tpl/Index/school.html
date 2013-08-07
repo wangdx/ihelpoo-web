@@ -1,20 +1,24 @@
 <include file="Public:headerabout" />
 <link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
-<div>
-  <ul class="">
-  <?php foreach ($recordsSchoolInfo as $school) :?>
-  	<?php if ($initialShow == $school['initial']) { ?>
-	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
-    <?php } else { ?>
-    </li>
-    <li>
-    	<p class="fb f14"><?php echo strtoupper($school['initial']); ?></p>
-	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
-	    <?php $initialShow = $school['initial']; ?>
-    <?php } ?>
-  <?php endforeach; ?>
-  </ul>
-</div>
+	<div>
+	  <div class="school_list_info_div">
+		<p><a href="/about/sns" class="fb f14">共建地方化校园SNS</a></p>
+		<p class="f12">我帮圈圈的地方化SNS社区以校园划圈，各个校园间数据和后台管理独立，联系我帮圈圈，把我帮圈圈搬到你们学校，合作共建地方化校园SNS，校园站长和其团队主导运营，我帮圈圈团队负责技术，共同分享运营成果。<a href="/about/sns">详细...</a></p>
+	  </div>
+	  <ul class="school_list_ul">
+	  <?php foreach ($recordsSchoolInfo as $school) :?>
+	  	<?php if ($initialShow == $school['initial']) { ?>
+		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
+	    <?php } else { ?>
+	    </li>
+	    <li>
+	    	<p class="fb f14 school_list_ul_initial_p"><?php echo strtoupper($school['initial']); ?></p>
+		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>"><?php echo $school['school']; ?></a>
+		    <?php $initialShow = $school['initial']; ?>
+	    <?php } ?>
+	  <?php endforeach; ?>
+	  </ul>
+	</div>
 </div>
 <include file="Public:footer" />
