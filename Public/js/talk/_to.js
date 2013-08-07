@@ -12,14 +12,8 @@ $(function () {
 
 
 
-    var noActionInterval = 16; // seconds
+    var noActionInterval = 10; // seconds
     $("textarea#send_message_textarea").keypress(function () {
-        var typingStuff = $("textarea#send_message_textarea").val();
-        if(typingStuff && typingStuff.length > 5){
-            noActionInterval = 15;
-        }else{
-            noActionInterval = 5;
-        }
         typing();
     });
 
@@ -27,14 +21,13 @@ $(function () {
     var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
     function typing(){
-        console.log("---------------------"+noActionInterval);
-        $('#input_status').html('对方正在输入...<span class="icon_write"></span>');
+        this.updateInputStatus('对方正在输入...');
         clearTimeout(noTypeTimeout);
         noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
     }
 
     function inActive(){
-        $('#input_status').text('');
+        this.updateInputStatus('');
     }
 
     // restore some values
@@ -105,6 +98,16 @@ function Chat(state) {
         });
     };
 
+    this.updateInputStatus = function(status){
+        $.cometd.publish('/service/p2ps', {
+            room: '/chat/p2p',
+            from: _from,
+            to: _to,
+            chat: "",
+            image: status
+        });
+    };
+
     this.receive = function (message) {
         var fromUser = message.data.fromUser;
         var toUser = message.data.toUser;
@@ -115,6 +118,14 @@ function Chat(state) {
         var image = message.data.image;
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
+
+
+
+        if(!chat || !chat.length) {//update status
+            $('#input_status').html(image + '<span class="icon_write"></span>');
+            return;
+        }
+
 
         if (!membership && fromUser == _lastUser) {
             fromUser = '...';
