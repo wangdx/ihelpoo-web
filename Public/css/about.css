@@ -75,7 +75,8 @@
 
 /*--- about snsapply ---*/
 .about_snsapply_nav_div{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 .about_snsapply_info{
     background: #DFF0D8;
