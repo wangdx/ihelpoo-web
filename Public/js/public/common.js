@@ -210,16 +210,13 @@ $().ready(function () {
         }, 1000);
     }).mouseleave(function () {
             clearTimeout(t_userinfo);
-            var hoverIn = false;
             $('.user_info_div').hover(function () {
-                    hoverIn = true;
+                    $(this).show();
                 },
                 function () {
                     $(this).fadeOut("fast");
                 });
-            if(!hoverIn){
-                $(".user_info_div").fadeOut("fast");
-            }
+            $(".user_info_div").fadeOut("fast");
         });
 
     $(".user_info_div_close").live('click', function () {
