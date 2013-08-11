@@ -137,7 +137,7 @@ $().ready(function(){
     var t_userinfo;
     $(".getuserinfo").live('mouseenter', function(e){
     	$this = $(this);
-    	t=setTimeout(function(){
+        t_userinfo=setTimeout(function(){
     		var userid = $this.attr('userid');
     		var usernickname = $this.text();
     		var positionleft = e.pageX + 10;
