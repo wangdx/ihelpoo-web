@@ -208,15 +208,18 @@ $().ready(function () {
                 }
             });
         }, 1000);
-    }).mouseleave(function () {
+    }).mouseleave(function (e) {
             clearTimeout(t_userinfo);
             $('.user_info_div').hover(function () {
-                    $(this).show();
                 },
                 function () {
                     $(this).fadeOut("fast");
                 });
-            $(".user_info_div").fadeOut("fast");
+//            if($(e.relatedTarget)[0] )
+//            $(".user_info_div").fadeOut("fast");
+            console.log($(e.relatedTarget)[0]);
+            console.log($(".user_info_div"));
+            console.log($(e.relatedTarget)[0] == $(".user_info_div"));
         });
 
     $(".user_info_div_close").live('click', function () {
