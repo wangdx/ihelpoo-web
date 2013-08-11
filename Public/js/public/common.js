@@ -136,7 +136,7 @@ $().ready(function () {
      * get userinfo
      */
     var t_userinfo;
-    $(".getuserinfo").live('mouseenter',function (e) {
+    $([".getuserinfo",$(".user_info_div")]).live('mouseenter',function (e) {
         $this = $(this);
         t_userinfo = setTimeout(function () {
             var userid = $this.attr('userid');
@@ -215,11 +215,6 @@ $().ready(function () {
                 function () {
                     $(this).fadeOut("fast");
                 });
-//            if($(e.relatedTarget)[0] )
-//            $(".user_info_div").fadeOut("fast");
-            console.log($(e.relatedTarget)[0]);
-            console.log($(".user_info_div"));
-            console.log($(e.relatedTarget)[0] == $(".user_info_div"));
         });
 
     $(".user_info_div_close").live('click', function () {
