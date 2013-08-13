@@ -108,7 +108,7 @@ function Chat(state) {
     };
 
     this.send = function (from, to) {
-        var chat = '有人圈了你';
+        var chat = '4';
         var image = '无';
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/p2ps', {
@@ -142,8 +142,9 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
 
+        if(chat == '4'){
         $('#message_system_nums_a').show();
-        $('#message_system_nums_a').children('span').html('+3');
+        $('#message_system_nums_a').children('span').html('+3');}
 
 
         if(!chat || !chat.length) {//update status
