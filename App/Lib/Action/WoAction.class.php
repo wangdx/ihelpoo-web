@@ -339,14 +339,14 @@ class WoAction extends Action {
         $count = 20;
         $offset = $page * $count;
         $RecordPlus = M("RecordPlus");
-        $resultRecordDiffusion = $RecordPlus->where("i_record_plus.uid = $userId")
+        $resultRecordPlus = $RecordPlus->where("i_record_plus.uid = $userId")
         ->join('i_record_say ON i_record_plus.sid = i_record_say.sid')
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
         ->field('id,i_record_say.sid,i_record_plus.create_time,i_user_login.uid,say_type,content,image,url,comment_co,diffusion_co,hit_co,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url')
         ->order('i_record_plus.create_time DESC')
        	->limit($offset,$count)->select();
 
-       	$this->assign('resultRecordDiffusion',$resultRecordDiffusion);
+       	$this->assign('resultRecordPlus',$resultRecordPlus);
 
        	/**
          * pageing link
