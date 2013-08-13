@@ -28,7 +28,7 @@ $(function () {
             success: function (msg) {
                 if (msg.status == 'ok') {
                     $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
-                    chat.send();
+                    chat.send($('#data_touid').val(), userid);
                 } else {
                     ajaxInfo(msg.info);
                 }
@@ -105,14 +105,14 @@ function Chat(state) {
         _disconnecting = true;
     };
 
-    this.send = function () {
+    this.send = function (from, to) {
         var chat = '有人圈了你';
         var image = '无';
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
-            from: _from,
-            to: _to,
+            from: from,
+            to: to,
             chat: chat,
             image: image
         });
