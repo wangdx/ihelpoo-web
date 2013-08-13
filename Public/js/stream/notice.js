@@ -129,6 +129,7 @@ function Chat(state) {
     };
 
     this.receive = function (message) {
+        console.log('++++++++++++++++++++++++');
         var fromUser = message.data.fromUser;
         var toUser = message.data.toUser;
         var from = message.data.from;
