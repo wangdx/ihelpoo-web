@@ -28,7 +28,7 @@ $(function () {
             data: {uid: userid},
             success: function (msg) {
                 if (msg.status == 'ok') {
-                    $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
+                    $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta1");
                     chat.send($('#data_touid').val(), userid);
                 } else {
                     ajaxInfo(msg.info);
@@ -49,7 +49,7 @@ $(function () {
             data: {uid: userid},
             success: function (msg) {
                 if (msg.status == 'ok') {
-                    $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta");
+                    $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta2");
                 } else {
                     ajaxInfo(msg.info);
                 }
