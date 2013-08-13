@@ -1025,7 +1025,7 @@ function mseeageNums() {
         		} else {
         			$('#message_talk_nums_div').fadeOut('fast');
         		}
-        		setTimeout('mseeageNums()', acquiremilliseconds);
+        		//setTimeout('mseeageNums()', acquiremilliseconds);
         	} else {
         		$("#change_skin_save").html("<span class='f12'><span class='icon_wrong'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
         	}
