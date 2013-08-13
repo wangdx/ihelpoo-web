@@ -10,6 +10,7 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
+    console.log('***********');
 
 
     /**
@@ -69,6 +70,7 @@ function Chat(state) {
     var _membersSubscription;
 
     this.join = function (from, to) {
+        console.log("----------------");
         _disconnecting = false;
         _from = from;
         _to = to;
