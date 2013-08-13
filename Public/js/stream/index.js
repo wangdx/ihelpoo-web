@@ -644,7 +644,7 @@ $().ready(function(){
 //                console.log($(this).parent().find('.plus_count_region').val());
 //                $(this).parent().find('.plus_count_region').text(data);
 //                alert($(this).attr('class'));
-                $region.text('('+data+')');
+                  $region.html('('+data+')');
 //                $thisButton.append('<span class="red_l">data</span>');
             }
         });
