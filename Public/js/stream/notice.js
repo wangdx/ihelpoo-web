@@ -10,6 +10,52 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
+    console.log('***********');
+
+
+    /**
+     * quan && quan cancel
+     */
+    $(".do_quanta").live('click', function () {
+        $this = $(this);
+        var userid = $(".user_info_top_div").attr('userid');
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        $this.html($infoLoading);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: baseUrl + "ajax/quanta",
+            data: {uid: userid},
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta1");
+                    chat.send($('#data_touid').val(), userid);
+                } else {
+                    ajaxInfo(msg.info);
+                }
+            }
+        });
+    });
+
+    $(".do_quantacancel").live('click', function () {
+        $this = $(this);
+        var userid = $(".user_info_top_div").attr('userid');
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        $this.html($infoLoading);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: baseUrl + "ajax/quantacancel",
+            data: {uid: userid},
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta2");
+                } else {
+                    ajaxInfo(msg.info);
+                }
+            }
+        });
+    });
 });
 
 function Chat(state) {
@@ -24,6 +70,7 @@ function Chat(state) {
     var _membersSubscription;
 
     this.join = function (from, to) {
+        console.log("----------------");
         _disconnecting = false;
         _from = from;
         _to = to;
@@ -60,14 +107,14 @@ function Chat(state) {
         _disconnecting = true;
     };
 
-    this.send = function () {
-        var chat = $('#send_message_textarea').val();
-        var image = $('#image_upload_url').val();
+    this.send = function (from, to) {
+        var chat = '4';
+        var image = '无';
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
-            from: _from,
-            to: _to,
+            from: from,
+            to: to,
             chat: chat,
             image: image
         });
@@ -84,6 +131,7 @@ function Chat(state) {
     };
 
     this.receive = function (message) {
+        console.log('++++++++++++++++++++++++');
         var fromUser = message.data.fromUser;
         var toUser = message.data.toUser;
         var from = message.data.from;
@@ -94,6 +142,9 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
 
+        if(chat == '4'){
+        $('#message_system_nums_a').show();
+        $('#message_system_nums_a').children('span').html('+3');}
 
 
         if(!chat || !chat.length) {//update status
