@@ -1,3 +1,5 @@
+新网帐号: ihelpoo/wobang00
+
 diffusiontoowner %s扩散了你的消息，详情%s
 
 "<a href='".__ROOT__."/mutual/rc/".$msg['url_id']."?please' target='_blank' class='a_view_info_sys'>详情</a>";
