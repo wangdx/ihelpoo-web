@@ -4,32 +4,7 @@ $(function () {
     var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
     var state = null;
     var chat = new Chat(state);
-
     chat.join($('#data_uid').val(), $('#data_touid').val());
-
-    $('#send_message').click(chat.send);
-
-
-
-
-    var noActionInterval = 5; // seconds
-    $("textarea#send_message_textarea").keypress(function () {
-        typing();
-    });
-
-
-    var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
-
-    function typing(){
-        chat.updateInputStatus('对方正在输入...');
-        clearTimeout(noTypeTimeout);
-        noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
-    }
-
-    function inActive(){
-        chat.updateInputStatus('');
-    }
-
     // restore some values
     if (state) {
         $('#data_uid').val(state.from);
