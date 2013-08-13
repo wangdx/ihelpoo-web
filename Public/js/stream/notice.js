@@ -142,6 +142,8 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
 
+        $('#message_system_nums_a').show();
+        $('#message_system_nums_a').children('span').html('+3');
 
 
         if(!chat || !chat.length) {//update status
