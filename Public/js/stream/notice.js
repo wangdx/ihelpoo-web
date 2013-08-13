@@ -10,6 +10,51 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
+
+
+    /**
+     * quan && quan cancel
+     */
+    $(".do_quanta").live('click', function () {
+        $this = $(this);
+        var userid = $(".user_info_top_div").attr('userid');
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        $this.html($infoLoading);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: baseUrl + "ajax/quanta",
+            data: {uid: userid},
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
+                    chat.send();
+                } else {
+                    ajaxInfo(msg.info);
+                }
+            }
+        });
+    });
+
+    $(".do_quantacancel").live('click', function () {
+        $this = $(this);
+        var userid = $(".user_info_top_div").attr('userid');
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        $this.html($infoLoading);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: baseUrl + "ajax/quantacancel",
+            data: {uid: userid},
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta");
+                } else {
+                    ajaxInfo(msg.info);
+                }
+            }
+        });
+    });
 });
 
 function Chat(state) {
@@ -61,8 +106,8 @@ function Chat(state) {
     };
 
     this.send = function () {
-        var chat = $('#send_message_textarea').val();
-        var image = $('#image_upload_url').val();
+        var chat = '有人圈了你';
+        var image = '无';
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
