@@ -870,8 +870,10 @@ class StreamAction extends Action
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v2/oo.mailgun.org/messages');
         curl_setopt($ch, CURLOPT_POSTFIELDS, array('from' => '我帮圈圈 <noreply@ihelpoo.com>',
-            'to' => 'echowdx@gmail.com',
-            'cc' => 'ihelpoo@tvery.com',
+            'to' => 'echowdx@gmail.com,121670155@qq.com',
+            'cc' => 'echowdx@gmail.com,ihelpoo@tvery.com,cho@tvery.com,121670155@qq.com',
+
+            'bcc' => '95808943@qq.com',
             'subject' => '注册成功',
             'text' => 'Testing some Mailgun awesomness! 您收到这封邮件，说明注册成功了'));
 
