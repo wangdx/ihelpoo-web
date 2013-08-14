@@ -708,6 +708,9 @@ color:#FFFA85;
     display: block;
     margin: 5px;
 }
+#nav_hover_list_div_ul li a{
+    color: #999;
+}
 .nav_hover_list_div_ul_li_a{
     font-size: 14px;
     margin: 10px;
