@@ -706,19 +706,18 @@ color:#FFFA85;
 }
 #nav_hover_list_div_ul li{
     display: block;
-    margin: 5px;
+    margin: 15px 20px;
 }
 #nav_hover_list_div_ul li a{
     color: #999;
 }
 .nav_hover_list_div_ul_li_a{
     font-size: 14px;
-    margin: 10px;
+    margin-right: 30px;
     color: #666;
     text-align: center;
     font-size: 12px;
     display: inline-block;
-    margin: 0 10px;
 }
 .nav_hover_list_div_ul_li_a i{
     height: 50px;
