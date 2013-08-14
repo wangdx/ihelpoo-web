@@ -19,7 +19,7 @@ $().ready(function () {
                 var mainpositionleft = mainhelpoffset.left + 173;
             }
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
-            $("#nav_hover_list_div_ul").html("<li><a href='/index/mate'><i class='icon_hover_top_mate'></i>同学</a> | <a href='/index/group'><i class='icon_hover_top_group'></i>校园组织</a> | <a href='/index/business'><i class='icon_hover_top_business'></i>周边商家</a></li>");
+            $("#nav_hover_list_div_ul").html("<li><a href='/index/mate'><i class='icon_hover_top_mate'></i>同学</a> <a href='/index/group'><i class='icon_hover_top_group'></i>校园组织</a> <a href='/index/business'><i class='icon_hover_top_business'></i>周边商家</a></li>");
         },
         function () {
             $("#nav_hover_list_div").hover(function () {
@@ -43,9 +43,9 @@ $().ready(function () {
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
             var stream_header_top_schoolad = $("#stream_header_top_schoolad").html();
             if (stream_header_top_schoolad != null) {
-                $("#nav_hover_list_div_ul").html("<li><i class='icon_hover_top_help'></i><a href='/help'>帮助</a> | <a href='/activity'><i class='icon_hover_top_activity'></i>活动</a></li>" + stream_header_top_schoolad);
+                $("#nav_hover_list_div_ul").html("<li><a href='/help'><i class='icon_hover_top_help'></i>帮助</a> <a href='/activity'><i class='icon_hover_top_activity'></i>活动</a></li>" + stream_header_top_schoolad);
             } else {
-                $("#nav_hover_list_div_ul").html("<li><i class='icon_hover_top_help'></i><a href='/help'>帮助</a> | <a href='/activity'><i class='icon_hover_top_activity'></i>活动</a></li>");
+                $("#nav_hover_list_div_ul").html("<li><a href='/help'><i class='icon_hover_top_help'></i>帮助</a> <a href='/activity'><i class='icon_hover_top_activity'></i>活动</a></li>");
             }
         },
         function () {
