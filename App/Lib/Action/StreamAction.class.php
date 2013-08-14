@@ -860,32 +860,7 @@ class StreamAction extends Action
     	}
     }
 
-    public function send_simple_message() {
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, 'api:key-448of04auigg4w5ibi5tsgqsm6048nt8');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_URL, 'https://api.mailgun.net/v2/oo.mailgun.org/messages');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, array('from' => '我帮圈圈 <noreply@ihelpoo.com>',
-            'to' => 'echowdx@gmail.com,121670155@qq.com,95808943@qq.com',
-            'cc' => 'echowdx@gmail.com,ihelpoo@tvery.com,cho@tvery.com,121670155@qq.com',
-
-            'bcc' => 'echowdx@gmail.com',
-            'subject' => '注册成功',
-            'text' => 'Testing some Mailgun awesomness! 您收到这封邮件，说明注册成功了'));
-
-        $result = curl_exec($ch);
-        curl_close($ch);
-
-        return $result;
-    }
-
     public function plusToggle(){
-
-        echo $this->send_simple_message();
 
     	if(empty($_POST['plusSid'])){
     		exit();
