@@ -324,6 +324,39 @@ class WoAction extends Action {
         $this->assign('totalPages',$totalPages);
         $this->display();
     }
+    
+    public function plus()
+    {
+    	$userloginid = session('userloginid');
+    	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+    	if ($userId < 10000) {
+    		if (!empty($userloginid)) {
+    			$userId = $userloginid;
+    		}
+    	}
+
+        $page = i_page_get_num();
+        $count = 20;
+        $offset = $page * $count;
+        $RecordPlus = M("RecordPlus");
+        $resultRecordPlus = $RecordPlus->where("i_record_plus.uid = $userId")
+        ->join('i_record_say ON i_record_plus.sid = i_record_say.sid')
+        ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
+        ->field('id,i_record_say.sid,i_record_plus.create_time,i_user_login.uid,say_type,content,image,url,comment_co,diffusion_co,hit_co,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+        ->order('i_record_plus.create_time DESC')
+       	->limit($offset,$count)->select();
+
+       	$this->assign('resultRecordPlus',$resultRecordPlus);
+
+       	/**
+         * pageing link
+         */
+       	$userRecordPlusNums = $RecordPlus->where("uid = $userId")->count();
+        $totalPages = ceil($userRecordPlusNums / $count);
+        $this->assign('totalRecords',$userRecordPlusNums);
+        $this->assign('totalPages',$totalPages);
+        $this->display();
+    }
 
     public function intersection()
     {

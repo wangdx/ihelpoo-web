@@ -42,7 +42,7 @@
       foreach ($userPrioritys as $userPriority){
        if (in_array($userPriority['uid'], $userProArray)) {
            ?>
-           <a href="__ROOT__/stream/u/<?php echo $userPriority['uid'] ?>">
+           <a href="__ROOT__/wo/<?php echo $userPriority['uid'] ?>">
            <img src='<?php echo i_icon_check("$userPriority[uid]", "$userPriority[icon_url]", "s"); ?>' width="68" height="51" />
            </a>
            <?php
@@ -57,7 +57,7 @@
       foreach ($userPrioritieds as $userPrioritied){
        if (in_array($userPrioritied['pid'], $userProedArray)) {
            ?>
-           <a href="__ROOT__/stream/u/<?php echo $userPrioritied['pid'] ?>">
+           <a href="__ROOT__/wo/<?php echo $userPrioritied['pid'] ?>">
            <img src='<?php echo i_icon_check("$userPrioritied[pid]", "$userPrioritied[icon_url]", "s"); ?>' width="68" height="51" />
            </a>
            <?php

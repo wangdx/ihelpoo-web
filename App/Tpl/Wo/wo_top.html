@@ -2,6 +2,7 @@
     $sexname = $userLogin['sex'] == 1 ? "他" : "她";
     $selectHelp = NULL;
     $selectDiffusion = NULL;
+    $selectPlus = NULL;
     $selectIntersection = NULL;
     $selectHonor = NULL;
     $selectAlbum = NULL;
@@ -12,6 +13,8 @@
     	$selectHelp = 'class="wo_user_nav_ul_li_select"';
     } else if (preg_match("/wo\/diffusion/iUs", $_SERVER["REQUEST_URI"])) {
     	$selectDiffusion = 'class="wo_user_nav_ul_li_select"';
+    } else if (preg_match("/wo\/plus/iUs", $_SERVER["REQUEST_URI"])) {
+    	$selectPlus = 'class="wo_user_nav_ul_li_select"';
     } else if (preg_match("/wo\/intersection/iUs", $_SERVER["REQUEST_URI"])) {
     	$selectIntersection = 'class="wo_user_nav_ul_li_select"';
     } else if (preg_match("/wo\/honor/iUs", $_SERVER["REQUEST_URI"])) {
@@ -162,6 +165,7 @@
     <li><a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" {$selectIndex}>信息流</a></li>
     <li><a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" {$selectHelp}>帮助</a></li>
     <li><a href="__ROOT__/wo/diffusion/<?php echo $userLogin['uid'] ?>" {$selectDiffusion}>扩散</a></li>
+    <li><a href="__ROOT__/wo/plus/<?php echo $userLogin['uid'] ?>" {$selectPlus}>赞</a></li>
     <li><a href="__ROOT__/wo/intersection/<?php echo $userLogin['uid'] ?>" {$selectIntersection}>交集</a></li>
     <li><a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" {$selectHonor}>等级荣誉</a></li>
     <li><a href="__ROOT__/wo/album/<?php echo $userLogin['uid'] ?>" {$selectAlbum}>相册</a></li>

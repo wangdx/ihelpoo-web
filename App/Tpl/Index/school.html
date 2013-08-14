@@ -14,7 +14,7 @@
 	  	<?php if ($initialShow == $school['initial']) { ?>
 		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>">
 		    	<?php echo $school['school']; ?>
-		    	<?php echo !empty($schoolUserNums) ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fi'>new</span>"; ?>
+		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fi'>new</span>"; ?>
 		    </a>
 	    <?php } else { ?>
 	    </li>
@@ -22,7 +22,7 @@
 	    	<p class="fb f14 school_list_ul_initial_p"><?php echo strtoupper($school['initial']); ?></p>
 		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '备用域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>">
 		    	<?php echo $school['school']; ?>
-		    	<?php echo !empty($schoolUserNums) ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fi'>new</span>"; ?>
+		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fi'>new</span>"; ?>
 		    </a>
 		    <?php $initialShow = $school['initial']; ?>
 	    <?php } ?>
