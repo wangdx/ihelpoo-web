@@ -488,6 +488,28 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 
+.icon_hover_top_mate, .icon_hover_top_group, .icon_hover_top_business, .icon_hover_top_help, .icon_hover_top_activity {
+    background-image: url("../image/common/hover_top.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}
+.icon_hover_top_group {
+    background-position: 0 -50px;
+}
+.icon_hover_top_business {
+    background-position: 0 -100px;
+}
+.icon_hover_top_help {
+    background-position: 0 -150px;
+}
+.icon_hover_top_activity {
+    background-position: 0 -200px;
+}
+
+
 /*--- style---*/
 .input_style{    
     -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
