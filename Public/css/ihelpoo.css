@@ -502,10 +502,10 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .icon_hover_top_business {
     background-position: 0 -100px;
 }
-.icon_hover_top_help {
+.icon_hover_top_activity {
     background-position: 0 -150px;
 }
-.icon_hover_top_activity {
+.icon_hover_top_help {
     background-position: 0 -200px;
 }
 
@@ -705,7 +705,7 @@ color:#FFFA85;
     color: #CCC;
 }
 #nav_hover_list_div_ul li{
-    display: inline-block;
+    display: block;
     margin: 5px;
 }
 #nav_hover_list_div_ul li a{
