@@ -712,6 +712,14 @@ color:#FFFA85;
     font-size: 14px;
     margin: 10px;
     color: #666;
+    text-align: center;
+    font-size: 12px;
+}
+#nav_hover_list_div_ul li a i{
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin-bottom: 3px;
 }
 .main{
     min-height:500px;
