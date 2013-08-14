@@ -54,8 +54,10 @@ lable{
 }
 .main_index_logo_right{
     position: absolute;
-    left: 260px;
-    top: 10px;
+    left: 300px;
+    top: 15px;
+    padding-left: 15px;
+    border-left: 1px solid #FFFFFF;
 }
 .main_index_nav{
     padding: 10px 0;
