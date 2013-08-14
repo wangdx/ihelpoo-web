@@ -708,15 +708,16 @@ color:#FFFA85;
     display: block;
     margin: 5px;
 }
-#nav_hover_list_div_ul li a{
+.nav_hover_list_div_ul_li_a{
     font-size: 14px;
     margin: 10px;
     color: #666;
     text-align: center;
     font-size: 12px;
     display: inline-block;
+    margin: 0 10px;
 }
-#nav_hover_list_div_ul li a i{
+.nav_hover_list_div_ul_li_a i{
     height: 50px;
     width: 50px;
     display: block;
