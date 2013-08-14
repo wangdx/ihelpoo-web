@@ -108,12 +108,12 @@
     padding-bottom: 5px;
 }
 .s_t_send_info{
-    padding: 15px 0 0 15px;
+    padding: 15px 0 0 25px;
 }
 .s_l_textarea_info{
     position: relative;
     bottom: 6px;
-    left: 225px;
+    left: 205px;
 }
 .stream_textbox_ul{
     padding: 0px 10px 10px 10px;
