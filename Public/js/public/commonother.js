@@ -2,6 +2,24 @@ $().ready(function(){
     flashPic('.message_shine');
 
     /**
+     * ajax info div position
+     */
+    var mainoffset = $('.mainmall').offset();
+    if (mainoffset != null) {
+        var mainpositionleft = mainoffset.left + 330;
+        $("#ajax_info_div").css({left: mainpositionleft});
+        $("#ajax_info_div_close").live("click", function () {
+            $("#ajax_info_div").fadeOut("fast");
+            $("#ajax_info_div_outer").fadeOut("fast");
+        });
+    }
+    
+    $('.btn_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+    });
+    
+    /**
      * pull message once
      */
     mseeageNumsOnce();
@@ -78,4 +96,10 @@ function mseeageNumsOnce() {
 	$('#message_talk_nums_span_close').click(function(){
 		$('#message_talk_nums_div').fadeOut('fast');
 	});
+}
+
+function ajaxInfo(htmlobj) {
+    $("#ajax_info_div_outer").fadeIn('fast');
+    $("#ajax_info_div").fadeIn('fast');
+    $("#ajax_info_div_msg").fadeIn('fast').html(htmlobj);
 }
