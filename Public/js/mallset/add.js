@@ -32,10 +32,6 @@ $().ready(function(){
         }
     });
     
-    $("#add_submit").click(function(){
-    	$("#addform").submit();
-    });
-    
 	var editor;
 	KindEditor.ready(function(K) {
 		editor = K.create('textarea[name="detail"]', {
