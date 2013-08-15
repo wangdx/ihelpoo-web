@@ -1761,7 +1761,7 @@ class SchooladminAction extends Action {
     			redirect('/schooladmin/mallcooperation', 1, 'success...update');
     		}
     	}
-    	$resultsMallCooperation = $MallCooperation->where("school = $recordSchoolInfo[id]")->select();
+    	$resultsMallCooperation = $MallCooperation->select();
     	$this->assign('resultsMallCooperation', $resultsMallCooperation);
     	$this->display();
     }

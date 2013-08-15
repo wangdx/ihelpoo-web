@@ -1,185 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
 <head>
-    <title>{$title}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <?php if ($_GET['login'] == 'new') {
+<title>{$title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<?php if ($_GET['login'] == 'new') {
     setcookie('userEmail', NULL, time() - 1, '/');
     setcookie('userPassword', NULL, time() - 1, '/');
 	setcookie('userLoginstatus', NULL, time() - 1, '/');
     echo "<meta http-equiv='refresh' content='0; url=".__ROOT__."?' />";
-    } ?>
-    <link href="__PUBLIC__/css/ihelpoo.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
-    <link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
-    <style type="text/css">
-        html {
-            overflow-x: hidden;
-            overflow-y: hidden;
-            _overflow-x: hidden;
-            _overflow-y: hidden;
-        }
-    </style>
+} ?>
+<link href="__PUBLIC__/css/ihelpoo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidden; } 
+</style>
 </head>
 <body>
 <div class="texture_background">
-<<<<<<< HEAD
-    <div class="main_index">
-        <p class="main_index_logo">
-            <?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
-            <img src="__PUBLIC__/image/common/logo.gif" width="250" height="59"/>
-            <?php } else { ?>
-            <img src="__PUBLIC__/image/common/logo.png" width="280" height="59"/>
-            <?php } ?>
-        </p>
-
-        <div class="main_index_middle">
-            <div class="main_index_middle_user_div">
-                <ul class="index_user_facewall">
-                    <?php foreach ($allUser as $user) : ?>
-                    <li>
-                        <a href="__ROOT__/wo/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?>">
-                            <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="92"
-                                 height="69"/>
-                        </a>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-                <p class="index_user_nums white">
-                    <span class="icon_pump"></span> 目前共有 <span
-                        class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>
-                    我帮圈圈!
-                    <?php if (!empty($indexSpreadInfoVaule)) { ?><span
-                        class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
-                </p>
-            </div>
-            <?php if (empty($userloginedrecord['uid'])) { ?>
-            <?php if (!empty($_COOKIE['userEmail'])) {?>
-            <div class="index_loginfast_div">
-                <p class="index_loginfast_div_nav_p"><a class="index_loginfast_div_nav_p_select">快速登录</a> <a
-                        href="__ROOT__/?login=new">使用其他账号</a></p>
-
-                <p class="index_loginfast_div_info_p"><span class="f12 black_l">检测到上次登录账号，点击头像登录</span></p>
-
-                <p class="index_loginfast_div_icon_p">
-                    <a href="__ROOT__/user/loginfast" title="<?php echo $cookieUserLogin['email']; ?>">
-                        <img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>"
-                             width="80" height="60" class="radius5"/>
-                    </a>
-                </p>
-
-                <p class="index_loginfast_div_name_p">
-                    <a href="__ROOT__/user/loginfast" class="fb"
-                       title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?>
-                        <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>
-                            )</span></a>
-                </p>
-
-                <p class="index_loginfast_div_registe_p"><a href="__ROOT__/user/register" class="black_l f12">注册账号</a>
-                </p>
-            </div>
-            <?php } else { ?>
-            <div class="mim_loginbox">
-                <form action="/user/login" method="post">
-                    <div class="loginbox_email_bg">
-                        <div class="loginbox_email">
-                            <input type="text" name="email" id="email" class="loginbox_email_input"/>
-                        </div>
-                    </div>
-                    <div class="loginbox_password_bg">
-                        <div class="loginbox_password">
-                            <input type="password" name="password" id="password" class="loginbox_password_input"/>
-                        </div>
-                    </div>
-                    <div class="loginbox_select f12 black_l">
-                        记住密码<input type="checkbox"/> 潜水登录<input type="checkbox"/>
-                    </div>
-                    <div class="loginbox_submit">
-                        <a id="submit">登录</a>
-                    </div>
-                    <div class="loginbox_more gray f12">
-                        <a href="__ROOT__/user/resetpw">忘记密码</a> | <a href="__ROOT__/user/register">注册</a>
-                    </div>
-                    <!-- <span class="white f12">登录名(邮箱): <span id="emailinfo" class="red_l"></span></span><input type="text" name="email" id="email" />
-                    <span class="white f12">密码: <span id="passwordinfo" class="red_l"></span></span><input type="password" name="password" id="password" />
-                        <span id="login_status" value="1" class="f12 white" title="点击切换登录状态"><span class="login_status_online"></span> 正常登录</span>
-                        <input type="hidden" name="login_status_input" id="login_status_input" value="1" />
-                        <span id="wb_connect_btn"></span>
-                      <a id="submit" ></a>
-                      <a href="__ROOT__/user/register" class="register white">注册</a>
-                      <a href="__ROOT__/user/resetpw" class="resetpw f12 white">找回密码</a>
-                      <span id="wb_connect_btn"></span>
-                      -->
-                </form>
-            </div>
-            <?php } ?>
-            <?php } else { ?>
-            <div class="mim_loginbox">
-                <p class="index_loginfast_div_nav_p"><span class="i_l_div_nav_p_span_info">您已经登录{$schoolname}</span></p>
-
-                <p class="index_loginfast_div_info_p"><span class="f12 black_l">圈圈欢迎您! <a
-                        href="__ROOT__/user/quit">[退出]</a></span></p>
-
-                <p class="index_loginfast_div_icon_p">
-                    <a href="__ROOT__/stream/">
-                        <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url']); ?>"
-                             width="80" height="60" class="radius5"/>
-                    </a>
-                </p>
-
-                <p class="index_loginfast_div_name_p">
-                    <a href="__ROOT__/stream" class="f16 reb_back fb"><?php echo $cookieUserLogin['nickname']; ?> <span
-                            class="fn f12 black_l">进入个人中心</span></a>
-                </p>
-            </div>
-            <?php } ?>
-            <div class="loginbox_outer">
-            </div>
-        </div>
-        <div class="main_index_sub f12">
-            <ul class="main_index_sub_ul">
-                <li>
-                    <a target="_blank" href="">
-                        <i class="icon_iphone"></i>
-                        <span>iPhone</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="">
-                        <i class="icon_ipad"></i>
-                        <span>iPad</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="">
-                        <i class="icon_android"></i>
-                        <span>Android</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="">
-                        <i class="icon_windowsphone"></i>
-                        <span>Windows Phone</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="">
-                        <i class="icon_mobileother"></i>
-                        <span>手机访问</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer_about f12 white">
-        <p><a class="white">反馈建议</a> | <a href="http://weibo.com/ihelpoo" class="white">新浪微博</a> | <a
-                href="__ROOT__/support?play" class="white">使用帮助</a> | <a href="__ROOT__/about" class="white">关于我们</a> |
-            鄂ICP备07502730号</p>
-
-        <p class="f12">Copyright © 2013 ihelpoo.All Rights Reserved.</p>
-
-        <p>我帮圈圈 For {$schoolname}<a href="__ROOT__/index/school" class="white" title="更多学校">[更多]</a></p>
-=======
 <div class="main_index">
   <p class="main_index_logo">
   	<?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
@@ -206,101 +43,125 @@
       <span class="icon_pump"></span> 目前共有 <span class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>我帮圈圈! 
       <?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
       </p>
->>>>>>> dc04620e41224bc355a890a652c237b8a35af07f
     </div>
+	<?php if (empty($userloginedrecord['uid'])) { ?>
+	<?php if (!empty($_COOKIE['userEmail'])) {?>
+	    <div class="index_loginfast_div">
+			<p class="index_loginfast_div_nav_p"><a class="index_loginfast_div_nav_p_select">快速登录</a> <a href="__ROOT__/?login=new">使用其他账号</a></p>
+			<p class="index_loginfast_div_info_p"><span class="f12 black_l">检测到上次登录账号，点击头像登录</span></p>
+			<p class="index_loginfast_div_icon_p">
+				<a href="__ROOT__/user/loginfast" title="<?php echo $cookieUserLogin['email']; ?>">
+			     	<img src="<?php echo i_icon_check($cookieUserLogin['uid'], $cookieUserLogin['icon_url']); ?>" width="80" height="60" class="radius5" />
+			    </a>
+			</p>
+			<p class="index_loginfast_div_name_p">
+				<a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
+			</p>
+			<p class="index_loginfast_div_registe_p"><a href="__ROOT__/user/register" class="black_l f12">注册账号</a></p>
+		</div>
+	<?php } else { ?>
+	    <div class="mim_loginbox">
+		  <form action="/user/login" method="post">
+		      <div class="loginbox_email_bg">
+		      <div class="loginbox_email">
+			    <input type="text" name="email" id="email" class="loginbox_email_input" />
+			  </div>
+			  </div>
+			  <div class="loginbox_password_bg">
+			  <div class="loginbox_password">
+			  	<input type="password" name="password" id="password" class="loginbox_password_input" />
+			  </div>
+			  </div>
+			  <div class="loginbox_select f12 black_l">
+			  	记住密码<input type="checkbox" /> 潜水登录<input type="checkbox" />
+			  </div>
+			  <div class="loginbox_submit">
+			  	<a id="submit">登录</a>
+			  </div>
+			  <div class="loginbox_more gray f12">
+			  	<a href="__ROOT__/user/resetpw">忘记密码</a> | <a href="__ROOT__/user/register">注册</a>
+			  </div>
+		    <!-- <span class="white f12">登录名(邮箱): <span id="emailinfo" class="red_l"></span></span><input type="text" name="email" id="email" />
+		    <span class="white f12">密码: <span id="passwordinfo" class="red_l"></span></span><input type="password" name="password" id="password" />
+		    	<span id="login_status" value="1" class="f12 white" title="点击切换登录状态"><span class="login_status_online"></span> 正常登录</span>
+		    	<input type="hidden" name="login_status_input" id="login_status_input" value="1" />
+		    	<span id="wb_connect_btn"></span>
+		      <a id="submit" ></a>
+		      <a href="__ROOT__/user/register" class="register white">注册</a>
+		      <a href="__ROOT__/user/resetpw" class="resetpw f12 white">找回密码</a>
+		      <span id="wb_connect_btn"></span>
+		      -->
+		  </form>
+		</div>
+		<?php } ?>
+	<?php } else { ?>
+	<div class="mim_loginbox">
+	    <p class="index_loginfast_div_nav_p"><span class="i_l_div_nav_p_span_info">您已经登录{$schoolname}</span></p>
+		<p class="index_loginfast_div_info_p"><span class="f12 black_l">圈圈欢迎您! <a href="__ROOT__/user/quit">[退出]</a></span></p>
+		<p class="index_loginfast_div_icon_p">
+			<a href="__ROOT__/stream/">
+			     <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url']); ?>" width="80" height="60" class="radius5" />
+			</a>
+		</p>
+		<p class="index_loginfast_div_name_p">
+			<a href="__ROOT__/stream" class="f16 reb_back fb" ><?php echo $cookieUserLogin['nickname']; ?> <span class="fn f12 black_l">进入个人中心</span></a>
+		</p>
+	</div>
+	<?php } ?>
+	<div class="loginbox_outer">
+	</div>
+  </div>
+  <div class="main_index_sub f12">
+  <ul class="main_index_sub_ul">
+  <li>
+    <a target="_blank" href="">
+		<i class="icon_iphone"></i>
+		<span>iPhone</span>
+	</a>
+  </li>
+  <li>
+    <a target="_blank" href="">
+		<i class="icon_ipad"></i>
+		<span>iPad</span>
+	</a>
+  </li>
+  <li>
+    <a target="_blank" href="">
+		<i class="icon_android"></i>
+		<span>Android</span>
+	</a>
+  </li>
+  <li>
+    <a target="_blank" href="">
+		<i class="icon_windowsphone"></i>
+		<span>Windows Phone</span>
+	</a>
+  </li>
+  <li>
+    <a target="_blank" href="">
+		<i class="icon_mobileother"></i>
+		<span>手机访问</span>
+	</a>
+  </li>
+  </ul>
+  </div>
+</div>
+<div class="footer_about f12 white">
+  <p><a class="white">反馈建议</a> | <a href="http://weibo.com/ihelpoo" class="white">新浪微博</a> | <a href="__ROOT__/support?play" class="white">使用帮助</a> | <a href="__ROOT__/about" class="white">关于我们</a> | 鄂ICP备07502730号</p>
+  <p class="f12">Copyright © 2013 ihelpoo.All Rights Reserved.</p>
+  <p>我帮圈圈 For {$schoolname}<a href="__ROOT__/index/school" class="white" title="更多学校">[更多]</a></p>
+</div>
 </div>
 <div id="lay_bg" class="lay_background_index">
-    <img id="lay_bg_img" class="lay_background_img " alt="" src="<?php echo $indexbgimg; ?>">
+	<img id="lay_bg_img" class="lay_background_img " alt="" src="<?php echo $indexbgimg; ?>" >
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
 <script type="text/javascript">
-    baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
+  baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
 </script>
 <script type="text/javascript" src="__PUBLIC__/js/public/common.js?id=1"></script>
 <script type="text/javascript" src="__PUBLIC__/js/index/index.js?id=2"></script>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript"
-        charset="utf-8"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="__PUBLIC__/js/index/weibo.js"></script>
-
-<script type="text/javascript">
-    var suffix = ["qq.com", "126.com", "163.com", "gmail.com", "sina.com", "yahoo.com", "hotmail.com"];//Email后缀
-    $(document).ready(function () {
-        $("#email").keyup(function (e) {//输入
-            var key = (e.keyCode) || (e.which) || (e.charCode);
-            if (key != 38 && key != 40 && key != 13) {
-                $("#eSuggest").empty().addClass("hidden");
-                var val = $("#email").val();
-                var prefix = (val.indexOf('@') != -1) ? val.split('@')[0] : val;
-                for (var i = 0; i < suffix.length; i++) {
-                    var semail = prefix + "@" + suffix[i];
-                    if (semail.indexOf(val) != -1) {
-                        $("#eSuggest").removeClass("hidden").append("<li>" + semail + "</li>");
-                    }
-                }
-                if ($("#eSuggest").hasClass("hidden") != true) {
-                    $("#eSuggest li").each(function () {//遍历
-                        $(this).mouseover(function () {
-                            $(this).addClass("select");
-                        });
-                        $(this).mouseout(function () {
-                            $(this).removeClass("select");
-                        });
-                        $(this).click(function () {
-                            $("#email").val($(this).text()); //获得选中的值
-                            $("#eSuggest").empty().addClass("hidden"); //隐藏
-                        });
-                    });
-                }
-            }
-        });
-    });
-    $(document).click(function () {//单击页面隐藏
-        $("eSuggest").empty().addClass("hidden");//隐藏
-    });
-    $(document).keyup(function (e) {//键盘事件
-        var key = (e.keyCode) || (e.which) || (e.charCode); //兼容IE和Firefox
-        if (key == 38) {//键盘向上
-            $("#eSuggest li").eq(getUpIndex()).addClass("select");
-            getValue();
-        }
-        if (key == 40) {//键盘向下
-            $("#eSuggest li").eq(getDownIndex()).addClass("select");
-            getValue();
-        }
-        if (key == 13) {//键盘回车
-            $("#eSuggest").empty().addClass("hidden");
-        }
-    });
-    var getDownIndex = function () {//获得向下索引
-        var index = 0;
-        var len = $("#eSuggest li").size();
-        for (var i = 0; i < len; i++) {
-            if ($("#eSuggest li").eq(i).hasClass("select")) {
-                $("#eSuggest li").eq(i % len).removeClass("select");
-                index = i + 1;
-            }
-        }
-        return index > (len - 1) ? 0 : (index % len);
-    };
-    function getUpIndex() {//获取向下索引
-        var len = $("#eSuggest li").size();
-        var index = len - 1;
-        for (var i = 0; i < len; i++) {
-            if ($("#eSuggest li").eq(i).hasClass("select")) {
-                $("#eSuggest li").eq(i % len).removeClass("select");
-                index = i - 1;
-            }
-        }
-        return (index < 0) ? (len - 1) : (index % len);
-    }
-    function getValue() {
-        var len = $("#eSuggest li").size();
-        for (var i = 0; i < len; i++) {
-            if ($("#eSuggest li").eq(i).hasClass("select")) {
-                $("#email").val($("#eSuggest li").eq(i).text());
-            }
-        }
-    }
-</script>
 </body>
 </html>
