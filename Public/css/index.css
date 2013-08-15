@@ -47,9 +47,17 @@ lable{
     margin:10px auto;
     min-height: 330px;
     width: 1000px;
+    position: relative;
 }
 .main_index_logo{
     margin: 35px 0 0 0;
+}
+.main_index_logo_right{
+    position: absolute;
+    left: 295px;
+    top: 15px;
+    padding-left: 15px;
+    border-left: 1px solid #FFFFFF;
 }
 .main_index_nav{
     padding: 10px 0;

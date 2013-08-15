@@ -23,6 +23,7 @@
 </head>
 <body>
 <div class="texture_background">
+<<<<<<< HEAD
     <div class="main_index">
         <p class="main_index_logo">
             <?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
@@ -178,6 +179,34 @@
         <p class="f12">Copyright © 2013 ihelpoo.All Rights Reserved.</p>
 
         <p>我帮圈圈 For {$schoolname}<a href="__ROOT__/index/school" class="white" title="更多学校">[更多]</a></p>
+=======
+<div class="main_index">
+  <p class="main_index_logo">
+  	<?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
+  		<img src="__PUBLIC__/image/common/logo.gif" width="250" height="59" />
+  	<?php } else { ?>
+    	<img src="__PUBLIC__/image/common/logo.png" width="280" height="59" />
+    <?php } ?>
+  </p>
+  <p class="main_index_logo_right">
+  	<a href="/index/school" title="你正在访问的是{$schoolname}, 点击查看更多学校!"><img src="__PUBLIC__/image/school/index{$schoolid}.png" width="99" height="33" class="pointer" /></a>
+  </p>
+  <div class="main_index_middle">
+    <div class="main_index_middle_user_div">
+      <ul class="index_user_facewall">
+         <?php foreach ($allUser as $user) : ?>
+         <li>
+           <a href="__ROOT__/wo/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?>">
+             <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="92" height="69" />
+           </a>
+         </li>
+         <?php endforeach; ?>
+      </ul>
+      <p class="index_user_nums white">
+      <span class="icon_pump"></span> 目前共有 <span class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>我帮圈圈! 
+      <?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
+      </p>
+>>>>>>> dc04620e41224bc355a890a652c237b8a35af07f
     </div>
 </div>
 <div id="lay_bg" class="lay_background_index">
