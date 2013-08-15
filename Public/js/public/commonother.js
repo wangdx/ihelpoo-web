@@ -97,3 +97,9 @@ function mseeageNumsOnce() {
 		$('#message_talk_nums_div').fadeOut('fast');
 	});
 }
+
+function ajaxInfo(htmlobj) {
+    $("#ajax_info_div_outer").fadeIn('fast');
+    $("#ajax_info_div").fadeIn('fast');
+    $("#ajax_info_div_msg").fadeIn('fast').html(htmlobj);
+}
