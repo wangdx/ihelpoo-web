@@ -464,7 +464,7 @@ class MallsetAction extends Action {
     		$result = $RecordCommodity->create();
     		if (!$result) {
     			$errorinfo = $RecordCommodity->getError();
-    			redirect('/mallset/add', 3, '出错啦! '.$errorinfo.' 3秒后跳转...');
+    			$this->ajaxReturn(0,$errorinfo,'error');
     		} else {
     			$name = trim(addslashes(htmlspecialchars(strip_tags($_POST["name"]))));
     			$price = (int)trim(htmlspecialchars(strip_tags($_POST["price"])));
@@ -537,6 +537,7 @@ class MallsetAction extends Action {
     			}
     		}
     		redirect('/mallset/add?succ='.$cid, 0, '发布商品成功...');
+    		$this->ajaxReturn($cid,'发布商品成功...','yes');
     	}
     	$this->display();
     }

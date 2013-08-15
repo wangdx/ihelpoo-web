@@ -32,6 +32,17 @@ $().ready(function(){
         }
     });
     
+    $("#add_submit").click(function(){
+    	$.post(baseUrl + "mallset/add", $("#addform").serialize(), function(data){
+            if (data.status == "yes") {
+                ajaxInfo("<span class='icon_right'></span>"+data.info);
+                window.location = baseUrl + 'mallset/add?succ=' + data.data;
+            } else {
+            	ajaxInfo(data.info);
+            }
+        }, "json");
+    });
+    
 	var editor;
 	KindEditor.ready(function(K) {
 		editor = K.create('textarea[name="detail"]', {
