@@ -36,7 +36,7 @@
 				</ul>
 			</form>
 		</div>
-		<form action="__ROOT__/mallset/add" method="post" id="addform">
+		<form action="__ROOT__/mallset/add" method="post">
 		    <ul class="mallset_add_div_ul">
 			    <li><span class="mallset_add_ul_title_span">名&#12288;&#12288;称:</span> <input class="mallset_index_ul_li_input" name="name" type="text" value="{$resultRecordCommodity['name']}" /></li>
 			    <li><span class="mallset_add_ul_title_span">价&#12288;&#12288;格:</span> <input class="mallset_index_ul_li_input" name="price" type="text" value="{$resultRecordCommodity['price']}" /> <span class="f12 gray">必须填整数</span></li>
@@ -101,7 +101,7 @@
 					<span class="mallset_add_ul_title_span">详细描述:</span><br /><br /> 
 					<textarea id="detail" name="detail"><?php echo stripslashes($resultRecordCommodity['detail']); ?></textarea>
 				</li>
-				<li><input type="button" id="add_submit" value="发布商品" /></li>
+				<li><input type="submit" value="发布商品" /></li>
 			</ul>
 		</form>
 	</div>
