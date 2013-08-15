@@ -536,7 +536,6 @@ class MallsetAction extends Action {
 		            $UserShop->save($updateCommodityCount);
     			}
     		}
-    		redirect('/mallset/add?succ='.$cid, 0, '发布商品成功...');
     		$this->ajaxReturn($cid,'发布商品成功...','yes');
     	}
     	$this->display();
