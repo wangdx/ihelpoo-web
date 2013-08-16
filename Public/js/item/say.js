@@ -57,7 +57,7 @@ $().ready(function(){
 	$('.reply_emotionbox_icon').click(function(e){
 		var positionleft = e.pageX + 10;
     	var positiontop = e.pageY + 10;
-    	$replytextarea = $(this).parent().find('.comment_reply_textarea');
+    	$replytextarea = $(this).parent().parent().find('.comment_reply_textarea');
         var emotionboxhtml = '<p class="emotionbox_close_p">'
 		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
 		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
