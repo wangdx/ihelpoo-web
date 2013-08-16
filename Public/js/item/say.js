@@ -309,7 +309,7 @@ $().ready(function(){
         } else if (verificationcode == '') {
             ajaxInfo('验证码不能为空');
         } else if (i_comment_textarea.length > 222) {
-        	ajaxInfo('回复内容太长了 不能超过222个字符');
+        	ajaxInfo('评论内容太长了 不能超过222个字符');
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
