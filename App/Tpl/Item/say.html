@@ -221,7 +221,7 @@
 	</div>
 </div>
 <?php 
-if (!$findReplyPlace && !empty($_GET['ncid']) && $pagenow < $totalPages) {
+if (!$findReplyPlace && !empty($_GET['ncid']) && $pagenow <= $totalPages) {
 	redirect('/item/say/'.$sayRecord['sid'].'?ncid='.$_GET['ncid'].'&p='.$totalPages, 0, '跳转查找记录页面中...');
 }
 ?>
