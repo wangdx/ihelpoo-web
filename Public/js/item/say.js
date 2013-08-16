@@ -299,11 +299,11 @@ $().ready(function(){
         var i_comment_textarea = $('#i_comment_textarea').val();
         var verificationcode = $('#verificationcode').val();
         if (i_comment_textarea == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('评论不能为空').delay(800).fadeOut('fast');
+            ajaxInfo('评论不能为空');
         } else if (verificationcode == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('验证码不能为空').delay(800).fadeOut('fast');
+            ajaxInfo('验证码不能为空');
         } else if (i_comment_textarea.length > 222) {
-        	$("#i_shine_hit_in").fadeIn('fast').html('回复内容太长了 不能超过222个字符').delay(800).fadeOut('fast');
+        	ajaxInfo('回复内容太长了 不能超过222个字符');
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
@@ -393,9 +393,9 @@ $().ready(function(){
     	var $this = $(this);
         var i_comment_textarea = $(this).parent().find('.comment_reply_textarea').val();
         if (i_comment_textarea == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('回复不能为空').delay(800).fadeOut('fast');
+            ajaxInfo('回复不能为空');
         } else if (i_comment_textarea.length > 200) {
-        	$("#i_shine_hit_in").fadeIn('fast').html('回复内容太长了 不能超过200个字符').delay(800).fadeOut('fast');
+        	ajaxInfo('回复内容太长了 不能超过200个字符');
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
