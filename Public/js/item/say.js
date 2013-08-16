@@ -324,7 +324,7 @@ $().ready(function(){
             	if (msg.status == 'verifi') {
             		ajaxInfo('请输入验证码');
             		$('.i_c_b_verification').fadeIn('fast');
-            		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi'});
+            		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random()});
             		$('#verificationcode').val('');
             		$this.html('评论');
             	} else if (msg.status == 'yes') {
