@@ -47,38 +47,58 @@ $().ready(function(){
         return false;
     });
     $('.emotionbox_change_page').click(function(){
-    	$(".emotionbox_change_page").removeClass('bg_gray');
-    	$(this).addClass('bg_gray');
-    	$page = $(this).text();
+    	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+    	$(this).addClass('bg_emotionbox_page_select');
+    	$page = $(this).attr("value");
         $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 
 	//reply_emotion
 	$('.reply_emotionbox_icon').click(function(e){
-    	var positionleft = e.pageX - 10;
-        var positiontop = e.pageY + 10;
-	    $('#reply_emotionbox').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast');
-	    $(".reply_emotionbox_show_ul").load(baseUrl + "other/loademotion");
-		$replyTextarea = $(this).parent().parent().find('.comment_reply_textarea');
-		return false;
-    });
-	$('#reply_emotionbox_close').click(function(){
-        $('#reply_emotionbox').slideUp('fast');
-    });
-	$('.reply_emotionbox_show_ul img').live("click", function(){
-        var imgreplytitle = $(this).attr('title');
-        var imgreplytitlemark = '[' + imgreplytitle + ']';
-        var replytextareanow = $replyTextarea.val() + imgreplytitlemark;
-        $replyTextarea.val(replytextareanow);
-        $('#reply_emotionbox').fadeOut('fast');
-        //important here, refuse default explorer action
+		var positionleft = e.pageX + 10;
+    	var positiontop = e.pageY + 10;
+    	$replytextarea = $(this).parent().find('.comment_reply_textarea');
+        var emotionboxhtml = '<p class="emotionbox_close_p">'
+		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
+		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
+		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
+		+ '<span class="replyemotionbox_close close_x" title="关闭">×</span>'
+		+ '</p><ul class="emotionbox_show_ul_inner"></ul>';
+        $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
+        $(".emotionbox_show_ul_inner").load(baseUrl + "other/loademotion");
         return false;
     });
-	$('.reply_emotionbox_change_page').click(function(){
-    	$(".reply_emotionbox_change_page").removeClass('bg_gray');
-    	$(this).addClass('bg_gray');
-    	$page = $(this).text();
-        $(".reply_emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
+	$(".comment_textareaicon_replyinner").live('click', function(e){
+        var positionleft = e.pageX + 10;
+    	var positiontop = e.pageY + 10;
+    	$replytextarea = $(this).parent().find('.textarea_style');
+        var emotionboxhtml = '<p class="emotionbox_close_p">'
+		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
+		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
+		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
+		+ '<span class="replyemotionbox_close close_x" title="关闭">×</span>'
+		+ '</p><ul class="emotionbox_show_ul_inner"></ul>';
+        $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
+        $(".emotionbox_show_ul_inner").load(baseUrl + "other/loademotion");
+        return false;
+    });
+	$(".replyemotionbox_close").live('click', function(){
+		$(".replyemotionbox").slideUp('fast');
+		return false;
+	});
+	$('.emotionbox_show_ul_inner img').live("click", function(){
+        var imgtitle = $(this).attr('title');
+        var imgtitlemarkin = '[' + imgtitle + ']';
+        var textareanow = $replytextarea.val() + imgtitlemarkin;
+        $replytextarea.val(textareanow);
+        $(".replyemotionbox").fadeOut('fast');
+        return false;
+    });
+	$('.emotionbox_change_page').live('click', function(){
+    	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+    	$(this).addClass('bg_emotionbox_page_select');
+    	$page = $(this).attr("value");
+        $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 
     //i fav
