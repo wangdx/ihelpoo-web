@@ -78,29 +78,34 @@
           }
       }
       ?>
-	      <?php if ($record['school_id'] != $thisschoolid) { ?>
-	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_id']); ?>
-	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
-	      <?php } ?>
-	    </span>
+	    <?php if ($record['school_id'] != $thisschoolid) { ?>
+	    <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_id']); ?>
+	       <a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
+	    <?php } ?>
+	  </span>
 	    
-        <span class="wo_li_s_comment f12 black_l">
-          <a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="i-<?php echo $record['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; }?>
-      		</span></a> |
-	      <?php
-				echo " <a class='diffusion' value='i-".$record['sid']."'>扩散";
-				if (!empty($record['diffusion_co'])) {
-                	echo "(".$record['diffusion_co'].")";
-            	}
-				echo "</a> | ";
-        		echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>评论";
-            	if (!empty($record['comment_co'])) {
-                	echo "(".$record['comment_co'].")";
-            	}
-				echo "</a>";
-      	?>
-        </span>
-      </li>
+      <span class="wo_li_s_comment f12 black_l">
+      <?php if ($record['say_type'] == '1') { ?>
+        <a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="ih-<?php echo $record['sid']; ?>">
+      <?php } else { ?>
+      	<a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="i-<?php echo $record['sid']; ?>">
+      <?php } ?>
+      <i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; }?>
+      </span></a> |
+      <?php
+		echo " <a class='diffusion' value='i-".$record['sid']."'>扩散";
+		if (!empty($record['diffusion_co'])) {
+            echo "(".$record['diffusion_co'].")";
+        }
+		echo "</a> | ";
+        echo "<a class='comment_button' value='i-".$record['sid']."' isclick='false'>评论";
+        if (!empty($record['comment_co'])) {
+            echo "(".$record['comment_co'].")";
+        }
+		echo "</a>";
+      ?>
+      </span>
+    </li>
     <?php endforeach; ?>
     </ul>
 
@@ -118,6 +123,7 @@
 </div>
 </div>
 <div class="user_info_div f12"></div>
+<div class="record_plus_div f12"></div>
 
 <script type="text/javascript" src="__PUBLIC__/js/wo/index.js?id=1"></script>
 <include file="Public:footer" />

@@ -639,13 +639,9 @@ $().ready(function(){
             type: "POST",
             url: baseUrl+"stream/plusToggle",
             data: {'plusSid':$(this).attr('value')},
-//            datatype: "html",
+            atatype: "html",
             success:function(data){
-//                console.log($(this).parent().find('.plus_count_region').val());
-//                $(this).parent().find('.plus_count_region').text(data);
-//                alert($(this).attr('class'));
                   $region.html('('+data+')');
-//                $thisButton.append('<span class="red_l">data</span>');
             }
         });
     });
