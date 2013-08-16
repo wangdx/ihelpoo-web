@@ -343,6 +343,8 @@ $().ready(function(){
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
                     $this.html('评论');
+                    $('.i_c_b_verification').fadeOut();
+                    $('#verificationcode').val('999');
                     
                     /**
                      * 
@@ -435,6 +437,8 @@ $().ready(function(){
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
+                    $('.i_c_b_verification').fadeOut();
+                    $('#verificationcode').val('999');
                 } else {
                     ajaxInfo(msg.info);
                 }
