@@ -97,25 +97,32 @@ $().ready(function(){
 
     //i del
     $('#del_record_btn').click(function(){
-        $("#i_shine_hit_in").fadeIn('fast').html("<span id='del_record_btn_yes'>确定</span> <span id='del_record_btn_no'>取消</span>");
+        var deletesid = $('#recordsid').val();
+    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='del_record_btn_yes' value='"+deletesid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	ajaxInfo(infohtml);
     });
-    $('#del_record_btn_no').live('click', function(){
-        $("#i_shine_hit_in").slideUp('fast');
-    });
+    
     $('#del_record_btn_yes').live('click', function(){
-        var delRecordSid = $('#recordsid').val();
-        $.ajax({
+        var delRecordSid = $(this).attr("value");
+    	$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
             data: "delrecord=" + delRecordSid,
             dataType: "json",
             success:function(msg){
-                $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
+        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 setTimeout('pageToStream()',3000);
             }
         });
     });
-
+    
+    $('.btn_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+    });
+    
     /**
      * image part
      */
@@ -438,16 +445,13 @@ $().ready(function(){
 
     //delete reply
     $('.reply_delete_btn').click(function(){
-    	var delReplySid = $(this).parent().find('.reply_delete_cid').val();
+        var delReplySid = $(this).parent().find('.reply_delete_cid').val();
         $alreadyDeleteLi = $(this).parent().parent().parent();
         $alreadyDeleteLi.css("backgroundColor", "#FFFA85");
-        $("#i_shine_hit_in").fadeIn('fast').html("<span id='del_recordcomment_btn_yes' value='" + delReplySid + "'>确定</span> <span id='del_recordcomment_btn_no'>取消</span>");
+    	var infohtml = "<p>确定删除评论？</p> <a class='btn_sure' id='delete_comment_btn_yes' value='"+delReplySid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	ajaxInfo(infohtml);
     });
-    $('#del_recordcomment_btn_no').live('click', function(){
-        $("#i_shine_hit_in").slideUp('fast');
-        $alreadyDeleteLi.css("backgroundColor", "#FFF");
-    });
-    $('#del_recordcomment_btn_yes').live('click', function(){
+    $('#delete_comment_btn_yes').live('click', function(){
         var delReplySid = $(this).attr('value');
         $.ajax({
             type: "POST",
@@ -455,8 +459,9 @@ $().ready(function(){
             data: "delcomment=" + delReplySid,
             dataType: "json",
             success:function(msg){
-                $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 $alreadyDeleteLi.slideUp('fast');
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
             }
         });
     });
