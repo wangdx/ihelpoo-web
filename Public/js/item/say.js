@@ -486,16 +486,13 @@ $().ready(function(){
             data: "diffusionSid=" + diffusionSid,
             datatype: "html",
             success:function(data){
-                $('#i_shine_hit').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');
+            	var infohtml = "<p align='left'>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            	ajaxInfo(infohtml);
                 if (data != '你已经扩散了这条信息') {
                     $thisDiffusion.append('<span class="red">+1</span>');
                 }
             }
         });
-    });
-
-    $('.diffusion_list_sure').live("click", function(){
-        $('#i_shine_hit').html('<p id="i_shine_hit_in"></p>');
     });
 });
 function pageToStream(){
