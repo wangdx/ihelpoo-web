@@ -861,13 +861,6 @@ class StreamAction extends Action
     }
 
     public function plusToggle(){
-
-<<<<<<< HEAD
-        //i_sendmail('echowdx@gmail.com','我帮圈圈','有新学校申请开通我帮圈圈:)');
-=======
-//        i_sendmail('echowdx@gmail.com','我帮圈圈','有新学校申请开通我帮圈圈:)');
->>>>>>> 7be148930f70deda99367ebf1d12bef356c999cd
-
     	if(empty($_POST['plusSid'])){
     		exit();
     	}
