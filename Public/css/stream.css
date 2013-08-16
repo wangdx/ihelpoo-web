@@ -517,17 +517,16 @@
     min-height: 160px;
     min-width: 300px;
 }
-#emotionbox_item{
-    position: absolute;
-    left: 5px;
-    top: 140px;
-    z-index: 1111;
-    background: #FFF;
-    border: 3px solid #CCC;
+#emotionbox_item{    
     display: none;
-    border-radius: 3px;
+    position: absolute;
+    top: 140px;
+    left: 5px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
     min-height: 160px;
     min-width: 300px;
+    z-index: 1111;
 }
 *+html #emotionbox_item{
     position: relative;
@@ -584,7 +583,7 @@
 }
 #emotionbox_close{
     position: absolute;
-    right: 0;
+    right: 5px;
     top: 5px;
 }
 .replyemotionbox_close{
