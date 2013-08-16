@@ -324,7 +324,7 @@ $().ready(function(){
             	if (msg.status == 'verifi') {
             		ajaxInfo('请输入验证码');
             		$('.i_c_b_verification').fadeIn('fast');
-            		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
+            		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi'});
             		$('#verificationcode').val('');
             		$this.html('评论');
             	} else if (msg.status == 'yes') {
@@ -345,6 +345,7 @@ $().ready(function(){
                     $this.html('评论');
                     $('.i_c_b_verification').fadeOut();
                     $('#verificationcode').val('999');
+                    $('#i_c_b_verification_code_img').({'src': ''});
                     
                     /**
                      * 
@@ -437,8 +438,9 @@ $().ready(function(){
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
-                    $('.i_c_b_verification').fadeOut();
-                    $('#verificationcode').val('999');
+                    $this.parent().find('.comment_reply_verification').fadeOut();
+                    $this.parent().find('.comment_reply_verificationcode').val('999');
+                    $this.parent().find('.comment_reply_verification_code_img').({'src': ''});
                 } else {
                     ajaxInfo(msg.info);
                 }
