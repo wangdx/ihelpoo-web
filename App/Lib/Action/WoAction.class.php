@@ -197,7 +197,7 @@ class WoAction extends Action {
         $offset = $page * $count;
         $sayRecord = $RecordSay->where("i_record_say.uid = $userId AND i_record_say.say_type IN (0, 9)")
         ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
-        ->field('sid,i_user_login.uid,say_type,content,image,url,comment_co,diffusion_co,hit_co,time,school_id,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+        ->field('sid,i_user_login.uid,say_type,content,image,url,comment_co,diffusion_co,hit_co,plus_co,time,school_id,from,last_comment_ti,nickname,sex,birthday,enteryear,type,online,active,icon_url')
         ->order('i_record_say.time DESC')
    	    ->limit($offset,$count)->select();
    	    $this->assign('sayRecord',$sayRecord);
