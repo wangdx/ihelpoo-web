@@ -335,7 +335,6 @@ $().ready(function(){
                     $('#i_comment_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('评论成功').delay(800).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
-                    commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
                     commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
@@ -345,9 +344,8 @@ $().ready(function(){
                     	commentContent += "<img src='" + msg.data.image + "' width='80' />";
                     }
                     commentContent += "<span class=\'i_c_l_u_li_div_time f12 gray\'>" + msg.data.time + "</span></div></li>";
-                    $('.i_comment_list_ul').append(commentContent);
-                    var bodyHeight = $("body").height();
-                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+                    $('.i_comment_list_ul').prepend(commentContent);
+                    $('html,body').animate({scrollTop: '0px'}, 800);
                     
                     /**
                      * 
@@ -429,7 +427,6 @@ $().ready(function(){
                     $comment_reply_form.find('.comment_reply_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('回复成功').delay(800).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
-                    commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
                     commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
@@ -439,9 +436,8 @@ $().ready(function(){
                     }
                     commentContent += msg.data.content;
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
-                    $('.i_comment_list_ul').append(commentContent);
-                    var bodyHeight = $("body").height();
-                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+                    $('.i_comment_list_ul').prepend(commentContent);
+                    $('html,body').animate({scrollTop: '0px'}, 800);
                 } else {
                     $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 }
