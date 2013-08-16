@@ -322,7 +322,7 @@ $().ready(function(){
 		    $this.html($infoLoading);
             $.post(baseUrl + "item/sayajax", $("#i_c_b_form").serialize(), function(msg){
             	if (msg.status == 'verifi') {
-            		$("#i_shine_hit_in").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
+            		ajaxInfo('请输入验证码');
             		$('.i_c_b_verification').fadeIn('fast');
             		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
             		$('#verificationcode').val('');
@@ -417,7 +417,7 @@ $().ready(function(){
             });
             $.post(baseUrl + "item/sayajax", $comment_reply_form.serialize(), function(msg){
             	if (msg.status == 'verifi') {
-            		$("#i_shine_hit_in").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
+            		ajaxInfo('请输入验证码');
             		$this.parent().find('.comment_reply_verification').fadeIn('fast');
             		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
             		$this.parent().find('.comment_reply_verificationcode').val('');
