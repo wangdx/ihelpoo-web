@@ -95,5 +95,189 @@ $().ready(function(){
     		$(this).fadeOut("fast");
     	});
     });
+    
+    /**
+     * diffusion part
+     */
+    $('.diffusion').toggle(
+        function(){
+        	$diffusionRecordObj = $(this);
+            $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
+        },
+        function(){
+        	$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
+        }
+    );
+    
+    $('.diffusion_view_btn').click(function(){
+        var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
+        if ($diffusion_view == '说点什么吧...') {
+        	$diffusion_view = '';
+        }
+        var diffusionSid = $diffusionRecordObj.attr('value');
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "stream/ajax",
+            data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
+            datatype: "html",
+            success:function(data){
+            	var infohtml = "<p align='left'>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            	ajaxInfo(infohtml);
+                if (data != '你已经扩散了这条信息') {
+                	$diffusionRecordObj.append('<span class="red_l">+1</span>');
+                }
+            }
+        });
+        $('.diffusion_view_div_box').slideUp('slow');
+    });
+
+    $('.diffusion_list_sure').live("click", function(){
+        $('#infotextareacheck').slideUp('normal');
+    });
+    
+    $('.diffusion_view_textarea').focus(function(){
+    	$(this).next().text('扩散');
+    	$(this).css({width: '350px', height: '30px'});
+    	var textareaValue = $(this).val();
+    	if (textareaValue == '说点什么吧...') {
+    		$(this).val('');
+    	}
+    });
+    $('.diffusion_view_textarea').focusout(function(){
+    	var textareaValue = $(this).val();
+    	if (textareaValue == '') {
+    		$(this).val('说点什么吧...');
+    		$(this).next().text('直接扩散');
+    		$(this).css({width: '200px', height: '18px'});
+    	}
+    });
+    
+    /**
+     * ajax comment part
+     */
+    $('.comment_button').click(function(){
+    	var $this = $(this);
+    	$commentViewDivBox = $this.parent().parent().find(".comment_view_div_box");
+    	var commmentSid = $this.attr('value');
+    	var commentBtnIsClick = $this.attr('isclick');
+    	if (commentBtnIsClick == 'false') {
+    		$this.attr({isclick: 'true'});
+    		$commentViewDivBox.slideDown("fast").html("<img src='/Public/image/common/ajax_wait.gif' /> <span class='f12 gray'>正在加载中，请稍等...</span>");
+    		$.ajax({
+	            type: "POST",
+	            url: baseUrl + "stream/ajaxcomment",
+	            data: {'commentSid':commmentSid},
+	            dataType: "html",
+	            success:function(data){
+	            	$commentViewDivBox.slideDown("fast").html(data);
+	            }
+	        });
+    	} else {
+    		$this.attr({isclick: 'false'});
+    		$commentViewDivBox.slideUp("fast");
+    	}
+    });
+    
+    $('.c_v_d_b_ul_li_content_reply a').live('click',function(){
+    	var $commentViewDivBoxReply = $(this).parent().parent().find('.comment_view_div_box_replyinner');
+    	$commentViewDivBoxReply.slideDown('fast');
+    });
+    
+    /**
+     * comment
+     */
+    $('.comment_reply_submit').live('click', function(){
+    	var $this = $(this);
+        var i_comment_textarea = $(this).parent().find('textarea').val();
+        if (i_comment_textarea == '') {
+            ajaxInfo('写点东西吧，评论不能为空');
+        } else if (i_comment_textarea.length > 200) {
+            ajaxInfo('内容太长了 不能超过200个字符');
+        } else {
+        	i_comment_textarea = i_comment_textarea + ' ';
+	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
+	        var atresult = i_comment_textarea.match(atpattern);
+	        var re = new RegExp("(@[\\u4E00-\\u9FA5A-Za-z0-9_.]+)", "g");
+	        var s = "<a class=\"getuserinfo\">$1</a>";
+	        var textareacontentdata = i_comment_textarea.replace(re, s);
+	        
+	        var sid = $this.parent().attr("sid");
+	        var cid = $this.parent().attr("cid");
+	        var toid = $this.parent().attr("toid");
+	        var textareacontent = textareacontentdata;
+	        var imageurl = '';
+	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
+	        var atusers = atresult;
+	        $.ajax({
+	            type: "POST",
+	            url: baseUrl + "item/sayajax",
+	            data: {'sid' : sid , 'cid' : cid , 'toid' : toid , 'textareacontent' : textareacontent , 'imageurl' : imageurl , 'verificationcode' : verificationcode , 'atusers' : atusers},
+	            dataType: "json",
+	            success:function(msg){
+	            	if (msg.status == 'verifi') {
+	            		$this.parent().find('.comment_reply_verification_stream').fadeIn('fast');
+	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi' });
+	            		$this.parent().find('.comment_reply_verification_streamcode').val('');
+	            	} else if (msg.status == 'yes') {
+	                    $('.comment_view_div_box_replyinner').slideUp('fast');
+	                    $('.comment_view_div_box_reply_textarea').val('');
+	                    $('.comment_view_div_box_replyinner_textarea').val('');
+	                    
+	                    var commentContent = '<li>'
+	                    + '<a href="/wo/' + msg.data.uid + '" class="getuserinfo c_v_d_b_ul_li_icon" userid="' + msg.data.uid + '"><img src="' + msg.data.uidicon + '" height="30" class="radius3" /></a>'
+	                    + '<p class="c_v_d_b_ul_li_content">'
+	                    + '<a href="/wo/' + msg.data.uid + '" class="getuserinfo" userid="' + msg.data.uid + '">' + msg.data.uidnickname + ':</a> '
+	                    + '<span class="gray fb">';
+	                    if (msg.data.toid != '') {
+	                        commentContent += '[回复:' + msg.data.toidnickname + ']';
+	                    }
+	                    commentContent += '</span>'
+	                    + msg.data.content
+	                    + ' <span class="gray">(' + msg.data.time + ')</span>'
+	                    + '</p>'
+	                    + '<span class="c_v_d_b_ul_li_content_reply">'
+	                    + '<a class="c_v_d_b_ul_li_content_del gray" value="' + msg.data.cid + '">删除</a>'
+	    		    	+ '</span>';
+	    		    	
+	                    $commentViewDivBox.find('.comment_view_div_box_ul').prepend(commentContent);
+	                } else {
+	                    ajaxInfo(msg.info);
+	                }
+	            }
+	        });
+        }
+    });
+    
+    /**
+     * commment delete
+     */
+    $('.c_v_d_b_ul_li_content_del').live('click', function(){
+    	var deletecid = $(this).attr("value");
+    	$deleteCommentLi = $(this).parent().parent();
+    	$deleteCommentLi.css("backgroundColor", "#FFFA85");
+    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_comment' value='"+deletecid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	ajaxInfo(infohtml);
+    });
+    
+    $('#delete_comment').live('click', function(){
+    	var deletecid = $(this).attr("value");
+    	$.ajax({
+            type: "POST",
+            url: baseUrl + "item/del",
+            data: "delcomment=" + deletecid,
+            dataType: "json",
+            success:function(msg){
+                $deleteCommentLi.slideUp('fast');
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
+            }
+        });
+    });
+    
+    $('.btn_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+		$deleteCommentLi.css("backgroundColor", "#FFF");
+    });
 
 });
