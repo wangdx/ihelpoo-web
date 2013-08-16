@@ -64,7 +64,7 @@ $().ready(function(){
             type: "POST",
             url: baseUrl+"stream/plusToggle",
             data: {'plusSid':$(this).attr('value')},
-            atatype: "html",
+            datatype: "html",
             success:function(data){
                   $region.html('('+data+')');
             }
