@@ -200,7 +200,7 @@
 
 .diffusion_view_div_box{
     position: relative;
-    left: 115px;
+    left: 90px;
     top: 20px;
     height: 60px;
     width: 500px;
@@ -282,7 +282,7 @@
 }
 
 .comment_view_div_box{
-    margin:10px 0 0 115px;
+    margin:10px 0 0 90px;
     border:1px solid #DDD;
     border-radius:3px;
     padding:20px;
@@ -408,14 +408,10 @@
     background:url(../image/common/video.png) no-repeat 0 -60px;
 }
 .wo_li_s_time{
-    position: absolute;
-    left: 90px;
-    bottom: 12px;
+    margin-left: 90px;
 }
 .wo_li_s_comment{
-    position: absolute;
-    bottom: 12px;
-    right: 0;
+    float: right;
 }
 .wo_paging{
     margin: 20px 0;
