@@ -428,6 +428,7 @@ class StreamAction extends Action
          * priority set; rules by i_user_priority
          */
         $pidString = NULL;
+        $sidString = NULL;
         $allIdString = NULL;
         $pidGroupArray = array();
         $isSetPriority = $UserPriority->where("uid = $userloginid")->select();
@@ -861,12 +862,8 @@ class StreamAction extends Action
     }
 
     public function plusToggle(){
-<<<<<<< HEAD
 
         i_send('echowdx@gmail.com','我帮圈圈','有新学校申请开通我帮圈圈:)');
-
-=======
->>>>>>> 8a805b833b9e3a29cd609f195974b82585ebbc39
     	if(empty($_POST['plusSid'])){
     		exit();
     	}
