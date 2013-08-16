@@ -639,9 +639,9 @@ $().ready(function(){
             type: "POST",
             url: baseUrl+"stream/plusToggle",
             data: {'plusSid':$(this).attr('value')},
-            atatype: "html",
-            success:function(data){
-                  $region.html('('+data+')');
+            dataType: "json",
+            success:function(msg){
+                  $region.html('('+msg.data+')');
             }
         });
     });
