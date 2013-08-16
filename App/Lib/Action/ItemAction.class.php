@@ -127,7 +127,7 @@ class ItemAction extends Action {
         $offset = $page * $count;
         $sayComment = $RecordComment->where("sid = $recordId")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')
         ->field('cid,i_user_login.uid,sid,toid,content,image,diffusion_co,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
-        ->limit($offset,$count)->order('cid ASC')->select();
+        ->limit($offset,$count)->order('cid DESC')->select();
         $this->assign('sayComment', $sayComment);
 
         /**

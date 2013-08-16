@@ -1170,18 +1170,14 @@
 .i_comment_list_ul .now_reply_this_id{
     border-bottom: 3px solid #C00;
 }
-.i_c_l_u_li_spannum{
+li_img{
     position: absolute;
-    left: 0;
-}
-.i_c_l_u_li_img{
-    position: absolute;
-    left: 25px;
+    left: 10px;
     top: 15px;
 }
 .i_c_l_u_li_div{
     width: 645px;
-    margin-left: 95px;
+    margin-left: 80px;
     min-height: 35px;
     overflow: hidden;
 }

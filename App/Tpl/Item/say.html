@@ -148,15 +148,7 @@
 		<!-- comment_list -->
 		<div class="i_comment_list">
 		  <ul class="i_comment_list_ul">
-		  <?php
-			if (!empty($_GET['p'])) {
-          		$p = $_GET['p'];
-				$i = (($p - 1) * $pageCount) + 1;
-			} else {
-				$i = 1;
-			}
-      		foreach ($sayComment as $comment):
-      	  ?>
+		  <?php foreach ($sayComment as $comment): ?>
       	  <?php if ($_GET['ncid'] == $comment['cid']) {
       	  $findReplyPlace = true;
       	  ?>
@@ -164,7 +156,6 @@
 		  <?php } else { ?>
 		  <li>
 		  <?php } ?>
-		    <span class="i_c_l_u_li_spannum gray"><?php echo $i ?></span>
 		    <a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
 		    	<img src="<?php echo i_icon_check($comment['uid'], $comment['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
 		    </a>
@@ -218,9 +209,7 @@
 		    <?php } ?>
 		    <!-- /replybox -->
 		  </li>
-		  <?php
-		    $i++;
-    		endforeach; ?>
+		  <?php endforeach; ?>
 		  </ul>
 		  <p class="i_comment_list_num f12 gray">共<?php echo $sayRecord['comment_co'] ?>条评论 <?php echo $totalPages ?>页</p>
 		  <div class="i_comment_list_link">
