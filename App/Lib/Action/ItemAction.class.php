@@ -465,7 +465,11 @@ class ItemAction extends Action {
     					/**
     					 * show verification code ; time/second low;
     					 */
-    					$lastTwoRecord = $RecordComment->where("uid = $userloginid")->field("uid,sid,time,content")->order("cid DESC")->limit(2)->select();
+    					$lastTwoRecord = $RecordComment->where("uid = $userloginid AND sid = $sid")->field("uid,sid,time,content")->order("cid DESC")->limit(2)->select();
+    					if ($commentcontent == $lastTwoRecord[0]['content'] && empty($toid)) {
+    						$this->ajaxReturn(0,"不要贪心噢，不能回复相同的内容","repate");
+    					}
+    					
     					$timediffer = $lastTwoRecord[0]['time'] - $lastTwoRecord[1]['time'];
     					if ($timediffer < $verificationTimeRule['value']) {
     						/**

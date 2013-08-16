@@ -366,7 +366,7 @@ $().ready(function(){
 	        	        });
                     }
                 } else {
-                    $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                    ajaxInfo(msg.info);
                 }
             }, "json");
         }
@@ -435,7 +435,7 @@ $().ready(function(){
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
                 } else {
-                    $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                    ajaxInfo(msg.info);
                 }
             }, "json");
         }
