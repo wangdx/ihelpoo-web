@@ -326,6 +326,7 @@ $().ready(function(){
             		$('.i_c_b_verification').fadeIn('fast');
             		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
             		$('#verificationcode').val('');
+            		$this.html('评论');
             	} else if (msg.status == 'yes') {
                     $('#i_comment_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('评论成功').delay(800).fadeOut('fast');
