@@ -791,7 +791,7 @@ $().ready(function(){
 	            success:function(msg){
 	            	if (msg.status == 'verifi') {
 	            		$this.parent().find('.comment_reply_verification_stream').fadeIn('fast');
-	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi' });
+	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
 	            		$this.parent().find('.comment_reply_verification_streamcode').val('');
 	            	} else if (msg.status == 'yes') {
 	                    $('.comment_view_div_box_replyinner').slideUp('fast');

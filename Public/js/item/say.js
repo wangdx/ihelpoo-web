@@ -420,7 +420,7 @@ $().ready(function(){
             	if (msg.status == 'verifi') {
             		ajaxInfo('请输入验证码');
             		$this.parent().find('.comment_reply_verification').fadeIn('fast');
-            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
+            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
             		$this.parent().find('.comment_reply_verificationcode').val('');
             	} else if (msg.status == 'yes') {
                     $comment_reply_div_box.slideUp('fast');
