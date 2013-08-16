@@ -375,7 +375,12 @@ $().ready(function(){
             }, "json");
         }
     });
-
+    
+    //reload verification
+    $('.i_c_b_verification_code_img').live("click", function(){
+    	$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi'});
+    });
+    
     //reply
     $('.reply_box_btn').click(function(){
         $comment_reply_div_box = $(this).parent().parent().parent().find('.comment_reply_div_box');
