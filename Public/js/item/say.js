@@ -319,12 +319,7 @@ $().ready(function(){
 	        var s = "<a class=\"getuserinfo\">$1</a>";
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $("#textareacontent").val(textareacontentdata);
-		    $(this).ajaxStart(function(){
-		    	$this.html($infoLoading);
-            }).ajaxStop(function(){
-        	    $infoLoading.remove();
-        	    $this.html('评论');
-            });
+		    $this.html($infoLoading);
             $.post(baseUrl + "item/sayajax", $("#i_c_b_form").serialize(), function(msg){
             	if (msg.status == 'verifi') {
             		$("#i_shine_hit_in").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
@@ -346,6 +341,7 @@ $().ready(function(){
                     commentContent += "<span class=\'i_c_l_u_li_div_time f12 gray\'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
+                    $this.html('评论');
                     
                     /**
                      * 
@@ -410,7 +406,6 @@ $().ready(function(){
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $(this).parent().find('.reply_textareacontent').val(textareacontentdata);
 	        $comment_reply_form = $(this).parent();
-
 		    $(this).ajaxStart(function(){
         	    $(this).after($infoLoading);
             }).ajaxStop(function(){
