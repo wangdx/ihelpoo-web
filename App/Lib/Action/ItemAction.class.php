@@ -127,7 +127,7 @@ class ItemAction extends Action {
         $offset = $page * $count;
         $sayComment = $RecordComment->where("sid = $recordId")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')
         ->field('cid,i_user_login.uid,sid,toid,content,image,diffusion_co,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
-        ->limit($offset,$count)->order('cid ASC')->select();
+        ->limit($offset,$count)->order('cid DESC')->select();
         $this->assign('sayComment', $sayComment);
 
         /**
@@ -465,7 +465,11 @@ class ItemAction extends Action {
     					/**
     					 * show verification code ; time/second low;
     					 */
-    					$lastTwoRecord = $RecordComment->where("uid = $userloginid")->field("uid,sid,time,content")->order("cid DESC")->limit(2)->select();
+    					$lastTwoRecord = $RecordComment->where("uid = $userloginid AND sid = $sid")->field("cid,uid,sid,time,content")->order("cid DESC")->limit(2)->select();
+    					if ($commentcontent == $lastTwoRecord[0]['content'] && empty($toid)) {
+    						$this->ajaxReturn(0,"不要贪心噢，不能回复相同的内容","repate");
+    					}
+    					
     					$timediffer = $lastTwoRecord[0]['time'] - $lastTwoRecord[1]['time'];
     					if ($timediffer < $verificationTimeRule['value']) {
     						/**

@@ -835,7 +835,7 @@ class StreamAction extends Action
 				    echo '<a class="c_v_d_b_ul_li_content_del gray" value="'.$comment['cid'].'">删除</a>';
 			    }
 		    	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
-			    	echo ' <i class="icon_plus"></i> <a class="">回复</a>';
+			    	echo ' <i class="icon_plus"></i> <a class="c_v_d_b_ul_li_content_reply_btn">回复</a>';
 			    } 
 		    	echo '</span>';
 	        	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
@@ -861,9 +861,12 @@ class StreamAction extends Action
     }
 
     public function plusToggle(){
+<<<<<<< HEAD
 
         i_send('echowdx@gmail.com','我帮圈圈','有新学校申请开通我帮圈圈:)');
 
+=======
+>>>>>>> 8a805b833b9e3a29cd609f195974b82585ebbc39
     	if(empty($_POST['plusSid'])){
     		exit();
     	}
@@ -886,14 +889,14 @@ class StreamAction extends Action
             $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], -1);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
-            echo trim($recordSay['plus_co']);
+            $this->ajaxReturn($recordSay['plus_co'], "return data", 'yes');
         }else{
             $this->addPlusRecord($sid);
             $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], 1);
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
-            echo trim($recordSay['plus_co']);
+            $this->ajaxReturn($recordSay['plus_co'], "return data", 'yes');
         }
         exit();
     }

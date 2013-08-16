@@ -21,8 +21,6 @@
 	})
 })(jQuery);
 $().ready(function(){
-    //$("#i_shine_hit_in").delay(300).fadeIn(400).delay(600).fadeOut(500);
-    //$("#i_shine_hit").delay(300).animate({top:"130px"}, 400).delay(600).animate({top:"110px"}, 500);
 	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
 
     /**
@@ -47,40 +45,63 @@ $().ready(function(){
         return false;
     });
     $('.emotionbox_change_page').click(function(){
-    	$(".emotionbox_change_page").removeClass('bg_gray');
-    	$(this).addClass('bg_gray');
-    	$page = $(this).text();
+    	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+    	$(this).addClass('bg_emotionbox_page_select');
+    	$page = $(this).attr("value");
         $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 
 	//reply_emotion
 	$('.reply_emotionbox_icon').click(function(e){
-    	var positionleft = e.pageX - 10;
-        var positiontop = e.pageY + 10;
-	    $('#reply_emotionbox').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast');
-	    $(".reply_emotionbox_show_ul").load(baseUrl + "other/loademotion");
-		$replyTextarea = $(this).parent().parent().find('.comment_reply_textarea');
-		return false;
-    });
-	$('#reply_emotionbox_close').click(function(){
-        $('#reply_emotionbox').slideUp('fast');
-    });
-	$('.reply_emotionbox_show_ul img').live("click", function(){
-        var imgreplytitle = $(this).attr('title');
-        var imgreplytitlemark = '[' + imgreplytitle + ']';
-        var replytextareanow = $replyTextarea.val() + imgreplytitlemark;
-        $replyTextarea.val(replytextareanow);
-        $('#reply_emotionbox').fadeOut('fast');
-        //important here, refuse default explorer action
+		var positionleft = e.pageX + 10;
+    	var positiontop = e.pageY + 10;
+    	$replytextarea = $(this).parent().parent().find('.comment_reply_textarea');
+        var emotionboxhtml = '<p class="emotionbox_close_p">'
+		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
+		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
+		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
+		+ '<span class="replyemotionbox_close close_x" title="关闭">×</span>'
+		+ '</p><ul class="emotionbox_show_ul_inner"></ul>';
+        $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
+        $(".emotionbox_show_ul_inner").load(baseUrl + "other/loademotion");
         return false;
     });
-	$('.reply_emotionbox_change_page').click(function(){
-    	$(".reply_emotionbox_change_page").removeClass('bg_gray');
-    	$(this).addClass('bg_gray');
-    	$page = $(this).text();
-        $(".reply_emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
+	$(".replyemotionbox_close").live('click', function(){
+		$(".replyemotionbox").slideUp('fast');
+		return false;
+	});
+	$('.emotionbox_show_ul_inner img').live("click", function(){
+        var imgtitle = $(this).attr('title');
+        var imgtitlemarkin = '[' + imgtitle + ']';
+        var textareanow = $replytextarea.val() + imgtitlemarkin;
+        $replytextarea.val(textareanow);
+        $(".replyemotionbox").fadeOut('fast');
+        return false;
+    });
+	$('.emotionbox_change_page').live('click', function(){
+    	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+    	$(this).addClass('bg_emotionbox_page_select');
+    	$page = $(this).attr("value");
+        $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 
+	/**
+     * plus part
+     */
+    $('.plus_button').click(function(){
+        var $thisButton = $(this);
+        var $region = $('#plus_view_region_'+$(this).attr('value'));
+        $.ajax({
+            type: "POST",
+            url: baseUrl+"stream/plusToggle",
+            data: {'plusSid':$(this).attr('value')},
+            dataType: "json",
+            success:function(msg){
+                  $region.html('('+msg.data+')');
+            }
+        });
+    });
+    
     //i fav
     $('#fav_record_btn').click(function(){
         var favSid = $('#recordsid').val();
@@ -97,25 +118,32 @@ $().ready(function(){
 
     //i del
     $('#del_record_btn').click(function(){
-        $("#i_shine_hit_in").fadeIn('fast').html("<span id='del_record_btn_yes'>确定</span> <span id='del_record_btn_no'>取消</span>");
+        var deletesid = $('#recordsid').val();
+    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='del_record_btn_yes' value='"+deletesid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	ajaxInfo(infohtml);
     });
-    $('#del_record_btn_no').live('click', function(){
-        $("#i_shine_hit_in").slideUp('fast');
-    });
+    
     $('#del_record_btn_yes').live('click', function(){
-        var delRecordSid = $('#recordsid').val();
-        $.ajax({
+        var delRecordSid = $(this).attr("value");
+    	$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
             data: "delrecord=" + delRecordSid,
             dataType: "json",
             success:function(msg){
-                $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
+        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 setTimeout('pageToStream()',3000);
             }
         });
     });
-
+    
+    $('.btn_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+    });
+    
     /**
      * image part
      */
@@ -292,11 +320,11 @@ $().ready(function(){
         var i_comment_textarea = $('#i_comment_textarea').val();
         var verificationcode = $('#verificationcode').val();
         if (i_comment_textarea == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('评论不能为空').delay(800).fadeOut('fast');
+            ajaxInfo('评论不能为空');
         } else if (verificationcode == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('验证码不能为空').delay(800).fadeOut('fast');
+            ajaxInfo('验证码不能为空');
         } else if (i_comment_textarea.length > 222) {
-        	$("#i_shine_hit_in").fadeIn('fast').html('回复内容太长了 不能超过222个字符').delay(800).fadeOut('fast');
+        	ajaxInfo('评论内容太长了 不能超过222个字符');
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
@@ -306,23 +334,18 @@ $().ready(function(){
 	        var s = "<a class=\"getuserinfo\">$1</a>";
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $("#textareacontent").val(textareacontentdata);
-		    $(this).ajaxStart(function(){
-		    	$this.html($infoLoading);
-            }).ajaxStop(function(){
-        	    $infoLoading.remove();
-        	    $this.html('评论');
-            });
+		    $this.html($infoLoading);
             $.post(baseUrl + "item/sayajax", $("#i_c_b_form").serialize(), function(msg){
             	if (msg.status == 'verifi') {
-            		$("#i_shine_hit_in").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
+            		ajaxInfo('请输入验证码');
             		$('.i_c_b_verification').fadeIn('fast');
-            		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
+            		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random()});
             		$('#verificationcode').val('');
+            		$this.html('评论');
             	} else if (msg.status == 'yes') {
                     $('#i_comment_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('评论成功').delay(800).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
-                    commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
                     commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
@@ -332,9 +355,12 @@ $().ready(function(){
                     	commentContent += "<img src='" + msg.data.image + "' width='80' />";
                     }
                     commentContent += "<span class=\'i_c_l_u_li_div_time f12 gray\'>" + msg.data.time + "</span></div></li>";
-                    $('.i_comment_list_ul').append(commentContent);
-                    var bodyHeight = $("body").height();
-                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+                    $('.i_comment_list_ul').prepend(commentContent);
+                    $('html,body').animate({scrollTop: '0px'}, 800);
+                    $this.html('评论');
+                    $('.i_c_b_verification').hide();
+                    $('#verificationcode').val('999');
+                    $('#i_c_b_verification_code_img').({'src': ''});
                     
                     /**
                      * 
@@ -358,12 +384,13 @@ $().ready(function(){
 	        	        });
                     }
                 } else {
-                    $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                    ajaxInfo(msg.info);
+                    $this.html('评论');
                 }
             }, "json");
         }
     });
-
+    
     //reply
     $('.reply_box_btn').click(function(){
         $comment_reply_div_box = $(this).parent().parent().parent().find('.comment_reply_div_box');
@@ -386,9 +413,9 @@ $().ready(function(){
     	var $this = $(this);
         var i_comment_textarea = $(this).parent().find('.comment_reply_textarea').val();
         if (i_comment_textarea == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('回复不能为空').delay(800).fadeOut('fast');
+            ajaxInfo('回复不能为空');
         } else if (i_comment_textarea.length > 200) {
-        	$("#i_shine_hit_in").fadeIn('fast').html('回复内容太长了 不能超过200个字符').delay(800).fadeOut('fast');
+        	ajaxInfo('回复内容太长了 不能超过200个字符');
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
@@ -399,7 +426,6 @@ $().ready(function(){
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $(this).parent().find('.reply_textareacontent').val(textareacontentdata);
 	        $comment_reply_form = $(this).parent();
-
 		    $(this).ajaxStart(function(){
         	    $(this).after($infoLoading);
             }).ajaxStop(function(){
@@ -407,16 +433,15 @@ $().ready(function(){
             });
             $.post(baseUrl + "item/sayajax", $comment_reply_form.serialize(), function(msg){
             	if (msg.status == 'verifi') {
-            		$("#i_shine_hit_in").fadeIn('fast').html("<span class='icon_attention'></span>请输入验证码").delay(800).fadeOut('fast');
+            		ajaxInfo('请输入验证码');
             		$this.parent().find('.comment_reply_verification').fadeIn('fast');
-            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi' });
+            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
             		$this.parent().find('.comment_reply_verificationcode').val('');
             	} else if (msg.status == 'yes') {
                     $comment_reply_div_box.slideUp('fast');
                     $comment_reply_form.find('.comment_reply_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('回复成功').delay(800).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
-                    commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
                     commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
@@ -426,11 +451,13 @@ $().ready(function(){
                     }
                     commentContent += msg.data.content;
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
-                    $('.i_comment_list_ul').append(commentContent);
-                    var bodyHeight = $("body").height();
-                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+                    $('.i_comment_list_ul').prepend(commentContent);
+                    $('html,body').animate({scrollTop: '0px'}, 800);
+                    $this.parent().find('.comment_reply_verification').hide();
+                    $this.parent().find('.comment_reply_verificationcode').val('999');
+                    $this.parent().find('.comment_reply_verification_code_img').({'src': ''});
                 } else {
-                    $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                    ajaxInfo(msg.info);
                 }
             }, "json");
         }
@@ -438,16 +465,13 @@ $().ready(function(){
 
     //delete reply
     $('.reply_delete_btn').click(function(){
-    	var delReplySid = $(this).parent().find('.reply_delete_cid').val();
+        var delReplySid = $(this).parent().find('.reply_delete_cid').val();
         $alreadyDeleteLi = $(this).parent().parent().parent();
         $alreadyDeleteLi.css("backgroundColor", "#FFFA85");
-        $("#i_shine_hit_in").fadeIn('fast').html("<span id='del_recordcomment_btn_yes' value='" + delReplySid + "'>确定</span> <span id='del_recordcomment_btn_no'>取消</span>");
+    	var infohtml = "<p>确定删除评论？</p> <a class='btn_sure' id='delete_comment_btn_yes' value='"+delReplySid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	ajaxInfo(infohtml);
     });
-    $('#del_recordcomment_btn_no').live('click', function(){
-        $("#i_shine_hit_in").slideUp('fast');
-        $alreadyDeleteLi.css("backgroundColor", "#FFF");
-    });
-    $('#del_recordcomment_btn_yes').live('click', function(){
+    $('#delete_comment_btn_yes').live('click', function(){
         var delReplySid = $(this).attr('value');
         $.ajax({
             type: "POST",
@@ -455,8 +479,9 @@ $().ready(function(){
             data: "delcomment=" + delReplySid,
             dataType: "json",
             success:function(msg){
-                $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 $alreadyDeleteLi.slideUp('fast');
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
             }
         });
     });
@@ -481,16 +506,13 @@ $().ready(function(){
             data: "diffusionSid=" + diffusionSid,
             datatype: "html",
             success:function(data){
-                $('#i_shine_hit').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');
+            	var infohtml = "<p align='left'>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            	ajaxInfo(infohtml);
                 if (data != '你已经扩散了这条信息') {
                     $thisDiffusion.append('<span class="red">+1</span>');
                 }
             }
         });
-    });
-
-    $('.diffusion_list_sure').live("click", function(){
-        $('#i_shine_hit').html('<p id="i_shine_hit_in"></p>');
     });
 });
 function pageToStream(){

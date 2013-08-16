@@ -639,13 +639,9 @@ $().ready(function(){
             type: "POST",
             url: baseUrl+"stream/plusToggle",
             data: {'plusSid':$(this).attr('value')},
-//            datatype: "html",
-            success:function(data){
-//                console.log($(this).parent().find('.plus_count_region').val());
-//                $(this).parent().find('.plus_count_region').text(data);
-//                alert($(this).attr('class'));
-                  $region.html('('+data+')');
-//                $thisButton.append('<span class="red_l">data</span>');
+            dataType: "json",
+            success:function(msg){
+                  $region.html('('+msg.data+')');
             }
         });
     });
@@ -757,7 +753,7 @@ $().ready(function(){
     	}
     });
     
-    $('.c_v_d_b_ul_li_content_reply a').live('click',function(){
+    $('.c_v_d_b_ul_li_content_reply_btn').live('click',function(){
     	var $commentViewDivBoxReply = $(this).parent().parent().find('.comment_view_div_box_replyinner');
     	$commentViewDivBoxReply.slideDown('fast');
     });
@@ -795,7 +791,7 @@ $().ready(function(){
 	            success:function(msg){
 	            	if (msg.status == 'verifi') {
 	            		$this.parent().find('.comment_reply_verification_stream').fadeIn('fast');
-	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi' });
+	            		$this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
 	            		$this.parent().find('.comment_reply_verification_streamcode').val('');
 	            	} else if (msg.status == 'yes') {
 	                    $('.comment_view_div_box_replyinner').slideUp('fast');
@@ -817,8 +813,10 @@ $().ready(function(){
 	                    + '<span class="c_v_d_b_ul_li_content_reply">'
 	                    + '<a class="c_v_d_b_ul_li_content_del gray" value="' + msg.data.cid + '">删除</a>'
 	    		    	+ '</span>';
-	    		    	
 	                    $commentViewDivBox.find('.comment_view_div_box_ul').prepend(commentContent);
+	                    $this.parent().find('.comment_reply_verification_stream').hide();
+	                    $this.parent().find('.comment_reply_verification_streamcode').val('999');
+	                    $this.parent().find('.comment_reply_verification_stream_code_img').({'src': ''});
 	                } else {
 	                    ajaxInfo(msg.info);
 	                }

@@ -517,17 +517,16 @@
     min-height: 160px;
     min-width: 300px;
 }
-#emotionbox_item{
-    position: absolute;
-    left: 5px;
-    top: 140px;
-    z-index: 1111;
-    background: #FFF;
-    border: 3px solid #CCC;
+#emotionbox_item{    
     display: none;
-    border-radius: 3px;
+    position: absolute;
+    top: 140px;
+    left: 5px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
     min-height: 160px;
     min-width: 300px;
+    z-index: 1111;
 }
 *+html #emotionbox_item{
     position: relative;
@@ -584,7 +583,7 @@
 }
 #emotionbox_close{
     position: absolute;
-    right: 0;
+    right: 5px;
     top: 5px;
 }
 .replyemotionbox_close{
@@ -1170,18 +1169,14 @@
 .i_comment_list_ul .now_reply_this_id{
     border-bottom: 3px solid #C00;
 }
-.i_c_l_u_li_spannum{
-    position: absolute;
-    left: 0;
-}
 .i_c_l_u_li_img{
     position: absolute;
-    left: 25px;
+    left: 10px;
     top: 15px;
 }
 .i_c_l_u_li_div{
-    width: 645px;
-    margin-left: 95px;
+    width: 655px;
+    margin-left: 80px;
     min-height: 35px;
     overflow: hidden;
 }
@@ -1195,19 +1190,19 @@
 }
 .i_c_l_u_li_div_time{
     position: absolute;
-    left: 100px;
+    left: 85px;
     bottom: 15px;
 }
 .comment_reply_div_box{
     position: relative;
-    left: 95px;
+    left: 80px;
     top: 20px;
     height: 90px;
-    width: 500px;
+    width: 515px;
     display: none;
 }
 .comment_reply_div_box textarea{
-    width: 300px;
+    width: 325px;
     height: 60px;
 	font-size: 12px;
 	color: #666;
@@ -1231,7 +1226,7 @@
 }
 .comment_reply_verification{
     position: absolute;
-    left: 320px;
+    left: 350px;
     top: 0;
     display: none;
     width: 200px;
