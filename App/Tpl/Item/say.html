@@ -42,7 +42,7 @@
 			</span>
 			<span class="fr f12 black_l i_content_span_info">
 			  	<?php echo "<span class='icon_words'></span> 评论".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?>° 
-			  	<a class="plus" value="i-<?php echo $sayRecord['sid'] ?>">赞</a>(<?php echo $sayRecord['plus_co'] ?>)
+			  	<a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a> 
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
 				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
 				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>

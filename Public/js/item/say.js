@@ -21,8 +21,6 @@
 	})
 })(jQuery);
 $().ready(function(){
-    //$("#i_shine_hit_in").delay(300).fadeIn(400).delay(600).fadeOut(500);
-    //$("#i_shine_hit").delay(300).animate({top:"130px"}, 400).delay(600).animate({top:"110px"}, 500);
 	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
 
     /**
@@ -87,6 +85,23 @@ $().ready(function(){
         $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 
+	/**
+     * plus part
+     */
+    $('.plus_button').click(function(){
+        var $thisButton = $(this);
+        var $region = $('#plus_view_region_'+$(this).attr('value'));
+        $.ajax({
+            type: "POST",
+            url: baseUrl+"stream/plusToggle",
+            data: {'plusSid':$(this).attr('value')},
+            dataType: "json",
+            success:function(msg){
+                  $region.html('('+msg.data+')');
+            }
+        });
+    });
+    
     //i fav
     $('#fav_record_btn').click(function(){
         var favSid = $('#recordsid').val();
