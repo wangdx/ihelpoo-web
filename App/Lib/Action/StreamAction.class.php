@@ -835,7 +835,7 @@ class StreamAction extends Action
 				    echo '<a class="c_v_d_b_ul_li_content_del gray" value="'.$comment['cid'].'">删除</a>';
 			    }
 		    	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
-			    	echo ' <i class="icon_plus"></i> <a class="">回复</a>';
+			    	echo ' <i class="icon_plus"></i> <a class="c_v_d_b_ul_li_content_reply_btn">回复</a>';
 			    } 
 		    	echo '</span>';
 	        	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
