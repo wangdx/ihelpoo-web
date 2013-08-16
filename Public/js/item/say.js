@@ -343,7 +343,7 @@ $().ready(function(){
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
                     $this.html('评论');
-                    $('.i_c_b_verification').fadeOut();
+                    $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
                     $('#i_c_b_verification_code_img').({'src': ''});
                     
@@ -438,7 +438,7 @@ $().ready(function(){
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').prepend(commentContent);
                     $('html,body').animate({scrollTop: '0px'}, 800);
-                    $this.parent().find('.comment_reply_verification').fadeOut();
+                    $this.parent().find('.comment_reply_verification').hide();
                     $this.parent().find('.comment_reply_verificationcode').val('999');
                     $this.parent().find('.comment_reply_verification_code_img').({'src': ''});
                 } else {

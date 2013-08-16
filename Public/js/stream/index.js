@@ -814,7 +814,7 @@ $().ready(function(){
 	                    + '<a class="c_v_d_b_ul_li_content_del gray" value="' + msg.data.cid + '">删除</a>'
 	    		    	+ '</span>';
 	                    $commentViewDivBox.find('.comment_view_div_box_ul').prepend(commentContent);
-	                    $this.parent().find('.comment_reply_verification_stream').fadeOut();
+	                    $this.parent().find('.comment_reply_verification_stream').hide();
 	                    $this.parent().find('.comment_reply_verification_streamcode').val('999');
 	                    $this.parent().find('.comment_reply_verification_stream_code_img').({'src': ''});
 	                } else {
