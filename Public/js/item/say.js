@@ -367,6 +367,7 @@ $().ready(function(){
                     }
                 } else {
                     ajaxInfo(msg.info);
+                    $this.html('评论');
                 }
             }, "json");
         }
