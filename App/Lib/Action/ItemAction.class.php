@@ -466,6 +466,7 @@ class ItemAction extends Action {
     					 * show verification code ; time/second low;
     					 */
     					$lastTwoRecord = $RecordComment->where("uid = $userloginid AND sid = $sid")->field("cid,uid,sid,time,content")->order("cid DESC")->limit(2)->select();
+    					$this->ajaxReturn(0,$lastTwoRecord[0]['content'],"repate");
     					if ($commentcontent == $lastTwoRecord[0]['content'] && empty($toid)) {
     						$this->ajaxReturn(0,"不要贪心噢，不能回复相同的内容","repate");
     					}
