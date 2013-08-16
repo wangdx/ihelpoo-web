@@ -378,7 +378,7 @@ $().ready(function(){
     
     //reload verification
     $('#i_c_b_verification_code_img').live("click", function(){
-    	alert('rrr');
+    	$(this).load(baseUrl + 'other/verifi');
     	$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi'});
     });
     
