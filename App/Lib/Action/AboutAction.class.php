@@ -135,7 +135,7 @@ class AboutAction extends Action {
 		    	 * change email system , use phpmailer.class, below is an e.g.
 		    	 * send email
 		    	 */
-		    	i_sendmail('admin@tvery.com','system to cho','有新学校申请开通我帮圈圈:)');
+                i_send('admin@tvery.com','system to cho','有新学校申请开通我帮圈圈:)');
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} 
 	    	$this->ajaxReturn(0, "出错了", "wrong");

@@ -20,6 +20,11 @@ return array(
     'H_I_MSG_NOTICE'=>'i_msg_notice',
 
 
+    // mail
+    'MAIL_COUNTER'=>'Mail:counter',
+    'MAIL_QUEUE_TO'=>'Mail:Queue:to',
+    'MAIL_QUEUE_SUBJECT'=>'Mail:Queue:subject',
+    'MAIL_QUEUE_BODY'=>'Mail:Queue:body',
 
 );
 ?>
