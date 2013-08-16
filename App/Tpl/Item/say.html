@@ -44,7 +44,7 @@
 			  	<?php echo "<span class='icon_words'></span> 评论".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?>° 
 			  	<a class="plus" value="i-<?php echo $sayRecord['sid'] ?>">赞</a>(<?php echo $sayRecord['plus_co'] ?>)
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
-				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo $sayRecord['diffusion_co']; ?>)
+				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
 				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
 				<?php } ?>
 		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
