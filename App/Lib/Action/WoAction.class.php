@@ -416,20 +416,6 @@ class WoAction extends Action {
         $this->display();
     }
 
-    public function other()
-    {
-    	$userloginid = session('userloginid');
-    	$userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
-    	if (empty($userId) && !empty($userloginid)) {
-    		$userId = $userloginid;
-    	}
-
-    	$RecordSay = M("RecordSay");
-    	$recordOthers = $RecordSay->where("uid = $userId AND (image != '' OR url != '')")->order("time DESC")->select();
-    	$this->assign('recordOthers',$recordOthers);
-    	$this->display();
-    }
-
     public function album()
     {
     	$userloginid = session('userloginid');
