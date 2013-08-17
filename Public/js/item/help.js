@@ -197,7 +197,6 @@ $().ready(function(){
                     $('#help_content_from_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('帮助回复成功').delay(800).fadeOut('fast');
                     var helpContent = "<li class='bg_l_yellow'>";
-                    helpContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
                     helpContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
                     helpContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     helpContent += "<div class='i_c_l_u_li_div black_l'>";
