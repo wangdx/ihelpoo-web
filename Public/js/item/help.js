@@ -62,8 +62,8 @@ $().ready(function(){
 	$('.emotionbox_show_ul_inner img').live("click", function(){
         var imgtitle = $(this).attr('title');
         var imgtitlemarkin = '[' + imgtitle + ']';
-        var textareanow = $replytextarea.val() + imgtitlemarkin;
-        $replytextarea.val(textareanow);
+        var textareanow = $replyTextarea.val() + imgtitlemarkin;
+        $replyTextarea.val(textareanow);
         $(".replyemotionbox").fadeOut('fast');
         return false;
     });
