@@ -157,7 +157,7 @@
 		    <?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 		      <li>
 		        <a href="__ROOT__/stream/u/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>"><?php echo $recordDiffusion['nickname'] ?></a>
-		        扩散了这条信息.
+		        扩散了这条信息. <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?> 
 		        <span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
 		    <?php endforeach; ?>
 		  </ul>
