@@ -18,20 +18,21 @@ class Email
     public function sendDefault($toEmail, $toSubject, $toContent, $toNickname = NULL)
     {
         try{
-            $mail = new SaeMail();
-            $options = array(
-	            from => $this->from,
-	            to => $toEmail,
-	            smtp_host => $this->host,
-	            smtp_port => 25,
-	            smtp_username => $this->username,
-	            smtp_password => $this->password,
-	            subject => $toSubject,
-	            content => $toContent,
-	            content_type => 'HTML'
-            );
-            $mail->setOpt($options);
-            $mail->send();
+//            $mail = new SaeMail();
+//            $options = array(
+//	            from => $this->from,
+//	            to => $toEmail,
+//	            smtp_host => $this->host,
+//	            smtp_port => 25,
+//	            smtp_username => $this->username,
+//	            smtp_password => $this->password,
+//	            subject => $toSubject,
+//	            content => $toContent,
+//	            content_type => 'HTML'
+//            );
+//            $mail->setOpt($options);
+//            $mail->send();
+            i_send($toEmail, $toSubject, $toContent);
         } catch (Exception $e){
             $info = $e->getMessage();
             return FALSE;
@@ -65,20 +66,21 @@ class Email
                       </p>
                       ";
         try {
-            $mail = new SaeMail();
-            $options = array(
-	            from => $this->from,
-	            to => $toEmail,
-	            smtp_host => $this->host,
-	            smtp_port => 25,
-	            smtp_username => $this->username,
-	            smtp_password => $this->password,
-	            subject => $toSubject,
-	            content => $toContent,
-	            content_type => 'HTML'
-            );
-            $mail->setOpt($options);
-            $mail->send();
+//            $mail = new SaeMail();
+//            $options = array(
+//	            from => $this->from,
+//	            to => $toEmail,
+//	            smtp_host => $this->host,
+//	            smtp_port => 25,
+//	            smtp_username => $this->username,
+//	            smtp_password => $this->password,
+//	            subject => $toSubject,
+//	            content => $toContent,
+//	            content_type => 'HTML'
+//            );
+//            $mail->setOpt($options);
+//            $mail->send();
+            i_send($toEmail, $toSubject, $toContent);
         } catch (Exception $e){
             $info = $e->getMessage();
             return FALSE;
@@ -101,20 +103,21 @@ class Email
                       ".$toNickname."天天开心:D 祝好
                       </p>";
         try{
-            $mail = new SaeMail();
-            $options = array(
-	            from => $this->from,
-	            to => $toEmail,
-	            smtp_host => $this->host,
-	            smtp_port => 25,
-	            smtp_username => $this->username,
-	            smtp_password => $this->password,
-	            subject => $toSubject,
-	            content => $toContent,
-	            content_type => 'HTML'
-            );
-            $mail->setOpt($options);
-            $mail->send();
+//            $mail = new SaeMail();
+//            $options = array(
+//	            from => $this->from,
+//	            to => $toEmail,
+//	            smtp_host => $this->host,
+//	            smtp_port => 25,
+//	            smtp_username => $this->username,
+//	            smtp_password => $this->password,
+//	            subject => $toSubject,
+//	            content => $toContent,
+//	            content_type => 'HTML'
+//            );
+//            $mail->setOpt($options);
+//            $mail->send();
+            i_send($toEmail, $toSubject, $toContent);
         } catch (Exception $e){
         	$info = $e->getMessage();
         	return FALSE;
