@@ -73,6 +73,23 @@ $().ready(function(){
     	$page = $(this).attr("value");
         $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
+	
+	/**
+     * plus part
+     */
+    $('.plus_button').click(function(){
+        var $thisButton = $(this);
+        var $region = $('#plus_view_region_'+$(this).attr('value'));
+        $.ajax({
+            type: "POST",
+            url: baseUrl+"stream/plusToggle",
+            data: {'plusSid':$(this).attr('value')},
+            dataType: "json",
+            success:function(msg){
+                  $region.html('('+msg.data+')');
+            }
+        });
+    });
 
     /**
      * del
