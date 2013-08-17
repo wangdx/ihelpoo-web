@@ -31,43 +31,22 @@ class LabAction extends Action {
     public function maponline()
     {
     	$recordSchoolInfo = i_school_domain();
-    	$title = "在线区域位置3.2 ".$recordSchoolInfo['school']." 帮助主题社交网站";
+    	$title = "在线区域位置 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
     	
     	/**
          * calculate online user numbers. calculate per 30 second
          */
-        $IWebStatus = D("IWebStatus");
         $UserLogin = M("UserLogin");
-        $recordOnlineUserNums = $IWebStatus->paraExists('online_user_nums');
-        $userOnlineObject = $UserLogin->where("online != 0")->join('i_user_status ON i_user_status.uid = i_user_login.uid')->join('i_user_info ON i_user_info.uid = i_user_login.uid')->select();
-        
-        if (5 < (time() - $recordOnlineUserNums['valueint'])) {
-            foreach ($userOnlineObject as $userOnlineOne) {
-                if (900 < (time() - $userOnlineOne['last_active_ti'])) {
-                    $updateUserOnlineStatusData = array(
-                    	'uid' => $userOnlineOne['uid'],
-            	        'online' => 0,
-            	    );
-                    $UserLogin->save($updateUserOnlineStatusData);
-                }
-            }
-        }
-        $userOnlineNums = $UserLogin->where("online != 0")->count();
-        $updateUserOnlineNums = array(
-            'parameter' => $recordOnlineUserNums['parameter'],
-            'valuechar' => $userOnlineNums,
-            'valueint' => time(),
-        );
-        $IWebStatus->save($updateUserOnlineNums);
+        $userOnlineNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
         
         /**
          * hidden online user nums 
          */
         $hiddenUserNums = $UserLogin->where("online = 2")->count();
-        $this->assign('hiddenUserNums',$hiddenUserNums);
-        $this->assign('onlineUserNums',$userOnlineNums);
-        $this->assign('userOnlineObject',$userOnlineObject);
+        $this->assign('hiddenUserNums', $hiddenUserNums);
+        $this->assign('onlineUserNums', $userOnlineNums);
+        $this->assign('userOnlineObject', $userOnlineObject);
         
         /**
          * 
@@ -75,7 +54,7 @@ class LabAction extends Action {
         $userloginid = session('userloginid');
         if ($userloginid) {
             $userVisitStatus = $UserLogin->where("uid = $userloginid")->find();
-            $this->assign('userVisitStatus',$userVisitStatus);
+            $this->assign('userVisitStatus', $userVisitStatus);
         }
         $this->display();
     }
