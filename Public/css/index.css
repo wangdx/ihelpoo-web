@@ -111,15 +111,17 @@ lable{
 }
 #logininfo{
     position: absolute;
+    left: 25px;
+    top: 10px;
     width: 215px;
-    height: 18px;
-    line-height: 18px;
+    height: 20px;
+    line-height: 20px;
     text-align: center;
     background: #FFFA85;
     font-size: 12px;
     color: #C00;
     border-radius: 3px;
-    display: none;
+    display: none;   
 }
 .loginbox_email, .loginbox_password{
     background-image: url("../image/common/form_login.png");
