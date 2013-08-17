@@ -96,16 +96,6 @@ $().ready(function(){
      * change login status
      */
     $('#login_status').click(function(){
-    	var login_status_value = $(this).attr('value');
-    	if (login_status_value == 1) {
-    		$(this).html('<span class="login_status_hidden"></span> 潜水登录');
-    		$(this).attr({ value : '2'});
-    		$('#login_status_input').attr({ value : '2'});
-    	} else {
-    		$(this).html('<span class="login_status_online"></span> 正常登录');
-    		$(this).attr({ value : '1'});
-    		$('#login_status_input').attr({ value : '1'});
-    	}
     });
 });
 
