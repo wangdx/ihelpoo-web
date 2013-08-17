@@ -87,13 +87,12 @@
 				<?php } else { ?>
 					<span>扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</span> 
 				<?php } ?>
-				扩散了这条信息
 			</div>
 			<ul class="i_record_diffusion black_l f12">
 				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 				<li>
 		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
-		        	 <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
+		        	扩散了这条信息<?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
 		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
 		    	<?php endforeach; ?>
 			</ul>
