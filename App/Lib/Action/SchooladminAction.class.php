@@ -268,8 +268,8 @@ class SchooladminAction extends Action {
     		}
     	}
     	
-    	if (!empty($schoolid)) {
-    		//$imagestoragelist = $upyun->getList("/school/$schoolid/");
+    	if (!empty($schoolid) && !empty($_GET['list'])) {
+    		$imagestoragelist = $upyun->getList("/school/$schoolid/");
     		$this->assign('imagestoragelist', $imagestoragelist);
     		$this->assign('imagestorageurlfolder', $imageStorageUrl."/school/".$schoolid."/");
     	}

@@ -14,7 +14,7 @@
 	<?php if (!empty($schoolid)) { ?>
 	<br />
 	<ul>
-	<li>已上传图片列表:</li>
+	<li>已上传图片列表: <a href="?list=true">查看</a></li>
 	<?php foreach ($imagestoragelist as $imagestorage) { ?>
 	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorageurlfolder,$imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?></li>
 	<?php } ?>
