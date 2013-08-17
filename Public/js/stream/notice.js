@@ -108,7 +108,7 @@ function Chat(state) {
     };
 
     this.send = function (from, to) {
-        console.log(from, to);
+        console.log(from+'[][][][][]'+to);
         var chat = '4';
         var image = '无';
         if (!chat || !chat.length) return;
