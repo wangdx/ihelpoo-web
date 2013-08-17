@@ -144,8 +144,17 @@ function Notice(state) {
         var time = message.data.time;
 
         if(chat == '4'){
-        $('#message_system_nums_a').show();
-        $('#message_system_nums_a').children('span').html('+3');}
+            var num = $('#message_system_nums_a').data(from);
+            if(!num){
+                $('#message_system_nums_a').data(from, 0);
+            } else {
+                num = $('#message_system_nums_a').data(from);
+                $('#message_system_nums_a').data(from, num + 1)
+            }
+
+            $('#message_system_nums_a').show();
+            $('#message_system_nums_a').children('span').html('+' + num);
+        }
 
 
         if(!chat || !chat.length) {//update status
