@@ -54,7 +54,7 @@ class LabAction extends Action {
         /**
          * hidden online user nums 
          */
-        $hiddenUserNums = $UserLogin->where("online = 2")->count();
+        $hiddenUserNums = $UserLogin->where("online = 2 AND school = $recordSchoolInfo[id]")->count();
         $this->assign('hiddenUserNums',$hiddenUserNums);
         $this->assign('onlineUserNums',$userOnlineNums);
         $this->assign('userOnlineObject',$userOnlineObject);
