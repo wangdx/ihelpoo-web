@@ -307,7 +307,7 @@ $().ready(function(){
         var deleteReplyValue = $('#delete_help_reply_value').val();
     	var infohtml = "<p>确定删除追问？</p> <a class='btn_sure' id='del_record_helpreply_btn_yes' value='"+deleteReplyValue+"'>确定</a><a class='btn_cancel'>取消</a>";
     	$alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
-    	$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FE6600");
+    	$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FFFA85");
     	ajaxInfo(infohtml);
     });
     
