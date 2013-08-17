@@ -697,7 +697,7 @@ $().ready(function(){
             dataType: "json",
             success:function(result){
             	var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
-                notice.send('1', result.data);
+                notice.send('system', result.data);
             	ajaxInfo(infohtml);
                 if (result.info != '你已经扩散了这条信息') {
                 	$diffusionRecordObj.append('<span class="red_l">+1</span>');

@@ -14,9 +14,9 @@ class StreamAction extends Action
         $userloginid = session('userloginid');
         if (!empty($userloginid)) {
             i_db_update_activetime($userloginid);
-    		$UserLogin = M("UserLogin");
-    		$userloginedrecord = $UserLogin->find($userloginid);
-    		$this->assign('userloginedrecord',$userloginedrecord);
+            $UserLogin = M("UserLogin");
+            $userloginedrecord = $UserLogin->find($userloginid);
+            $this->assign('userloginedrecord', $userloginedrecord);
         } else {
             redirect('/user/notlogin', 0, '你还没有登录呢...');
         }
@@ -150,13 +150,13 @@ class StreamAction extends Action
                 if (($recordUserLogin['active'] - $reward_coins) < 0 && $help_is == 1) {
                     $this->ajaxReturn(0, "活跃不够了", 'error');
                 }
-                
+
                 /**
                  * repate limit
                  */
                 $lastRecordSay = $RecordSay->where("uid = $userloginid")->order("sid DESC")->find();
                 if ($lastRecordSay['content'] == $content) {
-                	$this->ajaxReturn(0, "不要贪心噢，不能重复发布相同的内容", 'error');
+                    $this->ajaxReturn(0, "不要贪心噢，不能重复发布相同的内容", 'error');
                 }
 
                 /**
@@ -578,7 +578,7 @@ class StreamAction extends Action
                     'comment_co' => $record['comment_co'],
                     'diffusion_co' => $record['diffusion_co'],
                     'hit_co' => $record['hit_co'],
-                    'plus_co'=>$record['plus_co'],
+                    'plus_co' => $record['plus_co'],
                     'time' => $record['time'],
                     'from' => $record['from'],
                     'last_comment_ti' => $record['last_comment_ti'],
@@ -612,7 +612,7 @@ class StreamAction extends Action
                     'comment_co' => $record['comment_co'],
                     'diffusion_co' => $record['diffusion_co'],
                     'hit_co' => $record['hit_co'],
-                    'plus_co'=>$record['plus_co'],
+                    'plus_co' => $record['plus_co'],
                     'time' => $record['time'],
                     'from' => $record['from'],
                     'last_comment_ti' => $record['last_comment_ti'],
@@ -660,15 +660,15 @@ class StreamAction extends Action
         $WebStatus = M("WebStatus");
         $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
         if (15 < (time() - $recordWebStatus['time'])) {
-        	$recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
-        	$newWebStats = array(
-        		'sid' => $recordSchoolInfo['id'],
-        		'online_nums' => $recordOnlineUserNums,
-        		'time' => time(),
-        	);
-        	$WebStatus->save($newWebStats);
+            $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
+            $newWebStats = array(
+                'sid' => $recordSchoolInfo['id'],
+                'online_nums' => $recordOnlineUserNums,
+                'time' => time(),
+            );
+            $WebStatus->save($newWebStats);
         } else {
-        	$recordOnlineUserNums = $recordWebStatus['online_nums'];
+            $recordOnlineUserNums = $recordWebStatus['online_nums'];
         }
         $this->assign('onlineUserNums', $recordOnlineUserNums);
 
@@ -702,16 +702,16 @@ class StreamAction extends Action
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
         $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
         $this->assign('indexSpreadInfoVaule', $indexSpreadInfoVaule);
-        
+
         /**
          * school advertisement
          */
         $SchoolAd = M("SchoolAd");
         $streamRightSchoolAd = $SchoolAd->where("type = '2' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(3)->select();
         $this->assign('streamRightSchoolAd', $streamRightSchoolAd);
-    	$streamHeaderTopSchoolAd = $SchoolAd->where("type = '1' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(6)->select();
-    	$this->assign('streamHeaderTopSchoolAd', $streamHeaderTopSchoolAd);
-        
+        $streamHeaderTopSchoolAd = $SchoolAd->where("type = '1' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(6)->select();
+        $this->assign('streamHeaderTopSchoolAd', $streamHeaderTopSchoolAd);
+
         $this->display();
     }
 
@@ -775,90 +775,91 @@ class StreamAction extends Action
         }
         $this->display();
     }
-    
+
     public function ajaxcomment()
     {
-    	$userloginid = session('userloginid');
-    	Vendor('Ihelpoo.Emotion');
-    	$emotion = new Emotion();
-    	$commentSidString = $_POST['commentSid'];
-    	$commentSidArray = explode("-", $commentSidString);
-    	$commentSid = $commentSidArray['1'];
-    	$UserLogin = M("UserLogin");
-    	if (!empty($commentSid)) {
-    		$RecordComment = M("RecordComment");
-    		$sayCommentNums = $RecordComment->where("sid = $commentSid")->count();
-    		$sayComment = $RecordComment->where("i_record_comment.sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
-	        ->field('cid,i_record_comment.uid,i_record_say.uid as record_owneruid,i_record_comment.sid,toid,i_record_comment.content,i_record_comment.image,i_record_comment.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
-	        ->limit(10)->order('cid DESC')->select();
-	        
-	        /**
-	         * return html
-	         */
-	        echo '<div class="comment_view_div_box_reply" sid='.$commentSid.'>';
-	        echo '<textarea class="comment_view_div_box_reply_textarea textarea_style"></textarea>';
-	        echo '<span class="post_icon comment_textareaicon_reply" title="表情"></span>';
-	        echo '<span class="comment_reply_verification_stream">';
-		    echo '<img class="comment_reply_verification_stream_code_img" src="" />';
-		    echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
-		    echo '</span>';
-	        echo '<a class="comment_reply_submit btn">评论</a>';
-	        echo '</div>';
-	        echo '<ul class="comment_view_div_box_ul">';
-	        foreach ($sayComment as $comment) {
-	        	echo '<li>';
-		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo c_v_d_b_ul_li_icon" userid="'.$comment['uid'].'"><img src="'.i_icon_check($comment['uid'], $comment['icon_url'], 's').'" height="30" class="radius3" /></a>';
-		    	echo '<p class="c_v_d_b_ul_li_content">';
-		    	echo '<a href="/wo/'.$comment['uid'].'" class="getuserinfo" userid="'.$comment['uid'].'">'.$comment['nickname'].':</a> ';
-		    	echo '<span class="gray fb">';
-		      	if (!empty($comment['toid'])) {
-		  			$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
-         		 	echo "[回复:".$commentReplyUser['nickname']."] ";
-				} 
-		    	echo '</span>';
-		    	echo $emotion->transEmotion(stripslashes($comment['content']));
-		    	echo ' <span class="gray">('.i_time($comment['time']).')</span>';
-		    	echo '</p>';
-				if (!empty($comment['image'])) {
-					echo '<p class="c_v_d_b_ul_li_content_image">';
-					echo '<a href="'.$comment['image'].'" title="点击查看原图" target="_blank">';
-					echo '<img src="'.i_image_thumbnail($comment['image']).'" class="" />';
-					echo '</a></p>';
-				}
-		    	echo '<span class="c_v_d_b_ul_li_content_reply">';
-		    	if ($comment['uid'] == $userloginid || $comment['record_owneruid'] == $userloginid) {
-				    echo '<a class="c_v_d_b_ul_li_content_del gray" value="'.$comment['cid'].'">删除</a>';
-			    }
-		    	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
-			    	echo ' <i class="icon_plus"></i> <a class="c_v_d_b_ul_li_content_reply_btn">回复</a>';
-			    } 
-		    	echo '</span>';
-	        	if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
-	        		echo '<div class="comment_view_div_box_replyinner" sid='.$comment['sid'].' cid='.$comment['cid'].' toid='.$comment['uid'].'>';
-	        		echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
-	        		echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
-	        		echo '<span class="comment_reply_verification_stream">';
-	        		echo '<img class="comment_reply_verification_stream_code_img" src="" />';
-	        		echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
-	        		echo '</span>';
-	        		echo '<a class="comment_reply_submit btn">回复</a>';
-	        		echo '</div>';
-			    }
-		    	echo '</li>';
-	        }
-	        echo '</ul>';
-	        if ($sayCommentNums > 10) {
-	        	echo "<div>后面还有".($sayCommentNums - 10)."条评论，<a href='/item/say/".$commentSid."'>点击查看&gt;&gt;</a></div>";
-	        } else {
-	        	echo "<div><a href='/item/say/".$commentSid."'>详细内容页&gt;&gt;</a></div>";
-	        }
-    	}
+        $userloginid = session('userloginid');
+        Vendor('Ihelpoo.Emotion');
+        $emotion = new Emotion();
+        $commentSidString = $_POST['commentSid'];
+        $commentSidArray = explode("-", $commentSidString);
+        $commentSid = $commentSidArray['1'];
+        $UserLogin = M("UserLogin");
+        if (!empty($commentSid)) {
+            $RecordComment = M("RecordComment");
+            $sayCommentNums = $RecordComment->where("sid = $commentSid")->count();
+            $sayComment = $RecordComment->where("i_record_comment.sid = $commentSid")->join('i_user_login ON i_record_comment.uid = i_user_login.uid')->join('i_record_say ON i_record_comment.sid = i_record_say.sid')
+                ->field('cid,i_record_comment.uid,i_record_say.uid as record_owneruid,i_record_comment.sid,toid,i_record_comment.content,i_record_comment.image,i_record_comment.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+                ->limit(10)->order('cid DESC')->select();
+
+            /**
+             * return html
+             */
+            echo '<div class="comment_view_div_box_reply" sid=' . $commentSid . '>';
+            echo '<textarea class="comment_view_div_box_reply_textarea textarea_style"></textarea>';
+            echo '<span class="post_icon comment_textareaicon_reply" title="表情"></span>';
+            echo '<span class="comment_reply_verification_stream">';
+            echo '<img class="comment_reply_verification_stream_code_img" src="" />';
+            echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
+            echo '</span>';
+            echo '<a class="comment_reply_submit btn">评论</a>';
+            echo '</div>';
+            echo '<ul class="comment_view_div_box_ul">';
+            foreach ($sayComment as $comment) {
+                echo '<li>';
+                echo '<a href="/wo/' . $comment['uid'] . '" class="getuserinfo c_v_d_b_ul_li_icon" userid="' . $comment['uid'] . '"><img src="' . i_icon_check($comment['uid'], $comment['icon_url'], 's') . '" height="30" class="radius3" /></a>';
+                echo '<p class="c_v_d_b_ul_li_content">';
+                echo '<a href="/wo/' . $comment['uid'] . '" class="getuserinfo" userid="' . $comment['uid'] . '">' . $comment['nickname'] . ':</a> ';
+                echo '<span class="gray fb">';
+                if (!empty($comment['toid'])) {
+                    $commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
+                    echo "[回复:" . $commentReplyUser['nickname'] . "] ";
+                }
+                echo '</span>';
+                echo $emotion->transEmotion(stripslashes($comment['content']));
+                echo ' <span class="gray">(' . i_time($comment['time']) . ')</span>';
+                echo '</p>';
+                if (!empty($comment['image'])) {
+                    echo '<p class="c_v_d_b_ul_li_content_image">';
+                    echo '<a href="' . $comment['image'] . '" title="点击查看原图" target="_blank">';
+                    echo '<img src="' . i_image_thumbnail($comment['image']) . '" class="" />';
+                    echo '</a></p>';
+                }
+                echo '<span class="c_v_d_b_ul_li_content_reply">';
+                if ($comment['uid'] == $userloginid || $comment['record_owneruid'] == $userloginid) {
+                    echo '<a class="c_v_d_b_ul_li_content_del gray" value="' . $comment['cid'] . '">删除</a>';
+                }
+                if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
+                    echo ' <i class="icon_plus"></i> <a class="c_v_d_b_ul_li_content_reply_btn">回复</a>';
+                }
+                echo '</span>';
+                if (!empty($comment['uid']) && $comment['uid'] != $userloginid) {
+                    echo '<div class="comment_view_div_box_replyinner" sid=' . $comment['sid'] . ' cid=' . $comment['cid'] . ' toid=' . $comment['uid'] . '>';
+                    echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
+                    echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
+                    echo '<span class="comment_reply_verification_stream">';
+                    echo '<img class="comment_reply_verification_stream_code_img" src="" />';
+                    echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
+                    echo '</span>';
+                    echo '<a class="comment_reply_submit btn">回复</a>';
+                    echo '</div>';
+                }
+                echo '</li>';
+            }
+            echo '</ul>';
+            if ($sayCommentNums > 10) {
+                echo "<div>后面还有" . ($sayCommentNums - 10) . "条评论，<a href='/item/say/" . $commentSid . "'>点击查看&gt;&gt;</a></div>";
+            } else {
+                echo "<div><a href='/item/say/" . $commentSid . "'>详细内容页&gt;&gt;</a></div>";
+            }
+        }
     }
 
-    public function plusToggle(){
-    	if(empty($_POST['plusSid'])){
-    		exit();
-    	}
+    public function plusToggle()
+    {
+        if (empty($_POST['plusSid'])) {
+            exit();
+        }
         $plusSidArr = explode("-", $_POST['plusSid']);
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
@@ -867,21 +868,21 @@ class StreamAction extends Action
         $plusId = $plus['id'];
         $MsgNotice = M('MsgNotice');
         $noticeType = 'stream/' . $plusSidArr['0'] . '-para:plus';
-        $msgNotice = $MsgNotice->where("notice_type = '".$noticeType."' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
+        $msgNotice = $MsgNotice->where("notice_type = '" . $noticeType . "' AND source_id = $userloginid AND detail_id = $sid AND format_id = 'plus'")->find();
 
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
 
         if (!empty($plus)) {
             $RecordPlus->where("id=$plusId")->delete();
-            $recordSay = $this->bouncePlusCountOfRecord($sid ,-1);
+            $recordSay = $this->bouncePlusCountOfRecord($sid, -1);
             $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], -1);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
             $this->ajaxReturn($recordSay['plus_co'], "return data", 'yes');
-        }else{
+        } else {
             $this->addPlusRecord($sid);
-            $recordSay = $this->bouncePlusCountOfRecord($sid ,1);
+            $recordSay = $this->bouncePlusCountOfRecord($sid, 1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], 1);
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
@@ -889,41 +890,43 @@ class StreamAction extends Action
         }
         exit();
     }
-    
-    public function plusView(){
-    	if(empty($_POST['sidString'])){
-    		exit();
-    	}
-    	$sidStringArr = explode("-", $_POST['sidString']);
+
+    public function plusView()
+    {
+        if (empty($_POST['sidString'])) {
+            exit();
+        }
+        $sidStringArr = explode("-", $_POST['sidString']);
         $userloginid = session('userloginid');
         $sid = $sidStringArr['1'];
         $RecordPlus = M('RecordPlus');
         $resultsRecordPlus = $RecordPlus->where("sid = $sid")
-        ->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
-        ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,nickname,icon_url")
-        ->limit(5)
-        ->order("create_time DESC")
-        ->select();
+            ->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
+            ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,nickname,icon_url")
+            ->limit(5)
+            ->order("create_time DESC")
+            ->select();
         if (!empty($resultsRecordPlus)) {
-        	echo '<p class="stream_plus_users_p gray">他们赞过了这条信息</p>';
-	        echo '<ul class="stream_plus_users_ul">';
-	        foreach ($resultsRecordPlus as $recordPlus) {
-	        	echo '<li>';
-			    echo '<a href="/wo/'.$recordPlus['uid'].'" title="'.$recordPlus['nickname'].'"><img src="'.i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's').'" height="25" class="radius3" /></a>';
-			    echo '</li>';
-	        }
-	        if ($sidStringArr['0'] == 'i') {
-	        	echo '<li><a href="/item/say/'.$sid.'" class="f12">更多</a></li>';
-	        } else {
-	        	echo '<li><a href="/item/help/'.$sid.'" class="f12">更多</a></li>';
-	        }
-	        echo '</ul>';
+            echo '<p class="stream_plus_users_p gray">他们赞过了这条信息</p>';
+            echo '<ul class="stream_plus_users_ul">';
+            foreach ($resultsRecordPlus as $recordPlus) {
+                echo '<li>';
+                echo '<a href="/wo/' . $recordPlus['uid'] . '" title="' . $recordPlus['nickname'] . '"><img src="' . i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') . '" height="25" class="radius3" /></a>';
+                echo '</li>';
+            }
+            if ($sidStringArr['0'] == 'i') {
+                echo '<li><a href="/item/say/' . $sid . '" class="f12">更多</a></li>';
+            } else {
+                echo '<li><a href="/item/help/' . $sid . '" class="f12">更多</a></li>';
+            }
+            echo '</ul>';
         } else {
-        	echo '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
+            echo '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
         }
     }
 
-    public function addPlusRecord($sid){
+    public function addPlusRecord($sid)
+    {
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
 
@@ -931,8 +934,8 @@ class StreamAction extends Action
             'id' => '',
             'sid' => $sid,
             'uid' => $userloginid,
-            'view'=> '',
-            'deliver'=>0,
+            'view' => '',
+            'deliver' => 0,
             'create_time' => time(),
         );
         return $RecordPlus->add($plus);
@@ -968,7 +971,7 @@ class StreamAction extends Action
         $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
         $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionId, 'diffusiontoowner');
         $result = $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
-        $this->ajaxReturn($result['data'],$result['info'],$result['status']);
+        $this->ajaxReturn($result['data'], $result['info'], $result['status']);
         exit();
     }
 
@@ -976,7 +979,7 @@ class StreamAction extends Action
     {
         $isDiffusion = $RecordDiffusion->where("uid = $userloginid AND $diffusionSidArray[1] = sid")->find();
         if (!empty($isDiffusion['id'])) {
-            $this->ajaxReturn("", "你已经扩散了这条信息","0"); ;
+            $this->ajaxReturn("", "你已经扩散了这条信息", "0");;
             exit();
         }
     }
@@ -986,7 +989,7 @@ class StreamAction extends Action
         $time12hour = time() - 43200;
         $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
         if ($userDiffusion12hourAll >= $threshold) {
-            $this->ajaxReturn("", "你扩散了太多消息，休息休息再来吧 :)<br>每12小时最多扩散3条","0"); ;
+            $this->ajaxReturn("", "你扩散了太多消息，休息休息再来吧 :)<br>每12小时最多扩散3条", "0");;
             exit();
         }
     }
@@ -1004,7 +1007,7 @@ class StreamAction extends Action
             'id' => '',
             'uid' => $userloginid,
             'sid' => $diffusionSidArray[1],
-            'view'=> trim($_POST['diffusionView']),
+            'view' => trim($_POST['diffusionView']),
             'time' => time(),
         );
         $diffusionId = $RecordDiffusion->add($dataDiffusion);
@@ -1012,13 +1015,12 @@ class StreamAction extends Action
     }
 
 
-
     public function saveNoticeMessageForOwner($typeIdArr, $userloginid, $detailId, $noticeType)
     {
-        return $this->saveNoticeMessage($typeIdArr, $userloginid, $noticeType,$detailId);
+        return $this->saveNoticeMessage($typeIdArr, $userloginid, $noticeType, $detailId);
     }
 
-    public function saveNoticeMessageForFollowers($diffusionSidArray, $userloginid,$detailId)
+    public function saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $detailId)
     {
         return $this->saveNoticeMessage($diffusionSidArray, $userloginid, 'diffusion', $detailId);
     }
@@ -1041,18 +1043,17 @@ class StreamAction extends Action
         return $noticeId;
     }
 
-    public function deleteNoticeMessage($noticeId){
+    public function deleteNoticeMessage($noticeId)
+    {
         //DELETE
         $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-        if (!($hs->openIndex(4, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', '')))
-        {
-            echo 'ERR_WHEN_DEL_OPEN: '.$hs->getError(), PHP_EOL;
+        if (!($hs->openIndex(4, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', ''))) {
+            echo 'ERR_WHEN_DEL_OPEN: ' . $hs->getError(), PHP_EOL;
             die();
         }
 
-        if ($hs->executeDelete(4, '=', array($noticeId)) === false)
-        {
-            echo 'ERR_WHEN_DEL: '.$hs->getError(), PHP_EOL;
+        if ($hs->executeDelete(4, '=', array($noticeId)) === false) {
+            echo 'ERR_WHEN_DEL: ' . $hs->getError(), PHP_EOL;
             die();
         }
         unset($hs);
@@ -1093,7 +1094,7 @@ class StreamAction extends Action
         $userPriorityNums = sizeof($userPriorityObj);
         $resultData = $this->saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId);
 
-        $resultInfo =  $this->outputMessage($userPriorityNums, $userPriorityObj);
+        $resultInfo = $this->outputMessage($userPriorityNums, $userPriorityObj);
         $result = array(
             "data" => $resultData,
             "info" => $resultInfo,
@@ -1104,14 +1105,14 @@ class StreamAction extends Action
 
     public function outputMessage($userPriorityNums, $userPriorityObj)
     {
-    	$userloginid = session('userloginid');
-        $info = "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
+        $userloginid = session('userloginid');
+        $info = "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/" . $userloginid . "'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
         if (empty($userPriorityNums)) {
             exit();
         }
         foreach ($userPriorityObj as $idx => $userPriority) {
             if ($idx >= 10) break;
-            $info .= "<a href='/wo/".$userPriority['uid']."' class='f12'>".$userPriority['nickname']."</a> <br />";
+            $info .= "<a href='/wo/" . $userPriority['uid'] . "' class='f12'>" . $userPriority['nickname'] . "</a> <br />";
         }
         $info .= "...";
         return $info;
@@ -1127,7 +1128,7 @@ class StreamAction extends Action
         foreach ($userPriorityObj as $userPriority) {
             $this->bounceNoticeMessageCount($redis, $userPriority['uid'], 1);
             $this->deliverTo($userPriority['uid'], $noticeIdForFollowers);
-            $data .= ','. $userPriority['uid'];
+            $data .= ',' . $userPriority['uid'];
         }
         return $data;
     }
@@ -1137,7 +1138,7 @@ class StreamAction extends Action
     {
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
-        $redis->hSet(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId, 0);
+        $redis->hSet(C('R_ACCOUNT') . C('R_MESSAGE') . $who, $noticeId, 0);
     }
 
 
@@ -1148,7 +1149,7 @@ class StreamAction extends Action
     {
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
-        $redis->hDel(C('R_ACCOUNT')  . C('R_MESSAGE'). $who, $noticeId);
+        $redis->hDel(C('R_ACCOUNT') . C('R_MESSAGE') . $who, $noticeId);
     }
 
 
