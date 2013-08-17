@@ -957,7 +957,7 @@ class StreamAction extends Action
     {
         $isDiffusion = $RecordDiffusion->where("uid = $userloginid AND $diffusionSidArray[1] = sid")->find();
         if (!empty($isDiffusion['id'])) {
-            echo "你已经扩散了这条信息";
+            $this->ajaxReturn("", "你已经扩散了这条信息","0"); ;
             exit();
         }
     }
@@ -967,8 +967,7 @@ class StreamAction extends Action
         $time12hour = time() - 43200;
         $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
         if ($userDiffusion12hourAll >= $threshold) {
-            echo "你扩散了太多消息，休息休息再来吧 :)";
-            echo "<br />每12小时最多扩散3条";
+            $this->ajaxReturn("", "你扩散了太多消息，休息休息再来吧 :)<br>每12小时最多扩散3条","0"); ;
             exit();
         }
     }
