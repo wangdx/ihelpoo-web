@@ -1104,13 +1104,13 @@ class StreamAction extends Action
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $this->bounceNoticeMessageCount($redis, $recordOwnerId, 1);
         $this->deliverTo($recordOwnerId, $noticeIdForOwner);
-        $result = array($recordOwnerId);
+        $data = array($recordOwnerId);
         foreach ($userPriorityObj as $userPriority) {
             $this->bounceNoticeMessageCount($redis, $userPriority['uid'], 1);
             $this->deliverTo($userPriority['uid'], $noticeIdForFollowers);
-            array_push($result, $userPriority['uid']);
+            array_push($data, $userPriority['uid']);
         }
-        return $result;
+        return var_export($data, true);
     }
 
 
