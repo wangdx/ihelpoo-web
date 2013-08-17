@@ -1031,6 +1031,10 @@ class ItemAction extends Action {
                 $delHelpreplyAffected = $RecordHelpreply->where("id = $delHelpreplyId")->delete();
             }
             if (!$delHelpreplyAffected) {
+            	if ($recordSayId['uid'] == $userloginid) {
+            		$RecordHelpreply->where("id = $delHelpreplyId")->delete();
+            		$this->ajaxReturn(1,'删除成功','ok');
+            	}
                 $this->ajaxReturn(0,'没有权限,删除回复出错啦','wrong');
             }
             $this->ajaxReturn(1,'删除成功','ok');
