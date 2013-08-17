@@ -109,3 +109,20 @@
 .about_snsapply_ul li #submit{
     margin: 0 15px;
 }
+
+/*--- company ---*/
+.about_company_ul{
+    border: 1px solid #DDD;
+    padding: 10px;
+}
+.about_company_img_ul{
+    border: 1px solid #DDD;
+    margin: 15px 0;
+}
+.about_company_img_ul li{
+    padding: 5px;
+}
+.about_company_img_ul li img{
+    width: 800px;
+    height: 600px;
+}
