@@ -55,7 +55,7 @@ class UserAction extends Action {
             $msgActiveArray = array(
             	'id' => '',
             	'uid' => $uid,
-            	//'total' => '',
+            	'total' => '',
             	//'change' => '',
             	'way' => 'add',
             	//'reason' => '',
