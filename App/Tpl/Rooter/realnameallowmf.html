@@ -2,9 +2,9 @@
   <ul class="para_right_ul">
   <?php foreach ($adminRealnamemf as $realnamemf) : ?>
   <li>
-    <a href="__ROOT__/wo/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank"   onclick='notice.send("system", "12419");'>查询</a>) - <?php echo i_time($realnamemf['time']); ?>
+    <a href="__ROOT__/wo/<?php echo $realnamemf['uid']; ?>" target="_blank"><?php echo $realnamemf['uid']; ?></a> (<a href="__ROOT__/rooter/user/<?php echo $realnamemf['uid']; ?>" target="_blank" >查询</a>) - <?php echo i_time($realnamemf['time']); ?>
     <?php if ($realnamemf['allow'] == 0) { ?>
-    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>">发送允许修改邮件</a>
+    未处理 <a href="?sendmail=<?php echo $realnamemf['uid']; ?>"  onclick='notice.send("system", "<?php echo $realnamemf['uid']; ?>");'>发送允许修改邮件</a>
     <?php } else if ($realnamemf['allow'] == 1) { ?>
     已经发送允许修改邮件
     <?php } ?>
