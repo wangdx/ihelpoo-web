@@ -701,7 +701,7 @@ $().ready(function(){
                 if (result.info != '你已经扩散了这条信息') {
                 	$diffusionRecordObj.append('<span class="red_l">+1</span>');
                 }
-                notice.send('10000', result.data);
+                notice.send('10000', '10000,12419');
             }
         });
         $('.diffusion_view_div_box').slideUp('slow');
