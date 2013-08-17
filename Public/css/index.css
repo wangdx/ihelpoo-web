@@ -109,7 +109,16 @@ lable{
     position: relative;
     width: 220px;
 }
-
+#logininfo{
+    position: absolute;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background: #FFFA85;
+    font-size: 12px;
+    color: #C00;
+}
 .loginbox_email, .loginbox_password{
     background-image: url("../image/common/form_login.png");
     background-repeat: no-repeat;
@@ -290,10 +299,6 @@ lable{
     position: absolute;
     right: 0;
     top: 0;
-}
-#logininfo{
-    display: inline-block;
-    margin: 5px 0 0 5px;
 }
 #verificationli{
     position: relative;

@@ -82,11 +82,6 @@
     position: relative;
     left: 20px;
 }
-#emailinfo{
-    position: absolute;
-    left: 400px;
-    top: 18px;
-}
 #password, #passwordrepeat{
     width: 200px;
     position: relative;
@@ -270,10 +265,6 @@
 *html .sex_part{
     left: 80px;
 	top: 10px;
-}
-*html #emailinfo{
-    left: 300px;
-    top: 18px;
 }
 *html #passwordinfo{
     left: 300px;
