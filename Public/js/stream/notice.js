@@ -5,7 +5,7 @@ $(function () {
     var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.notice.state') : null;
     var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
     var state = null;
-    notice = new Chat(state);
+    notice = new Notice(state);
     notice.join($('#data_uid').val(), $('#data_touid').val());
     // restore some values
     if (state) {
@@ -60,7 +60,7 @@ $(function () {
     });
 });
 
-function Chat(state) {
+function Notice(state) {
     var _self = this;
     var _wasConnected = false;
     var _connected = false;
