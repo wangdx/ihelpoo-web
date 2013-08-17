@@ -44,7 +44,7 @@ $().ready(function(){
                 data: { email: emailcheck },
                 success: function(msg) {
                     if ('ok' == msg.status) {
-                        $('#logininfo').fadeIn().html('<span class="icon_index_wrong"></span>用户不存在');
+                        $('#logininfo').fadeIn().html('× 用户不存在');
                     } else if ('exist' == msg.status) {
                         $('#logininfo').fadeOut();
                     } else if ('wrong' == msg.status) {
