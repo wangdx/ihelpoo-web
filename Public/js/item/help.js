@@ -90,6 +90,20 @@ $().ready(function(){
             }
         });
     });
+    
+    //i fav
+    $('#fav_record_btn').click(function(){
+        var favSid = $(this).attr('value');
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "stream/fav",
+            data: "sid=" + favSid,
+            dataType: "json",
+            success:function(msg){
+                $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+            }
+        });
+    });
 
     /**
      * del
