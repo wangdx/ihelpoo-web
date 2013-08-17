@@ -210,7 +210,6 @@ class UserAction extends Action {
 	        $validate = array(
 	            array('email', 'email', '邮箱格式不对'),
 	            array('password', 'require', '密码不能为空'),
-	            array('login_status_input', 'number', '登录状态格式错误'),
 	        );
 	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
@@ -220,10 +219,11 @@ class UserAction extends Action {
 	        } else {
 	            $email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));//strip_tags
-	            $loginstatus = (int)trim(strip_tags($_POST["login_status_input"]));
+	            $loginstatus = (int)trim(strip_tags($_POST["login_status"]));
+	            $rememberpassword = (int)trim(strip_tags($_POST["remember_password"]));
 	            $password = md5($password);
 	            $IUserLogin = D("IUserLogin");
-	            if ($loginstatus == 1) {
+	            if ($loginstatus != 'on') {
 	            	$dbUser = $IUserLogin->userVerification($email, $password, 1);
 	            } else {
 	            	$dbUser = $IUserLogin->userVerification($email, $password, 2);
@@ -231,9 +231,11 @@ class UserAction extends Action {
 	            if (is_array($dbUser)) {
 	            	userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
                     session('userloginid',$dbUser['uid']);
-                    setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
-                    setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
-                    setcookie('userLoginstatus', $loginstatus, time() + 3600 * 24 *30, '/');
+                    if ($rememberpassword == 'on') {
+	                    setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
+	                    setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
+	                    setcookie('userLoginstatus', $loginstatus, time() + 3600 * 24 *30, '/');
+                    }
 
                     /**
                      * first time login
