@@ -148,7 +148,7 @@ function Notice(state) {
             num = num ? $('#message_system_nums_a').data(from) : 0;
             $('#message_system_nums_a').data(from, num + 1)
             $('#message_system_nums_a').show();
-            $('#message_system_nums_a').children('span').html('+' + num + 1);
+            $('#message_system_nums_a').children('span').html('+' + (num + 1));
         }
 
 
