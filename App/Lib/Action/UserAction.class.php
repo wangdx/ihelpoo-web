@@ -219,8 +219,8 @@ class UserAction extends Action {
 	        } else {
 	            $email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));//strip_tags
-	            $loginstatus = (int)trim(strip_tags($_POST["login_status"]));
-	            $rememberpassword = (int)trim(strip_tags($_POST["remember_password"]));
+	            $loginstatus = trim(strip_tags($_POST["login_status"]));
+	            $rememberpassword = trim(strip_tags($_POST["remember_password"]));
 	            $password = md5($password);
 	            $IUserLogin = D("IUserLogin");
 	            if ($loginstatus != 'on') {
