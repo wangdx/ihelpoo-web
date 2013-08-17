@@ -92,7 +92,7 @@
 				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 				<li>
 		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
-		        	扩散过<?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
+		        	扩散过 <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
 		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
 		    	<?php endforeach; ?>
 			</ul>
