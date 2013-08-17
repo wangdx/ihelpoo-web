@@ -650,7 +650,7 @@ class StreamAction extends Action
          * show online user nums
          */
         $UserLogin = M("UserLogin");
-        $recordOnlineUserNums = $UserLogin->where("online > 2 AND school = $recordSchoolInfo[id]")->count();
+        $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
         $this->assign('onlineUserNums', $recordOnlineUserNums);
 
         /**
