@@ -213,16 +213,11 @@ $().ready(function(){
         var textareacontentdata = help_content_from_textarea.replace(re, s);
         $("#textareacontent").val(textareacontentdata);
         if (textareacontentdata == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('帮助内容不能为空').delay(800).fadeOut('fast');
+        	ajaxInfo('帮助内容不能为空');
         } else if (textareacontentdata.length > 222) {
-        	$("#i_shine_hit_in").fadeIn('fast').html('帮助内容太长了 不能超过222个字符').delay(800).fadeOut('fast');
+        	ajaxInfo('帮助内容太长了 不能超过222个字符');
         } else {
-		    $(this).ajaxStart(function(){
-		    	$this.html($infoLoading);
-            }).ajaxStop(function(){
-        	    $infoLoading.remove();
-        	    $this.html('我来帮助');
-            });
+		    $this.html($infoLoading);
             $.post(baseUrl + "item/helpajax", $("#help_content_from").serialize(), function(msg){
                 if (msg.status == 'yes') {
                     $('#help_content_from_textarea').val('');
@@ -243,6 +238,7 @@ $().ready(function(){
                 } else {
                     $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 }
+                $this.html('我来帮助');
             }, "json");
         }
     });
@@ -263,9 +259,9 @@ $().ready(function(){
         $(this).parent().find('.help_reply_textareacontent').val(textareacontentdata);
         $help_comment_reply_form = $(this).parent();
         if (textareacontentdata == '') {
-            $("#i_shine_hit_in").fadeIn('fast').html('追问不能为空').delay(800).fadeOut('fast');
+        	ajaxInfo('追问不能为空');
         } else if (textareacontentdata.length > 222) {
-        	$("#i_shine_hit_in").fadeIn('fast').html('帮助内容太长了 不能超过222个字符').delay(800).fadeOut('fast');
+        	ajaxInfo('帮助内容太长了 不能超过222个字符');
         } else {
 		    $(this).ajaxStart(function(){
         	    $(this).after($infoLoading);
@@ -349,7 +345,8 @@ $().ready(function(){
             data: "diffusionSid=" + diffusionSid,
             datatype: "html",
             success:function(data){
-                $('#i_shine_hit').slideDown('normal').html('<div class="diffusion_list">'+data+'<br /><a class="diffusion_list_sure btn">确定</a></div>');
+                var infohtml = "<p align='left'>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            	ajaxInfo(infohtml);
                 if (data != '你已经扩散了这条信息') {
                     $thisDiffusion.append('<span class="red">+1</span>');
                 }
