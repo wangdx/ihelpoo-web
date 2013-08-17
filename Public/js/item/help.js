@@ -320,6 +320,37 @@ $().ready(function(){
             }
         });
     });
+    
+    $('.delete_help_reply_btn').click(function(){
+        var deleteReplyValue = $('#delete_help_reply_value').val();
+    	var infohtml = "<p>确定删除追问？</p> <a class='btn_sure' id='del_record_helpreply_btn_yes' value='"+deleteReplyValue+"'>确定</a><a class='btn_helprepl_cancel'>取消</a>";
+    	$alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
+    	$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FE6600");
+    	ajaxInfo(infohtml);
+    });
+    
+    $('#del_record_helpreply_btn_yes').live('click', function(){
+        var delRecordHelpreplyid = $(this).attr("value");
+    	$.ajax({
+            type: "POST",
+            url: baseUrl + "item/del",
+            data: "delhelpreply=" + delRecordHelpreplyid,
+            dataType: "json",
+            success:function(msg){
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").fadeOut("fast");
+        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+        		$alreadyDeleteHelpreplyLi.slideUp('fast');
+            }
+        });
+    });
+    
+    $('.btn_helprepl_cancel').live('click', function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").fadeOut("fast");
+		$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FFFFFF");
+    });
+    
     $('.help_comment_reply').hide();
     $('.delete_help_reply_btn').hide();
     $('.i_comment_list_ul li').hover(function(){
