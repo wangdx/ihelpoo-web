@@ -85,7 +85,7 @@ function Chat(state) {
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
             url: cometdURL,
-            logLevel: 'info'
+            logLevel: 'debug'
         });
         $.cometd.handshake();
     };
