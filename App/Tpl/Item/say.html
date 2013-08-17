@@ -64,7 +64,7 @@
 		  				}
 	 				}?>
 		    	<p>
-		    		<?php
+		    	<?php
 					if (!empty($imageRecordArray)) {
         				foreach($imageRecordArray as $imageRecord) {
         					$imageResize = getimagesize($imageRecord);
@@ -75,7 +75,8 @@
           	   					echo "<img src='".$imageRecord."' style='border:6px solid #EEE' />";
           					}
         				}
-    				}?>
+    				} 
+    			?>
 				</p>
 			</div>
 
@@ -111,7 +112,7 @@
 				<?php foreach ($recordPlusArray as $recordPlus): ?>
 				<li>
 		        	<a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>" >
-		        		<img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3" /><?php echo $recordPlus['nickname'] ?>
+		        		<img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3" /> <?php echo $recordPlus['nickname'] ?>
 		        	</a>
 		        	<span class="gray"><?php echo i_time($recordPlus['create_time']) ?></span></li>
 		    	<?php endforeach; ?>
