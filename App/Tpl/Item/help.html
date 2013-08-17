@@ -212,12 +212,11 @@
 		      <span class="f12 fr">
 		      <?php
 		      if ($helpreply['uid'] != $userloginedrecord['uid']) { ?>
-		          <a class="help_comment_reply">追问</a> <span class="icon_plus"></span>
+		          <a class="help_comment_reply">追问</a> <span class="icon_plus"></span> <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
 		      <?php }
       			if ($userloginedrecord['uid'] == $sayRecord['uid']) {
       		  ?>
-		      <input class="delete_help_reply_value" type="hidden" name="delhelpreply" value="<?php echo $helpreply['id'] ?>" />
-		      <a class="delete_help_reply_btn red_l">删除</a>
+		      <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
 		      <?php } ?>
 		      </span>
 		    </div>
