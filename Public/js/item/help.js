@@ -304,24 +304,6 @@ $().ready(function(){
 
     //del help reply
     $('.delete_help_reply_btn').click(function(){
-        var deleteReplyValue = $(this).parent().find('.delete_help_reply_value').val();
-        $alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "item/del",
-            data: "delhelpreply=" + deleteReplyValue,
-            dataType: "json",
-            beforeSend: function() {
-                $alreadyDeleteHelpreplyLi.css("backgroundColor", "#FE6600");
-            },
-            success:function(msg){
-                $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
-                $alreadyDeleteHelpreplyLi.slideUp('fast');
-            }
-        });
-    });
-    
-    $('.delete_help_reply_btn').click(function(){
         var deleteReplyValue = $('#delete_help_reply_value').val();
     	var infohtml = "<p>确定删除追问？</p> <a class='btn_sure' id='del_record_helpreply_btn_yes' value='"+deleteReplyValue+"'>确定</a><a class='btn_helprepl_cancel'>取消</a>";
     	$alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
