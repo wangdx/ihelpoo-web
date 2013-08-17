@@ -1064,10 +1064,6 @@ class UserAction extends Action {
         }
     }
     
-    /**
-     *
-     * Ajax function return json
-     */
     public function ajaxchecknickname()
     {
         if ($this->isPost()) {
@@ -1079,6 +1075,22 @@ class UserAction extends Action {
         		$this->ajaxReturn(0,'昵称已经存在','exist');
         	} else {
         		$this->ajaxReturn(0,'昵称可以注册','ok');
+        	}
+        }
+    }
+    
+    public function ajaxcheckpassword()
+    {
+        if ($this->isPost()) {
+        	$email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
+        	$password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
+        	$password = md5($password);
+        	$UserLogin = M("UserLogin");
+        	$recordUserLogin = $UserLogin->where("email = '$email' AND password = '$password'")->find();
+        	if (!empty($recordUserLogin['uid'])) {
+        		$this->ajaxReturn(0,'可以登录','ok');
+        	} else {
+        		$this->ajaxReturn(0,'密码错误','error');
         	}
         }
     }
