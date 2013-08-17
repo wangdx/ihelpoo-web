@@ -360,7 +360,6 @@ $().ready(function(){
                     $this.html('评论');
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
-                    $('#i_c_b_verification_code_img').({'src': ''});
                     
                     /**
                      * 
@@ -455,7 +454,6 @@ $().ready(function(){
                     $('html,body').animate({scrollTop: '0px'}, 800);
                     $this.parent().find('.comment_reply_verification').hide();
                     $this.parent().find('.comment_reply_verificationcode').val('999');
-                    $this.parent().find('.comment_reply_verification_code_img').({'src': ''});
                 } else {
                     ajaxInfo(msg.info);
                 }
