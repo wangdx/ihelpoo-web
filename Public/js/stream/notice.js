@@ -93,7 +93,7 @@ function Chat(state) {
 
     this.leave = function () {
         $.cometd.batch(function () {
-            $.cometd.publish('/chat/p2p', {
+            $.cometd.publish('/notice/notice', {
                 from: _from,
                 membership: 'leave',
                 chat: _from + ' has left'
@@ -111,8 +111,8 @@ function Chat(state) {
         var chat = '4';
         var image = '无';
         if (!chat || !chat.length) return;
-        $.cometd.publish('/service/p2ps', {
-            room: '/chat/p2p',
+        $.cometd.publish('/service/notice', {
+            room: '/notice/p2p',
             from: from,
             to: to,
             chat: chat,
@@ -121,8 +121,8 @@ function Chat(state) {
     };
 
     this.updateInputStatus = function(status){
-        $.cometd.publish('/service/p2ps', {
-            room: '/chat/p2p',
+        $.cometd.publish('/service/notice', {
+            room: '/notice/p2p',
             from: _from,
             to: _to,
             chat: "",
@@ -217,7 +217,7 @@ function Chat(state) {
         // first time connection for this client, so subscribe tell everybody.
         $.cometd.batch(function () {
             _subscribe();
-            $.cometd.publish('/chat/p2p', {   //TODO this should be a system service
+            $.cometd.publish('/notice/p2p', {   //TODO this should be a system service
                 from: _from,
                 membership: 'join',
                 chat: _from + ' has joined'
@@ -234,9 +234,9 @@ function Chat(state) {
 //                chat: 'Connection to Server Opened'
 //            }
 //        });
-        $.cometd.publish('/service/members', {
+        $.cometd.publish('/service/users', {
             from: _from,
-            room: '/chat/p2p'
+            room: '/notice/p2p'
         });
     }
 
