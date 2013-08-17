@@ -29,11 +29,7 @@ $().ready(function(){
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
     $('#email').blur(function(){
         var emailcheck = $('#email').val();
-        $(this).ajaxStart(function(){
-        	$('#emailinfo').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#logininfo').html($infoLoading);
         if (emailcheck == '') {
             $('#emailinfo').html('<span class="icon_index_wrong"></span>邮箱不能为空');
         } else {
@@ -48,13 +44,13 @@ $().ready(function(){
                     } else if ('exist' == msg.status) {
                         $('#logininfo').fadeOut();
                     } else if ('wrong' == msg.status) {
-                        $('#logininfo').fadeIn().html('<span class="icon_index_wrong"></span>' + msg.info);
+                        $('#logininfo').fadeIn().html('× ' + msg.info);
                     }
                 }
             });
         }
     });
-
+    
     /**
      * click submit
      */
@@ -70,7 +66,19 @@ $().ready(function(){
             $('#logininfo').fadeIn().html('× 密码最短不能少于6个字符');
         } else {
             $('#logininfo').fadeOut();
-            $("form").submit();
+            $.ajax({
+                type: 'POST',
+                url: baseUrl + 'user/ajaxcheckpassword',
+                dataType: 'json',
+                data: { email: emailcheck, password: passwordcheck },
+                success: function(msg) {
+                	if (msg.status == 'ok') {
+                		$("form").submit();
+                	} else {
+                		$('#logininfo').fadeIn().html('× ' + msg.info);
+                	}
+                }
+            });
         }
     });
 
