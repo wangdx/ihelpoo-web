@@ -651,7 +651,7 @@ class StreamAction extends Action
          */
         $UserLogin = M("UserLogin");
         $recordOnlineUserNums = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
-        $this->assign('onlineUserNums', $recordSchoolInfo);
+        $this->assign('onlineUserNums', $recordOnlineUserNums);
 
         /**
          * show user honor nums
