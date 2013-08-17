@@ -1,10 +1,12 @@
+notice = null;
+
 $(function () {
     // Check if there was a saved application state
     var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.notice.state') : null;
     var state = stateCookie ? org.cometd.JSON.fromJSON(stateCookie) : null;
     var state = null;
-    var chat = new Chat(state);
-    chat.join($('#data_uid').val(), $('#data_touid').val());
+    notice = new Chat(state);
+    notice.join($('#data_uid').val(), $('#data_touid').val());
     // restore some values
     if (state) {
         $('#data_uid').val(state.from);
@@ -29,7 +31,7 @@ $(function () {
             success: function (msg) {
                 if (msg.status == 'ok') {
                     $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta1");
-                    chat.send($('#data_touid').val(), userid);
+                    notice.send($('#data_touid').val(), userid);
                 } else {
                     ajaxInfo(msg.info);
                 }
