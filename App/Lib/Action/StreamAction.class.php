@@ -956,7 +956,8 @@ class StreamAction extends Action
         $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionId);
         $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
         $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionId, 'diffusiontoowner');
-        $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
+        $result = $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
+        $this->ajaxReturn($result['data'],$result['info'],$result['status']);
         exit();
     }
 
@@ -964,7 +965,7 @@ class StreamAction extends Action
     {
         $isDiffusion = $RecordDiffusion->where("uid = $userloginid AND $diffusionSidArray[1] = sid")->find();
         if (!empty($isDiffusion['id'])) {
-            echo "你已经扩散了这条信息";
+            $this->ajaxReturn("", "你已经扩散了这条信息","0"); ;
             exit();
         }
     }
@@ -974,8 +975,7 @@ class StreamAction extends Action
         $time12hour = time() - 43200;
         $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
         if ($userDiffusion12hourAll >= $threshold) {
-            echo "你扩散了太多消息，休息休息再来吧 :)";
-            echo "<br />每12小时最多扩散3条";
+            $this->ajaxReturn("", "你扩散了太多消息，休息休息再来吧 :)<br>每12小时最多扩散3条","0"); ;
             exit();
         }
     }
@@ -1080,23 +1080,30 @@ class StreamAction extends Action
         $UserPriority = M("UserPriority");
         $userPriorityObj = $UserPriority->where("pid = $userloginid")->join("i_user_login ON i_user_priority.uid = i_user_login.uid")->select();
         $userPriorityNums = sizeof($userPriorityObj);
-        $this->outputMessage($userPriorityNums, $userPriorityObj);
-        $this->saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId);
+        $resultData = $this->saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId);
+
+        $resultInfo =  $this->outputMessage($userPriorityNums, $userPriorityObj);
+        $result = array(
+            "data" => $resultData,
+            "info" => $resultInfo,
+            "status" => "ok"
+        );
+        return $result;
     }
 
     public function outputMessage($userPriorityNums, $userPriorityObj)
     {
     	$userloginid = session('userloginid');
-        echo "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
+        $info = "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
         if (empty($userPriorityNums)) {
             exit();
         }
         foreach ($userPriorityObj as $idx => $userPriority) {
             if ($idx >= 10) break;
-            echo "<a href='/wo/".$userPriority['uid']."' class='f12'>".$userPriority['nickname']."</a> <br />";
+            $info .= "<a href='/wo/".$userPriority['uid']."' class='f12'>".$userPriority['nickname']."</a> <br />";
         }
-        echo "...";
-        return $userPriority;
+        $info .= "...";
+        return $info;
     }
 
     public function saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId)
@@ -1105,10 +1112,13 @@ class StreamAction extends Action
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $this->bounceNoticeMessageCount($redis, $recordOwnerId, 1);
         $this->deliverTo($recordOwnerId, $noticeIdForOwner);
+        $result = array($recordOwnerId);
         foreach ($userPriorityObj as $userPriority) {
             $this->bounceNoticeMessageCount($redis, $userPriority['uid'], 1);
             $this->deliverTo($userPriority['uid'], $noticeIdForFollowers);
+            array_push($result, $userPriority['uid']);
         }
+        return $result;
     }
 
 

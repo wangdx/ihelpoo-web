@@ -694,11 +694,12 @@ $().ready(function(){
             type: "POST",
             url: baseUrl + "stream/ajax",
             data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
-            datatype: "html",
-            success:function(data){
-            	var infohtml = "<p align='left'>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            dataType: "json",
+            success:function(result){
+            	var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
+                notice.send('10000', result.data);
             	ajaxInfo(infohtml);
-                if (data != '你已经扩散了这条信息') {
+                if (result.info != '你已经扩散了这条信息') {
                 	$diffusionRecordObj.append('<span class="red_l">+1</span>');
                 }
             }
@@ -853,7 +854,7 @@ $().ready(function(){
     $('.btn_cancel').live('click', function(){
     	$("#ajax_info_div").fadeOut("fast");
 		$("#ajax_info_div_outer").fadeOut("fast");
-		$deleteCommentLi.css("backgroundColor", "#FFF");
+//		$deleteCommentLi.css("backgroundColor", "#FFF"); //FIXME ReferenceError: $deleteCommentLi is not defined
     });
     
     /**
