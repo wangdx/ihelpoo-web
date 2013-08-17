@@ -1090,7 +1090,7 @@ class UserAction extends Action {
         	if (!empty($recordUserLogin['uid'])) {
         		$this->ajaxReturn(0,'可以登录','ok');
         	} else {
-        		$this->ajaxReturn(0,'密码错误','error');
+        		$this->ajaxReturn(0,'账号或密码错误','error');
         	}
         }
     }
