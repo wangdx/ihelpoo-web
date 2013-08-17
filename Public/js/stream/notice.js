@@ -108,7 +108,6 @@ function Chat(state) {
     };
 
     this.send = function (from, to) {
-        console.log(from+'[][][][][]'+to);
         var chat = '4';
         var image = '无';
         if (!chat || !chat.length) return;
@@ -210,7 +209,7 @@ function Chat(state) {
     }
 
     function _subscribe() {
-        _chatSubscription = $.cometd.subscribe('/chat/p2p', _self.receive);
+        _chatSubscription = $.cometd.subscribe('/notice/p2p', _self.receive);
         _membersSubscription = $.cometd.subscribe('/members/p2p', _self.members);
     }
 
