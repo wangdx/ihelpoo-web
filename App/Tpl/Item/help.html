@@ -214,7 +214,7 @@
 			      if ($helpreply['uid'] != $userloginedrecord['uid']) { ?>
 			          <a class="help_comment_reply">追问</a> <span class="icon_plus"></span> 
 			      <?php } else { ?>
-			      	 <span class="icon_plus"></span> <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
+			      	 <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a> <span class="icon_plus"></span> 
 			      <?php } if ($userloginedrecord['uid'] == $sayRecord['uid']) { ?>
 			      	<a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
 			      <?php } ?>
