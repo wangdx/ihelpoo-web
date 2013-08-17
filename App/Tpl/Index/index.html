@@ -61,6 +61,7 @@ html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidd
 		</div>
 	<?php } else { ?>
 	    <div class="mim_loginbox">
+	      <div id="logininfo"></div>
 		  <form action="/user/login" method="post">
 		      <div class="loginbox_email_bg">
 		      <div class="loginbox_email">
@@ -81,16 +82,6 @@ html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidd
 			  <div class="loginbox_more gray f12">
 			  	<a href="__ROOT__/user/resetpw">忘记密码</a> | <a href="__ROOT__/user/register">注册</a>
 			  </div>
-		    <!-- <span class="white f12">登录名(邮箱): <span id="emailinfo" class="red_l"></span></span><input type="text" name="email" id="email" />
-		    <span class="white f12">密码: <span id="passwordinfo" class="red_l"></span></span><input type="password" name="password" id="password" />
-		    	<span id="login_status" value="1" class="f12 white" title="点击切换登录状态"><span class="login_status_online"></span> 正常登录</span>
-		    	<input type="hidden" name="login_status_input" id="login_status_input" value="1" />
-		    	<span id="wb_connect_btn"></span>
-		      <a id="submit" ></a>
-		      <a href="__ROOT__/user/register" class="register white">注册</a>
-		      <a href="__ROOT__/user/resetpw" class="resetpw f12 white">找回密码</a>
-		      <span id="wb_connect_btn"></span>
-		      -->
 		  </form>
 		</div>
 		<?php } ?>

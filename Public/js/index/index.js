@@ -27,10 +27,7 @@ $().ready(function(){
 	});
 	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
-    emailok = 'no';
-    passwordok = 'no';
     $('#email').blur(function(){
-        emailok = 'no';
         var emailcheck = $('#email').val();
         $(this).ajaxStart(function(){
         	$('#emailinfo').html($infoLoading);
@@ -47,16 +44,11 @@ $().ready(function(){
                 data: { email: emailcheck },
                 success: function(msg) {
                     if ('ok' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_index_wrong"></span>用户不存在');
+                        $('#logininfo').fadeIn().html('<span class="icon_index_wrong"></span>用户不存在');
                     } else if ('exist' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_right"></span>');
-                        emailok = 'ok';
-                    } else if ('movedata' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_right"></span>');
-                        alert(msg.info);
-                        window.location = baseUrl;
+                        $('#logininfo').fadeOut();
                     } else if ('wrong' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_index_wrong"></span>' + msg.info);
+                        $('#logininfo').fadeIn().html('<span class="icon_index_wrong"></span>' + msg.info);
                     }
                 }
             });
