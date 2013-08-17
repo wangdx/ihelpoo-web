@@ -464,7 +464,14 @@ class RooterAction extends Action {
     				'remark' => $remark,
     				'time' => time()
     			);
-    			$SchoolInfo->add($newSchoolData);
+    			$newSchoolId = $SchoolInfo->add($newSchoolData);
+    			
+    			$WebStatus = M("WebStatus");
+    			$newWebStatuslData = array(
+    				'sid' => $newSchoolId,
+    				'time' => time(),
+    			);
+    			$WebStatus->add($newWebStatuslData);
     			
     			/**
     			 * admin user operating record
