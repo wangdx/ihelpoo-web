@@ -41,10 +41,11 @@
 		  		</span>
 			</span>
 			<span class="fr f12 black_l i_content_span_info">
-			  	<?php echo "<span class='icon_words'></span> 评论".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?>° 
-			  	<a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a> 
+			  	<span class='icon_up'></span>人气<?php echo $sayRecord['hit_co']; ?>° 
+			  	<span class='icon_words'></span>评论(<?php echo $sayRecord['comment_co']; ?>)
+			  	<i class="icon_hand"></i>赞(<?php echo $sayRecord['plus_co'] ?>)</span> 
+				扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
-				 | <a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
 				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
 				<?php } ?>
 		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
@@ -79,18 +80,31 @@
 			</div>
 
 			<?php if (!empty($sayRecord['diffusion_co'])) {?>
+			<?php if (!empty($userloginedrecord['uid'])) { ?>
+				<a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>) 
+			<?php } else { ?>
+				<span>扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</span> 
+			<?php } ?>
+			他们扩散了这条信息
 			<ul class="i_record_diffusion black_l f12">
 				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 				<li>
 		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
-		        	扩散了这条信息. <?php if(!empty($recordDiffusion['view'])) echo '<- 并表示：'.$recordDiffusion['view'] ?>
+		        	<?php if(!empty($recordDiffusion['view'])) echo '并表示：'.$recordDiffusion['view'] ?>
 		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
 		    	<?php endforeach; ?>
 			</ul>
 			<?php } ?>
 			
 			<?php if (!empty($sayRecord['plus_co'])) {?>
-			<div class="i_record_plus_info f12">他们赞过了这条信息</div>
+			<div class="i_record_plus_info f12">
+				<?php if (!empty($userloginedrecord['uid'])) { ?>
+				<a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a> 
+				<?php } else { ?>
+				<i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span> 
+				<?php } ?>
+				他们赞过了这条信息
+			</div>
 			<ul class="i_record_plus black_l f12">
 				<?php foreach ($recordPlusArray as $recordPlus): ?>
 				<li>
