@@ -44,7 +44,7 @@ $().ready(function(){
                 data: { email: emailcheck },
                 success: function(msg) {
                     if ('ok' == msg.status) {
-                        $('#logininfo').fadeIn().html('<span class="icon_index_wrong"></span>用户不存在');
+                        $('#logininfo').fadeIn().html('× 用户不存在');
                     } else if ('exist' == msg.status) {
                         $('#logininfo').fadeOut();
                     } else if ('wrong' == msg.status) {
@@ -63,13 +63,13 @@ $().ready(function(){
     	var passwordcheck = $('#password').val();
         var passwordlegth = passwordcheck.length;
         if (emailcheck == '') {
-        	$('#emailinfo').html('<span class="icon_index_wrong"></span>邮箱不能为空');
+        	$('#logininfo').fadeIn().html('× 邮箱不能为空');
         } else if (passwordcheck == '') {
-            $('#passwordinfo').html('<span class="icon_index_wrong"></span>密码不能为空');
+            $('#logininfo').fadeIn().html('× 密码不能为空');
         } else if (passwordlegth < 6) {
-            $('#passwordinfo').html('<span class="icon_index_wrong"></span>密码最短不能少于6个字符');
+            $('#logininfo').fadeIn().html('× 密码最短不能少于6个字符');
         } else {
-            $('#passwordinfo').html('<span class="icon_right"></span>');
+            $('#logininfo').fadeOut();
             $("form").submit();
         }
     });

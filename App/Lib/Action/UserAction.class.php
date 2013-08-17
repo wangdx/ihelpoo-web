@@ -215,7 +215,8 @@ class UserAction extends Action {
 	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
 	        if (!$result) {
-	            exit($UserLogin->getError());
+	            $loginerror = $UserLogin->getError();
+	            exit($loginerror);
 	        } else {
 	            $email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));//strip_tags
