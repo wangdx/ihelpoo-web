@@ -52,7 +52,7 @@
 		    	<a class="black_l" id="del_record_btn"><span class="icon_garbage"></span>删除</a>
 		    	<?php } ?>
 		  	</span>
-		  	<input type="hidden" name="sid" id="recordsid" value="<?php echo $sayRecord['sid'] ?>"/>
+		  	<input type="hidden" name="sid" id="recordsid" value="<?php echo $sayRecord['sid'] ?>" />
 			<div class="i_content_p lh15">
 		    	<?php echo $emotion->transEmotion(i_content(strip_tags($sayRecord['content'],"<a><span>"))); ?>
 				<?php
@@ -99,7 +99,7 @@
 			</ul>
 			<?php } ?>
 			
-			<?php if (!empty($sayRecord['plus_co'])) {?>
+			<?php if (!empty($sayRecord['plus_co'])) { ?>
 			<div class="i_record_plus_info f12">
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
 				<a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a> 

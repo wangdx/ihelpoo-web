@@ -188,6 +188,18 @@ class ItemAction extends Action {
         	->select();
         	$this->assign('recordDiffusionArray', $recordDiffusionArray);
         }
+        
+        /**
+         * puls part
+         */
+        $RecordPlus = M("RecordPlus");
+        if (!empty($sayRecord['plus_co'])) {
+        	$recordPlusArray = $RecordPlus->where("sid = $recordId")->join('i_user_login ON i_record_plus.uid = i_user_login.uid')
+		    ->field('id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+		    ->order('i_record_plus.create_time DESC')
+		    ->select();
+		    $this->assign('recordPlusArray', $recordPlusArray);
+        }
 
         /**
          * show & handle images

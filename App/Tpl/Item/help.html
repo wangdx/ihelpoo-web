@@ -41,9 +41,11 @@
 		      离帮助结束还有<?php echo floor((($sayRecord['time'] + 1296000) - time()) / 86400) ?>天
 		      <?php } ?>
 		      求助于<?php echo i_time($sayRecord['time']) ?> <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co'] ?>
-		       |
+		       | 
+		      <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
 		      <?php if (!empty($userloginedrecord['uid'])) { ?>
 		      	<a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo $recordDiffusionNums ?>)
+		      	<a class="black_l" id="fav_record_btn" value="<?php echo $sayRecord['sid'] ?>"><span class="icon_star"></span>收藏</a>
 		      <?php } else { ?>
 		      	扩散(<?php echo $recordDiffusionNums ?>)
 		      <?php } ?>
@@ -160,16 +162,26 @@
 		    <?php endforeach; ?>
 		  </ul>
 		<?php } ?>
+		
+		<!-- plus -->
+		<?php if (!empty($sayRecord['plus_co'])) { ?>
+		<ul class="i_record_plus black_l f12">
+			<?php foreach ($recordPlusArray as $recordPlus): ?>
+				<li>
+		        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>" >
+		        	<img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3" /> <?php echo $recordPlus['nickname'] ?>
+		        </a>
+		        <span class="gray"><?php echo i_time($recordPlus['create_time']) ?></span>
+		        </li>
+		    <?php endforeach; ?>
+		</ul>
+		<?php } ?>
 
 		<!-- 帮助回复 -->
 		<div class="i_comment_list">
 		  <ul class="i_comment_list_ul">
-		  <?php
-		    $i = 1;
-   			 foreach ($allHelpreply as $helpreply) :
-  			?>
+		  <?php foreach ($allHelpreply as $helpreply) : ?>
 		  <li>
-		    <span class="i_c_l_u_li_spannum gray"><?php echo $i ?></span>
 		    <?php echo "<a href='".__ROOT__."/stream/u/".$helpreply['uid']."'>" ?>
 		      <img src="<?php echo i_icon_check($helpreply['uid'], $helpreply['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
 		    </a>
@@ -221,10 +233,7 @@
 		      </form>
 		    <?php } ?>
 		  </li>
-		  <?php
-		    $i++;
-			endforeach;
-		  ?>
+		  <?php endforeach; ?>
 		  </ul>
 		</div>
 	</div>
