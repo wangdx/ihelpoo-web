@@ -691,27 +691,17 @@ $().ready(function(){
         }
         var diffusionSid = $diffusionRecordObj.attr('value');
         $.ajax({
-//            type: "POST",
-//            url: baseUrl + "stream/ajax",
-//            data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
-//            datatype: "json",
-//            success:function(msg){
-//                console.log(msg.data);
-//            	var infohtml = "<p align='left'>" + msg + "</p> <a class='btn_cancel'>确定</a>";
-//            	ajaxInfo(infohtml);
-//                if (data != '你已经扩散了这条信息') {
-//                	$diffusionRecordObj.append('<span class="red_l">+1</span>');
-//                }
-//            }
-
             type: "POST",
-            url: baseUrl+"stream/ajax",
+            url: baseUrl + "stream/ajax",
             data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
             dataType: "json",
-            success:function(msg){
-                console.log(msg.data);
+            success:function(result){
+            	var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
+            	ajaxInfo(infohtml);
+                if (data != '你已经扩散了这条信息') {
+                	$diffusionRecordObj.append('<span class="red_l">+1</span>');
+                }
             }
-
         });
         $('.diffusion_view_div_box').slideUp('slow');
     });
