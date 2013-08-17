@@ -816,6 +816,10 @@ $().ready(function(){
 	                    $commentViewDivBox.find('.comment_view_div_box_ul').prepend(commentContent);
 	                    $this.parent().find('.comment_reply_verification_stream').hide();
 	                    $this.parent().find('.comment_reply_verification_streamcode').val('999');
+<<<<<<< HEAD
+=======
+	                    $this.parent().find('.comment_reply_verification_stream_code_img').attr({'src': ''});
+>>>>>>> 2cd9999f3beedd8f50b8ae0aacf1834e7439f8ac
 	                } else {
 	                    ajaxInfo(msg.info);
 	                }

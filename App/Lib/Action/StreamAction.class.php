@@ -428,6 +428,7 @@ class StreamAction extends Action
          * priority set; rules by i_user_priority
          */
         $pidString = NULL;
+        $sidString = NULL;
         $allIdString = NULL;
         $pidGroupArray = array();
         $isSetPriority = $UserPriority->where("uid = $userloginid")->select();
