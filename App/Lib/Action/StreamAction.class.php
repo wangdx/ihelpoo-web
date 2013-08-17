@@ -1079,21 +1079,21 @@ class StreamAction extends Action
     public function outputMessage($userPriorityNums, $userPriorityObj)
     {
         $data = array(
-            10000,11111
+            '10000','11111'
         );
         $this->ajaxReturn($data, '扩散了', 'yes');
-        exit();
-//    	$userloginid = session('userloginid');
-//        echo "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
-//        if (empty($userPriorityNums)) {
-//            exit();
-//        }
-//        foreach ($userPriorityObj as $idx => $userPriority) {
-//            if ($idx >= 10) break;
-//            echo "<a href='/wo/".$userPriority['uid']."' class='f12'>".$userPriority['nickname']."</a> <br />";
-//        }
-//        echo "...";
-//        return $userPriority;
+        return;
+    	$userloginid = session('userloginid');
+        echo "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
+        if (empty($userPriorityNums)) {
+            exit();
+        }
+        foreach ($userPriorityObj as $idx => $userPriority) {
+            if ($idx >= 10) break;
+            echo "<a href='/wo/".$userPriority['uid']."' class='f12'>".$userPriority['nickname']."</a> <br />";
+        }
+        echo "...";
+        return $userPriority;
     }
 
     public function saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId)
