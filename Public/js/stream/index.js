@@ -694,7 +694,7 @@ $().ready(function(){
             type: "POST",
             url: baseUrl + "stream/ajax",
             data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
-            datatype: "html",
+            datatype: "json",
             success:function(data){
             	var infohtml = "<p align='left'>" + data.data + "</p> <a class='btn_cancel'>确定</a>";
             	ajaxInfo(infohtml);
