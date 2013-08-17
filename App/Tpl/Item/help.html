@@ -44,7 +44,7 @@
 		       | 
 		      <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
 		      <?php if (!empty($userloginedrecord['uid'])) { ?>
-		      	<a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散</a>(<?php echo $recordDiffusionNums ?>)
+		      	<a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
 		      	<a class="black_l" id="fav_record_btn" value="<?php echo $sayRecord['sid'] ?>"><span class="icon_star"></span>收藏</a>
 		      <?php } else { ?>
 		      	扩散(<?php echo $recordDiffusionNums ?>)
