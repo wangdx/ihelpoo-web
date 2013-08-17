@@ -649,9 +649,9 @@ class StreamAction extends Action
         /**
          * show online user nums
          */
-        $IWebStatus = D("IWebStatus");
-        $recordOnlineUserNums = $IWebStatus->paraExists('online_user_nums');
-        $this->assign('onlineUserNums', $recordOnlineUserNums['valuechar']);
+        $UserLogin = M("UserLogin");
+        $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
+        $this->assign('onlineUserNums', $recordOnlineUserNums);
 
         /**
          * show user honor nums
@@ -675,31 +675,6 @@ class StreamAction extends Action
         if (!empty($recordUserLoginWb['uid'])) {
             $this->assign('isAlreadyBind', $recordUserLoginWb);
         }
-
-        /**
-         * calculate online user numbers. calculate per 30 second
-         */
-        $IWebStatus = D("IWebStatus");
-        $recordOnlineUserNums = $IWebStatus->paraExists('online_user_nums');
-        $userOnlineObject = $UserLogin->where("online != 0")->join('i_user_status ON i_user_status.uid = i_user_login.uid')->join('i_user_info ON i_user_info.uid = i_user_login.uid')->select();
-        if (15 < (time() - $recordOnlineUserNums['valueint'])) {
-            foreach ($userOnlineObject as $userOnlineOne) {
-                if (900 < (time() - $userOnlineOne['last_active_ti'])) {
-                    $updateUserOnlineStatusData = array(
-                        'uid' => $userOnlineOne['uid'],
-                        'online' => 0,
-                    );
-                    $UserLogin->save($updateUserOnlineStatusData);
-                }
-            }
-        }
-        $userOnlineNums = $UserLogin->where("online != 0")->count();
-        $updateUserOnlineNums = array(
-            'parameter' => $recordOnlineUserNums['parameter'],
-            'valuechar' => $userOnlineNums,
-            'valueint' => time(),
-        );
-        $IWebStatus->save($updateUserOnlineNums);
 
         /**
          * index_spread_info

@@ -37,34 +37,24 @@ class LabAction extends Action {
     	/**
          * calculate online user numbers. calculate per 30 second
          */
-        $IWebStatus = D("IWebStatus");
         $UserLogin = M("UserLogin");
-        $recordOnlineUserNums = $IWebStatus->paraExists('online_user_nums');
         $userOnlineObject = $UserLogin->where("online != 0")->join('i_user_status ON i_user_status.uid = i_user_login.uid')->join('i_user_info ON i_user_info.uid = i_user_login.uid')->select();
         
-        if (5 < (time() - $recordOnlineUserNums['valueint'])) {
-            foreach ($userOnlineObject as $userOnlineOne) {
-                if (900 < (time() - $userOnlineOne['last_active_ti'])) {
-                    $updateUserOnlineStatusData = array(
-                    	'uid' => $userOnlineOne['uid'],
-            	        'online' => 0,
-            	    );
-                    $UserLogin->save($updateUserOnlineStatusData);
-                }
-            }
+        foreach ($userOnlineObject as $userOnlineOne) {
+        	if (900 < (time() - $userOnlineOne['last_active_ti'])) {
+        		$updateUserOnlineStatusData = array(
+                    'uid' => $userOnlineOne['uid'],
+            	    'online' => 0,
+        		);
+        		$UserLogin->save($updateUserOnlineStatusData);
+        	}
         }
-        $userOnlineNums = $UserLogin->where("online != 0")->count();
-        $updateUserOnlineNums = array(
-            'parameter' => $recordOnlineUserNums['parameter'],
-            'valuechar' => $userOnlineNums,
-            'valueint' => time(),
-        );
-        $IWebStatus->save($updateUserOnlineNums);
+        $userOnlineNums = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")->count();
         
         /**
          * hidden online user nums 
          */
-        $hiddenUserNums = $UserLogin->where("online = 2")->count();
+        $hiddenUserNums = $UserLogin->where("online = 2 AND school = $recordSchoolInfo[id]")->count();
         $this->assign('hiddenUserNums',$hiddenUserNums);
         $this->assign('onlineUserNums',$userOnlineNums);
         $this->assign('userOnlineObject',$userOnlineObject);
