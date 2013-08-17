@@ -40,16 +40,35 @@ class LabAction extends Action {
         $UserLogin = M("UserLogin");
         $userOnlineObject = $UserLogin->where("online != 0")->join('i_user_status ON i_user_status.uid = i_user_login.uid')->join('i_user_info ON i_user_info.uid = i_user_login.uid')->select();
         
-        foreach ($userOnlineObject as $userOnlineOne) {
-        	if (900 < (time() - $userOnlineOne['last_active_ti'])) {
-        		$updateUserOnlineStatusData = array(
-                    'uid' => $userOnlineOne['uid'],
-            	    'online' => 0,
-        		);
-        		$UserLogin->save($updateUserOnlineStatusData);
+        
+        /**
+         * show online user nums, refrash per 15 second
+         */
+        $WebStatus = M("WebStatus");
+        $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
+        if (5 < (time() - $recordWebStatus['time'])) {
+        	$userOnlineNums = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")->count();
+        	$newWebStats = array(
+        		'sid' => $recordSchoolInfo['id'],
+        		'online_nums' => $userOnlineNums,
+        		'time' => time(),
+        	);
+        	$WebStatus->save($newWebStats);
+        	
+        	foreach ($userOnlineObject as $userOnlineOne) {
+	        	if (900 < (time() - $userOnlineOne['last_active_ti'])) {
+	        		$updateUserOnlineStatusData = array(
+	                    'uid' => $userOnlineOne['uid'],
+	            	    'online' => 0,
+	        		);
+	        		$UserLogin->save($updateUserOnlineStatusData);
+	        	}
         	}
+        } else {
+        	$userOnlineNums = $recordWebStatus['online_nums'];
         }
-        $userOnlineNums = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")->count();
+        
+        
         
         /**
          * hidden online user nums 
