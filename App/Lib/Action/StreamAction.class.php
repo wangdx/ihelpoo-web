@@ -145,10 +145,18 @@ class StreamAction extends Action
                 }
 
                 /**
-                 * handle coin nums
+                 * handle active nums
                  */
                 if (($recordUserLogin['active'] - $reward_coins) < 0 && $help_is == 1) {
                     $this->ajaxReturn(0, "活跃不够了", 'error');
+                }
+                
+                /**
+                 * repate limit
+                 */
+                $lastRecordSay = $RecordSay->where("uid = $userloginid")->order("sid DESC")->find();
+                if ($lastRecordSay['content'] == $content) {
+                	$this->ajaxReturn(0, "不要贪心噢，不能重复发布相同的内容", 'error');
                 }
 
                 /**
