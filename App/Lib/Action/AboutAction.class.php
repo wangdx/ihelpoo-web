@@ -59,6 +59,13 @@ class AboutAction extends Action {
         $this->display();
     }
     
+    public function company()
+    {
+    	$title = "武汉我帮网络科技有限公司";
+    	$this->assign('title', $title);
+    	$this->display();
+    }
+    
     public function sns()
     {
     	$title = "作共建地方化校园SNS";
