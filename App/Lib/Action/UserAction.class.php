@@ -257,7 +257,7 @@ class UserAction extends Action {
                     	redirect('/stream', 0, '登录成功...');
                     }
 	            } else {
-	            	redirect('/', 3, $dbUser.'，请重新登录，3秒后页面跳转');
+	            	redirect('/', 3, $dbUser.'，请重新登录，3秒后页面跳转...');
 	            }
 	        }
     	}
