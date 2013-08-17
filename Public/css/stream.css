@@ -1077,7 +1077,8 @@
     border-radius: 3px;
 }
 .i_record_diffusion li{
-    padding: 2px 0;
+    display: inline;
+    padding: 5px 10px 5px 0;
 }
 .i_record_plus_info{
     margin: 10px 0 5px;
@@ -1104,7 +1105,7 @@
 }
 .i_comment_box{
     border-bottom: 3px solid #EEE;
-    padding: 10px 5px;
+    padding: 10px 0;
     position: relative;
 }
 .i_comment_box textarea{
