@@ -935,6 +935,12 @@ class StreamAction extends Action
 
     public function ajax()
     {
+
+        $data = array(
+            '10000','11111'
+        );
+        $this->ajaxReturn($data, '扩散了', 'yes');
+        exit();
         if (empty($_POST['diffusionSid'])) {
             exit();
         }
@@ -1078,11 +1084,6 @@ class StreamAction extends Action
 
     public function outputMessage($userPriorityNums, $userPriorityObj)
     {
-        $data = array(
-            '10000','11111'
-        );
-        $this->ajaxReturn($data, '扩散了', 'yes');
-        return;
     	$userloginid = session('userloginid');
         echo "已扩散给 <a href='" . __ROOT__ . "/wo/quaned/".$userloginid."'>您圈子</a> 中的<span class='f14 fb orange'>" . $userPriorityNums . "</span> 人...<br /><br />";
         if (empty($userPriorityNums)) {
