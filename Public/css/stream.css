@@ -1066,11 +1066,8 @@
 }
 .i_content_p{
     margin-top: 5px;
-    border-top: 3px solid #DDD;
     padding: 10px;
-    border-bottom: 1px solid #EEEEEE;
-    border-left: 1px solid #EEEEEE;
-    border-right: 1px solid #EEEEEE;
+    border: 1px solid #EEEEEE;
     margin-bottom: 10px;    
 }
 .i_record_diffusion{
