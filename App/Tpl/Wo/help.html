@@ -34,11 +34,7 @@
       </a>
     </p>
     <div class="wo_li_p_user f12">
-      <?php echo " <a href='".__ROOT__."/stream/u/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?><br /> 
-      <span class="black_l">
-        <?php echo " ".i_grade($record['enteryear']) ?>
-        <?php echo i_constellation($record['birthday']),i_sex($record['sex']) ?>
-      </span>
+      <?php echo " <a href='".__ROOT__."/stream/u/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?>
     </div>
     <p class="wo_li_p_content_help lh13">
       <?php echo $record['content']; ?>
