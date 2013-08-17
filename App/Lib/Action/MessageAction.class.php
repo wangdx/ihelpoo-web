@@ -86,9 +86,11 @@ class MessageAction extends Action
             $msgNotice = $MsgNotice->where("notice_id in ($msgIdsStr)")->limit($offset, $count)->order('create_time DESC')->select();
         }
 
+
         $IUserLogin = D("IUserLogin");
         $this->resetNoticeCount($redis, $userloginid);
         foreach($msgNotice as $notice){
+            echo "111";
             $fromUser = $IUserLogin->userExists($notice['source_id']);
             $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_blank' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a>";
 
