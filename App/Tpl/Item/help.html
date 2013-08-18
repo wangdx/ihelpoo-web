@@ -26,8 +26,8 @@
 <div class="main">
 <div class="main_item">
 <div class="i_content">
-    <?php echo "<a href='".__ROOT__."/stream/u/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>
-    <img src='".i_icon_check($helpRecordOwener[' uid'], $helpRecordOwener['icon_url'], 's')."' height='30'
+    <?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>
+    <img src='".i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's')."' height='30'
     class='i_h_c_img fl' /></a>"; ?>
     <div class="i_h_c_describe">
         <p><span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?></p>
@@ -108,7 +108,7 @@
 
                 <p class="i_h_c_helpend_img">
                     <span class="icon_n_thumb"></span><span class="fb gray">最佳帮助: <a
-                        href="__ROOT__/stream/u/<?php echo $helpRecord['win_uid'] ?>"><img
+                        href="__ROOT__/wo/<?php echo $helpRecord['win_uid'] ?>"><img
                         src="<?php echo i_icon_check($helpRecordWiner['uid'], $helpRecordWiner['icon_url'], 's') ?>"
                         height="35" class="radius3"/> <?php echo $helpRecordWiner['nickname']; ?></a></span>
                 </p>
@@ -200,7 +200,7 @@
 <ul class="i_record_diffusion black_l f12">
     <?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
     <li>
-        <a href="__ROOT__/stream/u/<?php echo $recordDiffusion['uid']?>" class="getuserinfo"
+        <a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo"
            userid="<?php echo $recordDiffusion['uid']?>"><?php echo $recordDiffusion['nickname'] ?></a>
         扩散了这条信息. <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>
         ".$recordDiffusion['view']; ?>
@@ -231,12 +231,12 @@
     <ul class="i_comment_list_ul">
         <?php foreach ($allHelpreply as $helpreply) : ?>
         <li>
-            <?php echo "<a href='".__ROOT__."/stream/u/".$helpreply['uid']."'>" ?>
+            <?php echo "<a href='".__ROOT__."/wo/".$helpreply['uid']."'>" ?>
             <img src="<?php echo i_icon_check($helpreply['uid'], $helpreply['icon_url'], 's') ?>" height="50"
                  class="i_c_l_u_li_img radius3"/>
             </a>
             <div class="i_c_l_u_li_div black_l">
-                <?php echo "<a href='".__ROOT__."/stream/u/".$helpreply['uid']."' class='getuserinfo' userid='".$helpreply['uid']."'>
+                <?php echo "<a href='".__ROOT__."/wo/".$helpreply['uid']."' class='getuserinfo' userid='".$helpreply['uid']."'>
                 ".$helpreply['nickname']."</a>" ?>
 		      <span class="f12 gray fb">
 		      <?php
