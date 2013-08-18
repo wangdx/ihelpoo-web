@@ -344,7 +344,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -126px -35px;
 }
 
-.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention{
+.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention, .ico_magic, ico_qq, .ico_frame, ico_idcard, .ico_time{
     height: 18px;
     width: 18px;
     margin: 0 7px 0 8px;
@@ -375,14 +375,36 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -502px 0;
 }
 .ico_talk{
-    background-position: -480px -21px;
+    background-position: -486px -19px;
 }
 .ico_favourite{
-    background-position: -492px -21px;
+    background-position: -524px -16px;
 }
 .ico_attention{
-    background-position: -500px 0;
+    background-position: -581px 3px;
 }
+.ico_magic{
+    background-position: -280px -23px;
+}
+.ico_qq{
+    background-position: -322px -43px;
+}
+.ico_frame{
+    background-position: -280px -43px;
+}
+.ico_idcard{
+    background-position: -565px -28px;
+}
+.ico_time{
+    background-position: -426px -23px;
+}
+.ico_ranking{
+    background-position: -269px -3px;
+}
+.ico_music{
+    background-position: -291px -3px;
+}
+
 
 .ico_gift, .ico_add, .ico_house {
     height: 16px;
