@@ -95,7 +95,7 @@ $().ready(function(){
 	    	$('.user_type').find('.icon_right').remove();
 	    	$(this).append('<span class="icon_right"></span>');
     	} else if (isclick == 'true') {
-    		$(this).attr({isclick:'false'});
+    		$('.user_type').attr({isclick:'false'});
 	    	$('#input_user_type').val('default');
 	    	$('.user_type').find('.icon_right').remove();
     	}
