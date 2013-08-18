@@ -74,7 +74,7 @@
   </ul>
   <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
-    <li><a href="__ROOT__/stream/"><i class="ico_school"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/priority"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/help"><i class="ico_specialcare"></i>看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
   </ul>
@@ -84,7 +84,7 @@
   	<?php if($userloginedrecord['type'] == '2') { ?>
   		<li>
   			<a href="__ROOT__/stream/index/group/<?php echo $userloginedrecord['uid']; ?>" title="<?php echo $userloginedrecord['nickname']; ?>">
-  				<span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($userloginedrecord['nickname'], 5); ?>
+  				<i class="ico_school"></i> <?php echo $ofunction->cut_str($userloginedrecord['nickname'], 4); ?>
   				<?php if ($groupUserRecord['uid'] == $userloginedrecord['uid']) { ?>
   				<span class="dot_choose"></span>
   				<?php } ?>
@@ -93,26 +93,25 @@
   	<?php } ?>
   	<?php foreach ($pidGroupArray as $pidGroup) { ?>
 	  	<?php if ($groupUserRecord['uid'] == $pidGroup['uid']) { ?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?><span class="dot_choose"></span></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?><span class="dot_choose"></span></a></li>
 	  	<?php } else {?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_friendfeed"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?></a></li>
 	  	<?php } ?>
   	<?php } ?>
   </ul>
   <?php } ?>
   <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
-    <li><a href="__ROOT__/wo"><i class="ico_add"></i>我的小窝</a></li>
-    <li><a href="__ROOT__/talk"><i class="ico_add"></i>悄悄话</a></li>
-    <li><a href="__ROOT__/stream/fav"><i class="ico_add"></i>我的收藏</a></li>
-    <li><a href="__ROOT__/mutual/shield?list"><i class="ico_add"></i>我的屏蔽</a></li>
+    <li><a href="__ROOT__/wo"><i class="ico_house"></i>我的小窝</a></li>
+    <li><a href="__ROOT__/talk"><i class="ico_talk"></i>悄悄话</a></li>
+    <li><a href="__ROOT__/stream/fav"><i class="ico_favourite"></i>我的收藏</a></li>
+    <li><a href="__ROOT__/mutual/shield?list"><i class="ico_attention"></i>我的屏蔽</a></li>
   </ul>
   <div class="splitter_line_div"></div>
   <ul class="s_r_ul_sub f12">
-     <li><a href="__ROOT__/help">帮助广场</a></li>
-     <li><a href="__ROOT__/index/mate?w=academy&n=1">大家(学院)</a></li>
-     <li><a href="__ROOT__/index/hot">热门排行</a></li>
-     <li><a href="__ROOT__/lab">实验室</a></li>
+     <li><a href="__ROOT__/help"><i class="icon_write"></i>帮助广场</a></li>
+     <li><a href="__ROOT__/index/mate?w=academy&n=1"><i class="icon_text"></i>大家(学院)</a></li>
+     <li><a href="__ROOT__/index/hot"><i class="icon_up"></i>热门排行</a></li>
   </ul>
 </div>
 <!-- /left -->

@@ -344,7 +344,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -126px -35px;
 }
 
-.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school{
+.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention{
     height: 18px;
     width: 18px;
     margin: 0 7px 0 8px;
@@ -354,37 +354,37 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     float: left;
     display: inline-block;
     font-size: 0;
+    background-image: url("../image/common/icon_main.png");
 }
 .ico_friendfeed{
-    background-image: url("../image/common/icon_main.png");
     background-position: -467px -20px;
 }
 .ico_specialcare{
-    background-image: url("../image/common/icon_main.png");
     background-position: -472px -39px;
 }
 .ico_mentionme{
-    background-image: url("../image/common/icon_main.png");
     background-position: -483px 0;
 }
 .ico_sharespace{
-    background-image: url("../image/common/icon_main.png");
     background-position: -491px -38px;
 }
 .ico_store{
-    background-image: url("../image/common/icon_main.png");
     background-position: -600px -51px;
 }
 .ico_school{
-    background-image: url("../image/common/icon_main.png");
     background-position: -502px 0;
 }
+.ico_talk{
+    background-position: -480px -21px;
+}
+.ico_favourite{
+    background-position: -492px -21px;
+}
+.ico_attention{
+    background-position: -500px 0;
+}
 
-
-
-
-
-.ico_gift, .ico_add{
+.ico_gift, .ico_add, .ico_house {
     height: 16px;
     width: 16px;
     margin: 2px 7px 0 8px;
@@ -394,14 +394,16 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     float: left;
     display: inline-block;
     font-size: 0;
+    background-image: url("../image/common/icon_main.png");
 }
 .ico_gift{
-    background-image: url("../image/common/icon_main.png");
     background-position: -668px -51px;
 }
 .ico_add{
-    background-image: url("../image/common/icon_main.png");
     background-position: -668px -34px;
+}
+.ico_house{
+    background-position: -957px 0px;
 }
 
 
@@ -416,6 +418,9 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     display: inline-block;
     font-size: 0;
 }
+
+
+
 
 
 .icon_feedctrall, .icon_feedctrblog, .icon_feedctrrefresh, .icon_feedctrset{
@@ -440,7 +445,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -804px 0;
 }
 
-
 .icon_stateplay{
     background-image: url("../image/common/icon_main.png");
     background-position: -838px 0;
@@ -451,10 +455,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     display: inline-block;
     font-size: 0;
 }
-
-
-
-
 
 .icon_iphone, .icon_ipad, .icon_android, .icon_windowsphone, .icon_mobileother {
     vertical-align: top;
