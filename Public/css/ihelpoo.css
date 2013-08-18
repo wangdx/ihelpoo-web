@@ -1130,6 +1130,9 @@ color:#FFFA85;
     z-index: 11111;
     display: none;
 }
+*html #ajax_info_div_outer{
+    display: none;
+}
 #ajax_info_div{
     width: 350px;
     min-height: 100px;
