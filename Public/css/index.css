@@ -220,7 +220,7 @@ lable{
     z-index: -1;
 }
 *html .loginbox_outer{
-    display: none;
+    background: none;
 }
 .index_loginfast_div{
     float: right;
