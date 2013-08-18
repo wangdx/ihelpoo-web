@@ -156,7 +156,7 @@
               			echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span
                 class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
             echo "
-            <form method='post'>" ?>
+            <form method='post' id='thanksForm'>" ?>
                 <ul>
                     <?php
 		              	foreach ($userChooseArray as $userChoose) :
@@ -172,7 +172,7 @@
                 <p class='i_h_c_thanks_words f12 gray'><span class="icon_heart"></span>说点什么表示感谢吧!</p>
                 <textarea name="choosethanks"></textarea>
                 <input type="hidden" name="sid" value="<?php echo $helpRecord['sid'] ?>">
-                <input type="submit" value="感谢" onclick='notice.send("system", "<?php echo $userChooseRecord['uid'] ?>")'/>
+                <input type="submit" value="感谢" onclick='notice.send("system", $("#thanksForm input[type='radio']:checked").val())'/>
                 <?php
 		              	echo "</form>
         </div>
