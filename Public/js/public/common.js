@@ -125,7 +125,7 @@ $().ready(function () {
         $("#ajax_info_div").css({left: mainpositionleft});
         $("#ajax_info_div_close").live("click", function () {
             $("#ajax_info_div").fadeOut("fast");
-            $("#ajax_info_div_outer").fadeOut("fast");
+            $("#ajax_info_div_outer").hide();
         });
     }
 
