@@ -7,7 +7,9 @@
 <link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
 <?php if (!empty($toUid)) { ?>
 <script>
-    notice.send('system', '<?php echo $toUid ?>');
+    $(function(){
+        notice.send('system', '<?php echo $toUid ?>');
+    });
 </script>
 <?php } ?>
 <div class="main">
