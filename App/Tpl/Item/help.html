@@ -17,6 +17,9 @@
         $('.system_notice').click(function(){
             notice.send("system", $("#thanksForm input[type='radio']:checked").val());
         });
+        $('.system_notice2').click(function(){
+            notice.send("system", $sayRecord['uid']);
+        });
     });
 </script>
 <div class="main">
@@ -126,7 +129,7 @@
                 <input type="hidden" name="textareacontent" id="textareacontent"/>
                 <textarea id="help_content_from_textarea" name="helpcontent"></textarea>
                 <span class="i_help_comment_textarea_info f12"></span>
-                <a id="help_content_from_btn" class="btn f12">我来帮助</a>
+                <a id="help_content_from_btn" class="btn f12 system_notice2">我来帮助</a>
 
                 <p class="i_c_b_form_icon_p">
                     <span class="post_icon" id="textareaicon" title="表情"></span>

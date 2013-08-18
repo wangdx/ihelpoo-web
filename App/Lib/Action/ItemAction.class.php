@@ -760,21 +760,22 @@ class ItemAction extends Action {
     					$isTimeHelpMailSend = $AuMailSend->where("uid = $recorduid AND sid = $sid AND helperid = $userloginid")->find();
 
     					if ($recorduid != $userloginid) {
-    						$msgHelpreplyContent = "来帮助你啦";
-    						$msgRecordHelpreply = array(
-	                            'id' => NULL,
-	                            'uid' => $recorduid,
-	                            'type' => 'stream/ih-para:newHelp',
-	                            'url_id' => $sid,
-	                            'from_uid' => $userloginid,
-	                            'content' => $msgHelpreplyContent,
-	                            'time' => time(),
-	                            'deliver' => 0,
-    						);
-    						$affetcedMsgRecordHelpreply = $MsgSystem->add($msgRecordHelpreply);
-    						if (empty($affetcedMsgRecordHelpreply)) {
-    							$this->ajaxReturn(0,'message_system_help insert failed','error');
-    						}
+//    						$msgHelpreplyContent = "来帮助你啦";
+//    						$msgRecordHelpreply = array(
+//	                            'id' => NULL,
+//	                            'uid' => $recorduid,
+//	                            'type' => 'stream/ih-para:newHelp',
+//	                            'url_id' => $sid,
+//	                            'from_uid' => $userloginid,
+//	                            'content' => $msgHelpreplyContent,
+//	                            'time' => time(),
+//	                            'deliver' => 0,
+//    						);
+//    						$affetcedMsgRecordHelpreply = $MsgSystem->add($msgRecordHelpreply);
+//    						if (empty($affetcedMsgRecordHelpreply)) {
+//    							$this->ajaxReturn(0,'message_system_help insert failed','error');
+//    						}
+                            i_savenotice($userloginid, $recorduid, 'stream/ih-para:newHelp', $sid);
 
     						/**
     						 * send new helper info email
