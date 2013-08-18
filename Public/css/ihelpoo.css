@@ -212,12 +212,13 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *+html .icon_recycle{ vertical-align:bottom; }
 
 /*ie6*/
-*html .icon_plus{ background:; width:5px; }
-*html .icon_write{ background:; width:5px; }
+*html .icon_plus{ background:none; width:5px; }
+*html .icon_pump{ background:none; width:5px; }
+*html .icon_write{ background:none; width:5px; }
 *html .icon_quit{ vertical-align:bottom; display:inline-block; margin-top:2px; }
 *html .icon_new{ width:0px; background:#FFF; }
 *html .icon_recycle{ vertical-align:bottom; }
-*html .icon_arrowupd{ background:; width:0px; }
+*html .icon_arrowupd{ background:none; width:0px; }
 *html .icon_download{ background:url(../image/common/ihelpoo_icon.png) no-repeat -15px -28px; }
 *html .circle_l_b{ height:0px; width:0px; display:block; }
 *html .circle_r_b{ height:0px; width:0px; display:block; }
@@ -610,6 +611,15 @@ color:#FFFA85;
     top:-8px;
 }
 *html .header_logo{
+    width:135px;
+    height:32px;
+    background:url(../image/common/logo_header.gif) no-repeat 0px 0px;
+    display:block;
+    position:absolute;
+    left:0;
+    top:-8px;
+}
+*html .header_logo:hover{
     width:135px;
     height:32px;
     background:url(../image/common/logo_header.gif) no-repeat 0px 0px;
