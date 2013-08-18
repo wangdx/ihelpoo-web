@@ -468,7 +468,7 @@ class StreamAction extends Action
         }
         
         
-        $timegaphalfyear = time() - 24 * 3600 * 180;
+        $timegaphalfyear = time() - 24 * 3600 * 90;
         $select = $RecordSay;
         if ($requestWay == "priority") {
             if (!empty($pidString)) {
