@@ -150,6 +150,9 @@
     width: 100%;
     text-align: center;
 }
+*html #ajaxprogressbar{
+    position: absolute;
+}
 .setting_school_list_div{
     border-radius: 3px;
     padding: 15px 20px;
