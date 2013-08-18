@@ -244,6 +244,12 @@
     border-bottom: 1px solid #EEE;
     min-height: 88px;
 }
+*+html .stream_list_ul li{
+	min-height: 90px;
+}
+*html .stream_list_ul li{
+	height: 90px;
+}
 .stream_list_ul_sort{
 	text-align: right;
 	padding: 6px 5px 3px 0px;
@@ -416,9 +422,10 @@
     min-height: 10px;
 }
 *+html .comment_view_div_box_ul li{
-    height: 10px;
+    min-height: 10px;
 }
 *html .comment_view_div_box_ul li{
+    min-height: 10px;
 }
 .c_v_d_b_ul_li_icon{
     position: absolute;
@@ -426,7 +433,7 @@
     top: 10px;
 }
 .c_v_d_b_ul_li_content{
-    margin: 0 0 15px 50px;
+    margin: 0 0 10px 50px;
 }
 .c_v_d_b_ul_li_content_image{
      margin: 0 0 10px 50px;
@@ -1592,9 +1599,6 @@
 *+html .s_r_ul_priority li{
     display: inline;
 }
-*+html .stream_list_ul li{
-	min-height: 30px;
-}
 *+html #help_user_recommend li{
     display: inline;
 	width:80px;
@@ -1642,9 +1646,6 @@
 	position: absolute;
 	right: 10px;
 	top: 0px;
-}
-*html .stream_list_ul li{
-	height: 30px;
 }
 *html .i_comment_list{
 	position: relative;
