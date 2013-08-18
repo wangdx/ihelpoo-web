@@ -341,17 +341,10 @@
 }
 .s_li_s_time{
     margin-left: 115px;
-	//position: absolute;
-	//bottom: 15px;
-	//left: 5px;
 }
 .s_li_s_comment{
     float: right;
-	//position: absolute;
-	//bottom: 15px;
-	//right: 10px;
 }
-
 .comment_view_div_box_reply{
     margin-bottom: 10px;
     position: relative;
