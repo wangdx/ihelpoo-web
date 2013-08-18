@@ -393,37 +393,40 @@ class MutualAction extends Action
                 /**
                  * single changeinfo message
                  */
-                $mutualChangeInfo = "表示很高兴认识你, 同意给你真实联系方式";
-                $msgMutualChangeInfo = array(
-                    'id' => NULL,
-                    'uid' => $postWithid,
-                    'type' => 'mutual/rc',
-                    'url_id' => $userloginid,
-                    'from_uid' => $userloginid,
-                    'content' => $mutualChangeInfo,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-                $affetcedMsgMutualChangeInfo = $MsgSystem->add($msgMutualChangeInfo);
-                if (empty($affetcedMsgMutualChangeInfo)) {
-                    exit("message_single_Change info insert failed");
-                }
+//                $mutualChangeInfo = "表示很高兴认识你, 同意给你真实联系方式";
+//                $msgMutualChangeInfo = array(
+//                    'id' => NULL,
+//                    'uid' => $postWithid,
+//                    'type' => 'mutual/rc',
+//                    'url_id' => $userloginid,
+//                    'from_uid' => $userloginid,
+//                    'content' => $mutualChangeInfo,
+//                    'time' => time(),
+//                    'deliver' => 0,
+//                );
+//                $affetcedMsgMutualChangeInfo = $MsgSystem->add($msgMutualChangeInfo);
+//                if (empty($affetcedMsgMutualChangeInfo)) {
+//                    exit("message_single_Change info insert failed");
+//                }
+
+                $this->saveNoticeMessage($userloginid, $postWithid, 'mutual/rc-option:ok', $userloginid);
             } else if ("no" == $_POST["option"]) {
-                $mutualChangeInfo = "婉拒了你的请求, 暂时不想给你真实联系方式";
-                $msgMutualChangeInfo = array(
-                    'id' => NULL,
-                    'uid' => $postWithid,
-                    'type' => 'mutual/rc',
-                    'url_id' => $userloginid,
-                    'from_uid' => $userloginid,
-                    'content' => $mutualChangeInfo,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-                $affetcedMsgMutualChangeInfo = $MsgSystem->add($msgMutualChangeInfo);
-                if (empty($affetcedMsgMutualChangeInfo)) {
-                    exit("message_single_Change info insert failed");
-                }
+//                $mutualChangeInfo = "婉拒了你的请求, 暂时不想给你真实联系方式";
+//                $msgMutualChangeInfo = array(
+//                    'id' => NULL,
+//                    'uid' => $postWithid,
+//                    'type' => 'mutual/rc',
+//                    'url_id' => $userloginid,
+//                    'from_uid' => $userloginid,
+//                    'content' => $mutualChangeInfo,
+//                    'time' => time(),
+//                    'deliver' => 0,
+//                );
+//                $affetcedMsgMutualChangeInfo = $MsgSystem->add($msgMutualChangeInfo);
+//                if (empty($affetcedMsgMutualChangeInfo)) {
+//                    exit("message_single_Change info insert failed");
+//                }
+                $this->saveNoticeMessage($userloginid, $postWithid, 'mutual/rc-option:no', $userloginid);
             }
         }
         $this->display();

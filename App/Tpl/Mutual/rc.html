@@ -63,16 +63,16 @@
       <p class="f12 gray"><span class="icon_pump"></span> 个人真实联系方式需要对方同意后才能查看</p>
       <br />
       <p><a href="?require" class="btn f12 system_notice">请求查看</a></p>
-      <script>
-          $(function(){
-              $(".system_notice").unbind('click').click(function(){
-                  notice.send('system', "<?php echo $userLogin['uid']?>");
-              });
-          });
-      </script>
     <?php } ?>
   </div>
   <?php } ?>
 </div>
 </div>
 <include file="Public:footer" />
+<script>
+    $(function(){
+        $(".system_notice").unbind('click').click(function(){
+            notice.send('system', "<?php echo $userLogin['uid']?>");
+        });
+    });
+</script>
