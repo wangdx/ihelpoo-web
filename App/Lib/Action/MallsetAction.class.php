@@ -877,18 +877,19 @@ class MallsetAction extends Action {
 	    		/**
 	             * send system message.
 	             */
-	            $MsgSystem = M("MsgSystem");
-	            $msgContent = $coinsUserLogin['nickname']." 要购买你的商品，快来看看，确定是否开始交易!";
-	            $msgData = array(
-                    'id' => '',
-                    'uid' => $resultRecordCommodity['shopid'],
-                    'type' => 'mallset/buypay',
-                    'url_id' => $resultRecordCommodity['cid'],
-                    'content' => $msgContent,
-                    'time' => time(),
-                    'deliver' => 0,
-    			);
-	            $MsgSystem->add($msgData);
+//	            $MsgSystem = M("MsgSystem");
+//	            $msgContent = $coinsUserLogin['nickname']." 要购买你的商品，快来看看，确定是否开始交易!";   //FIXME undefined
+//	            $msgData = array(
+//                    'id' => '',
+//                    'uid' => $resultRecordCommodity['shopid'],
+//                    'type' => 'mallset/buypay',
+//                    'url_id' => $resultRecordCommodity['cid'],
+//                    'content' => $msgContent,
+//                    'time' => time(),
+//                    'deliver' => 0,
+//    			);
+//	            $MsgSystem->add($msgData);
+                i_savenotice($userloginid, $resultRecordCommodity['shopid'], 'mallset/buypay', $resultRecordCommodity['cid']);//TODO bounce
 	            
 	            /**
 	             * send mail
@@ -1223,17 +1224,18 @@ class MallsetAction extends Action {
     				 * send system message.
     				 */
     				$recordRecordCommodityassess = $RecordCommodityassess->find($caid);
-     				$msgContent = $recordUserLogin['nickname']." 拒绝了您的购买请求!";
-    				$msgData = array(
-	                    'id' => '',
-	                    'uid' => $recordRecordCommodityassess['uid'],
-	                    'type' => 'mallset/seller-refuse',
-	                    'url_id' => $recordRecordCommodityassess['cid'],
-	                    'content' => $msgContent,
-	                    'time' => time(),
-	                    'deliver' => 0,
-    				);
-    				$MsgSystem->add($msgData);
+//                    $msgContent = $recordUserLogin['nickname']." 拒绝了您的购买请求!";
+//                    $msgData = array(
+//                        'id' => '',
+//                        'uid' => $recordRecordCommodityassess['uid'],
+//                        'type' => 'mallset/seller-refuse',
+//                        'url_id' => $recordRecordCommodityassess['cid'],
+//                        'content' => $msgContent,
+//                        'time' => time(),
+//                        'deliver' => 0,
+//                    );
+//                    $MsgSystem->add($msgData);
+                    i_savenotice($userloginid, $recordRecordCommodityassess['uid'], 'mallset/seller-refuse', $recordRecordCommodityassess['cid']);
     				
     				/**
     				 * send mail
@@ -1267,17 +1269,18 @@ class MallsetAction extends Action {
     				 * send system message.
     				 */
     				$recordRecordCommodityassess = $RecordCommodityassess->find($caid);
-     				$msgContent = $recordUserLogin['nickname']." 确定了您的购买请求，快快联系购买吧!";
-    				$msgData = array(
-	                    'id' => '',
-	                    'uid' => $recordRecordCommodityassess['uid'],
-	                    'type' => 'mallset/seller-sure',
-	                    'url_id' => $recordRecordCommodityassess['cid'],
-	                    'content' => $msgContent,
-	                    'time' => time(),
-	                    'deliver' => 0,
-    				);
-    				$MsgSystem->add($msgData);
+//     				$msgContent = $recordUserLogin['nickname']." 确定了您的购买请求，快快联系购买吧!";
+//    				$msgData = array(
+//	                    'id' => '',
+//	                    'uid' => $recordRecordCommodityassess['uid'],
+//	                    'type' => 'mallset/seller-sure',
+//	                    'url_id' => $recordRecordCommodityassess['cid'],
+//	                    'content' => $msgContent,
+//	                    'time' => time(),
+//	                    'deliver' => 0,
+//    				);
+//    				$MsgSystem->add($msgData);
+                    i_savenotice($userloginid, $recordRecordCommodityassess['uid'], 'mallset/seller-sure', $recordRecordCommodityassess['cid']);//TODO bounce
     				
     				/**
     				 * send mail

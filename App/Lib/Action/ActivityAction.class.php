@@ -329,7 +329,7 @@ class ActivityAction extends Action {
 //	        	    	'deliver' => 0,
 //    				);
 //    				$MsgSystem->add($pushMsgData);
-                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);//TODO ajax, bounce
     				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
