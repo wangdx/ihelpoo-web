@@ -123,6 +123,10 @@
    left: 30px;
    position: relative;
 }
+.user_type_info a{
+    font-size: 12px;
+    color: #999;
+}
 #enteryear{
     color: #666;
     position: relative;
