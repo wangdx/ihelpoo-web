@@ -14,9 +14,15 @@ $().ready(function () {
             var mainoffset = $('.main').offset();
             if (mainoffset != null) {
                 var mainpositionleft = mainoffset.left + 173;
+                if ("6.0" == $.browser.version) {
+                	var mainpositionleft = mainoffset.left;
+                }
             } else {
                 var mainhelpoffset = $('.main_help').offset();
                 var mainpositionleft = mainhelpoffset.left + 173;
+                if ("6.0" == $.browser.version) {
+                	var mainpositionleft = mainhelpoffset.left;
+                }
             }
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
             $("#nav_hover_list_div_ul").html("<li><a href='/index/mate' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_mate'></i>同学</a> <a href='/index/group' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_group'></i>校园组织</a> <a href='/index/business' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_business'></i>周边商家</a></li>");
@@ -37,9 +43,15 @@ $().ready(function () {
             var mainoffset = $('.main').offset();
             if (mainoffset != null) {
                 var mainpositionleft = mainoffset.left + 173;
+                if ("6.0" == $.browser.version) {
+                	var mainpositionleft = mainoffset.left;
+                }
             } else {
                 var mainhelpoffset = $('.main_help').offset();
                 var mainpositionleft = mainhelpoffset.left + 173;
+                if ("6.0" == $.browser.version) {
+                	var mainpositionleft = mainhelpoffset.left;
+                }
             }
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
             var stream_header_top_schoolad = $("#stream_header_top_schoolad").html();

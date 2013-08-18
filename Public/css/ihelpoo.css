@@ -712,6 +712,7 @@ color:#FFFA85;
 }
 *html #nav_hover_list_div{
     position: absolute;
+    top: 26px;
 }
 #nav_hover_list_div_ul{
     font-size: 12px;
