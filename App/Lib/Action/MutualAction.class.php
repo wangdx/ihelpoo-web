@@ -361,7 +361,7 @@ class MutualAction extends Action
 
 
         if (isset($_GET['require'])) {
-            $this->saveNoticeMessage($userloginid, $withUserId, 'mutual/rc-para:?please', $userloginid);
+            i_savenotice($userloginid, $withUserId, 'mutual/rc-para:?please', $userloginid);
         }
 
 
@@ -409,7 +409,7 @@ class MutualAction extends Action
 //                    exit("message_single_Change info insert failed");
 //                }
 
-                $this->saveNoticeMessage($userloginid, $postWithid, 'mutual/rc-option:ok', $userloginid);
+                i_savenotice($userloginid, $postWithid, 'mutual/rc-option:ok', $userloginid);
             } else if ("no" == $_POST["option"]) {
 //                $mutualChangeInfo = "婉拒了你的请求, 暂时不想给你真实联系方式";
 //                $msgMutualChangeInfo = array(
@@ -426,33 +426,10 @@ class MutualAction extends Action
 //                if (empty($affetcedMsgMutualChangeInfo)) {
 //                    exit("message_single_Change info insert failed");
 //                }
-                $this->saveNoticeMessage($userloginid, $postWithid, 'mutual/rc-option:no', $userloginid);
+                i_savenotice($userloginid, $postWithid, 'mutual/rc-option:no', $userloginid);
             }
         }
         $this->display();
-    }
-
-    public function saveNoticeMessage($from, $to, $noticeType, $detailId)
-    {
-        Vendor('Ihelpoo.Idworker');
-        $idworker = new Idworker();
-        $noticeId = $idworker->next();
-        $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
-        if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time'))) {
-            echo 'ERROR1:' . $hs->getError(), PHP_EOL;
-            die();
-        }
-
-        if ($hs->executeInsert(3, array($noticeId, $noticeType, $from, $detailId, $noticeType, time())) === false) {
-            echo 'ERR2:' . $hs->getError(), PHP_EOL;
-        }
-        unset($hs);
-
-        $redis = new Redis();
-        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
-        $redis->hSet(C('R_ACCOUNT') . C('R_MESSAGE') . $to, $noticeId, 0);
-        $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($to, 0, strlen($to) - 3), substr($to, -3), 1);
-        return $noticeId;
     }
 
     /**
