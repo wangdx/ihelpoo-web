@@ -151,4 +151,23 @@ $().ready(function(){
     $("#setting_school_close_span").live('click', function(){
         $(this).parent().fadeOut('fast');
     });
+    
+    /**
+     * user type
+     */
+    $('.user_type').click(function(){
+    	var usertype = $(this).attr('value');
+    	var isclick = $(this).attr('isclick');
+    	if (isclick == 'false') {
+    		$('.user_type').attr({isclick:'false'});
+	    	$(this).attr({isclick:'true'});
+	    	$('#input_user_type').val(usertype);
+	    	$('.user_type').find('.icon_right').remove();
+	    	$(this).append('<span class="icon_right"></span>');
+    	} else if (isclick == 'true') {
+    		$('.user_type').attr({isclick:'false'});
+	    	$('#input_user_type').val('default');
+	    	$('.user_type').find('.icon_right').remove();
+    	}
+    });
 });
