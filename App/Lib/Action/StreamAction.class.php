@@ -568,8 +568,7 @@ class StreamAction extends Action
             ->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
             ->join('i_school_info ON i_user_login.school = i_school_info.id')
             ->join("i_user_remark ON i_record_say.uid = i_user_remark.ruid AND $userloginid = i_user_remark.uid")
-            ->join('i_record_help ON i_record_say.sid = i_record_help.sid')
-            ->field('i_record_say.sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,plus_co,i_record_say.time,from,last_comment_ti,school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy,i_school_info.id,i_school_info.school as schoolname,i_school_info.domain,i_school_info.domain_main,i_user_remark.remark,i_record_help.reward_coins,i_record_help.status')
+            ->field('i_record_say.sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,plus_co,i_record_say.time,from,last_comment_ti,school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy,i_school_info.id,i_school_info.school as schoolname,i_school_info.domain,i_school_info.domain_main,i_user_remark.remark')
             ->limit($offset, $count)->select();
         $userRecordSayUidBefore = NULL;
         foreach ($recordSay as $record) {
@@ -606,8 +605,6 @@ class StreamAction extends Action
                     'schoolname' => $record['schoolname'],
                     'domain' => $schooldomain,
                     'remark' => $record['remark'],
-                    'reward_coins' => $record['reward_coins'],
-                    'status' => $record['status'],
                     'repatenums' => 1,
                 );
             } else {
@@ -642,8 +639,6 @@ class StreamAction extends Action
                     'schoolname' => $record['schoolname'],
                     'domain' => $schooldomain,
                     'remark' => $record['remark'],
-                	'reward_coins' => $record['reward_coins'],
-                    'status' => $record['status'],
                     'repatenums' => 0
                 );
             }
