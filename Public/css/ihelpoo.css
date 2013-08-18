@@ -118,6 +118,17 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .gradesen{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -315px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 .gradetea{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 
+*html .grade1{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 0; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade2{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -35px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade3{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -70px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade4{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -105px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade5{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -140px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade6{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -175px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradeg{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -210px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grades{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -245px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradegra{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -280px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradesen{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -315px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradetea{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 /*---*/
 .post_icon{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
 .post_icon:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px 0; display:inline-block; cursor: pointer; }
@@ -227,14 +238,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *html .circle_r_b{ height:0px; width:0px; display:block; }
 *html .circle_l_t{ height:0px; width:0px; display:block; }
 *html .circle_r_t{ height:0px; width:0px; display:block; }
-/*---*/
-*html .grade1{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 0; display:inline-block; position: absolute; right: 0; top: 0; }
-*html .grade2{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 -40px; display:inline-block; position: absolute; right: 0; top: 0; }
-*html .grade3{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 -80px; display:inline-block; position: absolute; right: 0; top: 0; }
-*html .grade4{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 -120px; display:inline-block; position: absolute; right: 0; top: 0; }
-*html .grade5{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 -160px; display:inline-block; position: absolute; right: 0; top: 0; }
-*html .grade6{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 -200px; display:inline-block; position: absolute; right: 0; top: 0; }
-*html .gradeg{ width:40px; height:40px; background:url(../image/common/grade.gif) no-repeat 0 -240px; display:inline-block; position: absolute; right: 0; top: 0; }
 /*---*/
 *html .sex1{ width: 20px; height: 20px; background:url(../image/common/sex.gif) no-repeat 0px 0px; display:inline-block; }
 *html .sex2{ width: 20px; height: 20px; background:url(../image/common/sex.gif) no-repeat -20px 0px; display:inline-block; }
