@@ -2068,8 +2068,7 @@ class RooterAction extends Action {
 		             */
 		            $MsgSystem = M("MsgSystem");
 		            if ($status == 2) {
-		            	$msgContent = "资料审核通过，您的小店开通了!";
-		            	
+
 		            	/**
 		            	 * insert priority data
 		            	 */
@@ -2103,19 +2102,20 @@ class RooterAction extends Action {
 		            		);
 		            		$UserInfo->save($newUserInfoPrioritiedData);
 		            	}
+                        i_savenotice('10000', $uid, 'system/shopaudited', '');
 		            } else {
-		            	$msgContent = "资料重新审核中，您的小店暂时关闭!";
+                        i_savenotice('10000', $uid, 'system/shopreaudit', ''); //TODO bounce notice
 		            }
-		            $msgData = array(
-	                	'id' => NULL,
-	                	'uid' => $uid,
-	                 	'type' => 'system',
-	              		'content' => $msgContent,
-	                	'time' => time(),
-	                	'deliver' => 0,
-		            );
-		            $MsgSystem->add($msgData);
-		            
+//		            $msgData = array(
+//	                	'id' => NULL,
+//	                	'uid' => $uid,
+//	                 	'type' => 'system',
+//	              		'content' => $msgContent,
+//	                	'time' => time(),
+//	                	'deliver' => 0,
+//		            );
+//		            $MsgSystem->add($msgData);
+
 		            /**
 		             * admin user operating record
 		             */
