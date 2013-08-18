@@ -62,9 +62,9 @@ $().ready(function () {
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
             var stream_header_top_schoolad = $("#stream_header_top_schoolad").html();
             if (stream_header_top_schoolad != null) {
-                $("#nav_hover_list_div_ul").html("<li><a href='/index/hot?w=hit&t=week' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_ranking'></i>排行</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a></li>" + stream_header_top_schoolad);
+                $("#nav_hover_list_div_ul").html("<li><a href='/index/hot?w=hit&t=week' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_ranking'></i>排行</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a> <a href='/index/app' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_app'></i>App应用</a></li>" + stream_header_top_schoolad);
             } else {
-                $("#nav_hover_list_div_ul").html("<li><a href='/index/hot?w=hit&t=week' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_ranking'></i>排行</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a></li>");
+                $("#nav_hover_list_div_ul").html("<li><a href='/index/hot?w=hit&t=week' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_ranking'></i>排行</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a> <a href='/index/app' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_app'></i>App应用</a></li>");
             }
         },
         function () {
