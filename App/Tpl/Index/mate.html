@@ -146,7 +146,15 @@
     	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>">
     <?php } ?>
         <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 'm') ?>" width="180" height="135" />
-        <span class="grade<?php echo i_gradenum($user['enteryear']) ?>"></span>
+        <?php if ($record['type'] == '4') { ?>
+          <span class="gradetea"></span>
+        <?php } else if ($record['type'] == '5') { ?>
+          <span class="gradegra"></span>
+        <?php } else if ($record['type'] == '6') { ?>
+          <span class="gradesen"></span>
+        <?php } else { ?>
+        	<span class="grade<?php echo i_gradenum($user['enteryear']) ?>"></span>
+        <?php } ?>
         <span style="position: absolute; left: 0; bottom: 0;" class="online<?php echo $user['online'] ?>"></span>
       </a>
     </p>
