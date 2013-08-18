@@ -90,6 +90,7 @@ $().ready(function(){
     	var usertype = $(this).attr('value');
     	var isclick = $(this).attr('isclick');
     	if (isclick == 'false') {
+    		$('.user_type').attr({isclick:'false'});
 	    	$(this).attr({isclick:'true'});
 	    	$('#input_user_type').val(usertype);
 	    	$('.user_type').find('.icon_right').remove();
