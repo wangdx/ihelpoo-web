@@ -99,7 +99,7 @@
 	  	<?php } else {?>
 	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?></a></li>
 	  	<?php } ?>
-	  	<?php $i++; } ?>
+	  	<?php } $i++; ?>
 	  	<?php if ($i > 3) { ?>
 	  		<li><a href="/index/hroup"><i class="ico_add"></i>更多组织</a></li>
 	  	<?php } ?>
