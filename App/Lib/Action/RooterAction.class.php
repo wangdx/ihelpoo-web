@@ -1601,18 +1601,20 @@ class RooterAction extends Action {
                     	'active' => $recordUserLogin['active'] + 50,
                     );
                 	$UserLogin->save($updateUserLoginInfo);
+                    i_savenotice("10000", $recordUserInvite['uid'], 'root/userinvite:success', '');
 	            } else {
 	            	$msgContent = "你邀请的用户无效:(，暂时不赠送活跃";
+                    i_savenotice("10000", $recordUserInvite['uid'], 'root/userinvite:success', '');//TODO bounce
 	            }
-	            $msgData = array(
-                	'id' => NULL,
-                	'uid' => $recordUserInvite['uid'],
-                 	'type' => 'rooter/userinvite',
-              		'content' => $msgContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgData);
+//	            $msgData = array(
+//                	'id' => NULL,
+//                	'uid' => $recordUserInvite['uid'],
+//                 	'type' => 'rooter/userinvite',
+//              		'content' => $msgContent,
+//                	'time' => time(),
+//                	'deliver' => 0,
+//	            );
+//	            $MsgSystem->add($msgData);
 	            
 	            /**
 	             * admin user operating record
@@ -2546,16 +2548,17 @@ class RooterAction extends Action {
     			/**
 	             * send system message.
 	             */
-	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
-	            $msgData = array(
-                	'id' => NULL,
-                	'uid' => $recordActivityItem['sponsor_uid'],
-                 	'type' => 'system',
-              		'content' => $msgContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgData);
+//	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
+//	            $msgData = array(
+//                	'id' => NULL,
+//                	'uid' => $recordActivityItem['sponsor_uid'],
+//                 	'type' => 'system',
+//              		'content' => $msgContent,
+//                	'time' => time(),
+//                	'deliver' => 0,
+//	            );
+//	            $MsgSystem->add($msgData);
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');//FIXME bounce and activity name
 	            
 	            /**
 	             * send mail

@@ -32,7 +32,7 @@
 		<p>2. 等待对方同意，如果同意则你们成为此次活动的Parter，如果对方拒绝你可以再请求与其他参与者成为Parter</p>
 		<p></p>
 		<p>
-			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12">确定</a>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12" onclick="notice.send('system', '<?php echo $_GET["parter"]; ?>')">确定</a>
 			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
 		</p>
 	</div>

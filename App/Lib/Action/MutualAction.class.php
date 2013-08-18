@@ -266,17 +266,18 @@ class MutualAction extends Action
          * send system message to prioriti user for user type 2
          */
         if ($userLogin['type'] == 2) {
-            $msgPriorityUserType2Content = "你加入了 " . $userLogin['nickname'] . " 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
-            $msgPriorityUserType2Data = array(
-                'id' => NULL,
-                'uid' => $userloginid,
-                'type' => 'mutual/priority_usertype2',
-                'from_uid' => $priorityUid,
-                'content' => $msgPriorityUserType2Content,
-                'time' => time(),
-                'deliver' => 0,
-            );
-            $MsgSystem->add($msgPriorityUserType2Data);
+//            $msgPriorityUserType2Content = "你加入了 " . $userLogin['nickname'] . " 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
+//            $msgPriorityUserType2Data = array(
+//                'id' => NULL,
+//                'uid' => $userloginid,
+//                'type' => 'mutual/priority_usertype2',
+//                'from_uid' => $priorityUid,
+//                'content' => $msgPriorityUserType2Content,
+//                'time' => time(),
+//                'deliver' => 0,
+//            );
+//            $MsgSystem->add($msgPriorityUserType2Data);
+            i_savenotice($priorityUid, $userloginid, 'mutual/priority_usertype2', '');//TODO bounce
         }
 
         /**

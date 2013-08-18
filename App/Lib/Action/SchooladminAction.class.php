@@ -1363,19 +1363,21 @@ class SchooladminAction extends Action {
                     	'active' => $recordUserLogin['active'] + 50,
                     );
                 	$UserLogin->save($updateUserLoginInfo);
+                    i_savenotice("10000", $recordUserInvite['uid'], 'schooladmin/userinvite:success', '');
 	            } else {
 	            	$msgContent = "你邀请的用户无效:(，暂时不赠送活跃";
+                    i_savenotice("10000", $recordUserInvite['uid'], 'schooladmin/userinvite:invalid', '');
 	            }
-	            $msgData = array(
-                	'id' => NULL,
-                	'uid' => $recordUserInvite['uid'],
-                 	'type' => 'schooladmin/userinvite',
-              		'content' => $msgContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgData);
-	            
+//	            $msgData = array(
+//                	'id' => NULL,
+//                	'uid' => $recordUserInvite['uid'],
+//                 	'type' => 'schooladmin/userinvite',
+//              		'content' => $msgContent,
+//                	'time' => time(),
+//                	'deliver' => 0,
+//	            );
+//	            $MsgSystem->add($msgData);
+
 	            /**
 	             * webmaster user operating record
 	             */

@@ -235,22 +235,27 @@ class StreamAction extends Action
                     $userGroupPrioritied = $UserPriority->where("pid = $userloginid")->select();
                     if (!empty($userGroupPrioritied)) {
                         $MsgSystem = M("MsgSystem");
+                        $tos = '';
                         foreach ($userGroupPrioritied as $userPrio) {
                             if ($groupmsgpush_system == 'on') {
                                 $msgSystemType = 'stream/i-para:groupmsgpush';
-                                $contentMsgSystem = "组织有新的消息通知你!";
-                                $pushMsgData = array(
-                                    'id' => '',
-                                    'uid' => $userPrio['uid'],
-                                    'type' => $msgSystemType,
-                                    'url_id' => $sayLastInsertId,
-                                    'from_uid' => $userloginid,
-                                    'content' => $contentMsgSystem,
-                                    'time' => time(),
-                                    'deliver' => 0,
-                                );
-                                $MsgSystem->add($pushMsgData);
+//                                $contentMsgSystem = "组织有新的消息通知你!";
+//                                $pushMsgData = array(
+//                                    'id' => '',
+//                                    'uid' => $userPrio['uid'],
+//                                    'type' => $msgSystemType,
+//                                    'url_id' => $sayLastInsertId,
+//                                    'from_uid' => $userloginid,
+//                                    'content' => $contentMsgSystem,
+//                                    'time' => time(),
+//                                    'deliver' => 0,
+//                                );
+//                                $MsgSystem->add($pushMsgData);
+                                i_savenotice($userloginid, $userPrio['uid'], $msgSystemType, $sayLastInsertId);
+                                $tos .= $userPrio['uid'].",";
                             }
+
+                            $tos = rtrim($tos, ",");
                             if ($groupmsgpush_mail == 'on') {
                                 $groupPushEmailUser = $UserLogin->find($userPrio['uid']);
 
@@ -310,9 +315,9 @@ class StreamAction extends Action
                      * if is help insert system_msg to fans
                      */
                     $userPrioritied = $UserPriority->where("pid = $userloginid")->select();
-                    $tos = '';
                     if (!empty($userPrioritied)) {
                         $MsgSystem = M("MsgSystem");
+                        $tos = '';
                         foreach ($userPrioritied as $userPrio) {
 //                            $msgSystemType = 'stream/ih-para:needhelp';
 //                            $contentMsgSystem = "有困难了，需要你的帮助";
@@ -329,7 +334,7 @@ class StreamAction extends Action
 //                            $MsgSystem->add($needHelpData);
 
                             i_savenotice($userloginid, $userPrio['uid'], 'stream/ih-para:needhelp', $sayLastInsertId);
-                            $tos .= $userPrio['uid'].",";
+                            $tos .= $userPrio['uid'] . ",";
 
 
                             /**
@@ -466,8 +471,8 @@ class StreamAction extends Action
                 }
             }
         }
-        
-        
+
+
         $timegaphalfyear = time() - 24 * 3600 * 90;
         $select = $RecordSay;
         if ($requestWay == "priority") {

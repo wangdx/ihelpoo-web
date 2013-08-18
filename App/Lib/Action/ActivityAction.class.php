@@ -315,20 +315,21 @@ class ActivityAction extends Action {
     				/**
     				 * send msg system
     				 */
-    				$MsgSystem = M("MsgSystem");
-    				$msgSystemType = 'activity/item-para:invite';
-    				$contentMsgSystem = "邀请你成为他的活动Parter!";
-    				$pushMsgData = array(
-	        	    	'id' => '',
-	       	            'uid' => $parteruid,
-            	        'type' => $msgSystemType,
-	        	    	'url_id' => $activityid,
-	        	    	'from_uid' => $userloginid,
-	        	    	'content' => $contentMsgSystem,
-	        	    	'time' => time(),
-	        	    	'deliver' => 0,
-    				);
-    				$MsgSystem->add($pushMsgData);
+//    				$MsgSystem = M("MsgSystem");
+//    				$msgSystemType = 'activity/item-para:invite';
+//    				$contentMsgSystem = "邀请你成为他的活动Parter!";
+//    				$pushMsgData = array(
+//	        	    	'id' => '',
+//	       	            'uid' => $parteruid,
+//            	        'type' => $msgSystemType,
+//	        	    	'url_id' => $activityid,
+//	        	    	'from_uid' => $userloginid,
+//	        	    	'content' => $contentMsgSystem,
+//	        	    	'time' => time(),
+//	        	    	'deliver' => 0,
+//    				);
+//    				$MsgSystem->add($pushMsgData);
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
     				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
