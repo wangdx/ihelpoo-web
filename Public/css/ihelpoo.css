@@ -673,7 +673,6 @@ color:#FFFA85;
     color: #FFFFFF;
     background: none;
 }
-
 .header_right a{
     margin:0 0 0 10px;
     vertical-align: top;
@@ -722,7 +721,7 @@ color:#FFFA85;
 }
 *html #nav_hover_list_div{
     position: absolute;
-    top: 28px;
+    top: 30px;
 }
 #nav_hover_list_div_ul{
     font-size: 12px;

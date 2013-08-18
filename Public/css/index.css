@@ -698,6 +698,12 @@ lable{
     display: inline-block;
     margin: 5px;
 }
+*+html .main_group_nav_ul li{
+    display: inline;
+}
+*html .main_group_nav_ul li{
+    display: inline;
+}
 .main_group_nav_info_ul{
     position: absolute;
     left: 350px;
@@ -707,6 +713,12 @@ lable{
 }
 .main_group_nav_info_ul li{
     padding: 1px 0;
+}
+*+html .main_group_nav_info_ul li{
+    display: inline;
+}
+*html .main_group_nav_info_ul li{
+    display: inline;
 }
 .main_group_nav_sub_ul{
     position: absolute;
@@ -733,11 +745,15 @@ lable{
 	display: inline-block;
 	margin: 15px 10px;
 }
-.main_group_img_p_img{
-    border: 1px solid #EEEEEE; 
+*+html .main_group_ul li{
+    display: inline;
 }
 *html .main_group_ul li{
+    display: inline;
     padding: 1px 5px;
+}
+.main_group_img_p_img{
+    border: 1px solid #EEEEEE; 
 }
 .main_group_img_p{
 	position: relative; 
