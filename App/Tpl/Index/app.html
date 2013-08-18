@@ -1,0 +1,21 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+  <div class="main_group_nav">
+  	<p class="main_group_nav_school_p"><a href="__ROOT__/" class="fb black_l">{$schoolname}</a> <a href="__ROOT__/index/school" title="更多学校" class="f12">[切换]</a></p>
+    <ul class="main_group_nav_ul">
+	  	<li>app 应用</li>
+  	</ul>
+  </div>
+  <ul class="main_group_ul">
+  <?php foreach ($groupList as $group) :?>
+    <li>
+    </li>
+  <?php endforeach; ?>
+  </ul>
+  <p class="main_mate_list_num f12 gray">共<?php echo $totalrecords; ?>个应用 <?php echo $totalPages; ?>页</p>
+  <div class="main_mate_list_link">
+  	<?php if ($totalPages > 1) { i_page_show("index/app", $totalPages); } ?>
+  </div>
+</div>
+<include file="Public:footer" />

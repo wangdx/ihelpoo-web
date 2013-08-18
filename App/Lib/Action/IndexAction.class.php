@@ -420,6 +420,22 @@ class IndexAction extends Action {
         $this->display();
     }
     
+    public function app()
+    {
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "应用 ".$recordSchoolInfo['school']." 帮助主题社交网站";
+        $this->assign('title',$title);
+        $this->assign('schoolname',$recordSchoolInfo['school']);
+        $page = i_page_get_num();
+        $count = 30;
+        $offset = $count * $page;
+        $totalrecords = 0;
+        $this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
+        $this->display();
+    }
+    
     public function applyverify()
     {
     	$recordSchoolInfo = i_school_domain();
