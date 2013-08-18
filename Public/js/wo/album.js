@@ -20,6 +20,7 @@ $().ready(function(){
     });
     $('#delete_image_btn').live('click', function(){
     	var delImageid = $(this).attr("value");
+    	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '删除中...请稍等'});
     	$('#delete_image_btn').html($infoLoading);
     	$.ajax({
     		type: "POST",
