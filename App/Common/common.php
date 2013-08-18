@@ -519,7 +519,7 @@ function i_get_image($recordImageField, $way = 'o')
                 if ("o" == $way) {
                     $imageRecordArray[] = $recordOutimg['rpath'];
                 } else if ("s" == $way) {
-                    if (preg_match("/ihelpoo-public/", $recordOutimg['rpath'])) {
+                    if (preg_match("/upaiyun/", $recordOutimg['rpath'])) {
                         $imageRecordArray[] = preg_replace("/recordsay/", "thumb_recordsay", $recordOutimg['rpath']);
                     } else {
                         $imageRecordArray[] = $recordOutimg['rpath'];
@@ -537,7 +537,7 @@ function i_get_image($recordImageField, $way = 'o')
                 if ("o" == $way) {
                     $imageRecordArray[] = $recordOutimg['rpath'];
                 } else if ("s" == $way) {
-                    if (preg_match("/ihelpoo-public/", $recordOutimg['rpath'])) {
+                    if (preg_match("/upaiyun/", $recordOutimg['rpath'])) {
                         $imageRecordArray[] = preg_replace("/recordsay/", "thumb_recordsay", $recordOutimg['rpath']);
                     } else {
                         $imageRecordArray[] = $recordOutimg['rpath'];
