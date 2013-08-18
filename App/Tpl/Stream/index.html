@@ -86,8 +86,8 @@
     <li><a href="__ROOT__/mutual/shield?list"><i class="ico_attention"></i>我的屏蔽</a></li>
   </ul>
   <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] == '2') { ?>
-  <div class="splitter_line_div f12"></div>
-  <ul class="s_r_ul">
+  <div class="splitter_line_div"></div>
+  <ul class="s_r_ul f12">
   	<?php if($userloginedrecord['type'] == '2') { ?>
   		<li>
   			<a href="__ROOT__/stream/index/group/<?php echo $userloginedrecord['uid']; ?>" title="<?php echo $userloginedrecord['nickname']; ?>">
@@ -112,7 +112,7 @@
      <li><a href="__ROOT__/help"><i class="ico_time"></i>帮助广场</a></li>
      <li><a href="__ROOT__/index/mate?w=academy&n=1"><i class="ico_magic"></i>大家(学院)</a></li>
      <li><a href="__ROOT__/index/hot"><i class="ico_ranking"></i>热门排行</a></li>
-     <li><a href="__ROOT__/index/hot"><i class="ico_store"></i>App应用</a></li>
+     <li><a href="__ROOT__/index/app"><i class="ico_store"></i>App应用</a></li>
   </ul>
 </div>
 <!-- /left -->
