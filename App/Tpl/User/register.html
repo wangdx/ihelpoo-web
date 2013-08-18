@@ -52,8 +52,12 @@
     <li class="enteryear_li">
       入学年份
       <select id="enteryear" name="enteryear">
-        <?php $i = 2013; while ($i >= 1930) { ?>
-        <option value="<?php echo $i;?>"><?php echo $i;?></option>
+        <?php $i = 2020; while ($i >= 1930) { ?>
+        <?php if ($i == 2013) { ?>
+        	<option value="<?php echo $i; ?>" selected><?php echo $i;?></option>
+        <?php } else { ?>
+        	<option value="<?php echo $i; ?>"><?php echo $i;?></option>
+        <?php } ?>
         <?php $i--; } ?>
       </select>
     </li>

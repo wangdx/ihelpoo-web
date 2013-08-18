@@ -6,13 +6,9 @@ $().ready(function(){
     $('#email').blur(function(){
         emailok = 'no';
         var emailcheck = $('#email').val();
-        $(this).ajaxStart(function(){
-        	$('#emailinfo').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#emailinfo').html($infoLoading);
         if (emailcheck == '') {
-            $('#emailinfo').html('<span class="icon_index_wrong"></span>邮箱不能为空');
+            $('#emailinfo').html('× 邮箱不能为空');
         } else {
             $.ajax({
                 type: 'POST',
@@ -24,14 +20,10 @@ $().ready(function(){
                     if ('ok' == msg.status) {
                         $('#emailinfo').html('<span class="icon_right"></span>');
                         emailok = 'ok';
-                    } else if ('movedata' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_right"></span>');
-                        alert(msg.info);
-                        window.location = baseUrl;
                     } else if ('exist' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_index_wrong"></span>' + msg.info);
+                        $('#emailinfo').html('× ' + msg.info);
                     } else if ('wrong' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_index_wrong"></span>' + msg.info);
+                        $('#emailinfo').html('× ' + msg.info);
                     }
                 }
             });
@@ -42,9 +34,9 @@ $().ready(function(){
         var passwordcheck = $('#password').val();
         var passwordlegth = passwordcheck.length;
         if (passwordcheck == '') {
-            $('#passwordinfo').html('<span class="icon_index_wrong"></span>密码不能为空');
+            $('#passwordinfo').html('× 密码不能为空');
         } else if (passwordlegth < 6) {
-            $('#passwordinfo').html('<span class="icon_index_wrong"></span>密码最短不能少于6个字符');
+            $('#passwordinfo').html('× 密码最短不能少于6个字符');
         } else {
             $('#passwordinfo').html('<span class="icon_right"></span>');
         }
@@ -54,9 +46,9 @@ $().ready(function(){
         var passwordcheck = $('#password').val(),
             passwordrepeatcheck = $('#passwordrepeat').val();
         if (passwordrepeatcheck == '') {
-            $('#passwordrepeatinfo').html('<span class="icon_index_wrong"></span>请重复密码');
+            $('#passwordrepeatinfo').html('× 请重复密码');
         } else if (passwordrepeatcheck != passwordcheck) {
-            $('#passwordrepeatinfo').html('<span class="icon_index_wrong"></span>两次密码不一致');
+            $('#passwordrepeatinfo').html('× 两次密码不一致');
         } else {
             $('#passwordrepeatinfo').html('<span class="icon_right"></span>');
             passwordok = 'ok';
@@ -66,10 +58,11 @@ $().ready(function(){
         nicknameok = 'no';
         var nicknamecheck = $('#nickname').val();
         var nicknamelength = getStringLength(nicknamecheck);
+        $('#nicknameinfo').html($infoLoading);
         if (nicknamecheck == '') {
-            $('#nicknameinfo').html('<span class="icon_index_wrong"></span>昵称不能为空');
+            $('#nicknameinfo').html('× 昵称不能为空');
         } else if (nicknamelength > 25) {
-            $('#nicknameinfo').html('<span class="icon_index_wrong"></span>昵称太长了');
+            $('#nicknameinfo').html('× 昵称太长了');
         } else {
         	$.ajax({
                 type: 'POST',
@@ -82,8 +75,9 @@ $().ready(function(){
                         $('#nicknameinfo').html('<span class="icon_right"></span><span class="f12 gray">系统忽略特殊字符</span>');
                         nicknameok = 'ok';
                     } else if ('exist' == msg.status) {
-                        $('#nicknameinfo').html('<span class="icon_index_wrong"></span>昵称已经存在');
+                        $('#nicknameinfo').html('× 昵称已经存在');
                     }
+                    $('#nicknameinfo').html('');
                 }
             });
         }
@@ -96,7 +90,7 @@ $().ready(function(){
         if ('ok' == emailok && 'ok' == passwordok && 'ok' == nicknameok) {
         	$("form").submit();
         } else {
-            $('#registeinfo').html('<span class="icon_index_wrong"></span>出错了! 请检测填写项');
+            $('#registeinfo').html('× 出错了! 请检测填写项');
             if (emailok == 'no') {
             	$('#emailinfo').html('<span class="icon_attention"></span>');
             }
@@ -119,13 +113,9 @@ $().ready(function(){
     	}         
     })
     
-    var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
+    var $infoLoadingBar = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
     $("#selectschool").click(function(){
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#ajaxprogressbar').html($infoLoadingBar);
         $.ajax({
             type: "POST",
             url: baseUrl + "user/register",
