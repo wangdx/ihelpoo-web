@@ -714,12 +714,6 @@ lable{
 .main_group_nav_info_ul li{
     padding: 1px 0;
 }
-*+html .main_group_nav_info_ul li{
-    display: inline;
-}
-*html .main_group_nav_info_ul li{
-    display: inline;
-}
 .main_group_nav_sub_ul{
     position: absolute;
     top: 50px;
