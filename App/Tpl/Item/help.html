@@ -20,11 +20,18 @@
         $('.system_notice2').click(function(){
             notice.send("system", "<?php echo $sayRecord['uid'] ?>");
         });
+    });
+</script>
+<?php   if (!empty($helpreply['uid']) && $helpreply['uid'] != $userloginedrecord['uid']) {?>
+<script>
+    $(function(){
         $('.system_notice3').click(function(){
             notice.send("system", "<?php echo $helpreply['uid'] ?>");
         });
     });
 </script>
+<?php } ?>
+
 <div class="main">
 <div class="main_item">
 <div class="i_content">
