@@ -261,18 +261,19 @@ class ItemAction extends Action {
     			/*
     			 * send system message
     			 */
-    			$msgHelpEndContent = "您的帮助要到期了, 快来看看有什么进展不";
-    			$msgHelpEndData = array(
-                    'id' => NULL,
-                    'uid' => $sayRecord['uid'],
-                    'type' => 'stream/ih-para:timeLimit',
-                    'url_id' => $sayRecord['sid'],
-                    'content' => $msgHelpEndContent,
-                    'time' => time(),
-                    'deliver' => 0,
-    			);
-    			$MsgSystem->add($msgHelpEndData);
+//    			$msgHelpEndContent = "您的帮助要到期了, 快来看看有什么进展不";
+//    			$msgHelpEndData = array(
+//                    'id' => NULL,
+//                    'uid' => $sayRecord['uid'],
+//                    'type' => 'stream/ih-para:timeLimit',
+//                    'url_id' => $sayRecord['sid'],
+//                    'content' => $msgHelpEndContent,
+//                    'time' => time(),
+//                    'deliver' => 0,
+//    			);
+//    			$MsgSystem->add($msgHelpEndData);
 
+                i_savenotice('10000', $sayRecord['uid'], 'stream/ih-para:timeLimit', $sayRecord['sid']);
                 $this->assign('toUid', $sayRecord['uid']);
 
 
@@ -292,20 +293,20 @@ class ItemAction extends Action {
     		/*
     		 * send system message
     		 */
-    		$msgHelpAlreadyEndContent = "您的帮助到期了, 系统已经自动关闭";
-    		$msgHelpAlreadyEndData = array(
-                'id' => NULL,
-                'uid' => $sayRecord['uid'],
-                'type' => 'stream/ih-para:timeEnd',
-                'url_id' => $sayRecord['sid'],
-                'content' => $msgHelpAlreadyEndContent,
-                'time' => time(),
-                'deliver' => 0,
-    		);
-    		$MsgSystem->add($msgHelpAlreadyEndData);
+//    		$msgHelpAlreadyEndContent = "您的帮助到期了, 系统已经自动关闭";
+//    		$msgHelpAlreadyEndData = array(
+//                'id' => NULL,
+//                'uid' => $sayRecord['uid'],
+//                'type' => 'stream/ih-para:timeEnd',
+//                'url_id' => $sayRecord['sid'],
+//                'content' => $msgHelpAlreadyEndContent,
+//                'time' => time(),
+//                'deliver' => 0,
+//    		);
+//    		$MsgSystem->add($msgHelpAlreadyEndData);
+            i_savenotice('10000', $sayRecord['uid'], 'stream/ih-para:timeEnd', $sayRecord['sid']);
             $this->assign('toUid', $sayRecord['uid']);
     	}
-        $this->assign('toUid', '12419');
 
     	/**
     	 * update hit_op

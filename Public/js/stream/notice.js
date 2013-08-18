@@ -12,7 +12,6 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
-    console.log('***********');
 
 
     /**
@@ -72,7 +71,6 @@ function Notice(state) {
     var _membersSubscription;
 
     this.join = function (from, to) {
-        console.log("----------------");
         _disconnecting = false;
         _from = from;
         _to = to;
@@ -132,7 +130,6 @@ function Notice(state) {
     };
 
     this.receive = function (message) {
-        console.log('++++++++++++++++++++++++');
         var fromUser = message.data.fromUser;
         var toUser = message.data.toUser;
         var from = message.data.from;
