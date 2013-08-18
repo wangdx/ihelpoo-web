@@ -675,8 +675,8 @@ lable{
     top: 15px;
 }
 *html .h_r_ul_li_hit{
-    position: absolute;
-    right: 250px;
+    position: fixed;
+    right: 100px;
 }
 .h_r_ul_li_time{
     position: absolute;
