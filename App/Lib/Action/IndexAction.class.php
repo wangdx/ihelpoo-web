@@ -268,20 +268,20 @@ class IndexAction extends Action {
             	}
             	if (!empty($sex)) {
             		if ($number == 994) {
-            			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 4 AND school = $recordSchoolInfo[id]")
+            			$userList = $UserLogin->where("sex = $sex AND type = 4 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 4 AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("sex = $sex AND type = 4 AND school = $recordSchoolInfo[id]")->count();
             		} else if ($number == 995) {
-            			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 5 AND school = $recordSchoolInfo[id]")
+            			$userList = $UserLogin->where("sex = $sex AND type = 5 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 5 AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("sex = $sex AND type = 5 AND school = $recordSchoolInfo[id]")->count();
             		} else if ($number == 996) {
-            			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 6 AND school = $recordSchoolInfo[id]")
+            			$userList = $UserLogin->where("sex = $sex AND type = 6 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex AND type = 6 AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("sex = $sex AND type = 6 AND school = $recordSchoolInfo[id]")->count();
             		} else if ($number == 5) {
             			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
@@ -295,20 +295,20 @@ class IndexAction extends Action {
             		}
             	} else {
             		if ($number == 994) {
-            			$userList = $UserLogin->where("enteryear <= $num AND type = 4 AND school = $recordSchoolInfo[id]")
+            			$userList = $UserLogin->where("type = 4 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND type = 4 AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("type = 4 AND school = $recordSchoolInfo[id]")->count();
             		} else if ($number == 995) {
-            			$userList = $UserLogin->where("enteryear <= $num AND type = 5 AND school = $recordSchoolInfo[id]")
+            			$userList = $UserLogin->where("type = 5 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND type = 5 AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("type = 5 AND school = $recordSchoolInfo[id]")->count();
             		} else if ($number == 996) {
-            			$userList = $UserLogin->where("enteryear <= $num AND type = 6 AND school = $recordSchoolInfo[id]")
+            			$userList = $UserLogin->where("type = 6 AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND type = 6 AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("type = 6 AND school = $recordSchoolInfo[id]")->count();
             		} else if ($number == 5) {
             			$userList = $UserLogin->where("enteryear <= $num AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
