@@ -649,28 +649,30 @@ color:#FFFA85;
     width: 55px;
 }
 .header .header_left_arrow:hover{
-    border-left: 0px solid #CC0000;
-    border-right: 0px solid #CC0000;
     color: #333333;
     background: #FFFFFF;
 }
 .header .header_left_arrow_hover{
-    border-left: 0px solid #CC0000;
-    border-right: 0px solid #CC0000;
     color: #333333;
     background: #FFFFFF;
 }
-.header_left_noarrow{
-    display: inline-block;
-    height: 20px;
+
+*html .header .header_left_arrow{
     margin: 0;
-    padding: 10px 0;
+    padding: 0;
     position: relative;
-    text-align: center;
-    top: -12px;
-    width: 30px;
-    margin: 0 0 0 5px;
+    top: 0;
+    width: 55px;
 }
+*html .header .header_left_arrow:hover{
+    color: #333333;
+    background: none;
+}
+*html .header .header_left_arrow_hover{
+    color: #333333;
+    background: none;
+}
+
 .header_right a{
     margin:0 0 0 10px;
     vertical-align: top;
