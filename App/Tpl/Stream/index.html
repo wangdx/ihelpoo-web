@@ -78,10 +78,10 @@
     <li><a href="__ROOT__/stream/index/priority"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/help"><i class="ico_specialcare"></i>看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
   </ul>
-  <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] != '1') { ?>
+  <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] == '2') { ?>
   <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
-  	<?php if($userloginedrecord['type'] != '1') { ?>
+  	<?php if($userloginedrecord['type'] == '2') { ?>
   		<li>
   			<a href="__ROOT__/stream/index/group/<?php echo $userloginedrecord['uid']; ?>" title="<?php echo $userloginedrecord['nickname']; ?>">
   				<span class="icon_n_fans"></span> <?php echo $ofunction->cut_str($userloginedrecord['nickname'], 5); ?>
