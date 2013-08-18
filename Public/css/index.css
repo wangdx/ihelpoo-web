@@ -673,6 +673,7 @@ lable{
     position: absolute;
     right: 10px;
     top: 15px;
+    display: block;
 }
 *html .h_r_ul_li_hit{
     position: absolute;
