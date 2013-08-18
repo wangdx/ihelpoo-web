@@ -122,18 +122,20 @@ class MutualAction extends Action
             /**
              * send system message to prioritied user
              */
-            $MsgSystem = M("MsgSystem");
-            $msgPriorityContent = "有人屏蔽了你，请注意言行，被扣除5活跃  (每天最多扣5活跃)";
-            $msgPriorityData = array(
-                'id' => NULL,
-                'uid' => $shieldUid,
-                'type' => 'mutual/shield',
-                'from_uid' => '',
-                'content' => $msgPriorityContent,
-                'time' => time(),
-                'deliver' => 0,
-            );
-            $isMsgPriorityDataInserted = $MsgSystem->add($msgPriorityData);
+//            $MsgSystem = M("MsgSystem");
+//            $msgPriorityContent = "有人屏蔽了你，请注意言行，被扣除5活跃  (每天最多扣5活跃)";
+//            $msgPriorityData = array(
+//                'id' => NULL,
+//                'uid' => $shieldUid,
+//                'type' => 'mutual/shield',
+//                'from_uid' => '',
+//                'content' => $msgPriorityContent,
+//                'time' => time(),
+//                'deliver' => 0,
+//            );
+//            $isMsgPriorityDataInserted = $MsgSystem->add($msgPriorityData);
+            //TODO bounce notice message
+            i_savenotice('10000', $shieldUid, 'mutual/shield', '');
 
             /**
              * msg active
