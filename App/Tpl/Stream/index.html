@@ -80,7 +80,7 @@
   </ul>
   <?php if (!empty($pidGroupArray) || $userloginedrecord['type'] == '2') { ?>
   <div class="splitter_line_div"></div>
-  <ul class="s_r_ul f12">
+  <ul class="s_r_ul">
   	<?php if($userloginedrecord['type'] == '2') { ?>
   		<li>
   			<a href="__ROOT__/stream/index/group/<?php echo $userloginedrecord['uid']; ?>" title="<?php echo $userloginedrecord['nickname']; ?>">
@@ -91,11 +91,17 @@
   			</a>
   		</li>
   	<?php } ?>
+  	<?php $i = 0; ?>
   	<?php foreach ($pidGroupArray as $pidGroup) { ?>
+  	    <?php if ($i < 3) { ?>
 	  	<?php if ($groupUserRecord['uid'] == $pidGroup['uid']) { ?>
 	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?><span class="dot_choose"></span></a></li>
 	  	<?php } else {?>
 	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?></a></li>
+	  	<?php } ?>
+	  	<?php $i++; } ?>
+	  	<?php if ($i >= 3) { ?>
+	  		<li><a href="/index/hroup"><i class="ico_add"></i>更多组织...</a></li>
 	  	<?php } ?>
   	<?php } ?>
   </ul>
