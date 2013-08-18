@@ -596,6 +596,8 @@ function i_send($to, $subject, $body)
     $redis->lPush(C('MAIL_QUEUE_BODY'), $body);
 }
 
+
+
 /**
  * @deprecated use i_send instead
  */
@@ -642,5 +644,29 @@ function i_sendmail($address, $title, $message)
     return ($mail->Send());
 }
 
+
+
+function i_savenotice($from, $to, $noticeType, $detailId)
+{
+    Vendor('Ihelpoo.Idworker');
+    $idworker = new Idworker();
+    $noticeId = $idworker->next();
+    $hs = new HandlerSocket(C('MYSQL_MASTER'), C('HS_PORT_WR'));
+    if (!($hs->openIndex(3, C('OO_DBNAME'), C('H_I_MSG_NOTICE'), '', 'notice_id,notice_type,source_id,detail_id,format_id,create_time'))) {
+        echo 'ERROR1:' . $hs->getError(), PHP_EOL;
+        die();
+    }
+
+    if ($hs->executeInsert(3, array($noticeId, $noticeType, $from, $detailId, $noticeType, time())) === false) {
+        echo 'ERROR2:' . $hs->getError(), PHP_EOL;
+    }
+    unset($hs);
+
+    $redis = new Redis();
+    $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+    $redis->hSet(C('R_ACCOUNT') . C('R_MESSAGE') . $to, $noticeId, 0);
+    $redis->hIncrBy(C('R_NOTICE') . C('R_SYSTEM') . substr($to, 0, strlen($to) - 3), substr($to, -3), 1);
+    return $noticeId;
+}
 
 ?>
