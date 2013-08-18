@@ -55,7 +55,8 @@ $().ready(function(){
         });
     });
     $('.delete_more_info').live('click', function(){
-    	$("#i_shine_hit_in").fadeOut('fast');
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").hide();
     });
     $('.btn_cancel').live('click', function(){
     	$("#ajax_info_div").fadeOut("fast");
