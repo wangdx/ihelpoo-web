@@ -5,7 +5,7 @@ $().ready(function(){
     var introductionOk = "yes";
     $("#nickname").blur(function(){
         var nickname = $("#nickname").attr("value");
-        var nicknameLength = getStringLength(nickname);
+        var nicknameLength = nickname.length;
         if (nickname == '') {
             $("#nicknameinfo").html('<span class="red f12"><span class="icon_wrong"></span> 昵称不能为空</span>');
             nicknameOk = "no";
@@ -22,7 +22,7 @@ $().ready(function(){
     });
     $("#introduction").keyup(function(){
         var introduction = $("#introduction").val();
-        var introductionLength = getStringLength(introduction);
+        var introductionLength = introduction.length;
         var letterLeft = 140 - introductionLength;
         if (introductionLength > 140) {
             $("#introductioninfo").html("<span class='red'> 太长了饿</span>");

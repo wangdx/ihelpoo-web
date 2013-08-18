@@ -57,7 +57,7 @@ $().ready(function(){
     $('#nickname').blur(function(){
         nicknameok = 'no';
         var nicknamecheck = $('#nickname').val();
-        var nicknamelength = getStringLength(nicknamecheck);
+        var nicknamelength = nicknamecheck.length;
         $('#nicknameinfo').html($infoLoading);
         if (nicknamecheck == '') {
             $('#nicknameinfo').html('× 昵称不能为空');
