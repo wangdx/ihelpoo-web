@@ -80,6 +80,9 @@
 	       | <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a> | 
 	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
 	      <?php } ?>
+	      <?php if ($userLogin['type'] == '2') { ?>
+	        <a href="/stream/index/group/<?php echo $userLogin['uid']; ?>">成员信息流</a>
+	      <?php } ?>
 	      <?php } ?>
 	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
       </div>
