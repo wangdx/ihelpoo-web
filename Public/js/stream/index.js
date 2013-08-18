@@ -427,11 +427,7 @@ $().ready(function(){
             if (imageNums > 4) {
                 alert('最多一次只能传5张图片');
             } else {
-                $(this).ajaxStart(function(){
-                	$('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
-                }).ajaxComplete(function(){
-                	$infoLoading.remove();
-                });
+                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
                 $.ajaxFileUpload({
                 	url: baseUrl + 'ajax/imgupload',
                 	secureuri: false,
@@ -444,8 +440,8 @@ $().ready(function(){
                 	        imageNums++;
                 	    } else if (msg.status == 'error') {
                 	        $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(3000).fadeOut('fast');
-                	        //alert(msg.info);
                 	    }
+                	    $('.imgajaxloading_span').fadeOut();
                 	}
                 });
             }
