@@ -822,7 +822,7 @@ class ItemAction extends Action {
 //    							if (empty($affetcedMsgRecordHelpreply)) {
 //    								$this->ajaxReturn(0,'message_system_help insert failed','error');
 //    							}
-                                i_savenotice($userloginid, $msgToiud, 'stream/ih-para:reply', $sid);
+                                i_savenotice($userloginid, $toid, 'stream/ih-para:reply', $sid);
     						}
     					}
 
