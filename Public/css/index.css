@@ -201,13 +201,10 @@ lable{
     background-position: 0 -192px;
     text-decoration: none;
 }
-
 .loginbox_more{
     width: 215px;
     margin: 10px 0 0;
 }
-
-
 .loginbox_outer{
     background: #FFF;
     height: 215px;
@@ -222,8 +219,9 @@ lable{
     top: 0;
     z-index: -1;
 }
-
-
+*html .loginbox_outer{
+    display: none;
+}
 .index_loginfast_div{
     float: right;
     height: 220px;
