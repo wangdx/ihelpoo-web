@@ -746,6 +746,7 @@ lable{
 *html .main_group_ul li{
     display: inline;
     padding: 1px 5px;
+    height: 95px;
 }
 .main_group_img_p_img{
     border: 1px solid #EEEEEE; 
