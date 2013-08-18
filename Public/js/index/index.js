@@ -1,4 +1,3 @@
-var firstVisitUrl = location.href;
 $().ready(function(){
 	
 	/**
@@ -90,8 +89,7 @@ $().ready(function(){
     		$('#submit').click();
     		document.body.focus();
     	}
-    })
-
+    });
 });
 
 function loadBackground()
