@@ -20,7 +20,7 @@ $().ready(function(){
     });
     $('#delete_image_btn').live('click', function(){
     	var delImageid = $(this).attr("value");
-    	$('#del_image_btn_yes').html($infoLoading);
+    	$('#delete_image_btn').html($infoLoading);
     	$.ajax({
     		type: "POST",
     		url: baseUrl + "wo/album",
@@ -49,7 +49,7 @@ $().ready(function(){
     			} else {
     				ajaxInfo(msg.info);
     			}
-    			$('#del_image_btn_yes').html('确定');
+    			$('#delete_image_btn').html('确定');
             }
         });
     });
