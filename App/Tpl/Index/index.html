@@ -158,19 +158,7 @@ html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidd
 	<script type="text/javascript">
 		$().ready(function(){
 			$('#submit').click(function(){
-		    	var emailcheck = $('#email').val();
-		    	var passwordcheck = $('#password').val();
-		        var passwordlegth = passwordcheck.length;
-		        if (emailcheck == '') {
-		        	$('#logininfo').fadeIn().html('× 邮箱不能为空');
-		        } else if (passwordcheck == '') {
-		            $('#logininfo').fadeIn().html('× 密码不能为空');
-		        } else if (passwordlegth < 6) {
-		            $('#logininfo').fadeIn().html('× 密码最短不能少于6个字符');
-		        } else {
-		            $('#logininfo').fadeOut();
-		            $("form").submit();
-		        }
+		    	$(this).hide();
 		    });
 		});
 	</script>
