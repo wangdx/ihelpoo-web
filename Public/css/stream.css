@@ -1593,7 +1593,7 @@
     display: inline;
 }
 *+html .stream_list_ul li{
-	min-height: 90px;
+	min-height: 30px;
 }
 *+html #help_user_recommend li{
     display: inline;
@@ -1644,7 +1644,7 @@
 	top: 0px;
 }
 *html .stream_list_ul li{
-	height: 90px;
+	height: 30px;
 }
 *html .i_comment_list{
 	position: relative;
