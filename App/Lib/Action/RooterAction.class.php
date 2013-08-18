@@ -1447,17 +1447,18 @@ class RooterAction extends Action {
                 /**
                  * insert into system message
                  */
-                $diffusionToOwnerData = array(
-        	        'id' => '',
-        	        'uid' => $user,
-        	        'type' => $msgSystemType,
-        	        'url_id' => $user,
-        	        'from_uid' => '',
-        	        'content' => $contentToOwnerMsgSystem,
-        	        'time' => time(),
-        	        'deliver' => 0,
-                );
-        	    $MsgSystem->add($diffusionToOwnerData);
+//                $diffusionToOwnerData = array(
+//        	        'id' => '',
+//        	        'uid' => $user,
+//        	        'type' => $msgSystemType,
+//        	        'url_id' => $user,
+//        	        'from_uid' => '',
+//        	        'content' => $contentToOwnerMsgSystem,
+//        	        'time' => time(),
+//        	        'deliver' => 0,
+//                );
+//        	    $MsgSystem->add($diffusionToOwnerData);
+                i_savenotice('10000', $user, $msgSystemType, $user);
         	    $i++;
             }
             

@@ -19,9 +19,9 @@
 	<br /><br />
 	<hr />
 	<br /><br />
-	<form method="post">
+	<form method="post" onsubmit="notice.send('root', $.trim($('#user_ids').val()));">
 	  <span class="fb blue f14">2</span>.授予用户荣誉:<br /><br />
-	  <p>用户uids:<input type="text" name="user_ids" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)<br /><br /></p>
+	  <p>用户uids:<input type="text" name="user_ids" id="user_ids" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)<br /><br /></p>
 	  <p>荣誉内容:<textarea name="honor_content" rows="5" cols="70"></textarea></p>
 	  <p><br />&#12288;&#12288;&#12288;&#12288; <input type="submit" value="授予" /></p>
 	</form>
