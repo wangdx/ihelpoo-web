@@ -314,11 +314,11 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     color: #818181;
     display: inline-block;
     font-size: 12px;
-    height: 14px;
-    line-height: 14px;
+    height: 16px;
+    line-height: 16px;
     outline: 0 none;
     overflow: hidden;
-    padding: 3px 3px 3px 9px;
+    padding: 3px 3px 3px 5px;
     width: 117px;
     position: relative;
     bottom: 1px;
