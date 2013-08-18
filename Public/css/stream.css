@@ -458,7 +458,10 @@
 .comment_view_div_box_replyinner_textarea{
     width: 400px;
     height: 30px;
-    border-radius: 3px;
+    border-radius: 3px;    
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .comment_textareaicon_replyinner{
     position: absolute;
