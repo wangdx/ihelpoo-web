@@ -436,8 +436,7 @@ class WoAction extends Action {
     			 * delete icon
     			 */
     			if ($deleteAlbumRecord['type'] == 1) {
-    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com/", "", $deleteAlbumRecord['url']);
-    				//$urlFilename = $deleteAlbumRecord['url'];
+    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecord['url']);
     				$urlThumbFilename = str_ireplace("iconorignal", "thumb_iconorignal", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($deleteAlbumRecord['url']);
     				$upyun->delete($urlThumbFilename);
@@ -523,7 +522,7 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = $deleteAlbumRecordUrl;
+    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("goods", "thumb_goods", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
@@ -540,7 +539,7 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = $deleteAlbumRecordUrl;
+    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("talk", "thumb_talk", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
