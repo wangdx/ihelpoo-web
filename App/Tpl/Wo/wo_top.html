@@ -32,10 +32,16 @@
   <div class="wo_top">
     <p class="img_part_me">
         <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 'l') ?>" width="300" height="225" class="radius5" />
-        <?php if ($userLogin['type'] == '3') { ?>
-          <span class="grades"></span>
-        <?php } else if ($userLogin['type'] == '2') { ?>
+        <?php if ($userLogin['type'] == '2') { ?>
           <span class="gradeg"></span>
+        <?php } else if ($userLogin['type'] == '3') { ?>
+          <span class="grades"></span>
+        <?php } else if ($userLogin['type'] == '4') { ?>
+          <span class="gradetea"></span>
+        <?php } else if ($userLogin['type'] == '5') { ?>
+          <span class="gradegra"></span>
+        <?php } else if ($userLogin['type'] == '6') { ?>
+          <span class="gradesen"></span>
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($userLogin['enteryear']) ?>"></span>
         <?php } ?>
