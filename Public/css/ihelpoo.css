@@ -344,7 +344,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -126px -35px;
 }
 
-.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention, .ico_magic, ico_qq, .ico_frame, ico_idcard, .ico_time, .ico_ranking, .ico_music{
+.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention, .ico_magic, ico_qq, .ico_frame, .ico_idcard, .ico_time, .ico_ranking, .ico_music{
     height: 18px;
     width: 18px;
     margin: 0 7px 0 8px;
