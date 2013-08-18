@@ -428,16 +428,19 @@ class WoAction extends Action {
     		if (!empty($userloginid) && !empty($_POST['imageid'])) {
     			$deleteImageId = (int)$_POST['imageid'];
     			$deleteAlbumRecord = $UserAlbum->find($deleteImageId);
-    			$storage = new SaeStorage();
 
+    			Vendor('Ihelpoo.Upyun');
+        		$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        		
     			/**
     			 * delete icon
     			 */
     			if ($deleteAlbumRecord['type'] == 1) {
-    				$urlFilename = str_ireplace("http://ihelpoo-public.stor.sinaapp.com/", "", $deleteAlbumRecord['url']);
+    				//$urlFilename = str_ireplace("http://ihelpoo-public.stor.sinaapp.com/", "", $deleteAlbumRecord['url']);
+    				$urlFilename = $deleteAlbumRecord['url'];
     				$urlThumbFilename = str_ireplace("iconorignal", "thumb_iconorignal", $urlFilename);
-    				$isStorageDeleteFlag = $storage->delete("public", $urlFilename);
-    				$storage->delete("public", $urlThumbFilename);
+    				$isStorageDeleteFlag = $upyun->delete($deleteAlbumRecord['url']);
+    				$upyun->delete($urlThumbFilename);
     				if ($isStorageDeleteFlag) {
     					$UserAlbum->where("id = $deleteImageId AND uid = $userloginid")->delete();
     					$this->ajaxReturn(0,'删除成功,3秒后页面跳转','ok');
@@ -487,10 +490,10 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo-public.stor.sinaapp.com/", "", $deleteAlbumRecordUrl);
+    				$urlFilename = $deleteAlbumRecordUrl;
     				$urlThumbFilename = str_ireplace("recordsay", "thumb_recordsay", $urlFilename);
-    				$isStorageDeleteFlag = $storage->delete("public", $urlFilename);
-    				$storage->delete("public", $urlThumbFilename);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
+    				$upyun->delete($urlThumbFilename);
     				if ($isStorageDeleteFlag) {
     					$UserAlbum->where("id = $deleteImageId AND uid = $userloginid")->delete();
     					$this->ajaxReturn(0,'删除成功,3秒后页面跳转','ok');
@@ -520,10 +523,10 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo-public.stor.sinaapp.com/", "", $deleteAlbumRecordUrl);
+    				$urlFilename = $deleteAlbumRecordUrl;
     				$urlThumbFilename = str_ireplace("goods", "thumb_goods", $urlFilename);
-    				$isStorageDeleteFlag = $storage->delete("public", $urlFilename);
-    				$storage->delete("public", $urlThumbFilename);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
+    				$upyun->delete($urlThumbFilename);
     				$urlThumb2Filename = str_ireplace("goodscontent", "thumb_goodscontent", $urlFilename);
     				$storage->delete("public", $urlThumb2Filename);
     				if ($isStorageDeleteFlag) {
@@ -537,10 +540,10 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo-public.stor.sinaapp.com/", "", $deleteAlbumRecordUrl);
+    				$urlFilename = $deleteAlbumRecordUrl;
     				$urlThumbFilename = str_ireplace("talk", "thumb_talk", $urlFilename);
-    				$isStorageDeleteFlag = $storage->delete("public", $urlFilename);
-    				$storage->delete("public", $urlThumbFilename);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
+    				$upyun->delete($urlThumbFilename);
     				if ($isStorageDeleteFlag) {
     					$UserAlbum->where("id = $deleteImageId AND uid = $userloginid")->delete();
     					$this->ajaxReturn(0,'删除成功,3秒后页面跳转','ok');
