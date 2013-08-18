@@ -87,7 +87,7 @@
     position: relative;
     left: 20px;
 }
-#passwordinfo{
+#emailinfo, #passwordinfo{
     position: absolute;
     left: 400px;
     top: 18px;
@@ -140,8 +140,8 @@
 }
 #registeinfo{
     position: absolute;
-    left: 260px;
-    top: 10px;
+    left: 330px;
+    top: 18px;
 }
 #ajaxprogressbar{
     position: fixed;
@@ -267,6 +267,10 @@
 	top: 10px;
 }
 *html #passwordinfo{
+    left: 300px;
+    top: 18px;
+}
+*html #emailinfo{
     left: 300px;
     top: 18px;
 }
