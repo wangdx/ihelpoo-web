@@ -9,7 +9,6 @@
     <script type="text/javascript">
         baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
     </script>
-
     <script type="text/javascript" src="__PUBLIC__/js/org/cometd.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/org/cometd/AckExtension.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/org/cometd/ReloadExtension.js"></script>
@@ -94,12 +93,11 @@ if (!empty($userloginedrecord['uid'])) {
     </div>
 </div>
 <div id='message_talk_nums_div'>
-    <a href='' target='_blank' class='message_talk_to_url'><img id="message_talk_nums_img_icon" src='' title=''
-                                                                width='50' class='radius3 pointer'
-                                                                style='vertical-align:bottom'/></a>
-    <a href='' target='_blank' class='message_talk_to_url'><span id="message_talk_nums_span_content"
-                                                                 class="black_l"></span></a>
-
+    <a href='' target='_blank' class='message_talk_to_url'>
+    	<img id="message_talk_nums_img_icon" src='' title='' width='50' class='radius3 pointer' style='vertical-align:bottom'/></a>
+    <a href='' target='_blank' class='message_talk_to_url'>
+    	<span id="message_talk_nums_span_content" class="black_l"></span>
+    </a>
     <p id="message_talk_nums_p_content_info" class="f10 gray"></p>
     <span id="message_talk_nums_span_close" class="icon_index_wrong pointer" title="关闭"
           style="position:absolute; right:5px; top:5px;"></span>

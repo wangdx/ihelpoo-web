@@ -710,6 +710,9 @@ color:#FFFA85;
     border-radius: 0 0 3px 3px;
     display: none;
 }
+*html #nav_hover_list_div{
+    position: absolute;
+}
 #nav_hover_list_div_ul{
     font-size: 12px;
     color: #CCC;
@@ -777,6 +780,7 @@ color:#FFFA85;
 /*--- ie6 ---*/
 *+html .header{ position:relative; }
 *+html .main{ margin-top:30px; }
+*html .header{ position:relative; }
 *html .main{ height:500px; margin-top:30px; }
 *html .footer{ height:30px; }
 *html .footer .about{ margin-bottom:1px; }
