@@ -15,10 +15,10 @@ $().ready(function(){
      */
     $('#delete_image').live('click', function(){
     	var deleteid = $(this).attr('imageid');
-    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_image' value='"+deleteid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='delete_image_btn' value='"+deleteid+"'>确定</a><a class='btn_cancel'>取消</a>";
     	ajaxInfo(infohtml);
     });
-    $('#del_image_btn_yes').live('click', function(){
+    $('#delete_image_btn').live('click', function(){
     	var delImageid = $(this).attr("value");
     	$('#del_image_btn_yes').html($infoLoading);
     	$.ajax({
