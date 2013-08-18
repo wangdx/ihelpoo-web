@@ -662,6 +662,7 @@ color:#FFFA85;
     padding: 0;
     position: relative;
     top: 0;
+    height: 15px;
     width: 55px;
 }
 *html .header .header_left_arrow:hover{
