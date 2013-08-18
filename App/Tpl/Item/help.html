@@ -270,7 +270,7 @@
             </div>
             <?php
 		    if (!empty($helpreply['uid']) && $helpreply['uid'] != $userloginedrecord['uid']) { ?>
-            <form class="help_comment_reply_form" action="" method="post"  onsubmit="notice.send('system', '<?php echo $helpreply["uid"] ?>');">
+            <form class="help_comment_reply_form" action="" method="post">
                 <input type="hidden" name="sid" value="<?php echo $sayRecord['sid'] ?>"/>
                 <input type="hidden" name="toid" value="<?php echo $helpreply['uid'] ?>"/>
                 <input type="hidden" name="hrid" value="<?php echo $helpreply['id'] ?>"/>
