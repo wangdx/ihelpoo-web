@@ -344,7 +344,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -126px -35px;
 }
 
-.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention, .ico_magic, ico_qq, .ico_frame, ico_idcard, .ico_time{
+.ico_friendfeed, .ico_specialcare, .ico_mentionme, .ico_sharespace, .ico_store, .ico_school, .ico_talk, .ico_favourite, .ico_attention, .ico_magic, ico_qq, .ico_frame, ico_idcard, .ico_time, .ico_ranking, .ico_music{
     height: 18px;
     width: 18px;
     margin: 0 7px 0 8px;
@@ -369,7 +369,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -491px -38px;
 }
 .ico_store{
-    background-position: -600px -51px;
+    background-position: -598px -51px;
 }
 .ico_school{
     background-position: -502px 0;
@@ -396,7 +396,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -565px -28px;
 }
 .ico_time{
-    background-position: -426px -23px;
+    background-position: -426px -22px;
 }
 .ico_ranking{
     background-position: -269px -3px;
