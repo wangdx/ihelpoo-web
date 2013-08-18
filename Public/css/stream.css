@@ -792,9 +792,6 @@
 #scroll_top_btn{
     display: block;
 }
-*html #scroll_top_btn{
-    display: inline;
-}
 #scroll_top_btn:hover{
     color: #7BD6F6;
     border-color:#7BD6F6;
