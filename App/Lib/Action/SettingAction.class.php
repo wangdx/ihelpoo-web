@@ -38,6 +38,7 @@ class SettingAction extends Action
         if ($this->isPost()) {
             $validate = array(
                 array('nickname', 'require', '昵称不能为空'),
+                array('usertype', 'require', 'usertype不能为空'),
                 array('sex', 'number', 'sex格式错误'),
                 array('enteryear', 'number', 'enteryear格式错误'),
                 array('school', 'number', 'school格式错误'),
@@ -61,6 +62,7 @@ class SettingAction extends Action
             } else {
                 $nickname = trim(addslashes(htmlspecialchars(strip_tags($_POST["nickname"]))));
                 $nickname = str_ireplace(' ', '', $nickname);
+                $usertype = trim(addslashes(htmlspecialchars(strip_tags($_POST["usertype"]))));
                 $sex = trim(htmlspecialchars(strip_tags($_POST["sex"])));
                 $enteryear = trim(htmlspecialchars(strip_tags($_POST["enteryear"])));
                 $year = trim(htmlspecialchars(strip_tags($_POST["year"])));
@@ -84,7 +86,25 @@ class SettingAction extends Action
                 if (!empty($isNicknameUseUserLogin['uid']) && ($isNicknameUseUserLogin['uid'] != $recordUserLogin['uid'])) {
                     $this->ajaxReturn(0, '这个昵称已经被别人占用', 'wrong');
                 }
-
+                
+                /**
+                 * 1 for default student
+                 * 2 for group
+                 * 3 for business
+                 * 4 for teacher
+                 * 5 for postgraduate
+                 * 6 for senior
+                 */
+	            $type = 1;
+	            if ($usertype == 'default') {
+	            	$type = 1;
+	            } else if ($usertype == 'teacher') {
+	            	$type = 4;
+	            } else if ($usertype == 'postgraduate') {
+	            	$type = 5;
+	            } else if ($usertype == 'senior') {
+	            	$type = 6;
+	            }
 
                 /**
                  * update i_user_login
@@ -95,6 +115,7 @@ class SettingAction extends Action
                     'sex' => $sex,
                     'birthday' => $birthday,
                     'enteryear' => $enteryear,
+                	'type' => $type,
                     'school' => $school
                 );
                 $UserLogin->save($updateUserloginData);
