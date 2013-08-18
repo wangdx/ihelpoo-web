@@ -265,10 +265,16 @@
     <p class="s_li_p_icon">
       <a href="__ROOT__/wo/<?php echo $record['uid'] ?>">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 'm') ?>" width="100" height="75" class="radius5 getuserinfo" userid="<?php echo $record['uid'] ?>" />
-        <?php if ($record['type'] == '3') { ?>
-          <span class="grades"></span>
-        <?php } else if ($record['type'] == '2') { ?>
+        <?php if ($record['type'] == '2') { ?>
           <span class="gradeg"></span>
+        <?php } else if ($record['type'] == '3') { ?>
+          <span class="grades"></span>
+        <?php } else if ($record['type'] == '4') { ?>
+          <span class="gradetea"></span>
+        <?php } else if ($record['type'] == '5') { ?>
+          <span class="gradegra"></span>
+        <?php } else if ($record['type'] == '6') { ?>
+          <span class="gradesen"></span>
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($record['enteryear']) ?>"></span>
         <?php }
