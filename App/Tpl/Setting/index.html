@@ -15,15 +15,15 @@
     <li class="black_l">
       <span class="settitle">登录名:</span> 
       <p class="accountinfo">{$recorduserlogin['email']}</p>
+      <if condition="$recorduserlogin['type'] eq 1">[个人用户]
+        <elseif condition="$recorduserlogin['type'] eq 2"/>[组织]
+        <elseif condition="$recorduserlogin['type'] eq 3"/>[商家]
+        <elseif condition="$recorduserlogin['type'] eq 4"/>[老师]
+        <elseif condition="$recorduserlogin['type'] eq 5"/>[研究生]
+        <elseif condition="$recorduserlogin['type'] eq 6"/>[高中生]
+      </if>
       <span class="f12 gray">
         <if condition="$recorduserlogin['status'] eq 2">已验证<else />未验证</if> 
-        <if condition="$recorduserlogin['type'] eq 1">个人用户
-        <elseif condition="$recorduserlogin['type'] eq 2"/>组织
-        <elseif condition="$recorduserlogin['type'] eq 3"/>商家
-        <elseif condition="$recorduserlogin['type'] eq 4"/>老师
-        <elseif condition="$recorduserlogin['type'] eq 5"/>研究生
-        <elseif condition="$recorduserlogin['type'] eq 6"/>高中生
-        </if>
        </span>
     </li>
     <li>
