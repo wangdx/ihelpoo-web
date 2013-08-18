@@ -185,6 +185,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .dot_choose{display: inline-block; width: 13px; height: 5px; background: #C00; margin: 6px; float: right; position: absolute; right: 10px; top: 5px;}
 *html .dot_choose{
     display: none;
+    left: 0px;
 }
 /*---*/
 .footer{ clear:both; width:980px; margin:0px auto 5px; text-align:center;}
