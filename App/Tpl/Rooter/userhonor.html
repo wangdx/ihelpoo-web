@@ -2,10 +2,10 @@
 <script>
     $(function(){
         $("#grant_form").submit(function(e){
-            var self = this;
-            e.preventDefault();
+//            var self = this;
+//            e.preventDefault();
 
-            notice.send('root', $.trim($('#user_ids').val()));
+//            notice.send('root', $.trim($('#user_ids').val()));//TODO bounce notice message
             return true;
         });
     });
