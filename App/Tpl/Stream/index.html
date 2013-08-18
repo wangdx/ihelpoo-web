@@ -147,7 +147,7 @@
 	      <span class="post_icon" id="textareaicon" title="表情"></span>
 	      <span class="post_img" id="textareaimg" title="图片"></span>
 	      <span class="post_video" id="textarealink" title="视频"></span>
-	      <?php if ($userloginedrecord['type'] != '1' ) { ?>
+	      <?php if ($userloginedrecord['type'] == '2' || $userloginedrecord['type'] == '3') { ?>
 	      <span class="post_appendix" id="textareagroupmsgpush" title="组织信息推送"></span>
 	      <?php } ?>
 	      <span class="helpleaf s_t_option_help" id="textareahelp" title="点击求帮助"></span>
