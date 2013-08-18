@@ -269,14 +269,14 @@ $().ready(function(){
             success:function(msg){
                 $deleteCommentLi.slideUp('fast');
                 $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").fadeOut("fast");
+        		$("#ajax_info_div_outer").hide();
             }
         });
     });
     
     $('.btn_cancel').live('click', function(){
     	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").fadeOut("fast");
+		$("#ajax_info_div_outer").hide();
 		$deleteCommentLi.css("backgroundColor", "#FFF");
     });
     

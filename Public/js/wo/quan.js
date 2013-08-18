@@ -21,7 +21,7 @@ $().ready(function(){
     				$cancelLi.css("backgroundColor", "#FFFA85");
     				$cancelLi.slideUp("fast");
     				$("#ajax_info_div").fadeOut("fast");
-    				$("#ajax_info_div_outer").fadeOut("fast");
+    				$("#ajax_info_div_outer").hide();
     			} else {
     				ajaxInfo(msg.info);
     			}
@@ -31,7 +31,7 @@ $().ready(function(){
 	
 	$('.btn_cancel').live('click', function(){
     	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").fadeOut("fast");
+		$("#ajax_info_div_outer").hide();
 		$deleteCommentLi.css("backgroundColor", "#FFF");
     });
 });

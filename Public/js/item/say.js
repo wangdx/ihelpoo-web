@@ -132,7 +132,7 @@ $().ready(function(){
             dataType: "json",
             success:function(msg){
                 $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").fadeOut("fast");
+        		$("#ajax_info_div_outer").hide();
         		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 setTimeout('pageToStream()',3000);
             }
@@ -141,7 +141,7 @@ $().ready(function(){
     
     $('.btn_cancel').live('click', function(){
     	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").fadeOut("fast");
+		$("#ajax_info_div_outer").hide();
     });
     
     /**
@@ -479,7 +479,7 @@ $().ready(function(){
             success:function(msg){
                 $alreadyDeleteLi.slideUp('fast');
                 $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").fadeOut("fast");
+        		$("#ajax_info_div_outer").hide();
             }
         });
     });
