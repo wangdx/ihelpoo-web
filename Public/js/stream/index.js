@@ -944,7 +944,6 @@ $().ready(function(){
 	 * hide repate li
 	 */
 	$('.steam_repate_li').before('<a class="steam_repate_li_show" title="查看更多 同一用户连续信息"><span class="icon_plus"></span></a>')
-	$('.steam_repate_li').hide();
 	$('.steam_repate_li_show').live('click', function(){
 	    $(this).next().slideDown('fast');
 	    $(this).hide();

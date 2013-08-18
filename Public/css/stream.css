@@ -250,6 +250,12 @@
 *html .stream_list_ul li{
 	height: 90px;
 }
+.steam_repate_li{
+    display: none;
+}
+*html .steam_repate_li{
+    display: inline;
+}
 .stream_list_ul_sort{
 	text-align: right;
 	padding: 6px 5px 3px 0px;
