@@ -2,7 +2,7 @@ $().ready(function(){
 	
 	/**
 	 * css style image background
-	 */
+	
 	var bgheight,bgwidth;
 	var windowheight = $(window).height();
 	var windowwidth = $(window).width();
@@ -24,6 +24,7 @@ $().ready(function(){
 	$(window).resize(function(){
 		loadBackground();
 	});
+	 */
 	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
     $('#email').blur(function(){
