@@ -147,11 +147,46 @@ html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidd
 	<img id="lay_bg_img" class="lay_background_img " alt="" src="<?php echo $indexbgimg; ?>" >
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
-<script type="text/javascript">
-  baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
-</script>
-<!-- <script type="text/javascript" src="__PUBLIC__/js/public/common.js?id=1"></script> -->
-<script type="text/javascript" src="__PUBLIC__/js/index/index.js?id=2"></script>
+
+<?php if(strpos($_SERVER["HTTP_USER_AGENT"],"MSIE 6.0")) { ?>
+	<script type="text/javascript">
+  		baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/js/public/common.js?id=1"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/index/index.js?id=2"></script>
+<?php } else { ?>
+	<script type="text/javascript">
+		$().ready(function(){
+			$('#submit').click(function(){
+		    	var emailcheck = $('#email').val();
+		    	var passwordcheck = $('#password').val();
+		        var passwordlegth = passwordcheck.length;
+		        if (emailcheck == '') {
+		        	$('#logininfo').fadeIn().html('× 邮箱不能为空');
+		        } else if (passwordcheck == '') {
+		            $('#logininfo').fadeIn().html('× 密码不能为空');
+		        } else if (passwordlegth < 6) {
+		            $('#logininfo').fadeIn().html('× 密码最短不能少于6个字符');
+		        } else {
+		            $('#logininfo').fadeOut();
+		            $.ajax({
+		                type: 'POST',
+		                url: baseUrl + 'user/ajaxcheckpassword',
+		                dataType: 'json',
+		                data: { email: emailcheck, password: passwordcheck },
+		                success: function(msg) {
+		                	if (msg.status == 'ok') {
+		                		$("form").submit();
+		                	} else {
+		                		$('#logininfo').fadeIn().html('× ' + msg.info);
+		                	}
+		                }
+		            });
+		        }
+		    });
+		});
+	</script>
+<?php } ?>
 <!-- <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="__PUBLIC__/js/index/weibo.js"></script> -->
 </body>
