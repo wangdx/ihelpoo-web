@@ -20,16 +20,11 @@ $().ready(function(){
                     if ('ok' == msg.status) {
                         $('#emailinfo').html('<span class="icon_right"></span>');
                         emailok = 'ok';
-                    } else if ('movedata' == msg.status) {
-                        $('#emailinfo').html('<span class="icon_right"></span>');
-                        alert(msg.info);
-                        window.location = baseUrl;
                     } else if ('exist' == msg.status) {
                         $('#emailinfo').html('× ' + msg.info);
                     } else if ('wrong' == msg.status) {
                         $('#emailinfo').html('× ' + msg.info);
                     }
-                    $('#emailinfo').html('');
                 }
             });
         }
