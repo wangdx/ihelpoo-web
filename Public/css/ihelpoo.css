@@ -662,15 +662,15 @@ color:#FFFA85;
     padding: 0;
     position: relative;
     top: 0;
-    height: 15px;
+    height: 10px;
     width: 55px;
 }
 *html .header .header_left_arrow:hover{
-    color: #333333;
+    color: #FFFFFF;
     background: none;
 }
 *html .header .header_left_arrow_hover{
-    color: #333333;
+    color: #FFFFFF;
     background: none;
 }
 
@@ -722,7 +722,7 @@ color:#FFFA85;
 }
 *html #nav_hover_list_div{
     position: absolute;
-    top: 26px;
+    top: 28px;
 }
 #nav_hover_list_div_ul{
     font-size: 12px;
