@@ -555,6 +555,12 @@ lable{
 .hot_right_nav_div p{
     display: inline-block;
 }
+*+html .hot_right_nav_div p{
+    display: inline;
+}
+*html .hot_right_nav_div p{
+    display: inline;
+}
 .hot_right_nav_div_title1{
     position: relative;
 }
