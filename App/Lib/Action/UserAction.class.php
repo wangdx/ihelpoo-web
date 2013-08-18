@@ -647,7 +647,8 @@ class UserAction extends Action {
 	            array('sex', 'number', 'sex格式错误'),
 	            array('enteryear', 'number', 'enteryear格式错误'),
 	            array('academy', 'number', 'academy格式错误'),
-	            array('school', 'number', 'school格式错误')
+	            array('school', 'number', 'school格式错误'),
+	            array('usertype', 'require', 'usertype不能为空'),
 	        );
 	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
@@ -659,12 +660,31 @@ class UserAction extends Action {
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
 	            $password = md5($password);
 	            $nickname = trim(addslashes(htmlspecialchars(strip_tags($_POST["nickname"]))));
+	            $usertype = trim(addslashes(htmlspecialchars(strip_tags($_POST["usertype"]))));
 	            $sex = htmlspecialchars(strtolower(trim($_POST["sex"])));
 	            $enteryear = htmlspecialchars(strtolower(trim($_POST["enteryear"])));
 	            $academy = htmlspecialchars(strtolower(trim($_POST["academy"])));
 	            $school = htmlspecialchars(strtolower(trim($_POST["school"])));
 	            $nickname = str_ireplace(' ','',$nickname);
 	            
+	            /**
+	             * 1 for default student
+	             * 2 for group
+	             * 3 for business
+	             * 4 for teacher
+	             * 5 for postgraduate
+	             * 6 for senior
+	             */
+	            $type = 1;
+	            if ($usertype == 'default') {
+	            	$type = 1;
+	            } else if ($usertype == 'teacher') {
+	            	$type = 4;
+	            } else if ($usertype == 'postgraduate') {
+	            	$type = 5;
+	            } else if ($usertype == 'senior') {
+	            	$type = 6;
+	            }
 	            $newUserlogignData = array(
 	            	'uid' => '',
 	            	'status' => '1',
@@ -673,7 +693,7 @@ class UserAction extends Action {
 	            	'nickname' => $nickname,
 	            	'sex' => $sex,
 	            	'enteryear' => $enteryear,
-	            	'type' => '1',
+	            	'type' => $type,
 	            	'priority' => '4',
 	            	'creat_ti' => time(),
 	            	'icon_fl' => 0,

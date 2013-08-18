@@ -3,10 +3,9 @@
 <div class="main">
 
 <div class="registe_main">
-  
   <?php if (empty($inviteUser['uid'])){ ?>
   <div class="registe_toptext">
-    <p class="registe_toptext_school_p f14 black_l"><?php echo $recordSchoolInfo['school']; ?> <a id="selectschool" class="f12">[更改]</a></p>
+    <p class="registe_toptext_school_p f14 black_l"><?php echo $recordSchoolInfo['school']; ?> <a class="academyselectschool">[更改]</a></p>
   </div>
   <?php } else { ?>
     <div class="registe_toptext_user">
@@ -48,18 +47,19 @@
         <option value="<?php echo $academy['id']; ?>"><?php echo $academy['name']; ?></option>
       <?php endforeach; ?>
       </select>
+      &#12288;&#12288;<a class="f12 academyselectschool">[切换学校]</a>
     </li>
     <li class="enteryear_li">
       入学年份
       <select id="enteryear" name="enteryear">
-        <?php $i = 2020; while ($i >= 1930) { ?>
-        <?php if ($i == 2013) { ?>
-        	<option value="<?php echo $i; ?>" selected><?php echo $i;?></option>
-        <?php } else { ?>
+        <?php $i = 2013; while ($i >= 1930) { ?>
         	<option value="<?php echo $i; ?>"><?php echo $i;?></option>
-        <?php } ?>
         <?php $i--; } ?>
       </select>
+      <span class="user_type_info">
+      	<a class="user_type" value="teacher" isclick="false">老师?</a> <a class="user_type" value="postgraduate" isclick="false">研究生?</a> <a class="user_type" value="senior" isclick="false">高中生?</a>
+      	<input type="hidden" id="input_user_type" name="usertype" value="default" />
+      </span>
     </li>
     <li><a id="registe_submit" class="radius3" >注册</a> <span id="registeinfo" class="f12 red_l"></span></li>
   </ul>

@@ -20,6 +20,9 @@
         <if condition="$recorduserlogin['type'] eq 1">个人用户
         <elseif condition="$recorduserlogin['type'] eq 2"/>组织
         <elseif condition="$recorduserlogin['type'] eq 3"/>商家
+        <elseif condition="$recorduserlogin['type'] eq 4"/>老师
+        <elseif condition="$recorduserlogin['type'] eq 5"/>研究生
+        <elseif condition="$recorduserlogin['type'] eq 6"/>高中生
         </if>
        </span>
     </li>
@@ -51,6 +54,10 @@
 			</if>
         </for>
       </select>
+      <span class="user_type_info">
+      	<a class="user_type" value="teacher" isclick="false">老师?</a> <a class="user_type" value="postgraduate" isclick="false">研究生?</a> <a class="user_type" value="senior" isclick="false">高中生?</a>
+      	<input type="hidden" id="input_user_type" name="usertype" value="default" />
+      </span>
     </li>
     <li>
       <span class="settitle">学校:</span>

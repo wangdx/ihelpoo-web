@@ -32,10 +32,16 @@
   <div class="wo_top">
     <p class="img_part_me">
         <img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 'l') ?>" width="300" height="225" class="radius5" />
-        <?php if ($userLogin['type'] == '3') { ?>
-          <span class="grades"></span>
-        <?php } else if ($userLogin['type'] == '2') { ?>
+        <?php if ($userLogin['type'] == '2') { ?>
           <span class="gradeg"></span>
+        <?php } else if ($userLogin['type'] == '3') { ?>
+          <span class="grades"></span>
+        <?php } else if ($userLogin['type'] == '4') { ?>
+          <span class="gradetea"></span>
+        <?php } else if ($userLogin['type'] == '5') { ?>
+          <span class="gradegra"></span>
+        <?php } else if ($userLogin['type'] == '6') { ?>
+          <span class="gradesen"></span>
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($userLogin['enteryear']) ?>"></span>
         <?php } ?>
@@ -62,14 +68,18 @@
       </span>
       
       <div class="wo_top_div_school f12 gray">
-	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
-	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
+	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
+	      <?php if ($userLogin['type'] == '1' || $userLogin['type'] == '5') { ?>
+	       | <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span>
+	      <?php } ?>
+	      <?php if ($userLogin['type'] == '1' || $userLogin['type'] == '2' || $userLogin['type'] == '4' || $userLogin['type'] == '5') { ?>
 	      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
-	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> | 
+	       | <a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> | 
 	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
 	      <?php } else { ?>
-	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a> | 
+	       | <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a> | 
 	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
+	      <?php } ?>
 	      <?php } ?>
 	      <!-- <span class="sex<?php echo $userLogin['sex'] ?>"></span> -->
       </div>

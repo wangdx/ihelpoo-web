@@ -84,6 +84,25 @@ $().ready(function(){
     });
     
     /**
+     * user type
+     */
+    $('.user_type').click(function(){
+    	var usertype = $(this).attr('value');
+    	var isclick = $(this).attr('isclick');
+    	if (isclick == 'false') {
+    		$('.user_type').attr({isclick:'false'});
+	    	$(this).attr({isclick:'true'});
+	    	$('#input_user_type').val(usertype);
+	    	$('.user_type').find('.icon_right').remove();
+	    	$(this).append('<span class="icon_right"></span>');
+    	} else if (isclick == 'true') {
+    		$('.user_type').attr({isclick:'false'});
+	    	$('#input_user_type').val('default');
+	    	$('.user_type').find('.icon_right').remove();
+    	}
+    });
+    
+    /**
      * click submit
      */
     $('#registe_submit').click(function(){
@@ -114,7 +133,7 @@ $().ready(function(){
     })
     
     var $infoLoadingBar = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
-    $("#selectschool").click(function(){
+    $(".academyselectschool").click(function(){
         $('#ajaxprogressbar').html($infoLoadingBar);
         $.ajax({
             type: "POST",
