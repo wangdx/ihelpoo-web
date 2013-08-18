@@ -383,6 +383,8 @@ class ItemAction extends Action {
     				redirect('/stream', 1, 'message_system_help end choose insert failed...');
     			}
 
+                i_savenotice($userloginid, $chooseId, 'stream/ih-para:success', $sayRecord['sid']);
+
     			/**
     			 * update $userloginid active && $chooseId coins
     			 * $helpRecordViewer = $IUserLogin->userExists($userloginid);
