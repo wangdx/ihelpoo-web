@@ -20,6 +20,9 @@
         $('.system_notice2').click(function(){
             notice.send("system", "<?php echo $sayRecord['uid'] ?>");
         });
+        $('.system_notice3').click(function(){
+            notice.send("system", "<?php echo $helpreply['uid'] ?>");
+        });
     });
 </script>
 <div class="main">
@@ -277,7 +280,7 @@
                 <textarea class="help_comment_reply_form_textarea" name="helpcontent"></textarea>
                 <input type="hidden" name="atusers" class="help_reply_atusers"/>
                 <input type="hidden" name="textareacontent" class="help_reply_textareacontent"/>
-                <input type="button" class="help_comment_reply_btn" value="追问"/>
+                <input type="button" class="help_comment_reply_btn system_notice3" value="追问"/>
 
                 <p style="padding-left:290px;"><span class="post_icon reply_emotionbox_icon"></span></p>
             </form>
