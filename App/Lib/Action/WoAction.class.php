@@ -490,7 +490,7 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com/", "", $deleteAlbumRecordUrl);
+    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("recordsay", "thumb_recordsay", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
