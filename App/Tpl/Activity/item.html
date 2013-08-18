@@ -1,4 +1,13 @@
 <include file="Public:header" />
+<?php if ($_GET['action'] == 'select') { ?>
+<script>
+    $(function(){
+        $('.system_notice').click(function(){
+            notice.send('system', '<?php echo $_GET["parter"]; ?>');
+        });
+    });
+</script>
+<?php }?>
 <?php if ($recordActivityItem['run_type'] == '2' ) { $UserLogin = M("UserLogin"); } ?>
 <link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
@@ -32,7 +41,7 @@
 		<p>2. 等待对方同意，如果同意则你们成为此次活动的Parter，如果对方拒绝你可以再请求与其他参与者成为Parter</p>
 		<p></p>
 		<p>
-			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12" onclick="notice.send('system', '<?php echo $_GET["parter"]; ?>')">确定</a>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12 system_notice">确定</a>
 			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
 		</p>
 	</div>
