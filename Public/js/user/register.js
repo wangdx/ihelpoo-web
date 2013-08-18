@@ -84,6 +84,16 @@ $().ready(function(){
     });
     
     /**
+     * user type
+     */
+    $('.user_type').click(function(){
+    	var usertype = $(this).attr('value');
+    	$('#input_user_type').val(usertype);
+    	$('.user_type').find('.icon_right').remove();
+    	$(this).append('<span class="icon_right"></span>');
+    });
+    
+    /**
      * click submit
      */
     $('#registe_submit').click(function(){
