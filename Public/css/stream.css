@@ -792,7 +792,7 @@
 *html .scroll_float_div{
     position: absolute;
     right: 0px;
-    bottom: 20px;
+    bottom: 100px;
 }
 #scroll_top_btn{
     display: block;
