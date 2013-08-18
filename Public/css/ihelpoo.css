@@ -630,6 +630,7 @@ color:#FFFA85;
 }
 .header_left{
     margin-left:175px;
+    height: 15px;
 }
 *html .header_left{
     margin-left:80px;
