@@ -1120,6 +1120,7 @@ color:#FFFA85;
     width: 3000px;
     height: 1500px;
     background: #000;
+    filter:alpha(opacity=30); 
     -moz-opacity:0.3; 
     opacity:0.3;
     position: fixed;
