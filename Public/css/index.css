@@ -738,6 +738,7 @@ lable{
 	position: relative;
 	display: inline-block;
 	margin: 15px 10px;
+	height: 85px;
 }
 *+html .main_group_ul li{
     display: inline;
