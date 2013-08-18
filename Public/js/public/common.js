@@ -221,9 +221,6 @@ $().ready(function () {
                 $(this).fadeOut("fast");
             }
         );
-        console.log($(e.relatedTarget)[0]);
-        console.log($(".user_info_div"));
-        console.log($(e.relatedTarget)[0] == $(".user_info_div"));
     });
     $(".user_info_div_close").live("click", function () {
         $(".user_info_div").fadeOut("fast");
