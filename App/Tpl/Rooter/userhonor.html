@@ -1,10 +1,8 @@
 <include file="Public:headerrooter" />
 <script>
     $(function(){
-        $('.system_notice').click(function(){
-            setTimeout(function(){
-                notice.send('root', $.trim($('#user_ids').val()));
-            }, 500);
+        $("#grant_form").submit(function(){
+            notice.send('root', $.trim($('#user_ids').val()));
         });
     });
 </script>
@@ -28,7 +26,7 @@
 	<br /><br />
 	<hr />
 	<br /><br />
-	<form method="post">
+	<form method="post" id="grant_form">
 	  <span class="fb blue f14">2</span>.授予用户荣誉:<br /><br />
 	  <p>用户uids:<input type="text" name="user_ids" id="user_ids" value="<?php echo $userStrings ?>"/> (格式:10000;10001;10002)<br /><br /></p>
 	  <p>荣誉内容:<textarea name="honor_content" rows="5" cols="70"></textarea></p>
