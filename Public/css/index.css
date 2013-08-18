@@ -757,7 +757,7 @@ lable{
 .group_introduction_p{
     width: 100px;
 	position: absolute;
-	bottom: 0;
+	top: 90px;
 	text-align: center;
 }
 *html .group_introduction_p{
