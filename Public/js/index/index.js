@@ -92,11 +92,6 @@ $().ready(function(){
     	}
     })
 
-    /**
-     * change login status
-     */
-    $('#login_status').click(function(){
-    });
 });
 
 function loadBackground()
