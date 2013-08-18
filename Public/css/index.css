@@ -44,13 +44,13 @@ lable{
 	z-index: 1111;
 }
 .main_index{
-    margin:10px auto;
+    margin: 45px auto 0;
     min-height: 330px;
     width: 1000px;
     position: relative;
 }
 .main_index_logo{
-    margin: 35px 0 0 0;
+    margin: 0 0 20px;
 }
 .main_index_logo_right{
     position: absolute;
@@ -58,6 +58,9 @@ lable{
     top: 15px;
     padding-left: 15px;
     border-left: 1px solid #FFFFFF;
+}
+*html .main_index_logo_right{
+    display: none;
 }
 .main_index_nav{
     padding: 10px 0;
@@ -144,7 +147,12 @@ lable{
     box-shadow: 1px 1px 1px 0 #EAEAEA inset;
     color: #808080;
 }
-
+*+html .loginbox_email_bg{
+    margin-top: 35px;
+}
+*html .loginbox_email_bg{
+    margin-top: 35px;
+}
 .loginbox_email_input, .loginbox_password_input{
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -157,6 +165,7 @@ lable{
     box-shadow: 0 0 #FFFFFF;
     color: #808080;
     height: 25px;
+    line-height: 25px;
     width: 165px;
     margin: 1px 0;
     padding: 0 5px 0 0;
@@ -192,13 +201,10 @@ lable{
     background-position: 0 -192px;
     text-decoration: none;
 }
-
 .loginbox_more{
     width: 215px;
     margin: 10px 0 0;
 }
-
-
 .loginbox_outer{
     background: #FFF;
     height: 215px;
@@ -213,8 +219,9 @@ lable{
     top: 0;
     z-index: -1;
 }
-
-
+*html .loginbox_outer{
+    background: none;
+}
 .index_loginfast_div{
     float: right;
     height: 220px;
@@ -338,6 +345,10 @@ lable{
     text-align: center;
 }
 *+html .main_index_sub_ul li{
+    display: inline;
+    margin: 10px 20px;
+}
+*html .main_index_sub_ul li{
     display: inline;
     margin: 10px 20px;
 }
