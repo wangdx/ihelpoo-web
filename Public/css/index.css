@@ -59,6 +59,9 @@ lable{
     padding-left: 15px;
     border-left: 1px solid #FFFFFF;
 }
+*html .main_index_logo_right{
+    display: none;
+}
 .main_index_nav{
     padding: 10px 0;
 }
@@ -344,6 +347,10 @@ lable{
     text-align: center;
 }
 *+html .main_index_sub_ul li{
+    display: inline;
+    margin: 10px 20px;
+}
+*html .main_index_sub_ul li{
     display: inline;
     margin: 10px 20px;
 }
