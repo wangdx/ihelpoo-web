@@ -4,8 +4,9 @@
         $("#grant_form").submit(function(e){
             var self = this;
             e.preventDefault();
+
             notice.send('root', $.trim($('#user_ids').val()));
-            return false;
+            return true;
         });
     });
 </script>
