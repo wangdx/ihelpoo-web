@@ -69,7 +69,7 @@
       
       <div class="wo_top_div_school f12 gray">
 	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?> | 
-	      <?php if ($userLogin['type'] == '1') { ?>
+	      <?php if ($userLogin['type'] == '1' || $userLogin['type'] == '5') { ?>
 	      <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span> | 
 	      <?php } ?>
 	      <?php if ($userLogin['type'] == '1' || $userLogin['type'] != '2' || $userLogin['type'] != '4' || $userLogin['type'] != '5') { ?>
