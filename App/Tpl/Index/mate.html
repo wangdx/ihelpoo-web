@@ -10,8 +10,9 @@
     <a href="__ROOT__/index/mate?w=new" {$_GET['w'] == "new" ? "class='fb'":NULL}>最新加入</a> |
     <a href="__ROOT__/index/mate?w=grade&sex={$_GET['sex']}" {$_GET['w'] == "grade" ? "class='fb'":NULL}>按年级</a> |
     <a href="__ROOT__/index/mate?w=academy&n=&sex={$_GET['sex']}" {$_GET['w'] == "academy" ? "class='fb'":NULL}>按学院</a> |
-    <a href="__ROOT__/index/mate?w=dormitory&n=" {$_GET['w'] == "dormitory" ? "class='fb'":NULL}>按寝室楼栋</a> |
-    <a href="__ROOT__/lab/maponline">3D地图在线</a> | 
+    <a href="__ROOT__/index/mate?w=dormitory&n=" {$_GET['w'] == "dormitory" ? "class='fb'":NULL}>按寝室楼栋</a><a href="__ROOT__/lab/maponline" class="f12 gray">地图</a> |
+     | 
+    <a href="__ROOT__/index/mate?w=grade&n=14&sex={$_GET['sex']}" class="f12 gray">老师</a> + 
     <a href="__ROOT__/index/group" class="f12 gray">组织</a> + 
     <a href="__ROOT__/index/business" class="f12 gray">商家</a>
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
@@ -110,6 +111,27 @@
       <a href="__ROOT__/index/mate?w=grade&n=5&sex={$_GET['sex']}" class="f12 m_m_op_a_select">已经毕业</a>
       <?php } else { ?>
       <a href="__ROOT__/index/mate?w=grade&n=5&sex={$_GET['sex']}" class="f12 m_m_op_a">已经毕业</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "14") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=14&sex={$_GET['sex']}" class="f12 m_m_op_a_select">老师</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=14&sex={$_GET['sex']}" class="f12 m_m_op_a">老师</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "15") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=15&sex={$_GET['sex']}" class="f12 m_m_op_a_select">研究生</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=15&sex={$_GET['sex']}" class="f12 m_m_op_a">研究生</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "16") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=16&sex={$_GET['sex']}" class="f12 m_m_op_a_select">高中生</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=16&sex={$_GET['sex']}" class="f12 m_m_op_a">高中生</a>
       <?php } ?>
     </li>
     </ul>
