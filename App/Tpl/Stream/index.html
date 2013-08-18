@@ -416,8 +416,8 @@
 			if (!empty($record['diffusion_co'])) {
                 echo "(".$record['diffusion_co'].")";
             }
-			echo "</a> | ";
-            echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'>帮助";
+			echo "</a> ";
+            echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_blank'><span class='helpleaf_select'></span>";
             if (!empty($record['comment_co'])) {
                 echo "(".$record['comment_co'].")";
             }
