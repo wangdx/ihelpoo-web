@@ -676,8 +676,6 @@ lable{
     display: inline;
 }
 *html .h_r_ul_li_hit{
-    position: fixed;
-    right: 0;
 }
 .h_r_ul_li_time{
     position: absolute;
