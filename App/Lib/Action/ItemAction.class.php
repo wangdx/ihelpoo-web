@@ -272,6 +272,10 @@ class ItemAction extends Action {
                     'deliver' => 0,
     			);
     			$MsgSystem->add($msgHelpEndData);
+
+                $this->assign('toUid', $sayRecord['uid']);
+
+
     		}
     	} else if($sayRecord['time'] < $timeend && $helpRecord['status'] < 3) {
     		/*
@@ -299,7 +303,9 @@ class ItemAction extends Action {
                 'deliver' => 0,
     		);
     		$MsgSystem->add($msgHelpAlreadyEndData);
+            $this->assign('toUid', $sayRecord['uid']);
     	}
+        $this->assign('toUid', '12419');
 
     	/**
     	 * update hit_op

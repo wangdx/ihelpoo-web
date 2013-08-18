@@ -597,7 +597,6 @@ function i_send($to, $subject, $body)
 }
 
 
-
 /**
  * @deprecated use i_send instead
  */
@@ -645,7 +644,18 @@ function i_sendmail($address, $title, $message)
 }
 
 
-
+/**
+ *
+ * use this to store system notice message that triggered by some user
+ *
+ * NOTICE: we should add another jquery event at the trigger page for bouncing the receivers ALERT in case he/she is online.
+ *
+ * @param $from
+ * @param $to
+ * @param $noticeType
+ * @param $detailId
+ * @return system notice message id
+ */
 function i_savenotice($from, $to, $noticeType, $detailId)
 {
     Vendor('Ihelpoo.Idworker');
