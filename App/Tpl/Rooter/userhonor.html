@@ -2,9 +2,9 @@
 <script>
     $(function(){
         $('.system_notice').click(function(){
-            notice.send('root', $.trim($('#user_ids').val()));
-//            alert($.trim($('#user_ids').val()));
-            return false;
+            setTimeout(function(){
+                notice.send('root', $.trim($('#user_ids').val()));
+            }, 500);
         });
     });
 </script>
