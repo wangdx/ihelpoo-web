@@ -138,26 +138,27 @@ class StreamAction extends Action
                 /**
                  * record publish limit nums 6 per 12 hours
                  */
-                $time12hour = time() - 43200;
-                $userInsertTime12hourAll = $RecordSay->where("uid = $userloginid AND time > $time12hour AND (say_type = 0 OR say_type = 1)")->order("time DESC")->count();
-                if ($userInsertTime12hourAll >= $recordUserStatus['record_limit']) {
-                    $this->ajaxReturn(0, "发布信息太多，休息休息再来吧:)", 'error');
-                }
-
-                /**
-                 * handle active nums
-                 */
-                if (($recordUserLogin['active'] - $reward_coins) < 0 && $help_is == 1) {
-                    $this->ajaxReturn(0, "活跃不够了", 'error');
-                }
-
-                /**
-                 * repate limit
-                 */
-                $lastRecordSay = $RecordSay->where("uid = $userloginid")->order("sid DESC")->find();
-                if ($lastRecordSay['content'] == $content) {
-                    $this->ajaxReturn(0, "不要贪心噢，不能重复发布相同的内容", 'error');
-                }
+                //TODO uncomment the test stage
+//                $time12hour = time() - 43200;
+//                $userInsertTime12hourAll = $RecordSay->where("uid = $userloginid AND time > $time12hour AND (say_type = 0 OR say_type = 1)")->order("time DESC")->count();
+//                if ($userInsertTime12hourAll >= $recordUserStatus['record_limit']) {
+//                    $this->ajaxReturn(0, "发布信息太多，休息休息再来吧:)", 'error');
+//                }
+//
+//                /**
+//                 * handle active nums
+//                 */
+//                if (($recordUserLogin['active'] - $reward_coins) < 0 && $help_is == 1) {
+//                    $this->ajaxReturn(0, "活跃不够了", 'error');
+//                }
+//
+//                /**
+//                 * repate limit
+//                 */
+//                $lastRecordSay = $RecordSay->where("uid = $userloginid")->order("sid DESC")->find();
+//                if ($lastRecordSay['content'] == $content) {
+//                    $this->ajaxReturn(0, "不要贪心噢，不能重复发布相同的内容", 'error');
+//                }
 
                 /**
                  * insert data into database
