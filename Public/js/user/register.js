@@ -114,7 +114,7 @@ $().ready(function(){
     })
     
     var $infoLoadingBar = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
-    $("#selectschool").click(function(){
+    $(".academyselectschool").click(function(){
         $('#ajaxprogressbar').html($infoLoadingBar);
         $.ajax({
             type: "POST",

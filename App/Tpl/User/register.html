@@ -3,10 +3,9 @@
 <div class="main">
 
 <div class="registe_main">
-  
   <?php if (empty($inviteUser['uid'])){ ?>
   <div class="registe_toptext">
-    <p class="registe_toptext_school_p f14 black_l"><?php echo $recordSchoolInfo['school']; ?> <a id="selectschool" class="f12">[更改]</a></p>
+    <p class="registe_toptext_school_p f14 black_l"><?php echo $recordSchoolInfo['school']; ?> <a class="academyselectschool">[更改]</a></p>
   </div>
   <?php } else { ?>
     <div class="registe_toptext_user">
@@ -48,7 +47,7 @@
         <option value="<?php echo $academy['id']; ?>"><?php echo $academy['name']; ?></option>
       <?php endforeach; ?>
       </select>
-      <a id="selectschool" class="f12 academyselectschool">[切换学校]</a>
+      <a class="f12 academyselectschool">[切换学校]</a>
     </li>
     <li class="enteryear_li">
       入学年份
