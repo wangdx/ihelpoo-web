@@ -25,7 +25,13 @@ $().ready(function () {
                 }
             }
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
-            $("#nav_hover_list_div_ul").html("<li><a href='/index/mate' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_mate'></i>同学</a> <a href='/index/group' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_group'></i>校园组织</a> <a href='/index/business' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_business'></i>周边商家</a></li>");
+            $("#nav_hover_list_div_ul").html("<li><a href='/index/mate' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_mate'></i>同学</a> " +
+            	"<a href='/index/group' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_group'></i>校园组织</a> " +
+            	"<a href='/index/business' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_business'></i>周边商家</a>" +
+            	"<a href='/index/mate?w=grade&n=994' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_teacher'></i>老师</a>" +
+            	"<a href='/index/mate?w=grade&n=995' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_postgraduate'></i>研究生</a>" +
+            	"</li>"
+            );
         },
         function () {
             $("#nav_hover_list_div").hover(function () {
@@ -56,9 +62,9 @@ $().ready(function () {
             $("#nav_hover_list_div").css({left: mainpositionleft}).slideDown("fast");
             var stream_header_top_schoolad = $("#stream_header_top_schoolad").html();
             if (stream_header_top_schoolad != null) {
-                $("#nav_hover_list_div_ul").html("<li><a href='/help' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_help'></i>帮助</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a></li>" + stream_header_top_schoolad);
+                $("#nav_hover_list_div_ul").html("<li><a href='/index/hot?w=hit&t=week' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_ranking'></i>排行</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a></li>" + stream_header_top_schoolad);
             } else {
-                $("#nav_hover_list_div_ul").html("<li><a href='/help' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_help'></i>帮助</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a></li>");
+                $("#nav_hover_list_div_ul").html("<li><a href='/index/hot?w=hit&t=week' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_ranking'></i>排行</a> <a href='/activity' class='nav_hover_list_div_ul_li_a'><i class='icon_hover_top_activity'></i>活动</a></li>");
             }
         },
         function () {

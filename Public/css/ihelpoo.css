@@ -518,7 +518,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 
-.icon_hover_top_mate, .icon_hover_top_group, .icon_hover_top_business, .icon_hover_top_help, .icon_hover_top_activity {
+.icon_hover_top_mate, .icon_hover_top_group, .icon_hover_top_business, .icon_hover_top_help, .icon_hover_top_activity, .icon_hover_top_teacher, .icon_hover_top_ranking, .icon_hover_top_senior, .icon_hover_top_postgraduate {
     background-image: url("../image/common/hover_top.png");
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -537,6 +537,18 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 .icon_hover_top_help {
     background-position: 0 -200px;
+}
+.icon_hover_top_teacher{
+    background-position: 0 -250px;
+}
+.icon_hover_top_ranking{
+    background-position: 0 -300px;
+}
+.icon_hover_top_postgraduate{
+    background-position: 0 -350px;
+}
+.icon_hover_top_senior{
+    background-position: 0 -400px;
 }
 
 
