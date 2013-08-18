@@ -18,7 +18,7 @@
             notice.send("system", $("#thanksForm input[type='radio']:checked").val());
         });
         $('.system_notice2').click(function(){
-            notice.send("system", $sayRecord['uid']);
+            notice.send("system", "<?php echo $sayRecord['uid'] ?>");
         });
     });
 </script>
