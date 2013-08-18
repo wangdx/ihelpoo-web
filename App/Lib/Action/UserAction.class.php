@@ -707,17 +707,18 @@ class UserAction extends Action {
 	            /**
 	             * send system message.
 	             */
-	            $MsgSystem = M("MsgSystem");
-	            $msgRegisterContent = "欢迎".$nickname."来到我帮圈圈:) 故事开始啦!";
-	            $msgRegisterData = array(
-                	'id' => NULL,
-                	'uid' => $newUserId,
-                 	'type' => 'system',
-              		'content' => $msgRegisterContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgRegisterData);
+//	            $MsgSystem = M("MsgSystem");
+//	            $msgRegisterContent = "欢迎".$nickname."来到我帮圈圈:) 故事开始啦!";
+//	            $msgRegisterData = array(
+//                	'id' => NULL,
+//                	'uid' => $newUserId,
+//                 	'type' => 'system',
+//              		'content' => $msgRegisterContent,
+//                	'time' => time(),
+//                	'deliver' => 0,
+//	            );
+//	            $MsgSystem->add($msgRegisterData);
+                i_savenotice('10000', $newUserId, 'system/welcome', '');
 
 	            /**
 	             * add default dynamic record.
@@ -874,17 +875,19 @@ class UserAction extends Action {
 					/**
 					 * send system message.
 					 */
-					$MsgSystem = M("MsgSystem");
-					$msgContent = "您的邮箱验证成功了!";
-					$msgData = array(
-	                    'id' => NULL,
-	                    'uid' => $uid,
-	                    'type' => 'system',
-	                    'content' => $msgContent,
-	                    'time' => time(),
-	                    'deliver' => 0,
-					);
-					$MsgSystem->add($msgData);
+//					$MsgSystem = M("MsgSystem");
+//					$msgContent = "您的邮箱验证成功了!";
+//					$msgData = array(
+//	                    'id' => NULL,
+//	                    'uid' => $uid,
+//	                    'type' => 'system',
+//	                    'content' => $msgContent,
+//	                    'time' => time(),
+//	                    'deliver' => 0,
+//					);
+//					$MsgSystem->add($msgData);
+                    //TODO add bounced notice in case user is online
+                    i_savenotice('10000', $uid, 'system/mailverify', '');
 				}
 				redirect('/user/login', 3, '邮箱验证成功啦 :) 3秒后跳转到登录页面...');
 	    	} else {
@@ -996,17 +999,19 @@ class UserAction extends Action {
     		/**
     		 * send system message.
     		 */
-    		$MsgSystem = M("MsgSystem");
-    		$msgContent = "您的密码已经初始化, 请及时修改!";
-    		$msgData = array(
-                'id' => NULL,
-                'uid' => $recordUserLogin['uid'],
-                'type' => 'system',
-                'content' => $msgContent,
-            	'time' => time(),
-            	'deliver' => 0,
-    		);
-    		$MsgSystem->add($msgData);
+//    		$MsgSystem = M("MsgSystem");
+//    		$msgContent = "您的密码已经初始化, 请及时修改!";
+//    		$msgData = array(
+//                'id' => NULL,
+//                'uid' => $recordUserLogin['uid'],
+//                'type' => 'system',
+//                'content' => $msgContent,
+//            	'time' => time(),
+//            	'deliver' => 0,
+//    		);
+//    		$MsgSystem->add($msgData);
+            //TODO bounced notice in case user is online
+            i_savenotice('10000', $recordUserLogin['uid'], 'system/initpwd', '');
     		$this->assign('resetsuccess', "新密码已经发送到您的邮箱".$toEmail.", 请及时查询，登录后按需要修改密码。");
     	}
     	$this->display();

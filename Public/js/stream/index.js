@@ -622,6 +622,7 @@ $().ready(function(){
                         });
                     }
                     window.location = baseUrl + 'stream/index/newreply';
+                    notice.send('system', msg.data);
                 } else {
                     alert('something wrong');
                 }

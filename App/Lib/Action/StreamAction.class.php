@@ -309,31 +309,38 @@ class StreamAction extends Action
                      * if is help insert system_msg to fans
                      */
                     $userPrioritied = $UserPriority->where("pid = $userloginid")->select();
+                    $tos = '';
                     if (!empty($userPrioritied)) {
                         $MsgSystem = M("MsgSystem");
                         foreach ($userPrioritied as $userPrio) {
-                            $msgSystemType = 'stream/ih-para:needhelp';
-                            $contentMsgSystem = "有困难了，需要你的帮助";
-                            $needHelpData = array(
-                                'id' => '',
-                                'uid' => $userPrio['uid'],
-                                'type' => $msgSystemType,
-                                'url_id' => $sayLastInsertId,
-                                'from_uid' => $userloginid,
-                                'content' => $contentMsgSystem,
-                                'time' => time(),
-                                'deliver' => 0,
-                            );
-                            $MsgSystem->add($needHelpData);
+//                            $msgSystemType = 'stream/ih-para:needhelp';
+//                            $contentMsgSystem = "有困难了，需要你的帮助";
+//                            $needHelpData = array(
+//                                'id' => '',
+//                                'uid' => $userPrio['uid'],
+//                                'type' => $msgSystemType,
+//                                'url_id' => $sayLastInsertId,
+//                                'from_uid' => $userloginid,
+//                                'content' => $contentMsgSystem,
+//                                'time' => time(),
+//                                'deliver' => 0,
+//                            );
+//                            $MsgSystem->add($needHelpData);
+
+                            i_savenotice($userloginid, $userPrio['uid'], 'stream/ih-para:needhelp', $sayLastInsertId);
+                            $tos .= $userPrio['uid'].",";
+
 
                             /**
-                             * send emil
+                             * FIXME uncomment to send mail before product usable
                              */
-                            //              	$userPrioritiedMail = $UserLogin->find($userPrio['uid']);
-                            //              	if (!empty($userPrioritiedMail['email'])) {
-                            // $emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
-                            //              	}
+//                            $userPrioritiedMail = $UserLogin->find($userPrio['uid']);
+//                            if (!empty($userPrioritiedMail['email'])) {
+//                                i_send($userPrioritiedMail['email'], "[我帮圈圈]圈里有人需要帮助", $content);
+//                            }
+
                         }
+                        $tos = rtrim($tos, ",");
                     }
 
                     $helpData = array(
@@ -401,7 +408,7 @@ class StreamAction extends Action
                         $MsgAt->add($newAtMsgData);
                     }
                 }
-                $this->ajaxReturn(0, "发布成功", 'ok');
+                $this->ajaxReturn($tos, "发布成功", 'ok');
             }
         }
 
