@@ -1146,7 +1146,7 @@ color:#FFFA85;
 }
 *html #ajax_info_div{
     position: absolute;
-    top: 120px;
+    top: 200px;
     left: 300px;
 }
 #ajax_info_div_info{
