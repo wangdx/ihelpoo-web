@@ -10,7 +10,7 @@ $().ready(function () {
      * nav hover
      */
     $("#header_nav_user").hover(
-        function () {
+    	function () {
             var mainoffset = $('.main').offset();
             if (mainoffset != null) {
                 var mainpositionleft = mainoffset.left + 173;
@@ -29,8 +29,9 @@ $().ready(function () {
             }, function () {
                 $("#header_nav_user").removeClass('header_left_arrow_hover');
                 $("#nav_hover_list_div").slideUp("fast");
-            });
-        });
+            }
+        );
+    });
     $("#header_nav_more").hover(
         function () {
             var mainoffset = $('.main').offset();
@@ -49,19 +50,24 @@ $().ready(function () {
             }
         },
         function () {
-            $("#nav_hover_list_div").hover(function () {
-                $("#header_nav_user").removeClass('header_left_arrow_hover');
-                $("#header_nav_more").addClass('header_left_arrow_hover');
-                $("#nav_hover_list_div").show();
-            }, function () {
-                $("#header_nav_more").removeClass('header_left_arrow_hover');
-                $("#nav_hover_list_div").slideUp("fast");
-            });
-        });
+            $("#nav_hover_list_div").hover(
+            	function () {
+	                $("#header_nav_user").removeClass('header_left_arrow_hover');
+	                $("#header_nav_more").addClass('header_left_arrow_hover');
+	                $("#nav_hover_list_div").show();
+            	},
+            	function () {
+	                $("#header_nav_more").removeClass('header_left_arrow_hover');
+	                $("#nav_hover_list_div").slideUp("fast");
+            	}
+            );
+        }
+    );
     $(".nav_hover_up").hover(
         function () {
             $("#nav_hover_list_div").slideUp("fast");
-        }, function () {
+        },
+        function () {
         }
     );
     $("body").mouseleave(function () {
@@ -126,7 +132,6 @@ $().ready(function () {
             $(this).val('找人');
         }
     });
-
     $("#inputSearchButton").click(function () {
         var searchWords = $("#inputSearchBox").val();
         window.location = baseUrl + "mutual/find?username=" + searchWords;
@@ -180,7 +185,6 @@ $().ready(function () {
                         } else {
                             var userconstellation = '';
                         }
-
                         var inhtml = "<div class='user_info_top_div' userid='" + msg.data.uid + "'>"
                             + "		  <a class='user_info_top_div_img_a' href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>"
                             + "		    <img width='60' height='45' src='" + msg.data.icon_url + "' />"
@@ -209,23 +213,21 @@ $().ready(function () {
             });
         }, 1000);
     }).mouseleave(function (e) {
-            clearTimeout(t_userinfo);
-            $('.user_info_div').hover(function () {
-                },
-                function () {
-                    $(this).fadeOut("fast");
-                });
-//            if($(e.relatedTarget)[0] )
-//            $(".user_info_div").fadeOut("fast");
-            console.log($(e.relatedTarget)[0]);
-            console.log($(".user_info_div"));
-            console.log($(e.relatedTarget)[0] == $(".user_info_div"));
-        });
-
-    $(".user_info_div_close").live('click', function () {
+        clearTimeout(t_userinfo);
+        $('.user_info_div').hover(
+        	function () {
+            },
+            function () {
+                $(this).fadeOut("fast");
+            }
+        );
+        console.log($(e.relatedTarget)[0]);
+        console.log($(".user_info_div"));
+        console.log($(e.relatedTarget)[0] == $(".user_info_div"));
+    });
+    $(".user_info_div_close").live("click", function () {
         $(".user_info_div").fadeOut("fast");
     });
-
 
     /**
      * remark
@@ -262,18 +264,10 @@ $().ready(function () {
     });
 
     $("body").click(function () {
-        //$('.user_info_div').hide();
         $('.record_plus_div').hide();
     });
-
 });
 
-function getStringLength(str) {
-    var totalLength = 0;
-    var list = str.split("");
-    totalLength = list.length;
-    return totalLength;
-}
 function flashPic(name) {
     $(name).fadeOut('slow', function () {
         $(this).fadeIn('fast', function () {
