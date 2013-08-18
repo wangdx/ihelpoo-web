@@ -114,6 +114,17 @@
     left: 15px;
 	font-size: 12px;
 }
+.academyselectschool{
+    position: absolute;
+    left: 400px;
+    top: 18px;
+}
+.user_type_info{
+    position: absolute;
+    left: 400px;
+    top: 18px;
+    font-size: 12px;
+}
 #enteryear{
     color: #666;
     position: relative;
