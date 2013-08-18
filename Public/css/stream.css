@@ -786,10 +786,14 @@
     right: 20px;
     bottom: 50px;
     color: #FFFFFF;
-    display:none;
+    display: none;
+    width: 35px;
 }
 #scroll_top_btn{
     display: block;
+}
+*html #scroll_top_btn{
+    display: inline;
 }
 #scroll_top_btn:hover{
     color: #7BD6F6;
