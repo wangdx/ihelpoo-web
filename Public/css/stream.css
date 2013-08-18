@@ -254,7 +254,7 @@
     display: none;
 }
 *html .steam_repate_li{
-    display: inline;
+    display: block;
 }
 .stream_list_ul_sort{
 	text-align: right;
