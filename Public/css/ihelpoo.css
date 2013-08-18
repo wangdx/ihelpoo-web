@@ -645,7 +645,7 @@ color:#FFFA85;
     padding: 10px 0;
     position: relative;
     text-align: center;
-    top: -12px;
+    top: -10px;
     width: 55px;
 }
 .header .header_left_arrow:hover{
@@ -696,6 +696,12 @@ color:#FFFA85;
     display: inline-block;
     font-family: "SimSun";
     margin: -7px 0 0 -2px;
+}
+*+html .h_arrow{
+    display: none;
+}
+*html .h_arrow{
+    display: none;
 }
 /*--- top vav_hover ---*/
 #nav_hover_list_div{
