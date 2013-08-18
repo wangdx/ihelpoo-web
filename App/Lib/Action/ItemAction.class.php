@@ -806,22 +806,23 @@ class ItemAction extends Action {
     						}
     					} else {
     						if (!empty($toid)) {
-    							$msgHelpreplyContent = "提出了追问";
-    							$msgToiud = $toid;
-    							$msgRecordHelpreply = array(
-	                                'id' => NULL,
-	                                'uid' => $msgToiud,
-	                                'type' => 'stream/ih-para:reply',
-	                                'url_id' => $sid,
-	                                'from_uid' => $userloginid,
-	                                'content' => $msgHelpreplyContent,
-	                                'time' => time(),
-	                                'deliver' => 0,
-    							);
-    							$affetcedMsgRecordHelpreply = $MsgSystem->add($msgRecordHelpreply);
-    							if (empty($affetcedMsgRecordHelpreply)) {
-    								$this->ajaxReturn(0,'message_system_help insert failed','error');
-    							}
+//    							$msgHelpreplyContent = "提出了追问";
+//    							$msgToiud = $toid;
+//    							$msgRecordHelpreply = array(
+//	                                'id' => NULL,
+//	                                'uid' => $msgToiud,
+//	                                'type' => 'stream/ih-para:reply',
+//	                                'url_id' => $sid,
+//	                                'from_uid' => $userloginid,
+//	                                'content' => $msgHelpreplyContent,
+//	                                'time' => time(),
+//	                                'deliver' => 0,
+//    							);
+//    							$affetcedMsgRecordHelpreply = $MsgSystem->add($msgRecordHelpreply);
+//    							if (empty($affetcedMsgRecordHelpreply)) {
+//    								$this->ajaxReturn(0,'message_system_help insert failed','error');
+//    							}
+                                i_savenotice($userloginid, $msgToiud, 'stream/ih-para:reply', $sid);
     						}
     					}
 
