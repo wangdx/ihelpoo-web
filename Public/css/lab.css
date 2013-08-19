@@ -81,6 +81,9 @@
     font-size: 12px;
     border-radius: 3px;
 }
+.maponline_ul_academy .ico_add, .maponline_ul_academy .ico_school{
+    margin: 0 3px 0 0;
+}
 .maponline_ul_academy_house{
     padding: 5px 0;
 }
