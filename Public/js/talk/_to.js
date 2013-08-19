@@ -180,6 +180,7 @@ function Chat(state) {
     };
 
     this.send = function () {
+        $('#input_status').html('');
         var chat = $('#send_message_textarea').val();
         var image = $('#image_upload_url').val();
 
