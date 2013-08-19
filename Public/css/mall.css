@@ -86,6 +86,9 @@
     margin: 1px;
     border-radius: 3px;
 }
+*+html .mallindex_right_nav_ul li a{
+    width: 186px;
+}
 .mallindex_right_nav_ul li .m_r_n_ul_li_select{
     background-color:#CCC;
     color: #FFF;
@@ -828,6 +831,9 @@
     height: 18px;
     width: 20px;
     margin-left: 20px;
+}
+*html .icon_mall_brand, *html .icon_mall_time, *html .icon_mall_diamond, *html .icon_mall_jz, *html .icon_mall_life, *html .icon_mall_tour, *html .icon_mall_new{
+    background: url(../image/common/mall_icon.gif) no-repeat scroll 0 0 transparent;
 }
 .icon_mall_brand{
     background-position: -47px 0;
