@@ -2582,7 +2582,8 @@ class RooterAction extends Action {
 	                    'authority' => 0,
 	                    'time' => time(),
 	                    'last_comment_ti' => time(),
-	                    'from' => '活动'
+	                    'from' => '活动',
+		            	'school_id' => $recordActivityItem['school_id']
 	                );
 	                $sayLastInsertId = $RecordSay->add($dataRecordSay);
 	                
