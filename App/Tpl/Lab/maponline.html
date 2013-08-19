@@ -25,10 +25,10 @@
 					<?php echo empty($domitoryLastid) ? '' : '</div></li>'; ?>
 					<li>
 					<?php if ($user['type'] == "1") { ?>
-						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>">男生<?php echo $user['name']; ?></a></div>
+						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>"><i class="sex1"></i>男生<?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_dormitory_house" value="<?php echo $user['id']; ?>">
 					<?php } else if ($user['type'] == "2") { ?>
-						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>">女生<?php echo $user['name']; ?></a></div>
+						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>"><i class="sex2"></i>女生<?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_dormitory_house" value="<?php echo $user['id']; ?>">
 					<?php } else if ($user['type'] == "3") { ?>
 						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></div>
