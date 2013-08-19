@@ -2,7 +2,7 @@
 <link href="__PUBLIC__/css/lab.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
 	<div class="maponline_info_div black_l f12">
-		<span class="online1"></span> 在线人数 <span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
+		<span class="online1"></span> {$schoolname}在线人数<a href="__ROOT__/index/school" title="更多学校">[串校]</a> <span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
 		<?php if (!empty($hiddenUserNums)) { ?>
 			(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)
 		<?php } ?>

@@ -31,6 +31,7 @@ class LabAction extends Action {
     public function maponline()
     {
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname', $recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$title = "在线区域位置4.1 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
