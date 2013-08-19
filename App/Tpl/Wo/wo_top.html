@@ -204,6 +204,7 @@
     </p>
     <?php } ?>
   </div>
+  <?php if ($userLogin['type'] == '1') { ?>
   <script type="text/javascript">
     $().ready(function(){
     	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
@@ -213,4 +214,5 @@
         });
     });
   </script>
+  <?php } ?>
   <script type="text/javascript" src="__PUBLIC__/js/wo/wo.js"></script>
