@@ -84,17 +84,14 @@ function prepareUI() {
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-            $(this).ajaxStart(function () {
-                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
-            }).ajaxComplete(function () {
-                    $infoLoading.remove();
-                });
+            $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
             $.ajaxFileUpload({
                 url: baseUrl + 'ajax/imgtalkupload',
                 secureuri: false,
                 fileElementId: 'upload_form_img_file',
                 dataType: 'json',
                 success: function (msg) {
+                    $infoLoading.remove();
                     if (msg.status == 'uploaded') {
                         var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data + "' width='80'/><a href='" + msg.data + "' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
                         $('#image_upload_url').val(msg.data);
