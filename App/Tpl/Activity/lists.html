@@ -39,14 +39,14 @@
 					<?php echo $activityItem['subject']; ?>
 				</a> 
 				<?php if (empty($_GET['self'])) { ?>
-				主办方:
+				<i class="ico_friendfeed" title="主办方"></i>
 				<a href="__ROOT__/stream/u/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
 					<?php echo $activityItem['nickname']; ?>
 				</a>
 				<?php } ?>
 				时间: <?php echo date('Y-m-d', $activityItem['activity_ti']); ?> <span class="f12 gray">(星期<?php echo date('N', $activityItem['activity_ti']); ?>)</span>
 				<span class="fr">
-					<i class="ico_friendfeed"></i>参加人数:<span class="f14 fb black_l"><?php echo $activityItem['join_num']; ?></span> 
+					<i class="icon_plus"></i>参加人数:<span class="f14 fb black_l"><?php echo $activityItem['join_num']; ?></span> 
 					<i class="icon_up"></i><span class="f12 gray">人气:<?php echo $activityItem['hit']; ?></span>
 				</span>
 				<?php if ($getSelf == 'sponsor') { ?>
