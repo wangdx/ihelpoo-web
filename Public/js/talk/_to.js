@@ -96,6 +96,7 @@ function Chat(state) {
             from: _from,
             to: _to,
             chat: chat,
+            ctrl:"",
             image: image
         });
     };
