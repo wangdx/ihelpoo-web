@@ -28,23 +28,23 @@
     background-color: #EFEFEF;
     border: 1px solid #DDD;
     color: #999;
+    border-radius: 3px;
 }
 .lab_btn_select{
     padding: 3px 5px;
     background-color: #15B6D7;
     border: 1px solid #15B6D7;
     color: #fff;
-}
-.maponline_main_div{
-    
+    border-radius: 3px;
 }
 .maponline_info_div{
+    margin-top: 15px;
     padding: 5px;
 }
 .maponline_ul{
     border: 1px solid #EEE;
     padding: 10px;
-    margin: 20px 0;
+    margin: 10px 0;
     border-radius: 3px;
 }
 .maponline_ul li{
