@@ -232,6 +232,8 @@ function Chat(state) {
             return;
         }
 
+        if(!from) return;
+
 
         if (!membership && fromUser == _lastUser) {
             fromUser = '...';
@@ -244,8 +246,6 @@ function Chat(state) {
             _lastUser = null;
         }
 
-        console.log("+++++" + image);
-
         if (image && image != '') {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
                 + " <span class='f12 gray'>" + time + "</span><br />"
@@ -257,7 +257,6 @@ function Chat(state) {
                 + chat + "<br /><br />";
         }
 
-        console.log("_--------");
         $('#show_message_div').append(htmlIn);
         var boxHeight = $('#show_message_div').height();
         $('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
