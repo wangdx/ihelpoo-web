@@ -29,6 +29,7 @@
     border: 1px solid #DDD;
     color: #999;
     border-radius: 3px;
+    font-size: 12px;
 }
 .lab_btn_select{
     padding: 3px 5px;
@@ -36,6 +37,7 @@
     border: 1px solid #15B6D7;
     color: #fff;
     border-radius: 3px;
+    font-size: 12px;
 }
 .maponline_info_div{
     margin-top: 15px;
