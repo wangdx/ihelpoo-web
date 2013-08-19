@@ -250,7 +250,7 @@ function Chat(state) {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
                 + " <span class='f12 gray'>" + time + "</span><br />"
                 + chat + "<br />"
-                + "<a href='" + image + "' target='_target'><img src='" + imagethumb + "' style='max-width:150px;' title='查看原图' /></a><br /><br />";
+                + "<a href='" + image + "' target='_target'><img src='" + imageThumb + "' style='max-width:150px;' title='查看原图' /></a><br /><br />";
         } else {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
                 + " <span class='f12 gray'>" + time + "</span><br />"
