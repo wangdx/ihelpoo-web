@@ -232,7 +232,7 @@ function Chat(state) {
             return;
         }
 
-        if(!fromUser) return;
+        if(!fromUser) return; // from might be there
 
 
         if (!membership && fromUser == _lastUser) {
