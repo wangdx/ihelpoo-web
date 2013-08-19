@@ -21,10 +21,6 @@ if (!empty($userloginedrecord['uid'])) {
 } else {
 	$skinValue = 0;
 } ?>
-<from>
-    <input type=hidden id="data_uid" name="data_uid" value="10000" />
-    <input type=hidden id="data_touid" name="data_touid" value="<?php echo session('userloginid');?>"/>
-</from>
 <div class="header f14 gray_l" id="headerskinvalue" value="<?php echo $skinValue; ?>">
     <div class="header_main">
         <a href="__ROOT__/stream" class="header_logo" title="个人中心首页 我帮圈圈{$schoolname}"></a>
