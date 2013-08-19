@@ -275,7 +275,7 @@ $().ready(function(){
     });
     
     $('.btn_cancel').live('click', function(){
-    	$("#ajax_info_div").fadeOut("fast");
+    	$("#ajax_info_div").hide();
 		$("#ajax_info_div_outer").hide();
 		$deleteCommentLi.css("backgroundColor", "#FFF");
     });
