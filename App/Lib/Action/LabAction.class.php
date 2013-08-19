@@ -35,7 +35,11 @@ class LabAction extends Action {
     	$title = "在线区域位置4.1 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
         $UserLogin = M("UserLogin");
-        $userOnlineObject = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")->join('i_user_status ON i_user_status.uid = i_user_login.uid')->join('i_user_info ON i_user_info.uid = i_user_login.uid')->select();
+        $userOnlineObject = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")
+        ->join('i_user_info ON i_user_info.uid = i_user_login.uid')
+        ->join('i_user_status ON i_user_status.uid = i_user_login.uid')
+        ->join('i_op_dormitory ON i_op_dormitory.id = i_user_info.dormitory_op')
+        ->select();
         
         /**
          * show online user nums, refrash per 15 second
