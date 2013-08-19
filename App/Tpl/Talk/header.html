@@ -1,14 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>{$title} - 我帮圈圈</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link href="__PUBLIC__/css/ihelpoo.css?id=5" media="screen" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
+    <title>{$title} - 我帮圈圈</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="__PUBLIC__/css/ihelpoo.css?id=5" media="screen" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/public/jquery.js"></script>
     <script type="text/javascript">
         baseUrl = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/";
     </script>
-
     <script type="text/javascript" src="__PUBLIC__/js/org/cometd.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/org/cometd/AckExtension.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/org/cometd/ReloadExtension.js"></script>
@@ -23,7 +22,6 @@
             contextPath: (new String(document.location).replace(/http:\/\/[^\/]*/, '').replace(/\/jquery-examples\/.*$/, ''))
         };
     </script>
-  <script type="text/javascript" src="__PUBLIC__/js/public/commontalk.js?id=1"></script>
 </head>
 <body>
 <?php
@@ -39,8 +37,10 @@ if (!empty($userloginedrecord['uid'])) {
 <div class="header f14 gray_l" id="headerskinvalue" value="<?php echo $skinValue; ?>">
     <div class="header_main">
         <a href="__ROOT__/stream" class="header_logo" title="个人中心首页 我帮圈圈{$schoolname}"></a>
+
         <p class="header_left fl">
-            <a href="__ROOT__/index/mate" class="header_left_arrow" id="header_nav_user">大家<span class="h_arrow"><em>◆</em></span></a>
+            <a href="__ROOT__/index/mate" class="header_left_arrow" id="header_nav_user">大家<span
+                    class="h_arrow"><em>◆</em></span></a>
             <a href="__ROOT__/help" class="header_left_arrow nav_hover_up">帮助</a>
             <a href="__ROOT__/mall" class="header_left_arrow nav_hover_up">买卖</a>
             <a class="header_left_arrow" id="header_nav_more">更多<span class="h_arrow"><em>◆</em></span></a>
@@ -88,10 +88,12 @@ if (!empty($userloginedrecord['uid'])) {
 </div>
 <div id='message_talk_nums_div'>
     <a href='' target='_blank' class='message_talk_to_url'>
-        <img id="message_talk_nums_img_icon" src='' title='' width='50' class='radius3 pointer' style='vertical-align:bottom'/></a>
+        <img id="message_talk_nums_img_icon" src='' title='' width='50' class='radius3 pointer'
+             style='vertical-align:bottom'/></a>
     <a href='' target='_blank' class='message_talk_to_url'>
         <span id="message_talk_nums_span_content" class="black_l"></span>
     </a>
+
     <p id="message_talk_nums_p_content_info" class="f10 gray"></p>
     <span id="message_talk_nums_span_close" class="icon_index_wrong pointer" title="关闭"
           style="position:absolute; right:5px; top:5px;"></span>
