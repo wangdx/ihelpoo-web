@@ -43,6 +43,7 @@
     margin-top: 15px;
     padding: 5px;
     position: relative;
+    height: 30px;
 }
 .lab_btn_select_span{
     position: absolute;
