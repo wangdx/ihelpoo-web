@@ -23,13 +23,29 @@
 }
 
 /*--- maponline ---*/
+.lab_btn{
+    padding: 3px 5px;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+    color: #999;
+}
+.lab_btn_select{
+    padding: 3px 5px;
+    background-color: #15B6D7;
+    border: 1px solid #15B6D7;
+    color: #fff;
+}
 .maponline_main_div{
     
+}
+.maponline_info_div{
+    padding: 5px;
 }
 .maponline_ul{
     border: 1px solid #EEE;
     padding: 10px;
     margin: 20px 0;
+    border-radius: 3px;
 }
 .maponline_ul li{
     padding: 10px;

@@ -3,10 +3,14 @@
 <div class="main">
 	<div class="maponline_info_div black_l f12">
 		<span class="online1"></span> {$schoolname}在线人数<a href="__ROOT__/index/school" title="更多学校">[串校]</a> <span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
-		<?php if (!empty($hiddenUserNums)) { ?>
-			(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)
-		<?php } ?>
-		<a href="?academy=select">按学院</a> <a href="/lab/maponline">按寝室</a>
+		<?php if (!empty($hiddenUserNums)) { ?>(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)<?php } ?>
+		<span class="fr">
+			<?php if (empty($_GET['academy'])) { ?>
+				<a href="?academy=select" class="lab_btn">按学院</a> <a href="/lab/maponline" class="lab_btn_select">按寝室</a>
+			<?php } else { ?>
+				<a href="?academy=select" class="lab_btn_select">按学院</a> <a href="/lab/maponline" class="lab_btn">按寝室</a>
+			<?php } ?>
+		</span>
 	</div>
 	<div class="maponline_div">
 		<?php if (empty($_GET['academy'])) { ?>
