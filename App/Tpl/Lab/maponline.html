@@ -23,7 +23,19 @@
 			<?php } ?>
 			</li>
 		<?php } ?>
+		<li>
+			<div class="maponline_ul_dormitory">未知</div>
+			<div class="maponline_ul_dormitory_house" value="unknown"></div>
+		</li>
 		</ul>
+		<?php foreach($userOnlineObject as $user) { ?>
+			<p id="<?php echo $user['uid'] ?>" class="user_show_p">
+	          <a href="__ROOT__/talk/to/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?> <?php echo i_grade($user['enteryear']) ?> <?php echo i_constellation($user['birthday']),i_sex($user['sex']) ?>" style="display:inline-block; position: relative; width: 50px; height: 40px">
+	            <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 's') ?>" height="30" />
+	            <span class="online1" style="position: absolute; top: -7px; left: 0;"></span>
+	          </a>
+	        </p>
+		<?php } ?>
 	</div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/lab/maponline.js"></script>

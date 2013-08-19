@@ -34,10 +34,6 @@ class LabAction extends Action {
     	$userloginid = session('userloginid');
     	$title = "在线区域位置4.1 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
-    	
-    	/**
-         * calculate online user numbers. calculate per 30 second
-         */
         $UserLogin = M("UserLogin");
         $userOnlineObject = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")->join('i_user_status ON i_user_status.uid = i_user_login.uid')->join('i_user_info ON i_user_info.uid = i_user_login.uid')->select();
         
