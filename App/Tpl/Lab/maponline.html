@@ -6,11 +6,14 @@
 		<?php if (!empty($hiddenUserNums)) { ?>
 			(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)
 		<?php } ?>
+		<a href="?academy=select">按学院</a> <a>按寝室</a>
 	</div>
 	<div class="maponline_div">
+		<?php if (empty($_GET['academy'])) { ?>
+		<!-- dormitory list start -->
 		<ul class="maponline_ul">
 		<?php foreach($userOnlineObject as $user) { ?>
-		<?php $domitoryListedArray[] = $user['id']; ?>
+			<?php $domitoryListedArray[] = $user['id']; ?>
 				<?php if ($domitoryLastid == $user['id']) { ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
 			          <a href="__ROOT__/talk/to/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?> <?php echo i_grade($user['enteryear']) ?> <?php echo i_constellation($user['birthday']),i_sex($user['sex']) ?>" style="display:inline-block; position: relative; width: 50px; height: 40px">
@@ -41,7 +44,7 @@
 			          </a>
 			        </p>
 		        <?php } ?>
-	    <?php $domitoryLastid = $user['id']; ?>
+	    	<?php $domitoryLastid = $user['id']; ?>
 		<?php } ?>
 		</ul>
 		<ul>
@@ -59,6 +62,50 @@
 			<?php } ?>
 		<?php } ?>
 		</ul>
+		<!-- dormitory list end -->
+		<?php } else { ?>
+		<!-- academy list start -->
+		<ul class="maponline_ul">
+		<?php foreach($userOnlineObject as $user) { ?>
+			<?php $acedemyListedArray[] = $user['id']; ?>
+				<?php if ($acedemyLastid == $user['id']) { ?>
+					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
+			          <a href="__ROOT__/talk/to/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?> <?php echo i_grade($user['enteryear']) ?> <?php echo i_constellation($user['birthday']),i_sex($user['sex']) ?>" style="display:inline-block; position: relative; width: 50px; height: 40px">
+			            <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 's') ?>" height="30" />
+			            <span class="online1" style="position: absolute; top: -7px; left: 0;"></span>
+			          </a>
+			        </p>
+				<?php } else { ?>
+					<?php echo empty($acedemyLastid) ? '' : '</div></li>'; ?>
+					<li>
+					<?php if ($user['id']) { ?>
+						<div class="maponline_ul_acedemy"><a href="/index/mate?w=acedemy&n=<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></div>
+						<div class="maponline_ul_acedemy_house" value="<?php echo $user['id']; ?>">
+					<?php } else { ?>
+						<div class="maponline_ul_acedemy">未知学院</div>
+						<div class="maponline_ul_acedemy_house" value="unknown"></div>
+					<?php } ?>
+					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
+			          <a href="__ROOT__/talk/to/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?> <?php echo i_grade($user['enteryear']) ?> <?php echo i_constellation($user['birthday']),i_sex($user['sex']) ?>" style="display:inline-block; position: relative; width: 50px; height: 40px">
+			            <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 's') ?>" height="30" />
+			            <span class="online1" style="position: absolute; top: -7px; left: 0;"></span>
+			          </a>
+			        </p>
+		        <?php } ?>
+	    	<?php $acedemyLastid = $user['id']; ?>
+		<?php } ?>
+		</ul>
+		<ul>
+		<?php foreach($recordOpAcademy as $acedemy) { ?>
+			<?php if (!in_array($acedemy['id'], $acedemyListedArray)) {?>
+				<li>
+					<a href="/index/mate?w=acedemy&n=<?php echo $acedemy['id']; ?>"><?php echo $acedemy['name']; ?></a>
+				</li>
+			<?php } ?>
+		<?php } ?>
+		</ul>
+		<!-- academy list end -->
+		<?php } ?>
 	</div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/lab/maponline.js"></script>
