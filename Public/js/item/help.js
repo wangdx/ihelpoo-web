@@ -244,7 +244,7 @@ $().ready(function(){
                     var bodyHeight = $("body").height();
                     $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
                 } else {
-                    $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                    ajaxInfo(msg.info);
                 }
                 $this.html('我来帮助');
             }, "json");
@@ -296,7 +296,7 @@ $().ready(function(){
                     var bodyHeight = $("body").height();
                     $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
                 } else {
-                    $("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+                    ajaxInfo(msg.info);
                 }
             }, "json");
         }
