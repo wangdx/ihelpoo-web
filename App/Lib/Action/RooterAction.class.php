@@ -1299,17 +1299,18 @@ class RooterAction extends Action {
             	/**
                  * send system message.
                  */
-                $MsgSystem = M("MsgSystem");
-                $msgContent = "您的真实姓名可以修改了!";
-                $msgData = array(
-                    'id' => NULL,
-                    'uid' => $uid,
-                    'type' => 'setting/realfirst',
-                    'content' => $msgContent,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-                $MsgSystem->add($msgData);
+//                $MsgSystem = M("MsgSystem");
+//                $msgContent = "您的真实姓名可以修改了!";
+//                $msgData = array(
+//                    'id' => NULL,
+//                    'uid' => $uid,
+//                    'type' => 'setting/realfirst',
+//                    'content' => $msgContent,
+//                    'time' => time(),
+//                    'deliver' => 0,
+//                );
+//                $MsgSystem->add($msgData);
+                i_savenotice('10000', $uid, 'setting/realfirst', '');
 
                 /**
                  * update i_admin_realnalemf.allow
