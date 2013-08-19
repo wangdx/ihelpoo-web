@@ -137,24 +137,6 @@ function prepareUI(){
         }
     })
 
-    /**
-     * update input status
-     */
-    var flagTimes = 'notadd';
-    $("#send_message_textarea").keyup(function () {
-        today = new Date();
-        var seconds = today.getSeconds();
-        if (((seconds + 1) % 2) == '0') {
-            flagTimes = 'notadd';
-        }
-        if ((seconds % 2) == '0' && flagTimes == 'notadd') {
-            updateInputCtatus();
-            flagTimes = 'add';
-        }
-        ;
-    });
-
-    flashPic('.flash_icon');
 
 }
 
