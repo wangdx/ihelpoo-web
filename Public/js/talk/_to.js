@@ -232,8 +232,7 @@ function Chat(state) {
             return;
         }
 
-        if(!from) return;
-        console.log("from=="+from);
+        if(!fromUser) return;
 
 
         if (!membership && fromUser == _lastUser) {
