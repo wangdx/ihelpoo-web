@@ -244,6 +244,7 @@ function Chat(state) {
             _lastUser = null;
         }
 
+        console.log("+++++" + image);
 
         if (image != '') {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
@@ -255,6 +256,8 @@ function Chat(state) {
                 + " <span class='f12 gray'>" + time + "</span><br />"
                 + chat + "<br /><br />";
         }
+
+        console.log("_--------");
         $('#show_message_div').append(htmlIn);
         var boxHeight = $('#show_message_div').height();
         $('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
