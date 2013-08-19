@@ -246,7 +246,7 @@ function Chat(state) {
 
         console.log("+++++" + image);
 
-        if (image != '') {
+        if (image && image != '') {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
                 + " <span class='f12 gray'>" + time + "</span><br />"
                 + chat + "<br />"
