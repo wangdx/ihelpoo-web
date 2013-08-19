@@ -70,6 +70,26 @@
     margin: 10px 5px;
 }
 
+
+
+.maponline_ul_academy{
+    display: inline-block;
+    padding: 5px 8px;
+    border: 1px solid #DDD;
+    background: #f5f5f5;
+    margin: 5px 0;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.maponline_ul_academy_house{
+    padding: 5px 0;
+}
+.maponline_ul_academy_house p{
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+
 .maponline_other_div{
     padding: 5px;
 }

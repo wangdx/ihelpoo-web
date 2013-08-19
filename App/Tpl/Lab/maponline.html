@@ -84,10 +84,10 @@
 					<?php echo empty($academyLastid) ? '' : '</div></li>'; ?>
 					<li>
 					<?php if ($user['id']) { ?>
-						<div class="maponline_ul_academy"><a href="/index/mate?w=academy&n=<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></div>
+						<div class="maponline_ul_academy"><a href="/index/mate?w=academy&n=<?php echo $user['id']; ?>"><i class="ico_school"></i><?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_academy_house" value="<?php echo $user['id']; ?>">
 					<?php } else { ?>
-						<div class="maponline_ul_academy">未知学院</div>
+						<div class="maponline_ul_academy"><i class="ico_add"></i>未知学院</div>
 						<div class="maponline_ul_academy_house" value="unknown"></div>
 					<?php } ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
