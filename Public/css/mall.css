@@ -826,7 +826,7 @@
 
 /*--- icon ---*/
 .icon_mall_brand, .icon_mall_time, .icon_mall_diamond, .icon_mall_jz, .icon_mall_life, .icon_mall_tour, .icon_mall_new{
-    background: url(../image/common/mall_icon.png) no-repeat scroll 0 0 transparent;
+    background: url(../image/common/mall_icon.png);
     float: left;
     height: 18px;
     width: 20px;
