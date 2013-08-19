@@ -32,8 +32,8 @@
     margin: 20px 0;
 }
 .maponline_ul li{
-    border: 1px solid #333;
     padding: 10px;
+    border-bottom: 1px solid #EEEEEE;
 }
 .maponline_ul_dormitory{
     display: inline-block;
