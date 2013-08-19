@@ -12,7 +12,7 @@ class Email
         $this->from = 'info@ihelpoo.com';
         $this->username = 'info@ihelpoo.com';
         $this->password = 'help2012';
-        $this->ihelpoo = 'www.ihelpoo.com';
+        $this->ihelpoo = '42.62.50.238';
     }
 
     public function sendDefault($toEmail, $toSubject, $toContent, $toNickname = NULL)
