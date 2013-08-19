@@ -4,7 +4,7 @@ a{ color:#059; text-decoration:none; cursor:pointer; }
 a:focus{ outline: none; }
 li{ list-style:none; }
 body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helvetica,Arial; }
-input{ font-size: 14px; }
+*html input{ font-size: 12px; }
 /*---*/
 .f10{ font-size:10px; }
 .f12{ font-size:12px; }
