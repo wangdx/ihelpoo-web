@@ -1,3 +1,5 @@
+
+
 $(function () {
     // Check if there was a saved application state
     var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
