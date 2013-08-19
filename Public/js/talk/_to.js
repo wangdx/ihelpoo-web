@@ -1,5 +1,3 @@
-
-
 $(function () {
     // Check if there was a saved application state
     var stateCookie = org.cometd.COOKIE ? org.cometd.COOKIE.get('com.ihelpoo.comet.p2p.state') : null;
@@ -96,7 +94,7 @@ function Chat(state) {
             from: _from,
             to: _to,
             chat: chat,
-            ctrl:"",
+            status: '',
             image: image
         });
     };
@@ -107,8 +105,9 @@ function Chat(state) {
             from: _from,
             to: _to,
             chat: "",
-            ctrl:"UPDATE_STATUS",
-            image: status
+            image: '',
+            status:status
+
         });
     };
 
@@ -122,12 +121,12 @@ function Chat(state) {
         var image = message.data.image;
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
-        var ctrl = message.data.ctrl;
+        var status = message.data.status;
 
 
 
-        if(!ctrl) {//update status
-            $('#input_status').html(image + '<span class="icon_write"></span>');
+        if(!chat || !chat.length) {//update status
+            $('#input_status').html(status + '<span class="icon_write"></span>');
             return;
         }
 
