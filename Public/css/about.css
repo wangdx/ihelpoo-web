@@ -108,6 +108,7 @@
 }
 .about_snsapply_ul li .input_style{
     margin: 0 15px;
+    border-radius: 3px;
 }
 .about_snsapply_ul li #submit{
     margin: 0 15px;
