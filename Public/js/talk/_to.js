@@ -40,10 +40,10 @@ $(function () {
 
 var imageNums = 0;
 function prepareUI(){
-    var user_position = $('#' + data_touid).parent().parent().position();
-    if (user_position != null) {
-        $('.user_list_ul').animate({scrollTop: user_position.top - 5}, 0);
-    }
+//    var user_position = $('#' + data_touid).parent().parent().position();
+//    if (user_position != null) {
+//        $('.user_list_ul').animate({scrollTop: user_position.top - 5}, 0);
+//    }
 
     /**
      * icon emotion part
