@@ -43,6 +43,11 @@
     margin-top: 15px;
     padding: 5px;
 }
+.lab_btn_select_span{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 .maponline_ul{
     border: 1px solid #EEE;
     padding: 10px;
