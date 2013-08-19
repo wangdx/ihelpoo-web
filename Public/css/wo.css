@@ -245,6 +245,9 @@
     width: 600px;
     height: 60px;
     border-radius: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 #comment_textareaicon{
     position: absolute;
@@ -330,6 +333,9 @@
     width: 540px;
     height: 30px;
     border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .comment_textareaicon_replyinner{
     position: absolute;
@@ -497,6 +503,8 @@
 }
 .wo_li_s_comment{
     float: right;
+    position: absolute;
+    right: 0;
 }
 .wo_paging{
     margin: 20px 0;
