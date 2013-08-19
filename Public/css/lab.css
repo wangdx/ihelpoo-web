@@ -33,13 +33,14 @@
 }
 .maponline_ul_dormitory{
     display: inline-block;
-    padding: 5px;
-    border: 1px solid #EEE;
+    padding: 5px 10px;
+    border: 1px solid #DDD;
     background: #f5f5f5;
     margin: 5px 0;
+    font-size: 12px;
 }
 .maponline_ul_dormitory_house{
-    border: 1px solid #EEE;
+    padding: 5px 0;
 }
 .maponline_ul_dormitory_house p{
     display: inline-block;
@@ -49,7 +50,9 @@
 .maponline_other_ul{
     border: 1px solid #EEE;
     font-size: 12px;
+    padding: 5px;
 }
 .maponline_other_ul li{
-    display: inline;
+    display: inline-block;
+    padding: 3px;
 }
