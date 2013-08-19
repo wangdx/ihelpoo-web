@@ -184,7 +184,7 @@ function Chat(state) {
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
             url: cometdURL,
-            logLevel: 'debug'
+            logLevel: 'info'
         });
         $.cometd.handshake();
         $('#send_message_textarea').focus();
