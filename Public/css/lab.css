@@ -31,6 +31,10 @@
     padding: 10px;
     margin: 20px 0;
 }
+.maponline_ul li{
+    border: 1px solid #333;
+    padding: 10px;
+}
 .maponline_ul_dormitory{
     display: inline-block;
     padding: 5px 15px;
@@ -45,7 +49,7 @@
 }
 .maponline_ul_dormitory_house p{
     display: inline-block;
-    margin: 5px;
+    margin: 10px 5px;
 }
 
 .maponline_other_ul{
