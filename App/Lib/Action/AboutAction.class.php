@@ -153,8 +153,8 @@ class AboutAction extends Action {
     	$title = "意见建议";
     	$this->assign('title', $title);
     	if ($this->isPost()) {
-	    	$connection = trim(addslashes(htmlspecialchars(strip_tags($_POST["connection"]))));
-	    	$content = trim(addslashes(htmlspecialchars(strip_tags($_POST["content"]))));
+	    	$connection = trim(htmlspecialchars(strip_tags($_POST["connection"])));
+	    	$content = trim(htmlspecialchars(strip_tags($_POST["content"])));
 	    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
 	    	i_send("121670155@qq.com","我帮圈圈 意见建议", $emailcontent);
 	    	//i_send('admin@tvery.com','我帮圈圈 意见建议',$emailcontent);
