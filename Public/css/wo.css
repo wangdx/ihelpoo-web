@@ -1,5 +1,5 @@
 /*--- icon ---*/
-.icon_timebar_wn{
+.icon_timebar_wn, .icon_timebar_fj, .icon_timebar_hj, .icon_timebar_fd{
     background-image: url("../image/common/wo_animal.png");
     background-position: 0 0;
     height: 30px;
@@ -9,35 +9,17 @@
     display: inline-block;
     font-size: 0;
 }
+*html .icon_timebar_wn, *html .icon_timebar_fj, *html .icon_timebar_hj, *html .icon_timebar_fd{
+    background-image: url("../image/common/wo_animal.gif");
+}
 .icon_timebar_fj{
-    background-image: url("../image/common/wo_animal.png");
     background-position: 0 -30px;
-    height: 30px;
-    width: 85px;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    display: inline-block;
-    font-size: 0;
 }
 .icon_timebar_hj{
-    background-image: url("../image/common/wo_animal.png");
     background-position: 0 -60px;
-    height: 30px;
-    width: 85px;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    display: inline-block;
-    font-size: 0;
 }
 .icon_timebar_fd{
-    background-image: url("../image/common/wo_animal.png");
     background-position: 0 -90px;
-    height: 30px;
-    width: 85px;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    display: inline-block;
-    font-size: 0;
 }
 .icon_timebar_out_div{
     position: relative;
