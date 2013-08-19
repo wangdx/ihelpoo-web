@@ -44,14 +44,14 @@
 					<a href="__ROOT__/stream/u/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
 						<?php echo $activityItem['nickname']; ?>
 					</a>
+					<span class="activity_lists_ul_li_time_span">
+					<i class="ico_time" title="时间"></i><?php echo date('Y-m-d', $activityItem['activity_ti']); ?> <span class="f12 gray">(星期<?php echo date('N', $activityItem['activity_ti']); ?>)</span>
+					</span>
+					<span class="activity_lists_ul_li_nums_span gray">
+						<i class="ico_favourite"></i>参加人数:<span class="f12 fb black_l"><?php echo $activityItem['join_num']; ?></span> 
+					</span>
 				</span>
 				<?php } ?>
-				<span class="activity_lists_ul_li_time_span">
-					<i class="ico_time" title="时间"></i><?php echo date('Y-m-d', $activityItem['activity_ti']); ?> <span class="f12 gray">(星期<?php echo date('N', $activityItem['activity_ti']); ?>)</span>
-				</span>
-				<span class="activity_lists_ul_li_nums_span gray">
-					<i class="ico_favourite"></i>参加人数:<span class="f14 fb black_l"><?php echo $activityItem['join_num']; ?></span> 
-				</span>
 				<span class="activity_lists_ul_li_hit_span">
 					<i class="icon_up"></i><span class="f12 gray">人气:<?php echo $activityItem['hit']; ?></span>
 				</span>

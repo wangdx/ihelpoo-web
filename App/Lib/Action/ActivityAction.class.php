@@ -71,6 +71,7 @@ class ActivityAction extends Action {
     	$this->assign('title','组织新活动');
     	$ActivityItem = M("ActivityItem");
     	$activityid = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
+    	$recordSchoolInfo = i_school_domain();
     	if ($this->isPost()) {
     		$aid = (int)trim(strip_tags($_POST["aid"]));
     		$subject = trim(addslashes(htmlspecialchars(strip_tags($_POST["subject"]))));
@@ -105,6 +106,7 @@ class ActivityAction extends Action {
 	    			'subject' => $subject,
 	    			'activity_ti' => $activity_time,
 	    			'content' => $content,
+	    			'school' => $recordSchoolInfo['id'],
 	    			'time' => time()
 	    		);
 	    		$ActivityItem->save($editActivityItemArray);
@@ -117,6 +119,7 @@ class ActivityAction extends Action {
 	    			'sponsor_uid' => $userloginid,
 	    			'activity_ti' => $activity_time,
 	    			'content' => $content,
+	    			'school' => $recordSchoolInfo['id'],
 	    			'time' => time()
 	    		);
 	    		$newInsertActivityId = $ActivityItem->add($newActivityItemArray);
