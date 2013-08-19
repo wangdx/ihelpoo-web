@@ -11,7 +11,6 @@ $(function () {
 
 
 
-    $('#' + data_touid).parent().parent().css({borderBottom: '3px solid #CCC'});
 
     var noActionInterval = 5; // seconds
     $("textarea#send_message_textarea").keypress(function () {
