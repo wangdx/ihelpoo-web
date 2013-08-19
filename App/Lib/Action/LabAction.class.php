@@ -32,6 +32,7 @@ class LabAction extends Action {
     {
     	$recordSchoolInfo = i_school_domain();
     	$this->assign('schoolname', $recordSchoolInfo['school']);
+    	$this->assign('thisschoolid', $recordSchoolInfo['id']);
     	$userloginid = session('userloginid');
     	$title = "在线区域位置4.1 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
