@@ -26,7 +26,6 @@
 	<div class="maponline_div">
 		<?php if (empty($_GET['academy'])) { ?>
 		<!-- dormitory list start -->
-		<?php $domitoryLastid = 'null'; ?>
 		<ul class="maponline_ul">
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
@@ -84,7 +83,6 @@
 		<!-- dormitory list end -->
 		<?php } else { ?>
 		<!-- academy list start -->
-		<?php $academyLastid = 'null'; ?>
 		<ul class="maponline_ul">
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
