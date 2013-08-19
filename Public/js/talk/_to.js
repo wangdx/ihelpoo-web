@@ -182,8 +182,11 @@ function Chat(state) {
     this.send = function () {
         var chat = $('#send_message_textarea').val();
         var image = $('#image_upload_url').val();
-        console.log(chat + " " + image);
-        if (!chat || !chat.length) return;
+
+        if (!chat || !chat.length) {
+            var htmlIn = "<span class='red_l f12'>发送内容不能为空</span>";
+            $('#input_status').html(htmlIn);
+        }
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
             from: _from,
