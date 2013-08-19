@@ -69,6 +69,12 @@
     font-size: 12px;
     border-radius: 3px;
 }
+*+html .maponline_ul_dormitory{
+    display: inline;
+}
+*html .maponline_ul_dormitory{
+    display: inline;
+}
 .maponline_ul_dormitory_house{
     padding: 5px 0;
 }
@@ -76,7 +82,12 @@
     display: inline-block;
     margin: 10px 5px;
 }
-
+*+html .maponline_ul_dormitory_house p{
+    display: inline;
+}
+*html .maponline_ul_dormitory_house p{
+    display: inline;
+}
 
 
 .maponline_ul_academy{
@@ -111,4 +122,10 @@
 .maponline_other_ul li{
     display: inline-block;
     padding: 3px;
+}
+*+html .maponline_other_ul li{
+    display: inline;
+}
+*html .maponline_other_ul li{
+    display: inline;
 }
