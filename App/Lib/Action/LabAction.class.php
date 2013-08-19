@@ -37,8 +37,10 @@ class LabAction extends Action {
         $UserLogin = M("UserLogin");
         $userOnlineObject = $UserLogin->where("online != 0 AND i_user_login.school = $recordSchoolInfo[id]")
         ->join('i_user_info ON i_user_info.uid = i_user_login.uid')
-        ->join('i_user_status ON i_user_status.uid = i_user_login.uid')
         ->join('i_op_dormitory ON i_op_dormitory.id = i_user_info.dormitory_op')
+        ->join('i_user_status ON i_user_status.uid = i_user_login.uid')
+        ->field('i_user_login.uid,nickname,sex,birthday,enteryear,online,active,icon_url,i_user_login.school,i_user_info.dormitory_op,i_op_dormitory.id,i_op_dormitory.name,i_op_dormitory.type,i_user_status.last_active_ti')
+        ->order("i_op_dormitory.type ASC,i_op_dormitory.id ASC")
         ->select();
         
         /**
@@ -71,16 +73,16 @@ class LabAction extends Action {
          * hidden online user nums 
          */
         $hiddenUserNums = $UserLogin->where("online = 2 AND school = $recordSchoolInfo[id]")->count();
-        $this->assign('hiddenUserNums',$hiddenUserNums);
-        $this->assign('onlineUserNums',$userOnlineNums);
-        $this->assign('userOnlineObject',$userOnlineObject);
+        $this->assign('hiddenUserNums', $hiddenUserNums);
+        $this->assign('onlineUserNums', $userOnlineNums);
+        $this->assign('userOnlineObject', $userOnlineObject);
         
         /**
          * dormitory
          */
         $OpDormitory = M("OpDormitory");
         $recordOpDormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->order("type ASC,id ASC")->select();
-        $this->assign('recordOpDormitory',$recordOpDormitory);
+        $this->assign('recordOpDormitory', $recordOpDormitory);
         $this->display();
     }
 }
