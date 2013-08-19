@@ -96,6 +96,7 @@ function Chat(state) {
             from: _from,
             to: _to,
             chat: chat,
+            ctrl:"",
             image: image
         });
     };
@@ -106,6 +107,7 @@ function Chat(state) {
             from: _from,
             to: _to,
             chat: "",
+            ctrl:"UPDATE_STATUS",
             image: status
         });
     };
@@ -120,10 +122,11 @@ function Chat(state) {
         var image = message.data.image;
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
+        var ctrl = message.data.ctrl;
 
 
 
-        if(!chat || !chat.length) {//update status
+        if(!ctrl) {//update status
             $('#input_status').html(image + '<span class="icon_write"></span>');
             return;
         }
