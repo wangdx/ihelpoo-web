@@ -26,8 +26,8 @@
 	<div class="maponline_div">
 		<?php if (empty($_GET['academy'])) { ?>
 		<!-- dormitory list start -->
+		<?php $domitoryLastid = 'null'; ?>
 		<ul class="maponline_ul">
-		<?php $domitoryLastid = 'unknown'; ?>
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
 			<?php $domitoryListedArray[] = $user['id']; ?>
@@ -84,8 +84,8 @@
 		<!-- dormitory list end -->
 		<?php } else { ?>
 		<!-- academy list start -->
+		<?php $academyLastid = 'null'; ?>
 		<ul class="maponline_ul">
-		<?php $academyLastid = 'unknown'; ?>
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
 			<?php $academyListedArray[] = $user['id']; ?>
