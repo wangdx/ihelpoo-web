@@ -42,12 +42,13 @@
 .maponline_info_div{
     margin-top: 15px;
     padding: 5px;
+    position: relative;
 }
 .lab_btn_select_span{
     position: absolute;
     right: 0;
     bottom: 10px;
-    position: relative;
+    position: absolute;
 }
 .maponline_ul{
     border: 1px solid #EEE;
