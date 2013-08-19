@@ -197,7 +197,12 @@
     display: inline-block;
     margin: 5px;
 }
-
+*+html .stream_plus_users_ul li{
+    display: inline;
+}
+*html .stream_plus_users_ul li{
+    display: inline;
+}
 .diffusion_view_div_box{
     position: relative;
     left: 90px;
