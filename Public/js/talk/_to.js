@@ -79,12 +79,13 @@ function prepareUI() {
     });
 
     $("#img_upload_btn").click(function () {
+        $('#img_upload_form').show();
         var upload_image_file = $('#upload_form_img_file').val();
         var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '上传中...请稍等'});
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-            $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
+                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
             $.ajaxFileUpload({
                 url: baseUrl + 'ajax/imgtalkupload',
                 secureuri: false,
@@ -96,7 +97,7 @@ function prepareUI() {
                         var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data + "' width='80'/><a href='" + msg.data + "' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
                         $('#image_upload_url').val(msg.data);
                         $('#image_upload_list_ul').empty().append(uploadImgList);
-//                        $('#img_upload_form').hide();
+                        $('#img_upload_form').hide();
                     } else if (msg.status == 'error') {
                         $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
                     }
