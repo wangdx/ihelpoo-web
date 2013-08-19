@@ -164,8 +164,21 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .btn_weibo_select{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
 
 /*---*/
-.sex1{ width: 20px; height: 20px; background:url(../image/common/sex.png) no-repeat 0px 0px; display:inline-block; }
-.sex2{ width: 20px; height: 20px; background:url(../image/common/sex.png) no-repeat -20px 0px; display:inline-block; }
+.sex1{
+    background: url("../image/common/sex.png") no-repeat scroll -1px -2px transparent;
+    display: inline-block;
+    float: left;
+    height: 18px;
+    width: 18px;
+    margin-right: 3px;
+}
+.sex2{
+    background: url("../image/common/sex.png") no-repeat scroll -22px -2px transparent;
+    display: inline-block;
+    float: left;
+    height: 18px;
+    width: 18px;
+}
 /*---*/
 .online0{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
 .online1{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px 0px; display:inline-block; }
