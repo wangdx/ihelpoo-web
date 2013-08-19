@@ -23,10 +23,12 @@ class ActivityAction extends Action {
     public function index()
     {
     	$this->assign('title','活动');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$ActivityItem = M("ActivityItem");
     	$daybeforetime = time() - 86400;
-    	$recordActivityItem = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_item.activity_ti > $daybeforetime")
+    	$recordActivityItem = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_item.activity_ti > $daybeforetime AND i_activity_item.school_id = $recordSchoolInfo[id]")
     	->join('i_user_login ON i_activity_item.sponsor_uid = i_user_login.uid')
     	->field('aid,i_activity_item.status,run_type,subject,sponsor_uid,activity_ti,join_num,hit,content,sid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
     	->order('activity_ti ASC')->find();
@@ -38,10 +40,10 @@ class ActivityAction extends Action {
     	 * activity nums
     	 */
     	$time = time();
-    	$totalActivityNums = $ActivityItem->count();
-    	$totalOkActivityNums = $ActivityItem->where("status = 1")->count();
-    	$afterActivityNums = $ActivityItem->where("status = 1 AND $time > activity_ti")->count();
-    	$beforeActivityNums = $ActivityItem->where("status = 1 AND $time < activity_ti")->count();
+    	$totalActivityNums = $ActivityItem->where("school_id = $recordSchoolInfo[id]")->count();
+    	$totalOkActivityNums = $ActivityItem->where("status = 1 AND school_id = $recordSchoolInfo[id]")->count();
+    	$afterActivityNums = $ActivityItem->where("status = 1 AND $time > activity_ti AND school_id = $recordSchoolInfo[id]")->count();
+    	$beforeActivityNums = $ActivityItem->where("status = 1 AND $time < activity_ti AND school_id = $recordSchoolInfo[id]")->count();
     	$this->assign('totalActivityNums',$totalActivityNums);
     	$this->assign('totalOkActivityNums',$totalOkActivityNums);
     	$this->assign('afterActivityNums',$afterActivityNums);
@@ -65,13 +67,14 @@ class ActivityAction extends Action {
     public function add()
     {
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	if (empty($userloginid)) {
     		redirect('/user/notlogin', 0, '你还没有登录呢...');
     	}
     	$this->assign('title','组织新活动');
     	$ActivityItem = M("ActivityItem");
     	$activityid = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
-    	$recordSchoolInfo = i_school_domain();
     	if ($this->isPost()) {
     		$aid = (int)trim(strip_tags($_POST["aid"]));
     		$subject = trim(addslashes(htmlspecialchars(strip_tags($_POST["subject"]))));
@@ -106,7 +109,7 @@ class ActivityAction extends Action {
 	    			'subject' => $subject,
 	    			'activity_ti' => $activity_time,
 	    			'content' => $content,
-	    			'school' => $recordSchoolInfo['id'],
+	    			'school_id' => $recordSchoolInfo['id'],
 	    			'time' => time()
 	    		);
 	    		$ActivityItem->save($editActivityItemArray);
@@ -119,7 +122,7 @@ class ActivityAction extends Action {
 	    			'sponsor_uid' => $userloginid,
 	    			'activity_ti' => $activity_time,
 	    			'content' => $content,
-	    			'school' => $recordSchoolInfo['id'],
+	    			'school_id' => $recordSchoolInfo['id'],
 	    			'time' => time()
 	    		);
 	    		$newInsertActivityId = $ActivityItem->add($newActivityItemArray);
@@ -147,6 +150,8 @@ class ActivityAction extends Action {
 	public function item()
     {
     	$this->assign('title','活动详情');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$ActivityItem = M("ActivityItem");
     	$ActivityUser = M("ActivityUser");
@@ -398,6 +403,8 @@ class ActivityAction extends Action {
     public function parterinvite()
     {
     	$this->assign('title','活动Parter邀请');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	if (empty($userloginid)) {
     		redirect('/user/notlogin', 0, '你还没有登录呢...');
@@ -519,6 +526,8 @@ class ActivityAction extends Action {
     public function itemnotice()
     {
     	$this->assign('title','活动通知');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$ActivityItem = M("ActivityItem");
     	$ActivityUser = M("ActivityUser");
@@ -599,6 +608,8 @@ class ActivityAction extends Action {
 	public function lists()
     {
     	$this->assign('title','活动列表');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$ActivityItem = M("ActivityItem");
 
@@ -617,29 +628,29 @@ class ActivityAction extends Action {
         	if (empty($userloginid)) {
         		redirect('/user/notlogin', 0, '你还没有登录呢...');
         	}
-        	$recordsActivityItem = $ActivityItem->where("sponsor_uid = $userloginid")->limit($offset,$count)->order('time DESC')->select();
-        	$totalRecordsNums = $ActivityItem->where("sponsor_uid = $userloginid")->count();
+        	$recordsActivityItem = $ActivityItem->where("sponsor_uid = $userloginid AND i_activity_item.school_id = $recordSchoolInfo[id]")->limit($offset,$count)->order('time DESC')->select();
+        	$totalRecordsNums = $ActivityItem->where("sponsor_uid = $userloginid AND i_activity_item.school_id = $recordSchoolInfo[id]")->count();
         } else if ($getSelf == 'mine') {
         	if (empty($userloginid)) {
         		redirect('/user/notlogin', 0, '你还没有登录呢...');
         	}
         	$ActivityUser = M("ActivityUser");
-        	$recordsActivityItem = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_user.uid = $userloginid")
+        	$recordsActivityItem = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_user.uid = $userloginid AND i_activity_item.school_id = $recordSchoolInfo[id]")
         	->join('i_user_login ON i_activity_item.sponsor_uid = i_user_login.uid')
         	->join('i_activity_user ON i_activity_item.aid = i_activity_user.aid')
         	->field('i_activity_item.aid,i_activity_item.status,subject,sponsor_uid,activity_ti,join_num,hit,content,good_nu,bad_nu,i_activity_item.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
         	->limit($offset,$count)
         	->order('activity_ti DESC')
         	->select();
-    		$totalRecordsNums = $ActivityUser->where("uid = $userloginid")->count();
+    		$totalRecordsNums = $ActivityUser->where("uid = $userloginid AND i_activity_item.school_id = $recordSchoolInfo[id]")->count();
         } else {
-        	$recordsActivityItem = $ActivityItem->where("i_activity_item.status = 1")
+        	$recordsActivityItem = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_item.school_id = $recordSchoolInfo[id]")
         	->join('i_user_login ON i_activity_item.sponsor_uid = i_user_login.uid')
         	->field('aid,i_activity_item.status,subject,sponsor_uid,activity_ti,join_num,hit,content,good_nu,bad_nu,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
         	->limit($offset,$count)
         	->order('activity_ti DESC')
         	->select();
-    		$totalRecordsNums = $ActivityItem->where("i_activity_item.status = 1")->count();
+    		$totalRecordsNums = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_item.school_id = $recordSchoolInfo[id]")->count();
         }
     	if (!empty($recordsActivityItem)) {
     		$this->assign('recordsActivityItem',$recordsActivityItem);
@@ -658,6 +669,8 @@ class ActivityAction extends Action {
     public function lotterydraw()
     {
     	$this->assign('title','活动抽奖');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	$ActivityItem = M("ActivityItem");
     	$ActivityUser = M("ActivityUser");
@@ -718,6 +731,8 @@ class ActivityAction extends Action {
     public function uploadappendix()
     {
     	$this->assign('title','活动附件');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$userloginid = session('userloginid');
     	if (empty($userloginid)) {
     		redirect('/user/notlogin', 0, '你还没有登录呢...');
