@@ -71,18 +71,30 @@
     border-radius: 3px;
 }
 .activity_lists_ul li{
-    padding: 8px;
+    padding: 10px;
     border-bottom: 1px dotted #DDD;
+    position: relative;
 }
-.activity_lists_ul_li_a{
+.activity_lists_ul_li_sponsor_a{
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+.activity_lists_ul_li_time_span{
     display: inline-block;
 }
-*+html .activity_lists_ul_li_a{
-    display: inline;
+.activity_lists_ul_li_nums_span{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
-*html .activity_lists_ul_li_a{
-    display: inline;
+.activity_lists_ul_li_hit_span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
+
 .activity_lists_mine_nav{
     margin: 15px 0;
 }
