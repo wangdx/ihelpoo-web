@@ -79,7 +79,7 @@ class LabAction extends Action {
          * dormitory
          */
         $OpDormitory = M("OpDormitory");
-        $recordOpDormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->order("type ASC")->select();
+        $recordOpDormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->order("type ASC,id ASC")->select();
         $this->assign('recordOpDormitory',$recordOpDormitory);
         $this->display();
     }
