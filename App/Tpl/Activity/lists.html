@@ -56,19 +56,21 @@
 					<i class="icon_up"></i><span class="f12 gray">人气:<?php echo $activityItem['hit']; ?></span>
 				</span>
 				<?php if ($getSelf == 'sponsor') { ?>
-					<span class="f12 gray">
-					状态:
-					<?php
-					if ($activityItem['status'] == 0) {
-						echo "<span class='icon_pump'></span> 待审核";
-					} else if ($activityItem['status'] == 1) {
-						echo "<span class='icon_right'></span> 审核通过";
-					} else {
-						echo "<span class='icon_attention'></span> 未通过";
-					}?>
+					<span class="activity_lists_ul_li_sponsor_span">
+						<span class="f12 gray">
+						状态:
+						<?php
+						if ($activityItem['status'] == 0) {
+							echo "<span class='icon_pump'></span> 待审核";
+						} else if ($activityItem['status'] == 1) {
+							echo "<span class='icon_right'></span> 审核通过";
+						} else {
+							echo "<span class='icon_attention'></span> 未通过";
+						} ?>
+						</span>
+						<a href="__ROOT__/activity/add/<?php echo $activityItem['aid']; ?> " class="f12">编辑</a> 
+						<span class="gray f12">最后编辑:<?php echo i_time($activityItem['time']); ?> </span>
 					</span>
-					<a href="__ROOT__/activity/add/<?php echo $activityItem['aid']; ?> " class="f12">编辑</a> 
-					<span class="gray f12">最后编辑:<?php echo i_time($activityItem['time']); ?> </span>
 				<?php } ?>
 				<span class="gray f14 fb"><?php if ($dayGap == 0) { echo "<span class='orange fi'>今天</span>"; } else if ($dayGap > 0) { echo "<span class='blue f16 fi'>".$dayGap."</span> 天后"; } ?></span>
 			</li>
