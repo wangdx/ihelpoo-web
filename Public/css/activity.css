@@ -85,6 +85,9 @@
 .activity_lists_ul_li_time_span{
     display: inline-block;
 }
+.activity_lists_ul_li_nums_span{
+    display: inline-block;
+}
 .activity_lists_ul_li_hit_span{
     position: absolute;
     right: 10px;
