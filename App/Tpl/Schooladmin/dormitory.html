@@ -7,7 +7,7 @@
     <?php if (empty($_GET['changeid'])) { ?>
   	<li>添加寝室:</li>
   	<?php } else { ?>
-  	<li>修改寝室{$_GET['changeid']}: <input type="hidden" name="dormitoryid" value="{$_GET['changeid']}" /></li>
+  	<li class="red"><i class="icon_attention"></i>修改寝室{$_GET['changeid']}: <input type="hidden" name="dormitoryid" value="{$_GET['changeid']}" /></li>
   	<?php } ?>
     <li>类&#12288;&#12288;型:
     <select name="type">
@@ -17,7 +17,11 @@
     </select>
     </li>
     <li>楼&#12288;&#12288;栋:<input type="text" name="name" value="" class="input_style" /></li>
+    <?php if (empty($_GET['changeid'])) { ?>
 	<li><input type="submit" value="添加" /></li>
+	<?php } else { ?>
+	<li><input type="submit" value="修改" /></li>
+	<?php } ?>
   </ul>
   </form>
   
