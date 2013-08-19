@@ -1,0 +1,32 @@
+<include file="Public:headerabout" />
+<div class="main">
+  <div class="about_snsapply_nav_div f14 fb">意见建议</div>
+  <div>
+  <?php if ($_GET['succ'] == "ok") { ?>
+  <div class="about_snsapply_info">提交意见建议成功:)</div>
+  <p align="center">
+  	<span class='icon_right'></span> 谢谢你的建议，我们会以最快的速度处理后联系你。如有问题请<a href="/about/sns">联系</a>我帮圈圈团队。
+  </p>
+  <?php } else { ?>
+  <div class="about_snsapply_info"><span class="red fb">意见建议</span></div>
+  <ul class="about_snsapply_info_ul f12 gray">
+  	<li>真诚希望听到您的声音，我们会以最快的速度处理后联系你。</li>
+  </ul>
+  <form method="post" id="applyverifyform">
+  <ul class="about_snsapply_ul">
+  	<li>
+  		<p>您的联系方式</p>
+  		<input name="connection" class="input_style" id="connection" /><span class="red">*</span>
+  	</li>
+  	<li>
+  		<p>意见建议</p>
+  		<textarea name="content" class="textarea_style" id="content"><?php echo $recordSchoolApplyverify[question2]; ?></textarea><span class="red">*</span>
+  	</li>
+  	<li><a id="submit" class="btn f12">确定</a> <span id="submit_info" class="f12 gray"></span></li>
+  </ul>
+  </form>
+  <?php } ?>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/about/suggestion.js?id=1"></script>
+<include file="Public:footer" />

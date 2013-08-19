@@ -137,15 +137,27 @@ class AboutAction extends Action {
 		    	);
 		    	$SchoolApplyverify->add($newApplyverifyData);
 		    	
-		    	//TODO
 		    	/**
-		    	 * change email system , use phpmailer.class, below is an e.g.
 		    	 * send email
 		    	 */
                 i_send('admin@tvery.com','system to cho','有新学校申请开通我帮圈圈:)');
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} 
 	    	$this->ajaxReturn(0, "出错了", "wrong");
+    	}
+    	$this->display();
+    }
+    
+    public function suggestion()
+    {
+    	$title = "意见建议";
+    	$this->assign('title', $title);
+    	if ($this->isPost()) {
+	    	$connection = trim(addslashes(htmlspecialchars(strip_tags($_POST["connection"]))));
+	    	$content = trim(addslashes(htmlspecialchars(strip_tags($_POST["content"]))));
+	    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
+	    	i_send('admin@tvery.com','我帮圈圈 意见建议',$emailcontent);
+	    	$this->ajaxReturn(0, "提交成功", "yes");
     	}
     	$this->display();
     }
