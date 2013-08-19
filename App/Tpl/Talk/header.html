@@ -11,47 +11,74 @@
   <script type="text/javascript" src="__PUBLIC__/js/public/commontalk.js?id=1"></script>
 </head>
 <body>
-<div class="header f14 gray_l">
-  <div class="header_main">
-  <a href="__ROOT__/stream" class="header_logo" title="我帮圈圈3 Pollen Plan"></a>
-  <p class="header_left fl">
-    <a href="__ROOT__/index/mate">大家</a>
-    <a href="__ROOT__/mall">逛街<span class="icon_new"></span></a>
-    <a href="__ROOT__/help">帮助</a>
-    <a href="__ROOT__/index/hot">排行</a>
-    <?php
-    if (!empty($userloginedrecord['uid'])) {
+<?php
+if (!empty($userloginedrecord['uid'])) {
 	if (!empty($changeskin)) {
 		$skinValue = $changeskin;
 	} else {
 		$skinValue = $userloginedrecord['skin'] == '' ? '0' : $userloginedrecord['skin'];
-	}?>
-    <a id="change_skin" title="换皮肤" value="<?php echo $skinValue ?>"><span class="icon_n_color"></span></a>
-    <?php } ?>
-  </p>
-  <p class="header_right fr f12">
-  	<?php if (!empty($userloginedrecord['uid'])) { ?>
-	    <span class="icon_pump"></span> 圈圈欢迎您 <a href="__ROOT__/wo">{$userloginedrecord['nickname']}</a>|<a href="__ROOT__/mallset/seller">店铺</a>
-	    <!-- <a href="__ROOT__/mallset/buyer">买东西</a> -->
-	    <a href="__ROOT__/mutual/find">找人</a>
-	    <a href="__ROOT__/setting">设置</a>
-	    <a href="__ROOT__/message/system">消息</a>
-	    <a href="__ROOT__/message/system" title="帮助与系统消息" id="message_system_nums_a" style="display:none"><span class='message_green message_shine'></span></a>
-	    <a href="__ROOT__/message/comment" title="评论回复" id="message_comment_nums_a" style="display:none"><span class='message message_shine'></span></a>
-	    <a href="__ROOT__/message/at" title="@我的消息" id="message_at_nums_a" style="display:none"><span class='message_blue message_shine'></span></a>
-	    <a href="__ROOT__/message/coin" title="RBM管理记录" id="message_cion_nums_a" style="display:none"><span class='message_yellow message_shine'></span></a>
-	    <!-- <a href="__ROOT__/talk" title="悄悄话Talk"><span class='message_blue message_shine'>+3</span></a> -->
-	    <a href="__ROOT__/user/quit">退出<span class="icon_quit"></span></a>
-    <?php } else { ?>
-    	<a href="__ROOT__/">登录</a>
-    	<a href="__ROOT__/user/register">注册</a>
-    <?php } ?>
-  </p>
-  </div>
+	}
+} else {
+	$skinValue = 0;
+} ?>
+<div class="header f14 gray_l" id="headerskinvalue" value="<?php echo $skinValue; ?>">
+    <div class="header_main">
+        <a href="__ROOT__/stream" class="header_logo" title="个人中心首页 我帮圈圈{$schoolname}"></a>
+        <p class="header_left fl">
+            <a href="__ROOT__/index/mate" class="header_left_arrow" id="header_nav_user">大家<span class="h_arrow"><em>◆</em></span></a>
+            <a href="__ROOT__/help" class="header_left_arrow nav_hover_up">帮助</a>
+            <a href="__ROOT__/mall" class="header_left_arrow nav_hover_up">买卖</a>
+            <a class="header_left_arrow" id="header_nav_more">更多<span class="h_arrow"><em>◆</em></span></a>
+        </p>
+
+        <div id="nav_hover_list_div">
+            <ul id="nav_hover_list_div_ul">
+            </ul>
+        </div>
+        <div class="header_search">
+            <p id="divSearchBox" class="search_inner">
+                <input id="inputSearchBox" class="input_search" type="text" title="找人" value="找人">
+                <input id="inputSearchButton" class="bt_search" type="button" title="点击开始搜索" value=" ">
+            </p>
+        </div>
+        <p class="header_right fr f12">
+            <?php if (!empty($userloginedrecord['uid'])) { ?>
+            <a href="__ROOT__/wo" class="fb">{$userloginedrecord['nickname']}</a>
+            <?php if ($userloginedrecord['online'] == 1) { ?>
+            <span id="header_online_status" value="{$userloginedrecord['online']}" title="正常，点击切换为潜水状态"
+                  class="pointer white">[在线]</span>
+            <?php } else { ?>
+            <span id="header_online_status" value="{$userloginedrecord['online']}" title="潜水，点击切换为正常在线状态"
+                  class="pointer white">[潜水]</span>
+            <?php } ?>
+            <!-- <a href="__ROOT__/mallset/seller">买卖</a>
+            <a href="__ROOT__/mutual/find">找人</a> -->
+            <a href="__ROOT__/setting" title="设置"><span class="ico_setup"></span></a>
+            <a href="__ROOT__/message/system" title="圈圈消息"><span class="ico_msg"></span></a>
+            <a href="__ROOT__/message/system" title="帮助与系统消息" id="message_system_nums_a" style="display:none"><span
+                    class='message_green message_shine'></span></a>
+            <a href="__ROOT__/message/comment" title="评论回复" id="message_comment_nums_a" style="display:none"><span
+                    class='message message_shine'></span></a>
+            <a href="__ROOT__/message/at" title="@我的消息" id="message_at_nums_a" style="display:none"><span
+                    class='message_blue message_shine'></span></a>
+            <a href="__ROOT__/message/coin" title="RBM管理记录" id="message_cion_nums_a" style="display:none"><span
+                    class='message_yellow message_shine'></span></a>
+            <a href="__ROOT__/user/quit">退出</a>
+            <?php } else { ?>
+            <a href="__ROOT__/">登录</a>
+            <a href="__ROOT__/user/register">注册</a>
+            <?php } ?>
+        </p>
+    </div>
 </div>
-<div id='message_talk_nums_div' style='position:fixed; right:15px; top:55px; z-index:1111; border:3px solid #CCC; padding:5px 10px; background:#EFEFEF; border-radius:5px; width: 200px; display:none;'>
-	<a href='__ROOT__/talk' target='_blank'><img id="message_talk_nums_img_icon" src='' title='' width='50' class='radius3 pointer' style='vertical-align:bottom'/></a>
-	<a href='__ROOT__/talk' target='_blank'><span id="message_talk_nums_span_content" class="black_l"></span></a>
-	<p id="message_talk_nums_p_content_info" class="f10 gray"></p>
-	<span id="message_talk_nums_span_close" class="icon_index_wrong pointer" title="关闭" style="position:absolute; right:5px; top:5px;"></span>
+<div id='message_talk_nums_div'>
+    <a href='' target='_blank' class='message_talk_to_url'>
+        <img id="message_talk_nums_img_icon" src='' title='' width='50' class='radius3 pointer' style='vertical-align:bottom'/></a>
+    <a href='' target='_blank' class='message_talk_to_url'>
+        <span id="message_talk_nums_span_content" class="black_l"></span>
+    </a>
+    <p id="message_talk_nums_p_content_info" class="f10 gray"></p>
+    <span id="message_talk_nums_span_close" class="icon_index_wrong pointer" title="关闭"
+          style="position:absolute; right:5px; top:5px;"></span>
 </div>
+<div id="layBackground" class="lay_background"/>
