@@ -74,6 +74,15 @@
     padding: 8px;
     border-bottom: 1px dotted #DDD;
 }
+.activity_lists_ul_li_a{
+    display: inline-block;
+}
+*+html .activity_lists_ul_li_a{
+    display: inline;
+}
+*html .activity_lists_ul_li_a{
+    display: inline;
+}
 .activity_lists_mine_nav{
     margin: 15px 0;
 }

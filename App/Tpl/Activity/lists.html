@@ -39,7 +39,7 @@
 					<?php echo $activityItem['subject']; ?>
 				</a> 
 				<?php if (empty($_GET['self'])) { ?>
-				<a href="__ROOT__/stream/u/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
+				<a href="__ROOT__/stream/u/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank" class="activity_lists_ul_li_a">
 					<i class="ico_friendfeed" title="主办方"></i><?php echo $activityItem['nickname']; ?>
 				</a>
 				<?php } ?>
