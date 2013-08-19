@@ -84,32 +84,27 @@ function prepareUI() {
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-            if (imageNums > 0) {
-                alert('只能传1张图片');
-            } else {
-                $(this).ajaxStart(function () {
-                    $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
-                }).ajaxComplete(function () {
-                        $infoLoading.remove();
-                    });
-                $.ajaxFileUpload({
-                    url: baseUrl + 'ajax/imgtalkupload',
-                    secureuri: false,
-                    fileElementId: 'upload_form_img_file',
-                    dataType: 'json',
-                    success: function (msg) {
-                        if (msg.status == 'uploaded') {
-                            var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data + "' width='80'/><a href='" + msg.data + "' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
-                            $('#image_upload_url').val(msg.data);
-                            $('#image_upload_list_ul').append(uploadImgList);
-                            $('#img_upload_form').hide();
-                            imageNums++;
-                        } else if (msg.status == 'error') {
-                            $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
-                        }
-                    }
+            $(this).ajaxStart(function () {
+                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
+            }).ajaxComplete(function () {
+                    $infoLoading.remove();
                 });
-            }
+            $.ajaxFileUpload({
+                url: baseUrl + 'ajax/imgtalkupload',
+                secureuri: false,
+                fileElementId: 'upload_form_img_file',
+                dataType: 'json',
+                success: function (msg) {
+                    if (msg.status == 'uploaded') {
+                        var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data + "' width='80'/><a href='" + msg.data + "' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
+                        $('#image_upload_url').val(msg.data);
+                        $('#image_upload_list_ul').empty().append(uploadImgList);
+                        $('#img_upload_form').hide();
+                    } else if (msg.status == 'error') {
+                        $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
+                    }
+                }
+            });
         }
     });
 
@@ -117,7 +112,6 @@ function prepareUI() {
         $('#image_upload_url').val('');
         $('#image_upload_list_ul').empty();
         $('#img_upload_form').slideDown('fast');
-        imageNums = 0;
     });
 
     $('#img_upload_comment_form_div_close').live('click', function () {
@@ -190,7 +184,7 @@ function Chat(state) {
     this.send = function () {
         var chat = $('#send_message_textarea').val();
         var image = $('#image_upload_url').val();
-        console.log(chat + " "+image);
+        console.log(chat + " " + image);
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
@@ -232,7 +226,7 @@ function Chat(state) {
             return;
         }
 
-        if(!fromUser) return; // from might be there
+        if (!fromUser) return; // from might be there
 
 
         if (!membership && fromUser == _lastUser) {
@@ -264,7 +258,6 @@ function Chat(state) {
         $('#image_upload_url').val('');
         $('#image_upload_list_ul').empty();
         $('.img_upload_comment_form_div').slideUp('fast');
-        imageNums = 0;
     };
 
     /**
