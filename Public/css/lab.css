@@ -82,6 +82,7 @@
 .maponline_ul_dormitory_house p{
     display: inline-block;
     margin: 10px 5px;
+    position: relative;
 }
 *+html .maponline_ul_dormitory_house p{
     display: inline;
@@ -115,6 +116,7 @@
 .maponline_ul_academy_house p{
     display: inline-block;
     margin: 10px 5px;
+    position: relative;
 }
 *+html .maponline_ul_academy_house p{
     display: inline;
