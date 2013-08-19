@@ -178,6 +178,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     float: left;
     height: 18px;
     width: 18px;
+    margin-right: 3px;
 }
 /*---*/
 .online0{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
