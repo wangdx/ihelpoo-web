@@ -172,6 +172,9 @@
     position: relative;
     min-height: 50px;
 }
+*html .wo_main_ul li{
+    height: 80px;
+}
 /*--- record plus comment diffusion ---*/
 .record_plus_div{
     background: #F9F9F9;
@@ -893,7 +896,4 @@
 }
 *html .say_hello{
 	display:none;
-}
-*html .wo_main_ul li{
-    height: 80px;
 }
