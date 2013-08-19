@@ -642,7 +642,7 @@ class ActivityAction extends Action {
         	->limit($offset,$count)
         	->order('activity_ti DESC')
         	->select();
-    		$totalRecordsNums = $ActivityUser->where("uid = $userloginid AND i_activity_item.school_id = $recordSchoolInfo[id]")->count();
+    		$totalRecordsNums = $ActivityUser->where("uid = $userloginid")->count();
         } else {
         	$recordsActivityItem = $ActivityItem->where("i_activity_item.status = 1 AND i_activity_item.school_id = $recordSchoolInfo[id]")
         	->join('i_user_login ON i_activity_item.sponsor_uid = i_user_login.uid')
