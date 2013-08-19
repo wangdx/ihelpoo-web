@@ -1468,6 +1468,9 @@
     -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
     box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 }
+*html .help_comment_reply_form{
+    z-index: 1111;
+}
 /*--- u.phtml ---*/
 .stream_u{
     margin: 20px 35px;
