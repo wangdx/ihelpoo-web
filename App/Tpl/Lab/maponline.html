@@ -22,13 +22,13 @@
 					<?php echo empty($domitoryLastid) ? '' : '</div></li>'; ?>
 					<li>
 					<?php if ($user['type'] == "1") { ?>
-						<div class="maponline_ul_dormitory">男生<?php echo $user['name']; ?></div>
+						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>">男生<?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_dormitory_house" value="<?php echo $user['id']; ?>">
 					<?php } else if ($user['type'] == "2") { ?>
-						<div class="maponline_ul_dormitory">女生<?php echo $user['name']; ?></div>
+						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>">女生<?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_dormitory_house" value="<?php echo $user['id']; ?>">
 					<?php } else if ($user['type'] == "3") { ?>
-						<div class="maponline_ul_dormitory"><?php echo $user['name']; ?></div>
+						<div class="maponline_ul_dormitory"><a href="/index/mate?w=dormitory&n=<?php echo $user['id']; ?>"><?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_dormitory_house" value="<?php echo $user['id']; ?>">
 					<?php } else { ?>
 						<div class="maponline_ul_dormitory">未知寝室楼栋</div>
@@ -44,17 +44,21 @@
 	    <?php $domitoryLastid = $user['id']; ?>
 		<?php } ?>
 		</ul>
+		<ul>
 		<?php foreach($recordOpDormitory as $dormitory) { ?>
 			<?php if (!in_array($dormitory['id'], $domitoryListedArray)) {?>
-			<?php if ($dormitory['type'] == "1") { ?>
-				<div class="maponline_ul_dormitory">男生<?php echo $dormitory['name']; ?></div>
-			<?php } else if ($dormitory['type'] == "2") { ?>
-				<div class="maponline_ul_dormitory">女生<?php echo $dormitory['name']; ?></div>
-			<?php } else { ?>
-				<div class="maponline_ul_dormitory"><?php echo $dormitory['name']; ?></div>
-			<?php } ?>
+				<li>
+					<?php if ($dormitory['type'] == "1") { ?>
+						<a href="/index/mate?w=dormitory&n=<?php echo $dormitory['id']; ?>">男生<?php echo $dormitory['name']; ?></a>
+					<?php } else if ($dormitory['type'] == "2") { ?>
+						<a href="/index/mate?w=dormitory&n=<?php echo $dormitory['id']; ?>">女生<?php echo $dormitory['name']; ?></a>
+					<?php } else { ?>
+						<a href="/index/mate?w=dormitory&n=<?php echo $dormitory['id']; ?>"><?php echo $dormitory['name']; ?></a>
+					<?php } ?>
+				</li>
 			<?php } ?>
 		<?php } ?>
+		</ul>
 	</div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/lab/maponline.js"></script>
