@@ -34,14 +34,13 @@
 			<?php } else { ?>
 			<li class="f12">
 			<?php } ?>
-				<span class="f14">主题:</span>
+				<i class="ico_sharespace" title="主题"></i><span class="f14">主题:</span>
 				<a href="__ROOT__/activity/item/<?php echo $activityItem['aid']; ?>" class="f14">
 					<?php echo $activityItem['subject']; ?>
 				</a> 
 				<?php if (empty($_GET['self'])) { ?>
-				<i class="ico_friendfeed" title="主办方"></i>
 				<a href="__ROOT__/stream/u/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
-					<?php echo $activityItem['nickname']; ?>
+					<i class="ico_friendfeed" title="主办方"></i><?php echo $activityItem['nickname']; ?>
 				</a>
 				<?php } ?>
 				时间: <?php echo date('Y-m-d', $activityItem['activity_ti']); ?> <span class="f12 gray">(星期<?php echo date('N', $activityItem['activity_ti']); ?>)</span>
