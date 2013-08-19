@@ -9,7 +9,7 @@ $().ready(function(){
          } else if (content == "") {
          	$("#submit_info").html('意见建议还没填呢');
          } else {
-            $.post(baseUrl + "about/snsapply", $("#applyverifyform").serialize(), function(data){
+            $.post(baseUrl + "about/suggetion", $("#applyverifyform").serialize(), function(data){
                 if (data.status == "yes") {
                     $("#submit_info").html("<span class='icon_right'></span> 提交成功");
                     window.location = baseUrl + 'about/suggestion?succ=ok';
