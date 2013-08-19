@@ -1,8 +1,8 @@
 <include file="Public:header" />
 <link href="__PUBLIC__/css/lab.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
-	<div class="maponline_info_div black_l f12">
-		<span class="online1"></span> {$schoolname}在线人数<a href="__ROOT__/index/school" title="更多学校">[串校]</a> <span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
+	<div class="maponline_info_div">
+		<span class="online1"></span> {$schoolname}<a href="__ROOT__/index/school" class="f12" title="更多学校">[串校]</a> <span class="f12 black_l">在线人数</span><span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
 		<?php if (!empty($hiddenUserNums)) { ?>(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)<?php } ?>
 		<span class="fr">
 			<?php if (empty($_GET['academy'])) { ?>
