@@ -306,6 +306,12 @@
     position: relative;
     min-height: 10px;
 }
+*+html .comment_view_div_box_ul li{
+    min-height: 10px;
+}
+*html .comment_view_div_box_ul li{
+    height: 10px;
+}
 .c_v_d_b_ul_li_icon{
     position: absolute;
     left: 5px;
