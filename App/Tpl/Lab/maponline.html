@@ -12,14 +12,14 @@
 		<?php foreach($recordOpDormitory as $dormitory) { ?>
 			<li>
 			<?php if ($dormitory['type'] == "1") { ?>
-				<div class="maponline_ul_dormitory">男生<?php $dormitory['name']; ?></div>
-				<div class="maponline_ul_dormitory_house" value="<?php $dormitory['id']; ?>"></div>
+				<div class="maponline_ul_dormitory">男生<?php echo $dormitory['name']; ?></div>
+				<div class="maponline_ul_dormitory_house" value="<?php echo $dormitory['id']; ?>"></div>
 			<?php } else if ($dormitory['type'] == "2") { ?>
-				<div class="maponline_ul_dormitory">女生<?php $dormitory['name']; ?></div>
-				<div class="maponline_ul_dormitory_house" value="<?php $dormitory['id']; ?>"></div>
+				<div class="maponline_ul_dormitory">女生<?php echo $dormitory['name']; ?></div>
+				<div class="maponline_ul_dormitory_house" value="<?php echo $dormitory['id']; ?>"></div>
 			<?php } else { ?>
-				<div class="maponline_ul_dormitory"><?php $dormitory['name']; ?></div>
-				<div class="maponline_ul_dormitory_house" value="<?php $dormitory['id']; ?>"></div>
+				<div class="maponline_ul_dormitory"><?php echo $dormitory['name']; ?></div>
+				<div class="maponline_ul_dormitory_house" value="<?php echo $dormitory['id']; ?>"></div>
 			<?php } ?>
 			</li>
 		<?php } ?>
