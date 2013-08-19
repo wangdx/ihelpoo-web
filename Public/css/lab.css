@@ -46,7 +46,8 @@
 .lab_btn_select_span{
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 10px;
+    position: relative;
 }
 .maponline_ul{
     border: 1px solid #EEE;
