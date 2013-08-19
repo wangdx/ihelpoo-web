@@ -99,6 +99,12 @@
     font-size: 12px;
     border-radius: 3px;
 }
+*+html .maponline_ul_academy{
+    display: inline;
+}
+*html .maponline_ul_academy{
+    display: inline;
+}
 .maponline_ul_academy .ico_add, .maponline_ul_academy .ico_school{
     margin: 0 3px 0 0;
 }
@@ -109,7 +115,12 @@
     display: inline-block;
     margin: 10px 5px;
 }
-
+*+html .maponline_ul_academy_house p{
+    display: inline;
+}
+*html .maponline_ul_academy_house p{
+    display: inline;
+}
 
 .maponline_other_div{
     padding: 5px;
