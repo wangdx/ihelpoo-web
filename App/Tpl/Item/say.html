@@ -80,14 +80,14 @@
 				</p>
 			</div>
 
-			<?php if (!empty($sayRecord['diffusion_co'])) {?>
 			<div class="i_record_plus_info f12">
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
-					<a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</a> 
+				<a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</a>
 				<?php } else { ?>
-					<span>扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</span> 
+				<span>扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</span>
 				<?php } ?>
 			</div>
+			<?php if (!empty($sayRecord['diffusion_co'])) {?>
 			<ul class="i_record_diffusion black_l f12">
 				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 				<li>
@@ -98,7 +98,6 @@
 			</ul>
 			<?php } ?>
 			
-			<?php if (!empty($sayRecord['plus_co'])) { ?>
 			<div class="i_record_plus_info f12">
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
 				<a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a> 
@@ -106,6 +105,7 @@
 				<i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span> 
 				<?php } ?>
 			</div>
+			<?php if (!empty($sayRecord['plus_co'])) { ?>
 			<ul class="i_record_plus black_l f12">
 				<?php foreach ($recordPlusArray as $recordPlus): ?>
 				<li>
