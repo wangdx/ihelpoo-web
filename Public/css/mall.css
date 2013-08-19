@@ -826,7 +826,7 @@
 
 /*--- icon ---*/
 .icon_mall_brand, .icon_mall_time, .icon_mall_diamond, .icon_mall_jz, .icon_mall_life, .icon_mall_tour, .icon_mall_new{
-    background: url(../image/common/mall_icon.png);
+    background-image: url(../image/common/mall_icon.png);
     float: left;
     height: 18px;
     width: 20px;
@@ -834,7 +834,7 @@
     display: inline-block;
 }
 *html .icon_mall_brand, *html .icon_mall_time, *html .icon_mall_diamond, *html .icon_mall_jz, *html .icon_mall_life, *html .icon_mall_tour, *html .icon_mall_new{
-    background: url(../image/common/mall_icon.gif);
+    background-image: url(../image/common/mall_icon.gif);
 }
 .icon_mall_brand{
     background-position: -47px 0;
