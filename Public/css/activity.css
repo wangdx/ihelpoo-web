@@ -71,15 +71,16 @@
     border-radius: 3px;
 }
 .activity_lists_ul li{
-    padding: 10px;
+    padding: 15px 10px;
     border-bottom: 1px dotted #DDD;
     position: relative;
+    height: 50px;
 }
-.activity_lists_ul_li_sponsor_a{
+.activity_lists_ul_li_sponsor_span{
     display: inline-block;
     position: absolute;
     left: 10px;
-    bottom: 10px;
+    bottom: 15px;
 }
 .activity_lists_ul_li_time_span{
     display: inline-block;
@@ -87,12 +88,12 @@
 .activity_lists_ul_li_nums_span{
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom: 15px;
 }
 .activity_lists_ul_li_hit_span{
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 15px;
 }
 
 .activity_lists_mine_nav{
