@@ -614,111 +614,20 @@ class SettingAction extends Action
         $UserLogin = M("UserLogin");
         $recordUserInfo = $UserInfo->find($userloginid);
         $this->assign('recordUserInfo', $recordUserInfo);
-        $recordUserLogin = $UserLogin->find($userloginid);
-        if ($recordUserInfo['realname_re'] == 0 && $recordUserInfo['realname'] != '') {
-            if (!empty($_GET['step']) == 3) {
-                $updateUserInfoReal = array(
-                    'uid' => $userloginid,
-                    'realname' => $recordUserInfo['realname'],
-                    'realname_re' => 1,
-                );
-                $UserInfo->save($updateUserInfoReal);
-            }
-        }
         if ($this->isPost()) {
 
             /**
              * Filte rules; For the realinfo reset post data
              */
             $postrealname = trim(addslashes(htmlspecialchars(strip_tags($_POST['realname']))));
-            $poststudent = (int)$_POST['student'];
-            $DaStudents = M("DaStudents");
             $this->assign('realnametemp', $postrealname);
-            $OpAcademy = M("OpAcademy");
-            $OpSpecialty = M("OpSpecialty");
-            $OpProvince = M("OpProvince");
-            $OpCity = M("OpCity");
             $updateUserInfoReal = array(
                 'uid' => $userloginid,
                 'realname' => $postrealname,
-                'realname_re' => 0,
+                'realname_re' => 1,
             );
             $UserInfo->save($updateUserInfoReal);
-            if (!empty($poststudent)) {
-                $validStudentIs = $DaStudents->where("id = '$poststudent'")->find();
-                if ($validStudentIs) {
-                    $updateUserInfoReal = array(
-                        'uid' => $userloginid,
-                        'realname' => $postrealname,
-                        'realname_re' => 2,
-                    );
-                    $UserInfo->save($updateUserInfoReal);
-                    $birthstring = $validStudentIs['birthday'];
-                    $birthyear = substr($birthstring, 0, 4);
-                    $birthmonth = substr($birthstring, 4, 2);
-                    $birthday = substr($birthstring, 6, 2);
-                    $daStuBirthday = $birthyear . "-" . $birthmonth . "-" . $birthday;
-                    if (!empty($validStudentIs['enteryear'])) {
-                        $setUserLogin = array(
-                            'uid' => $userloginid,
-                            'sex' => $validStudentIs['sex'],
-                            'birthday' => $daStuBirthday,
-                            'enteryear' => $validStudentIs['enteryear'],
-                        );
-                    } else {
-                        $setUserLogin = array(
-                            'uid' => $userloginid,
-                            'sex' => $validStudentIs['sex'],
-                            'birthday' => $daStuBirthday,
-                        );
-                    }
-                    $UserLogin->save($setUserLogin);
-                    $daStuAcademy = $OpAcademy->where("number = '$validStudentIs[academy]'")->find();
-                    $daStuProvince = $OpProvince->where("idcode = '$validStudentIs[province]'")->find();
-                    $daStuCity = $OpCity->where("prov_id = '$daStuProvince[id]' AND idcode = '$validStudentIs[city]'")->find();
-                    if (!empty($validStudentIs['specialty'])) {
-                        $daStuSpecialty = $OpSpecialty->where("number = '$validStudentIs[specialty]'")->find();
-                        $setInfobase = array(
-                            'uid' => $userloginid,
-                            'academy_op' => $daStuAcademy['id'],
-                            'specialty_op' => $daStuSpecialty['id'],
-                            'province_op' => $daStuProvince['id'],
-                            'city_op' => $daStuCity['id'],
-                        );
-                    } else {
-                        $setInfobase = array(
-                            'uid' => $userloginid,
-                            'academy_op' => $daStuAcademy['id'],
-                            'province_op' => $daStuProvince['id'],
-                            'city_op' => $daStuCity['id'],
-                        );
-                    }
-                    $UserInfo->save($setInfobase);
-                    $this->assign('info', 'ok');
-                }
-            }
-
-            /**
-             * show grade info ,input enteryear ,output gradeinfo
-             */
-            $student = $DaStudents->where("name = '$postrealname'")->select();
-            $nametotal = $DaStudents->where("name = '$postrealname'")->count();
-            foreach ($student as $stu) {
-                $academy = $OpAcademy->where("number = '$stu[academy]'")->find();
-                $specialty = $OpSpecialty->where("number = '$stu[specialty]'")->find();
-                $studentArray[] = array(
-                    'id' => $stu['id'],
-                    'name' => $stu['name'],
-                    'birthday' => substr($stu['birthday'], 4),
-                    'sex' => i_sex($stu['sex']),
-                    'academy' => $academy['name'],
-                    'specialty' => $specialty['name'],
-                    'grade' => i_grade($stu['enteryear']),
-                    'total' => $nametotal,
-                );
-            }
-            $this->assign('student', $studentArray);
-
+            redirect('/setting/realfirst?step=2', 0, '继续填充...');
         }
         $this->display();
     }
