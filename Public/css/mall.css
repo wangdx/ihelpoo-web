@@ -831,9 +831,10 @@
     height: 18px;
     width: 20px;
     margin-left: 20px;
+    display: inline-block;
 }
 *html .icon_mall_brand, *html .icon_mall_time, *html .icon_mall_diamond, *html .icon_mall_jz, *html .icon_mall_life, *html .icon_mall_tour, *html .icon_mall_new{
-    background: url(../image/common/mall_icon.gif) no-repeat scroll 0 0 transparent;
+    background: url(../image/common/mall_icon.gif);
 }
 .icon_mall_brand{
     background-position: -47px 0;
