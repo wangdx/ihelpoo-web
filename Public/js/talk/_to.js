@@ -10,7 +10,6 @@ $(function () {
     $('#send_message').click(chat.send);
 
 
-
     prepareUI();
 
     var noActionInterval = 5; // seconds
@@ -21,13 +20,13 @@ $(function () {
 
     var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
-    function typing(){
+    function typing() {
         chat.updateInputStatus('对方正在输入...');
         clearTimeout(noTypeTimeout);
         noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
     }
 
-    function inActive(){
+    function inActive() {
         chat.updateInputStatus('');
     }
 
@@ -39,7 +38,7 @@ $(function () {
 });
 
 var imageNums = 0;
-function prepareUI(){
+function prepareUI() {
 //    var user_position = $('#' + data_touid).parent().parent().position();
 //    if (user_position != null) {
 //        $('.user_list_ul').animate({scrollTop: user_position.top - 5}, 0);
@@ -191,6 +190,7 @@ function Chat(state) {
     this.send = function () {
         var chat = $('#send_message_textarea').val();
         var image = $('#image_upload_url').val();
+        console.log(chat + " "+image);
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
@@ -202,14 +202,14 @@ function Chat(state) {
         });
     };
 
-    this.updateInputStatus = function(status){
+    this.updateInputStatus = function (status) {
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
             from: _from,
             to: _to,
             chat: "",
             image: '',
-            status:status
+            status: status
 
         });
     };
@@ -227,8 +227,7 @@ function Chat(state) {
         var status = message.data.status;
 
 
-
-        if(!chat || !chat.length) {//update status
+        if (!chat || !chat.length) {//update status
             $('#input_status').html(status + '<span class="icon_write"></span>');
             return;
         }
