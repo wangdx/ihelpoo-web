@@ -27,6 +27,7 @@
 		<?php if (empty($_GET['academy'])) { ?>
 		<!-- dormitory list start -->
 		<ul class="maponline_ul">
+		<?php $domitoryLastid = 'unknown'; ?>
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
 			<?php $domitoryListedArray[] = $user['id']; ?>
@@ -84,6 +85,7 @@
 		<?php } else { ?>
 		<!-- academy list start -->
 		<ul class="maponline_ul">
+		<?php $academyLastid = 'unknown'; ?>
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
 			<?php $academyListedArray[] = $user['id']; ?>
@@ -102,7 +104,7 @@
 						<div class="maponline_ul_academy_house" value="<?php echo $user['id']; ?>">
 					<?php } else { ?>
 						<div class="maponline_ul_academy"><i class="ico_add"></i>未知学院</div>
-						<div class="maponline_ul_academy_house" value="unknown"></div>
+						<div class="maponline_ul_academy_house" value="unknown">
 					<?php } ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
 			          <a href="__ROOT__/talk/to/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?> <?php echo i_grade($user['enteryear']) ?> <?php echo i_constellation($user['birthday']),i_sex($user['sex']) ?> ，点击直接和我聊天" style="display:inline-block; position: relative; width: 40px; height: 30px">
