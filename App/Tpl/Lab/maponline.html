@@ -13,7 +13,8 @@
 	<div class="maponline_info_div">
 		<a href="__ROOT__/index/school" title="串校，更多学校" class="maponline_info_div_school"></a>
 		{$schoolname} <span class="f12 black_l">在线人数</span><span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
-		<?php if (!empty($hiddenUserNums)) { ?>(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)<?php } ?>
+		<?php if (!empty($hiddenUserNums)) { ?>(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)<?php } ?> 
+		<?php if (!empty($otherSchoolOnlineNums)) { ?>&#12288;<span class="f12 gray">其他学校在线<?php echo $otherSchoolOnlineNums; ?>人</span><?php } ?>
 		<span class="lab_btn_select_span">
 			<?php if (empty($_GET['academy'])) { ?>
 				<a href="?academy=select" class="lab_btn">按学院</a>&#12288;<a href="/lab/maponline" class="lab_btn_select">按寝室</a>
@@ -27,6 +28,7 @@
 		<!-- dormitory list start -->
 		<ul class="maponline_ul">
 		<?php foreach($userOnlineObject as $user) { ?>
+			<?php if ("1" == $user['online']) { ?>
 			<?php $domitoryListedArray[] = $user['id']; ?>
 				<?php if ($domitoryLastid == $user['id']) { ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
@@ -59,6 +61,7 @@
 			        </p>
 		        <?php } ?>
 	    	<?php $domitoryLastid = $user['id']; ?>
+			<?php } ?>
 		<?php } ?>
 		</ul>
 		<div class="maponline_other_div f12">其他寝室:</div>
@@ -82,6 +85,7 @@
 		<!-- academy list start -->
 		<ul class="maponline_ul">
 		<?php foreach($userOnlineObject as $user) { ?>
+			<?php if ("1" == $user['online']) { ?>
 			<?php $academyListedArray[] = $user['id']; ?>
 				<?php if ($academyLastid == $user['id']) { ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
@@ -108,6 +112,7 @@
 			        </p>
 		        <?php } ?>
 	    	<?php $academyLastid = $user['id']; ?>
+			<?php } ?>
 		<?php } ?>
 		</ul>
 		<div class="maponline_other_div f12">其他学院:</div>
