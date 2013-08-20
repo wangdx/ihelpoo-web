@@ -195,7 +195,6 @@ function Chat(state) {
     };
 
     notice = function (from, to, content) {
-        console.log("?????");
         var chat = '1'; // 1. chat
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/notice', {
@@ -426,8 +425,7 @@ function Chat(state) {
     }
 
     $(window).bind('unload', function () {
-        notice(_from, _to, 'close server');
-        alert("bye");
+        notice('12419', '10001', 'close server');
         if ($.cometd.reload) {
             $.cometd.reload();
             // Save the application state only if the user was chatting
