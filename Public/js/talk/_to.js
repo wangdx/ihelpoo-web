@@ -425,7 +425,6 @@ function Chat(state) {
     }
 
     $(window).unload(function () {
-        notice(_from, _to, 'close server');
         if ($.cometd.reload) {
             $.cometd.reload();
             // Save the application state only if the user was chatting
@@ -440,5 +439,9 @@ function Chat(state) {
         } else {
             $.cometd.disconnect();
         }
+    });
+    $(window).bind('beforeunload', function() {
+        alert('byby');
+        notice(_from, _to, 'close server');
     });
 };
