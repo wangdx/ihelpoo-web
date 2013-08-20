@@ -637,9 +637,11 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 *+html .headermall{
     position:relative;
+    margin-bottom: 25px;
 }
 *html .headermall{
     position:relative;
+    margin-bottom: 25px;
 }
 .header a,.headermall a{
     color:#FFF;
