@@ -175,16 +175,16 @@ class TalkAction extends Action
         $toUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
 
 
-        $TalkContent = M("TalkContent");
-        $leaveWords = $TalkContent->where("(uid = $userloginid AND touid = $toUserId AND del != $userloginid AND deliver = '0') OR (uid = $toUserId AND touid = $userloginid AND del != $userloginid  AND deliver = '0')")->order("time DESC")->select();
-        $this->assign('leaveWords', $leaveWords);
-        foreach ($leaveWords as $leaveWord) {
-            $updateData = array(
-                'id' => $leaveWord['id'],
-                'deliver' => '1',
-            );
-            $TalkContent->save($updateData);
-        }
+//        $TalkContent = M("TalkContent");
+//        $leaveWords = $TalkContent->where("(uid = $userloginid AND touid = $toUserId AND del != $userloginid AND deliver = '0') OR (uid = $toUserId AND touid = $userloginid AND del != $userloginid  AND deliver = '0')")->order("time DESC")->select();
+//        $this->assign('leaveWords', $leaveWords);
+//        foreach ($leaveWords as $leaveWord) {
+//            $updateData = array(
+//                'id' => $leaveWord['id'],
+//                'deliver' => '1',
+//            );
+//            $TalkContent->save($updateData);
+//        }
 
         /**
          * talk list
