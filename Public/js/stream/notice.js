@@ -148,7 +148,8 @@ function Notice(state) {
             $('#message_system_nums_a').children('span').html('+' + (num + 1));
         } else if (chat == '1') {
             $('#message_talk_nums_div').fadeIn('fast');
-            $('#message_talk_nums_span_content').html(fromUser + '发来悄悄话：' + image);
+            $('#message_talk_nums_img_icon').show().attr({'src': 'http://ihelpoo.b0.upaiyun.com/useralbum/'+from+'/'+imageThumb+'_m.jpg', 'title': fromUser});
+            $('#message_talk_nums_span_content').html(' ' + image);
             $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
         }
     };

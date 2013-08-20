@@ -39,7 +39,7 @@ $(function () {
 
 function prepareUI() {
 
-    /**
+	/**
      * icon emotion part
      */
     $('#textareaicon').click(function () {
@@ -80,7 +80,7 @@ function prepareUI() {
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-            $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
+                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
             $.ajaxFileUpload({
                 url: baseUrl + 'ajax/imgtalkupload',
                 secureuri: false,
@@ -232,7 +232,7 @@ function Chat(state) {
 
         var curTo = $('#data_touid').val();
         var curFrom = $('#data_uid').val();
-        if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
+        if(curTo != from && curFrom != from){//not the person chatting with, not my own page
             return;
         }
 
@@ -242,6 +242,8 @@ function Chat(state) {
         }
 
         if (!fromUser) return; // from might be there
+
+
 
 
 //        if (!membership && fromUser == _lastUser) {
@@ -291,18 +293,19 @@ function Chat(state) {
         var time = message.data.time;
 
         var curTo = $('#data_touid').val();
-        console.log(curTo + " " + from);
-        if (curTo == from) {
+        console.log(curTo + " "+ from);
+        if(curTo == from){
             return;
-        } else if (chat == '4') {
+        }else if(chat == '4'){
             var num = $('#message_system_nums_a').data(from);
             num = num ? $('#message_system_nums_a').data(from) : 0;
             $('#message_system_nums_a').data(from, num + 1)
             $('#message_system_nums_a').show();
             $('#message_system_nums_a').children('span').html('+' + (num + 1));
-        } else if (chat == '1') {
+        }else if(chat == '1'){
             $('#message_talk_nums_div').fadeIn('fast');
-            $('#message_talk_nums_span_content').html(fromUser + '发来悄悄话：' + image);
+            $('#message_talk_nums_img_icon').show().attr({'src': 'http://ihelpoo.b0.upaiyun.com/useralbum/'+from+'/'+imageThumb+'_m.jpg', 'title': fromUser});
+            $('#message_talk_nums_span_content').html(' ' + image);
             $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
         }
     };
