@@ -289,8 +289,8 @@ function Chat(state) {
         var time = message.data.time;
 
         var curTo = $('#data_touid').val();
-        console.log(curTo + " "+ to);
-        if(curTo == to){
+        console.log(curTo + " "+ from);
+        if(curTo == from){
             return;
         }
         if(chat == '4'){
