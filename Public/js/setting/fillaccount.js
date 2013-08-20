@@ -23,7 +23,6 @@ $().ready(function(){
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
-                $('#ajaxprogressbar').html('');
             }, "json");
         }
     });
