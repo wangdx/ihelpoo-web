@@ -611,34 +611,10 @@ $().ready(function(){
             	} else if (msg.status == "error") {
             		$('#infotextareacheck').slideDown("fast").html("<span class='icon_wrong'></span>" + msg.info).delay(1000).slideUp("fast");
             	} else if (msg.status == "ok") {
-                    //weibo publish
-                    if (weibo_is_publish == 'on') {
-                    	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	if (uploadImageWeibo != '') {
-	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
-	                        });
-                    	} else {
-                    		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
-	                        });
-                    	}
-                    }
-                    if (help_is_input == '1') {
-                    	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	textareacontent = "#求助#" + textareacontent + " http://www.ihelpoo.com/item/help/" + msg.info;
-                    	if (uploadImageWeibo != '') {
-	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
-	                        });
-                    	} else {
-                    		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
-	                        });
-                    	}
-                    }
                     window.location = baseUrl + 'stream/index/newreply';
-                    notice.send('system', msg.data);
+                    if (help_is_input == '1') {
+                    	notice.send('system', msg.data);
+                    }
                 } else {
                     alert('something wrong');
                 }
