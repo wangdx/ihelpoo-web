@@ -502,6 +502,22 @@ class AjaxAction extends Action {
     	}
     }
 
+
+    public function todeliver()
+    {
+        if ($this->isPost()) {
+            if (!empty($_POST['to'])) {
+                $to = $_POST['to'];
+                $TalkCountent = M("TalkContent");
+                $updateData = array(
+                    'deliver' => '1',
+                );
+                $TalkCountent->where("touid = $to")->save($updateData);
+                $this->ajaxReturn(0,"ok",1);
+            }
+        }
+    }
+
 	public function imgupload()
     {
         if ($this->isPost()) {

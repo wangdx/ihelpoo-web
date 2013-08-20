@@ -12,8 +12,6 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
-
-
 });
 
 function Notice(state) {
