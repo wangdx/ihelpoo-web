@@ -426,6 +426,7 @@ function Chat(state) {
     }
 
     $(window).unload(function () {
+        alert('bye bye');
         if ($.cometd.reload) {
             $.cometd.reload();
             // Save the application state only if the user was chatting
