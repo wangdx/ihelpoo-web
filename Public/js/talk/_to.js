@@ -191,6 +191,7 @@ function Chat(state) {
             status: '',
             image: image
         });
+        console.log("ready to push from="+from+" to="+to + " chat="+chat);
         notice(_from, _to, chat);
     };
 
