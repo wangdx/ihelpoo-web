@@ -4,7 +4,7 @@
 
 <div class="find">
   <p class="find_info">
-    <a href="__ROOT__/mutual/shield?list">我屏蔽的(<?php echo $userShieldNums ?>)</a> <span class="black_l"> <span class="icon_attention"></span>我被<?php echo $beShieldedNums ?>人屏蔽了</span>
+    <a href="__ROOT__/mutual/shield?list">我屏蔽的(<?php echo empty($userShieldNums) ? '0' : $userShieldNums; ?>)</a> <span class="black_l"> <span class="icon_attention"></span>我被<?php echo $beShieldedNums ?>人屏蔽了</span>
   </p>
   <ul class="find_ul">
   <?php
