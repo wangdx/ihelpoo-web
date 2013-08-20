@@ -876,6 +876,11 @@ class StreamAction extends Action
         $RecordPlus = M('RecordPlus');
         $userloginid = session('userloginid');
         $sid = $plusSidArr[1];
+        $RecordSay = M("RecordSay");
+        $resultRecordSay = $RecordSay->find($sid);
+        if (empty($resultRecordSay['uid'])) {
+        	$this->ajaxReturn(0, 'record is not exist', 'error');
+        }
         $plus = $RecordPlus->where("uid = $userloginid AND sid = $sid")->find();
         $plusId = $plus['id'];
         $MsgNotice = M('MsgNotice');
@@ -891,14 +896,14 @@ class StreamAction extends Action
             $this->deleteNoticeMessage($msgNotice['notice_id']);
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], -1);
             $this->deliverBack($recordSay['uid'], $msgNotice['notice_id']);
-            $this->ajaxReturn($recordSay['plus_co'], "return data", 'yes');
+            $this->ajaxReturn($recordSay['plus_co'], $resultRecordSay['uid'], 'min');
         } else {
             $this->addPlusRecord($sid);
             $recordSay = $this->bouncePlusCountOfRecord($sid, 1);
             $noticeIdForOwner = $this->saveNoticeMessageForOwner($plusSidArr, $userloginid, $sid, 'plus');
             $this->bounceNoticeMessageCount($redis, $recordSay['uid'], 1);
             $this->deliverTo($recordSay['uid'], $noticeIdForOwner);
-            $this->ajaxReturn($recordSay['plus_co'], "return data", 'yes');
+            $this->ajaxReturn($recordSay['plus_co'], $resultRecordSay['uid'], 'add');
         }
         exit();
     }

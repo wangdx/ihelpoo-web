@@ -36,13 +36,7 @@ $().ready(function(){
         if (upload_icon_file == '') {
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-        	$(this).hide();
-        	$(this).ajaxStart(function(){
-            	$('.icon_handle_info').fadeIn('fast').html($infoImgUploading);
-            }).ajaxComplete(function(){
-            	$infoImgUploading.remove();
-            	$('.icon_handle_info').empty();
-            });
+            $('.icon_handle_info').fadeIn('fast').html($infoImgUploading);
         	$.ajaxFileUpload({
         		url: baseUrl + 'setting/icon',
             	secureuri: false,
@@ -65,10 +59,10 @@ $().ready(function(){
             	            onSelect: updateCoords,
             	            aspectRatio: 4/3
             	        });
+            	        $('.icon_handle_info').html('');
             	        return false;
             	    } else if (msg.status == 'error') {
-            	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.data + "</span>").delay(1000).fadeOut('fast');
-            	        alert(msg.info);
+            	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
             	    }
             	}
             });
@@ -83,12 +77,7 @@ $().ready(function(){
             var icon_w = $('#img_w').val();
             var icon_h = $('#img_h').val();
             var img_temp_path = $('#img_temp_path').val();
-            $(this).ajaxStart(function(){
-            	$('.icon_save_info').fadeIn('fast').html($infoLoading);
-            }).ajaxComplete(function(){
-            	$infoLoading.remove();
-            	$('.icon_save_info').empty();
-            });
+            $('.icon_save_info').fadeIn('fast').html($infoLoading);
             $.ajax({
                 type: "POST",
                 url: baseUrl + "setting/icon",
@@ -102,6 +91,7 @@ $().ready(function(){
                         $('.image_new_large').attr({'src': msg.data});
                         $('.image_new_middle').attr({'src': msg.data});
                         $('.image_new_small').attr({'src': msg.data});
+                        $('.icon_save_info').html('');
                     }
                 }
             });

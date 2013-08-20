@@ -4,7 +4,7 @@
  */
 function image_storage_url()
 {
-    return $url = "http://ihelpoo.b0.upaiyun.com";
+    return $url = C('IMAGE_STORAGE_URL');
 }
 
 function i_school_domain()
@@ -359,7 +359,7 @@ function i_content($content)
  */
 function i_logo_shop($uid, $shopBanner, $size = "d")
 {
-    $baseUrl = 'http://ihelpoo.b0.upaiyun.com/';
+    $baseUrl = image_storage_url()."/";
     if (!empty($shopBanner)) {
         if ($size == "d") {
             $logoPath = $baseUrl . "shop/" . $uid . "/" . $shopBanner;
@@ -411,7 +411,7 @@ function i_image_thumbnail($imageurl, $w = "s")
 
 function i_icon_check($uid, $iconUrl, $size = "m")
 {
-    $baseUrl = 'http://ihelpoo.b0.upaiyun.com/';
+    $baseUrl = image_storage_url()."/";
     if (!empty($iconUrl)) {
         if ($size == "l") {
             $iconPath = $baseUrl . "useralbum/" . $uid . "/" . $iconUrl . ".jpg";
@@ -509,7 +509,7 @@ function i_page_show($urlstring, $total, $connectionMode = "?")
  */
 function i_get_image($recordImageField, $way = 'o')
 {
-    $sotrageUrl = "http://ihelpoo.b0.upaiyun.com/";
+    $sotrageUrl = image_storage_url()."/";
     $RecordOutimg = M("RecordOutimg");
     if (preg_match("/;/", $recordImageField)) {
         $sayRecordImageArray = explode(";", $recordImageField);
@@ -569,11 +569,11 @@ function i_makechickableLinks($text)
  */
 function i_configure_album_size($userLevel)
 {
-    if ($userLevel <= 3) {
+    if ($userLevel <= 5) {
         return $totalAlbumDefaultSize = 0.5 * 1073741824;
     } else if ($userLevel <= 6) {
         return $totalAlbumDefaultSize = 1 * 1073741824;
-    } else if ($userLevel <= 8) {
+    } else if ($userLevel <= 7) {
         return $totalAlbumDefaultSize = 4 * 1073741824;
     } else if ($userLevel <= 10) {
         return $totalAlbumDefaultSize = 16 * 1073741824;

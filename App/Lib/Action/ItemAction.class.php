@@ -760,6 +760,7 @@ class ItemAction extends Action {
     				);
     				$affetcedHelpreply = $RecordHelpreply->add($dataRecordHelpreply);
     				if ($affetcedHelpreply) {
+    					$sayRecord = $RecordSay->where("sid = $sid")->find();
 
     					/**
     					 * If affetced Helpreply , Insert record into Sys message table
@@ -798,7 +799,8 @@ class ItemAction extends Action {
     								 */
     								Vendor('Ihelpoo.Email');
                 					$emailObj = new Email();
-    								$emailObj->helpstatusNew($helpRecordOwener['email'], $helpRecordOwener['nickname']);
+                					$helpEmailContent = $sayRecord['content']."<br />".$recordUserLogin['nickname'].":".$helpcontent;
+    								$emailObj->helpstatusNew($helpRecordOwener['email'], $helpRecordOwener['nickname'], $helpEmailContent);
     								$newHelperInfoSendData = array(
                                         'id' => '',
             	                        'uid' => $recorduid,
@@ -835,7 +837,6 @@ class ItemAction extends Action {
     					/**
     					 * update help times(comment_count) nums
     					 */
-    					$sayRecord = $RecordSay->where("sid = $sid")->find();
     					if (!$isTimeHelpMailSend['id'] && ($recorduid != $userloginid)) {
     						$comment_co = $sayRecord['comment_co'] + 1;
 

@@ -69,6 +69,7 @@ class WoAction extends Action {
          */
         $recordSchoolInfo = i_school_domain();
         $this->assign('recordSchoolInfo', $recordSchoolInfo);
+        $this->assign('schoolname', $recordSchoolInfo['school']);
         $OpAcademy = M("OpAcademy");
         $OpSpecialty = M("OpSpecialty");
         if (!empty($recordUserInfo['academy_op'])) {
@@ -420,6 +421,7 @@ class WoAction extends Action {
     {
     	$userloginid = session('userloginid');
     	$UserAlbum = D("UserAlbum");
+    	$imageStorageUrl = image_storage_url();
 
     	/**
     	 * ajax delete part
@@ -436,9 +438,9 @@ class WoAction extends Action {
     			 * delete icon
     			 */
     			if ($deleteAlbumRecord['type'] == 1) {
-    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecord['url']);
+    				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecord['url']);
     				$urlThumbFilename = str_ireplace("iconorignal", "thumb_iconorignal", $urlFilename);
-    				$isStorageDeleteFlag = $upyun->delete($deleteAlbumRecord['url']);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
     				if ($isStorageDeleteFlag) {
     					$UserAlbum->where("id = $deleteImageId AND uid = $userloginid")->delete();
@@ -489,7 +491,7 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecordUrl);
+    				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("recordsay", "thumb_recordsay", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
@@ -522,7 +524,7 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecordUrl);
+    				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("goods", "thumb_goods", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
@@ -539,7 +541,7 @@ class WoAction extends Action {
     				/**
     				 * delete
     				 */
-    				$urlFilename = str_ireplace("http://ihelpoo.b0.upaiyun.com", "", $deleteAlbumRecordUrl);
+    				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("talk", "thumb_talk", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
