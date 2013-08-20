@@ -359,6 +359,7 @@ $().ready(function(){
                     $this.html('评论');
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
+                    notice.send('comment', msg.info);
                     
                     /**
                      * 
@@ -452,6 +453,7 @@ $().ready(function(){
                     $('.i_comment_list_ul').prepend(commentContent);
                     $this.parent().find('.comment_reply_verification').hide();
                     $this.parent().find('.comment_reply_verificationcode').val('999');
+                    notice.send('comment', msg.info);
                 } else {
                     ajaxInfo(msg.info);
                 }
