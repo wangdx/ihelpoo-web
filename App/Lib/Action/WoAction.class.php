@@ -441,7 +441,7 @@ class WoAction extends Action {
     				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecord['url']);
     				$urlThumbFilename = str_ireplace("iconorignal", "thumb_iconorignal", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
-    				$upyun->delete($urlThumbFilename);
+    				//$upyun->delete($urlThumbFilename);
     				if ($isStorageDeleteFlag) {
     					$UserAlbum->where("id = $deleteImageId AND uid = $userloginid")->delete();
     					$this->ajaxReturn(0,'删除成功,3秒后页面跳转','ok');
