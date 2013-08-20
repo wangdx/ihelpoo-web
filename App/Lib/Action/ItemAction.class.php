@@ -695,7 +695,7 @@ class ItemAction extends Action {
 	                    'time' => i_time(time())
     				);
     				$noticeSendUsers = $sayRecord['uid'];
-    				if (!empty($toid)) {
+    				if (!empty($toid) && ($noticeSendUsers != $toid)) {
     					$noticeSendUsers = $sayRecord['uid'].",".$toid;
     				}
     				$this->ajaxReturn($jsonEncode,$noticeSendUsers,'yes');
@@ -971,7 +971,7 @@ class ItemAction extends Action {
 	                    'time' => date("Y-m-d H:i", time()),
     				);
     				$noticeSendUsers = $sayRecord['uid'];
-    				if (!empty($toid)) {
+    				if (!empty($toid) && ($noticeSendUsers != $toid)) {
     					$noticeSendUsers = $sayRecord['uid'].",".$toid;
     				}
     				$this->ajaxReturn($jsonEncode, $noticeSendUsers, 'yes');
