@@ -572,6 +572,7 @@ $().ready(function(){
     $("#s_t_submit").click(function(){
         var verification_code_value = $('#verification_code').val();
         var textareacontent = $('#s_t_textarea').val();
+        var help_is_input = $('#help_is_input').val();
         var weibo_is_publish = $('#weibo_is_publish').val();
 
         //store image data in input dom
@@ -613,9 +614,28 @@ $().ready(function(){
                     //weibo publish
                     if (weibo_is_publish == 'on') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                        WB2.anyWhere(function(W){
-                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
-                        });
+                    	if (uploadImageWeibo != '') {
+	                        WB2.anyWhere(function(W){
+	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
+	                        });
+                    	} else {
+                    		WB2.anyWhere(function(W){
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
+	                        });
+                    	}
+                    }
+                    if (help_is_input == '1') {
+                    	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
+                    	textareacontent = "#求助#" + textareacontent;
+                    	if (uploadImageWeibo != '') {
+	                        WB2.anyWhere(function(W){
+	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
+	                        });
+                    	} else {
+                    		WB2.anyWhere(function(W){
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
+	                        });
+                    	}
                     }
                     window.location = baseUrl + 'stream/index/newreply';
                     notice.send('system', msg.data);

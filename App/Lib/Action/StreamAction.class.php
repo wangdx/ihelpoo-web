@@ -702,10 +702,14 @@ class StreamAction extends Action
         /**
          * weibo
          */
-        $UserLoginWb = M("UserLoginWb");
-        $recordUserLoginWb = $UserLoginWb->where("uid = $userloginid")->find();
-        if (!empty($recordUserLoginWb['uid'])) {
-            $this->assign('isAlreadyBind', $recordUserLoginWb);
+        $configIsLoginWeibo = C('IS_LOGIN_WEIBO');
+        if ($configIsLoginWeibo) {
+	        $this->assign('configIsLoginWeibo', $configIsLoginWeibo);
+	        $UserLoginWb = M("UserLoginWb");
+	        $recordUserLoginWb = $UserLoginWb->where("uid = $userloginid")->find();
+	        if (!empty($recordUserLoginWb['uid'])) {
+	            $this->assign('isAlreadyBind', $recordUserLoginWb);
+        	}
         }
 
         /**

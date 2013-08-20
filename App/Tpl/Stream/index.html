@@ -157,16 +157,18 @@
 	      <span class="post_appendix" id="textareagroupmsgpush" title="组织信息推送"></span>
 	      <?php } ?>
 	      <span class="helpleaf s_t_option_help" id="textareahelp" title="点击求帮助"></span>
-	      <?php if (!empty($isAlreadyBind['switch'])) {?>
-	      	<span class="btn_weibo_select" id="weibo_sdk_btn" title="同步到新浪微博"></span>
-	      	<input type="hidden" id="weibo_is_publish" value="on" />
-	      <?php } else { ?>
-	      	<span class="btn_weibo" id="weibo_sdk_btn" title="同步到新浪微博"></span>
-	      	<input type="hidden" id="weibo_is_publish" />
+	      <?php if ($configIsLoginWeibo) { ?>
+		      <?php if (!empty($isAlreadyBind['switch'])) {?>
+		      	<span class="btn_weibo_select" id="weibo_sdk_btn" title="同步到新浪微博"></span>
+		      	<input type="hidden" id="weibo_is_publish" value="on" />
+		      <?php } else { ?>
+		      	<span class="btn_weibo" id="weibo_sdk_btn" title="同步到新浪微博"></span>
+		      	<input type="hidden" id="weibo_is_publish" />
+		      <?php } ?>
+		      <ul class="weibo_sdk_message f12 black_l">
+		        <span class="icon_quit" title="关闭"></span>
+		      </ul>
 	      <?php } ?>
-	      <!-- <ul class="weibo_sdk_message f12 black_l">
-	        <span class="icon_quit" title="关闭"></span>
-	      </ul> -->
 	      <!-- data storage -->
 	      <input type="hidden" name="help_is" id="help_is_input" value="0"/>
 	      <input type="hidden" name="schoolpublishid" id="schoolpublishid" value="<?php echo $thisschoolid; ?>"/>
@@ -204,13 +206,15 @@
 	      &nbsp;&nbsp;
 	      <span class="f12" id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
 	    </li>
+	    <?php if ($configIsLoginWeibo) { ?>
 	    <li class="f12 gray" id="weibo_publish_li"><span class="icon_pump"></span>
 	      <?php if (!empty($isAlreadyBind['uid'])) {?>
-	            同步到新浪微博 <a id="standardSelector" title="弹出发布"><span class="icon_function"></span><span class="icon_write"></span></a>
+	            数据会同步到新浪微博 <a id="standardSelector" title="弹出详细发布框"><span class="icon_function"></span><span class="icon_write"></span></a>
 	      <?php } else { ?>
 	            <a href="__ROOT__/setting/bind" class="black_l"><span class="red_l">需绑定微博</span></a> <a id="standardSelector"></a>
 	      <?php } ?>
 	    </li>
+	     <?php } ?>
 	    <?php if ($userloginedrecord['type'] != '1' ) { ?>
 	    <li class="f12 gray" id="post_groupmsgpush_li">
 	   		<span class="f12 gray" title="给你的组织内用户发送系统消息通知"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
@@ -560,6 +564,8 @@
 <script type="text/javascript" src="__PUBLIC__/js/public/textareatools.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/stream/index.js?id=1"></script>
-<!-- <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="__PUBLIC__/js/stream/weibo.js"></script> -->
+<?php if ($configIsLoginWeibo) { ?>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/stream/weibo.js"></script>
+<?php } ?>
 <include file="Public:footer" />
