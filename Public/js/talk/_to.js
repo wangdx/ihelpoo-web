@@ -283,7 +283,6 @@ function Chat(state) {
 
 
     this.pull = function (message) {
-        console.log(curTo + " " + from);
         var fromUser = message.data.fromUser;
         var toUser = message.data.toUser;
         var from = message.data.from;
