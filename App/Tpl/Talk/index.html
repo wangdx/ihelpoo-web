@@ -5,6 +5,8 @@
 	$TalkContent = M("TalkContent");
 ?>
 <include file="Talk:header" />
+<input type="hidden" id="data_uid" value="<?php echo session('userloginid') ?>"/>
+<input type="hidden" id="data_touid" value=""/>
 <link href="__PUBLIC__/css/talk.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
 <ul class="user_list_ul">
