@@ -191,10 +191,10 @@ function Chat(state) {
             status: '',
             image: image
         });
-        this.notice(_from, _to);
+        notice(_from, _to);
     };
 
-    this.notice = function (from, to) {
+    notice = function (from, to) {
         var chat = '4';
         var image = '无';
         if (!chat || !chat.length) return;
