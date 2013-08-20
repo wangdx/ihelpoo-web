@@ -39,10 +39,9 @@ $(function () {
 
 function prepareUI() {
 
-    /**
+	/**
      * icon emotion part
      */
-    var imageNums = 0;
     $('#textareaicon').click(function () {
         $('#emotionbox_item').fadeIn('fast');
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
@@ -61,9 +60,9 @@ function prepareUI() {
         return false;
     });
     $('.emotionbox_change_page').click(function () {
-        $(".emotionbox_change_page").removeClass('bg_gray');
-        $(this).addClass('bg_gray');
-        $page = $(this).text();
+        $(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+        $(this).addClass('bg_emotionbox_page_select');
+        $page = $(this).attr("value");
         $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 

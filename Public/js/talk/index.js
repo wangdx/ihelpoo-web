@@ -33,16 +33,21 @@ $().ready(function(){
     	        } else {
     	            var sex = '美女';
     	        }
-    	        if (msg.data.constellation != '') {
+    	        if (msg.data.constellation != null) {
     	            var constellation = msg.data.constellation;
     	        } else {
-    	            var constellation = '+';
+    	            var constellation = '';
+    	        }
+    	        if (msg.data.academy != null) {
+    	            var academy = msg.data.academy;
+    	        } else {
+    	            var academy = '';
     	        }
     	        $('.random_user_show_box').fadeIn(500);
     	        $('#random_user_show').html(
-    	            '<a href="' + baseUrl + 'stream/u/' + msg.data.uid + '"><img src="' + msg.data.image + '" height="51" class="radius3"/></a>'+
-    	            '<p class="ajax_random_u_s_text">和来自 ' + msg.data.academy + '的 ' + constellation + sex + 
-    	            ' <a href="' + baseUrl + 'stream/u/' + msg.data.uid + '" class="fb">' + msg.data.nickname + '</a>('+ msg.data.grade +') 聊天<p>'+
+    	            '<a href="' + baseUrl + 'wo/' + msg.data.uid + '"><img src="' + msg.data.image + '" height="51" class="radius3"/></a>'+
+    	            '<p class="ajax_random_u_s_text">和来自 <a href="http://' + msg.data.domain + '" class="white">' + msg.data.school + '</a>' + academy + '的 ' + constellation + sex + 
+    	            ' <a href="' + baseUrl + 'wo/' + msg.data.uid + '" class="fb">' + msg.data.nickname + '</a>('+ msg.data.grade +') 聊天<p>'+
     	            '<p><a href="' + baseUrl + 'talk/to/' + msg.data.uid + '" class="fb">开始聊天？</a></p>'
     	        );
     	    }

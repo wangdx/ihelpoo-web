@@ -60,9 +60,9 @@ $().ready(function () {
         return false;
     });
     $('.emotionbox_change_page').click(function () {
-        $(".emotionbox_change_page").removeClass('bg_gray');
-        $(this).addClass('bg_gray');
-        $page = $(this).text();
+        $(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
+        $(this).addClass('bg_emotionbox_page_select');
+        $page = $(this).attr("value");
         $(".emotionbox_show_ul").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 

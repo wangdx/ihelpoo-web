@@ -83,12 +83,15 @@ class TalkAction extends Action {
         	$UserLogin = M("UserLogin");
         	$OpAcademy = M("OpAcademy");
         	$UserInfo = M("UserInfo");
+        	$SchoolInfo = M("SchoolInfo");
         	$searchRandUserSql = "SELECT * FROM i_user_login ORDER BY RAND() LIMIT 1";
             $searchRandUser = $UserLogin->query($searchRandUserSql);
         	$randTalkUid = $searchRandUser[0]['uid'];
+        	$randTalkSchoolid = $searchRandUser[0]['school'];
         	$randTalkUserlogin = $searchRandUser[0];
         	$randTalkUserInfo = $UserInfo->where("uid = $randTalkUid")->find();
-        	$randTalkUserOpAcademy = $OpAcademy->where("number = $randTalkUserInfo[academy_op]")->find();
+        	$randTalkUserOpAcademy = $OpAcademy->where("id = $randTalkUserInfo[academy_op]")->find();
+        	$randTalkUserSchoolInfo = $SchoolInfo->where("id = $randTalkSchoolid")->find();
         	if (!empty($randTalkUserlogin['enteryear'])) {
         		$randTalkUserGrade = i_grade($randTalkUserlogin['enteryear']);
         	}
@@ -100,6 +103,8 @@ class TalkAction extends Action {
                 'uid' => $randTalkUid,
         	    'image' => $imageUrl,
                 'nickname' => $randTalkUserlogin['nickname'],
+                'school' => $randTalkUserSchoolInfo['school'],
+                'domain' => $randTalkUserSchoolInfo['domain'],
                 'academy' => $randTalkUserOpAcademy['name'],
                 'sex' => $randTalkUserlogin['sex'],
                 'constellation' => $randTalkUserConstellation,

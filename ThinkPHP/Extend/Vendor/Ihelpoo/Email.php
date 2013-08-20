@@ -166,7 +166,7 @@ class Email
     {
         $toSubject = "密码已经重置 - 我帮圈圈";
         $toContent = "<p>您的新密码已经初始化为: <strong>".$newpassword."</strong></p>
-                      <p>请尽快登录修改密码 <a href='http://".$this->ihelpoo."/setting/password'>点这里</a>
+                      <p>请尽快登录修改密码 <a href='http://".$this->ihelpoo."/setting/ps'>点这里</a>
                       <br />
                       <span style='font-size:12px; color:gray'>提示: 我帮圈圈的密码不区分大小写</span>
                       </p>

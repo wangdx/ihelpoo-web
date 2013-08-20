@@ -8,7 +8,7 @@
     width:185px;
     height:480px;
     overflow-y:scroll;
-    border:3px solid #DDD;
+    border:1px solid #DDD;
     padding:10px;
     background: #EEE;
     border-radius: 3px;
@@ -26,7 +26,7 @@
 .user_list_nickname{
     position: absolute;
     left: 66px;
-    top: 3px;
+    top: 10px;
 	width: 110px;
 }
 .user_list_nickname span{
@@ -117,11 +117,12 @@
     position: absolute;
     right: 5px;
     top: -20px;
+    font-size: 12px;
 }
 #show_message_div_outer{
     width:500px;
     height:300px;
-    border:3px solid #AAA;
+    border:1px solid #AAAAAA;
     overflow-y:scroll;
     border-radius:3px;
 }
@@ -138,7 +139,7 @@
      font-family: Tahoma, Arial;
      resize: none;
      line-height: 21px;
-     margin: 4px 0 0 4px;
+     margin: 5px 0 0 0;
      padding: 3px 5px;
      overflow-y: auto;
      font-size: 14px;
@@ -174,7 +175,7 @@
 }
 .user_talk_ad{
     position: absolute;
-    bottom: 125px;
+    bottom: 80px;
     left: 30px;
 }
 #emotionbox_item{
@@ -183,11 +184,19 @@
     top: 340px;
     z-index: 1111;
     background: #FFF;
-    border: 3px solid #CCC;
+    border: 1px solid #DDDDDD;
     display: none;
-    border-radius: 3px;
     min-height: 160px;
     min-width: 300px;
+}
+*+html #emotionbox_item{
+    width: 420px;
+}
+*html #emotionbox_item{
+    width: 420px;
+}
+.emotionbox_show_ul{
+    padding: 5px;
 }
 .emotionbox_show_ul li{
     padding: 3px 8px;
@@ -196,23 +205,43 @@
     cursor: pointer;
     padding: 1px;
 }
+.emotionbox_show_ul_inner{
+    padding: 5px;
+}
+.emotionbox_show_ul_inner li{
+    padding: 3px 8px;
+}
+.emotionbox_show_ul_inner li img{
+    cursor: pointer;
+    padding: 1px;
+}
 .emotionbox_close_p{
-    background: #EEE;
-    padding: 0 0 2px 3px;
+    background: #EEEEEE;
+    padding: 10px 10px 5px;
 }
 .emotionbox_close_p .emotionbox_change_page{
-    padding: 0 8px;
+    padding: 6px 8px;
     font-size: 12px;
+    color: #333;
+}
+.emotionbox_close_p .emotionbox_change_page:hover{
+    background: #FFF;
+    color: #333;
+}
+.bg_emotionbox_page_select{
+    background: #FFFFFF;
+    border-color: #DDDDDD;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
 }
 #emotionbox_close{
-    cursor: pointer;
     position: absolute;
     right: 5px;
-    top: 3px;
+    top: 5px;
 }
 .img_upload_comment_form_div{
-    background: #FFFFFF;
-    border: 3px solid #CCCCCC;
+    background: #F5F5F5;
+    border: 1px solid #CCCCCC;
     border-radius: 3px;
     display: none;
     left: 0;
