@@ -26,7 +26,7 @@
 .user_list_nickname{
     position: absolute;
     left: 66px;
-    top: 3px;
+    top: 10px;
 	width: 110px;
 }
 .user_list_nickname span{
@@ -117,6 +117,7 @@
     position: absolute;
     right: 5px;
     top: -20px;
+    font-size: 12px;
 }
 #show_message_div_outer{
     width:500px;
@@ -138,7 +139,7 @@
      font-family: Tahoma, Arial;
      resize: none;
      line-height: 21px;
-     margin: 4px 0 0 4px;
+     margin: 5px 0 0 0;
      padding: 3px 5px;
      overflow-y: auto;
      font-size: 14px;
