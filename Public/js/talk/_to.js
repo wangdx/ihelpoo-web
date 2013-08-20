@@ -230,6 +230,8 @@ function Chat(state) {
         var time = message.data.time;
         var status = message.data.status;
 
+        console.log("//////////"+message.data.chat);
+
         var curTo = $('#data_touid').val();
         var curFrom = $('#data_uid').val();
         if(curTo != from && curFrom != from){//not the person chatting with, not my own page
