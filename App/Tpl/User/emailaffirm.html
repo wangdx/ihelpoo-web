@@ -5,11 +5,10 @@
 	  <div class="">
 	    <p class="f14 black_l">
 	    <?php echo $emailaffirmInfo ?> 
-	    <br />
 	    <?php if ($userloginedrecord['uid']) { ?>
-	      <a href="__ROOT__/stream">返回个人中心</a>
+	      | <a href="__ROOT__/stream" class="f12">返回个人中心</a>
 	    <?php } else { ?>
-	      <a href="__ROOT__/user/login">登录</a>
+	      | <a href="__ROOT__/user/login" class="f12">登录</a>
 	    <?php } ?>
 	    </p>
 	  </div>
