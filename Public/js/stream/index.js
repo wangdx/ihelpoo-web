@@ -660,7 +660,12 @@ $().ready(function(){
             data: {'plusSid':$(this).attr('value')},
             dataType: "json",
             success:function(msg){
-                  $region.html('('+msg.data+')');
+            	if (msg.status == 'add') {
+            		notice.send('system', msg.info);
+            	}
+            	if (msg.status != 'error') {
+            		$region.html('('+msg.data+')');
+            	}
             }
         });
     });
