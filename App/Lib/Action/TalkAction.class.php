@@ -175,6 +175,7 @@ class TalkAction extends Action
         $toUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
 
 
+        //FIXME table might be write-locked
         $TalkContent = M("TalkContent");
         $leaveWords = $TalkContent->where("uid = $toUserId AND touid = $userloginid AND deliver = '0' ")->order("time DESC")->select();
         $this->assign('leaveWords', $leaveWords);
