@@ -836,6 +836,7 @@ $().ready(function(){
 	                    $commentViewDivBox.find('.comment_view_div_box_ul').prepend(commentContent);
 	                    $this.parent().find('.comment_reply_verification_stream').hide();
 	                    $this.parent().find('.comment_reply_verification_streamcode').val('999');
+	                    notice.send('comment', msg.info);
 	                } else {
 	                    ajaxInfo(msg.info);
 	                }

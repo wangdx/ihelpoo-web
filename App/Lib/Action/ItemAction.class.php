@@ -694,7 +694,11 @@ class ItemAction extends Action {
     					'image' => $imageurl,
 	                    'time' => i_time(time())
     				);
-    				$this->ajaxReturn($jsonEncode,"评论成功",'yes');
+    				$noticeSendUsers = $sayRecord['uid'];
+    				if (!empty($toid)) {
+    					$noticeSendUsers = $sayRecord['uid'].",".$toid;
+    				}
+    				$this->ajaxReturn($jsonEncode,$noticeSendUsers,'yes');
     			}
     		}
     	} else {
