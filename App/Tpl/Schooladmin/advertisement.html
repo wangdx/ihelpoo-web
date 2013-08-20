@@ -5,22 +5,22 @@
 	<form method="post">
 		<ul class="para_right_default_ul">
 			<li>
-				广告类型: 
+				广告或App类型: 
 				<select name="adtype">
-					<option value="2">stream右边</option>
-		  			<option value="1">头部更多</option>
+					<option value="1">App应用</option>
+					<option value="2">stream右边广告</option>
 		    	</select>
 			</li>
-			<li>广告内容: <textarea name="adcontent" class="textarea_style" rows="5" cols="60"></textarea></li>
+			<li>具体内容: <textarea name="adcontent" class="textarea_style" rows="5" cols="60"></textarea></li>
 			<li>&#12288;&#12288;&#12288;&#12288; <input type="submit" value="确定" /></li>
 		</ul>
 	</form>
 	
 	<ul>
 		<li>注意:</li>
-		<li>1. 广告支持html。最多255个字符</li>
-		<li>2. “头部更多”广告部分，建议只用文字，最多显示最新6条广告</li>
-		<li>3. “stream右边”广告部分，最大宽度140px，最多显示最新3条广告</li>
+		<li>1. 支持html。最多255个字符</li>
+		<li>2. <a href="/index/app">“App应用”</a>部分，可以添加相关网址，html代码，图片块等。</li>
+		<li>3. <a href="/stream">“stream右边”</a>广告部分，最大宽度140px，最多显示最新3条广告</li>
 		<li>4. 需要上传图片的请在<a href="/schooladmin/indexbgimg">上传图片</a>栏目上传图片，再取得图片连接放入html</li>
 	</ul>
 	<?php if (!empty($recordSchoolAd)) { ?>
@@ -28,8 +28,8 @@
 		<ul class="para_right_ul">
 	    <?php foreach ($recordSchoolAd as $schoolAd) : ?>
 	    <li>
-	    	<span class="f12 fb gray">广告类型:</span> <?php echo $schoolAd['type'] == "1" ? "[头部更多]" : "[stream右边]"; ?> 
-	    	<span class="f12 fb gray">广告内容:</span> <?php echo stripslashes($schoolAd['content']); ?> 
+	    	<span class="f12 fb gray">类型:</span> <?php echo $schoolAd['type'] == "1" ? "[App应用]" : "[stream右边广告]"; ?> 
+	    	<span class="f12 fb gray">内容:</span> <?php echo stripslashes($schoolAd['content']); ?> 
 	    	<span class="gray"><?php echo i_time($schoolAd['time']); ?></span> 
 		    <a href="?delid=<?php echo $schoolAd['id']; ?>">删除</a>
 	    </li>
