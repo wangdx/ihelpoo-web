@@ -800,7 +800,6 @@ class UserAction extends Action {
 				'status' => '2'
 			);
 			$isEmailAffirm = $IUserLogin->save($dataSet);
-			if ($isEmailAffirm) {
 
 					/**
 					 * send system message.
@@ -818,8 +817,7 @@ class UserAction extends Action {
 //					$MsgSystem->add($msgData);
                     //TODO add bounced notice in case user is online
                     //TODO i did not receive this msg
-                i_savenotice('10000', $uid, 'system/mailverify', '');
-			}
+            i_savenotice('10000', $uid, 'system/mailverify', '');
 			redirect('/', 3, '邮箱验证成功啦 :) 3秒后跳转到登录页面...');
 		} else {
 		    $emailaffirmInfo = "邮箱验证失败 :(";
