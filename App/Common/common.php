@@ -579,7 +579,7 @@ function i_configure_album_size($userLevel)
 
 
 /**
- * Queue the mails to memory, they'll get opportunity to be sent every five minutes
+ * Queue the mails to memory, they'll get opportunity to be sent every ten seconds
  *
  * @param $to
  * @param $subject
