@@ -358,7 +358,7 @@ $().ready(function(){
             type: "POST",
             url: baseUrl + "stream/ajax",
             data: "diffusionSid=" + diffusionSid,
-            datatype: "html",
+            dataType: "json",
             success:function(result){
                 var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
                 notice.send('system', result.data);
