@@ -13,6 +13,8 @@ class Email
         $this->username = 'info@ihelpoo.com';
         $this->password = 'help2012';
         $this->ihelpoo = '42.62.50.238';
+        $recordSchoolInfo = i_school_domain();
+        $this->ihelpoo = $recordSchoolInfo['domain'];
     }
 
     public function sendDefault($toEmail, $toSubject, $toContent, $toNickname = NULL)
