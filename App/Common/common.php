@@ -569,7 +569,7 @@ function i_makechickableLinks($text)
  */
 function i_configure_album_size($userLevel)
 {
-    if ($userLevel <= 3) {
+    if ($userLevel <= 5) {
         return $totalAlbumDefaultSize = 0.5 * 1073741824;
     } else if ($userLevel <= 6) {
         return $totalAlbumDefaultSize = 1 * 1073741824;
