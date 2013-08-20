@@ -474,6 +474,6 @@ function Chat(state) {
     });
     $(window).bind('beforeunload', function () {
 
-        return "alert" + _from + _to;
+        //return "alert" + _from + _to;
     });
 };
