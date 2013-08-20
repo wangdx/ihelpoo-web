@@ -4,7 +4,7 @@ $().ready(function(){
         var fillaccountemail = $("#fillaccountemail").val();
         var password = $("#password").val();
         var passwordrepeat = $("#passwordrepeat").val();
-        var passwordLength = getStringLength(password);
+        var passwordLength = password.length;
         $(this).ajaxStart(function(){
     	    $('#ajaxprogressbar').html($infoLoading);
         }).ajaxStop(function(){
