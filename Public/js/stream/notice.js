@@ -141,11 +141,26 @@ function Notice(state) {
         var time = message.data.time;
 
         if(chat == '4'){
-            var num = $('#message_system_nums_a').data(from);
-            num = num ? $('#message_system_nums_a').data(from) : 0;
-            $('#message_system_nums_a').data(from, num + 1)
-            $('#message_system_nums_a').show();
-            $('#message_system_nums_a').children('span').html('+' + (num + 1));
+            if(from == 'at'){
+                var num = $('#message_at_nums_a').data(from);
+                num = num ? $('#message_at_nums_a').data(from) : 0;
+                $('#message_at_nums_a').data(from, num + 1)
+                $('#message_at_nums_a').show();
+                $('#message_at_nums_a').children('span').html('+' + (num + 1));
+            }else  if(from == 'comment'){
+                var num = $('#message_comment_nums_a').data(from);
+                num = num ? $('#message_comment_nums_a').data(from) : 0;
+                $('#message_comment_nums_a').data(from, num + 1)
+                $('#message_comment_nums_a').show();
+                $('#message_comment_nums_a').children('span').html('+' + (num + 1));
+
+            }else{
+                var num = $('#message_system_nums_a').data(from);
+                num = num ? $('#message_system_nums_a').data(from) : 0;
+                $('#message_system_nums_a').data(from, num + 1)
+                $('#message_system_nums_a').show();
+                $('#message_system_nums_a').children('span').html('+' + (num + 1));
+            }
         } else if (chat == '1') {
             $('#message_talk_nums_div').fadeIn('fast');
             $('#message_talk_nums_img_icon').show().attr({'src': 'http://ihelpoo.b0.upaiyun.com/useralbum/'+from+'/'+imageThumb+'_m.jpg', 'title': fromUser});
