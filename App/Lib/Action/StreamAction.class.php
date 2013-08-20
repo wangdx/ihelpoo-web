@@ -333,15 +333,13 @@ class StreamAction extends Action
                             i_savenotice($userloginid, $userPrio['uid'], 'stream/ih-para:needhelp', $sayLastInsertId);
                             $tos .= $userPrio['uid'] . ",";
 
-
                             /**
-                             * FIXME uncomment to send mail before product usable
-                             */
-//                            $userPrioritiedMail = $UserLogin->find($userPrio['uid']);
-//                            if (!empty($userPrioritiedMail['email'])) {
-//                                i_send($userPrioritiedMail['email'], "[我帮圈圈]圈里有人需要帮助", $content);
-//                            }
-
+				    		 * send emil
+				    		 */
+                        	$userPrioritiedMail = $UserLogin->find($userPrio['uid']);
+                        	if (!empty($userPrioritiedMail['email'])) {
+				    			$emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
+                        	}
                         }
                         $tos = rtrim($tos, ",");
                     }
