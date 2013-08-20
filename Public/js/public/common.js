@@ -6,6 +6,50 @@ $().ready(function () {
     showSkin();
     flashPic('.message_shine');
 
+
+    /**
+     * quan && quan cancel
+     */
+    $(".do_quanta").live('click', function () {
+        $this = $(this);
+        var userid = $(".user_info_top_div").attr('userid');
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        $this.html($infoLoading);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: baseUrl + "ajax/quanta",
+            data: {uid: userid},
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
+                    notice.send($('#data_touid').val(), userid);
+                } else {
+                    ajaxInfo(msg.info);
+                }
+            }
+        });
+    });
+
+    $(".do_quantacancel").live('click', function () {
+        $this = $(this);
+        var userid = $(".user_info_top_div").attr('userid');
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        $this.html($infoLoading);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: baseUrl + "ajax/quantacancel",
+            data: {uid: userid},
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta");
+                } else {
+                    ajaxInfo(msg.info);
+                }
+            }
+        });
+    });
     /**
      * nav hover
      */
