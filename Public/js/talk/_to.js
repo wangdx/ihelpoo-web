@@ -39,7 +39,7 @@ $(function () {
 
 function prepareUI() {
 
-	/**
+    /**
      * icon emotion part
      */
     $('#textareaicon').click(function () {
@@ -80,7 +80,7 @@ function prepareUI() {
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
+            $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
             $.ajaxFileUpload({
                 url: baseUrl + 'ajax/imgtalkupload',
                 secureuri: false,
@@ -191,19 +191,18 @@ function Chat(state) {
             status: '',
             image: image
         });
-        notice(_from, _to);
+        notice(_from, _to, chat);
     };
 
-    notice = function (from, to) {
-        var chat = '4';
-        var image = '无';
+    notice = function (from, to, content) {
+        var chat = '1'; // 1. chat
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/notice', {
             room: '/notice/p2p',
             from: from,
             to: to,
             chat: chat,
-            image: image
+            image: content //use image as the proxy
         });
     };
 
@@ -233,7 +232,7 @@ function Chat(state) {
 
         var curTo = $('#data_touid').val();
         var curFrom = $('#data_uid').val();
-        if(curTo != from && curFrom != from){//not the person chatting with, not my own page
+        if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
             return;
         }
 
@@ -243,8 +242,6 @@ function Chat(state) {
         }
 
         if (!fromUser) return; // from might be there
-
-
 
 
 //        if (!membership && fromUser == _lastUser) {
@@ -294,15 +291,19 @@ function Chat(state) {
         var time = message.data.time;
 
         var curTo = $('#data_touid').val();
-        console.log(curTo + " "+ from);
-        if(curTo == from){
+        console.log(curTo + " " + from);
+        if (curTo == from) {
             return;
-        }else if(chat == '4'){
+        } else if (chat == '4') {
             var num = $('#message_system_nums_a').data(from);
             num = num ? $('#message_system_nums_a').data(from) : 0;
             $('#message_system_nums_a').data(from, num + 1)
             $('#message_system_nums_a').show();
             $('#message_system_nums_a').children('span').html('+' + (num + 1));
+        } else if (chat == '1') {
+            $('#message_talk_nums_div').fadeIn('fast');
+            $('#message_talk_nums_span_content').html(fromUser + '发来悄悄话：' + image);
+            $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
         }
     };
 

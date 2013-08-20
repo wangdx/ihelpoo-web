@@ -146,6 +146,10 @@ function Notice(state) {
             $('#message_system_nums_a').data(from, num + 1)
             $('#message_system_nums_a').show();
             $('#message_system_nums_a').children('span').html('+' + (num + 1));
+        } else if (chat == '1') {
+            $('#message_talk_nums_div').fadeIn('fast');
+            $('#message_talk_nums_span_content').html(fromUser + '发来悄悄话：' + image);
+            $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
         }
     };
 
