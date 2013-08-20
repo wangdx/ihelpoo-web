@@ -3,7 +3,7 @@
     Vendor('Ihelpoo.Emotion');
     $emotion = new Emotion();
 	$UserLogin = M("UserLogin");
-	if ($sayRecord['from']) {
+	if ($sayRecord['from'] && $configIsLoginWeibo) {
 		$sayRecordFromArray = explode("-", $sayRecord['from']);
 		if ($sayRecordFromArray['1'] > 0) {
 			$weiboswitch = $sayRecordFromArray['1'];

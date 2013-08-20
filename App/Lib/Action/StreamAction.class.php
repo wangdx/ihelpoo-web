@@ -412,7 +412,7 @@ class StreamAction extends Action
                         $MsgAt->add($newAtMsgData);
                     }
                 }
-                $this->ajaxReturn($tos, "发布成功", 'ok');
+                $this->ajaxReturn($tos, $sayLastInsertId, 'ok');
             }
         }
 
