@@ -274,6 +274,65 @@ function Chat(state) {
         $('.img_upload_comment_form_div').slideUp('fast');
     };
 
+
+    this.receive = function (message) {
+        var fromUser = message.data.fromUser;
+        var toUser = message.data.toUser;
+        var from = message.data.from;
+        var to = message.data.to;
+        var membership = message.data.membership;
+        var chat = message.data.chat;
+        var image = message.data.image;
+        var imageThumb = message.data.imageThumb;
+        var time = message.data.time;
+
+        if(chat == '4'){
+            var num = $('#message_system_nums_a').data(from);
+            num = num ? $('#message_system_nums_a').data(from) : 0;
+            $('#message_system_nums_a').data(from, num + 1)
+            $('#message_system_nums_a').show();
+            $('#message_system_nums_a').children('span').html('+' + (num + 1));
+        }
+
+
+        if(!chat || !chat.length) {//update status
+            $('#input_status').html(image + '<span class="icon_write"></span>');
+            return;
+        }
+
+
+        if (!membership && fromUser == _lastUser) {
+            fromUser = '...';
+        } else {
+            _lastUser = fromUser;
+            fromUser += ':';
+        }
+
+        if (membership) {
+            _lastUser = null;
+        }
+
+
+        if (image != '') {
+            var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
+                + " <span class='f12 gray'>" + time + "</span><br />"
+                + chat + "<br />"
+                + "<a href='" + image + "' target='_target'><img src='" + imagethumb + "' style='max-width:150px;' title='查看原图' /></a><br /><br />";
+        } else {
+            var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
+                + " <span class='f12 gray'>" + time + "</span><br />"
+                + chat + "<br /><br />";
+        }
+        $('#show_message_div').append(htmlIn);
+        var boxHeight = $('#show_message_div').height();
+        $('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
+        $('#send_message_textarea').val('');
+        $('#image_upload_url').val('');
+        $('#image_upload_list_ul').empty();
+        $('.img_upload_comment_form_div').slideUp('fast');
+//        imageNums = 0;
+    };
+
     /**
      * Updates the members list.
      * This function is called when a message arrives on channel /chat/members
@@ -300,8 +359,7 @@ function Chat(state) {
     function _subscribe() {
         _chatSubscription = $.cometd.subscribe('/chat/p2p', _self.receive);
         _membersSubscription = $.cometd.subscribe('/members/p2p', _self.members);
-        _chatSubscription = $.cometd.subscribe('/notice/p2p', _self.receive);
-        _membersSubscription = $.cometd.subscribe('/users/p2p', _self.members);
+        _chatSubscription = $.cometd.subscribe('/notice/p2p', _self.pull);
     }
 
     function _connectionInitialized() {
