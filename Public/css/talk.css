@@ -25,9 +25,9 @@
 }
 .user_list_nickname{
     position: absolute;
-    left: 66px;
+    left: 65px;
     top: 10px;
-	width: 110px;
+	width: 108px;
 }
 .user_list_nickname span{
     vertical-align: text-bottom;
