@@ -10,7 +10,7 @@
   <ul class="main_group_ul">
   <?php foreach ($appSchoolAd as $app) { ?>
     <li>
-    <p><?php echo $app['content']; ?></p>
+    <p><?php echo stripslashes($app['content']); ?></p>
     <span class="f12 gray">添加时间:<?php echo i_time($app['time']); ?></span>
     </li>
   <?php } ?>
