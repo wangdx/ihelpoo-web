@@ -1161,6 +1161,7 @@ class StreamAction extends Action
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hDel(C('R_ACCOUNT') . C('R_MESSAGE') . $who, $noticeId);
+
     }
 
 
