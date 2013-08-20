@@ -119,11 +119,12 @@ $().ready(function(){
             type: "POST",
             url: baseUrl + "stream/ajax",
             data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
-            datatype: "html",
-            success:function(data){
-            	var infohtml = "<p align='left'>" + data + "</p> <a class='btn_cancel'>确定</a>";
+            dataType: "json",
+            success:function(result){
+            	var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
+            	notice.send('system', result.data);
             	ajaxInfo(infohtml);
-                if (data != '你已经扩散了这条信息') {
+                if (result.info != '你已经扩散了这条信息') {
                 	$diffusionRecordObj.append('<span class="red_l">+1</span>');
                 }
             }
