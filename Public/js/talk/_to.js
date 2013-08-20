@@ -441,7 +441,8 @@ function Chat(state) {
         }
     });
     $(window).bind('beforeunload', function() {
-        alert('byby');
+
         notice(_from, _to, 'close server');
+        return "alert" + _from + _to;
     });
 };
