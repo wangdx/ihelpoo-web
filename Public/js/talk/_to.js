@@ -425,7 +425,7 @@ function Chat(state) {
         }, 0);
     }
 
-    $(window).unload(function () {
+    $(window).bind('unload', function () {
         notice(_from, _to, 'close server');
         alert("bye");
         if ($.cometd.reload) {
