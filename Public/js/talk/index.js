@@ -40,9 +40,9 @@ $().ready(function(){
     	        }
     	        $('.random_user_show_box').fadeIn(500);
     	        $('#random_user_show').html(
-    	            '<a href="' + baseUrl + 'stream/u/' + msg.data.uid + '"><img src="' + msg.data.image + '" height="51" class="radius3"/></a>'+
-    	            '<p class="ajax_random_u_s_text">和来自 ' + msg.data.academy + '的 ' + constellation + sex + 
-    	            ' <a href="' + baseUrl + 'stream/u/' + msg.data.uid + '" class="fb">' + msg.data.nickname + '</a>('+ msg.data.grade +') 聊天<p>'+
+    	            '<a href="' + baseUrl + 'wo/' + msg.data.uid + '"><img src="' + msg.data.image + '" height="51" class="radius3"/></a>'+
+    	            '<p class="ajax_random_u_s_text">和来自 <a href="http://' + msg.data.domain + '">' + msg.data.school + '</a>' + msg.data.academy + '的 ' + constellation + sex + 
+    	            ' <a href="' + baseUrl + 'wo/' + msg.data.uid + '" class="fb">' + msg.data.nickname + '</a>('+ msg.data.grade +') 聊天<p>'+
     	            '<p><a href="' + baseUrl + 'talk/to/' + msg.data.uid + '" class="fb">开始聊天？</a></p>'
     	        );
     	    }
