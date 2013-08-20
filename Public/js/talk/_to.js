@@ -381,6 +381,7 @@ function Chat(state) {
     }
 
     function _connectionClosed() {
+        notice(_from, _to, 'close server');
         alert("closed");
         _self.receive({
             data: {
