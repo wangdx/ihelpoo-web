@@ -239,13 +239,13 @@ function Chat(state) {
 
         if (image && image != '') {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
-                + " <span class='f12 gray'>" + time + "</span><br />"
-                + chat + "<br />"
-                + "<a href='" + image + "' target='_target'><img src='" + imageThumb + "' style='max-width:150px;' title='查看原图' /></a><br /><br />";
+                + " <span class='f12 gray'>" + time + "</span><br>"
+                + chat + "<br>"
+                + "<a href='" + image + "' target='_target'><img src='" + imageThumb + "' style='max-width:150px;' title='查看原图' /></a><br><br>";
         } else {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
-                + " <span class='f12 gray'>" + time + "</span><br />"
-                + chat + "<br /><br />";
+                + " <span class='f12 gray'>" + time + "</span><br>"
+                + chat + "<br>";
         }
 
         $('#show_message_div').append(htmlIn);
