@@ -138,6 +138,9 @@ function i_gradenum($enteryear)
         $num = $thisyear['year'] - $enteryear;
     }
     switch ($num) {
+    	case 0 :
+            return "sen";
+            break;
         case 1 :
             return "1";
             break;
