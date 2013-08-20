@@ -240,6 +240,8 @@ function Chat(state) {
         if (!fromUser) return; // from might be there
 
 
+
+
 //        if (!membership && fromUser == _lastUser) {
 //            fromUser = '...';
 //        } else {
@@ -286,6 +288,10 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
 
+        var curTo = $('#data_touid').val();
+        if(curTo == to){
+            return;
+        }
         if(chat == '4'){
             var num = $('#message_system_nums_a').data(from);
             num = num ? $('#message_system_nums_a').data(from) : 0;
