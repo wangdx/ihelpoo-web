@@ -798,7 +798,8 @@ class ItemAction extends Action {
     								 */
     								Vendor('Ihelpoo.Email');
                 					$emailObj = new Email();
-    								$emailObj->helpstatusNew($helpRecordOwener['email'], $helpRecordOwener['nickname']);
+                					$helpEmailContent = $recordUserLogin['nickname'].":".$helpcontent;
+    								$emailObj->helpstatusNew($helpRecordOwener['email'], $helpRecordOwener['nickname'], $helpEmailContent);
     								$newHelperInfoSendData = array(
                                         'id' => '',
             	                        'uid' => $recorduid,

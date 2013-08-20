@@ -203,7 +203,7 @@ class Email
         $toSubject = "改变真实姓名回复 - 我帮圈圈";
         $toContent = "<p>我帮圈圈对您的资料进行了查看, 对您在社区中因为公布了自己的真实姓名而体悟到的不安全感 感同身受。对我们的工作没有做到位表示歉意。</p>
                       <p>请您 <a href='http://".$this->ihelpoo."/setting/realfirst?step=1'>点击这里</a> 修改您的真实姓名吧。</p>
-                      <p>我帮圈圈是针对民院的社交平台, 这里都是校友, 我们也会做好隐私保护工作。希望您能提供真实姓名</p>
+                      <p>我帮圈圈是真实校园社交平台, 这里都是校友, 我们也会做好隐私保护工作。希望您能提供真实姓名</p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
                       校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
@@ -232,10 +232,11 @@ class Email
         return TRUE;
     }
 
-    public function helpstatusNew($toEmail, $toNickname)
+    public function helpstatusNew($toEmail, $toNickname, $helpContent)
     {
         $toSubject = "有人来帮助您啦 快来看看吧 - 我帮圈圈";
-        $toContent = "<p>".$toNickname." 童鞋  <br />您的求助有了新回复, 有童鞋来帮助您啦! 看能对您有什么促进不? <a href='http://".$this->ihelpoo."/'>快来看看吧!</a></p>
+        $toContent = "<p>".$toNickname." 童鞋  <br />您的求助有了新回复! 看能对您有什么促进不? <br />
+        			  ".$helpContent." <a href='http://".$this->ihelpoo."/'>快来看看吧!</a></p>
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
                       校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
