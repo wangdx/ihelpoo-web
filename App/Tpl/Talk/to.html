@@ -106,6 +106,16 @@
 
         <div id="show_message_div_outer">
             <div id="show_message_div">
+                <?php
+        if(!empty($leaveWords)){
+            foreach($leaveWords as $leaveWord){
+                echo  "<span class='f14 gray'>$leaveWord['uid']</span> <span class='f12 gray'>date('H:i:s', $leaveWord['time'])</span><br>$leaveWord['content']<br>";
+                if(!empty($leaveWord['image'])){
+                    echo "<br><a href='$leaveWord["image"]' target='_target'><img src='$leaveWord["image"]' style='max-width:150px;' title='查看原图' /></a><br><br>";
+                }
+
+            }
+                ?>
             </div>
         </div>
         <div class="send_message_textarea_div">
