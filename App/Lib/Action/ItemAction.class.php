@@ -138,6 +138,12 @@ class ItemAction extends Action {
         $totalPages = ceil($totalSayCommentNums / $count);
         $this->assign('totalPages', $totalPages);
         $this->assign('pageCount', $count);
+        
+        /**
+         * weibo
+         */
+        $configIsLoginWeibo = C('IS_LOGIN_WEIBO');
+	    $this->assign('configIsLoginWeibo', $configIsLoginWeibo);
         $this->display();
     }
 

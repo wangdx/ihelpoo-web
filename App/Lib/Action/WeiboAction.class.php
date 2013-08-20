@@ -31,6 +31,7 @@ class WeiboAction extends Action {
         $this->assign('title','微博帮助转入');
         $UserLogin = M("UserLogin");
         $RecordSay = M("RecordSay");
+        $recordSchoolInfo = i_school_domain();
         if ($this->isPost()) {
         	if (!empty($_POST['commenttext'])) {
         		if (!empty($_POST['weibopic'])) {
@@ -55,7 +56,8 @@ class WeiboAction extends Action {
 		            'authority' => 0,
 		            'time' => time(),
 		            'last_comment_ti' => time(),
-		            'from' => '新浪微博求助-'.$_POST['weiboid']
+		            'from' => '微博求助-'.$_POST['weiboid'],
+	        		'school_id' => $recordSchoolInfo['id']
 	            );
 	            $sayLastInsertId = $RecordSay->add($dataRecordSay);
 	            $itemSayUrI = 'item/say/'.$sayLastInsertId;
@@ -64,7 +66,6 @@ class WeiboAction extends Action {
         }
         $this->display();
     }
-    
 
 }
 
