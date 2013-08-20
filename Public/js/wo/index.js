@@ -239,8 +239,8 @@ $().ready(function(){
 	                    + '<span class="c_v_d_b_ul_li_content_reply">'
 	                    + '<a class="c_v_d_b_ul_li_content_del gray" value="' + msg.data.cid + '">删除</a>'
 	    		    	+ '</span>';
-	    		    	
 	                    $commentViewDivBox.find('.comment_view_div_box_ul').prepend(commentContent);
+	                    notice.send('comment', msg.info);
 	                } else {
 	                    ajaxInfo(msg.info);
 	                }
