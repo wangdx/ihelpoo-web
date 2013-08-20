@@ -5,11 +5,7 @@ $().ready(function(){
         var password = $("#password").val();
         var passwordrepeat = $("#passwordrepeat").val();
         var passwordLength = password.length;
-        $(this).ajaxStart(function(){
-    	    $('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-    	    $infoLoading.remove();
-        });
+    	$('#ajaxprogressbar').html($infoLoading);
         if (fillaccountemail == "") {
             showWrongInfo('邮箱不能为空');
         } else if (passwordLength < 6) {
@@ -25,8 +21,11 @@ $().ready(function(){
                     $("#infopsupdateok").slideDown('normal').delay(1500);
                     window.location = baseUrl + 'stream';
                 } else if (data.status == "wrong") {
-                    showWrongInfo(data.info);
+                	$("#ajaxprogressbar").html("<p id='infopsupdateok'><span class='icon_right'></span> 账号资料已经完善，关闭此页面，我帮圈圈去吧!</p>");
+                    $("#infopsupdateok").slideDown('normal').delay(1500);
+                    window.location = baseUrl + 'stream';
                 }
+                $('#ajaxprogressbar').html('');
             }, "json");
         }
     });
