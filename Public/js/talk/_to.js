@@ -231,6 +231,10 @@ function Chat(state) {
         var time = message.data.time;
         var status = message.data.status;
 
+        var curTo = $('#data_touid').val();
+        if(curTo != from){//not the person chatting with
+            return;
+        }
 
         if (!chat || !chat.length) {//update status
             $('#input_status').html(status + '<span class="icon_write"></span>');
@@ -292,8 +296,7 @@ function Chat(state) {
         console.log(curTo + " "+ from);
         if(curTo == from){
             return;
-        }
-        if(chat == '4'){
+        }else if(chat == '4'){
             var num = $('#message_system_nums_a').data(from);
             num = num ? $('#message_system_nums_a').data(from) : 0;
             $('#message_system_nums_a').data(from, num + 1)
