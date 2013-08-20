@@ -854,7 +854,7 @@ color:#FFFA85;
 *html .main{ height:500px; margin-top:30px; }
 *html .footer{ height:30px; }
 *html .footer .about{ margin-bottom:1px; }
-#message_talk_nums_div{position:fixed; right:15px; top:55px; z-index:1111; border:3px solid #CCC; padding:5px 10px; background:#EFEFEF; border-radius:5px; width: 200px; display:none;}
+#message_talk_nums_div{position:fixed; right:15px; top:55px; z-index:1111; border:1px solid #DDD; padding:5px 10px; background:#EFEFEF; border-radius:3px; width: 200px; display:none;}
 *html #message_talk_nums_div{ position:absolute; }
 
 
