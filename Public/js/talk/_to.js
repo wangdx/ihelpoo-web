@@ -275,7 +275,7 @@ function Chat(state) {
     };
 
 
-    this.receive = function (message) {
+    this.pull = function (message) {
         var fromUser = message.data.fromUser;
         var toUser = message.data.toUser;
         var from = message.data.from;
@@ -293,44 +293,6 @@ function Chat(state) {
             $('#message_system_nums_a').show();
             $('#message_system_nums_a').children('span').html('+' + (num + 1));
         }
-
-
-        if(!chat || !chat.length) {//update status
-            $('#input_status').html(image + '<span class="icon_write"></span>');
-            return;
-        }
-
-
-        if (!membership && fromUser == _lastUser) {
-            fromUser = '...';
-        } else {
-            _lastUser = fromUser;
-            fromUser += ':';
-        }
-
-        if (membership) {
-            _lastUser = null;
-        }
-
-
-        if (image != '') {
-            var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
-                + " <span class='f12 gray'>" + time + "</span><br />"
-                + chat + "<br />"
-                + "<a href='" + image + "' target='_target'><img src='" + imagethumb + "' style='max-width:150px;' title='查看原图' /></a><br /><br />";
-        } else {
-            var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
-                + " <span class='f12 gray'>" + time + "</span><br />"
-                + chat + "<br /><br />";
-        }
-        $('#show_message_div').append(htmlIn);
-        var boxHeight = $('#show_message_div').height();
-        $('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
-        $('#send_message_textarea').val('');
-        $('#image_upload_url').val('');
-        $('#image_upload_list_ul').empty();
-        $('.img_upload_comment_form_div').slideUp('fast');
-//        imageNums = 0;
     };
 
     /**

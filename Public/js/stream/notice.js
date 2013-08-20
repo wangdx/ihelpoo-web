@@ -147,7 +147,6 @@ function Notice(state) {
             $('#message_system_nums_a').show();
             $('#message_system_nums_a').children('span').html('+' + (num + 1));
         }
-//        imageNums = 0;
     };
 
     /**
