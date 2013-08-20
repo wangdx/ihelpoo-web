@@ -44,6 +44,7 @@
   <?php endforeach; ?>
   <li style="height: 25px;">
   <a href="__ROOT__/talk/lists" class="f12 gray" title="编辑悄悄列表"><span class="icon_function"></span>编辑</a>
+  <a href="__ROOT__/mutual/find" class="f12"><span class="icon_plus"></span>添加好友</a>
   </li>
 </ul>
 
@@ -66,13 +67,12 @@
     	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
     <?php } ?>
     <li><span class="f12 gray"><?php echo $toUserIntroduction; ?></span></li>
-    <li><a href="__ROOT__/talk/add/<?php echo $toUserRecord['uid'] ?>" class="f12 gray"><i class="ico_favourite"></i>加好友</a></li>
   </ul>
 </div>
 
 <div class="user_talk_ad">
-  <a href="__ROOT__/talk"><i class="ico_talk"></i>悄悄话首页</a><br />
-  <a href="__ROOT__/mutual/find" class="f12"><span class="icon_plus"></span>添加好友</a>
+  <a href="__ROOT__/talk"><i class="ico_talk"></i>悄悄话首页</a><br /><br />
+  <a href="__ROOT__/talk/add/<?php echo $toUserRecord['uid'] ?>" class="f12 gray"><i class="ico_favourite"></i>加好友</a>
 </div>
 <div class="user_talk_main_box">
   <span class="gray u_t_m_b_talkto">
