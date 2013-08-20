@@ -318,7 +318,6 @@ class UserAction extends Action {
         if (!empty($_POST['i_w_user_id'])) {
             $isWeiboExist = $UserLoginWb->where("weibo_uid = $_POST[i_w_user_id]")->find();
             if (empty($isWeiboExist['uid'])) {
-            	
             	$email = $_POST['i_w_user_id']."@loginweibo.com";
             	$password = rand(10000000, 99999999);;
             	$nickname = $_POST['i_w_user_name'];
@@ -327,11 +326,9 @@ class UserAction extends Action {
             	} else {
             		$sex = 2;
             	}
-            	$birthday = "";
             	$dateInfo = getdate();
             	$enteryear = $dateInfo['year'];
             	$introduction = $_POST['i_w_user_description'];
-        				
             	
                 /**
                  * insert new user
@@ -343,7 +340,6 @@ class UserAction extends Action {
             		'password' => $password,
             		'nickname' => $nickname,
             		'sex' => $sex,
-            		'birthday' => $birthday,
             		'enteryear' => $enteryear,
             		'type' => '1',
             		'priority' => '4',
@@ -374,13 +370,6 @@ class UserAction extends Action {
                 $rowUserInfo = array (
                     'uid' => $lastInsertUid,
                     'introduction' => $introduction,
-                   	'academy_op' => '',
-                	'province_op' => '',
-                	'city_op' => '',
-                	'realname' => '',
-                	'realname_re' => '',
-                	'mobile' => '',
-                	'qq' => '',
                    	'weibo' => 'http://weibo.com/'.$_POST['i_w_user_id'],
                    	'dynamic' => 1,
                    	'fans' => 0,
@@ -398,9 +387,8 @@ class UserAction extends Action {
                 );
                 $UserStatus->add($dataUserStatus);
                 
-                /**
+                /**TODO
                  * send system message.
-                 */
                 $MsgSystem = M("MsgSystem");
                 $msgRegisterContent = "欢迎".$nickname."通过微博来到".$recordSchoolInfo['school']."我帮圈圈:) 故事开始啦!";
                 $msgRegisterData = array(
@@ -412,11 +400,13 @@ class UserAction extends Action {
                     'deliver' => 0,
                 );
                 $MsgSystem->add($msgRegisterData);
+                i_savenotice('10000', $newUserId, 'system/welcome', '');
+                 */
                 
                 /**
 	             * add default dynamic record.
 	             */
-	            $recordDynamicContent = "我刚刚通微博登录加入了民院我帮圈圈:)";
+	            $recordDynamicContent = "我刚刚通微博登录加入了".$recordSchoolInfo['school']."我帮圈圈:)";
 	            $RecordSay = M("RecordSay");
 	            $RecordDynamic = M("RecordDynamic");
 	            $newRecordSayData = array(
@@ -427,6 +417,7 @@ class UserAction extends Action {
 	            	'from' => '动态'
 	            );
 	            $newRecordSayId = $RecordSay->add($newRecordSayData);
+	            
 	            $newRecordDynamicData = array(
 	            	'sid' => $newRecordSayId,
 	            	'type' => 'join',
@@ -437,7 +428,7 @@ class UserAction extends Action {
 	             * fillaccount
 	             */
 	            session('userloginid',$lastInsertUid);
-	            $this->ajaxReturn('setting/fillaccount','微博注册登录成功，请完善账号资料...','step');
+	            $this->ajaxReturn('stream','微博注册登录成功...','step');
             } else {
                 $weiboUserLogin = $UserLogin->find($isWeiboExist['uid']);
                 if (empty($weiboUserLogin['email']) || empty($weiboUserLogin['password'])) {
@@ -802,21 +793,14 @@ class UserAction extends Action {
 	    	$userLoginNew = $IUserLogin->userExists($userloginid);
 	    	$uhash = md5($userLoginNew['email']);
 	    	$emailObj->emailAffirm($userloginid, $uhash, $userLoginNew['email'], $userLoginNew['nickname']);
-	    	$emailaffirmInfo = "已经发送验证邮件到你的注册邮箱 ".$userLoginNew['email']." , 请查收点击验证...";
+	    	$emailaffirmInfo = "已经发送验证邮件到你的注册邮箱 ".$userLoginNew['email']." , 请查收点击验证... <a href='/user/emailaffirm?new=mail' class='f12'>重新发送</a>";
 	    } else if (md5($userLogin['email']) == $emailhash) {
-	    	
-	    	/**
-	    	 * iuc user data
-	    	 */
-	    	$url = "http://ihelpoousercenter.sinaapp.com/iuc/updateemailaffirm?uid=".$uid."&status=2&pw=".md5('ihelpoo2013');
-	    	$userdatacontents = file_get_contents($url);
-	    	if ($userdatacontents == 'ok') {
-	    		$dataSet = array(
-					'uid' => $uid,
-					'status' => '2'
-				);
-				$isEmailAffirm = $IUserLogin->save($dataSet);
-				if ($isEmailAffirm) {
+	    	$dataSet = array(
+				'uid' => $uid,
+				'status' => '2'
+			);
+			$isEmailAffirm = $IUserLogin->save($dataSet);
+			if ($isEmailAffirm) {
 
 					/**
 					 * send system message.
@@ -833,12 +817,9 @@ class UserAction extends Action {
 //					);
 //					$MsgSystem->add($msgData);
                     //TODO add bounced notice in case user is online
-                    i_savenotice('10000', $uid, 'system/mailverify', '');
-				}
-				redirect('/user/login', 3, '邮箱验证成功啦 :) 3秒后跳转到登录页面...');
-	    	} else {
-	    		$emailaffirmInfo = "邮箱验证失败 :(";
-	    	}
+                i_savenotice('10000', $uid, 'system/mailverify', '');
+			}
+			redirect('/', 3, '邮箱验证成功啦 :) 3秒后跳转到登录页面...');
 		} else {
 		    $emailaffirmInfo = "邮箱验证失败 :(";
 		}

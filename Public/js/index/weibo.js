@@ -18,7 +18,7 @@ $().ready(function(){
     			        dataType: 'json',
     			        success:function(msg){
     			            if (msg.status == 'ok') {
-								window.location = baseUrl + '?login=weibo';
+								window.location = baseUrl + '/stream';
 							} else if (msg.status == 'step') {
 								alert(msg.info);
 								window.location = baseUrl + msg.data;
