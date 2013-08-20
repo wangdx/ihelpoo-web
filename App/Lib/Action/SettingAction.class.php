@@ -669,7 +669,7 @@ class SettingAction extends Action
                     $newUserId = $UserLogin->save($newUserlogignData);
                     $this->ajaxReturn(0, '', 'yes');
                 } else {
-                    $this->ajaxReturn(0, '账号登录资料已经完善', 'wrong');
+                    $this->ajaxReturn(0, '账号登录资料已经完善，无需修改', 'wrong');
                 }
             }
         }
