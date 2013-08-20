@@ -226,16 +226,19 @@ function Chat(state) {
         if (!fromUser) return; // from might be there
 
 
-        if (!membership && fromUser == _lastUser) {
-            fromUser = '...';
-        } else {
-            _lastUser = fromUser;
-            fromUser += ':';
-        }
+//        if (!membership && fromUser == _lastUser) {
+//            fromUser = '...';
+//        } else {
+//            _lastUser = fromUser;
+//            fromUser += ':';
+//        }
+//
+//        if (membership) {
+//            _lastUser = null;
+//        }
 
-        if (membership) {
-            _lastUser = null;
-        }
+
+        fromUser += ' ';
 
         if (image && image != '') {
             var htmlIn = " <span class='f14 gray '>" + fromUser + "</span>"
