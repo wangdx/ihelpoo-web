@@ -232,7 +232,9 @@ function Chat(state) {
         var status = message.data.status;
 
         var curTo = $('#data_touid').val();
-        if(curTo != from){//not the person chatting with
+        var curFrom = $('#data_uid').val();
+        if(curTo != from && curFrom != from){//not the person chatting with
+            //TODO store the message to DB with not deliver status
             return;
         }
 
