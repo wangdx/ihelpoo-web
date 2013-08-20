@@ -195,6 +195,7 @@ function Chat(state) {
     };
 
     notice = function (from, to, content) {
+        console.log("?????");
         var chat = '1'; // 1. chat
         if (!chat || !chat.length) return;
         $.cometd.publish('/service/notice', {
