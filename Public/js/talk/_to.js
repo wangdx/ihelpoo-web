@@ -381,7 +381,6 @@ function Chat(state) {
     }
 
     function _connectionClosed() {
-        notice(_from, _to, 'close server');
         alert("closed");
         _self.receive({
             data: {
@@ -426,7 +425,7 @@ function Chat(state) {
     }
 
     $(window).unload(function () {
-        alert('bye bye');
+        notice(_from, _to, 'close server');
         if ($.cometd.reload) {
             $.cometd.reload();
             // Save the application state only if the user was chatting
