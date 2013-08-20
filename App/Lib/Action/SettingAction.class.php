@@ -659,7 +659,7 @@ class SettingAction extends Action
                 $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
                 $password = md5($password);
                 $recordUserLogin = $UserLogin->find($userloginid);
-                if (empty($recordUserLogin['email'])) {
+                if (empty($recordUserLogin['email']) || ($recordUserLogin['status'] == '1')) {
                     $newUserlogignData = array(
                         'uid' => $userloginid,
                         'status' => '1',
