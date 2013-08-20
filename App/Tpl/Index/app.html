@@ -8,11 +8,12 @@
   	</ul>
   </div>
   <ul class="main_group_ul">
-  <?php foreach ($appSchoolAd as $app) :?>
+  <?php foreach ($appSchoolAd as $app) { ?>
     <li>
-    <?php echo $app; ?>
+    <p><?php echo $app['content']; ?></p>
+    <span class="f12 gray">添加时间:<?php echo i_time($app['time']); ?></span>
     </li>
-  <?php endforeach; ?>
+  <?php } ?>
   </ul>
   <p class="main_mate_list_num f12 gray">共<?php echo $totalrecords; ?>个应用 <?php echo $totalPages; ?>页</p>
   <div class="main_mate_list_link">
