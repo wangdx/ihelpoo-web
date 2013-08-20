@@ -6,7 +6,7 @@
     <li><a href="__ROOT__/setting"><span class="icon_text"></span> 个人资料</a></li>
     <li><a href="__ROOT__/setting/ps"><span class="icon_write"></span> 修改密码</a></li>
     <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
-    <li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li>
+    <?php if ($configIsLoginWeibo) { ?><li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li><?php } ?>
   </ul>
 </div>
 <div class="s_right">
