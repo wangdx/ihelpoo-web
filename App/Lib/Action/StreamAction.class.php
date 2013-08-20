@@ -724,8 +724,6 @@ class StreamAction extends Action
         $SchoolAd = M("SchoolAd");
         $streamRightSchoolAd = $SchoolAd->where("type = '2' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(3)->select();
         $this->assign('streamRightSchoolAd', $streamRightSchoolAd);
-        $streamHeaderTopSchoolAd = $SchoolAd->where("type = '1' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(6)->select();
-        $this->assign('streamHeaderTopSchoolAd', $streamHeaderTopSchoolAd);
 
         $this->display();
     }

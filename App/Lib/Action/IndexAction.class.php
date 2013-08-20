@@ -426,10 +426,15 @@ class IndexAction extends Action {
     	$title = "应用 ".$recordSchoolInfo['school']." 帮助主题社交网站";
         $this->assign('title',$title);
         $this->assign('schoolname',$recordSchoolInfo['school']);
+        
         $page = i_page_get_num();
         $count = 30;
         $offset = $count * $page;
-        $totalrecords = 0;
+        $SchoolAd = M("SchoolAd");
+        $appSchoolAd = $SchoolAd->where("type = '1' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit($offset, $count)->select();
+        $this->assign('appSchoolAd', $appSchoolAd);
+        
+        $totalrecords = $SchoolAd->where("type = '1' AND sid = $recordSchoolInfo[id]")->count();
         $this->assign('totalrecords',$totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages',$totalPages);
