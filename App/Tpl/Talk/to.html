@@ -1,11 +1,14 @@
-<?php header('Access-Control-Allow-Origin: *'); ?>
-<include file="Talk:header" />
-<link href="__PUBLIC__/css/talk.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<?php header('Access-Control-Allow-Origin: *');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+?>
+<include file="Talk:header"/>
+<link href="__PUBLIC__/css/talk.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
 
 
 <div class="main">
 
-<?php
+    <?php
     Vendor('Ihelpoo.Ofunction');
     $ofunction = new Ofunction();
     if (!empty($_GET['words'])) {
@@ -28,93 +31,129 @@
 	    $say_hello_words = '';
 	}
 ?>
-<ul class="user_list_ul">
-  <?php
+    <ul class="user_list_ul">
+        <?php
   foreach ($talkLists as $talkList):
   ?>
-  <li>
-    <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px" id="<?php echo $talkList['uid'] ?>" >
-      <img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3" />
-      <span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
-    </a>
-    <p class="user_list_nickname">
-    <span class="blue_link"><?php echo $ofunction->cut_str($talkList['nickname'],5) ?></span><span class="sex<?php echo $talkList['sex'] ?>"></span>
-    <br /><span class="f12 gray"><?php echo $ofunction->cut_str($talkList['introduction'], 13) ?></span></p>
-  </li>
-  <?php endforeach; ?>
-  <li style="height: 25px;">
-  <a href="__ROOT__/talk/lists" class="f12 gray" title="编辑悄悄列表"><span class="icon_function"></span>编辑</a>
-  <a href="__ROOT__/mutual/find" class="f12"><span class="icon_plus"></span>添加好友</a>
-  </li>
-</ul>
+        <li>
+            <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a"
+               style="display: inline-block; position: relative; width: 56px; height: 46px"
+               id="<?php echo $talkList['uid'] ?>">
+                <img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40"
+                     class="radius3"/>
+                <span class="online<?php echo $talkList['online'] ?>"
+                      style="position: absolute; bottom: 0; right: 0;"></span>
+            </a>
 
-<div class="user_talk_info">
-  <ul class="user_talk_info_ul">
-    <li>
-      <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>" style="display: inline-block; position: relative; width: 72px; height: 56px">
-        <img src="<?php echo i_icon_check($toUserRecord['uid'], $toUserRecord['icon_url'], 's') ?>" height="51" />
-        <span class="online<?php echo $toUserRecord['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
-      </a>
-    </li>
-    <li><span class="fb"><?php echo $toUserRecord['nickname']; ?></span></li>
-    <li><?php echo i_constellation($toUserRecord['birthday']) ?> <?php echo i_grade($toUserRecord['enteryear']) ?> <span class="sex<?php echo $toUserRecord['sex'] ?>"></span></li>
-    <?php if ($recordSchoolInfo['id'] != $toUserRecord['school']) { ?>
-    	<li><a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/" title="学校" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?></a></li>
-    	<li><a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $toUserAcademy['name']; ?></a></li>
-    	<li><a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
-    <?php } else { ?>
-    	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>" title="学院" class="black_l f12"><?php echo $toUserAcademy['name']; ?></a></li>
-    	<li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>" title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
-    <?php } ?>
-    <li><span class="f12 gray"><?php echo $toUserIntroduction; ?></span></li>
-  </ul>
-</div>
+            <p class="user_list_nickname">
+                <span class="blue_link"><?php echo $ofunction->cut_str($talkList['nickname'],5) ?></span><span
+                    class="sex<?php echo $talkList['sex'] ?>"></span>
+                <br/><span class="f12 gray"><?php echo $ofunction->cut_str($talkList['introduction'], 13) ?></span></p>
+        </li>
+        <?php endforeach; ?>
+        <li style="height: 25px;">
+            <a href="__ROOT__/talk/lists" class="f12 gray" title="编辑悄悄列表"><span class="icon_function"></span>编辑</a>
+            <a href="__ROOT__/mutual/find" class="f12"><span class="icon_plus"></span>添加好友</a>
+        </li>
+    </ul>
 
-<div class="user_talk_ad">
-  <a href="__ROOT__/talk" class="f12 gray"><i class="ico_talk"></i>悄悄话首页</a><br /><br />
-  <a href="__ROOT__/talk/add/<?php echo $toUserRecord['uid'] ?>" class="f12 gray"><i class="ico_favourite"></i>加好友</a>
-</div>
-<div class="user_talk_main_box">
+    <div class="user_talk_info">
+        <ul class="user_talk_info_ul">
+            <li>
+                <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>"
+                   style="display: inline-block; position: relative; width: 72px; height: 56px">
+                    <img src="<?php echo i_icon_check($toUserRecord['uid'], $toUserRecord['icon_url'], 's') ?>"
+                         height="51"/>
+                    <span class="online<?php echo $toUserRecord['online'] ?>"
+                          style="position: absolute; bottom: 0; right: 0;"></span>
+                </a>
+            </li>
+            <li><span class="fb"><?php echo $toUserRecord['nickname']; ?></span></li>
+            <li><?php echo i_constellation($toUserRecord['birthday']) ?> <?php echo i_grade($toUserRecord['enteryear']) ?>
+                <span class="sex<?php echo $toUserRecord['sex'] ?>"></span></li>
+            <?php if ($recordSchoolInfo['id'] != $toUserRecord['school']) { ?>
+            <li>
+                <a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/"
+                   title="学校" class="black_l f12"><?php echo $userLoginSchoolInfo['school']; ?></a></li>
+            <li>
+                <a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>"
+                   title="学院" class="black_l f12"><?php echo $toUserAcademy['name']; ?></a></li>
+            <li>
+                <a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>"
+                   title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
+            <?php } else { ?>
+            <li><a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>" title="学院"
+                   class="black_l f12"><?php echo $toUserAcademy['name']; ?></a></li>
+            <li>
+                <a href="__ROOT__/index/mate?w=academy&n=<?php echo $toUserAcademy['id']; ?>&specialty=<?php echo $toUserSpecialty['id']; ?>"
+                   title="专业" class="black_l f12"><?php echo $toUserSpecialty['name']; ?></a></li>
+            <?php } ?>
+            <li><span class="f12 gray"><?php echo $toUserIntroduction; ?></span></li>
+        </ul>
+    </div>
+
+    <div class="user_talk_ad">
+        <a href="__ROOT__/talk" class="f12 gray"><i class="ico_talk"></i>悄悄话首页</a><br/><br/>
+        <a href="__ROOT__/talk/add/<?php echo $toUserRecord['uid'] ?>" class="f12 gray"><i class="ico_favourite"></i>加好友</a>
+    </div>
+    <div class="user_talk_main_box">
   <span class="gray u_t_m_b_talkto">
     你正在和 <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>"><?php echo $toUserRecord['nickname']; ?></a> 对话
     <span id="input_status" class="f12 black_l"></span>
   </span>
-  <a href="__ROOT__/talk/history/<?php echo $toUserRecord['uid'] ?>" class="u_t_m_b_more"><span class="icon_plus"></span>更多对话记录</a>
-  <div id="show_message_div_outer">
-    <div id="show_message_div"></div>
-  </div>
-  <div class="send_message_textarea_div">
-    <p>&nbsp;&nbsp;<span class="post_icon" id="textareaicon" title="表情"></span> &nbsp;<span class="post_img" id="textareaimg" title="图片"></span></p>
-    <!-- emotionbox hide -->
-		<div id="emotionbox_item">
-			  <p class="emotionbox_close_p">
-				  <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
-				  <a class="emotionbox_change_page" title="微博" value="2">微博</a>
-				  <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
-				  <span id="emotionbox_close" class="close_x" title="关闭">×</span>
-			  </p>
-		  	  <ul class="emotionbox_show_ul"></ul>
-		  </div>
-	<!-- /emotionbox -->
-	<!-- image upload hide -->
-		<div class="img_upload_comment_form_div">
-			<span id="img_upload_comment_form_div_close" class="icon_quit" title="关闭"></span>
-		    <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
-		        <input id="upload_form_img_file" name="uploadedimg" type="file" />
-		        <a class="btn f12" id="img_upload_btn">上传</a>
-		        <span class="imgajaxloading_span"></span>
-		    </form>
-		    <ul id="image_upload_list_ul"></ul>
-		    <input type="hidden" id="image_upload_url" value="" />
-		</div>
-	<!-- /image upload -->
-    <textarea id="send_message_textarea"><?php echo $say_hello_words ?></textarea>
-    <span class="f12 gray send_message_info_span" title="enter + ctrl 快捷发送 (Mac 等其他系统 enter + shift 快捷发送)">enter + ctrl</span>
-    <a id="send_message" class="btn">发送</a>
-  </div>
-  <input type="hidden" id="data_touid" value="<?php echo $toUserRecord['uid'] ?>"/>
-</div>
+        <a href="__ROOT__/talk/history/<?php echo $toUserRecord['uid'] ?>" class="u_t_m_b_more"><span
+                class="icon_plus"></span>更多对话记录</a>
+
+        <div id="show_message_div_outer">
+            <div id="show_message_div">
+                <?php
+        if(!empty($leaveWords)){
+            foreach($leaveWords as $leaveWord){
+                echo  "<span class='f14 gray'>$leaveWord['uid']</span> <span class='f12 gray'>date('H:i:s', $leaveWord['time'])</span><br>$leaveWord['content']<br>";
+                if(!empty($leaveWord['image'])){
+                    echo "<br><a href='$leaveWord["image"]' target='_target'><img src='$leaveWord["image"]' style='max-width:150px;' title='查看原图' /></a><br><br>";
+                }
+
+            }
+                ?>
+            </div>
+        </div>
+        <div class="send_message_textarea_div">
+            <p>&nbsp;&nbsp;<span class="post_icon" id="textareaicon" title="表情"></span> &nbsp;<span class="post_img"
+                                                                                                    id="textareaimg"
+                                                                                                    title="图片"></span>
+            </p>
+            <!-- emotionbox hide -->
+            <div id="emotionbox_item">
+                <p class="emotionbox_close_p">
+                    <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
+                    <a class="emotionbox_change_page" title="微博" value="2">微博</a>
+                    <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
+                    <span id="emotionbox_close" class="close_x" title="关闭">×</span>
+                </p>
+                <ul class="emotionbox_show_ul"></ul>
+            </div>
+            <!-- /emotionbox -->
+            <!-- image upload hide -->
+            <div class="img_upload_comment_form_div">
+                <span id="img_upload_comment_form_div_close" class="icon_quit" title="关闭"></span>
+
+                <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+                    <input id="upload_form_img_file" name="uploadedimg" type="file"/>
+                    <a class="btn f12" id="img_upload_btn">上传</a>
+                    <span class="imgajaxloading_span"></span>
+                </form>
+                <ul id="image_upload_list_ul"></ul>
+                <input type="hidden" id="image_upload_url" value=""/>
+            </div>
+            <!-- /image upload -->
+            <textarea id="send_message_textarea"><?php echo $say_hello_words ?></textarea>
+            <span class="f12 gray send_message_info_span" title="enter + ctrl 快捷发送 (Mac 等其他系统 enter + shift 快捷发送)">enter + ctrl</span>
+            <a id="send_message" class="btn">发送</a>
+        </div>
+        <input type="hidden" id="data_touid" value="<?php echo $toUserRecord['uid'] ?>"/>
+    </div>
 
 </div>
 
-<include file="Public:footer" />
+<include file="Public:footer"/>
