@@ -15,6 +15,17 @@ $config = array(
 	'MAIL_SMTP'=>'smtp.exmail.qq.com',
 	'MAIL_LOGINNAME'=>'info@ihelpoo.com',
 	'MAIL_PASSWORD'=>'help2012',
+
+	/**
+	 * web config
+	 */
+	'IS_LOGIN_WEIBO'=>true,
+	'IS_LOGIN_QQ'=>false,
+	'IS_SEND_MAIL'=>true,
+	'VERIFI_RECORD_TIME'=>'8',
+	'VERIFI_RECORD_UNMS'=>'3',
+	'VERIFI_COMMENT_UNMS'=>'60',
+	'VERIFI_COMMENT_TIME'=>'10',
 );
 
 return array_merge($config,$ooconfig);

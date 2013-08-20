@@ -480,8 +480,7 @@ class ItemAction extends Action {
     					 * show verificaation code
     					 * 999 is a mark number , when show this num, I defined that the system shut verification off;
     					 */
-    					$ISysParameter = D("ISysParameter");
-    					$verificationTimeRule = $ISysParameter->getParam("comment_verifi_time");
+    					$verificationTimeRule = C('VERIFI_COMMENT_TIME');
 
     					/**
     					 * show verification code ; time/second low;
@@ -492,7 +491,7 @@ class ItemAction extends Action {
     					}
     					
     					$timediffer = $lastTwoRecord[0]['time'] - $lastTwoRecord[1]['time'];
-    					if ($timediffer < $verificationTimeRule['value']) {
+    					if ($timediffer < $verificationTimeRule) {
     						/**
     						 * create virification code
     						 */
@@ -505,8 +504,8 @@ class ItemAction extends Action {
 	        					'last1Record' => $lastTwoRecord[0]['time'].$lastTwoRecord[0]['content'].$lastTwoRecord[0]['sid'],
 	        					'last2Record' => $lastTwoRecord[1]['time'].$lastTwoRecord[1]['content'].$lastTwoRecord[1]['sid'],
 	        					'timediffer' => $timediffer,
-	        					'verification Time' => $verificationTimeRule['value'],
-	        					'message' => '最后发布的两条评论时间间隔小于'.$verificationTimeRule['value'],
+	        					'verification Time' => $verificationTimeRule,
+	        					'message' => '最后发布的两条评论时间间隔小于'.$verificationTimeRule,
     						);
     						$this->ajaxReturn($verificationTimeRuleAjaxReturn,"请输入验证码",'verifi');
     					}
@@ -514,9 +513,9 @@ class ItemAction extends Action {
     					/**
     					 * show verification code ; nums/times low;
     					 */
-    					$verificationNumsRule = $ISysParameter->getParam("comment_verifi_nums");
+    					$verificationNumsRule = C('VERIFI_COMMENT_UNMS');
     					$userInsertAll = $RecordComment->where("uid = $userloginid AND time > $recordUserLogin[logintime]")->order("time DESC")->count();
-    					if ($userInsertAll >= $verificationNumsRule['value']) {
+    					if ($userInsertAll >= $verificationNumsRule) {
 
     						/**
     						 * create virification code
@@ -528,8 +527,8 @@ class ItemAction extends Action {
 	    						$_SESSION['verificationresult'] =  $verifiString['result'];
 	    						$verificationNumsRuleAjaxReturn = array(
 	        					'今天发布总数' => $userInsertAll,
-	        					'上线' => $verificationNumsRule['value'],
-	        					'message' => '一天发布评论总数超过上线'.$verificationNumsRule['value'],
+	        					'上线' => $verificationNumsRule,
+	        					'message' => '一天发布评论总数超过上线'.$verificationNumsRule,
     						);
     						$this->ajaxReturn($verificationNumsRuleAjaxReturn,"请输入验证码",'verifi');
     					}
@@ -712,7 +711,6 @@ class ItemAction extends Action {
     	$UserLogin = M("UserLogin");
     	$MsgComment = M("MsgComment");
     	$MsgSystem = M("MsgSystem");
-    	$ISysParameter = D("ISysParameter");
 
         /**
          * add for not login visit
@@ -779,11 +777,9 @@ class ItemAction extends Action {
 
     						/**
     						 * send new helper info email
-    						 *
-    						 * debug here, not test
     						 */
-        					$isMailSendRule = $ISysParameter->getParam("help_mail");
-    						if ($isMailSendRule['value']) {
+        					$isMailSendRule = C('IS_SEND_MAIL');
+    						if ($isMailSendRule) {
     							if (!$isTimeHelpMailSend['id']) {
     								$helpRecordOwener = $UserLogin->find($recorduid);
 

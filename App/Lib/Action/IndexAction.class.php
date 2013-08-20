@@ -69,11 +69,10 @@ class IndexAction extends Action {
         $this->assign('indexbgimg',$indexbgimg);
         
         /**
-         * list school
-        $SchoolInfo = M("SchoolInfo");
-        $resultsSchoolInfo = $SchoolInfo->select();
-        $this->assign('resultsSchoolInfo',$resultsSchoolInfo);
+         * is login weibo & qq
          */
+        $this->assign('configIsLoginWeibo',C('IS_LOGIN_WEIBO'));
+        $this->assign('configIsLoginQq',C('IS_LOGIN_QQ'));
         $this->display();
     }
     

@@ -40,8 +40,6 @@ class StreamAction extends Action
         $recordUserStatus = $UserStatus->find($userloginid);
         $this->assign('recordUserStatus', $recordUserStatus);
 
-        $ISysParameter = D("ISysParameter");
-
         /**
          * post publish
          */
@@ -81,14 +79,14 @@ class StreamAction extends Action
                      * show verificaation code
                      * 999 is a mark number , when show this num, I defined that the system shut verification off;
                      */
-                    $verificationTimeRule = $ISysParameter->getParam("record_verifi_time");
+                    $verificationTimeRule = C('VERIFI_RECORD_TIME');
 
                     /**
                      * show verification code ; time/second low;
                      */
                     $lastTwoRecord = $RecordSay->where("uid = $userloginid")->field("uid,sid,time,content")->order("time DESC")->limit(2)->select();
                     $timediffer = $lastTwoRecord[0]['time'] - $lastTwoRecord[1]['time'];
-                    if ($timediffer < $verificationTimeRule['value']) {
+                    if ($timediffer < $verificationTimeRule) {
                         /**
                          * create virification code
                          */
@@ -101,8 +99,8 @@ class StreamAction extends Action
                             'last1Record' => $lastTwoRecord[0]['time'] . $lastTwoRecord[0]['content'] . $lastTwoRecord[0]['sid'],
                             'last2Record' => $lastTwoRecord[1]['time'] . $lastTwoRecord[1]['content'] . $lastTwoRecord[1]['sid'],
                             'timediffer' => $timediffer,
-                            'verification Time' => $verificationTimeRule['value'],
-                            'message' => '最后发布的两条信息时间间隔小于' . $verificationTimeRule['value'],
+                            'verification Time' => $verificationTimeRule,
+                            'message' => '最后发布的两条信息时间间隔小于' . $verificationTimeRule,
                         );
                         $this->ajaxReturn($verificationTimeRuleAjaxReturn, "请输入验证码", 'verifi');
                     }
@@ -110,9 +108,9 @@ class StreamAction extends Action
                     /**
                      * show verification code ; nums/times low;
                      */
-                    $verificationNumsRule = $ISysParameter->getParam("record_verifi_nums");
+                    $verificationNumsRule = C('VERIFI_RECORD_UNMS');
                     $userInsertAll = $RecordSay->where("uid = $userloginid AND time > $recordUserLogin[logintime]")->order("time DESC")->count();
-                    if ($userInsertAll >= $verificationNumsRule['value']) {
+                    if ($userInsertAll >= $verificationNumsRule) {
 
                         /**
                          * create virification code
@@ -124,8 +122,8 @@ class StreamAction extends Action
                         $_SESSION['verificationresult'] = $verifiString['result'];
                         $verificationNumsRuleAjaxReturn = array(
                             '今天发布总数' => $userInsertAll,
-                            '上线' => $verificationNumsRule['value'],
-                            'message' => '一天发布总数超过上线' . $verificationNumsRule['value'],
+                            '上线' => $verificationNumsRule,
+                            'message' => '一天发布总数超过上线' . $verificationNumsRule,
                         );
                         $this->ajaxReturn($verificationNumsRuleAjaxReturn, "请输入验证码", 'verifi');
                     }

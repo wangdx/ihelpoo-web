@@ -312,113 +312,44 @@ class UserAction extends Action {
         if ($userloginid) {
             $this->ajaxReturn(0,'已经登录','exist');
     	}
+    	$recordSchoolInfo = i_school_domain();
         $UserLogin = M("UserLogin");
         $UserLoginWb = M("UserLoginWb");
         if (!empty($_POST['i_w_user_id'])) {
             $isWeiboExist = $UserLoginWb->where("weibo_uid = $_POST[i_w_user_id]")->find();
             if (empty($isWeiboExist['uid'])) {
-            	$email = '';
-            	$password = '';
+            	
+            	$email = $_POST['i_w_user_id']."@loginweibo.com";
+            	$password = rand(10000000, 99999999);;
             	$nickname = $_POST['i_w_user_name'];
             	if ($_POST['i_w_user_sex'] == 'm') {
-            	    $sex = 1;
+            		$sex = 1;
             	} else {
             		$sex = 2;
             	}
+            	$birthday = "";
+            	$dateInfo = getdate();
+            	$enteryear = $dateInfo['year'];
             	$introduction = $_POST['i_w_user_description'];
-            	$enteryear = 2012;
-            	
-            	/**
-            	 * iuc user data
-            	 * get autoincrement uid
-            	 */
-	            $url = "http://ihelpoousercenter.sinaapp.com/iuc/returnautoincrementuidweibo?weibo_uid=".$_POST['i_w_user_id']."&nickname=".urlencode($nickname)."&sex=".$sex."&introduction=".urlencode($introduction)."&school=hbmy&pw=".md5('ihelpoo2013');
-        		$userdatacontents = file_get_contents($url);
-        		if ($userdatacontents != 'false') {
-        			$userdatacontentArray = json_decode($userdatacontents,TRUE);
-        			if (is_array($userdatacontentArray)) {
-        				$iucUid = $userdatacontentArray['uid'];
-        				$email = $userdatacontentArray['email'];
-        				$password = $userdatacontentArray['password'];
-        				$nickname = $userdatacontentArray['nickname'];
-        				$sex = $userdatacontentArray['sex'];
-        				$introduction = $userdatacontentArray['introduction'];
-        				$academyOp = 99;
         				
-        				if (!empty($userdatacontentArray['icon_url'])) {
-	        				$cutIconFullPath = "http://zzuli-public.stor.sinaapp.com/useralbum/".$userdatacontentArray['uid']."/".$userdatacontentArray['icon_url'].".jpg";
-				            $imgObj = imagecreatefromjpeg($cutIconFullPath);
-				
-				            /**
-				             * new image file
-				             */
-				        	$srcTempLargeIconFilename = SAE_TMP_PATH.'temp'.$userdatacontentArray['uid'].time().'.jpg';
-				        	$srcTempMiddleIconFilename = SAE_TMP_PATH.'temp'.$userdatacontentArray['uid'].time().'_m.jpg';
-				        	$srcTempSmallIconFilename = SAE_TMP_PATH.'temp'.$userdatacontentArray['uid'].time().'_s.jpg';
-				            imagejpeg($imgObj,$srcTempLargeIconFilename);
-				
-				            /**
-				             * destroy
-				             */
-				            imagedestroy($imgObj);
-				
-				        	/**
-				        	 * create size middle 180 * 135 & small 68 * 51
-				        	 */
-				        	$imgLarge = imagecreatefromjpeg($srcTempLargeIconFilename);
-				        	$imgMiddleObj = imagecreatetruecolor(180, 135);
-				        	imagecopyresampled($imgMiddleObj, $imgLarge, 0, 0, 0, 0, 180, 135, 500, 375);
-				        	imagejpeg($imgMiddleObj, $srcTempMiddleIconFilename, 100);
-				        	$imgSmallObj = imagecreatetruecolor(68, 51);
-				        	imagecopyresampled($imgSmallObj, $imgLarge, 0, 0, 0, 0, 68, 51, 500, 375);
-				        	imagejpeg($imgSmallObj, $srcTempSmallIconFilename, 100);
-				            imagedestroy($imgMiddleObj);
-				            imagedestroy($imgSmallObj);
-				            imagedestroy($imgLarge);
-				
-				            /**
-				             * image handle ok print json
-				             */
-				            $fullpath = "/useralbum/".$userdatacontentArray['uid']."/";
-				            $newImageName = "icon".$userdatacontentArray['uid'].time();
-				            $storageLargeIconFilename = $fullpath.$newImageName.".jpg";
-				            $storageMiddleIconFilename = $fullpath.$newImageName."_m.jpg";
-				            $storageSmallIconFilename = $fullpath.$newImageName."_s.jpg";
-				            $storage = new SaeStorage();
-				            $storage->upload("public",$storageSmallIconFilename,$srcTempSmallIconFilename);
-				            $storage->upload("public",$storageMiddleIconFilename,$srcTempMiddleIconFilename);
-				            $newfilepath = $storage->upload("public",$storageLargeIconFilename,$srcTempLargeIconFilename);
-				            unset($srcTempLargeIconFilename);
-				            unset($srcTempMiddleIconFilename);
-				            unset($srcTempSmallIconFilename);
-        				} else {
-        					$newImageName = '';
-        				}
-        			} else {
-        				$iucUid = (int)$userdatacontents;
-        			}
-        		}
             	
                 /**
                  * insert new user
                  */
-        		$userdatacontentArraySchool = $userdatacontentArray['school'] == NULL ? 'hbmy' : $userdatacontentArray['school'];
             	$newUserData = array(
-            		'uid' => $iucUid,
+            		'uid' => '',
             		'status' => 1,
             		'email' => $email,
             		'password' => $password,
             		'nickname' => $nickname,
             		'sex' => $sex,
-            		'birthday' => $userdatacontentArray['birthday'],
-            		'enteryear' => $userdatacontentArray['enteryear'],
+            		'birthday' => $birthday,
+            		'enteryear' => $enteryear,
             		'type' => '1',
             		'priority' => '4',
             		'logintime' => time(),
             		'creat_ti' => time(),
-            		'icon_fl' => 1,
-            		'icon_url' => $newImageName,
-            		'school' => $userdatacontentArraySchool,
+            		'school' => $recordSchoolInfo['id'],
             		'online' => 1,
             		'coins' => 0,
             		'active' => 0,
@@ -443,13 +374,13 @@ class UserAction extends Action {
                 $rowUserInfo = array (
                     'uid' => $lastInsertUid,
                     'introduction' => $introduction,
-                   	'academy_op' => $academyOp,
-                	'province_op' => $userdatacontentArray['province_op'],
-                	'city_op' => $userdatacontentArray['city_op'],
-                	'realname' => $userdatacontentArray['realname'],
-                	'realname_re' => $userdatacontentArray['realname_re'],
-                	'mobile' => $userdatacontentArray['mobile'],
-                	'qq' => $userdatacontentArray['qq'],
+                   	'academy_op' => '',
+                	'province_op' => '',
+                	'city_op' => '',
+                	'realname' => '',
+                	'realname_re' => '',
+                	'mobile' => '',
+                	'qq' => '',
                    	'weibo' => 'http://weibo.com/'.$_POST['i_w_user_id'],
                    	'dynamic' => 1,
                    	'fans' => 0,
@@ -471,7 +402,7 @@ class UserAction extends Action {
                  * send system message.
                  */
                 $MsgSystem = M("MsgSystem");
-                $msgRegisterContent = "欢迎".$nickname."通过微博来到民院我帮圈圈:) 故事开始啦!";
+                $msgRegisterContent = "欢迎".$nickname."通过微博来到".$recordSchoolInfo['school']."我帮圈圈:) 故事开始啦!";
                 $msgRegisterData = array(
                     'id' => NULL,
                     'uid' => $lastInsertUid,
@@ -506,15 +437,11 @@ class UserAction extends Action {
 	             * fillaccount
 	             */
 	            session('userloginid',$lastInsertUid);
-	            if (empty($email)) {
-	            	$this->ajaxReturn('setting/fillaccount','微博注册登录成功，请完善账号资料...','step');
-	            } else {
-	            	$this->ajaxReturn('stream','微博登录，从我帮圈圈用户中心迁移数据成功...','step');
-	            }
+	            $this->ajaxReturn('setting/fillaccount','微博注册登录成功，请完善账号资料...','step');
             } else {
                 $weiboUserLogin = $UserLogin->find($isWeiboExist['uid']);
                 if (empty($weiboUserLogin['email']) || empty($weiboUserLogin['password'])) {
-                	session('userloginid',$isWeiboExist['uid']);
+                	session('userloginid', $isWeiboExist['uid']);
                 	$this->ajaxReturn('setting/fillaccount','登录成功，请完善账号资料...','step');
                 }
                 
@@ -531,7 +458,6 @@ class UserAction extends Action {
         }
         $this->ajaxReturn(0,'登录失败','wrong');
     }
-    
 
     public function quit()
     {
