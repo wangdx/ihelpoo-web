@@ -175,6 +175,11 @@ class TalkAction extends Action
         $toUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
 
 
+        $redis = new Redis();
+        $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
+        $redis->set($userloginid, $toUserId);
+
+
         //FIXME table might be write-locked
         $TalkContent = M("TalkContent");
         $leaveWords = $TalkContent->where("i_talk_content.uid = $toUserId AND touid = $userloginid AND deliver = '0' ")
