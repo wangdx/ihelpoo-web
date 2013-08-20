@@ -191,6 +191,20 @@ function Chat(state) {
             status: '',
             image: image
         });
+        notice(_from, _to);
+    };
+
+    this.notice = function (from, to) {
+        var chat = '4';
+        var image = '无';
+        if (!chat || !chat.length) return;
+        $.cometd.publish('/service/notice', {
+            room: '/notice/p2p',
+            from: from,
+            to: to,
+            chat: chat,
+            image: image
+        });
     };
 
     this.updateInputStatus = function (status) {
@@ -286,6 +300,8 @@ function Chat(state) {
     function _subscribe() {
         _chatSubscription = $.cometd.subscribe('/chat/p2p', _self.receive);
         _membersSubscription = $.cometd.subscribe('/members/p2p', _self.members);
+        _chatSubscription = $.cometd.subscribe('/notice/p2p', _self.receive);
+        _membersSubscription = $.cometd.subscribe('/users/p2p', _self.members);
     }
 
     function _connectionInitialized() {
