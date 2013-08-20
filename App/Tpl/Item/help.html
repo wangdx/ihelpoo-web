@@ -130,8 +130,7 @@
                 <input type="hidden" name="textareacontent" id="textareacontent"/>
                 <textarea id="help_content_from_textarea" name="helpcontent"></textarea>
                 <span class="i_help_comment_textarea_info f12"></span>
-                <a id="help_content_from_btn" class="btn f12 system_notice2">我来帮助</a>
-
+                <a id="help_content_from_btn" class="btn f12">我来帮助</a>
                 <p class="i_c_b_form_icon_p">
                     <span class="post_icon" id="textareaicon" title="表情"></span>
                     <span class="post_img" id="textareaimg" title="图片"></span>
@@ -164,19 +163,15 @@
             <?php
 		      	if ($sayRecord['uid'] == $userloginedrecord['uid']) {
           			if("2" == $helpRecord['status']) {
-              			echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span
-                class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
-            echo "
-            <form method='post' id='thanksForm'>" ?>
+              			echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
+            	echo " <form method='post' id='thanksForm'>" ?>
                 <ul>
                     <?php
 		              	foreach ($userChooseArray as $userChoose) :
 							$userChooseRecord = $IUserLogin->field('uid,nickname')->find($userChoose);
-                    echo "
-                    <li><a href='".__ROOT__."/wo/".$userChoose."' class='getuserinfo' userid='$userChoose'>$userChooseRecord[nickname]</a>";
+                    echo " <li><a href='".__ROOT__."/wo/".$userChoose."' class='getuserinfo' userid='$userChoose'>$userChooseRecord[nickname]</a>";
                         echo "<input type='radio' name='chooseid' value='".$userChoose."'/>选择
-                    </li>
-                    ";
+                    </li> ";
                     endforeach;
                     ?>
                 </ul>
@@ -184,13 +179,7 @@
                 <textarea name="choosethanks"></textarea>
                 <input type="hidden" name="sid" value="<?php echo $helpRecord['sid'] ?>">
                 <input type="submit" value="感谢" class="system_notice" />
-                <?php
-		              	echo "</form>
-        </div>
-        ";
-        }
-        }
-        ?>
+                <?php echo "</form> </div> "; } } ?>
     </div>
     <?php } ?>
 </div>
@@ -214,10 +203,8 @@
 <ul class="i_record_plus black_l f12">
     <?php foreach ($recordPlusArray as $recordPlus): ?>
     <li>
-        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo"
-           userid="<?php echo $recordPlus['uid']?>">
-            <img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30"
-                 class="radius3"/> <?php echo $recordPlus['nickname'] ?>
+        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>">
+            <img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3"/> <?php echo $recordPlus['nickname'] ?>
         </a>
         赞过
         <span class="gray"><?php echo i_time($recordPlus['create_time']) ?></span>
@@ -231,13 +218,11 @@
     <ul class="i_comment_list_ul">
         <?php foreach ($allHelpreply as $helpreply) : ?>
         <li>
-            <?php echo "<a href='".__ROOT__."/wo/".$helpreply['uid']."'>" ?>
-            <img src="<?php echo i_icon_check($helpreply['uid'], $helpreply['icon_url'], 's') ?>" height="50"
-                 class="i_c_l_u_li_img radius3"/>
+            <a href="/wo/<?php echo $helpreply['uid']; ?>">
+            	<img src="<?php echo i_icon_check($helpreply['uid'], $helpreply['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3"/>
             </a>
             <div class="i_c_l_u_li_div black_l">
-                <?php echo "<a href='".__ROOT__."/wo/".$helpreply['uid']."' class='getuserinfo' userid='".$helpreply['uid']."'>
-                ".$helpreply['nickname']."</a>" ?>
+                <?php echo "<a href='".__ROOT__."/wo/".$helpreply['uid']."' class='getuserinfo' userid='".$helpreply['uid']."'> ".$helpreply['nickname']."</a>" ?>
 		      <span class="f12 gray fb">
 		      <?php
 		      	if (!empty($helpreply['toid'])) {
@@ -261,8 +246,7 @@
 			      <?php if ($helpreply['uid'] != $userloginedrecord['uid']) { ?>
                   <a class="help_comment_reply">追问</a> <span class="icon_plus"></span>
                   <?php } else { ?>
-                  <span class="icon_plus"></span> <a class="delete_help_reply_btn red_l"
-                                                     value="<?php echo $helpreply['id'] ?>">删除</a>
+                  <span class="icon_plus"></span> <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
                   <?php } if ($userloginedrecord['uid'] == $sayRecord['uid'] && $helpreply['uid'] != $userloginedrecord['uid']) { ?>
                   <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
                   <?php } ?>
@@ -278,8 +262,7 @@
                 <textarea class="help_comment_reply_form_textarea" name="helpcontent"></textarea>
                 <input type="hidden" name="atusers" class="help_reply_atusers"/>
                 <input type="hidden" name="textareacontent" class="help_reply_textareacontent"/>
-                <input type="button" class="help_comment_reply_btn" value="追问" onclick="notice.send('system', '<?php echo $helpreply["uid"] ?>');"/>
-
+                <input type="button" class="help_comment_reply_btn" value="追问" />
                 <p style="padding-left:290px;"><span class="post_icon reply_emotionbox_icon"></span></p>
             </form>
             <?php } ?>
@@ -299,4 +282,3 @@
 <script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/item/help.js?id=1"></script>
 <include file="Public:footer"/>
-

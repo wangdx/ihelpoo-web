@@ -695,7 +695,7 @@ class ItemAction extends Action {
 	                    'time' => i_time(time())
     				);
     				$noticeSendUsers = $sayRecord['uid'];
-    				if (!empty($toid)) {
+    				if (!empty($toid) && ($noticeSendUsers != $toid)) {
     					$noticeSendUsers = $sayRecord['uid'].",".$toid;
     				}
     				$this->ajaxReturn($jsonEncode,$noticeSendUsers,'yes');
@@ -835,8 +835,8 @@ class ItemAction extends Action {
     					/**
     					 * update help times(comment_count) nums
     					 */
+    					$sayRecord = $RecordSay->where("sid = $sid")->find();
     					if (!$isTimeHelpMailSend['id'] && ($recorduid != $userloginid)) {
-    						$sayRecord = $RecordSay->where("sid = $sid")->find();
     						$comment_co = $sayRecord['comment_co'] + 1;
 
     						/**
@@ -970,7 +970,11 @@ class ItemAction extends Action {
     					'image' => $imageurl,
 	                    'time' => date("Y-m-d H:i", time()),
     				);
-    				$this->ajaxReturn($jsonEncode, '帮助回复成功', 'yes');
+    				$noticeSendUsers = $sayRecord['uid'];
+    				if (!empty($toid) && ($noticeSendUsers != $toid)) {
+    					$noticeSendUsers = $sayRecord['uid'].",".$toid;
+    				}
+    				$this->ajaxReturn($jsonEncode, $noticeSendUsers, 'yes');
     			}
     		}
 

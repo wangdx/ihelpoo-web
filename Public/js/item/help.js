@@ -243,6 +243,7 @@ $().ready(function(){
                     $('.i_comment_list_ul').append(helpContent);
                     var bodyHeight = $("body").height();
                     $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+                    notice.send('system', msg.info);
                 } else {
                     ajaxInfo(msg.info);
                 }
@@ -295,6 +296,7 @@ $().ready(function(){
                     $('.i_comment_list_ul').append(commentContent);
                     var bodyHeight = $("body").height();
                     $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+                    notice.send('system', msg.info);
                 } else {
                     ajaxInfo(msg.info);
                 }

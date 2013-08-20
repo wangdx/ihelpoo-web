@@ -359,6 +359,29 @@ $().ready(function(){
                     $this.html('评论');
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
+                    notice.send('comment', msg.info);
+                    
+                    /**
+                     * 
+                     */
+                    var weiboswitch = $('#weiboswitchjs').val();
+                    var sayid = $('#sayid').val();
+                    if (weiboswitch == 'on') {
+                    	var sayweiboid = $('#weiboswitchjs').attr('weiboid');
+                    	var newitemsayurl = baseUrl + 'item/say/' + sayid;
+        				WB2.anyWhere(function(W){
+	        	        	W.parseCMD("/comments/create.json", function(sResultCreate, bStatusCreate){
+	        	        		if(bStatusCreate == true) {
+	        	        	    }
+	        	        	},{
+	        	        		id : sayweiboid,
+	        	        		comment : msg.data.uidnickname + ' : ' + msg.data.content + newitemsayurl,
+	        	        		comment_ori : '1'
+	        	        	},{
+	        	        		method: 'post'
+	        	        	});
+	        	        });
+                    }
                 } else {
                     ajaxInfo(msg.info);
                     $this.html('评论');
@@ -430,6 +453,7 @@ $().ready(function(){
                     $('.i_comment_list_ul').prepend(commentContent);
                     $this.parent().find('.comment_reply_verification').hide();
                     $this.parent().find('.comment_reply_verificationcode').val('999');
+                    notice.send('comment', msg.info);
                 } else {
                     ajaxInfo(msg.info);
                 }
