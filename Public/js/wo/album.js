@@ -28,7 +28,9 @@ $().ready(function(){
     		data:{imageid: delImageid},
     		dataType: "json",
     		success:function(msg){
-    			 if (msg.status == 'ok') {
+    			if (msg.status == 'ok') {
+    				$("#ajax_info_div").fadeOut("fast");
+    				$("#ajax_info_div_outer").hide();
      				$('#i_shine_hit_in').fadeIn('normal').html(msg.info).delay(800).fadeOut('normal');
      				setTimeout('pageToWoAlbum()',3000);
      			} else if (msg.status == 'existsay') {
