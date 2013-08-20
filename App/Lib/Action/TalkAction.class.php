@@ -177,7 +177,9 @@ class TalkAction extends Action
 
         //FIXME table might be write-locked
         $TalkContent = M("TalkContent");
-        $leaveWords = $TalkContent->where("uid = $toUserId AND touid = $userloginid AND deliver = '0' ")->order("time DESC")->select();
+        $leaveWords = $TalkContent->where("uid = $toUserId AND touid = $userloginid AND deliver = '0' ")
+            ->join('i_user_login ON i_talk_content.uid = i_user_login.uid')
+            ->order("time DESC")->select();
         $this->assign('leaveWords', $leaveWords);
         foreach ($leaveWords as $leaveWord) {
             $updateData = array(
