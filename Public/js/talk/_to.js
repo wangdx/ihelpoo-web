@@ -368,6 +368,7 @@ function Chat(state) {
     }
 
     function _connectionBroken() {
+        alert("broken");
         _self.receive({
             data: {
                 user: 'system',
@@ -378,6 +379,7 @@ function Chat(state) {
     }
 
     function _connectionClosed() {
+        alert("closed");
         _self.receive({
             data: {
                 user: 'system',
