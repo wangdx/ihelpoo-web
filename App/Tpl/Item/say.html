@@ -254,8 +254,8 @@ if (!$findReplyPlace && !empty($_GET['ncid']) && $pagenow <= $totalPages) {
 <?php if ($weiboswitch) { ?>
 <input type="hidden" id="weiboswitchjs" value="on" weiboid="<?php echo $weiboswitch; ?>"/>
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1750412810" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__PUBLIC__/js/item/sayweibo.js?id=1"></script>
 <?php } else { ?>
-<input type="hidden" id="weiboswitchjs" value="off" />
-<?php } ?>
 <script type="text/javascript" src="__PUBLIC__/js/item/say.js?id=1"></script>
+<?php } ?>
 <include file="Public:footer" />

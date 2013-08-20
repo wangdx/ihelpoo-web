@@ -359,6 +359,28 @@ $().ready(function(){
                     $this.html('评论');
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
+                    
+                    /**
+                     * 
+                     */
+                    var weiboswitch = $('#weiboswitchjs').val();
+                    var sayid = $('#sayid').val();
+                    if (weiboswitch == 'on') {
+                    	var sayweiboid = $('#weiboswitchjs').attr('weiboid');
+                    	var newitemsayurl = baseUrl + 'item/say/' + sayid;
+        				WB2.anyWhere(function(W){
+	        	        	W.parseCMD("/comments/create.json", function(sResultCreate, bStatusCreate){
+	        	        		if(bStatusCreate == true) {
+	        	        	    }
+	        	        	},{
+	        	        		id : sayweiboid,
+	        	        		comment : msg.data.uidnickname + ' : ' + msg.data.content + newitemsayurl,
+	        	        		comment_ori : '1'
+	        	        	},{
+	        	        		method: 'post'
+	        	        	});
+	        	        });
+                    }
                 } else {
                     ajaxInfo(msg.info);
                     $this.html('评论');
