@@ -69,6 +69,7 @@ class WoAction extends Action {
          */
         $recordSchoolInfo = i_school_domain();
         $this->assign('recordSchoolInfo', $recordSchoolInfo);
+        $this->assign('schoolname', $recordSchoolInfo['school']);
         $OpAcademy = M("OpAcademy");
         $OpSpecialty = M("OpSpecialty");
         if (!empty($recordUserInfo['academy_op'])) {
