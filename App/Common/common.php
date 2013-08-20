@@ -573,7 +573,7 @@ function i_configure_album_size($userLevel)
         return $totalAlbumDefaultSize = 0.5 * 1073741824;
     } else if ($userLevel <= 6) {
         return $totalAlbumDefaultSize = 1 * 1073741824;
-    } else if ($userLevel <= 8) {
+    } else if ($userLevel <= 7) {
         return $totalAlbumDefaultSize = 4 * 1073741824;
     } else if ($userLevel <= 10) {
         return $totalAlbumDefaultSize = 16 * 1073741824;
