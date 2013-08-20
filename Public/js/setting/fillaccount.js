@@ -21,9 +21,7 @@ $().ready(function(){
                     $("#infopsupdateok").slideDown('normal').delay(1500);
                     window.location = baseUrl + 'stream';
                 } else if (data.status == "wrong") {
-                	$("#ajaxprogressbar").html("<p id='infopsupdateok'><span class='icon_right'></span> 账号资料已经完善，关闭此页面，我帮圈圈去吧!</p>");
-                    $("#infopsupdateok").slideDown('normal').delay(1500);
-                    window.location = baseUrl + 'stream';
+                    showWrongInfo(data.info);
                 }
                 $('#ajaxprogressbar').html('');
             }, "json");
