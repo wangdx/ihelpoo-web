@@ -191,7 +191,7 @@ function Chat(state) {
             status: '',
             image: image
         });
-        notice(_from, _to);
+        this.notice(_from, _to);
     };
 
     this.notice = function (from, to) {
