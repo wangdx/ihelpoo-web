@@ -55,7 +55,7 @@ $().ready(function(){
         }
     });
     $('#nickname').blur(function(){
-        nicknameok = 'no';
+    	nicknameok = 'no';
         var nicknamecheck = $('#nickname').val();
         var nicknamelength = nicknamecheck.length;
         $('#nicknameinfo').html($infoLoading);
@@ -77,7 +77,6 @@ $().ready(function(){
                     } else if ('exist' == msg.status) {
                         $('#nicknameinfo').html('× 昵称已经存在');
                     }
-                    $('#nicknameinfo').html('');
                 }
             });
         }
