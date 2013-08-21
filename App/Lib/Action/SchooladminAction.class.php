@@ -427,12 +427,12 @@ class SchooladminAction extends Action {
     		$OpSpecialty = M("OpSpecialty");
     		$isExistOpSpecialty = $OpSpecialty->where("academy = $suredelid")->find();
     		if (!empty($isExistOpSpecialty['id'])) {
-    			redirect('/schooladmin/academy', 1, '存在相关专业，不能删除，请先删除该学院下面的专业 exist...');
+    			redirect('/schooladmin/academy', 3, '存在相关专业，不能删除，请先删除该学院下面的专业 exist...');
     		}
     		$UserInfo = M("UserInfo");
     		$isExistUserInfo = $UserInfo->where("academy_op = $suredelid")->find();
     		if (!empty($isExistUserInfo['uid'])) {
-    			redirect('/schooladmin/academy', 1, '该学院下面已经有同学了，不能删除，建议修改名字 exist...');
+    			redirect('/schooladmin/academy', 3, '该学院下面已经有同学了，不能删除，建议修改名字 exist...');
     		}
     		if (!empty($suredelid)) {
     			$deleteOpAcademy = $OpAcademy->where("id = $suredelid AND school = $schoolid")->find();
@@ -547,7 +547,7 @@ class SchooladminAction extends Action {
     		$UserInfo = M("UserInfo");
     		$isExistUserInfo = $UserInfo->where("specialty_op = $suredelid")->find();
     		if (!empty($isExistUserInfo['uid'])) {
-    			redirect('/schooladmin/specialty', 1, '该专业下面已经有同学了，不能删除，建议修改名字 exist...');
+    			redirect('/schooladmin/specialty', 3, '该专业下面已经有同学了，不能删除，建议修改名字 exist...');
     		}
     		if (!empty($suredelid)) {
     			$deleteOpSpecialty = $OpSpecialty->where("id = $suredelid AND school = $schoolid")->find();
@@ -668,7 +668,7 @@ class SchooladminAction extends Action {
     		$UserInfo = M("UserInfo");
     		$isExistUserInfo = $UserInfo->where("dormitory_op = $suredelid")->find();
     		if (!empty($isExistUserInfo['uid'])) {
-    			redirect('/schooladmin/specialty', 1, '该寝室下面已经有同学了，不能删除，建议修改名字 exist...');
+    			redirect('/schooladmin/dormitory', 3, '该寝室下面已经有同学了，不能删除，建议修改名字 exist...');
     		}
     		if (!empty($suredelid)) {
     			$deleteOpDormitory = $OpDormitory->where("id = $suredelid AND school = $schoolid")->find();
