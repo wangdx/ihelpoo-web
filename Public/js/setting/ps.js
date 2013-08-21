@@ -5,11 +5,7 @@ $().ready(function(){
         var password = $("#password").val();
         var passwordrepeat = $("#passwordrepeat").val();
         var passwordLength = password.length;
-        $(this).ajaxStart(function(){
-    	    $('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-    	    $infoLoading.remove();
-        });
+    	$('#ajaxprogressbar').html($infoLoading);
         if (passwordoriginal == "") {
             showWrongInfo('原始密码不能为空');
         } else if (passwordLength < 6) {
@@ -27,6 +23,7 @@ $().ready(function(){
                 } else if (data.status == "wrong") {
                     showWrongInfo(data.info);
                 }
+                $('#ajaxprogressbar').html('');
             }, "json");
         }
     });
