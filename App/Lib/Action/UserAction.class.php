@@ -178,6 +178,9 @@ class UserAction extends Action {
             /**
              * ass msg active record
              */
+            if (empty($msgActiveArray['total'])) {
+            	$msgActiveArray['total'] = 0;
+            }
             if ($dayRules) {
             	$MsgActive->add($msgActiveArray);
             }
