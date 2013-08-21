@@ -1042,7 +1042,7 @@ class SchooladminAction extends Action {
          * post
          */
         if (!empty($_GET['sendmail'])) {
-            $uid = $_GET['sendmail'];
+            $uid = (int)$_GET['sendmail'];
             $UserLogin = M("UserLogin");
             $recordUserLogin = $UserLogin->find($uid);
             $toEmail = $recordUserLogin['email'];
@@ -1075,12 +1075,14 @@ class SchooladminAction extends Action {
                 /**
                  * update i_admin_realnalemf.allow
                  */
-                $recordAdminRealnamemf = $AdminRealnamemf->where("uid = $uid AND allow != '1'")->find();
-                $dataAf = array(
-                	'id' => $recordAdminRealnamemf['id'],
-                    'allow' => 1
-                );
-                $isUpdateAdminRealnamemf = $AdminRealnamemf->save($dataAf);
+                $recordAdminRealnamemf = $AdminRealnamemf->where("uid = $uid AND allow != '1'")->select();
+                foreach ($recordAdminRealnamemf as $realnamemf) {
+	                $dataAf = array(
+	                	'id' => $realnamemf['id'],
+	                    'allow' => 1
+	                );
+	                $AdminRealnamemf->save($dataAf);
+                }
 
                 /**
                  * update i_user_infoconn
