@@ -694,9 +694,13 @@ class ItemAction extends Action {
     					'image' => $imageurl,
 	                    'time' => i_time(time())
     				);
-    				$noticeSendUsers = $sayRecord['uid'];
-    				if (!empty($toid) && ($noticeSendUsers != $toid)) {
+    				
+    				if ($sayRecord['uid'] == $userloginid) {
+    					$noticeSendUsers = $toid;
+    				} else if (!empty($toid) && ($sayRecord['uid'] != $toid)) {
     					$noticeSendUsers = $sayRecord['uid'].",".$toid;
+    				} else {
+    					$noticeSendUsers = $sayRecord['uid'];
     				}
     				$this->ajaxReturn($jsonEncode,$noticeSendUsers,'yes');
     			}
