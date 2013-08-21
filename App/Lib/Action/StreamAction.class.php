@@ -475,7 +475,7 @@ class StreamAction extends Action
                 $pidString = substr($pidString, 0, -1);
                 $select->where("i_record_say.uid IN ($pidString) AND say_type != '9'");
             } else {
-                $select->where("say_type != '9'");
+                $select->where("i_record_say.uid = 0");
             }
             $select->order('i_record_say.last_comment_ti DESC');
             $streamway = "priority";
