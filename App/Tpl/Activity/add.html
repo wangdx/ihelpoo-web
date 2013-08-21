@@ -17,12 +17,12 @@
 <ul class="activity_add_ul">
 	<li>
       <span class="activity_add_title">主&#12288;&#12288;题:</span>
-      <input type="hidden" name="aid" value="{$editActivityItem['aid']}" />
+      <input type="hidden" name="aid" value="{$editActivityItem['aid']}" class="input_style" />
       <input id="subject" class="activity_add_input" type="text" name="subject" value="{$editActivityItem['subject']}" />
     </li>
     <li>
       <span class="activity_add_title">活动时间:</span>
-      <input id="activity_ti" class="activity_add_input" type="text" name="activity_ti" value="<?php echo $editActivityItem['activity_ti'] == NULL ? date('Y-m-d', time()) : date('Y-m-d', $editActivityItem['activity_ti']); ?>" />
+      <input id="activity_ti" class="activity_add_input" type="text" name="activity_ti" class="input_style" value="<?php echo $editActivityItem['activity_ti'] == NULL ? date('Y-m-d', time()) : date('Y-m-d', $editActivityItem['activity_ti']); ?>" />
       <span class="gray f12">格式时间事例 2012-03-01</span>
     </li>
     <li>
