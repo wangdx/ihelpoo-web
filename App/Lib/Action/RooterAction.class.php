@@ -124,59 +124,6 @@ class RooterAction extends Action {
     	$this->display();
     }
 
-    public function parameter()
-    {
-    	$admin = logincheck();
-    	$AdminUser = M("AdminUser");
-    	$recordAdminUser = $AdminUser->find($adminuid);
-    	if ($recordAdminUser['priority'] != '1') {
-    		redirect('/rooter/main', 3, '危险操作, 非技术权限暂时关闭...');
-    	}
-    	$this->assign('title','系统参数配置');
-        $SysParameter = M("SysParameter");
-        $sysParameterRecords = $SysParameter->order('id ASC')->select();
-        $this->assign('sysParameterRecords',$sysParameterRecords);
-
-        /**
-         * update system parameter
-         */
-        if ($this->isPost()) {
-        	$parameter = $_POST['parameter'];
-        	$paravalue = $_POST['paravalue'];
-        	$recordSysParameter = $SysParameter->where("parameter = '$parameter'")->find();
-        	if (empty($recordSysParameter['id'])) {
-        		redirect('/rooter/parameter', 3, 'empty parameter...');
-        	}
-        	$newParameter = array(
-        		'id' => $recordSysParameter['id'],
-        		'parameter' => $parameter,
-        		'value' => $paravalue,
-        	);
-        	$isUpdateFlag = $SysParameter->save($newParameter);
-        	
-        	/**
-        	 * admin user operating record
-        	 */
-        	if (!empty($admin['uid'])) {
-        		$AdminUserrecord = M("AdminUserrecord");
-        		$newAdminUserrecordData = array(
-		        	'id' => '',
-		        	'uid' => $admin['uid'],
-		        	'record' => '修改配置系统参数 parameter:'.$parameter.'value:'.$paravalue,
-		        	'time' => time(),
-        		);
-        		$AdminUserrecord->add($newAdminUserrecordData);
-        	}
-        	
-        	if ($isUpdateFlag) {
-        		redirect('/rooter/parameter', 1, 'ok...');
-        	} else {
-        		redirect('/rooter/parameter', 1, 'failed...');
-        	}
-        }
-        $this->display();
-    }
-
     public function orderusericon()
     {
     	$admin = logincheck();
