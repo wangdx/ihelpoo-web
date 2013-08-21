@@ -129,7 +129,6 @@ $().ready(function(){
             datatype: "text",
             success:function(list){
                 $("#ajaxprogressbar").html(list);
-                $('#ajaxprogressbar').html('');
             }
         });
     });
