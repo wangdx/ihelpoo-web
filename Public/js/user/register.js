@@ -110,13 +110,13 @@ $().ready(function(){
         } else {
             $('#registeinfo').html('× 出错了! 请检测填写项');
             if (emailok == 'no') {
-            	$('#emailinfo').html('<span class="icon_attention"></span>');
+            	$('#emailinfo').html('<span class="icon_attention"></span> 请重新输入');
             }
             if (passwordok == 'no') {
-            	$('#passwordinfo').html('<span class="icon_attention"></span>');
+            	$('#passwordinfo').html('<span class="icon_attention"></span> 请重新输入');
             }
             if (nicknameok == 'no') {
-            	$('#nicknameinfo').html('<span class="icon_attention"></span>');
+            	$('#nicknameinfo').html('<span class="icon_attention"></span> 请重新输入');
             }
         }
     });
