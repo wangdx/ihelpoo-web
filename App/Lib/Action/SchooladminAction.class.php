@@ -424,6 +424,16 @@ class SchooladminAction extends Action {
     	 */
     	if (!empty($_GET['suredel'])) {
     		$suredelid = (int)$_GET['suredel'];
+    		$OpSpecialty = M("OpSpecialty");
+    		$isExistOpSpecialty = $OpSpecialty->where("academy = $suredelid")->find();
+    		if (!empty($isExistOpSpecialty['id'])) {
+    			redirect('/schooladmin/academy', 1, '存在相关专业，不能删除，请先删除该学院下面的专业 exist...');
+    		}
+    		$UserInfo = M("UserInfo");
+    		$isExistUserInfo = $UserInfo->where("academy_op = $suredelid")->find();
+    		if (!empty($isExistUserInfo['id'])) {
+    			redirect('/schooladmin/academy', 1, '该学院下面已经有同学了，不能删除，建议修改名字 exist...');
+    		}
     		if (!empty($suredelid)) {
     			$deleteOpAcademy = $OpAcademy->where("id = $suredelid AND school = $schoolid")->find();
     			
@@ -534,6 +544,12 @@ class SchooladminAction extends Action {
     	 */
     	if (!empty($_GET['suredel'])) {
     		$suredelid = (int)$_GET['suredel'];
+    		$UserInfo = M("UserInfo");
+    		$isExistUserInfo = $UserInfo->where("specialty_op = $suredelid")->find();
+    		if (!empty($isExistUserInfo['id'])) {
+    			redirect('/schooladmin/specialty', 1, '该专业下面已经有同学了，不能删除，建议修改名字 exist...');
+    		}
+    		
     		if (!empty($suredelid)) {
     			$deleteOpSpecialty = $OpSpecialty->where("id = $suredelid AND school = $schoolid")->find();
     			
