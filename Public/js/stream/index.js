@@ -122,11 +122,7 @@ $().ready(function(){
     		val_skin = '0';
     	}
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
-    	$(this).ajaxStart(function(){
-    		$("#change_skin_save_info").show().html($infoLoading);
-        }).ajaxStop(function(){
-    	    $infoLoading.remove();
-        });
+    	$("#change_skin_save_info").show().html($infoLoading);
     	$.ajax({
             type: "POST",
             url: baseUrl + "ajax/saveskin",

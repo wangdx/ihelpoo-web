@@ -909,6 +909,7 @@
     position: absolute;
     left: 65px;
     color: #999;
+    display: none;
 }
 
 /*--- diffusion part ---*/
