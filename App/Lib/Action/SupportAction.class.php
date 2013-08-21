@@ -15,6 +15,8 @@ class SupportAction extends Action {
     		$UserLogin = M("UserLogin");
     		$userloginedrecord = $UserLogin->find($userloginid);
     		$this->assign('userloginedrecord',$userloginedrecord);
+    		$recordSchoolInfo = i_school_domain();
+    		$this->assign('schoolname',$recordSchoolInfo['school']);
     	}
         header("Content-Type:text/html; charset=utf-8");
     }
