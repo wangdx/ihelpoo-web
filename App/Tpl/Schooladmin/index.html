@@ -17,15 +17,15 @@
 		<p class="schooladmin_top_user_p">未登录...</p>
 	<?php } ?>
 </div>
-<div class="schooladmin_index_login">
+<div>
 	<h3 class="index_top_info">
 		Beta for {$recordSchoolInfo['school']} <?php echo $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main']; ?>
 	</h3>
 	<form method="post">
 	<ul class="loginbox">
-	  <li><p>站长:</p><input type="text" name="webmaster" value="" /></li>
-	  <li><p>密码:</p><input type="password" name="password" value="" /></li>
-	  <li><p>口令:</p><input type="password" name="cypher" value="" /></li>
+	  <li><p>站长:</p><input type="text" class="input_style" name="webmaster" value="" /></li>
+	  <li><p>密码:</p><input type="password" class="input_style" name="password" value="" /></li>
+	  <li><p>口令:</p><input type="password" class="input_style" name="cypher" value="" /></li>
 	  <li><input type="submit" value="登录" /></li>
 	</ul>
 	</form>
