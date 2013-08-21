@@ -139,7 +139,7 @@ function i_gradenum($enteryear)
     }
     switch ($num) {
     	case 0 :
-            return "sen";
+            return "bef";
             break;
         case 1 :
             return "1";
