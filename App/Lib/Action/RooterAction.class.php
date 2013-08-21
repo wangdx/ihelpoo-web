@@ -997,19 +997,31 @@ class RooterAction extends Action {
     	$page = i_page_get_num();
         $count = 30;
         $offset = $page * $count;
-    	$recordsWebmasterUserrecord = $SchoolRecord->join('i_user_login ON i_user_login.uid = i_school_record.uid')
-    	->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')
-    	->join('i_school_info ON i_school_webmaster.sid = i_school_info.id')
-    	->field('i_school_info.school,i_user_login.nickname,i_user_login.uid,i_school_webmaster.position,i_school_record.record,i_school_record.sys_id,i_school_record.time')
-    	->order("i_school_record.time DESC")->limit($offset,$count)->select();
-    	$totalrecords = $SchoolRecord->count();
+        $schoolid = (int)$_GET['schoolid'];
+    	if (!empty($schoolid)) {
+	        $recordsWebmasterUserrecord = $SchoolRecord->where("i_school_record.sid = $schoolid")->join('i_user_login ON i_user_login.uid = i_school_record.uid')
+	        ->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')
+	        ->join('i_school_info ON i_school_webmaster.sid = i_school_info.id')
+	        ->field('i_school_record.sid,i_school_info.school,i_user_login.nickname,i_user_login.uid,i_school_webmaster.position,i_school_record.record,i_school_record.sys_id,i_school_record.time')
+	        ->order("i_school_record.time DESC")->limit($offset,$count)->select();
+	        $totalrecords = $SchoolRecord->where("sid = $schoolid")->count();
+    	} else {
+    		$recordsWebmasterUserrecord = $SchoolRecord->join('i_user_login ON i_user_login.uid = i_school_record.uid')
+	        ->join('i_school_webmaster ON i_school_webmaster.uid = i_school_record.uid')
+	        ->join('i_school_info ON i_school_webmaster.sid = i_school_info.id')
+	        ->field('i_school_info.school,i_user_login.nickname,i_user_login.uid,i_school_webmaster.position,i_school_record.record,i_school_record.sys_id,i_school_record.time')
+	        ->order("i_school_record.time DESC")->limit($offset,$count)->select();
+	        $totalrecords = $SchoolRecord->count();
+    	}
     	$this->assign('recordsWebmasterUserrecord',$recordsWebmasterUserrecord);
     	$this->assign('totalrecords',$totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages',$totalPages);
+        $SchoolInfo = M("SchoolInfo");
+		$recordSchoolInfo = $SchoolInfo->select();
+		$this->assign('recordSchoolInfo',$recordSchoolInfo);
     	$this->display();
     }
-    
     
     /**
      * user management
