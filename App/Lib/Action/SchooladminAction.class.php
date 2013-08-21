@@ -549,8 +549,6 @@ class SchooladminAction extends Action {
     		if (!empty($isExistUserInfo['uid'])) {
     			redirect('/schooladmin/specialty', 1, '该专业下面已经有同学了，不能删除，建议修改名字 exist...');
     		}
-    	    exit();
-    		
     		if (!empty($suredelid)) {
     			$deleteOpSpecialty = $OpSpecialty->where("id = $suredelid AND school = $schoolid")->find();
     			
