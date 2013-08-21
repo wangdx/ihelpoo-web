@@ -34,11 +34,7 @@ $().ready(function(){
     });
     $("#academy").click(function(){
         var academy = $("#academy").attr("value");
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
             url: baseUrl+"setting/ajax",
@@ -46,17 +42,14 @@ $().ready(function(){
             datatype: "text",
             success:function(specialty){
                 $("#specialty").replaceWith(specialty);
+                $('#ajaxprogressbar').html('');
             }
         });
     });
     $("#dormitorytype").click(function(){
         var dormitorytype = $("#dormitorytype").attr("value");
         var schoolvalue = $("#school").attr("value");
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
             url: baseUrl+"setting/ajax",
@@ -64,6 +57,7 @@ $().ready(function(){
             datatype: "text",
             success:function(dormitory){
                 $("#dormitory").replaceWith(dormitory);
+                $('#ajaxprogressbar').html('');
             }
         });
     });
@@ -95,11 +89,7 @@ $().ready(function(){
     });
     $("#province").click(function(){
         var province = $("#province").attr("value");
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
             url: baseUrl + "setting/ajax",
@@ -107,15 +97,12 @@ $().ready(function(){
             datatype: "text",
             success:function(list){
                 $("#city").replaceWith(list);
+                $('#ajaxprogressbar').html('');
             }
         });
     });
     $("#set_submit").click(function(){
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#ajaxprogressbar').html($infoLoading);
         if (nicknameOk == "yes" && introductionOk == "yes") {
             $.post(baseUrl + "setting/index", $("#settingform").serialize(), function(data){
                 if (data.status == "yes") {
@@ -129,15 +116,12 @@ $().ready(function(){
                     $("#infoupdateok").slideDown('normal').delay(1000);
                     $("#infoupdateok").fadeOut('slow');
                 }
+                $('#ajaxprogressbar').html('');
             }, "json");
         }
     });
     $("#selectschool").click(function(){
-        $(this).ajaxStart(function(){
-        	$('#ajaxprogressbar').html($infoLoading);
-        }).ajaxStop(function(){
-        	$infoLoading.remove();
-        });
+        $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
             url: baseUrl + "setting/ajax",
@@ -145,6 +129,7 @@ $().ready(function(){
             datatype: "text",
             success:function(list){
                 $("#ajaxprogressbar").html(list);
+                $('#ajaxprogressbar').html('');
             }
         });
     });
