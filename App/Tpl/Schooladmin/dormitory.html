@@ -31,7 +31,13 @@
     <li>
     	<?php echo $opDormitory['id']; ?>. 
     	<?php echo $opDormitory['name']; ?>
-    	(<?php echo $opDormitory['type']; ?>)
+		<?php if ($opDormitory['type'] == '1') { ?>
+		(男寝)
+		<?php } else if ($opDormitory['type'] == '2') { ?>
+		(女寝)
+		<?php } else { ?>
+		(其他)
+		<?php } ?>
 	    <a href="?changeid=<?php echo $opDormitory['id']; ?>">修改</a> | 
 	    <a href="?delid=<?php echo $opDormitory['id']; ?>">删除</a>
     </li>
