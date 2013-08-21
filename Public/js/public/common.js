@@ -50,6 +50,9 @@ $().ready(function () {
             }
         });
     });
+    $('#message_talk_nums_img_icon').click(function(){
+        $(this).hide();
+    });
     /**
      * nav hover
      */
