@@ -36,7 +36,7 @@ $().ready(function(){
         if (passwordcheck == '') {
             $('#passwordinfo').html('× 密码不能为空');
         } else if (passwordlegth < 6) {
-            $('#passwordinfo').html('× 密码最短不能少于6个字符');
+            $('#passwordinfo').html('× 密码不能少于6个字符');
         } else {
             $('#passwordinfo').html('<span class="icon_right"></span>');
         }
