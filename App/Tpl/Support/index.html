@@ -37,11 +37,6 @@
 	<?php } else { ?>
 		<li><a href="__ROOT__/support?deffusion">什么是扩散？</a></li>
 	<?php } ?>
-	<?php if (isset($_GET['lab'])) { ?>
-		<li><a href="__ROOT__/support?lab" class="fb">实验室是干什么的？</a></li>
-	<?php } else { ?>
-		<li><a href="__ROOT__/support?lab">实验室是干什么的？</a></li>
-	<?php } ?>
 	<?php if (isset($_GET['user'])) { ?>
 		<li><a href="__ROOT__/support?user" class="fb">用户类型区别？</a></li>
 	<?php } else { ?>
@@ -157,13 +152,6 @@
     <li>2. 点击“确认绑定”。</li>
     <li>3. 绑定成功。</li>
     <li><a href="__ROOT__/setting/bind" class="f12">开始绑定</a></li>
-  </ul>
-<?php } ?>
-<?php if (isset($_GET['lab'])) { ?>
-  <ul>
-    <li class="fb f14"><a href="__ROOT__/lab" >实验室</a> 是干什么的？</li>
-    <li>实验室是我帮圈圈实践idea的一个平台。在这里我们希望灵感带来创举。实践获得真知。</li>
-    <li>你可以联系我帮圈圈, 共建实验室。结合社区、校园共同开发有意义的作品。你出点子, 我们写代码, 贴你的名字, 实现你idea。</li>
   </ul>
 <?php } ?>
 <?php if (isset($_GET['play'])) { ?>
