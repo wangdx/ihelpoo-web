@@ -8,11 +8,11 @@
   foreach ($recordFavourites as $favourites):
   ?>
       <li>
-        <a href="__ROOT__/stream/u/<?php echo $favourites['uid'] ?>">
+        <a href="__ROOT__/wo/<?php echo $favourites['uid'] ?>">
           <img src="<?php echo i_icon_check($favourites['uid'], $favourites['icon_url'], 's') ?>" height="50" class="fav_li_img"/>
         </a>
         <p class="fav_li_p_content">
-          <a href="__ROOT__/stream/u/<?php echo $favourites['uid'] ?>">
+          <a href="__ROOT__/wo/<?php echo $favourites['uid'] ?>">
             <?php echo $favourites['nickname']; ?>
           </a>
           <?php echo $favourites['content']; ?>

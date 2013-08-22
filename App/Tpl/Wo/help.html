@@ -29,12 +29,12 @@
   foreach ($recordSayHelp as $record): ?>
   <li>
     <p class="wo_li_p_icon">
-      <a href="__ROOT__/stream/u/<?php echo $record['uid'] ?>" target="_blank">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank">
         <img src='<?php echo i_icon_check("$record[uid]", "$record[icon_url]", "s"); ?>' width="68" height="51" class="radius3"/>
       </a>
     </p>
     <div class="wo_li_p_user f12">
-      <?php echo " <a href='".__ROOT__."/stream/u/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?>
+      <?php echo " <a href='".__ROOT__."/wo/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?>
     </div>
     <p class="wo_li_p_content_help lh13">
       <?php echo $record['content']; ?>

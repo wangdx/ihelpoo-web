@@ -51,7 +51,7 @@
 <ul><?php 
 foreach ($userList as $user) {
 	echo "<li>";
-	echo "<a href='".__ROOT__."/stream/u/".$user['uid']."' target='_blank'>".$user['nickname']."</a>";
+	echo "<a href='".__ROOT__."/wo/".$user['uid']."' target='_blank'>".$user['nickname']."</a>";
 	echo " <span title='真实姓名'>(".$user['realname'].")</span>";
 	echo " " . i_sex($user['sex']);
 	echo " 生日: " . $user['birthday'];

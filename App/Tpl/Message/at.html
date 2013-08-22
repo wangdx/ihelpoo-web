@@ -34,7 +34,7 @@
 	  echo "<li ";
       echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
       echo ">";
-      echo "<a href='".__ROOT__."/stream/u/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
       echo "<p class='msg_info f12'>";
       echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <span class='gray'>".$msg['info']."</span> <a href='".__ROOT__."/item/say/".$msg['sid']."' target='_blank' class='a_view_info'>查看</a></p>";
