@@ -217,6 +217,8 @@ function Notice(state) {
                 _connectionBroken();
             }
         }
+
+        $.post(baseUrl + "ajax/updatestatus");
     }
 
     function _metaHandshake(message) {

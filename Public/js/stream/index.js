@@ -1065,7 +1065,7 @@ function mseeageNums() {
 			$('#message_talk_nums_span_content').html('<span class="red_l f12">圈圈亲，系统检测到您断网了!</span>');
 			$('#message_talk_nums_p_content_info').html('');
 			$('.message_talk_to_url').attr({ href: "", 'title': '与我帮圈圈服务器失去连接 :(' });
-            setTimeout('mseeageNums()', 1000);
+//            setTimeout('mseeageNums()', 1000);
         }
     });
 	$('#message_talk_nums_span_close').click(function(){

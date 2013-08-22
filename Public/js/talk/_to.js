@@ -187,7 +187,6 @@ function Chat(state) {
             var htmlIn = "<span class='red_l f12'>发送内容不能为空</span>";
             $('#input_status').html(htmlIn);
         }
-        console.log("chatting++"+_from+" "+_to);
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
             from: _from,
@@ -300,7 +299,6 @@ function Chat(state) {
 
         var curTo = $('#data_touid').val();
 
-        console.log("noticing+++"+from + " " +to);
 //        if (curTo == from) {
 //            return;
 //        } else {
@@ -444,6 +442,7 @@ function Chat(state) {
                 _connectionBroken();
             }
         }
+        $.post(baseUrl + "ajax/updatestatus");
     }
 
     function _metaHandshake(message) {

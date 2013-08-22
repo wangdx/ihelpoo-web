@@ -84,7 +84,7 @@ class LabAction extends Action {
         	);
         	$WebStatus->save($newWebStats);
         	foreach ($userOnlineObject as $userOnlineOne) {
-	        	if (900 < (time() - $userOnlineOne['last_active_ti'])) {
+	        	if (60 < (time() - $userOnlineOne['last_active_ti'])) {
 	        		$updateUserOnlineStatusData = array(
 	                    'uid' => $userOnlineOne['uid'],
 	            	    'online' => 0,

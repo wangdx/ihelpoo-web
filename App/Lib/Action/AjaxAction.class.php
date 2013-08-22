@@ -18,6 +18,11 @@ class AjaxAction extends Action {
         header("Content-Type:text/html; charset=utf-8");
     }
 
+    public function updatestatus(){
+        $userloginid = session('userloginid');
+        i_db_update_activetime($userloginid);
+    }
+
     public function getmessage()
     {
     	if ($this->isPost()) {
