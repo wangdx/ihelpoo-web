@@ -10,7 +10,7 @@ $(function () {
     $('#send_message').click(function(){
 
         //TODO instantly show user his own message, image, and time and then async to server then remote user
-        chat.send;
+        chat.send();
     });
 
 
