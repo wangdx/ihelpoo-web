@@ -95,7 +95,6 @@ function Notice(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
 
-        alert(chat);
         if(chat == '4'){
             if(from == 'at'){
                 var num = $('#message_at_nums_a').data(from);
