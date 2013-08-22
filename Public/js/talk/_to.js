@@ -239,9 +239,9 @@ function Chat(state) {
         var curFrom = $('#data_uid').val();
 
         console.log("charting+++"+curTo + " " +curFrom);
-        if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
-            return;
-        }
+//        if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
+//            return;
+//        }
 
 
         if ((!image || !image.length) && (!chat || !chat.length)) {//update status
@@ -301,9 +301,9 @@ function Chat(state) {
         var curTo = $('#data_touid').val();
 
         console.log("noticing+++"+curTo + " " +from);
-//        if (curTo == from) {
-//            return;
-//        } else {
+        if (curTo == from) {
+            return;
+        } else {
             if (chat == '4') {
                 if (from == 'at') {
                     var num = $('#message_at_nums_a').data(from);
@@ -335,7 +335,7 @@ function Chat(state) {
                 $('#message_talk_nums_p_content_info').html('来自' + fromUser + '的悄悄话');
                 $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
             }
-//        }
+        }
     };
 
     /**
