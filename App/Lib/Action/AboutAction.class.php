@@ -10,14 +10,13 @@ class AboutAction extends Action {
 
     protected function _initialize()
     {
-    	$recordSchoolInfo = i_school_domain();
-    	$this->assign('schoolname', $recordSchoolInfo['school']);
         header("Content-Type:text/html; charset=utf-8");
     }
     
     public function index()
     {
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname', $recordSchoolInfo['school']);
     	$title = "关于我们 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
     	
@@ -28,6 +27,14 @@ class AboutAction extends Action {
     	$SchoolWebmaster = M("SchoolWebmaster");
     	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join("i_user_login ON i_school_webmaster.uid = i_user_login.uid")->order("position DESC")->select();
     	$this->assign('schoolwebmaster',$recordSchoolWebmaster);
+    	$this->display();
+    }
+    
+    public function ihelpoo()
+    {
+    	$recordSchoolInfo = i_school_domain();
+    	$title = "关于我们 ";
+    	$this->assign('title', $title);
     	$this->display();
     }
     
