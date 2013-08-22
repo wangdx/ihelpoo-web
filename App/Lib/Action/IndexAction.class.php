@@ -99,7 +99,7 @@ class IndexAction extends Action {
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
         $ip = get_client_ip();
-        $ip = '218.85.65.150';
+        //$ip = '218.85.65.150';
         $url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
         $data = file_get_contents($url);
         $dataArray = json_decode($data, true);
