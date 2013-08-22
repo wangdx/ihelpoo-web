@@ -1351,6 +1351,9 @@ class SchooladminAction extends Action {
     		$award = (int)$_POST['award'];
     		$recordUserInvite = $UserInvite->find($id);
     		if (!empty($recordUserInvite['id'])) {
+    			if ($recordUserInvite['award'] > 0) {
+    				redirect('/schooladmin/userinvite', 1, '已经认定过了...');
+    			}
     			$updateInviteStatus = array(
     				'id' => $id,
     				'award' => $award,
@@ -1360,7 +1363,6 @@ class SchooladminAction extends Action {
     			/**
     			 * send message system
     			 */
-    			$MsgSystem = M("MsgSystem");
 	            if ($award == 1) {
 	            	$msgContent = "你邀请的用户被认定为有效，加活跃50";
 	            	$UserLogin = M("UserLogin");
