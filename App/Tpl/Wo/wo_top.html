@@ -88,7 +88,7 @@
       </div>
       <div class="wo_top_div_connect f12">
       	  <?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
-            <span class="f12" title="不能和自己聊天哦">悄悄话</span>
+            <span class="f12 pointer" title="不能和自己聊天哦">悄悄话</span>
           <?php } else { ?>
              <a href="__ROOT__/talk/to/<?php echo $userLogin['uid'] ?>" title="聊天">悄悄话</a>
           <?php } ?>
