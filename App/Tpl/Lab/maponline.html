@@ -12,7 +12,7 @@
 <div class="main">
 	<div class="maponline_info_div">
 		<a href="__ROOT__/index/school" title="串校，更多学校" class="maponline_info_div_school"></a>
-		{$schoolname}<a href="__ROOT__/index/school" title="串校，更多学校" class="f21">[更多]</a> <span class="f12 black_l">在线人数</span><span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
+		{$schoolname}<a href="__ROOT__/index/school" title="串校，更多学校" class="f12">[更多]</a> <span class="f12 black_l">在线人数</span><span class="fb f14 fi blue"><?php echo $onlineUserNums ?> </span>
 		<?php if (!empty($hiddenUserNums)) { ?>(<span class="fb f14 fi orange"><?php echo $hiddenUserNums; ?></span> 人潜水)<?php } ?> 
 		<?php if ($otherSchoolOnlineNums > 0) { ?>&#12288;<span class="f12 gray">其他学校在线<?php echo $otherSchoolOnlineNums; ?>人</span><?php } ?>
 		<span class="lab_btn_select_span">
