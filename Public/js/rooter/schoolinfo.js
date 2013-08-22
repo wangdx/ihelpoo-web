@@ -11,7 +11,7 @@ $().ready(function(){
             }
         });
     });
-	$("#city").live('mouseup', function(){
+	$("#city").live('click', function(){
         var city = $("#city").attr("value");
         $(this).after(city + ' - ');
     });
