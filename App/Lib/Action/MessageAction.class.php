@@ -89,6 +89,7 @@ class MessageAction extends Action
 
         $IUserLogin = D("IUserLogin");
         $this->resetNoticeCount($redis, $userloginid);
+        $view = '';
         foreach($msgNotice as $notice){
 
             $fromUser = $IUserLogin->userExists($notice['source_id']);
@@ -99,7 +100,7 @@ class MessageAction extends Action
                 $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
                 $detailId =  $recordDiffusion['sid'];
                 if(!empty($recordDiffusion['view'])){
-                    $view = ' <- 并表示：'.$recordDiffusion['view'];
+                    $view = ' 并表示：'.$recordDiffusion['view'];
                 }
 
             }
