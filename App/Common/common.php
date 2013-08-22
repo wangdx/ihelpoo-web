@@ -17,7 +17,7 @@ function i_school_domain()
         $recordSchoolInfo = $SchoolInfo->where("domain_main = '$domain'")->find();
     }
     if (!is_array($recordSchoolInfo)) {
-        exit('你访问的域名出错啦 message from ihelpoo :)');
+    	redirect('/index/changeschool', 0, '跳转页面 :)...');
     }
     return $recordSchoolInfo;
 }
