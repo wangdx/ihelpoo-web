@@ -96,7 +96,7 @@ function prepareUI() {
                         var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data + "' width='80'/><a href='" + msg.data + "' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
                         $('#image_upload_url').val(msg.data);
                         $('#image_upload_list_ul').empty().append(uploadImgList);
-                        $('#img_upload_form').hide();
+//                        $('#img_upload_form').hide();
                     } else if (msg.status == 'error') {
                         $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
                     }
