@@ -237,6 +237,8 @@ function Chat(state) {
 
         var curTo = $('#data_touid').val();
         var curFrom = $('#data_uid').val();
+
+        console.log("charting+++"+curTo + " " +curFrom);
         if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
             return;
         }
@@ -297,7 +299,8 @@ function Chat(state) {
 
 
         var curTo = $('#data_touid').val();
-        console.log(curTo + "" +from);
+
+        console.log("noticing+++"+curTo + " " +from);
         if (curTo == from) {
             return;
         } else {
