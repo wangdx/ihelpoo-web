@@ -738,7 +738,7 @@ class StreamAction extends Action
         $recordFavouriteArray = $RecordFavourites->where("i_record_favourites.uid = $userloginid")
             ->join('i_record_say ON i_record_favourites.sid = i_record_say.sid')
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
-            ->field('id,i_user_login.uid,i_record_favourites.sid,i_record_favourites.time,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_record_say.content')
+            ->field('id,i_user_login.uid,i_record_favourites.sid,i_record_favourites.time,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_record_say.content,i_record_say.say_type')
             ->order("time DESC")->limit($offset, $count)->select();
         $this->assign('recordFavourites', $recordFavouriteArray);
 
