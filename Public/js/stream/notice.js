@@ -201,7 +201,7 @@ function Notice(state) {
     }
 
     function _metaConnect(message) {
-        console.log("+-+_+_+_+_+_+_+");
+        //TODO ajax user last activity
         if (_disconnecting) {
             _connected = false;
             _connectionClosed();
