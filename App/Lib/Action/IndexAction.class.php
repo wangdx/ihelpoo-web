@@ -94,7 +94,6 @@ class IndexAction extends Action {
     {
     	$title = "我帮圈圈 快速定位学校 帮助主题社交网站";
     	$this->assign('title',$title);
-    	
     	$SchoolInfo = M("SchoolInfo");
     	$recordsSchoolInfo = $SchoolInfo->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
@@ -107,8 +106,7 @@ class IndexAction extends Action {
         $ipcity = substr($dataArray['data']['city'],0,6);
         $OpCity = M("OpCity");
         $schoolOpCity = $OpCity->where("`name` LIKE '%" . $ipcity . "%'")->join("i_school_info ON i_op_city.id = i_school_info.city_op")->select();
-        
-        var_dump($schoolOpCity);
+        $this->assign('schoolOpCity', $schoolOpCity);
         $this->display();
     }
     
