@@ -576,6 +576,7 @@ class UserAction extends Action {
 	            $errorRegister = $UserLogin->getError();
 	            redirect('/user/register/'.$userId, 3, $errorRegister.' 3秒后跳转');
 	        } else {
+	        	redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
 	            $email = htmlspecialchars(strtolower(trim($_POST["email"])));
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
 	            $password = md5($password);
@@ -764,7 +765,7 @@ class UserAction extends Action {
 	            	);
 	            	$UserInfo->save($newUserInfoPrioritiedData);
 	            }
-	            redirect('/index', 3, '注册成功啦...3秒后跳转到登录页面');
+	            redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
 	        }
         }
         $this->display();
