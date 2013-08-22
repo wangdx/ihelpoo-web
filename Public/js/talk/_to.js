@@ -183,10 +183,9 @@ function Chat(state) {
         var chat = $('#send_message_textarea').val();
         var image = $('#image_upload_url').val();
 
-        if (!chat || !chat.length) {
+        if ((!image || !image.length) && (!chat || !chat.length)) {
             var htmlIn = "<span class='red_l f12'>发送内容不能为空</span>";
             $('#input_status').html(htmlIn);
-            return;
         }
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
