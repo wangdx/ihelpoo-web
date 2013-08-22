@@ -16,7 +16,11 @@
             <?php echo $favourites['nickname']; ?>
           </a>
           <?php echo $favourites['content']; ?>
-          <a href="__ROOT__/item/say/<?php echo $favourites['sid']; ?>">原文</a>
+          <?php if ($favourites['say_type'] = '1') { ?>
+          	<a href="__ROOT__/item/help/<?php echo $favourites['sid']; ?>">帮助原文</a>
+          <?php } else { ?>
+          	<a href="__ROOT__/item/say/<?php echo $favourites['sid']; ?>">原文</a>
+          <?php } ?>
         </p>
         <p class="fav_li_p_time">
           <span class="f12 gray">收藏于<?php echo i_time($favourites['time']) ?></span>
