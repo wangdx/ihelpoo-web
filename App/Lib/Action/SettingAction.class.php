@@ -681,16 +681,6 @@ class SettingAction extends Action
 
     public function ajax()
     {
-        if (!empty($_POST['getschoollist'])) {
-            $SchoolInfo = M("SchoolInfo");
-            $resultsSchoolInfo = $SchoolInfo->select();
-            echo '<div class="setting_school_list_div"><a class="gray f12" id="setting_school_close_span"><span class="close_x" title="关闭">×</span></a><ul>';
-            foreach ($resultsSchoolInfo as $schoolInfo) {
-                echo "<li><a href='" . __ROOT__ . "/setting/index/$schoolInfo[id]'>$schoolInfo[school]</a></li>";
-            }
-            echo '</ul></div>';
-            exit();
-        }
         if (!empty($_POST['selectAcademy'])) {
             $selectAcademyNum = (int)$_POST['selectAcademy'];
             $OpSpecialty = M("OpSpecialty");

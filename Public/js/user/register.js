@@ -136,7 +136,7 @@ $().ready(function(){
         $('#ajaxprogressbar').html($infoLoadingBar);
         $.ajax({
             type: "POST",
-            url: baseUrl + "user/register",
+            url: baseUrl + "other/getschoollist",
             data: "getschoollist='get'",
             datatype: "text",
             success:function(list){
