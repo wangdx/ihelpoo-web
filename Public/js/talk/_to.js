@@ -246,10 +246,10 @@ function Chat(state) {
             $('#input_status').html(status + '<span class="icon_write"></span>');
             return;
         }
-        alert("123");
 
         if (!fromUser) return; // from might be there
 
+        alert("123");
 
 //        if (!membership && fromUser == _lastUser) {
 //            fromUser = '...';
