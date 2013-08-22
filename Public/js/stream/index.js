@@ -679,7 +679,11 @@ $().ready(function(){
         		url: baseUrl + "ajax/plusview",
         		data:{sidString: sidString},
         		success:function(result){
-                	$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(result.data);
+        			if (result.status == 'yes') {
+        				$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(result.data);
+        			} else {
+        				$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(result.info);
+        			}
                 }
             });
     	},1000);
