@@ -1,9 +1,9 @@
 <include file="Public:headerwebmaster" />
 <?php if (!empty($recordUserLogin['uid'])) { ?>
-	<a href="__ROOT__/stream/u/<?php echo $recordUserLogin['uid']; ?>" target="_blank">
+	<a href="__ROOT__/wo/<?php echo $recordUserLogin['uid']; ?>" target="_blank">
 		<img src="<?php echo i_icon_check($recordUserLogin['uid'], $recordUserLogin['icon_url'], 's') ?>" width="68" height="51" class="radius3" />
 	</a>
-	<a href="__ROOT__/stream/u/<?php echo $recordUserLogin['uid']; ?>" target="_blank">
+	<a href="__ROOT__/wo/<?php echo $recordUserLogin['uid']; ?>" target="_blank">
 		<?php echo $recordUserLogin['nickname']; ?>
 	</a>
 	<br />
