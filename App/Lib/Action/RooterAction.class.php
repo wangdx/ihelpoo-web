@@ -391,7 +391,7 @@ class RooterAction extends Action {
     				'id' => $id,
     				'school' => $school,
     				'initial' => $initial,
-    				'city' => $city,
+    				'city_op' => $city,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark
@@ -421,7 +421,7 @@ class RooterAction extends Action {
     				'id' => '',
     				'school' => $school,
     				'initial' => $initial,
-    				'city' => $city,
+    				'city_op' => $city,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark,
