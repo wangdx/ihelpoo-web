@@ -890,9 +890,6 @@ lable{
     margin-bottom: 5px;
 }
 
-.school_list_ip_div{
-    margin
-}
 .school_list_recomand_ul{
     border: 1px solid #C00;
     border-radius: 3px 3px 3px 3px;
@@ -901,10 +898,18 @@ lable{
 }
 .school_list_recomand_ul li{
     padding: 10px 0;
+    position: relative;
 }
 .school_list_recomand_ul li a{
     margin-right: 5px;
 }
 .school_list_recomand_ul li p i{
     margin: 0 5px 0 0;
+}
+.school_list_ip_div{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    font-size: 12px;
+    color: #999;
 }
