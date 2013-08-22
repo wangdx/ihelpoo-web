@@ -883,10 +883,16 @@ lable{
 .school_list_ul li a{
     margin-right: 5px;
 }
+.school_list_ul li p i{
+    margin: 0 5px 0 0;
+}
 .school_list_ul_initial_p{
     margin-bottom: 5px;
 }
 
+.school_list_ip_div{
+    margin
+}
 .school_list_recomand_ul{
     border: 1px solid #C00;
     border-radius: 3px 3px 3px 3px;
@@ -898,4 +904,7 @@ lable{
 }
 .school_list_recomand_ul li a{
     margin-right: 5px;
+}
+.school_list_recomand_ul li p i{
+    margin: 0 5px 0 0;
 }
