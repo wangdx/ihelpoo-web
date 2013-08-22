@@ -32,7 +32,6 @@ class AboutAction extends Action {
     
     public function ihelpoo()
     {
-    	$recordSchoolInfo = i_school_domain();
     	$title = "关于我们 ";
     	$this->assign('title', $title);
     	$this->display();
