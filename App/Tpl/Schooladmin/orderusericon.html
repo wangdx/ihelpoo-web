@@ -4,7 +4,7 @@
 <?php foreach($userLoginRecords as $userLogin) { ?>
 	<li>
 		<img src="<?php echo i_icon_check($userLogin['uid'], $userLogin['icon_url'], 's') ?>" width="68" height="50" /> 
-		<a href="__ROOT__/stream/u/<?php echo $userLogin['uid'] ?>" target="_blank"><?php echo $userLogin['nickname'] ?></a>
+		<a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" target="_blank"><?php echo $userLogin['nickname'] ?></a>
 		<span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span>
 		icon_fl:<?php echo $userLogin['icon_fl'] ?>
 		<span class="usericon_up f14 fb red" uid="<?php echo $userLogin['uid']; ?>">+</span> 

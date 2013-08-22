@@ -1282,6 +1282,7 @@ class SchooladminAction extends Action {
         	$MsgSystem = M("MsgSystem");
             $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
             $i = 0;
+            $userstring = 0;
             foreach ($userArray as $user) {
             	$recordUserLogin = $UserLogin->find($user);
             	$recordUserLoginActive = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
@@ -1293,7 +1294,7 @@ class SchooladminAction extends Action {
             	
     			/**
                  * insert into msg active
-                 */
+                 */	
             	$msgActiveArray = array(
 					'id' => '',
 					'uid' => $user,
@@ -1319,6 +1320,7 @@ class SchooladminAction extends Action {
                 );
         	    $MsgSystem->add($insertToOwnerData);
         	    $i++;
+        	    $userstring .= $user.'-';
             }
         	
         	/**
@@ -1330,7 +1332,7 @@ class SchooladminAction extends Action {
 		        'sys_id' => '',
 		        'uid' => $webmaster['uid'],
 		        'sid' => $recordSchoolInfo['id'],
-		        'record' => '奖励我帮圈圈活跃: 共'.$i.'人, nums:'.$activeNums.', reason:'.$activeReason,
+		        'record' => '奖励我帮圈圈活跃: 共'.$i.'人, nums:'.$activeNums.', uids:'.$userstring.', reason:'.$activeReason,
 		        'time' => time()
             );
             $SchoolRecord->add($newSchoolRecordData);

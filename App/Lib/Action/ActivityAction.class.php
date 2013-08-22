@@ -704,11 +704,11 @@ class ActivityAction extends Action {
     		}
     		$lotterydrawActivityUser = array_rand($recordsActivityUser,$usernumbers);
     		if (is_int($lotterydrawActivityUser)) {
-    			$userids = "<a href='".__ROOT__."/stream/u/".$recordsActivityUser[$lotterydrawActivityUser]['uid']."'>".$recordsActivityUser[$lotterydrawActivityUser]['nickname']."</a>";
+    			$userids = "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawActivityUser]['uid']."'>".$recordsActivityUser[$lotterydrawActivityUser]['nickname']."</a>";
     		} else {
     			$userids = NULL;
 	    		foreach ($lotterydrawActivityUser as $lotterydrawid){
-	    			$userids .= "<a href='".__ROOT__."/stream/u/".$recordsActivityUser[$lotterydrawid]['uid']."'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
+	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
 	    		}
     		}
 
