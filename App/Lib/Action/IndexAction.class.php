@@ -104,8 +104,11 @@ class IndexAction extends Action {
         $data = file_get_contents($url);
         $dataArray = json_decode($data, true);
         $this->assign('dataArray', $dataArray['data']);
-        echo $ipcity = substr($dataArray['data']['city'],0,5);
+        $ipcity = substr($dataArray['data']['city'],0,6);
+        $OpCity = M("OpCity");
+        $schoolOpCity = $OpCity->where("name like %$OpCity%")->join("i_school_info ON i_op_city.id = i_school_info.city_op")->select();
         
+        var_dump($schoolOpCity);
         $this->display();
     }
     
