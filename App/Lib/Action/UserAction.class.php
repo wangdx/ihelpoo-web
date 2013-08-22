@@ -764,7 +764,7 @@ class UserAction extends Action {
 	            	);
 	            	$UserInfo->save($newUserInfoPrioritiedData);
 	            }
-	            redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
+	            redirect('/index', 3, '注册成功啦...3秒后跳转到登录页面');
 	        }
         }
         $this->display();
