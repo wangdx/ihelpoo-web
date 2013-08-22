@@ -86,7 +86,7 @@ $().ready(function(){
     		$.ajax({
                 type: "POST",
         		dataType: "html",
-        		url: baseUrl + "stream/plusView",
+        		url: baseUrl + "ajax/plusview",
         		data:{sidString: sidString},
         		success:function(data){
                 	$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(data);
