@@ -75,10 +75,10 @@ function prepareUI() {
      */
     $('#textareaimg').click(function () {
         $('.img_upload_comment_form_div').fadeIn('fast');
+        $('#img_upload_form').show();
     });
 
     $("#img_upload_btn").click(function () {
-        $('#img_upload_form').show();
         var upload_image_file = $('#upload_form_img_file').val();
         var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '上传中...请稍等'});
         if (upload_image_file == '') {
@@ -248,8 +248,6 @@ function Chat(state) {
         }
 
         if (!fromUser) return; // from might be there
-
-        alert("123");
 
 //        if (!membership && fromUser == _lastUser) {
 //            fromUser = '...';
