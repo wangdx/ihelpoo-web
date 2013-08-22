@@ -487,7 +487,7 @@ class SchooladminAction extends Action {
     	if ($this->isPost()) {
     		$specialtyid = (int)$_POST['specialtyid'];
     		$schoolpostid = $recordSchoolInfo['id'];
-    		$academypostid = (int)$_POST['acedemy'];
+    		$academypostid = (int)$_POST['academyid'];
     		$name = trim(addslashes(htmlspecialchars(strip_tags($_POST['name']))));
     		if (!empty($name) && !empty($schoolpostid) && !empty($academypostid)) {
 	    		if (empty($specialtyid)) {
