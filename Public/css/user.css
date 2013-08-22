@@ -318,3 +318,6 @@
     vertical-align: 0;
     width: 143px;
 }
+.notlogin_li_a:hover{
+    background: url("../image/common/form_login.png") no-repeat scroll 0 -192px transparent;
+}
