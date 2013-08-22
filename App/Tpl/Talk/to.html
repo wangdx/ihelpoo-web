@@ -110,7 +110,7 @@
 <?php
    if(!empty($leaveWords)){
        foreach($leaveWords as $leaveWord){
-           echo  "<span class='f14 gray'>".$leaveWord['nickname']."</span> <span class='f12 gray'>".date('H:i:s', $leaveWord['time'])."</span><br>".$leaveWord['content']."<br>";
+           echo  "<span class='f14 gray'>".$leaveWord['nickname']."</span> <span class='f12 gray'>".date('H:i:s', $leaveWord['time'])."</span><br>".$emotion->transEmotion($leaveWords['content'])."<br>";
            if(!empty($leaveWord['image'])){
                echo "<br><a href='".$leaveWord["image"]."' target='_target'><img src='".$leaveWord["image"]."' style='max-width:150px;' title='查看原图' /></a><br><br>";
            }
