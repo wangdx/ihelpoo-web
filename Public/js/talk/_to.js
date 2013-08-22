@@ -183,7 +183,7 @@ function Chat(state) {
         var chat = $('#send_message_textarea').val();
         var image = $('#image_upload_url').val();
 
-        if (!image || !image.length && !chat || !chat.length) {
+        if ((!image || !image.length) && (!chat || !chat.length)) {
             var htmlIn = "<span class='red_l f12'>发送内容不能为空</span>";
             $('#input_status').html(htmlIn);
         }
@@ -200,7 +200,7 @@ function Chat(state) {
 
     notice = function (from, to, content) {
         var chat = '1'; // 1. chat
-        if (!chat || !chat.length) return;
+        if ((!image || !image.length) && (!chat || !chat.length)) return;
         $.cometd.publish('/service/notice', {
             room: '/notice/p2p',
             from: from,
