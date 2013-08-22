@@ -295,7 +295,9 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
 
+
         var curTo = $('#data_touid').val();
+        console.log(curTo + "" +from);
         if (curTo == from) {
             return;
         } else {
