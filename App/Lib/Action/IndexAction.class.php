@@ -59,7 +59,7 @@ class IndexAction extends Action {
     	/**
          * index_spread_info
          */
-        $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
+        $indexSpreadInfoVaule = stripslashes($recordSchoolSystem['index_spread_info']);
         $this->assign('indexSpreadInfoVaule',$indexSpreadInfoVaule);
         
         /**
