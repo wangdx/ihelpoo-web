@@ -147,7 +147,7 @@
     width: 143px;
 }
 #registe_submit:hover{
-    background-color: #FE6600;
+    background: url("../image/common/form_login.png") no-repeat scroll 0 -190px transparent;
 }
 #registeinfo{
     position: absolute;
