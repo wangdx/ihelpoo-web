@@ -16,20 +16,17 @@ $().ready(function () {
     });
 
     function globalCallback(response) {
-        console.log("++++");
         if (response.state != "messageReceived") {
             return;
         }
     }
 
     function call(response) {
-        console.log("Call to callbackJob2");
         if (response.state != "messageReceived") {
             return;
         }
         var data = getDataFromResponse(response);
         if (data != null) {
-            console.log("---" + data);
         }
     }
 
@@ -125,7 +122,6 @@ $().ready(function () {
      */
     $('#send_message').click(function () {
         connectedEndpointJob1.push({data: 'message=hello, world'});
-        console.log(connectedEndpointJob1);
         return false;
 
         var newcontent = $('#send_message_textarea').val();

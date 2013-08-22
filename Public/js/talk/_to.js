@@ -191,7 +191,6 @@ function Chat(state) {
             status: '',
             image: image
         });
-        console.log("ready to push from="+_from+" to="+_to + " chat="+chat);
         notice(_from, _to, chat);
     };
 
@@ -231,7 +230,6 @@ function Chat(state) {
         var time = message.data.time;
         var status = message.data.status;
 
-        console.log("//////////" + message.data.chat);
 
         var curTo = $('#data_touid').val();
         var curFrom = $('#data_uid').val();
@@ -294,7 +292,6 @@ function Chat(state) {
         var time = message.data.time;
 
         var curTo = $('#data_touid').val();
-        console.log(curTo + " " + from);
         if (curTo == from) {
             return;
         } else{
@@ -407,7 +404,6 @@ function Chat(state) {
                 success: function (msg) {
                 },
                 error: function () {
-                    console.log("error");
                 }
             }
         );
