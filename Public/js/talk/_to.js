@@ -300,7 +300,7 @@ function Chat(state) {
 
         var curTo = $('#data_touid').val();
 
-        console.log("noticing+++"+curTo + " " +from);
+        console.log("noticing+++"+from + " " +to);
 //        if (curTo == from) {
 //            return;
 //        } else {
