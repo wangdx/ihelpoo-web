@@ -201,7 +201,6 @@ function Chat(state) {
     notice = function (from, to, content) {
         var chat = '1'; // 1. chat
         if ((!chat || !chat.length)) return;
-        alert('123');
         $.cometd.publish('/service/notice', {
             room: '/notice/p2p',
             from: from,
