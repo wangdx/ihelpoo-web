@@ -239,11 +239,8 @@ function Chat(state) {
         var curFrom = $('#data_uid').val();
 
         console.log("charting+++"+curTo + " " +curFrom);
-        if (curTo != from ) {//not the person chatting with, not my own page
+        if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
             return;
-        }
-        if(curFrom != from){
-           return;
         }
 
 
