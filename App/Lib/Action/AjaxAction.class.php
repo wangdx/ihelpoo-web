@@ -446,6 +446,41 @@ class AjaxAction extends Action {
     	}
     }
     
+    public function plusview()
+    {
+        if (empty($_POST['sidString'])) {
+            $this->ajaxReturn(0,'empty sid','error');
+        }
+        $sidStringArr = explode("-", $_POST['sidString']);
+        $userloginid = session('userloginid');
+        $sid = $sidStringArr['1'];
+        $RecordPlus = M('RecordPlus');
+        $resultsRecordPlus = $RecordPlus->where("sid = $sid")
+            ->join("i_user_login ON i_record_plus.uid = i_user_login.uid")
+            ->field("id,i_user_login.uid,i_record_plus.sid,i_record_plus.create_time,nickname,icon_url")
+            ->limit(5)
+            ->order("create_time DESC")
+            ->select();
+        if (!empty($resultsRecordPlus)) {
+            $html = '<p class="stream_plus_users_p gray">他们赞过了这条信息</p>';
+            $html .= '<ul class="stream_plus_users_ul">';
+            foreach ($resultsRecordPlus as $recordPlus) {
+                $html .= '<li>';
+                $html .= '<a href="/wo/' . $recordPlus['uid'] . '" title="' . $recordPlus['nickname'] . '"><img src="' . i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') . '" height="25" class="radius3" /></a>';
+                $html .= '</li>';
+            }
+            if ($sidStringArr['0'] == 'i') {
+                $html .= '<li><a href="/item/say/' . $sid . '" class="f12">更多</a></li>';
+            } else {
+                $html .= '<li><a href="/item/help/' . $sid . '" class="f12">更多</a></li>';
+            }
+            $html .= '</ul>';
+        } else {
+            $html .= '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
+        }
+        $this->ajaxReturn($html,'return html','yes');
+    }
+    
     public function newremark()
     {
     	$userloginid = session('userloginid');

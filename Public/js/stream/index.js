@@ -675,8 +675,8 @@ $().ready(function(){
         	var positiontop = e.pageY + 10;
     		$.ajax({
                 type: "POST",
-        		dataType: "html",
-        		url: baseUrl + "stream/plusView",
+        		dataType: "json",
+        		url: baseUrl + "ajax/plusview",
         		data:{sidString: sidString},
         		success:function(data){
                 	$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(data);
@@ -698,6 +698,10 @@ $().ready(function(){
         function(){
         	$diffusionRecordObj = $(this);
             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
+            if ($commentViewDivBox != '') {
+            	$commentViewDivBox.slideUp("fast");
+            	$(this).parent().find('.comment_button').attr({isclick: 'false'});
+            }
         },
         function(){
         	$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
