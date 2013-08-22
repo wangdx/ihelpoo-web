@@ -130,7 +130,7 @@ $().ready(function(){
         var diffusionSid = $diffusionRecordObj.attr('value');
         $.ajax({
             type: "POST",
-            url: baseUrl + "stream/ajax",
+            url: baseUrl + "stream/diffuseIt",
             data: {'diffusionSid':diffusionSid, 'diffusionView':$diffusion_view},
             dataType: "json",
             success:function(result){

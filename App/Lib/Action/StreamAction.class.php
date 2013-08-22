@@ -936,7 +936,7 @@ class StreamAction extends Action
     }
 
 
-    public function ajax()
+    public function diffuseIt()
     {
         if (empty($_POST['diffusionSid'])) {
             exit();

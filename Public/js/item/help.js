@@ -363,7 +363,7 @@ $().ready(function(){
         var $thisDiffusion = $(this);
         $.ajax({
             type: "POST",
-            url: baseUrl + "stream/ajax",
+            url: baseUrl + "stream/diffuseIt",
             data: "diffusionSid=" + diffusionSid,
             dataType: "json",
             success:function(result){
