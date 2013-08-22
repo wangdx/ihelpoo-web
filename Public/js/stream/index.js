@@ -700,6 +700,7 @@ $().ready(function(){
             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
             if ($commentViewDivBox != '') {
             	$commentViewDivBox.slideUp("fast");
+            	$(this).parent().find('.comment_button').attr({isclick: 'false'});
             }
         },
         function(){
