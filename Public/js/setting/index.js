@@ -123,7 +123,7 @@ $().ready(function(){
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
-            url: baseUrl + "setting/ajax",
+            url: baseUrl + "other/getschoollist",
             data: "getschoollist='get'",
             datatype: "text",
             success:function(list){
