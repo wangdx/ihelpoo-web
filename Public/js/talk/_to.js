@@ -7,7 +7,7 @@ $(function () {
 
     chat.join($('#data_uid').val(), $('#data_touid').val());
 
-    $('#send_message').click(function(){
+    $('#send_message').click(function () {
 
         //TODO instantly show user his own message, image, and time and then async to server then remote user
         chat.send();
@@ -201,6 +201,7 @@ function Chat(state) {
     notice = function (from, to, content) {
         var chat = '1'; // 1. chat
         if ((!image || !image.length) && (!chat || !chat.length)) return;
+        alert('123');
         $.cometd.publish('/service/notice', {
             room: '/notice/p2p',
             from: from,
@@ -298,22 +299,22 @@ function Chat(state) {
         var curTo = $('#data_touid').val();
         if (curTo == from) {
             return;
-        } else{
+        } else {
             if (chat == '4') {
-                if(from == 'at'){
+                if (from == 'at') {
                     var num = $('#message_at_nums_a').data(from);
                     num = num ? $('#message_at_nums_a').data(from) : 0;
                     $('#message_at_nums_a').data(from, num + 1)
                     $('#message_at_nums_a').show();
                     $('#message_at_nums_a').children('span').html('+' + (num + 1));
-                }else  if(from == 'comment'){
+                } else if (from == 'comment') {
                     var num = $('#message_comment_nums_a').data(from);
                     num = num ? $('#message_comment_nums_a').data(from) : 0;
                     $('#message_comment_nums_a').data(from, num + 1)
                     $('#message_comment_nums_a').show();
                     $('#message_comment_nums_a').children('span').html('+' + (num + 1));
 
-                }else{
+                } else {
                     var num = $('#message_system_nums_a').data(from);
                     num = num ? $('#message_system_nums_a').data(from) : 0;
                     $('#message_system_nums_a').data(from, num + 1)
@@ -323,7 +324,9 @@ function Chat(state) {
             } else if (chat == '1') {
                 $('#message_talk_nums_div').fadeIn('fast');
                 $('#message_talk_nums_img_icon').show().attr({'src': 'http://ihelpoo.b0.upaiyun.com/useralbum/' + from + '/' + imageThumb + '_m.jpg', 'title': fromUser})
-                    .error(function(){$(this).unbind("error").attr("src", "/Public/image/common/0.jpg");});
+                    .error(function () {
+                        $(this).unbind("error").attr("src", "/Public/image/common/0.jpg");
+                    });
                 $('#message_talk_nums_span_content').html(' ' + image);
                 $('#message_talk_nums_p_content_info').html('来自' + fromUser + '的悄悄话');
                 $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
