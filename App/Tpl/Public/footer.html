@@ -1,4 +1,5 @@
 </div>
+<?php if (!empty($schoolname)) { ?>
 <div class="footer f12">
   <div class="about black_l">
   <span class="footer_logo"></span>
@@ -11,5 +12,11 @@
 	<p id="ajax_info_div_info">提示<span id="ajax_info_div_close" class="close_x" title="关闭">×</span></p>
 	<p id="ajax_info_div_msg"></p>
 </div>
+<?php } else { ?>
+<div class="footer_about f12 gray">
+	<p>我帮圈圈校园帮助主题社交网站 | <a href="/">APP</a> | <a href="/about/suggestion">反馈建议</a> | <a href="/about/ihelpoo">关于我们</a> | 鄂ICP备07502730号</p>
+	<p class="f12">Copyright © 2013 ihelpoo.All Rights Reserved.</p>
+</div>
+<?php } ?>
 </body>
 </html>
