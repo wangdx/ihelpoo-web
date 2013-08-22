@@ -85,11 +85,11 @@ $().ready(function(){
         	var positiontop = e.pageY + 10;
     		$.ajax({
                 type: "POST",
-        		dataType: "html",
+        		dataType: "json",
         		url: baseUrl + "ajax/plusview",
         		data:{sidString: sidString},
-        		success:function(data){
-                	$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(data);
+        		success:function(result){
+                	$('.record_plus_div').css({ position: "absolute", left: positionleft, top: positiontop }).fadeIn('fast').html(result.data);
                 }
             });
     	},1000);

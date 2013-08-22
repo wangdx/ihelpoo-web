@@ -675,7 +675,7 @@ $().ready(function(){
         	var positiontop = e.pageY + 10;
     		$.ajax({
                 type: "POST",
-        		dataType: "html",
+        		dataType: "json",
         		url: baseUrl + "ajax/plusview",
         		data:{sidString: sidString},
         		success:function(data){

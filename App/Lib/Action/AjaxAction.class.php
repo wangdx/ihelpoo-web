@@ -449,7 +449,7 @@ class AjaxAction extends Action {
     public function plusview()
     {
         if (empty($_POST['sidString'])) {
-            exit();
+            $this->ajaxReturn(0,'empty sid','error');
         }
         $sidStringArr = explode("-", $_POST['sidString']);
         $userloginid = session('userloginid');
@@ -462,22 +462,23 @@ class AjaxAction extends Action {
             ->order("create_time DESC")
             ->select();
         if (!empty($resultsRecordPlus)) {
-            echo '<p class="stream_plus_users_p gray">他们赞过了这条信息</p>';
-            echo '<ul class="stream_plus_users_ul">';
+            $html = '<p class="stream_plus_users_p gray">他们赞过了这条信息</p>';
+            $html .= '<ul class="stream_plus_users_ul">';
             foreach ($resultsRecordPlus as $recordPlus) {
-                echo '<li>';
-                echo '<a href="/wo/' . $recordPlus['uid'] . '" title="' . $recordPlus['nickname'] . '"><img src="' . i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') . '" height="25" class="radius3" /></a>';
-                echo '</li>';
+                $html .= '<li>';
+                $html .= '<a href="/wo/' . $recordPlus['uid'] . '" title="' . $recordPlus['nickname'] . '"><img src="' . i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') . '" height="25" class="radius3" /></a>';
+                $html .= '</li>';
             }
             if ($sidStringArr['0'] == 'i') {
-                echo '<li><a href="/item/say/' . $sid . '" class="f12">更多</a></li>';
+                $html .= '<li><a href="/item/say/' . $sid . '" class="f12">更多</a></li>';
             } else {
-                echo '<li><a href="/item/help/' . $sid . '" class="f12">更多</a></li>';
+                $html .= '<li><a href="/item/help/' . $sid . '" class="f12">更多</a></li>';
             }
-            echo '</ul>';
+            $html .= '</ul>';
         } else {
-            echo '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
+            $html .= '<p class="stream_plus_users_p">还没有人赞过这条信息，快来赞赞吧！</p>';
         }
+        $this->ajaxReturn($html,'return html','yes');
     }
     
     public function newremark()
