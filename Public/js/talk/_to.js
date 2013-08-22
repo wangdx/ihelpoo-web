@@ -304,9 +304,9 @@ function Chat(state) {
         var curTo = $('#data_touid').val();
 
         console.log("noticing+++"+curTo + " " +from);
-//        if (curTo == from) {
-//            return;
-//        } else {
+        if (curTo == from) {
+            return;
+        } else {
             if (chat == '4') {
                 if (from == 'at') {
                     var num = $('#message_at_nums_a').data(from);
@@ -338,7 +338,7 @@ function Chat(state) {
                 $('#message_talk_nums_p_content_info').html('来自' + fromUser + '的悄悄话');
                 $('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + from });
             }
-//        }
+        }
     };
 
     /**
