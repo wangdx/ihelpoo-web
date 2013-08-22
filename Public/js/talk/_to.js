@@ -198,7 +198,7 @@ function Chat(state) {
         notice(_from, _to, chat);
     };
 
-    notice = function (from, to, content) {
+    function notice(from, to, content) {
         var chat = '1'; // 1. chat
         if ((!content || !content.length)) return;
         $.cometd.publish('/service/notice', {
