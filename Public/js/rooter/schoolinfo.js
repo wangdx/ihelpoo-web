@@ -13,6 +13,6 @@ $().ready(function(){
     });
 	$("#city").live('click', function(){
         var city = $("#city").attr("value");
-        $(this).after(city);
+        $(this).after(city.'-');
     });
 });
