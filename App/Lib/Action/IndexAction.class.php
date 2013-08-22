@@ -103,7 +103,7 @@ class IndexAction extends Action {
         $url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
         $data = file_get_contents($url);
         $dataArray = json_decode($data, true);
-        $this->assign('dataArray', $dataArray);
+        $this->assign('dataArray', $dataArray['data']);
         
         $this->display();
     }
