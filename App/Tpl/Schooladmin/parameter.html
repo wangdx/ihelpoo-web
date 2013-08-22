@@ -2,7 +2,7 @@
   <form method="post">
   <ul class="para_right_default_ul">
     <li>首页用户推荐: <input type="text" name="index_user" class="input_style" value="<?php echo $lastrecordSchoolSystem['index_user']; ?>" /></li>
-    <li>文化展示:&#12288;&#12288; <input type="text" name="index_spread_info" class="input_style" value="" /><?php echo stripslashes($lastrecordSchoolSystem['index_spread_info']); ?><span class="f12 gray">支持html，显示在<a href="/" target="_blank">首页</a> 和 <a href="/stream" target="_blank">stream页</a></span></li>
+    <li>文化展示:&#12288;&#12288; <input type="text" name="index_spread_info" class="input_style" value="<?php echo stripslashes($lastrecordSchoolSystem['index_spread_info']); ?>" /><span class="f12 gray">支持html，显示在<a href="/" target="_blank">首页</a> 和 <a href="/stream" target="_blank">stream页</a></span></li>
     <li>网站首页图:&#12288; <input type="text" name="image_index" class="input_style" value="<?php echo $lastrecordSchoolSystem['image_index']; ?>" /></li>
     <li>手机首页图:&#12288; <input type="text" name="image_mobile" class="input_style" value="<?php echo $lastrecordSchoolSystem['image_mobile']; ?>" /></li>
     <li>关于网站:&#12288;&#12288; <textarea cols="60" rows="5" class="textarea_style" name="about" class="f12"><?php echo stripslashes($lastrecordSchoolSystem['about']); ?></textarea><span class="f12 gray">支持html，显示在<a href="/about" target="_blank">about页</a> 最多支持255个字符</span></li>
