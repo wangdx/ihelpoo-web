@@ -7,9 +7,9 @@
 	  <?php
 $ip = get_client_ip(); //获取当前用户的ip 
 $url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; 
-$data = file_get_contents($url); 
-echo $data; 
-	  
+$data = file_get_contents($url);
+$dataArray = json_decode($data);
+var_dump($dataArray); 
 	  ?>
 	  </div>
 	  <ul class="school_list_ul">
