@@ -187,6 +187,7 @@ function Chat(state) {
             var htmlIn = "<span class='red_l f12'>发送内容不能为空</span>";
             $('#input_status').html(htmlIn);
         }
+        console.log("chatting++"+_from+" "+_to);
         $.cometd.publish('/service/p2ps', {
             room: '/chat/p2p',
             from: _from,
@@ -238,7 +239,6 @@ function Chat(state) {
         var curTo = $('#data_touid').val();
         var curFrom = $('#data_uid').val();
 
-        console.log("charting+++"+curTo + " " +curFrom);
         if (curTo != from && curFrom != from) {//not the person chatting with, not my own page
             return;
         }
