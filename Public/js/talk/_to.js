@@ -241,6 +241,8 @@ function Chat(state) {
             return;
         }
 
+        alert("123");
+
         if ((!image || !image.length) && (!chat || !chat.length)) {//update status
             $('#input_status').html(status + '<span class="icon_write"></span>');
             return;
