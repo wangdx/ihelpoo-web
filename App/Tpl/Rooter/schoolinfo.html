@@ -1,4 +1,5 @@
 <include file="Public:headerrooter" />
+<script type="text/javascript" src="__PUBLIC__/js/rooter/schoolinfo.js"></script>
   <ul class="para_right_ul">
     <?php foreach ($recordSchoolInfo as $schoolInfo) : ?>
     <form method="post">
@@ -7,6 +8,7 @@
     	<input type="hidden" name="id" value="<?php echo $schoolInfo['id']; ?>" />
 	    学校:<input type="text" name="school" value="<?php echo $schoolInfo['school']; ?>" /> - 
 	    首字母:<input type="text" name="initial" value="<?php echo $schoolInfo['initial']; ?>" /> - 
+	    城市:<input type="text" name="city" value="<?php echo $schoolInfo['city_op']; ?>" /> - 
 	    主域名:<input type="text" name="domain_main" value="<?php echo $schoolInfo['domain_main']; ?>" /> -
 	    次域名:<input type="text" name="domain" value="<?php echo $schoolInfo['domain']; ?>" /> -
 	    备注:<input type="text" name="remark" value="<?php echo $schoolInfo['remark']; ?>" />
@@ -26,6 +28,18 @@
   	<li>主域名:<input type="text" name="domain_main" value="" /> 按学校定义</li>
   	<li>次域名:<input type="text" name="domain" value="" /> 我帮圈圈分配</li>
   	<li>备注&#12288;:<input type="text" name="remark" value="" /></li>
+  	<li>
+      城市&#12288;:<select id="province" name="province">
+         <foreach name="listopprovince" item="province">
+			<option value='{$province.id}'>{$province.name}</option>
+		</foreach>
+      </select>
+      <select id="city" name="city">
+        <foreach name="listopcity" item="city">
+			<option value='{$city.id}'>{$city.name}</option>
+		</foreach>
+      </select>
+  	</li>
   	<li><input type="submit" value="添加学校" /></li>
   </ul>
   </form>
