@@ -22,7 +22,7 @@
 		<ul class="activity_index_intro_div_ul">
 			<li class="fb f14 fi gray">即将或正在举办的活动...</li>
 			<li><span class="fb f12 gray">主&#12288;&#12288;题:</span> <?php echo $recordActivityItem['subject']; ?> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="f12 gray" title="说两句"><span class="icon_write"></span></a></li>
-			<li><span class="fb f12 gray">主&#12288;&#12288;办:</span> <a href="__ROOT__/stream/u/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> <a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12 gray"><span class="icon_text"></span></a></li>
+			<li><span class="fb f12 gray">主&#12288;&#12288;办:</span> <a href="__ROOT__/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> <a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12 gray"><span class="icon_text"></span></a></li>
 			<li>
 				<span class="fb f12 gray">活动时间:</span> 
 				<span class="f12 fb black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span>
@@ -37,7 +37,7 @@
 				<ul class="activity_index_user_ul">
 					<?php foreach ($recordsActivityUser as $activityUser) { ?>
 					<li>
-					<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?> 参加时间 <?php echo i_time($activityUser['time']); ?>">
+					<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?> 参加时间 <?php echo i_time($activityUser['time']); ?>">
 				    	<img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="30" class="i_c_l_u_li_img radius3" />
 					</a>
 					</li>

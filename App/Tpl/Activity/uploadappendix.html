@@ -23,7 +23,7 @@
 		<?php if (!empty($recordsActivityAppendix)) { 
 		foreach ($recordsActivityAppendix as $activityAppendix) { ?>
 			<li>
-				<a href="__ROOT__/stream/u/<?php echo $activityAppendix['uid']; ?>" target="_blank"><?php echo $activityAppendix['nickname']; ?></a>
+				<a href="__ROOT__/wo/<?php echo $activityAppendix['uid']; ?>" target="_blank"><?php echo $activityAppendix['nickname']; ?></a>
 				附件URL:<a href="<?php echo $activityAppendix['url']; ?>" target="_blank" class="f10"><?php echo $activityAppendix['url']; ?></a> 
 				<span class="f12 gray">时间<?php echo i_time($activityAppendix['time']); ?></span> 
 			</li>

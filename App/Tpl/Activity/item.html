@@ -36,7 +36,7 @@
 
 	<?php if ($_GET['action'] == 'select') { ?>
 	<div class="activity_item_notive">
-		<p>你将请求与 <a href="__ROOT__/stream/u/<?php echo $_GET['parter']; ?>" target="_blank"><?php echo $_GET['nickname']; ?></a> 成为Parter</p>
+		<p>你将请求与 <a href="__ROOT__/wo/<?php echo $_GET['parter']; ?>" target="_blank"><?php echo $_GET['nickname']; ?></a> 成为Parter</p>
 		<p>1. 只能挑选一人为Parter，确定即视作你将放弃与其他参与者成为Parter的机会</p>
 		<p>2. 等待对方同意，如果同意则你们成为此次活动的Parter，如果对方拒绝你可以再请求与其他参与者成为Parter</p>
 		<p></p>
@@ -63,7 +63,7 @@
 			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>">抽奖</a>
 		</li>
 		<li>
-			<span class="black_l">主&#12288;&#12288;办:</span> <a href="__ROOT__/stream/u/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
+			<span class="black_l">主&#12288;&#12288;办:</span> <a href="__ROOT__/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
 			<a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
 		</li>
 		<li><span class="black_l">活动时间:</span> <span class="black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span> <span class="blue fb">星期<?php echo date('N', $recordActivityItem['activity_ti']); ?></span></li>
@@ -83,11 +83,11 @@
 			<?php $uidUserLogin = $UserLogin->find($parterUser['uid']); ?>
 			<?php $partneruidUserLogin = $UserLogin->find($parterUser['partner_uid']); ?>
 			<li>
-				<a href="__ROOT__/stream/u/<?php echo $uidUserLogin['uid']; ?>">
+				<a href="__ROOT__/wo/<?php echo $uidUserLogin['uid']; ?>">
 					<img src="<?php echo i_icon_check($uidUserLogin['uid'], $uidUserLogin['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" title="<?php echo $uidUserLogin['nickname']; ?>" />
 				</a>
 				<span class="icon_plus"></span>
-				<a href="__ROOT__/stream/u/<?php echo $partneruidUserLogin['uid']; ?>">
+				<a href="__ROOT__/wo/<?php echo $partneruidUserLogin['uid']; ?>">
 					<img src="<?php echo i_icon_check($partneruidUserLogin['uid'], $partneruidUserLogin['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" title="<?php echo $partneruidUserLogin['nickname']; ?>" />
 				</a>
 			<?php } ?>
@@ -97,10 +97,10 @@
 		<ul class="activity_item_join_ul">
 		<?php foreach ($recordsActivityUser as $activityUser) { ?>
 			<li>
-			<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" >
+			<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" >
 			    <img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="40" class="i_c_l_u_li_img radius3" />
-			    <?php echo $activityUser['nickname']; ?> <span class="sex<?php echo $activityUser['sex'] ?>"></span>
 			</a>
+			<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" style="display:inline-block"><?php echo $activityUser['nickname']; ?> <span class="sex<?php echo $activityUser['sex'] ?>"></span></a>
 			<span class="f12 gray">
 				(<a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="真实联系方式" class="f12">联系方式</a> | <a href="__ROOT__/talk/to/<?php echo $activityUser['uid']; ?>" class="悄悄话聊天" class="f12">悄悄话</a>)
 			</span>

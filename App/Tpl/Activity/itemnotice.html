@@ -37,7 +37,7 @@
 		<?php if (!empty($recordsActivityUser)) { 
 		foreach ($recordsActivityUser as $activityUser) { ?>
 			<li>
-				<a href="__ROOT__/stream/u/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?>">
+				<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" title="<?php echo $activityUser['nickname']; ?>">
 				    <img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="30" class="i_c_l_u_li_img radius3" />
 				</a>
 			</li>

@@ -25,10 +25,10 @@
 	<ul class="activity_itemnotice_list_div_ul">
 	<?php foreach($recordsActivityUserinvite as $activityUserinvite) { ?>
 		<li>
-			<a href="__ROOT__/stream/u/<?php echo $activityUserinvite['invite_uid']; ?>">
+			<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>">
 				<img src="<?php echo i_icon_check($activityUserinvite['invite_uid'], $activityUserinvite['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" />
 			</a>	
-			<a href="__ROOT__/stream/u/<?php echo $activityUserinvite['invite_uid']; ?>" class="f12">
+			<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>" class="f12">
 				<?php echo $activityUserinvite['nickname']; ?>
 			</a>
 			<span class="f12 gray" title="邀请时间"><?php i_time($activityUserinvite['time']); ?></span>
