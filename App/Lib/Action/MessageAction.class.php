@@ -87,8 +87,8 @@ class MessageAction extends Action
 
         $UserLogin = M("UserLogin");
         $this->resetNoticeCount($redis, $userloginid);
-        $view = '';
         foreach($msgNotice as $notice){
+            $view = '';
 
             $fromUser = $UserLogin->find($notice['source_id']);
             $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_blank' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a> ";
