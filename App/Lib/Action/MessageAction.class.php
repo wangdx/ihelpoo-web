@@ -99,7 +99,6 @@ class MessageAction extends Action
                 if(!empty($recordDiffusion['view'])){
                     $view = ' 并表示：'.$recordDiffusion['view'];
                 }
-
             }
 
             $tpl =   $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
