@@ -360,10 +360,24 @@ class RooterAction extends Action {
     	$admin = logincheck();
     	$this->assign('title','开通学校');
     	$SchoolInfo = M("SchoolInfo");
+    	
+    	if (!empty($_POST['provinceAjax'])) {
+            $selectProvinceId = (int)$_POST['provinceAjax'];
+            $OpCity = M("OpCity");
+            $selectCityObj = $OpCity->where("prov_id = $selectProvinceId")->select();
+            echo '<select id="city" name="city">';
+            foreach ($selectCityObj as $selectCity) {
+                echo "<option value='$selectCity[id]'>$selectCity[name]</option>";
+            }
+            echo "</select>";
+            exit();
+        }
+    	
     	if ($this->isPost()) {
     		$id = (int)$_POST['id'];
     		$school = $_POST['school'];
     		$initial = $_POST['initial'];
+    		$city = $_POST['city'];
     		$domain = $_POST['domain'];
     		$domain_main = $_POST['domain_main'];
     		$remark = $_POST['remark'];
@@ -377,6 +391,7 @@ class RooterAction extends Action {
     				'id' => $id,
     				'school' => $school,
     				'initial' => $initial,
+    				'city' => $city,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark
@@ -406,6 +421,7 @@ class RooterAction extends Action {
     				'id' => '',
     				'school' => $school,
     				'initial' => $initial,
+    				'city' => $city,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark,
@@ -450,6 +466,17 @@ class RooterAction extends Action {
         $this->assign('totalRecordNums', $totalReocrdNums);
         $totalPages = ceil($totalReocrdNums / $count);
         $this->assign('totalPages', $totalPages);
+        
+        
+        /**
+         * province
+         */
+        $OpProvince = M("OpProvince");
+        $listOpProvince = $OpProvince->select();
+        $OpCity = M("OpCity");
+        $listOpCity = $OpCity->select();
+        $this->assign('listopprovince', $listOpProvince);
+        $this->assign('listopcity', $listOpCity);
     	
     	$this->display();
     }

@@ -1,4 +1,5 @@
 <include file="Public:headerrooter" />
+<script type="text/javascript" src="__PUBLIC__/js/rooter/schoolinfo.js"></script>
   <ul class="para_right_ul">
     <?php foreach ($recordSchoolInfo as $schoolInfo) : ?>
     <form method="post">
@@ -26,6 +27,18 @@
   	<li>主域名:<input type="text" name="domain_main" value="" /> 按学校定义</li>
   	<li>次域名:<input type="text" name="domain" value="" /> 我帮圈圈分配</li>
   	<li>备注&#12288;:<input type="text" name="remark" value="" /></li>
+  	<li>
+      城市&#12288;:<select id="province" name="province">
+         <foreach name="listopprovince" item="province">
+			<option value='{$province.id}'>{$province.name}</option>
+		</foreach>
+      </select>
+      <select id="city" name="city">
+        <foreach name="listopcity" item="city">
+			<option value='{$city.id}'>{$city.name}</option>
+		</foreach>
+      </select>
+  	</li>
   	<li><input type="submit" value="添加学校" /></li>
   </ul>
   </form>
