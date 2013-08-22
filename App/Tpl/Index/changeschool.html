@@ -24,7 +24,7 @@
 	  <?php } ?>
 	  
 	  <ul class="school_list_ul">
-	  <li><p class="fb f14 school_list_ul_initial_p"><i class="ico_school"></i>已开通校园列表</p> <a href="/about/sns" class="red f12 fr">还没你们学校?</a></li>
+	  <li><p class="fb f14 school_list_ul_initial_p"><i class="ico_school"></i>已开通校园列表 <a href="/about/sns" class="red f12 fn fr">还没你们学校?</a></p></li>
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php $schoolUserNums = $userLogin->where("school = $school[id]")->count(); ?>
 	  	<?php if ($initialShow == $school['initial']) { ?>
