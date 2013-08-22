@@ -490,7 +490,6 @@ class SchooladminAction extends Action {
     		$academypostid = (int)$_POST['academy'];
     		$name = trim(addslashes(htmlspecialchars(strip_tags($_POST['name']))));
     		if (!empty($name) && !empty($schoolpostid) && !empty($academypostid)) {
-    			exit();
 	    		if (empty($specialtyid)) {
 		    		$newOpSpecialty = array(
 		    			'name' => $name,
