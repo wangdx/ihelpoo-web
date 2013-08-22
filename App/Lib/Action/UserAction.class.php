@@ -558,6 +558,7 @@ class UserAction extends Action {
          * post
          */
         if ($this->isPost()) {
+        	redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
 	        $validate = array(
 	            array('email', 'email', '邮箱格式不对'),
 	            array('email','','邮箱已经存在！',0,'unique',1),
@@ -576,7 +577,6 @@ class UserAction extends Action {
 	            $errorRegister = $UserLogin->getError();
 	            redirect('/user/register/'.$userId, 3, $errorRegister.' 3秒后跳转');
 	        } else {
-	        	redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
 	            $email = htmlspecialchars(strtolower(trim($_POST["email"])));
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
 	            $password = md5($password);
