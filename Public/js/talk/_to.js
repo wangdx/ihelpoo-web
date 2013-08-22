@@ -200,7 +200,7 @@ function Chat(state) {
 
     notice = function (from, to, content) {
         var chat = '1'; // 1. chat
-        if ((!chat || !chat.length)) return;
+        if ((!content || !content.length)) return;
         $.cometd.publish('/service/notice', {
             room: '/notice/p2p',
             from: from,
