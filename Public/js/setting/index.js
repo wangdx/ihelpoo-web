@@ -116,7 +116,6 @@ $().ready(function(){
                     $("#infoupdateok").slideDown('normal').delay(1000);
                     $("#infoupdateok").fadeOut('slow');
                 }
-                $('#ajaxprogressbar').html('');
             }, "json");
         }
     });
