@@ -712,7 +712,7 @@ class StreamAction extends Action
          */
         $SchoolSystem = M("SchoolSystem");
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
-        $indexSpreadInfoVaule = $recordSchoolSystem['index_spread_info'];
+        $indexSpreadInfoVaule = stripslashes($recordSchoolSystem['index_spread_info']);
         $this->assign('indexSpreadInfoVaule', $indexSpreadInfoVaule);
 
         /**
