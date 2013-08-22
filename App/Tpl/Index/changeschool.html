@@ -4,13 +4,7 @@
 <div class="main">
 	<div>
 	  <div class="">
-	  <?php
-$ip = get_client_ip(); //获取当前用户的ip 
-$url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; 
-$data = file_get_contents($url);
-$dataArray = json_decode($data);
-var_dump($dataArray); 
-	  ?>
+	  <?php var_dump($dataArray); ?>
 	  </div>
 	  <ul class="school_list_ul">
 	  <li><p class="fb f14 school_list_ul_initial_p">已开通校园列表</p></li>

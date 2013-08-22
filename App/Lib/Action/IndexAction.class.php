@@ -90,6 +90,24 @@ class IndexAction extends Action {
         $this->display();
     }
     
+    public function changeschool()
+    {
+    	$title = "我帮圈圈 快速定位学校 帮助主题社交网站";
+    	$this->assign('title',$title);
+    	
+    	$SchoolInfo = M("SchoolInfo");
+    	$recordsSchoolInfo = $SchoolInfo->order("initial ASC")->select();
+        $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
+        
+        $ip = get_client_ip();
+        $url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
+        $data = file_get_contents($url);
+        $dataArray = json_decode($data, true);
+        $this->assign('dataArray', $dataArray);
+        
+        $this->display();
+    }
+    
     public function hot()
     {
     	$recordSchoolInfo = i_school_domain();
