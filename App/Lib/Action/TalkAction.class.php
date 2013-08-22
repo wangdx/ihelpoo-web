@@ -17,6 +17,8 @@ class TalkAction extends Action
             $UserLogin = M("UserLogin");
             $userloginedrecord = $UserLogin->find($userloginid);
             $this->assign('userloginedrecord', $userloginedrecord);
+            $recordSchoolInfo = i_school_domain();
+            $this->assign('schoolname',$recordSchoolInfo['school']);
 
 
             /**
@@ -118,7 +120,7 @@ class TalkAction extends Action
          */
         $TalkContent = M("TalkContent");
         $selectUserSexArray = $TalkContent->where("i_talk_content.uid = $userloginid OR i_talk_content.touid = $userloginid")
-            ->join('i_user_login ON i_talk_content.touid = i_user_login.uid')->select();
+        ->join('i_user_login ON i_talk_content.touid = i_user_login.uid')->select();
         $totalTalkNums = 0;
         $totalNewTalkNums = 0;
         foreach ($selectUserSexArray as $selectUserSex) {

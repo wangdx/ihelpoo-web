@@ -23,6 +23,7 @@ class HelpAction extends Action {
     public function index()
     {
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$title = "帮助广场 - ".$recordSchoolInfo['school'];
         $this->assign('title',$title);
 
@@ -66,6 +67,7 @@ class HelpAction extends Action {
     public function lists()
     {
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$title = "帮助列表 - ".$recordSchoolInfo['school'];
     	$this->assign('title',$title);
     	
@@ -99,6 +101,7 @@ class HelpAction extends Action {
     public function well()
     {   
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$title = "最佳帮助 - ".$recordSchoolInfo['school'];
     	$this->assign('title',$title);
     	
@@ -131,6 +134,7 @@ class HelpAction extends Action {
     public function need()
     {
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$title = "需要帮助 - ".$recordSchoolInfo['school'];
     	$this->assign('title',$title);
     	
