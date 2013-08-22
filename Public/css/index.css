@@ -886,3 +886,16 @@ lable{
 .school_list_ul_initial_p{
     margin-bottom: 5px;
 }
+
+.school_list_recomand_ul{
+    border: 1px solid #C00;
+    border-radius: 3px 3px 3px 3px;
+    margin: 25px 0 0;
+    padding: 10px 15px;
+}
+.school_list_recomand_ul li{
+    padding: 10px 0;
+}
+.school_list_recomand_ul li a{
+    margin-right: 5px;
+}

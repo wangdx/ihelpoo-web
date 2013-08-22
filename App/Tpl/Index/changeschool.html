@@ -2,12 +2,13 @@
 <include file="Public:headerabout" />
 <link href="__PUBLIC__/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
-	<div>
-	  <div class="">
+	  <div class="school_list_ip_div">
 	  你的ip来自:<?php echo $dataArray['country']; ?><?php echo $dataArray['region']; ?><?php echo $dataArray['city']; ?><?php echo $dataArray['isp']; ?>(<?php echo $dataArray['area']; ?>)
 	  </div>
-	  <ul class="school_list_ul">
-	  <li><p class="fb f14 school_list_ul_initial_p">快速定位校园</p></li>
+	  
+	  <?php if (!empty($schoolOpCity)) { ?>
+	  <ul class="school_list_recomand_ul">
+	  <li><p class="fb f14 school_list_ul_initial_p"><i class="ico_favourite"></i>快速定位校园</p></li>
 	  <li><?php foreach ($schoolOpCity as $school) :?>
 	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>">
 		   <?php echo $school['school']; ?>
@@ -16,9 +17,10 @@
 	  <?php endforeach; ?>
 	  </li>
 	  </ul>
+	  <?php } ?>
 	  
 	  <ul class="school_list_ul">
-	  <li><p class="fb f14 school_list_ul_initial_p">已开通校园列表</p></li>
+	  <li><p class="fb f14 school_list_ul_initial_p"><i class="ico_school"></i>已开通校园列表</p></li>
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php $schoolUserNums = $userLogin->where("school = $school[id]")->count(); ?>
 	  	<?php if ($initialShow == $school['initial']) { ?>
@@ -38,6 +40,5 @@
 	    <?php } ?>
 	  <?php endforeach; ?>
 	  </ul>
-	</div>
 </div>
 <include file="Public:footer" />
