@@ -104,7 +104,7 @@ class IndexAction extends Action {
         $data = file_get_contents($url);
         $dataArray = json_decode($data, true);
         $this->assign('dataArray', $dataArray['data']);
-        echo $ipcity = substr($dataArray['data']['city'],0,6);
+        echo $ipcity = substr($dataArray['data']['city'],0,5);
         
         $this->display();
     }
