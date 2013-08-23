@@ -19,6 +19,7 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == 'ok') {
     				$this.removeClass().addClass("btn_quaned do_quantacancel_wo").html("已圈ta");
+    				notice.send($('system', userid);
     				var new_quaned_nums = parseInt(quaned_nums) + parseInt('1');
     				$('#quaned_nums').html(new_quaned_nums);
     			} else {
