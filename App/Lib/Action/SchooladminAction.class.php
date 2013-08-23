@@ -1142,8 +1142,8 @@ class SchooladminAction extends Action {
     	$webmaster = logincheck();
     	$recordSchoolInfo = i_school_domain();
     	$this->assign('title', '授予荣誉奖励活跃');
+    	$UserLogin = M("UserLogin");
         if (!empty($_POST['get_user_level'])) {
-        	$UserLogin = M("UserLogin");
             $userAll = $UserLogin->where("school = $recordSchoolInfo[id]")->select();
             $userStrings = NULL;
             $i = 0;
@@ -1174,7 +1174,6 @@ class SchooladminAction extends Action {
         }
 
         if (!empty($_POST['get_user_info'])) {
-        	$UserLogin = M("UserLogin");
         	$userArray = explode(";", $_POST['get_user_info']);
         	$userString = NULL;
         	foreach ($userArray as $user) {
@@ -1182,7 +1181,7 @@ class SchooladminAction extends Action {
         	}
         	$userString = substr($userString, 0, -1);
 
-        	$userList = $UserLogin->where("i_user_login.uid in (".$userString.")")
+        	$userList = $UserLogin->where("i_user_login.uid in (".$userString.") ADN i_user_login.school = $recordSchoolInfo[id]")
         	->join('i_user_info ON i_user_info.uid = i_user_login.uid')
         	->join('i_op_academy ON i_user_info.academy_op = i_op_academy.id')
         	->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
@@ -1219,31 +1218,34 @@ class SchooladminAction extends Action {
             $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
             $i = 0;
             foreach ($userArray as $user) {
-                $data = array(
-                    'id' => '',
-                    'uid' => $user,
-                    'content' => $_POST['honor_content'],
-                    'time' => time()
-                );
-                $UserHonor->add($data);
+            	$resultUserLogin = $UserLogin->find($user);
+            	if ($resultUserLogin['school'] == $recordSchoolInfo['id']) {
+            		$data = array(
+	                    'id' => '',
+	                    'uid' => $user,
+	                    'content' => $_POST['honor_content'],
+	                    'time' => time()
+            		);
+            		$UserHonor->add($data);
 
-                /**
-                 * insert into system message
-                 */
-//                $diffusionToOwnerData = array(
-//        	        'id' => '',
-//        	        'uid' => $user,
-//        	        'type' => $msgSystemType,
-//        	        'url_id' => $user,
-//        	        'from_uid' => '',
-//        	        'content' => $contentToOwnerMsgSystem,
-//        	        'time' => time(),
-//        	        'deliver' => 0,
-//                );
-//        	    $MsgSystem->add($diffusionToOwnerData);
+            		/**
+            		 * insert into system message
+            		 */
+            		//                $diffusionToOwnerData = array(
+            		//        	        'id' => '',
+            		//        	        'uid' => $user,
+            		//        	        'type' => $msgSystemType,
+            		//        	        'url_id' => $user,
+            		//        	        'from_uid' => '',
+            		//        	        'content' => $contentToOwnerMsgSystem,
+            		//        	        'time' => time(),
+            		//        	        'deliver' => 0,
+            		//                );
+            		//        	    $MsgSystem->add($diffusionToOwnerData);
 
-                i_savenotice('10000', $user, $msgSystemType, $user);
-        	    $i++;
+            		i_savenotice('10000', $user, $msgSystemType, $user);
+            		$i++;
+            	}
             }
         	
         	/**
@@ -1273,7 +1275,6 @@ class SchooladminAction extends Action {
         	 * msg active
         	 */
         	$MsgActive = M("MsgActive");
-        	$UserLogin = M("UserLogin");
             $userArray = explode(";", $_POST['user_ids']);
 
             /**
@@ -1285,42 +1286,44 @@ class SchooladminAction extends Action {
             $userstring = 0;
             foreach ($userArray as $user) {
             	$recordUserLogin = $UserLogin->find($user);
-            	$recordUserLoginActive = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
-            	$userStatusData = array(
-    				'uid' => $user,
-	                'active' => $recordUserLoginActive + $activeNums,
-    			);
-    			$UserLogin->save($userStatusData);
-            	
-    			/**
-                 * insert into msg active
-                 */	
-            	$msgActiveArray = array(
-					'id' => '',
-					'uid' => $user,
-					'total' => $recordUserLoginActive,
-					'change' => $activeNums,
-					'way' => 'add',
-					'reason' => $activeReason,
-					'time' => time(),
-					'deliver' => 0,
-            	);
-            	$MsgActive->add($msgActiveArray);
+            	if ($recordUserLogin['school'] == $recordSchoolInfo['id']) {
+            		$recordUserLoginActive = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
+            		$userStatusData = array(
+	    				'uid' => $user,
+		                'active' => $recordUserLoginActive + $activeNums,
+            		);
+            		$UserLogin->save($userStatusData);
+            		 
+            		/**
+            		 * insert into msg active
+            		 */
+            		$msgActiveArray = array(
+						'id' => '',
+						'uid' => $user,
+						'total' => $recordUserLoginActive,
+						'change' => $activeNums,
+						'way' => 'add',
+						'reason' => $activeReason,
+						'time' => time(),
+						'deliver' => 0,
+            		);
+            		$MsgActive->add($msgActiveArray);
 
-                /**
-                 * insert into system message
-                 */
-                $insertToOwnerData = array(
-                    'id' => '',
-                    'uid' => $user,
-                    'type' => 'system',
-                    'content' => $contentToOwnerMsgSystem,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-        	    $MsgSystem->add($insertToOwnerData);
-        	    $i++;
-        	    $userstring .= $user.'-';
+            		/**
+            		 * insert into system message
+            		 */
+            		$insertToOwnerData = array(
+	                    'id' => '',
+	                    'uid' => $user,
+	                    'type' => 'system',
+	                    'content' => $contentToOwnerMsgSystem,
+	                    'time' => time(),
+	                    'deliver' => 0,
+            		);
+            		$MsgSystem->add($insertToOwnerData);
+            		$i++;
+            		$userstring .= $user.'-';
+            	}
             }
         	
         	/**
