@@ -259,7 +259,7 @@ class UserAction extends Action {
                     if ($recordSchoolInfo['id'] != $dbUser['school']) {
                     	redirect($schoolDomain.'/stream', 3, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
                     } else {
-                    	setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/');
+                    	setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
                     	redirect('/stream', 0, '登录成功...');
                     }
 	            } else {
