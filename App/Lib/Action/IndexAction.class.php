@@ -98,6 +98,7 @@ class IndexAction extends Action {
     	$recordsSchoolInfo = $SchoolInfo->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
+        var_dump($_COOKIE['userLoginSchool']);
         if (!empty($_COOKIE['userLoginSchool'])) {
         	redirect($_COOKIE['userLoginSchool'], 0, '跳转页面 :)...');
         }
