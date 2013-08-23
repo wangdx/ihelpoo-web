@@ -14,6 +14,7 @@ $().ready(function () {
         $this = $(this);
         var userid = $(".user_info_top_div").attr('userid');
         var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        var quaned_nums_common = $('#quaned_nums_common').html();
         $this.html($infoLoading);
         $.ajax({
             type: "POST",
@@ -24,6 +25,8 @@ $().ready(function () {
                 if (msg.status == 'ok') {
                     $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
                     notice.send($('#data_touid').val(), userid);
+                    var new_quaned_nums = parseInt(quaned_nums) + parseInt('1');
+    				$('#quaned_nums_common').html(new_quaned_nums);
                 } else {
                     ajaxInfo(msg.info);
                 }
@@ -35,6 +38,7 @@ $().ready(function () {
         $this = $(this);
         var userid = $(".user_info_top_div").attr('userid');
         var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+        var quaned_nums_common = $('#quaned_nums_common').html();
         $this.html($infoLoading);
         $.ajax({
             type: "POST",
@@ -44,6 +48,8 @@ $().ready(function () {
             success: function (msg) {
                 if (msg.status == 'ok') {
                     $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta");
+                    var new_quaned_nums = parseInt(quaned_nums) - parseInt('1');
+    				$('#quaned_nums_common').html(new_quaned_nums);
                 } else {
                     ajaxInfo(msg.info);
                 }
@@ -250,7 +256,7 @@ $().ready(function () {
                             + "		    <img width='60' height='45' src='" + msg.data.icon_url + "' />"
                             + "		    <span class='online" + msg.data.online + "'></span></a>"
                             + "		  <p class='user_info_top_div_nickname_p'><a href='" + baseUrl + "wo/" + msg.data.uid + "' class='f14 fb' target='_blank'>" + msg.data.nickname + "</a> " + userremarkhtml + "&nbsp;<span class='level" + msg.data.degree + "'></span></p>"
-                            + "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>" + msg.data.follow + "</span> 圈子:<span class='fb f14'>" + msg.data.fans + "</span> <span class='user_info_top_div_quan_p_do'>" + relationhtml + "&nbsp;<a href='/talk/to/" + msg.data.uid + "' class='btn_quaned'>悄悄话</a></span></p>"
+                            + "       <p class='user_info_top_div_quan_p black_l'>圈的:<span class='fb f14'>" + msg.data.follow + "</span> 圈子:<span class='fb f14' id='quaned_nums_common'>" + msg.data.fans + "</span> <span class='user_info_top_div_quan_p_do'>" + relationhtml + "&nbsp;<a href='/talk/to/" + msg.data.uid + "' class='btn_quaned'>悄悄话</a></span></p>"
                             + "       <span class='user_info_span_constellation'>" + userconstellation + "<span class='sex" + msg.data.sex + "'></span></span>"
                             + "		</div>"
                             + "		<div class='user_info_main_div'>"
