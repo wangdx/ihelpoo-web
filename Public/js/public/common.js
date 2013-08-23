@@ -25,7 +25,7 @@ $().ready(function () {
                 if (msg.status == 'ok') {
                     $this.removeClass().addClass("btn_quaned do_quantacancel").html("已圈ta");
                     notice.send($('#data_touid').val(), userid);
-                    var new_quaned_nums = parseInt(quaned_nums) + parseInt('1');
+                    var new_quaned_nums = parseInt(quaned_nums_common) + parseInt('1');
     				$('#quaned_nums_common').html(new_quaned_nums);
                 } else {
                     ajaxInfo(msg.info);
@@ -48,7 +48,7 @@ $().ready(function () {
             success: function (msg) {
                 if (msg.status == 'ok') {
                     $this.removeClass().addClass("btn_quan do_quanta").html("<span class='icon_plus'></span>圈ta");
-                    var new_quaned_nums = parseInt(quaned_nums) - parseInt('1');
+                    var new_quaned_nums = parseInt(quaned_nums_common) - parseInt('1');
     				$('#quaned_nums_common').html(new_quaned_nums);
                 } else {
                     ajaxInfo(msg.info);
