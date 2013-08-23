@@ -1090,7 +1090,7 @@ class SchooladminAction extends Action {
 //                    'deliver' => 0,
 //                );
 //                $MsgSystem->add($msgData);
-                i_savenotice('10000', $uid, 'setting/realfirst', '');
+                i_savenotice('10000', $uid, 'setting/realfirst', '');  //TODO bounce message
 
                 /**
                  * update i_admin_realnalemf.allow
@@ -1127,10 +1127,10 @@ class SchooladminAction extends Action {
 		            'time' => time()
                 );
                 $SchoolRecord->add($newSchoolRecordData);
-                if ($isUpdateAdminRealnamemf && $isUpdateUserInfo) {
+                if ($isUpdateUserInfo) {
                 	redirect('/schooladmin/realnameallowmf', 3, 'update user modify ok...');
                 } else {
-                	redirect('/schooladmin/realnameallowmf', 3, 'update info... isUpdateAdminRealnamemf:'.$isUpdateAdminRealnamemf.'; isUpdateUserInfo:'.$isUpdateUserInfo);
+                	redirect('/schooladmin/realnameallowmf', 3, 'update info... isUpdateAdminRealnamemf:'.'; isUpdateUserInfo:'.$isUpdateUserInfo);
                 }
             }
         }
@@ -1181,9 +1181,9 @@ class SchooladminAction extends Action {
             /**
              * message to owner
         	 */
-        	$MsgSystem = M("MsgSystem");
+//        	$MsgSystem = M("MsgSystem");
             $msgSystemType = 'helpschooladmin/userhonor';
-            $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
+//            $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
             $i = 0;
             foreach ($userArray as $user) {
             	$resultUserLogin = $UserLogin->find($user);
@@ -1211,7 +1211,7 @@ class SchooladminAction extends Action {
             		//                );
             		//        	    $MsgSystem->add($diffusionToOwnerData);
 
-            		i_savenotice('10000', $user, $msgSystemType, $user);
+            		i_savenotice('10000', $user, $msgSystemType, $user); //TODO bounce message
             		$i++;
             	}
             }
@@ -1248,8 +1248,8 @@ class SchooladminAction extends Action {
             /**
              * message to owner
         	 */
-        	$MsgSystem = M("MsgSystem");
-            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
+//        	$MsgSystem = M("MsgSystem");
+//            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
             $i = 0;
             $userstring = 0;
             foreach ($userArray as $user) {
@@ -1280,15 +1280,16 @@ class SchooladminAction extends Action {
             		/**
             		 * insert into system message
             		 */
-            		$insertToOwnerData = array(
-	                    'id' => '',
-	                    'uid' => $user,
-	                    'type' => 'system',
-	                    'content' => $contentToOwnerMsgSystem,
-	                    'time' => time(),
-	                    'deliver' => 0,
-            		);
-            		$MsgSystem->add($insertToOwnerData);
+//            		$insertToOwnerData = array(
+//	                    'id' => '',
+//	                    'uid' => $user,
+//	                    'type' => 'system',
+//	                    'content' => $contentToOwnerMsgSystem,
+//	                    'time' => time(),
+//	                    'deliver' => 0,
+//            		);
+//            		$MsgSystem->add($insertToOwnerData);
+                    i_savenotice("10000", $user, 'system/active:reward', '');
             		$i++;
             		$userstring .= $user.'-';
             	}
@@ -1509,21 +1510,25 @@ class SchooladminAction extends Action {
 	    			/**
 		             * send system message.
 		             */
-		            $MsgSystem = M("MsgSystem");
+//		            $MsgSystem = M("MsgSystem");
 		            if ($status == 2) {
 		            	$msgContent = "资料重新审核通过，您的小店又开通了!";
+                        $msgType = 'system/mall:reaudit:ok';
 		            } else {
 		            	$msgContent = "资料重新审核中，您的小店暂时关闭!";
+                        $msgType = 'system/mall:reaudit:no';
 		            }
-		            $msgData = array(
-	                	'id' => NULL,
-	                	'uid' => $uid,
-	                 	'type' => 'system',
-	              		'content' => $msgContent,
-	                	'time' => time(),
-	                	'deliver' => 0,
-		            );
-		            $MsgSystem->add($msgData);
+//		            $msgData = array(
+//	                	'id' => NULL,
+//	                	'uid' => $uid,
+//	                 	'type' => 'system',
+//	              		'content' => $msgContent,
+//	                	'time' => time(),
+//	                	'deliver' => 0,
+//		            );
+//		            $MsgSystem->add($msgData);
+                    i_savenotice('10000', $uid, $msgType, '');
+
 		            
 		            /**
 		             * webmaster user operating record
@@ -1803,15 +1808,16 @@ class SchooladminAction extends Action {
 	             * send system message.
 	             */
 	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
-	            $msgData = array(
-                	'id' => NULL,
-                	'uid' => $recordActivityItem['sponsor_uid'],
-                 	'type' => 'system',
-              		'content' => $msgContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgData);
+//	            $msgData = array(
+//                	'id' => NULL,
+//                	'uid' => $recordActivityItem['sponsor_uid'],
+//                 	'type' => 'system',
+//              		'content' => $msgContent,
+//                	'time' => time(),
+//                	'deliver' => 0,
+//	            );
+//	            $MsgSystem->add($msgData);
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activity:audit:ok', '');
 	            
 	            /**
 	             * send mail
@@ -1881,15 +1887,16 @@ class SchooladminAction extends Action {
 	             * send system message.
 	             */
 	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核未通过，请重新填写，务必合符组织活动规范!";
-	            $msgData = array(
-                	'id' => NULL,
-                	'uid' => $recordActivityItem['sponsor_uid'],
-                 	'type' => 'system',
-              		'content' => $msgContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgData);
+//	            $msgData = array(
+//                	'id' => NULL,
+//                	'uid' => $recordActivityItem['sponsor_uid'],
+//                 	'type' => 'system',
+//              		'content' => $msgContent,
+//                	'time' => time(),
+//                	'deliver' => 0,
+//	            );
+//	            $MsgSystem->add($msgData);
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activity:audit:no', '');
 	            
 	            /**
 	             * send mail
