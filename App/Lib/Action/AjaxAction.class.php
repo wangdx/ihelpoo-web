@@ -827,6 +827,10 @@ class AjaxAction extends Action {
                  * if ($userLogin['type'] == 2) 
 	             * $msgPriorityUserType2Content = "你加入了 ".$userLogin['nickname']." 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
         		 */
+
+
+                i_savenotice($userloginid, $quanUid, 'mutual/priority', '');
+
         		
         		$this->ajaxReturn(0,'成功圈了ta','ok');
         	}
