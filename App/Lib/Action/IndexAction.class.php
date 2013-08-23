@@ -98,6 +98,10 @@ class IndexAction extends Action {
     	$recordsSchoolInfo = $SchoolInfo->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
+        if (!empty($_COOKIE['userLoginSchool'])) {
+        	redirect($_COOKIE['userLoginSchool'], 0, '跳转页面 :)...');
+        }
+        
         $ip = get_client_ip();
         //$ip = '111.177.117.121';
         $url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;

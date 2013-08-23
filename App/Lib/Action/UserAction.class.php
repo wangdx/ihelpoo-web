@@ -254,11 +254,12 @@ class UserAction extends Action {
                      * select school
                      */
                     $recordSchoolInfo = i_school_domain();
+                    $schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    $schoolDomain = "http://".$schoolDomain;
                     if ($recordSchoolInfo['id'] != $dbUser['school']) {
-                    	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
-                    	$schoolDomain = "http://".$schoolDomain;
                     	redirect($schoolDomain.'/stream', 3, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
                     } else {
+                    	setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/');
                     	redirect('/stream', 0, '登录成功...');
                     }
 	            } else {
