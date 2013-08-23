@@ -9,6 +9,7 @@ $().ready(function(){
     	$this = $(this);
     	var userid = $this.attr('userid');
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+    	var quaned_nums = $('#quaned_nums').html();
     	$this.html($infoLoading);
     	$.ajax({
     		type: "POST",
@@ -18,6 +19,8 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == 'ok') {
     				$this.removeClass().addClass("btn_quaned do_quantacancel_wo").html("已圈ta");
+    				var new_quaned_nums = parseInt(quaned_nums) + '1';
+    				$('#quaned_nums').html(new_quaned_nums);
     			} else {
     				ajaxInfo(msg.info);
     				$this.html("<span class='icon_plus'></span>圈ta");
@@ -30,6 +33,7 @@ $().ready(function(){
     	$this = $(this);
     	var userid = $this.attr('userid');
     	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+    	var quaned_nums = $('#quaned_nums').html();
     	$this.html($infoLoading);
     	$.ajax({
     		type: "POST",
@@ -39,6 +43,8 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == 'ok') {
     				$this.removeClass().addClass("btn_quan do_quanta_wo").html("<span class='icon_plus'></span>圈ta");
+    				var new_quaned_nums = parseInt(quaned_nums) - '1';
+    				$('#quaned_nums').html(new_quaned_nums);
     			} else {
     				ajaxInfo(msg.info);
     				$this.html("取消圈ta");
