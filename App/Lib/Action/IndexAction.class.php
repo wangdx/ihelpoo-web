@@ -103,7 +103,6 @@ class IndexAction extends Action {
         $url = "http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
         $data = file_get_contents($url);
         $dataArray = json_decode($data, true);
-        var_dump($dataArray['data']);
         $this->assign('dataArray', $dataArray['data']);
         $ipcity = substr($dataArray['data']['city'], 0, 6);
         
