@@ -1173,38 +1173,6 @@ class SchooladminAction extends Action {
             $SchoolRecord->add($newSchoolRecordData);
         }
 
-        if (!empty($_POST['get_user_info'])) {
-        	$userArray = explode(";", $_POST['get_user_info']);
-        	$userString = NULL;
-        	foreach ($userArray as $user) {
-        	    $userString .= $user.",";
-        	}
-        	$userString = substr($userString, 0, -1);
-
-        	$userList = $UserLogin->where("i_user_login.uid in (".$userString.") ADN i_user_login.school = $recordSchoolInfo[id]")
-        	->join('i_user_info ON i_user_info.uid = i_user_login.uid')
-        	->join('i_op_academy ON i_user_info.academy_op = i_op_academy.id')
-        	->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
-        	->join('i_op_dormitory ON i_user_info.dormitory_op = i_op_dormitory.id')
-        	->join('i_op_city ON i_user_info.city_op = i_op_city.id')
-        	->field('i_user_login.uid,email,nickname,sex,birthday,enteryear,ip,logintime,realname,mobile,qq,weibo,i_op_academy.name as nameacademy,i_op_specialty.name as namespecialty,i_op_dormitory.name as namedormitory,i_op_city.name as namecity')
-        	->select();
-        	$this->assign('userList', $userList);
-        	
-        	/**
-             * webmaster user operating record
-             */
-            $SchoolRecord = M("SchoolRecord");
-            $newSchoolRecordData = array(
-		        'id' => '',
-		        'sys_id' => '',
-		        'uid' => $webmaster['uid'],
-		        'sid' => $recordSchoolInfo['id'],
-		        'record' => 'userhonor get_user_info 查询用户详细. userString:'.$userString,
-		        'time' => time()
-            );
-            $SchoolRecord->add($newSchoolRecordData);
-        }
 
         if (!empty($_POST['honor_content'])) {
             $UserHonor = M("UserHonor");
