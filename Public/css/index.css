@@ -205,6 +205,12 @@ lable{
 .loginbox_more{
     width: 215px;
     margin: 15px 0 0;
+    position: relative;
+}
+#login_weibo_qq_switch{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 .loginbox_outer{
     background: #FFF;
