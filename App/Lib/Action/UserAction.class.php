@@ -323,7 +323,7 @@ class UserAction extends Action {
             $isWeiboExist = $UserLoginWb->where("weibo_uid = $_POST[i_w_user_id]")->find();
             if (empty($isWeiboExist['uid'])) {
             	$email = $_POST['i_w_user_id']."@loginweibo.com";
-            	$password = rand(10000000, 99999999);;
+            	$password = rand(10000000, 99999999);
             	$nickname = $_POST['i_w_user_name'];
             	if ($_POST['i_w_user_sex'] == 'm') {
             		$sex = 1;
@@ -341,7 +341,7 @@ class UserAction extends Action {
             		'uid' => '',
             		'status' => 1,
             		'email' => $email,
-            		'password' => $password,
+            		'password' => md5($password),
             		'nickname' => $nickname,
             		'sex' => $sex,
             		'enteryear' => $enteryear,
@@ -447,11 +447,147 @@ class UserAction extends Action {
                     session('userloginid',$dbUser['uid']);
                     setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
                     setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
-                    $this->ajaxReturn(0,'登录成功','ok');
+                    $this->ajaxReturn('stream','登录成功','ok');
 	            }
             }
         }
         $this->ajaxReturn(0,'登录失败','wrong');
+    }
+    
+    public function loginqqaajax()
+    {
+    	$userloginid = session('userloginid');
+        if ($userloginid) {
+            $this->ajaxReturn(0,'已经登录','exist');
+    	}
+    	$recordSchoolInfo = i_school_domain();
+    	if ($this->isPost()) {
+    		$UserLogin = M("UserLogin");
+    		$UserLoginQq = M("UserLoginQq");
+    		
+    		$qqUserId = $_POST['i_qq_user_id'];
+    		$qqUserName = $_POST['i_qq_user_name'];
+    		$qqUserSex = $_POST['i_qq_user_sex'];
+    		$qqUserBirthDay = $_POST['i_qq_user_birth_day'];
+    		$qqUserBirthMonth = $_POST['i_qq_user_birth_month'];
+    		$qqUserBirthYear = $_POST['i_qq_user_birth_year'];
+    		$qqUserDescription = $_POST['i_qq_user_description'];
+    		if (empty($qqUserBirthYear)) {
+    			$qqUserBirthYear = 2012;
+    		}
+    		if (empty($qqUserBirthMonth)) {
+    			$qqUserBirthMonth = 1;
+    		}
+    		if (empty($qqUserBirthDay)) {
+    			$qqUserBirthDay = 1;
+    		}
+    		$qqUserBirth = $qqUserBirthYear.'-'.$qqUserBirthMonth.'-'.$qqUserBirthDay;
+    		$dateInfo = getdate();
+            $enteryear = $dateInfo['year'];
+    		if (!empty($qqUserId) && !empty($qqUserName)) {
+    			$isQqExist = $UserLoginQq->where("qq_uid = $qqUserId")->find();
+    			if (empty($isQqExist['uid'])) {
+	    			$email = $qqUserId.'@qq.com';
+	    			$password = rand(10000000, 99999999);
+	    			$newUserData = array(
+	            		'uid' => '',
+	            		'status' => 1,
+	            		'email' => $email,
+	            		'password' => md5($password),
+	            		'nickname' => $qqUserName,
+	            		'sex' => $qqUserSex,
+	            		'birthday' => $qqUserBirth,
+	            		'enteryear' => $enteryear,
+	            		'type' => '1',
+	            		'priority' => '4',
+	            		'logintime' => time(),
+	            		'creat_ti' => time(),
+	            		'school' => $recordSchoolInfo['id'],
+	            		'online' => 1,
+	            		'coins' => 0,
+	            		'active' => 0,
+	            		'icon_fl' => 0,
+	            	);
+	            	$lastInsertUid = $UserLogin->add($newUserData);
+	            	
+	            	/**
+	            	 * user login qq
+	            	 */
+	            	$dataUserLoginQq = array(
+	            	    'uid' => $lastInsertUid,
+	                    'qq_uid' => $qqUserId,
+	                    'switch' => 1,
+	            	);
+	            	$UserLoginQq->add($dataUserLoginQq);
+	            	
+	            	/**
+	            	 * userinfo base
+	            	 */
+	                $UserInfo = M("UserInfo");
+	                $rowUserInfo = array (
+	                    'uid' => $lastInsertUid,
+	                    'introduction' => $qqUserDescription,
+	                   	'dynamic' => 1,
+	                   	'fans' => 0,
+	                   	'follow' => 0,
+	                );
+	                $UserInfo->add($rowUserInfo);
+	            	
+	                /**
+	                 * Add IUserStatus
+	                 */
+	                $UserStatus = M("UserStatus");
+	                $dataUserStatus = array(
+	                    'uid' => $lastInsertUid,
+	                    'record_limit' => 6,
+	                );
+	                $UserStatus->add($dataUserStatus);
+	                
+	                /**TODO
+	                 * send system message.
+	                 */
+	                
+	                /**
+		             * add default dynamic record.
+		             */
+		            $recordDynamicContent = "我刚刚通QQ登录加入了".$recordSchoolInfo['school']."我帮圈圈:)";
+		            $RecordSay = M("RecordSay");
+		            $RecordDynamic = M("RecordDynamic");
+		            $newRecordSayData = array(
+		            	'uid' => $lastInsertUid,
+		            	'say_type' => 2,
+		            	'content' => $recordDynamicContent,
+		            	'time' => time(),
+		            	'from' => '动态'
+		            );
+		            $newRecordSayId = $RecordSay->add($newRecordSayData);
+		            
+		            $newRecordDynamicData = array(
+		            	'sid' => $newRecordSayId,
+		            	'type' => 'join',
+		            );
+		            $RecordDynamic->add($newRecordDynamicData);
+	                
+		            /**
+		             * fillaccount
+		             */
+		            session('userloginid',$lastInsertUid);
+		            $this->ajaxReturn('stream','QQ注册登录成功...','step');
+    			} else {
+    				$qqUserLogin = $UserLogin->find($isQqExist['uid']);
+    				$IUserLogin = D("IUserLogin");
+    				$dbUser = $IUserLogin->userVerification($qqUserLogin['email'], $qqUserLogin['password'], 1);
+    				if (is_array($dbUser)) {
+    					userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
+    					session('userloginid',$dbUser['uid']);
+    					setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
+    					setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
+    					$this->ajaxReturn('stream','登录成功','ok');
+    				}
+    			}
+    		}
+    	}
+    	$this->ajaxReturn(0,'登录失败','wrong');
     }
 
     public function quit()
