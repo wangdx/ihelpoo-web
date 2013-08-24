@@ -149,6 +149,15 @@ class SettingAction extends Action
             redirect('/setting/index/' . $recordUserLogin['school'], 0, '缺少学校参数...');
             $schoolId = $recordUserLogin['school'];
         }
+        
+        /**
+         * is school webmaster
+         */
+        $SchoolWebmaster = M("SchoolWebmaster");
+        $isSchoolWebmaster = $SchoolWebmaster->where("uid = $userloginid")->find();
+        if (!empty($isSchoolWebmaster['id']) && ($schoolId != $isSchoolWebmaster['sid'])) {
+        	redirect('/setting/index/' . $recordUserLogin['school'], 3, '你是站长，不能切换学校，阵地需要坚守:)...');
+        }
 
         /**
          * school info
@@ -194,7 +203,7 @@ class SettingAction extends Action
         if (!empty($recordUserInfo['dormitory_op'])) {
             $recordDormitory = $OpDormitory->where("id = $recordUserInfo[dormitory_op]")->find();
         }
-
+        
         /**
          * view
          */
