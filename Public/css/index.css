@@ -226,11 +226,17 @@ lable{
     margin: 20px 0 0;
     width: 215px;
     position: relative;
+    height: 35px;
 }
 #wb_connect_btn{
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 #qqLoginBtn{
-    
+    position: absolute;
+    top: 0;
+    left: 115px;
 }
 
 
