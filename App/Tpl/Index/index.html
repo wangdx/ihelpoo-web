@@ -81,11 +81,9 @@ html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidd
 			  </div>
 			  <div class="loginbox_more gray f12">
 			  	<a href="__ROOT__/user/resetpw">忘记密码</a> | <a href="__ROOT__/user/register">注册</a>
-			  	<span class="fr">
-			  		<?php if ($configIsLoginWeibo) { ?><span id="wb_connect_btn"></span><?php } ?> 
-			  		<?php if ($configIsLoginQq) { ?><span id="qqLoginBtn"></span><?php } ?>
-			  	</span>
 			  </div>
+			  <?php if ($configIsLoginWeibo) { ?><span id="wb_connect_btn"></span><?php } ?> 
+			  <?php if ($configIsLoginQq) { ?><span id="qqLoginBtn"></span><?php } ?>
 		  </form>
 		</div>
 		<?php } ?>
