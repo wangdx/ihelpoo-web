@@ -391,21 +391,20 @@ class UserAction extends Action {
                 );
                 $UserStatus->add($dataUserStatus);
                 
-                /**TODO
-                 * send system message.
-                $MsgSystem = M("MsgSystem");
-                $msgRegisterContent = "欢迎".$nickname."通过微博来到".$recordSchoolInfo['school']."我帮圈圈:) 故事开始啦!";
-                $msgRegisterData = array(
-                    'id' => NULL,
-                    'uid' => $lastInsertUid,
-                    'type' => 'system',
-                    'content' => $msgRegisterContent,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-                $MsgSystem->add($msgRegisterData);
-                i_savenotice('10000', $newUserId, 'system/welcome', '');
-                 */
+//                send system message.
+//                $MsgSystem = M("MsgSystem");
+//                $msgRegisterContent = "欢迎%s通过微博来到我帮圈圈:) 故事开始啦!";
+//                $msgRegisterData = array(
+//                    'id' => NULL,
+//                    'uid' => $lastInsertUid,
+//                    'type' => 'system',
+//                    'content' => $msgRegisterContent,
+//                    'time' => time(),
+//                    'deliver' => 0,
+//                );
+//                $MsgSystem->add($msgRegisterData);
+                i_savenotice($lastInsertUid, $lastInsertUid, 'system/welcome:weibo', '');
+
                 
                 /**
 	             * add default dynamic record.
@@ -711,16 +710,17 @@ class UserAction extends Action {
 		            /**
 		             * add msg system
 		             */
-		            $msgInviteRegisterContent = "您邀请的 ".$nickname." 加入了我帮圈圈:) 系统认定注册有效后，会奖励你50活跃";
-	            	$msgRegisterData = array(
-                		'id' => NULL,
-                		'uid' => $userId,
-                 		'type' => 'system',
-              			'content' => $msgInviteRegisterContent,
-                		'time' => time(),
-                		'deliver' => 0,
-	            	);
-	            	$MsgSystem->add($msgRegisterData);
+//		            $msgInviteRegisterContent = "您邀请的 ".$nickname." 加入了我帮圈圈:) 系统认定注册有效后，会奖励你50活跃";
+//	            	$msgRegisterData = array(
+//                		'id' => NULL,
+//                		'uid' => $userId,
+//                 		'type' => 'system',
+//              			'content' => $msgInviteRegisterContent,
+//                		'time' => time(),
+//                		'deliver' => 0,
+//	            	);
+//	            	$MsgSystem->add($msgRegisterData);
+                    i_savenotice($newUserId, $userId, 'system/invite:inviter', '');
 
 	            	/**
 	            	 * begin insert priority data
@@ -738,17 +738,18 @@ class UserAction extends Action {
 	            	 * quan
 	            	 * send system message to prioritied user
 	            	 */
-	            	$msgPriorityContent = "圈了你; 越来越有影响力啦, 加油啊!";
-	            	$msgPriorityData = array(
-		                'id' => NULL,
-		                'uid' => $userId,
-		                'type' => 'mutual/priority',
-		                'from_uid' => $newUserId,
-		                'content' => $msgPriorityContent,
-		                'time' => time(),
-		                'deliver' => 0,
-	            	);
-	            	$MsgSystem->add($msgPriorityData);
+//	            	$msgPriorityContent = "圈了你; 越来越有影响力啦, 加油啊!";
+//	            	$msgPriorityData = array(
+//		                'id' => NULL,
+//		                'uid' => $userId,
+//		                'type' => 'mutual/priority',
+//		                'from_uid' => $newUserId,
+//		                'content' => $msgPriorityContent,
+//		                'time' => time(),
+//		                'deliver' => 0,
+//	            	);
+//	            	$MsgSystem->add($msgPriorityData);
+                    i_savenotice($newUserId, $userId, 'mutual/priority', '');
 	            	
 	            	/**
 	            	 * update i_user_info follow fans nums
