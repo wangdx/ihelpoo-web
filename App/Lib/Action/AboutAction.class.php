@@ -163,8 +163,8 @@ class AboutAction extends Action {
 	    	$content = trim(strip_tags($_POST["content"]));
 	    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
 	    	i_send('admin@tvery.com','我帮圈圈 意见建议', $emailcontent);
-	    	//i_send('admin@tvery.com','我帮圈圈 意见建议',$emailcontent);
-	    	//i_send('admin@tvery.com','我帮圈圈 意见建议',$emailcontent);
+	    	i_send('echowdx@gmail.com','我帮圈圈 意见建议', $emailcontent);
+	    	i_send('122501511@qq.com','我帮圈圈 意见建议', $emailcontent);
 	    	$this->ajaxReturn(0, "提交成功", "yes");
     	}
     	$this->display();
