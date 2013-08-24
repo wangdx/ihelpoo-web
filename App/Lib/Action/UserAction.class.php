@@ -391,21 +391,22 @@ class UserAction extends Action {
                 );
                 $UserStatus->add($dataUserStatus);
                 
-                /**TODO
-                 * send system message.
-                $MsgSystem = M("MsgSystem");
-                $msgRegisterContent = "欢迎".$nickname."通过微博来到".$recordSchoolInfo['school']."我帮圈圈:) 故事开始啦!";
-                $msgRegisterData = array(
-                    'id' => NULL,
-                    'uid' => $lastInsertUid,
-                    'type' => 'system',
-                    'content' => $msgRegisterContent,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-                $MsgSystem->add($msgRegisterData);
-                i_savenotice('10000', $newUserId, 'system/welcome', '');
+                /**
+                 * send account password message.
                  */
+                $TalkContent = M("TalkContent");
+                $postSendContent = '系统为您分配了我帮圈圈登录账号:'.$email.' 密码为:'.$password.'。为方便保证独立账号登录，希望您能及时重新设置账号密码:)';
+                $dataTalkContent = array(
+		            'id' => '',
+		            'uid' => '10000',
+		            'touid' => $lastInsertUid,
+		            'content' => $postSendContent,
+		            'image' => '',
+		            'deliver' => '0',
+		            'del' => '0',
+		            'time' => time(),
+                );
+                $TalkContent->add($dataTalkContent);
                 
                 /**
 	             * add default dynamic record.
@@ -487,7 +488,7 @@ class UserAction extends Action {
     		if (!empty($qqUserId) && !empty($qqUserName)) {
     			$isQqExist = $UserLoginQq->where("qq_uid = $qqUserId")->find();
     			if (empty($isQqExist['uid'])) {
-	    			$email = $qqUserId.'@qq.com';
+	    			$email = $qqUserId.'@loginqq.com';
 	    			$password = rand(10000000, 99999999);
 	    			$newUserData = array(
 	            		'uid' => '',
@@ -543,9 +544,22 @@ class UserAction extends Action {
 	                );
 	                $UserStatus->add($dataUserStatus);
 	                
-	                /**TODO
-	                 * send system message.
+	                /**
+	                 * send account password message.
 	                 */
+	                $TalkContent = M("TalkContent");
+	                $postSendContent = '系统为您分配了我帮圈圈登录账号:'.$email.' 密码为:'.$password.'。为方便保证独立账号登录，希望您能及时重新设置账号密码:)';
+	                $dataTalkContent = array(
+		                'id' => '',
+		                'uid' => '10000',
+		                'touid' => $lastInsertUid,
+		                'content' => $postSendContent,
+		                'image' => '',
+		                'deliver' => '0',
+		                'del' => '0',
+		                'time' => time(),
+	                );
+	                $TalkContent->add($dataTalkContent);
 	                
 	                /**
 		             * add default dynamic record.
