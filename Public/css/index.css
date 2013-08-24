@@ -182,6 +182,7 @@ lable{
 .loginbox_submit{
     width: 215px;
     margin: 20px 0 0;
+    height: 36px;
 }
 
 .loginbox_submit a{
@@ -226,7 +227,7 @@ lable{
     margin: 20px 0 0;
     width: 215px;
     position: relative;
-    height: 35px;
+    height: 36px;
     display: none;
 }
 #wb_connect_btn{
