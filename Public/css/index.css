@@ -222,6 +222,18 @@ lable{
 *html .loginbox_outer{
     background: none;
 }
+.loginbox_weibo_qq{
+    margin: 20px 0 0;
+    width: 215px;
+    position: relative;
+}
+#wb_connect_btn{
+}
+#qqLoginBtn{
+    
+}
+
+
 .index_loginfast_div{
     float: right;
     height: 220px;
@@ -382,11 +394,6 @@ lable{
 }
 .footer_about p{
     margin: 3px;
-}
-#wb_connect_btn{
-}
-#wb_connect_btn a{
-    color: #FFF;
 }
 #login_status{
     cursor: pointer;
