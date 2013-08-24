@@ -186,7 +186,7 @@ lable{
 }
 
 .loginbox_submit a{
-    background: url("../image/common/form_login.png") no-repeat scroll 0 -150px transparent;
+    background: url("../image/common/index_login_btn.png") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
     display: inline-block;
     font-size: 18px;
@@ -196,10 +196,10 @@ lable{
     padding: 2px 0 5px;
     text-align: center;
     vertical-align: 0;
-    width: 143px;
+    width: 215px;
 }
 .loginbox_submit a:hover{
-    background-position: 0 -192px;
+    background-position: 0 -36px;
     text-decoration: none;
 }
 .loginbox_more{
