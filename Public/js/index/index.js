@@ -90,6 +90,24 @@ $().ready(function(){
     		document.body.focus();
     	}
     });
+    
+    /**
+     * switch login
+     */
+    $('#login_weibo_qq_switch').click(function(){
+    	var isclick = $(this).attr('isclick');
+    	if (isclick == 'false') {
+    		$('.loginbox_submit').slideUp('fast');
+    		$('.loginbox_weibo_qq').slideDown('fast');
+    		$(this).attr({'isclick':'true'});
+    		$(this).text('正常登录');
+    	} else {
+    		$('.loginbox_submit').slideDown('fast');
+    		$('.loginbox_weibo_qq').slideUp('fast');
+    		$(this).attr({'isclick':'false'});
+    		$(this).text('微博、QQ登录');
+    	}
+    });
 });
 
 function loadBackground()

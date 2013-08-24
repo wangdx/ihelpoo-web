@@ -227,6 +227,7 @@ lable{
     width: 215px;
     position: relative;
     height: 35px;
+    display: none;
 }
 #wb_connect_btn{
     position: absolute;
