@@ -448,6 +448,9 @@ class UserAction extends Action {
                     session('userloginid',$dbUser['uid']);
                     setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
                     setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
+                    $schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+                    $schoolDomain = "http://".$schoolDomain;
+                    setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
                     $this->ajaxReturn('stream','登录成功','ok');
 	            }
             }
@@ -596,6 +599,9 @@ class UserAction extends Action {
     					session('userloginid',$dbUser['uid']);
     					setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
     					setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
+    					$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+    					$schoolDomain = "http://".$schoolDomain;
+    					setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
     					$this->ajaxReturn('stream','登录成功','ok');
     				}
     			}
