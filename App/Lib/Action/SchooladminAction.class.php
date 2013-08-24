@@ -237,7 +237,7 @@ class SchooladminAction extends Action {
     			
     			if ($imageSize > 800000) {
     				redirect('/schooladmin/indexbgimg', 3, 'error...上传图片太大, 最大能上传单张 3.5MB');
-    			} else if ($imageType == 'image/jpeg') {
+    			} else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg') {
     				
     				/**
         			 * storage in upyun

@@ -20,7 +20,7 @@ $config = array(
 	 * web config
 	 */
 	'IS_LOGIN_WEIBO'=>true,
-	'IS_LOGIN_QQ'=>false,
+	'IS_LOGIN_QQ'=>true,
 	'IS_SEND_MAIL'=>true,
 	'VERIFI_RECORD_TIME'=>'8',
 	'VERIFI_RECORD_UNMS'=>'3',

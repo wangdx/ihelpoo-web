@@ -471,8 +471,8 @@
 <div class="stream_right_add">
 	<div class="stream_right_add_userinfo">
 	    <a id="change_skin" title="换皮肤" ></a>
-	    <?php if (preg_match("#loginweibo.com#", $userloginedrecord['email']) || empty($userloginedrecord['email'])) { ?>
-			<p class="s_r_a_info_p">通过微博登录，还需设置账号密码 <a href="__ROOT__/setting/fillaccount" class="fb">开始</a></p>
+	    <?php if (preg_match("#loginweibo.com#", $userloginedrecord['email']) || preg_match("#loginqq.com#", $userloginedrecord['email']) || empty($userloginedrecord['email'])) { ?>
+			<p class="s_r_a_info_p">通过微博或QQ登录，还需设置账号密码 <a href="__ROOT__/setting/fillaccount" class="fb">开始</a></p>
 		<?php } ?>
 		<?php if (empty($userloginedrecord['icon_url'])) { ?>
 			<p class="s_r_a_info_p">还没有上传头像呢 <a href="__ROOT__/setting/icon" class="fb">上传</a></p>

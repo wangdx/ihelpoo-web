@@ -2,7 +2,7 @@ $().ready(function(){
     WB2.anyWhere(function(W){
     	W.widget.connectButton({
     		id: "wb_connect_btn",
-    		type:'5,3',
+    		type:'3,3',
     		callback : {
     			login:function(o){
     			    //登录后的回调函数
