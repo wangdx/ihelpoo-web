@@ -486,7 +486,7 @@ class UserAction extends Action {
     		$dateInfo = getdate();
             $enteryear = $dateInfo['year'];
     		if (!empty($qqUserId) && !empty($qqUserName)) {
-    			$isQqExist = $UserLoginQq->where("qq_uid = $qqUserId")->find();
+    			$isQqExist = $UserLoginQq->where("qq_uid = '$qqUserId'")->find();
     			if (empty($isQqExist['uid'])) {
 	    			$email = $qqUserId.'@loginqq.com';
 	    			$password = rand(10000000, 99999999);
