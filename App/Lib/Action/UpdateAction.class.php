@@ -13,7 +13,10 @@ class UpdateAction extends Action {
     {
     	$url = "http://www.ihelpoo.com/updateversion4";
         $datacontents = file_get_contents($url);
-        var_dump($datacontents);
+        $datacontentArray = json_decode($datacontents,TRUE);
+        if (is_array($datacontentArray)) {
+        	var_dump($datacontentArray);
+        }
     }
     
     /**	
