@@ -512,6 +512,7 @@ class UpdateAction extends Action {
     		$UserLogin = M("UserLogin");
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
+    				$data['nickname'];//handle preg_replace("/[^\x{4e00}-\x{9fa5}]/iu",'',$str);
     				$data['school'] = 1;
     				$UserLogin->add($data);
     			}
@@ -817,7 +818,7 @@ class UpdateAction extends Action {
     		$RecordSay = M("RecordSay");
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
-    				$data['sid'] = $data['sid'] + 35000;
+    				$data['sid'] = $data['sid'] + 40000;
     				$data['school_id'] = 2;
     				$RecordSay->add($data);
     			}
@@ -853,7 +854,7 @@ class UpdateAction extends Action {
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
     				$data['cid'] = '';
-    				$data['sid'] = $data['sid'] + 35000;
+    				$data['sid'] = $data['sid'] + 40000;
     				$RecordComment->add($data);
     			}
     		}
@@ -888,7 +889,7 @@ class UpdateAction extends Action {
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
     				$data['hid'] = '';
-    				$data['sid'] = $data['sid'] + 35000;
+    				$data['sid'] = $data['sid'] + 40000;
     				$RecordHelp->add($data);
     			}
     		}
@@ -923,7 +924,7 @@ class UpdateAction extends Action {
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
     				$data['id'] = '';
-    				$data['sid'] = $data['sid'] + 35000;
+    				$data['sid'] = $data['sid'] + 40000;
     				$RecordHelpreply->add($data);
     			}
     		}
