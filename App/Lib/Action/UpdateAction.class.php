@@ -14,6 +14,7 @@ class UpdateAction extends Action {
      */
     public function truncatetable()
     {
+    	/**
     	echo "truncate table i_msg_active <br/>";
     	$MsgActive = M("MsgActive");
         $MsgActive->query("TRUNCATE TABLE i_msg_active");
@@ -65,7 +66,8 @@ class UpdateAction extends Action {
         echo "truncate table i_user_priority <br/>";
         $UserPriority = M("UserPriority");
         $UserPriority->query("TRUNCATE TABLE i_user_priority");
-        
+        */
+    	
         echo "delete i_user_login <br/>";
         $UserLogin = M("UserLogin");
         $UserLogin->where("uid < 15000")->delete();
