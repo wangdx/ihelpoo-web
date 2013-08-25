@@ -10,13 +10,13 @@ class UpdateAction extends Action {
     }
     
     /**
-     * i_au_mail_send
+     * i_au_temp_uploadimg
      */
-    public function aumailsend()
+    public function autempuploadimg()
     {
     	$page = i_page_get_num();
     	++$page;
-    	$url = "http://www.ihelpoo.com/updateversion4/aumailsend?p=".$page;
+    	$url = "http://www.ihelpoo.com/updateversion4/autempuploadimg?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
     	if (is_array($datacontentArray)) {
@@ -26,14 +26,14 @@ class UpdateAction extends Action {
     		$handlednums = $page * $count;
     		$info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
 
-    		$AuMailSend = M("AuMailSend");
+    		$AuTempUploadimg = M("AuTempUploadimg");
     		foreach ($datacontentArray as $data) {
     			var_dump($data);
     		}
 
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/aumailsend?p='.$page, 1, $info);
+    			redirect('/update/autempuploadimg?p='.$page, 1, $info);
     		}
     	}
     }
