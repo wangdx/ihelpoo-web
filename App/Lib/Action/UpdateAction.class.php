@@ -79,6 +79,7 @@ class UpdateAction extends Action {
     	echo "delete i_user_status <br/>";
     	$UserStatus = M("UserStatus");
     	$UserStatus->where("uid < 15000")->delete();
+    	redirect('/update/msgactive', 0, 'next');
     }
 
     /**
