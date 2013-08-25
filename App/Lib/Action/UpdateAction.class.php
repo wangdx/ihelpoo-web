@@ -11,27 +11,19 @@ class UpdateAction extends Action {
     
     public function index()
     {
-    	 
-    	$page = 1;
-    	$url = "http://www.ihelpoo.com/updateversion4?p=".$page;
+    	$url = "http://www.ihelpoo.com/updateversion4";
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
     	if (is_array($datacontentArray)) {
     		$total = $datacontentArray['total'];
     		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
     		$handlednums = $page * $count;
     		while ($handlednums < $total) {
-    			
+    			redirect('/update/index?p='.$page, 1, "总记录：$total，已处理：$handlednums, 当前页：$page...");
     			/**
     			 * redirect
     			 */
-    			$url = "http://www.ihelpoo.com/updateversion4?p=".$page;
-    			$datacontents = file_get_contents($url);
-    			$datacontentArray = json_decode($datacontents,TRUE);
-    			$count = $datacontentArray['count'];
-    			$handlednums = $page * $count;
-    			echo $page++;
-    			echo "<br />";
     		}
     	}
     }
