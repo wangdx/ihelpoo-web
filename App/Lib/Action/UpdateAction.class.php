@@ -79,7 +79,7 @@ class UpdateAction extends Action {
     	echo "delete i_user_status <br/>";
     	$UserStatus = M("UserStatus");
     	$UserStatus->where("uid < 15000")->delete();
-    	redirect('/update/msgactive', 0, 'next');
+    	redirect('/update/msgactive', 1, 'next');
     }
 
     /**
@@ -108,11 +108,11 @@ class UpdateAction extends Action {
     		}
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/msgactive?p='.$page, 0, 'while');
+    			redirect('/update/msgactive?p='.$page, 1, 'while');
     		}
     	}
     	exit();
-    	redirect('/update/msgcomment', 0, 'next');
+    	redirect('/update/msgcomment', 1, 'next');
     }
     
     /**
@@ -135,14 +135,16 @@ class UpdateAction extends Action {
     		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
     		$MsgComment = M("MsgComment");
     		foreach ($datacontentArray as $data) {
-    			$MsgComment->add($data);
+    			if (is_array($data)) {
+    				$MsgComment->add($data);
+    			}
     		}
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/msgcomment?p='.$page, 0, 'while');
+    			redirect('/update/msgcomment?p='.$page, 1, 'while');
     		}
     	}
-    	redirect('/update/recordcomment', 0, 'next');
+    	redirect('/update/recordcomment', 1, 'next');
     }
     
     /**
@@ -165,15 +167,17 @@ class UpdateAction extends Action {
     		
     		$RecordComment = M("RecordComment");
     		foreach ($datacontentArray as $data) {
-    			$RecordComment->add($data);
+    			if (is_array($data)) {
+    				$RecordComment->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recordcomment?p='.$page, 0, 'while');
+    			redirect('/update/recordcomment?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/recorddiffusion', 0, 'next');
+    	redirect('/update/recorddiffusion', 1, 'next');
     }
     
     /**
@@ -196,16 +200,18 @@ class UpdateAction extends Action {
     		
     		$RecordDiffusion = M("RecordDiffusion");
     		foreach ($datacontentArray as $data) {
-    			$data['view'] = '';
-    			$RecordDiffusion->add($data);
+    			if (is_array($data)) {
+    				$data['view'] = '';
+    				$RecordDiffusion->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recorddiffusion?p='.$page, 0, 'while');
+    			redirect('/update/recorddiffusion?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/recorddynamic', 0, 'next');
+    	redirect('/update/recorddynamic', 1, 'next');
     }
     
     /**
@@ -228,15 +234,17 @@ class UpdateAction extends Action {
     		
     		$RecordDynamic = M("RecordDynamic");
     		foreach ($datacontentArray as $data) {
-    			$RecordDynamic->add($data);
+    			if (is_array($data)) {
+    				$RecordDynamic->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recorddynamic?p='.$page, 0, 'while');
+    			redirect('/update/recorddynamic?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/recordhelp', 0, 'next');
+    	redirect('/update/recordhelp', 1, 'next');
     }
     
     /**
@@ -259,15 +267,17 @@ class UpdateAction extends Action {
     		
     		$RecordHelp = M("RecordHelp");
     		foreach ($datacontentArray as $data) {
-    			$RecordHelp->add($data);
+    			if (is_array($data)) {
+    				$RecordHelp->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recordhelp?p='.$page, 0, 'while');
+    			redirect('/update/recordhelp?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/recordhelpreply', 0, 'next');
+    	redirect('/update/recordhelpreply', 1, 'next');
     }
     
     /**
@@ -290,15 +300,17 @@ class UpdateAction extends Action {
     		
     		$RecordHelpreply = M("RecordHelpreply");
     		foreach ($datacontentArray as $data) {
-    			$RecordHelpreply->add($data);
+    			if (is_array($data)) {
+    				$RecordHelpreply->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recordhelpreply?p='.$page, 0, 'while');
+    			redirect('/update/recordhelpreply?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/recordoutimg', 0, 'next');
+    	redirect('/update/recordoutimg', 1, 'next');
     }
     
     /**
@@ -321,15 +333,17 @@ class UpdateAction extends Action {
     		
     		$RecordOutimg = M("RecordOutimg");
     		foreach ($datacontentArray as $data) {
-    			$RecordOutimg->add($data);
+    			if (is_array($data)) {
+    				$RecordOutimg->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recordoutimg?p='.$page, 0, 'while');
+    			redirect('/update/recordoutimg?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/recordsay', 0, 'next');
+    	redirect('/update/recordsay', 1, 'next');
     }
     
     /**
@@ -352,16 +366,18 @@ class UpdateAction extends Action {
     		
     		$RecordSay = M("RecordSay");
     		foreach ($datacontentArray as $data) {
-    			$data['school_id'] = 1;
-    			$RecordSay->add($data);
+    			if (is_array($data)) {
+    				$data['school_id'] = 1;
+    				$RecordSay->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/recordsay?p='.$page, 0, 'while');
+    			redirect('/update/recordsay?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/useralbum', 0, 'next');
+    	redirect('/update/useralbum', 1, 'next');
     }
     
     /**
@@ -384,15 +400,17 @@ class UpdateAction extends Action {
     		
     		$UserAlbum = M("UserAlbum");
     		foreach ($datacontentArray as $data) {
-    			$UserAlbum->add($data);
+    			if (is_array($data)) {
+    				$UserAlbum->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/useralbum?p='.$page, 0, 'while');
+    			redirect('/update/useralbum?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userinfo', 0, 'next');
+    	redirect('/update/userinfo', 1, 'next');
     }
     
     /**
@@ -415,27 +433,29 @@ class UpdateAction extends Action {
     		
     		$UserInfo = M("UserInfo");
     		foreach ($datacontentArray as $data) {
-    			if ($data['academy_op'] == '12') {
-    				$data['academy_op'] = '13';
+    			if (is_array($data)) {
+    				if ($data['academy_op'] == '12') {
+    					$data['academy_op'] = '13';
+    				}
+    				if ($data['academy_op'] == '11') {
+    					$data['academy_op'] = '14';
+    				}
+    				if ($data['academy_op'] == '15') {
+    					$data['academy_op'] = '11';
+    				}
+    				if ($data['academy_op'] == '99') {
+    					$data['academy_op'] = '0';
+    				}
+    				$UserInfo->add($data);
     			}
-    			if ($data['academy_op'] == '11') {
-    				$data['academy_op'] = '14';
-    			}
-    			if ($data['academy_op'] == '15') {
-    				$data['academy_op'] = '11';
-    			}
-    			if ($data['academy_op'] == '99') {
-    				$data['academy_op'] = '0';
-    			}
-    			$UserInfo->add($data);
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userinfo?p='.$page, 0, 'while');
+    			redirect('/update/userinfo?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userinvite', 0, 'next');
+    	redirect('/update/userinvite', 1, 'next');
     }
     
     /**
@@ -458,15 +478,17 @@ class UpdateAction extends Action {
     		
     		$UserInvite = M("UserInvite");
     		foreach ($datacontentArray as $data) {
-    			$UserInvite->add($data);
+    			if (is_array($data)) {
+    				$UserInvite->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userinvite?p='.$page, 0, 'while');
+    			redirect('/update/userinvite?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userlogin', 0, 'next');
+    	redirect('/update/userlogin', 1, 'next');
     }
     
     /**
@@ -489,16 +511,18 @@ class UpdateAction extends Action {
     		
     		$UserLogin = M("UserLogin");
     		foreach ($datacontentArray as $data) {
-    			$data['school'] = 1;
-    			$UserLogin->add($data);
+    			if (is_array($data)) {
+    				$data['school'] = 1;
+    				$UserLogin->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userlogin?p='.$page, 0, 'while');
+    			redirect('/update/userlogin?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userloginwb', 0, 'next');
+    	redirect('/update/userloginwb', 1, 'next');
     }
     
     /**
@@ -521,15 +545,17 @@ class UpdateAction extends Action {
     		
     		$UserLoginWb = M("UserLoginWb");
     		foreach ($datacontentArray as $data) {
-    			$UserLoginWb->add($data);
+    			if (is_array($data)) {
+    				$UserLoginWb->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userloginwb?p='.$page, 0, 'while');
+    			redirect('/update/userloginwb?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userpriority', 0, 'next');
+    	redirect('/update/userpriority', 1, 'next');
     }
     
     /**
@@ -552,16 +578,18 @@ class UpdateAction extends Action {
     		
     		$UserPriority = M("UserPriority");
     		foreach ($datacontentArray as $data) {
-    			$data['group_id'] = 0;
-    			$UserPriority->add($data);
+    			if (is_array($data)) {
+    				$data['group_id'] = 0;
+    				$UserPriority->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userpriority?p='.$page, 0, 'while');
+    			redirect('/update/userpriority?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userstatus', 0, 'next');
+    	redirect('/update/userstatus', 1, 'next');
     }
     
     /**
@@ -584,15 +612,17 @@ class UpdateAction extends Action {
     		
     		$UserStatus = M("UserStatus");
     		foreach ($datacontentArray as $data) {
-    			$UserStatus->add($data);
+    			if (is_array($data)) {
+    				$UserStatus->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userstatus?p='.$page, 0, 'while');
+    			redirect('/update/userstatus?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/movezzulicleandb', 0, 'next');
+    	redirect('/update/movezzulicleandb', 1, 'next');
     }
     
     /**	
@@ -624,7 +654,7 @@ class UpdateAction extends Action {
     			echo '<br />';
     		}
     	}
-    	redirect('/update/zzuliuserlogin', 0, 'next');
+    	redirect('/update/zzuliuserlogin', 1, 'next');
     }
     
     /**
@@ -647,22 +677,24 @@ class UpdateAction extends Action {
     		
     		$UserLogin = M("UserLogin");
     		foreach ($datacontentArray as $data) {
-    			$recordUserLogin = $UserLogin->find($data['uid']);
-    			if (empty($recordUserLogin['uid'])) {
-    				$data['school'] = 2;
-    				$UserLogin->add($data);
-    			} else if ($recordUserLogin['active'] > $data['active']) {
-    				$data['school'] = 2;
-    				$UserLogin->save($data);
+    			if (is_array($data)) {
+    				$recordUserLogin = $UserLogin->find($data['uid']);
+    				if (empty($recordUserLogin['uid'])) {
+    					$data['school'] = 2;
+    					$UserLogin->add($data);
+    				} else if ($recordUserLogin['active'] > $data['active']) {
+    					$data['school'] = 2;
+    					$UserLogin->save($data);
+    				}
     			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzuliuserlogin?p='.$page, 0, 'while');
+    			redirect('/update/zzuliuserlogin?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzuliuserinfo', 0, 'next');
+    	redirect('/update/zzuliuserinfo', 1, 'next');
     }
     
     /**
@@ -685,45 +717,47 @@ class UpdateAction extends Action {
     		
     		$UserInfo = M("UserInfo");
     		foreach ($datacontentArray as $data) {
-    			$recordUserInfo = $UserInfo->find($data['uid']);
-    			if (empty($recordUserInfo['uid'])) {
-    				$data['academy_op'] = $data['academy_op'] + 22;
-    				$data['specialty_op'] = $data['specialty_op'] + 62;
-	    			if ($data['dormitory_op'] <= '6') {
-	    				$data['dormitory_op'] = $data['dormitory_op'] + 48;
-	    			} else if ($data['dormitory_op'] == '8') {
-	    				$data['dormitory_op'] = '55';
-	    			} else if ($data['dormitory_op'] == '10') {
-	    				$data['dormitory_op'] = '56';
-	    			} else if ($data['dormitory_op'] == '11') {
-	    				$data['dormitory_op'] = '57';
-	    			} else if ($data['dormitory_op'] == '12') {
-	    				$data['dormitory_op'] = '58';
-	    			} else if ($data['dormitory_op'] == '31') {
-	    				$data['dormitory_op'] = '59';
-	    			} else if ($data['dormitory_op'] == '33') {
-	    				$data['dormitory_op'] = '60';
-	    			} else if ($data['dormitory_op'] == '34') {
-	    				$data['dormitory_op'] = '61';
-	    			} else if ($data['dormitory_op'] == '40') {
-	    				$data['dormitory_op'] = '62';
-	    			} else if ($data['dormitory_op'] == '41') {
-	    				$data['dormitory_op'] = '63';
-	    			} else if ($data['dormitory_op'] == '42') {
-	    				$data['dormitory_op'] = '64';
-	    			} else if ($data['dormitory_op'] == '43') {
-	    				$data['dormitory_op'] = '65';
-	    			}
-	    			$UserInfo->add($data);
+    			if (is_array($data)) {
+    				$recordUserInfo = $UserInfo->find($data['uid']);
+    				if (empty($recordUserInfo['uid'])) {
+    					$data['academy_op'] = $data['academy_op'] + 22;
+    					$data['specialty_op'] = $data['specialty_op'] + 62;
+    					if ($data['dormitory_op'] <= '6') {
+    						$data['dormitory_op'] = $data['dormitory_op'] + 48;
+    					} else if ($data['dormitory_op'] == '8') {
+    						$data['dormitory_op'] = '55';
+    					} else if ($data['dormitory_op'] == '10') {
+    						$data['dormitory_op'] = '56';
+    					} else if ($data['dormitory_op'] == '11') {
+    						$data['dormitory_op'] = '57';
+    					} else if ($data['dormitory_op'] == '12') {
+    						$data['dormitory_op'] = '58';
+    					} else if ($data['dormitory_op'] == '31') {
+    						$data['dormitory_op'] = '59';
+    					} else if ($data['dormitory_op'] == '33') {
+    						$data['dormitory_op'] = '60';
+    					} else if ($data['dormitory_op'] == '34') {
+    						$data['dormitory_op'] = '61';
+    					} else if ($data['dormitory_op'] == '40') {
+    						$data['dormitory_op'] = '62';
+    					} else if ($data['dormitory_op'] == '41') {
+    						$data['dormitory_op'] = '63';
+    					} else if ($data['dormitory_op'] == '42') {
+    						$data['dormitory_op'] = '64';
+    					} else if ($data['dormitory_op'] == '43') {
+    						$data['dormitory_op'] = '65';
+    					}
+    					$UserInfo->add($data);
+    				}
     			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzuliuserinfo?p='.$page, 0, 'while');
+    			redirect('/update/zzuliuserinfo?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzuliuserstatus', 0, 'next');
+    	redirect('/update/zzuliuserstatus', 1, 'next');
     }
     
     /**
@@ -746,18 +780,20 @@ class UpdateAction extends Action {
     		
     		$UserStatus = M("UserStatus");
     		foreach ($datacontentArray as $data) {
-    			$recordUserStatus = $UserStatus->find($data['uid']);
-    			if (empty($recordUserStatus['uid'])) {
-    				$UserStatus->add($data);
+    			if (is_array($data)) {
+    				$recordUserStatus = $UserStatus->find($data['uid']);
+    				if (empty($recordUserStatus['uid'])) {
+    					$UserStatus->add($data);
+    				}
     			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzuliuserstatus?p='.$page, 0, 'while');
+    			redirect('/update/zzuliuserstatus?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzulirecordsay', 0, 'next');
+    	redirect('/update/zzulirecordsay', 1, 'next');
     }
     
     /**
@@ -780,17 +816,19 @@ class UpdateAction extends Action {
     		
     		$RecordSay = M("RecordSay");
     		foreach ($datacontentArray as $data) {
-    			$data['sid'] = $data['sid'] + 35000;
-    			$data['school_id'] = 2;
-    			$RecordSay->add($data);
+    			if (is_array($data)) {
+    				$data['sid'] = $data['sid'] + 35000;
+    				$data['school_id'] = 2;
+    				$RecordSay->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzulirecordsay?p='.$page, 0, 'while');
+    			redirect('/update/zzulirecordsay?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzulirecordcomment', 0, 'next');
+    	redirect('/update/zzulirecordcomment', 1, 'next');
     }
     
     /**
@@ -813,17 +851,19 @@ class UpdateAction extends Action {
     		
     		$RecordComment = M("RecordComment");
     		foreach ($datacontentArray as $data) {
-    			$data['cid'] = '';
-    			$data['sid'] = $data['sid'] + 35000;
-    			$RecordComment->add($data);
+    			if (is_array($data)) {
+    				$data['cid'] = '';
+    				$data['sid'] = $data['sid'] + 35000;
+    				$RecordComment->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzulirecordcomment?p='.$page, 0, 'while');
+    			redirect('/update/zzulirecordcomment?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzulirecordhelp', 0, 'next');
+    	redirect('/update/zzulirecordhelp', 1, 'next');
     }
     
     /**
@@ -846,17 +886,19 @@ class UpdateAction extends Action {
     		
     		$RecordHelp = M("RecordHelp");
     		foreach ($datacontentArray as $data) {
-    			$data['hid'] = '';
-    			$data['sid'] = $data['sid'] + 35000;
-    			$RecordHelp->add($data);
+    			if (is_array($data)) {
+    				$data['hid'] = '';
+    				$data['sid'] = $data['sid'] + 35000;
+    				$RecordHelp->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzulirecordhelp?p='.$page, 0, 'while');
+    			redirect('/update/zzulirecordhelp?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzulirecordhelpreply', 0, 'next');
+    	redirect('/update/zzulirecordhelpreply', 1, 'next');
     }
     
     /**
@@ -879,17 +921,19 @@ class UpdateAction extends Action {
     		
     		$RecordHelpreply = M("RecordHelpreply");
     		foreach ($datacontentArray as $data) {
-    			$data['id'] = '';
-    			$data['sid'] = $data['sid'] + 35000;
-    			$RecordHelpreply->add($data);
+    			if (is_array($data)) {
+    				$data['id'] = '';
+    				$data['sid'] = $data['sid'] + 35000;
+    				$RecordHelpreply->add($data);
+    			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzulirecordhelpreply?p='.$page, 0, 'while');
+    			redirect('/update/zzulirecordhelpreply?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzuliuserpriority', 0, 'next');
+    	redirect('/update/zzuliuserpriority', 1, 'next');
     }
     
     /**
@@ -912,16 +956,18 @@ class UpdateAction extends Action {
     		
     		$UserPriority = M("UserPriority");
     		foreach ($datacontentArray as $data) {
-    			$recordUserPriority = $UserPriority->where("(uid = $data[uid] AND pid = $data[pid]) OR (uid = $data[uid] AND sid = $data[sid])")->find();
-    			if (empty($recordUserPriority['id'])) {
-    				$data['id'] = '';
-    				$UserPriority->add($data);
+    			if (is_array($data)) {
+    				$recordUserPriority = $UserPriority->where("(uid = $data[uid] AND pid = $data[pid]) OR (uid = $data[uid] AND sid = $data[sid])")->find();
+    				if (empty($recordUserPriority['id'])) {
+    					$data['id'] = '';
+    					$UserPriority->add($data);
+    				}
     			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/zzuliuserpriority?p='.$page, 0, 'while');
+    			redirect('/update/zzuliuserpriority?p='.$page, 1, 'while');
     		} 	
     	}
     	echo '升级成功啦，哈哈哈 :D';
