@@ -15,7 +15,6 @@ class UpdateAction extends Action {
     	$url = "http://www.ihelpoo.com/updateversion4/index?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
-    	var_dump($datacontentArray);
     	if (is_array($datacontentArray)) {
     		$total = $datacontentArray['total'];
     		$count = $datacontentArray['count'];
