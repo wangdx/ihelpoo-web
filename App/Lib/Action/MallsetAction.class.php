@@ -746,6 +746,8 @@ class MallsetAction extends Action {
     public function buynow()
     {
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname',$recordSchoolInfo['school']);
 
     	/**
     	 * add new delivery address data

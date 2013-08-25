@@ -10,7 +10,7 @@
 			<?php if (empty($resultsUserDeliveryaddress)) {?>
 				<li>
 					你还没有设定收货信息:
-					<input id="newaddressinput" type="text" value="湖北民族学院寝室<?php echo $tempDeliveryaddress ?>" /> 
+					<input id="newaddressinput" type="text" value="<?php echo $schoolname; ?><?php echo $tempDeliveryaddress; ?>" /> 
 					<a id="newaddressbtn"><span class="icon_plus"></span>新增</a>
 				</li>
 			<?php } else { ?>
