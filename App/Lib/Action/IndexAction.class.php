@@ -311,7 +311,7 @@ class IndexAction extends Action {
             			$userList = $UserLogin->where("enteryear <= $num AND sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset,$count)->select();
-            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND school = $recordSchoolInfo[id]")->count();
+            			$totalusers = $UserLogin->where("enteryear <= $num AND sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND school = $recordSchoolInfo[id]")->count();
             		} else {
             			$userList = $UserLogin->where("enteryear = $num AND sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND school = $recordSchoolInfo[id]")
             			->order('i_user_login.icon_fl DESC,i_user_login.online DESC')
