@@ -15,13 +15,12 @@ class UpdateAction extends Action {
     	$url = "http://www.ihelpoo.com/updateversion4/index?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
-    	var_dump($datacontentArray);
     	if (is_array($datacontentArray)) {
     		$total = $datacontentArray['total'];
     		$count = $datacontentArray['count'];
     		$page = $datacontentArray['page'];
     		$handlednums = $page * $count;
-    		echo "总记录：$total，已处理：$handlednums, 当前页：$page...";
+    		echo "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
     		/**while ($handlednums < $total) {
     			redirect('/update/index?p='.$page, 1, "总记录：$total，已处理：$handlednums, 当前页：$page...");
     			
