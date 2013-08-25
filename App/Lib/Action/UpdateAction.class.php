@@ -26,13 +26,14 @@ class UpdateAction extends Action {
     		$RecordComment = M("RecordComment");
     		foreach ($datacontentArray as $data) {
     			var_dump($data);
-    			exit();
+    			
     		}
     		
     		
     		while ($handlednums < $total) {
     			++$page;
     			redirect('/update/recordcomment?p='.$page, 1, $info);
+    			exit();
     		} 	
     	}
     }
