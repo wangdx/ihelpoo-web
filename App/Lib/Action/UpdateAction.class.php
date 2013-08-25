@@ -20,12 +20,13 @@ class UpdateAction extends Action {
     		$count = $datacontentArray['count'];
     		$page = $datacontentArray['page'];
     		$handlednums = $page * $count;
-    		while ($handlednums < $total) {
+    		echo "总记录：$total，已处理：$handlednums, 当前页：$page...";
+    		/**while ($handlednums < $total) {
     			redirect('/update/index?p='.$page, 1, "总记录：$total，已处理：$handlednums, 当前页：$page...");
-    			/**
+    			
     			 * redirect
-    			 */
-    		}
+    			
+    		} */
     	}
     }
     
