@@ -9,11 +9,11 @@ class UpdateAction extends Action {
         header("Content-Type:text/html; charset=utf-8");
     }
     
-    public function index()
+    public function recordcomment()
     {
     	$page = i_page_get_num();
     	++$page;
-    	$url = "http://www.ihelpoo.com/updateversion4/index?p=".$page;
+    	$url = "http://www.ihelpoo.com/updateversion4/recordcomment?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
     	if (is_array($datacontentArray)) {
@@ -22,9 +22,17 @@ class UpdateAction extends Action {
     		$page = $datacontentArray['page'];
     		$handlednums = $page * $count;
     		$info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$RecordComment = M("RecordComment");
+    		foreach ($datacontentArray as $data) {
+    			var_dump($data);
+    			exit();
+    		}
+    		
+    		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/index?p='.$page, 1, $info);
+    			redirect('/update/recordcomment?p='.$page, 1, $info);
     		} 	
     	}
     }
