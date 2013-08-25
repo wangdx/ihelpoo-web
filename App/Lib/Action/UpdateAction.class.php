@@ -102,7 +102,9 @@ class UpdateAction extends Action {
     		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
     		$MsgActive = M("MsgActive");
     		foreach ($datacontentArray as $data) {
-    			$MsgActive->add($data);
+    			if (is_array($data)) {
+    				$MsgActive->add($data);
+    			}
     		}
     		while ($handlednums < $total) {
     			++$page;
