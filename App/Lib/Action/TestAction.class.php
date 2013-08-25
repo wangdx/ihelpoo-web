@@ -11,10 +11,12 @@ class TestAction extends Action {
     
     public function index() {
     	$UserLogin = M("UserLogin");
-    	$recordUserLogin = $UserLogin->select();
-    	echo $recordUserLogin['nickanme'];
-    	$handledNickname = preg_replace("/[^\x{4e00}-\x{9fa5}]/iu",'',$recordUserLogin['nickanme']);
-    	echo " - ".$handledNickname;
+    	$recordsUserLogin = $UserLogin->select();
+    	foreach ($recordsUserLogin as $recordUserLogin) {
+	    	echo $recordUserLogin['nickanme'];
+	    	$handledNickname = preg_replace("/[^\x{4e00}-\x{9fa5}]/iu",'',$recordUserLogin['nickanme']);
+	    	echo " - ".$handledNickname."<br />";
+    	}
     	exit();
     	$RecordComment = M("RecordComment");
     	$recordId = 22088;
