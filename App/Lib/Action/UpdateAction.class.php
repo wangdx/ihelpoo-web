@@ -9,6 +9,35 @@ class UpdateAction extends Action {
         header("Content-Type:text/html; charset=utf-8");
     }
     
+    /**
+     * i_au_mail_send
+     */
+    public function aumailsend()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://www.ihelpoo.com/updateversion4/aumailsend?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		$info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+
+    		$AuMailSend = M("AuMailSend");
+    		foreach ($datacontentArray as $data) {
+    			var_dump($data);
+    		}
+
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/aumailsend?p='.$page, 1, $info);
+    		}
+    	}
+    }
+    
     public function recordcomment()
     {
     	$page = i_page_get_num();
@@ -26,14 +55,11 @@ class UpdateAction extends Action {
     		$RecordComment = M("RecordComment");
     		foreach ($datacontentArray as $data) {
     			var_dump($data);
-    			
     		}
-    		
     		
     		while ($handlednums < $total) {
     			++$page;
     			redirect('/update/recordcomment?p='.$page, 1, $info);
-    			exit();
     		} 	
     	}
     }
