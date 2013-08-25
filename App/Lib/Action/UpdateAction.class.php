@@ -22,6 +22,7 @@ class UpdateAction extends Action {
     		$page = $datacontentArray['page'];
     		$handlednums = $page * $count;
     		echo "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		var_dump($datacontentArray);
     		/*while ($handlednums < $total) {
     			++$page;
     			redirect('/update/index?p='.$page, 1, "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...");
