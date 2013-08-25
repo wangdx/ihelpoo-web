@@ -11,12 +11,29 @@ class UpdateAction extends Action {
     
     public function index()
     {
-    	$url = "http://www.ihelpoo.com/updateversion4";
-        $datacontents = file_get_contents($url);
-        $datacontentArray = json_decode($datacontents,TRUE);
-        if (is_array($datacontentArray)) {
-        	var_dump($datacontentArray);
-        }
+    	 
+    	$page = 1;
+    	$url = "http://www.ihelpoo.com/updateversion4?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$handlednums = $page * $count;
+    		while ($handlednums < $total) {
+    			
+    			/**
+    			 * redirect
+    			 */
+    			$url = "http://www.ihelpoo.com/updateversion4?p=".$page;
+    			$datacontents = file_get_contents($url);
+    			$datacontentArray = json_decode($datacontents,TRUE);
+    			$count = $datacontentArray['count'];
+    			$handlednums = $page * $count;
+    			echo $page++;
+    			echo "<br />";
+    		}
+    	}
     }
     
     /**	
