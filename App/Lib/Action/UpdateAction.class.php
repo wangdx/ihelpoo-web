@@ -111,7 +111,6 @@ class UpdateAction extends Action {
     			redirect('/update/msgactive?p='.$page, 1, 'while');
     		}
     	}
-    	exit();
     	redirect('/update/msgcomment', 1, 'next');
     }
     
