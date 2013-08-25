@@ -14,7 +14,7 @@ class TestAction extends Action {
     	$recordsUserLogin = $UserLogin->select();
     	foreach ($recordsUserLogin as $recordUserLogin) {
 	    	echo $recordUserLogin['nickname'];
-	    	$handledNickname = preg_replace("/([".chr(0xa1)."-".chr(0xa3)."][".chr(0xa1)."-".chr(0xff)."])/","",$recordUserLogin['nickname']);
+	    	$handledNickname = preg_replace('#[^a-z\u4e00-\u9fbb]#i',"",$recordUserLogin['nickname']);
 	    	echo " - ".$handledNickname."<br />";
     	}
     	exit();
