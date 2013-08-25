@@ -7,11 +7,14 @@ class TestAction extends Action {
 
     protected function _initialize() {
         header("Content-Type:text/html; charset=utf-8");
-        exit();
     }
     
     public function index() {
-    	
+    	$UserLogin = M("UserLogin");
+    	$recordUserLogin = $UserLogin->select();
+    	echo $recordUserLogin['nickanme'];
+    	$handledNickname = preg_replace("/[^\x{4e00}-\x{9fa5}]/iu",'',$recordUserLogin['nickanme']);
+    	echo " - ".$handledNickname;
     	exit();
     	$RecordComment = M("RecordComment");
     	$recordId = 22088;
