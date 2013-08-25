@@ -11,7 +11,8 @@ class UpdateAction extends Action {
     
     public function index()
     {
-    	$url = "http://www.ihelpoo.com/updateversion4";
+    	$page = i_page_get_num();
+    	$url = "http://www.ihelpoo.com/updateversion4/index?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
     	if (is_array($datacontentArray)) {
