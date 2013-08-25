@@ -66,6 +66,7 @@ class SettingAction extends Action
             } else {
                 $nickname = trim(addslashes(htmlspecialchars(strip_tags($_POST["nickname"]))));
                 $nickname = str_ireplace(' ', '', $nickname);
+                $nickname = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$nickname);
                 $usertype = trim(addslashes(htmlspecialchars(strip_tags($_POST["usertype"]))));
                 $sex = trim(htmlspecialchars(strip_tags($_POST["sex"])));
                 $enteryear = trim(htmlspecialchars(strip_tags($_POST["enteryear"])));

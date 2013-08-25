@@ -13,9 +13,10 @@ class TestAction extends Action {
     	$UserLogin = M("UserLogin");
     	$recordsUserLogin = $UserLogin->select();
     	foreach ($recordsUserLogin as $recordUserLogin) {
-	    	echo $recordUserLogin['nickname'];
 	    	$handledNickname = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$recordUserLogin['nickname']);
-	    	echo " - ".$handledNickname."<br />";
+	    	$recordUserLogin['nickname'] = $handledNickname;
+	    	$UserLogin->save($recordUserLogin);
+	    	echo $handledNickname."<br />";
     	}
     	exit();
     	$RecordComment = M("RecordComment");

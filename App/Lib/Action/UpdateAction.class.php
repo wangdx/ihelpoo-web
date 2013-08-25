@@ -681,9 +681,12 @@ class UpdateAction extends Action {
     				$recordUserLogin = $UserLogin->find($data['uid']);
     				if (empty($recordUserLogin['uid'])) {
     					$data['school'] = 2;
+    					$data['nickname'] = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$data['nickname']);
     					$UserLogin->add($data);
     				} else if ($recordUserLogin['active'] > $data['active']) {
+    					$data = $recordUserLogin;
     					$data['school'] = 2;
+    					$data['nickname'] = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$data['nickname']);
     					$UserLogin->save($data);
     				}
     			}

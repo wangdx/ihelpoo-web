@@ -737,12 +737,13 @@ class UserAction extends Action {
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));
 	            $password = md5($password);
 	            $nickname = trim(addslashes(htmlspecialchars(strip_tags($_POST["nickname"]))));
+	            $nickname = str_ireplace(' ', '', $nickname);
+	            $nickname = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$nickname);
 	            $usertype = trim(addslashes(htmlspecialchars(strip_tags($_POST["usertype"]))));
 	            $sex = htmlspecialchars(strtolower(trim($_POST["sex"])));
 	            $enteryear = htmlspecialchars(strtolower(trim($_POST["enteryear"])));
 	            $academy = htmlspecialchars(strtolower(trim($_POST["academy"])));
 	            $school = htmlspecialchars(strtolower(trim($_POST["school"])));
-	            $nickname = str_ireplace(' ','',$nickname);
 	            
 	            /**
 	             * 1 for default student
