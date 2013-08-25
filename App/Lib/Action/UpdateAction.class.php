@@ -9,6 +9,13 @@ class UpdateAction extends Action {
         header("Content-Type:text/html; charset=utf-8");
     }
     
+    public function index()
+    {
+    	$url = "http://www.ihelpoo.com/updateversion4";
+        $datacontents = file_get_contents($url);
+        var_dump($datacontents);
+    }
+    
     /**	
      *
      * update to version 4
