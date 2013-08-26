@@ -119,19 +119,6 @@ class MutualAction extends Action
             /**
              * send system message to prioritied user
              */
-//            $MsgSystem = M("MsgSystem");
-//            $msgPriorityContent = "有人屏蔽了你，请注意言行，被扣除5活跃  (每天最多扣5活跃)";
-//            $msgPriorityData = array(
-//                'id' => NULL,
-//                'uid' => $shieldUid,
-//                'type' => 'mutual/shield',
-//                'from_uid' => '',
-//                'content' => $msgPriorityContent,
-//                'time' => time(),
-//                'deliver' => 0,
-//            );
-//            $isMsgPriorityDataInserted = $MsgSystem->add($msgPriorityData);
-
             $alreadyShieldNums = $UserPriority->where("sid = $shieldUid")->count();
             if ($alreadyShieldNums >= 2) {
             	//TODO bounce notice message
@@ -265,19 +252,9 @@ class MutualAction extends Action
 
         /**
          * send system message to prioriti user for user type 2
+         * 你加入了 " . $userLogin['nickname'] . " 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
          */
         if ($userLogin['type'] == 2) {
-//            $msgPriorityUserType2Content = "你加入了 " . $userLogin['nickname'] . " 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
-//            $msgPriorityUserType2Data = array(
-//                'id' => NULL,
-//                'uid' => $userloginid,
-//                'type' => 'mutual/priority_usertype2',
-//                'from_uid' => $priorityUid,
-//                'content' => $msgPriorityUserType2Content,
-//                'time' => time(),
-//                'deliver' => 0,
-//            );
-//            $MsgSystem->add($msgPriorityUserType2Data);
             i_savenotice($priorityUid, $userloginid, 'mutual/priority_usertype2', '');//TODO bounce
         }
 
@@ -343,27 +320,8 @@ class MutualAction extends Action
 
         /**
          * info system message
+         * "希望知道你的真实联系方式";
          */
-        $MsgSystem = M("MsgSystem");
-//        if (isset($_GET['require'])) {
-//            $realConnectInfo = "希望知道你的真实联系方式";
-//            $msgRealConnectInfo = array(
-//                'id' => NULL,
-//                'uid' => $withUserId,
-//                'type' => 'mutual/rc-para:?please',
-//                'url_id' => $userloginid,
-//                'from_uid' => $userloginid,
-//                'content' => $realConnectInfo,
-//                'time' => time(),
-//                'deliver' => 0,
-//            );
-//            $affetcedMsgRealConnectInfo = $MsgSystem->add($msgRealConnectInfo);
-//            if (empty($affetcedMsgRealConnectInfo)) {
-//                exit("message_system_require info connect insert failed");
-//            }
-//        }
-
-
         if (isset($_GET['require'])) {
             i_savenotice($userloginid, $withUserId, 'mutual/rc-para:?please', $userloginid);
         }
@@ -396,40 +354,11 @@ class MutualAction extends Action
 
                 /**
                  * single changeinfo message
+                 * "表示很高兴认识你, 同意给你真实联系方式"
+                 * "婉拒了你的请求, 暂时不想给你真实联系方式"
                  */
-//                $mutualChangeInfo = "表示很高兴认识你, 同意给你真实联系方式";
-//                $msgMutualChangeInfo = array(
-//                    'id' => NULL,
-//                    'uid' => $postWithid,
-//                    'type' => 'mutual/rc',
-//                    'url_id' => $userloginid,
-//                    'from_uid' => $userloginid,
-//                    'content' => $mutualChangeInfo,
-//                    'time' => time(),
-//                    'deliver' => 0,
-//                );
-//                $affetcedMsgMutualChangeInfo = $MsgSystem->add($msgMutualChangeInfo);
-//                if (empty($affetcedMsgMutualChangeInfo)) {
-//                    exit("message_single_Change info insert failed");
-//                }
-
                 i_savenotice($userloginid, $postWithid, 'mutual/rc-option:ok', $userloginid);
             } else if ("no" == $_POST["option"]) {
-//                $mutualChangeInfo = "婉拒了你的请求, 暂时不想给你真实联系方式";
-//                $msgMutualChangeInfo = array(
-//                    'id' => NULL,
-//                    'uid' => $postWithid,
-//                    'type' => 'mutual/rc',
-//                    'url_id' => $userloginid,
-//                    'from_uid' => $userloginid,
-//                    'content' => $mutualChangeInfo,
-//                    'time' => time(),
-//                    'deliver' => 0,
-//                );
-//                $affetcedMsgMutualChangeInfo = $MsgSystem->add($msgMutualChangeInfo);
-//                if (empty($affetcedMsgMutualChangeInfo)) {
-//                    exit("message_single_Change info insert failed");
-//                }
                 i_savenotice($userloginid, $postWithid, 'mutual/rc-option:no', $userloginid);
             }
         }

@@ -30,14 +30,13 @@ class AjaxAction extends Action {
     		$userStatusRecord = i_ajax_msg($userloginid);
     		$MsgAt = M("MsgAt");
     		$MsgComment = M("MsgComment");
-    		$MsgSystem = M("MsgSystem");
     		$TalkContent = M("TalkContent");
             Vendor('Ihelpoo.Redismq');
             $redis = new Redis();
             $redis->connect('127.0.0.1', 6379);
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
-    		$messageSystemNums = $redis->hGet(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));//$MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
+    		$messageSystemNums = $redis->hGet(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
     		$messageTalkNums = $TalkContent->where("touid = $userloginid AND deliver = 0")->count();
     		if (!empty($messageTalkNums)) {
     			$lastTalkContent = $TalkContent->where("touid = $userloginid AND deliver = 0")
@@ -75,10 +74,11 @@ class AjaxAction extends Action {
     		$userStatusRecord = i_ajax_msg($userloginid);
     		$MsgAt = M("MsgAt");
     		$MsgComment = M("MsgComment");
-    		$MsgSystem = M("MsgSystem");
+    		//$MsgSystem = M("MsgSystem");
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
-    		$messageSystemNums = $MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
+    		//FIXME $messageSystemNums
+    		//$messageSystemNums = $MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
     		if ($userStatusRecord['acquire_seconds'] <= 6000) {
     			$userStatusRecordAcquireSeconds = $userStatusRecord['acquire_seconds'] / 2;
     		} else {
@@ -520,28 +520,6 @@ class AjaxAction extends Action {
     		}
     	}
     }
-    
-    public function msggetusers()
-    {
-    	$userloginid = session('userloginid');
-    	if ($this->isPost()) {
-    		if (!empty($_POST['messagesystemid'])) {
-    			$messagesystemid = (int)$_POST['messagesystemid'];
-    			$MsgSystem = M("MsgSystem");
-    			$recordMsgSystem = $MsgSystem->find($messagesystemid);
-    			$recordMsgSystemData = explode(',', $recordMsgSystem['data']);
-    			$UserLogin = M("UserLogin");
-    			$userInfoArray = array();
-    			foreach ($recordMsgSystemData as $recordMsgSystemDataIn) {
-    				$recordUserLogin = $UserLogin->where("uid = $recordMsgSystemDataIn")->field('uid,nickname,icon_url')->find();
-    				$recordUserLogin['icon'] = i_icon_check($recordUserLogin['uid'],$recordUserLogin['icon_url'],'s');
-    				$userInfoArray[] = $recordUserLogin;
-    			}
-    			$this->ajaxReturn($userInfoArray,"ok",1);
-    		}
-    	}
-    }
-
 
     public function todeliver()
     {

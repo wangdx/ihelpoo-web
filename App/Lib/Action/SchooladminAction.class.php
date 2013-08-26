@@ -858,11 +858,9 @@ class SchooladminAction extends Action {
         	/**
         	 * user msg
         	 */
-        	$MsgSystem = M("MsgSystem");
         	$MsgComment = M("MsgComment");
         	$MsgActive = M("MsgActive");
         	$MsgAt = M("MsgAt");
-        	$userMsgSystemNums = $MsgSystem->where("uid = $userId")->count();
         	$userMsgCommentNums = $MsgComment->where("uid = $userId")->count();
         	$userMsgActiveNums = $MsgActive->where("uid = $userId")->count();
         	$userMsgAtNums = $MsgAt->where("touid = $userId")->count();
@@ -882,7 +880,6 @@ class SchooladminAction extends Action {
         		'realname' => $recordUserInfo['realname'],
         		'userAlbumNums' => $userAlbumNums,
         		'userAlbumSize' => round($userAlbumSize/(1024*1024),2)."MB",
-        		'userMsgSystemNums' => $userMsgSystemNums,
         		'userMsgCommentNums' => $userMsgCommentNums,
         		'userMsgActiveNums' => $userMsgActiveNums,
         		'userMsgAtNums' => $userMsgAtNums,
@@ -1078,18 +1075,8 @@ class SchooladminAction extends Action {
 
             	/**
                  * send system message.
+                 * "您的真实姓名可以修改了!";
                  */
-//                $MsgSystem = M("MsgSystem");
-//                $msgContent = "您的真实姓名可以修改了!";
-//                $msgData = array(
-//                    'id' => NULL,
-//                    'uid' => $uid,
-//                    'type' => 'setting/realfirst',
-//                    'content' => $msgContent,
-//                    'time' => time(),
-//                    'deliver' => 0,
-//                );
-//                $MsgSystem->add($msgData);
                 i_savenotice('10000', $uid, 'setting/realfirst', '');  //TODO bounce message
 
                 /**
@@ -1180,10 +1167,9 @@ class SchooladminAction extends Action {
 
             /**
              * message to owner
+             * "你获得了我帮圈圈荣誉，快来看看吧";
         	 */
-//        	$MsgSystem = M("MsgSystem");
             $msgSystemType = 'helpschooladmin/userhonor';
-//            $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
             $i = 0;
             foreach ($userArray as $user) {
             	$resultUserLogin = $UserLogin->find($user);
@@ -1199,18 +1185,6 @@ class SchooladminAction extends Action {
             		/**
             		 * insert into system message
             		 */
-            		//                $diffusionToOwnerData = array(
-            		//        	        'id' => '',
-            		//        	        'uid' => $user,
-            		//        	        'type' => $msgSystemType,
-            		//        	        'url_id' => $user,
-            		//        	        'from_uid' => '',
-            		//        	        'content' => $contentToOwnerMsgSystem,
-            		//        	        'time' => time(),
-            		//        	        'deliver' => 0,
-            		//                );
-            		//        	    $MsgSystem->add($diffusionToOwnerData);
-
             		i_savenotice('10000', $user, $msgSystemType, $user); //TODO bounce message
             		$i++;
             	}
@@ -1247,9 +1221,8 @@ class SchooladminAction extends Action {
 
             /**
              * message to owner
+             * "你获得了我帮圈圈奖励的活跃 :)";
         	 */
-//        	$MsgSystem = M("MsgSystem");
-//            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
             $i = 0;
             $userstring = 0;
             foreach ($userArray as $user) {
@@ -1280,15 +1253,6 @@ class SchooladminAction extends Action {
             		/**
             		 * insert into system message
             		 */
-//            		$insertToOwnerData = array(
-//	                    'id' => '',
-//	                    'uid' => $user,
-//	                    'type' => 'system',
-//	                    'content' => $contentToOwnerMsgSystem,
-//	                    'time' => time(),
-//	                    'deliver' => 0,
-//            		);
-//            		$MsgSystem->add($insertToOwnerData);
                     i_savenotice("10000", $user, 'system/active:reward', '');
             		$i++;
             		$userstring .= $user.'-';
@@ -1367,15 +1331,6 @@ class SchooladminAction extends Action {
 	            	$msgContent = "你邀请的用户无效:(，暂时不赠送活跃";
                     i_savenotice("10000", $recordUserInvite['uid'], 'schooladmin/userinvite:invalid', '');
 	            }
-//	            $msgData = array(
-//                	'id' => NULL,
-//                	'uid' => $recordUserInvite['uid'],
-//                 	'type' => 'schooladmin/userinvite',
-//              		'content' => $msgContent,
-//                	'time' => time(),
-//                	'deliver' => 0,
-//	            );
-//	            $MsgSystem->add($msgData);
 
 	            /**
 	             * webmaster user operating record
@@ -1510,7 +1465,6 @@ class SchooladminAction extends Action {
 	    			/**
 		             * send system message.
 		             */
-//		            $MsgSystem = M("MsgSystem");
 		            if ($status == 2) {
 		            	$msgContent = "资料重新审核通过，您的小店又开通了!";
                         $msgType = 'system/mall:reaudit:ok';
@@ -1518,15 +1472,6 @@ class SchooladminAction extends Action {
 		            	$msgContent = "资料重新审核中，您的小店暂时关闭!";
                         $msgType = 'system/mall:reaudit:no';
 		            }
-//		            $msgData = array(
-//	                	'id' => NULL,
-//	                	'uid' => $uid,
-//	                 	'type' => 'system',
-//	              		'content' => $msgContent,
-//	                	'time' => time(),
-//	                	'deliver' => 0,
-//		            );
-//		            $MsgSystem->add($msgData);
                     i_savenotice('10000', $uid, $msgType, '');
 
 		            
@@ -1792,7 +1737,6 @@ class SchooladminAction extends Action {
     		if (empty($recordActivityItem['aid'])) {
     			redirect('/schooladmin/activity', 2, 'error aid empty...');
     		}
-    		$MsgSystem = M("MsgSystem");
     		Vendor('Ihelpoo.Email');
     		$emailObj = new Email();
     		$UserLogin = M("UserLogin");
@@ -1808,15 +1752,6 @@ class SchooladminAction extends Action {
 	             * send system message.
 	             */
 	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
-//	            $msgData = array(
-//                	'id' => NULL,
-//                	'uid' => $recordActivityItem['sponsor_uid'],
-//                 	'type' => 'system',
-//              		'content' => $msgContent,
-//                	'time' => time(),
-//                	'deliver' => 0,
-//	            );
-//	            $MsgSystem->add($msgData);
                 i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activity:audit:ok', '');
 	            
 	            /**
@@ -1887,15 +1822,6 @@ class SchooladminAction extends Action {
 	             * send system message.
 	             */
 	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核未通过，请重新填写，务必合符组织活动规范!";
-//	            $msgData = array(
-//                	'id' => NULL,
-//                	'uid' => $recordActivityItem['sponsor_uid'],
-//                 	'type' => 'system',
-//              		'content' => $msgContent,
-//                	'time' => time(),
-//                	'deliver' => 0,
-//	            );
-//	            $MsgSystem->add($msgData);
                 i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activity:audit:no', '');
 	            
 	            /**

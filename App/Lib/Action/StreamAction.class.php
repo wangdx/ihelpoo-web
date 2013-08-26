@@ -231,23 +231,14 @@ class StreamAction extends Action
                 if ($groupmsgpush_system == 'on' || $groupmsgpush_mail == 'on') {
                     $userGroupPrioritied = $UserPriority->where("pid = $userloginid")->select();
                     if (!empty($userGroupPrioritied)) {
-                        $MsgSystem = M("MsgSystem");
                         $tos = '';
                         foreach ($userGroupPrioritied as $userPrio) {
                             if ($groupmsgpush_system == 'on') {
                                 $msgSystemType = 'stream/i-para:groupmsgpush';
-//                                $contentMsgSystem = "组织有新的消息通知你!";
-//                                $pushMsgData = array(
-//                                    'id' => '',
-//                                    'uid' => $userPrio['uid'],
-//                                    'type' => $msgSystemType,
-//                                    'url_id' => $sayLastInsertId,
-//                                    'from_uid' => $userloginid,
-//                                    'content' => $contentMsgSystem,
-//                                    'time' => time(),
-//                                    'deliver' => 0,
-//                                );
-//                                $MsgSystem->add($pushMsgData);
+                                
+                                /**
+                                 * "组织有新的消息通知你!"
+                                 */
                                 i_savenotice($userloginid, $userPrio['uid'], $msgSystemType, $sayLastInsertId);
                                 $tos .= $userPrio['uid'].",";
                             }
@@ -313,23 +304,11 @@ class StreamAction extends Action
                      */
                     $userPrioritied = $UserPriority->where("pid = $userloginid")->select();
                     if (!empty($userPrioritied)) {
-                        $MsgSystem = M("MsgSystem");
                         $tos = '';
                         foreach ($userPrioritied as $userPrio) {
-//                            $msgSystemType = 'stream/ih-para:needhelp';
-//                            $contentMsgSystem = "有困难了，需要你的帮助";
-//                            $needHelpData = array(
-//                                'id' => '',
-//                                'uid' => $userPrio['uid'],
-//                                'type' => $msgSystemType,
-//                                'url_id' => $sayLastInsertId,
-//                                'from_uid' => $userloginid,
-//                                'content' => $contentMsgSystem,
-//                                'time' => time(),
-//                                'deliver' => 0,
-//                            );
-//                            $MsgSystem->add($needHelpData);
-
+                        	/**
+                        	 * "有困难了，需要你的帮助";
+                        	 */
                             i_savenotice($userloginid, $userPrio['uid'], 'stream/ih-para:needhelp', $sayLastInsertId);
                             $tos .= $userPrio['uid'] . ",";
 

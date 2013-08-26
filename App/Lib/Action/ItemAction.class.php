@@ -237,7 +237,6 @@ class ItemAction extends Action {
     	 * send help email; time limit 15 days
     	 * shut down auto;
     	 */
-        $MsgSystem = M("MsgSystem");
     	$timewidth = time() - 1000000;
     	$timeend = time() - 1296000;
     	if ($sayRecord['time'] < $timewidth && $sayRecord['time'] > $timeend) {
@@ -267,18 +266,6 @@ class ItemAction extends Action {
     			/*
     			 * send system message
     			 */
-//    			$msgHelpEndContent = "您的帮助要到期了, 快来看看有什么进展不";
-//    			$msgHelpEndData = array(
-//                    'id' => NULL,
-//                    'uid' => $sayRecord['uid'],
-//                    'type' => 'stream/ih-para:timeLimit',
-//                    'url_id' => $sayRecord['sid'],
-//                    'content' => $msgHelpEndContent,
-//                    'time' => time(),
-//                    'deliver' => 0,
-//    			);
-//    			$MsgSystem->add($msgHelpEndData);
-
                 i_savenotice('10000', $sayRecord['uid'], 'stream/ih-para:timeLimit', $sayRecord['sid']);
                 $this->assign('toUid', $sayRecord['uid']);
 
@@ -299,17 +286,6 @@ class ItemAction extends Action {
     		/*
     		 * send system message
     		 */
-//    		$msgHelpAlreadyEndContent = "您的帮助到期了, 系统已经自动关闭";
-//    		$msgHelpAlreadyEndData = array(
-//                'id' => NULL,
-//                'uid' => $sayRecord['uid'],
-//                'type' => 'stream/ih-para:timeEnd',
-//                'url_id' => $sayRecord['sid'],
-//                'content' => $msgHelpAlreadyEndContent,
-//                'time' => time(),
-//                'deliver' => 0,
-//    		);
-//    		$MsgSystem->add($msgHelpAlreadyEndData);
             i_savenotice('10000', $sayRecord['uid'], 'stream/ih-para:timeEnd', $sayRecord['sid']);
             $this->assign('toUid', $sayRecord['uid']);
     	}
@@ -373,22 +349,6 @@ class ItemAction extends Action {
     			/**
     			 * insert system message
     			 */
-    			$msgHelpEndContent = "问题得到解决,你被".$helpRecordOwener['nickname']."选为了最佳帮助, 得到了".$helpRecord['reward_coins']."个活跃。";
-    			$msgRecordEndAction = array(
-	                'id' => NULL,
-	                'uid' => $chooseId,
-	                'type' => 'stream/ih-para:success',
-	                'url_id' => $sayRecord['sid'],
-	                'from_uid' => $userloginid,
-	                'content' => $msgHelpEndContent,
-	                'time' => time(),
-	                'deliver' => 0,
-    			);
-    			$affetcedMsgRecordHelpEnd = $MsgSystem->add($msgRecordEndAction);
-    			if (empty($affetcedMsgRecordHelpEnd)) {
-    				redirect('/stream', 1, 'message_system_help end choose insert failed...');
-    			}
-
                 i_savenotice($userloginid, $chooseId, 'stream/ih-para:success', $sayRecord['sid']);
 
     			/**
@@ -724,7 +684,6 @@ class ItemAction extends Action {
     	$RecordHelpreply = M("RecordHelpreply");
     	$UserLogin = M("UserLogin");
     	$MsgComment = M("MsgComment");
-    	$MsgSystem = M("MsgSystem");
 
         /**
          * add for not login visit
@@ -773,21 +732,6 @@ class ItemAction extends Action {
     					$isTimeHelpMailSend = $AuMailSend->where("uid = $recorduid AND sid = $sid AND helperid = $userloginid")->find();
 
     					if ($recorduid != $userloginid) {
-//    						$msgHelpreplyContent = "来帮助你啦";
-//    						$msgRecordHelpreply = array(
-//	                            'id' => NULL,
-//	                            'uid' => $recorduid,
-//	                            'type' => 'stream/ih-para:newHelp',
-//	                            'url_id' => $sid,
-//	                            'from_uid' => $userloginid,
-//	                            'content' => $msgHelpreplyContent,
-//	                            'time' => time(),
-//	                            'deliver' => 0,
-//    						);
-//    						$affetcedMsgRecordHelpreply = $MsgSystem->add($msgRecordHelpreply);
-//    						if (empty($affetcedMsgRecordHelpreply)) {
-//    							$this->ajaxReturn(0,'message_system_help insert failed','error');
-//    						}
                             i_savenotice($userloginid, $recorduid, 'stream/ih-para:newHelp', $sid);
 
     						/**
@@ -818,22 +762,6 @@ class ItemAction extends Action {
     						}
     					} else {
     						if (!empty($toid)) {
-//    							$msgHelpreplyContent = "提出了追问";
-//    							$msgToiud = $toid;
-//    							$msgRecordHelpreply = array(
-//	                                'id' => NULL,
-//	                                'uid' => $msgToiud,
-//	                                'type' => 'stream/ih-para:reply',
-//	                                'url_id' => $sid,
-//	                                'from_uid' => $userloginid,
-//	                                'content' => $msgHelpreplyContent,
-//	                                'time' => time(),
-//	                                'deliver' => 0,
-//    							);
-//    							$affetcedMsgRecordHelpreply = $MsgSystem->add($msgRecordHelpreply);
-//    							if (empty($affetcedMsgRecordHelpreply)) {
-//    								$this->ajaxReturn(0,'message_system_help insert failed','error');
-//    							}
                                 i_savenotice($userloginid, $toid, 'stream/ih-para:reply', $sid);
     						}
     					}
