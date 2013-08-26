@@ -232,7 +232,7 @@ class MutualAction extends Action
         }
 
         /**
-         * send system message to prioritied user
+         * send system message to prioritied user FIXME
          */
         $MsgSystem = M("MsgSystem");
         $msgPriorityContent = "圈了你; 越来越有影响力啦, 加油啊!";

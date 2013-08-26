@@ -1482,7 +1482,7 @@ class RooterAction extends Action {
             	$MsgActive->add($msgActiveArray);
 
                 /**
-                 * insert into system message
+                 * insert into system message FIXME
                  */
                 $insertToOwnerData = array(
                     'id' => '',
@@ -1717,7 +1717,7 @@ class RooterAction extends Action {
         if (isset($_GET['autorun'])) {
             $UserLogin = M("UserLogin");
             $MsgComment = M("MsgComment");
-            $MsgSystem = M("MsgSystem");
+            //MsgSystem
             $MsgAt = M("MsgAt");
             $TalkContent = M("TalkContent");
             $timewidth = time() - 604800;
@@ -1733,7 +1733,7 @@ class RooterAction extends Action {
                 foreach ($userLongNotLogin as $userNotLogin) {
                 	$userNotLoginUid = $userNotLogin['uid'];
                     $msgCommentNums = $MsgComment->where("uid = $userNotLoginUid AND deliver = '0'")->count();
-                    $msgSystemNums = $MsgSystem->where("uid = $userNotLoginUid AND deliver = '0'")->count();
+                    $msgSystemNums = 0;
                     $msgAtNums = $MsgAt->where("touid = $userNotLoginUid AND deliver = '0'")->count();
                     $newTalkNums = $TalkContent->where("touid = $userNotLoginUid AND deliver = '0'")->count();
                     if ($msgCommentNums != 0 || $msgSystemNums != 0 || $msgAtNums != 0 || $newTalkNums != 0) {
