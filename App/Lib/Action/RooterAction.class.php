@@ -1204,11 +1204,9 @@ class RooterAction extends Action {
         	/**
         	 * user msg
         	 */
-        	$MsgSystem = M("MsgSystem");
         	$MsgComment = M("MsgComment");
         	$MsgActive = M("MsgActive");
         	$MsgAt = M("MsgAt");
-        	$userMsgSystemNums = $MsgSystem->where("uid = $userId")->count();
         	$userMsgCommentNums = $MsgComment->where("uid = $userId")->count();
         	$userMsgActiveNums = $MsgActive->where("uid = $userId")->count();
         	$userMsgAtNums = $MsgAt->where("touid = $userId")->count();
@@ -1225,7 +1223,6 @@ class RooterAction extends Action {
         	$userOtherInfo = array(
         		'userAlbumNums' => $userAlbumNums,
         		'userAlbumSize' => round($userAlbumSize/(1024*1024),2)."MB",
-        		'userMsgSystemNums' => $userMsgSystemNums,
         		'userMsgCommentNums' => $userMsgCommentNums,
         		'userMsgActiveNums' => $userMsgActiveNums,
         		'userMsgAtNums' => $userMsgAtNums,
@@ -1284,6 +1281,7 @@ class RooterAction extends Action {
 
             	/**
                  * send system message.
+                 * "您的真实姓名可以修改了!";
                  */
                 i_savenotice('10000', $uid, 'setting/realfirst', '');
 
@@ -1407,7 +1405,7 @@ class RooterAction extends Action {
             /**
              * message to owner
         	 */
-            $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
+            $msgSystemType = 'helprooter/userhonor';
             $i = 0;
             foreach ($userArray as $user) {
                 $data = array(
@@ -1420,8 +1418,9 @@ class RooterAction extends Action {
 
                 /**
                  * insert into system message
+                 * "你获得了我帮圈圈荣誉，快来看看吧";
                  */
-                i_savenotice('10000', $user, 'helprooter/userhonor', $user);
+                i_savenotice('10000', $user, $msgSystemType, $user);
         	    $i++;
             }
             
@@ -1456,7 +1455,7 @@ class RooterAction extends Action {
             /**
              * message to owner
         	 */
-        	$MsgSystem = M("MsgSystem");
+            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
             $i = 0;
             foreach ($userArray as $user) {
             	$recordUserLogin = $UserLogin->find($user);
@@ -1483,7 +1482,7 @@ class RooterAction extends Action {
             	$MsgActive->add($msgActiveArray);
 
                 /**
-                 * insert into system message
+                 * insert into system message FIXME
                  */
                 $insertToOwnerData = array(
                     'id' => '',
@@ -1540,7 +1539,6 @@ class RooterAction extends Action {
     			/**
     			 * send message system
     			 */
-    			$MsgSystem = M("MsgSystem");
 	            if ($award == 1) {
 	            	$msgContent = "你邀请的用户被认定为有效，加活跃50";
 	            	$UserLogin = M("UserLogin");
@@ -1571,15 +1569,6 @@ class RooterAction extends Action {
 	            	$msgContent = "你邀请的用户无效:(，暂时不赠送活跃";
                     i_savenotice("10000", $recordUserInvite['uid'], 'root/userinvite:success', '');//TODO bounce
 	            }
-//	            $msgData = array(
-//                	'id' => NULL,
-//                	'uid' => $recordUserInvite['uid'],
-//                 	'type' => 'rooter/userinvite',
-//              		'content' => $msgContent,
-//                	'time' => time(),
-//                	'deliver' => 0,
-//	            );
-//	            $MsgSystem->add($msgData);
 	            
 	            /**
 	             * admin user operating record
@@ -1731,7 +1720,7 @@ class RooterAction extends Action {
         if (isset($_GET['autorun'])) {
             $UserLogin = M("UserLogin");
             $MsgComment = M("MsgComment");
-            $MsgSystem = M("MsgSystem");
+            //MsgSystem
             $MsgAt = M("MsgAt");
             $TalkContent = M("TalkContent");
             $timewidth = time() - 604800;
@@ -1747,7 +1736,7 @@ class RooterAction extends Action {
                 foreach ($userLongNotLogin as $userNotLogin) {
                 	$userNotLoginUid = $userNotLogin['uid'];
                     $msgCommentNums = $MsgComment->where("uid = $userNotLoginUid AND deliver = '0'")->count();
-                    $msgSystemNums = $MsgSystem->where("uid = $userNotLoginUid AND deliver = '0'")->count();
+                    $msgSystemNums = 0;
                     $msgAtNums = $MsgAt->where("touid = $userNotLoginUid AND deliver = '0'")->count();
                     $newTalkNums = $TalkContent->where("touid = $userNotLoginUid AND deliver = '0'")->count();
                     if ($msgCommentNums != 0 || $msgSystemNums != 0 || $msgAtNums != 0 || $newTalkNums != 0) {
@@ -2490,7 +2479,6 @@ class RooterAction extends Action {
     		if (empty($recordActivityItem['aid'])) {
     			redirect('/rooter/activity', 2, 'error aid empty...');
     		}
-    		$MsgSystem = M("MsgSystem");
     		Vendor('Ihelpoo.Email');
     		$emailObj = new Email();
     		$UserLogin = M("UserLogin");
@@ -2504,9 +2492,9 @@ class RooterAction extends Action {
     			
     			/**
 	             * send system message.
+	             *  "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
 	             */
-	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
-                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');//TODO bounce and activity name
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');//FIXME bounce and activity name
 	            
 	            /**
 	             * send mail
@@ -2574,7 +2562,7 @@ class RooterAction extends Action {
     			$ActivityItem->save($updateActivityStatus);
     			
     			/**
-	             * send system message.
+	             * send system message.FIXME
 	             */
 	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核未通过，请重新填写，务必合符组织活动规范!";
 	            $msgData = array(

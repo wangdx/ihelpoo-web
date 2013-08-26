@@ -804,6 +804,7 @@ class UserAction extends Action {
 
 	            /**
 	             * send system message.
+	             * "欢迎".$nickname."来到我帮圈圈:) 故事开始啦!";
 	             */
                 i_savenotice('10000', $newUserId, 'system/welcome', '');
 
@@ -856,6 +857,7 @@ class UserAction extends Action {
 
 		            /**
 		             * add msg system
+		             * "您邀请的 ".$nickname." 加入了我帮圈圈:) 系统认定注册有效后，会奖励你50活跃";
 		             */
                     i_savenotice($newUserId, $userId, 'system/invite:inviter', '');
 
@@ -874,6 +876,7 @@ class UserAction extends Action {
 	            	/**
 	            	 * quan
 	            	 * send system message to prioritied user
+	            	 * "圈了你; 越来越有影响力啦, 加油啊!";
 	            	 */
                     i_savenotice($newUserId, $userId, 'mutual/priority', '');
 	            	
@@ -932,11 +935,12 @@ class UserAction extends Action {
 			);
 			$isEmailAffirm = $IUserLogin->save($dataSet);
 
-					/**
-					 * send system message.
-					 */
-                    //TODO add bounced notice in case user is online
-                    //TODO i did not receive this msg
+			/**
+			 * send system message.
+			 * "您的邮箱验证成功了!";
+			 */
+			//TODO add bounced notice in case user is online
+			//TODO i did not receive this msg
             i_savenotice('10000', $uid, 'system/mailverify', '');
 			redirect('/', 3, '邮箱验证成功啦 :) 3秒后跳转到登录页面...');
 		} else {
@@ -1044,6 +1048,7 @@ class UserAction extends Action {
 
     		/**
     		 * send system message.
+    		 * "您的密码已经初始化, 请及时修改!";
     		 */
             //TODO bounced notice in case user is online
             i_savenotice('10000', $recordUserLogin['uid'], 'system/initpwd', '');

@@ -299,6 +299,10 @@ class ActivityAction extends Action {
     				);
     				$ActivityUser->save($updateActivityUserInvitestatus);
 
+    				/**
+    				 * send msg system
+    				 * "邀请你成为他的活动Parter!";
+    				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);//TODO ajax, bounce
     				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
