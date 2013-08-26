@@ -805,17 +805,6 @@ class UserAction extends Action {
 	            /**
 	             * send system message.
 	             */
-//	            $MsgSystem = M("MsgSystem");
-//	            $msgRegisterContent = "欢迎".$nickname."来到我帮圈圈:) 故事开始啦!";
-//	            $msgRegisterData = array(
-//                	'id' => NULL,
-//                	'uid' => $newUserId,
-//                 	'type' => 'system',
-//              		'content' => $msgRegisterContent,
-//                	'time' => time(),
-//                	'deliver' => 0,
-//	            );
-//	            $MsgSystem->add($msgRegisterData);
                 i_savenotice('10000', $newUserId, 'system/welcome', '');
 
 	            /**
@@ -868,16 +857,6 @@ class UserAction extends Action {
 		            /**
 		             * add msg system
 		             */
-//		            $msgInviteRegisterContent = "您邀请的 ".$nickname." 加入了我帮圈圈:) 系统认定注册有效后，会奖励你50活跃";
-//	            	$msgRegisterData = array(
-//                		'id' => NULL,
-//                		'uid' => $userId,
-//                 		'type' => 'system',
-//              			'content' => $msgInviteRegisterContent,
-//                		'time' => time(),
-//                		'deliver' => 0,
-//	            	);
-//	            	$MsgSystem->add($msgRegisterData);
                     i_savenotice($newUserId, $userId, 'system/invite:inviter', '');
 
 	            	/**
@@ -896,17 +875,6 @@ class UserAction extends Action {
 	            	 * quan
 	            	 * send system message to prioritied user
 	            	 */
-//	            	$msgPriorityContent = "圈了你; 越来越有影响力啦, 加油啊!";
-//	            	$msgPriorityData = array(
-//		                'id' => NULL,
-//		                'uid' => $userId,
-//		                'type' => 'mutual/priority',
-//		                'from_uid' => $newUserId,
-//		                'content' => $msgPriorityContent,
-//		                'time' => time(),
-//		                'deliver' => 0,
-//	            	);
-//	            	$MsgSystem->add($msgPriorityData);
                     i_savenotice($newUserId, $userId, 'mutual/priority', '');
 	            	
 	            	/**
@@ -967,17 +935,6 @@ class UserAction extends Action {
 					/**
 					 * send system message.
 					 */
-//					$MsgSystem = M("MsgSystem");
-//					$msgContent = "您的邮箱验证成功了!";
-//					$msgData = array(
-//	                    'id' => NULL,
-//	                    'uid' => $uid,
-//	                    'type' => 'system',
-//	                    'content' => $msgContent,
-//	                    'time' => time(),
-//	                    'deliver' => 0,
-//					);
-//					$MsgSystem->add($msgData);
                     //TODO add bounced notice in case user is online
                     //TODO i did not receive this msg
             i_savenotice('10000', $uid, 'system/mailverify', '');
@@ -1088,17 +1045,6 @@ class UserAction extends Action {
     		/**
     		 * send system message.
     		 */
-//    		$MsgSystem = M("MsgSystem");
-//    		$msgContent = "您的密码已经初始化, 请及时修改!";
-//    		$msgData = array(
-//                'id' => NULL,
-//                'uid' => $recordUserLogin['uid'],
-//                'type' => 'system',
-//                'content' => $msgContent,
-//            	'time' => time(),
-//            	'deliver' => 0,
-//    		);
-//    		$MsgSystem->add($msgData);
             //TODO bounced notice in case user is online
             i_savenotice('10000', $recordUserLogin['uid'], 'system/initpwd', '');
     		$this->assign('resetsuccess', "新密码已经发送到您的邮箱".$toEmail.", 请及时查询，登录后按需要修改密码。");

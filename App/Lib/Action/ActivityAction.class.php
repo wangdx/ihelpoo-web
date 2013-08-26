@@ -239,31 +239,10 @@ class ActivityAction extends Action {
 	    				 * send message to sponsor
 	    				 */
 	    				$recordUserLogin = $UserLogin->where("uid = $userloginid")->find();
-	    				$MsgSystem = M("MsgSystem");
-	    				$msgContent = "<a class='getuserinfo' userid=".$recordUserLogin['uid'].">".$recordUserLogin['nickname']."</a> 加入了您组织的活动 “".$recordActivityItem['subject']."”，你可以查看其真实联系方式!";
-			            $msgData = array(
-		                	'id' => NULL,
-		                	'uid' => $recordActivityItem['sponsor_uid'],
-		                 	'type' => 'system',
-		              		'content' => $msgContent,
-		                	'time' => time(),
-		                	'deliver' => 0,
-			            );
-			            $MsgSystem->add($msgData);
 
-			            /**
-	    				 * send message to jioner
-	    				 */
-			            $msgContent = "您加入了活动 “".$recordActivityItem['subject']."”，可以查看主办方真实联系方式!";
-			            $msgData = array(
-		                	'id' => NULL,
-		                	'uid' => $userloginid,
-		                 	'type' => 'system',
-		              		'content' => $msgContent,
-		                	'time' => time(),
-		                	'deliver' => 0,
-			            );
-			            $MsgSystem->add($msgData);
+                        i_savenotice($recordUserLogin['uid'], $recordActivityItem['sponsor_uid'], 'system/activity:join-you', '');
+
+                        i_savenotice($recordActivityItem['sponsor_uid'], $userloginid, 'system/activity:you-join', '');
     				}
     				redirect('/activity/item/'.$activityid, 3, '成功加入活动:) 3秒后页面跳转...');
     			}
@@ -320,23 +299,6 @@ class ActivityAction extends Action {
     				);
     				$ActivityUser->save($updateActivityUserInvitestatus);
 
-    				/**
-    				 * send msg system
-    				 */
-//    				$MsgSystem = M("MsgSystem");
-//    				$msgSystemType = 'activity/item-para:invite';
-//    				$contentMsgSystem = "邀请你成为他的活动Parter!";
-//    				$pushMsgData = array(
-//	        	    	'id' => '',
-//	       	            'uid' => $parteruid,
-//            	        'type' => $msgSystemType,
-//	        	    	'url_id' => $activityid,
-//	        	    	'from_uid' => $userloginid,
-//	        	    	'content' => $contentMsgSystem,
-//	        	    	'time' => time(),
-//	        	    	'deliver' => 0,
-//    				);
-//    				$MsgSystem->add($pushMsgData);
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);//TODO ajax, bounce
     				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
@@ -364,7 +326,6 @@ class ActivityAction extends Action {
     	->limit($offset,$count)->order('time DESC')->select();
 
     	$this->assign('recordsActivityUser',$recordsActivityUser);
-    	$this->assign('recordsActivityComment',$recordsActivityComment);
 
     	/**
          * page link
@@ -482,32 +443,15 @@ class ActivityAction extends Action {
     			 */
     			$UserLogin = M("UserLogin");
     			$recordUserLogin = $UserLogin->where("uid = $userloginid")->find();
-    			$MsgSystem = M("MsgSystem");
-    			$msgContent = "<a class='getuserinfo' userid=".$recordUserLogin['uid'].">".$recordUserLogin['nickname']."</a> 成为了您参加的活动 “".$recordActivityItem['subject']."” 的Parter，你们可以互相查看真实联系方式了!";
-    			$msgData = array(
-	                	'id' => NULL,
-	                	'uid' => $inviteuserid,
-	                 	'type' => 'system',
-	              		'content' => $msgContent,
-	                	'time' => time(),
-	                	'deliver' => 0,
-    			);
-    			$MsgSystem->add($msgData);
+
+                i_savenotice($recordUserLogin['uid'], $inviteuserid, 'system/activity:partner', '');
 
     			/**
     			 * send message to jioner
     			 */
     			$recordInviteUserLogin = $UserLogin->where("uid = $inviteuserid")->find();
-    			$msgContent = "<a class='getuserinfo' userid=".$recordInviteUserLogin['uid'].">".$recordInviteUserLogin['nickname']."</a> 成为了您参加的活动 “".$recordActivityItem['subject']."” 的Parter，你们可以互相查看真实联系方式了!";
-    			$msgData = array(
-	                	'id' => NULL,
-	                	'uid' => $userloginid,
-	                 	'type' => 'system',
-	              		'content' => $msgContent,
-	                	'time' => time(),
-	                	'deliver' => 0,
-    			);
-    			$MsgSystem->add($msgData);
+                i_savenotice($recordInviteUserLogin['uid'], $userloginid, 'system/activity:partner', '');
+
     			redirect('/activity/item/'.$activityid, 3, '选择Parter成功 :) 3秒后页面跳转...');
     		}
     	}

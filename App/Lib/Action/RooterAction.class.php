@@ -1285,17 +1285,6 @@ class RooterAction extends Action {
             	/**
                  * send system message.
                  */
-//                $MsgSystem = M("MsgSystem");
-//                $msgContent = "您的真实姓名可以修改了!";
-//                $msgData = array(
-//                    'id' => NULL,
-//                    'uid' => $uid,
-//                    'type' => 'setting/realfirst',
-//                    'content' => $msgContent,
-//                    'time' => time(),
-//                    'deliver' => 0,
-//                );
-//                $MsgSystem->add($msgData);
                 i_savenotice('10000', $uid, 'setting/realfirst', '');
 
                 /**
@@ -1418,8 +1407,6 @@ class RooterAction extends Action {
             /**
              * message to owner
         	 */
-        	$MsgSystem = M("MsgSystem");
-            $msgSystemType = 'helprooter/userhonor';
             $contentToOwnerMsgSystem = "你获得了我帮圈圈荣誉，快来看看吧";
             $i = 0;
             foreach ($userArray as $user) {
@@ -1434,18 +1421,7 @@ class RooterAction extends Action {
                 /**
                  * insert into system message
                  */
-//                $diffusionToOwnerData = array(
-//        	        'id' => '',
-//        	        'uid' => $user,
-//        	        'type' => $msgSystemType,
-//        	        'url_id' => $user,
-//        	        'from_uid' => '',
-//        	        'content' => $contentToOwnerMsgSystem,
-//        	        'time' => time(),
-//        	        'deliver' => 0,
-//                );
-//        	    $MsgSystem->add($diffusionToOwnerData);
-                i_savenotice('10000', $user, $msgSystemType, $user);
+                i_savenotice('10000', $user, 'helprooter/userhonor', $user);
         	    $i++;
             }
             
@@ -1481,7 +1457,6 @@ class RooterAction extends Action {
              * message to owner
         	 */
         	$MsgSystem = M("MsgSystem");
-            $contentToOwnerMsgSystem = "你获得了我帮圈圈奖励的活跃 :)";
             $i = 0;
             foreach ($userArray as $user) {
             	$recordUserLogin = $UserLogin->find($user);
@@ -1519,6 +1494,9 @@ class RooterAction extends Action {
                     'deliver' => 0,
                 );
         	    $MsgSystem->add($insertToOwnerData);
+
+                i_savenotice('10000', $user, 'helprooter/user:active', '');
+
         	    $i++;
             }
             
@@ -1765,7 +1743,7 @@ class RooterAction extends Action {
             	 */
             	Vendor('Ihelpoo.Email');
             	$emailObj = new Email();
-            	$i;
+            	$i =0;
                 foreach ($userLongNotLogin as $userNotLogin) {
                 	$userNotLoginUid = $userNotLogin['uid'];
                     $msgCommentNums = $MsgComment->where("uid = $userNotLoginUid AND deliver = '0'")->count();
@@ -2055,7 +2033,6 @@ class RooterAction extends Action {
 	    			/**
 		             * send system message.
 		             */
-		            $MsgSystem = M("MsgSystem");
 		            if ($status == 2) {
 
 		            	/**
@@ -2092,18 +2069,11 @@ class RooterAction extends Action {
 		            		$UserInfo->save($newUserInfoPrioritiedData);
 		            	}
                         i_savenotice('10000', $uid, 'system/shopaudited', '');
+                        $msgContent = '资料审核通过，您的小店开通了!';
 		            } else {
                         i_savenotice('10000', $uid, 'system/shopreaudit', ''); //TODO bounce notice
+                        $msgContent = '资料重新审核中，您的小店暂时关闭!';
 		            }
-//		            $msgData = array(
-//	                	'id' => NULL,
-//	                	'uid' => $uid,
-//	                 	'type' => 'system',
-//	              		'content' => $msgContent,
-//	                	'time' => time(),
-//	                	'deliver' => 0,
-//		            );
-//		            $MsgSystem->add($msgData);
 
 		            /**
 		             * admin user operating record
@@ -2535,17 +2505,8 @@ class RooterAction extends Action {
     			/**
 	             * send system message.
 	             */
-//	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
-//	            $msgData = array(
-//                	'id' => NULL,
-//                	'uid' => $recordActivityItem['sponsor_uid'],
-//                 	'type' => 'system',
-//              		'content' => $msgContent,
-//                	'time' => time(),
-//                	'deliver' => 0,
-//	            );
-//	            $MsgSystem->add($msgData);
-                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');//FIXME bounce and activity name
+	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');//TODO bounce and activity name
 	            
 	            /**
 	             * send mail

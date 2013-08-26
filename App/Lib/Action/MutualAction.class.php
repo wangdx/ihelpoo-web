@@ -247,37 +247,12 @@ class MutualAction extends Action
         /**
          * send system message to prioritied user
          */
-        $MsgSystem = M("MsgSystem");
-        $msgPriorityContent = "圈了你; 越来越有影响力啦, 加油啊!";
-        $msgPriorityData = array(
-            'id' => NULL,
-            'uid' => $priorityUid,
-            'type' => 'mutual/priority',
-            'from_uid' => $userloginid,
-            'content' => $msgPriorityContent,
-            'time' => time(),
-            'deliver' => 0,
-        );
-        $isMsgPriorityDataInserted = $MsgSystem->add($msgPriorityData);
-        if (!$isMsgPriorityDataInserted) {
-            exit("Msg priority data insert failed");
-        }
+        i_savenotice($userloginid, $priorityUid, 'mutual/priority', '');
 
         /**
          * send system message to prioriti user for user type 2
          */
         if ($userLogin['type'] == 2) {
-//            $msgPriorityUserType2Content = "你加入了 " . $userLogin['nickname'] . " 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
-//            $msgPriorityUserType2Data = array(
-//                'id' => NULL,
-//                'uid' => $userloginid,
-//                'type' => 'mutual/priority_usertype2',
-//                'from_uid' => $priorityUid,
-//                'content' => $msgPriorityUserType2Content,
-//                'time' => time(),
-//                'deliver' => 0,
-//            );
-//            $MsgSystem->add($msgPriorityUserType2Data);
             i_savenotice($priorityUid, $userloginid, 'mutual/priority_usertype2', '');//TODO bounce
         }
 

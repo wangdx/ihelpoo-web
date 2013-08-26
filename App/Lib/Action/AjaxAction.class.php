@@ -30,7 +30,6 @@ class AjaxAction extends Action {
     		$userStatusRecord = i_ajax_msg($userloginid);
     		$MsgAt = M("MsgAt");
     		$MsgComment = M("MsgComment");
-    		$MsgSystem = M("MsgSystem");
     		$TalkContent = M("TalkContent");
             Vendor('Ihelpoo.Redismq');
             $redis = new Redis();
@@ -75,10 +74,8 @@ class AjaxAction extends Action {
     		$userStatusRecord = i_ajax_msg($userloginid);
     		$MsgAt = M("MsgAt");
     		$MsgComment = M("MsgComment");
-    		$MsgSystem = M("MsgSystem");
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
-    		$messageSystemNums = $MsgSystem->where("uid = $userloginid AND deliver = 0")->count();
     		if ($userStatusRecord['acquire_seconds'] <= 6000) {
     			$userStatusRecordAcquireSeconds = $userStatusRecord['acquire_seconds'] / 2;
     		} else {
