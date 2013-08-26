@@ -454,7 +454,11 @@ lable{
     color: #FFF;
     border: 1px solid #CCC;
 }
-
+.main_mate_info_school{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 .main_mate_info_hot{
 	text-align: right;
 }
