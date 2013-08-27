@@ -396,6 +396,11 @@
 		 	}
       	} 
       } ?>
+      来自
+      <?php if ($record['school_record'] != $thisschoolid) { ?>
+      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
+      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
+      <?php } ?>
       <?php
       if (!empty($record['from'])) {
           if ("2" == $record['from']) {
@@ -403,14 +408,10 @@
           } else if ("3" == $record['from']) {
           	  echo "来自我帮圈圈Andriod客户端";
           } else {
-          	  echo "来自<span title='".$record['from']."'>".$ofunction->cut_str($record['from'],6)."...</span>";
+          	  echo "<span title='".$record['from']."'>".$ofunction->cut_str($record['from'],6)."...</span>";
           }
       }
       ?>
-      <?php if ($record['school_record'] != $thisschoolid) { ?>
-      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
-      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
-      <?php } ?>
     </span>
     <span class="s_li_s_comment f12 gray">
       <?php if ($record['say_type'] == '1') { ?>
