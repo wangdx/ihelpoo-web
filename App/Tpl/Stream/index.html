@@ -396,7 +396,6 @@
 		 	}
       	} 
       } ?>
-      来自
       <?php if ($record['school_record'] != $thisschoolid) { ?>
       <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
       		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
