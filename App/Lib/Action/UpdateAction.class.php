@@ -9,6 +9,27 @@ class UpdateAction extends Action {
         header("Content-Type:text/html; charset=utf-8");
     }
     
+    public function calculatefansnums()
+    {
+    	$UserInfo = M("UserInfo");
+    	$UserPriority = M("UserPriority");
+    	$allUsers = $UserInfo->select();
+    	foreach($allUsers as $user) {
+    		$userId = $user['uid'];
+    		$userFollowNums = $UserPriority->where("uid = $userId")->count();
+    		$userFansNums = $UserPriority->where("pid = $userId")->count();
+    		$newUserInfoNums = array(
+    			'uid' => $userId,
+    			'follow' => $userFollowNums,
+    			'fans' => $userFansNums,
+    		);
+    		$isSaved = $UserInfo->save($newUserInfoNums);
+    		if ($isSaved) {
+    			echo $userId." update ok <br />";
+    		}
+    	}
+    }
+    
     /**
      * truncate table
      */

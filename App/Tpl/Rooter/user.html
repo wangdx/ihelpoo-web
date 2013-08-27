@@ -26,6 +26,12 @@
 		<input type="submit" value="重置"> (用户类型1 普通;2 组织;3 商家)
 	</form>
 	<br />
+	<form method="post">
+		<input type="hidden" name="uid" value="<?php echo $recordUserLogin['uid']; ?>"/>
+		用户学校: <input type="text" name="school" value="{$recordUserLogin['school']}"/> 
+		<input type="submit" value="重置">
+	</form>
+	<br />
 	<br />
 	<br />
 	<p>基本资料:</p>

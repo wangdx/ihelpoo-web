@@ -1178,6 +1178,34 @@ class RooterAction extends Action {
                 redirect('/rooter/user', 1, 'update user type ok...');
             }
         }
+        
+        if (!empty($_POST['school']) && !empty($_POST['uid'])) {
+        	$newUserSchool = (int)$_POST['school'];
+			$isUserExist = $UserLogin->find($_POST['uid']);
+            if ($isUserExist['uid']) {
+            	$setUserType = array(
+            		'uid' => $isUserExist['uid'],
+            	    'school' => $newUserSchool,
+            	);
+                $UserLogin->save($setUserType);
+                
+            	/**
+                 * admin user operating record
+                 */
+                if (!empty($admin['uid'])) {
+                	$AdminUserrecord = M("AdminUserrecord");
+                	$newAdminUserrecordData = array(
+					    'id' => '',
+					    'uid' => $admin['uid'],
+					    'record' => 'change user school. uid:'.$isUserExist['uid'].' school_id:'.$newUserSchool,
+					    'time' => time(),
+                	);
+                	$AdminUserrecord->add($newAdminUserrecordData);
+                }
+                
+                redirect('/rooter/user', 1, 'update user type ok...');
+            }
+        }
 
         if (!empty($userId)) {
         	$recordUserLogin = $UserLogin->find($userId);
