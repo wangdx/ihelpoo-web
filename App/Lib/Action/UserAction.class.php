@@ -232,9 +232,9 @@ class UserAction extends Action {
 	            	$dbUser = $IUserLogin->userVerification($email, $password, 2);
 	            }
 	            if ($loginstatus == 'on') {
-	            	$loginstatuscookie = '1';
-	            } else {
 	            	$loginstatuscookie = '2';
+	            } else {
+	            	$loginstatuscookie = '1';
 	            }
 	            if (is_array($dbUser)) {
 	            	userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
