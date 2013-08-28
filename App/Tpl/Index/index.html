@@ -55,7 +55,7 @@ html {overflow-x:hidden; overflow-y:hidden; _overflow-x:hidden; _overflow-y:hidd
 			    </a>
 			</p>
 			<p class="index_loginfast_div_name_p">
-				<a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else { echo "潜水登录"; } ?>)</span></a>
+				<a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '1') { echo "正常登录"; } else if ($_COOKIE['userLoginstatus'] == '2') { echo "潜水登录"; } ?>)</span></a>
 			</p>
 			<p class="index_loginfast_div_registe_p"><a href="__ROOT__/user/register" class="black_l f12">注册账号</a></p>
 		</div>

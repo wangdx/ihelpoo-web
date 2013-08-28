@@ -231,13 +231,18 @@ class UserAction extends Action {
 	            } else {
 	            	$dbUser = $IUserLogin->userVerification($email, $password, 2);
 	            }
+	            if ($loginstatus == 'on') {
+	            	$loginstatuscookie = '1';
+	            } else {
+	            	$loginstatuscookie = '2';
+	            }
 	            if (is_array($dbUser)) {
 	            	userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
                     session('userloginid',$dbUser['uid']);
                     if ($rememberpassword == 'on') {
 	                    setcookie('userEmail', $dbUser['email'], time() + 3600 * 24 *30, '/');
 	                    setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
-	                    setcookie('userLoginstatus', $loginstatus, time() + 3600 * 24 *30, '/');
+	                    setcookie('userLoginstatus', $loginstatuscookie, time() + 3600 * 24 *30, '/');
                     }
 
                     /**
@@ -281,10 +286,10 @@ class UserAction extends Action {
     		$email = $_COOKIE['userEmail'];
     		$password = $_COOKIE['userPassword'];
     		$loginstatus = $_COOKIE['userLoginstatus'];
-    		if ($loginstatus == '1') {
-    			$dbUser = $IUserLogin->userVerification($email, $password, 1);
-    		} else {
+    		if ($loginstatus == '2') {
     			$dbUser = $IUserLogin->userVerification($email, $password, 2);
+    		} else {
+    			$dbUser = $IUserLogin->userVerification($email, $password, 1);
     		}
     		if (is_array($dbUser)) {
     			userUpdateStatus($dbUser['uid'], $dbUser['logintime'], $dbUser['lastlogintime']);
