@@ -1005,6 +1005,8 @@ class UpdateAction extends Action {
     	$url = "http://zzuli.ihelpoo.com/updateversion4/zzuliuserinvite?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
+    	var_dump($datacontentArray);
+    	exit();
     	if (is_array($datacontentArray)) {
     		$total = $datacontentArray['total'];
     		$count = $datacontentArray['count'];
