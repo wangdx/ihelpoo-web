@@ -308,7 +308,7 @@ class UserAction extends Action {
                 }
     		}
     	}
-    	redirect('/', 3, '上次已经点击退出 or 账号密码错误, 快速登录失败...');
+    	redirect('/?login=new', 3, '上次已经点击退出 or 账号密码错误, 快速登录失败...');
     }
     
     
