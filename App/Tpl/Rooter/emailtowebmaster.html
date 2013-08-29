@@ -1,0 +1,13 @@
+<include file="Public:headerrooter" />
+   <p>
+   <form method="post">
+	  <p>站长: <input type="text" name="uidstrings" value=""/> (格式:admin@tvery.com;121670155@qq.com)<br /><br /></p>
+	  <p>内容: <textarea name="noticecontent" rows="5" cols="70"></textarea><br /><br /></p>
+	  <p>&#12288;&#12288;  <input type="submit" value="发布邮件通知" /></p>
+	</form>
+   </p>
+   <br />
+   <ul>
+   <?php if (!empty($emailsended)) { echo $emailsended; } ?>
+   </ul>
+<include file="Public:footerrooter" />
