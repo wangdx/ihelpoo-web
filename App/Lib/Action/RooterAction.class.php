@@ -1692,6 +1692,53 @@ class RooterAction extends Action {
     /**
      * email
      */
+    public function emailtowebmaster()
+    {
+    	$admin = logincheck();
+    	$this->assign('title', '站长邮件通知');
+    	
+    	if ($this->isPost()) {
+    	    $noticecontent = $_POST['noticecontent'];
+    	    if (empty($_POST['emailstrings']) || empty($noticecontent)) {
+    	        redirect('/rooter/emailtowebmaster', 3, 'uidstrings or content is empty!');
+    	    }
+    	    $emailstrings = explode(";", $_POST['emailstrings']);
+
+    	    /**
+             * send welcome email
+             */
+            Vendor('Ihelpoo.Email');
+            $emailObj = new Email();
+            $emailsended = null;
+            $i = 0;
+            foreach ($emailstrings as $toemail) {
+            	if (!empty($toemail)) {
+            		$isSend = $emailObj->towebmaster($toemail, $noticecontent);
+	            	if ($isSend) {
+	                    $emailsended .= $toemail." ok<br />";
+	                    $i++;
+	                }
+            	}
+            }
+            $this->assign('emailsended', $emailsended);
+    	
+	    	/**
+	    	 * admin user operating record
+	    	 */
+	    	if (!empty($admin['uid'])) {
+	    		$AdminUserrecord = M("AdminUserrecord");
+	    		$newAdminUserrecordData = array(
+					'id' => '',
+					'uid' => $admin['uid'],
+					'record' => '发布站长通知邮件 ok:'.$i,
+					'time' => time(),
+	    		);
+	    		$AdminUserrecord->add($newAdminUserrecordData);
+	    	}
+    	}
+    	$this->display();
+    }
+    
     public function emailinvite()
     {
         $admin = logincheck();
