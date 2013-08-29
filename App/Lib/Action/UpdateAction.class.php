@@ -975,7 +975,7 @@ class UpdateAction extends Action {
     		$count = $datacontentArray['count'];
     		$page = $datacontentArray['page'];
     		$handlednums = $page * $count;
-    		echo '迁移zzuli i_record_commodity + group_id<br/>';
+    		echo '迁移zzuli i_record_commodity + school_id<br/>';
     		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
     		
     		$RecordCommodity = M("RecordCommodity");
@@ -990,6 +990,42 @@ class UpdateAction extends Action {
     		while ($handlednums < $total) {
     			++$page;
     			redirect('/update/zzulicommodity?p='.$page, 1, 'while');
+    		} 	
+    	}
+    	redirect('/update/zzuliusershop?p='.$page, 1, 'while');
+    }
+    
+    /**
+     * zzuli i_user_shop
+     */
+    public function zzuliusershop()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://zzuli.ihelpoo.com/updateversion4/zzuliusershop?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		echo '迁移zzuli i_user_shop<br/>';
+    		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$UserShop = M("UserShop");
+    		foreach ($datacontentArray as $data) {
+    			if (is_array($data)) {
+    				$recordUserShop = $UserShop->find($data['uid']);
+    				if (empty($recordUserShop['uid'])) {
+    					$UserShop->add($data);
+    				}
+    			}
+    		}
+    		
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/zzuliusershop?p='.$page, 1, 'while');
     		} 	
     	}
     	//redirect('/update/zzuliuserpriority?p='.$page, 1, 'while');
