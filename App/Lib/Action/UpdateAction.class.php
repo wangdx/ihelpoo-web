@@ -992,7 +992,43 @@ class UpdateAction extends Action {
     			redirect('/update/zzulicommodity?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/zzuliusershop?p='.$page, 1, 'next');
+    	redirect('/update/zzuliuserinvite?p='.$page, 1, 'next');
+    }
+    
+    /**
+     * zzuli i_user_invite
+     */
+    public function zzuliuserinvite()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://zzuli.ihelpoo.com/updateversion4/zzuliuserinvite?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		echo '迁移zzuli i_user_invite<br/>';
+    		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$UserInvite = M("UserInvite");
+    		foreach ($datacontentArray as $data) {
+    			if (is_array($data)) {
+    				$recordUserInvite = $UserInvite->where("uid = $data[uid] AND inviteuid = $data[inviteuid]")->find();
+    				if (empty($recordUserInvite['id'])) {
+    					$UserInvite->add($data);
+    				}
+    			}
+    		}
+    		
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/zzuliuserinvite?p='.$page, 1, 'while');
+    		} 	
+    	}
+    	//redirect('/update/zzuliusershop?p='.$page, 1, 'next');
     }
     
     /**
