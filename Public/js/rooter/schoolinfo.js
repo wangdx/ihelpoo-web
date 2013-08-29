@@ -3,7 +3,7 @@ $().ready(function(){
         var province = $("#province").attr("value");
         $.ajax({
             type: "POST",
-            url: baseUrl + "setting/ajax",
+            url: baseUrl + "rooter/schoolinfo",
             data: "provinceAjax=" + province,
             datatype: "text",
             success:function(list){
@@ -13,6 +13,6 @@ $().ready(function(){
     });
 	$("#city").live('click', function(){
         var city = $("#city").attr("value");
-        $(this).after(city + ' - ');
+        $('#cityinfospan').html(city);
     });
 });
