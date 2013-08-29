@@ -357,7 +357,7 @@ class Email
     
     public function towebmaster($toEmail, $noticeContent)
     {
-    	$toSubject = "站长通知 - 我帮圈圈";
+    	$toSubject = "我帮圈圈站长通知";
         $toContent = "<p style='font-size:12px'>
                       ".$noticeContent."
                       </p>
