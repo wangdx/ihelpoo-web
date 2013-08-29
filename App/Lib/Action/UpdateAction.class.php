@@ -1029,7 +1029,7 @@ class UpdateAction extends Action {
     			redirect('/update/zzuliuserinvite?p='.$page, 1, 'while');
     		} 	
     	}
-    	//redirect('/update/zzuliusershop?p='.$page, 1, 'next');
+    	redirect('/update/zzuliusershop?p='.$page, 1, 'next');
     }
     
     /**
