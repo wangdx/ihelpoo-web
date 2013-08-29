@@ -1696,7 +1696,6 @@ class RooterAction extends Action {
     {
     	$admin = logincheck();
     	$this->assign('title', '站长邮件通知');
-    	
     	if ($this->isPost()) {
     	    $noticecontent = $_POST['noticecontent'];
     	    if (empty($_POST['emailstrings']) || empty($noticecontent)) {

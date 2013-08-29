@@ -354,6 +354,17 @@ class Email
         $this->sendDefault($toEmail, $toSubject, $toContent, $toNickname);
         return TRUE;
     }
+    
+    public function towebmaster($toEmail, $noticeContent)
+    {
+    	$toSubject = "站长通知 - 我帮圈圈";
+        $toContent = "<p style='font-size:12px'>
+                      ".$noticeContent."
+                      </p>
+                      <br />";
+        $this->sendDefault($toEmail, $toSubject, $toContent);
+        return TRUE;
+    }
 
     /**
      *
