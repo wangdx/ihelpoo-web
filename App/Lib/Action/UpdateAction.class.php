@@ -961,13 +961,48 @@ class UpdateAction extends Action {
     }
     
     /**
+     * zzuli i_record_commodity
+     */
+    public function zzulicommodity()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://zzuli.ihelpoo.com/updateversion4/zzulicommodity?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		echo '迁移zzuli i_record_commodity + group_id<br/>';
+    		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$RecordCommodity = M("RecordCommodity");
+    		foreach ($datacontentArray as $data) {
+    			if (is_array($data)) {
+    				$data['cid'] = '';
+    				$data['school_id'] = '2';
+    				$RecordCommodity->add($data);
+    			}
+    		}
+    		
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/zzulicommodity?p='.$page, 1, 'while');
+    		} 	
+    	}
+    	//redirect('/update/zzuliuserpriority?p='.$page, 1, 'while');
+    }
+    
+    /**
      * zzuli i_user_priority
      */
     public function zzuliuserpriority()
     {
     	$page = i_page_get_num();
     	++$page;
-    	$url = "http://www.ihelpoo.com/updateversion4/zzuliuserpriority?p=".$page;
+    	$url = "http://zzuli.ihelpoo.com/updateversion4/zzuliuserpriority?p=".$page;
     	$datacontents = file_get_contents($url);
     	$datacontentArray = json_decode($datacontents,TRUE);
     	if (is_array($datacontentArray)) {
