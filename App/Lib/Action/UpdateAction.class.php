@@ -1018,6 +1018,7 @@ class UpdateAction extends Action {
     			if (is_array($data)) {
     				$recordUserInvite = $UserInvite->where("uid = $data[uid] AND inviteuid = $data[inviteuid]")->find();
     				if (empty($recordUserInvite['id'])) {
+    					$data['id'] = '';
     					$UserInvite->add($data);
     				}
     			}
