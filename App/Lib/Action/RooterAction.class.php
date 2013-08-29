@@ -1729,7 +1729,7 @@ class RooterAction extends Action {
 	    		$newAdminUserrecordData = array(
 					'id' => '',
 					'uid' => $admin['uid'],
-					'record' => '发布站长通知邮件 ok:'.$i,
+					'record' => '发布站长通知邮件 ok:'.$i.' content:'.$noticecontent,
 					'time' => time(),
 	    		);
 	    		$AdminUserrecord->add($newAdminUserrecordData);
