@@ -1028,7 +1028,7 @@ class UpdateAction extends Action {
     			redirect('/update/zzuliusershop?p='.$page, 1, 'while');
     		} 	
     	}
-    	//redirect('/update/zzuliuserpriority?p='.$page, 1, 'while');
+    	redirect('/update/zzuliuserpriority?p='.$page, 1, 'while');
     }
     
     /**
