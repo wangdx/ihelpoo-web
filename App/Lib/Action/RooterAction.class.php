@@ -1510,17 +1510,9 @@ class RooterAction extends Action {
             	$MsgActive->add($msgActiveArray);
 
                 /**
-                 * insert into system message FIXME
+                 * insert into system message
                  */
-                $insertToOwnerData = array(
-                    'id' => '',
-                    'uid' => $user,
-                    'type' => 'system',
-                    'content' => $contentToOwnerMsgSystem,
-                    'time' => time(),
-                    'deliver' => 0,
-                );
-        	    $MsgSystem->add($insertToOwnerData);
+
 
                 i_savenotice('10000', $user, 'helprooter/user:active', '');
 
@@ -2566,9 +2558,9 @@ class RooterAction extends Action {
     			
     			/**
 	             * send system message.
-	             *  "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
 	             */
-                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');//FIXME bounce and activity name
+                $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核通过了，快来邀请大家参与吧!";
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activityaudited', '');
 	            
 	            /**
 	             * send mail
@@ -2636,18 +2628,10 @@ class RooterAction extends Action {
     			$ActivityItem->save($updateActivityStatus);
     			
     			/**
-	             * send system message.FIXME
+	             * send system message.
 	             */
 	            $msgContent = "您组织的活动 “".$recordActivityItem['subject']."” 审核未通过，请重新填写，务必合符组织活动规范!";
-	            $msgData = array(
-                	'id' => NULL,
-                	'uid' => $recordActivityItem['sponsor_uid'],
-                 	'type' => 'system',
-              		'content' => $msgContent,
-                	'time' => time(),
-                	'deliver' => 0,
-	            );
-	            $MsgSystem->add($msgData);
+                i_savenotice('10000', $recordActivityItem['sponsor_uid'], 'system/activity:audit:no', '');
 	            
 	            /**
 	             * send mail

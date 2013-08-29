@@ -232,7 +232,7 @@ class MutualAction extends Action
         }
 
         /**
-         * send system message to prioritied user FIXME
+         * send system message to prioritied user
          */
         i_savenotice($userloginid, $priorityUid, 'mutual/priority', '');
 
