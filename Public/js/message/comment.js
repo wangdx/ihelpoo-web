@@ -23,8 +23,6 @@ $().ready(function(){
         var i_comment_textarea = $(this).parent().find('textarea').val();
         if (i_comment_textarea == '') {
             ajaxInfo('写点东西吧，回复不能为空');
-            $("#ajax_info_div").delay(1000).fadeOut("fast");
-            $("#ajax_info_div_outer").delay(1000).hide();
         } else if (i_comment_textarea.length > 200) {
             ajaxInfo('内容太长了 不能超过200个字符');
         } else {
@@ -59,6 +57,8 @@ $().ready(function(){
 	                    $this.parent().find('.comment_reply_verification_streamcode').val('999');
 	                    notice.send('comment', msg.info);
 	                    ajaxInfo('回复成功');
+	                    $("#ajax_info_div").delay(1000).fadeOut("fast");
+	                    $("#ajax_info_div_outer").delay(1000).hide();
 	                } else {
 	                    ajaxInfo(msg.info);
 	                }
