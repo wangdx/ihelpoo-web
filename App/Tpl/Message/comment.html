@@ -29,9 +29,8 @@
   <?php } ?>
   <p class="msg_explain f12 black_l">最新的评论回复消息 <a href="__ROOT__/message/comment?del" class="fr white icon_garbage_del"><span class="icon_garbage" title="清空这类消息"></span></a></p>
   <ul class="msg_com_ul">
-  <?php
-	  foreach ($msgarray as $msg):
-	  echo "<li ";
+  <?php foreach ($msgarray as $msg): ?>
+  <?php echo "<li ";
       echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
       echo ">";
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
@@ -40,9 +39,23 @@
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_blank' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a></p>";
       echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
       echo "<span class='msg_li_time'>".$msg['time']." ".$msg['toid']."</span>";
+      if ($isreply) {
+          echo '<div class="comment_view_div_box_replyinner" sid=' . $msg['sid'] . ' cid=' . $msg['ncid'] . ' toid=' . $msg['toid'] . '>';
+      } else {
+          echo '<div class="comment_view_div_box_replyinner" sid=' . $msg['sid'] . ' cid=' . $msg['ncid'] . '>';
+      }
+          echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
+          echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
+          echo '<span class="comment_reply_verification_stream">';
+          echo '<img class="comment_reply_verification_stream_code_img" src="" />';
+          echo '<input class="comment_reply_verification_streamcode" type="text" value="999" />';
+          echo '</span>';
+          echo '<a class="comment_reply_submit btn">回复</a>';
+          echo '</div>';
+
       echo "</li>";
-      endforeach;
     ?>
+    <?php endforeach; ?>
     </ul>
   <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
   <div class="i_comment_list_link">

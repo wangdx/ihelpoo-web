@@ -144,7 +144,7 @@ class MessageAction extends Action
         $this->assign('totalrecordnums', $totalMsgCommentNums);
         $this->assign('totalpages', $totalPages);
 
-        $IUserLogin = D("IUserLogin");
+        $UserLogin = D("UserLogin");
         $RecordComment = M("RecordComment");
         $RecordSay = M("RecordSay");
 
@@ -152,7 +152,7 @@ class MessageAction extends Action
         $ofunction = new Ofunction();
 
         foreach ($msgComment as $msg) {
-            $replyUser = $IUserLogin->userExists($msg['rid']);
+            $replyUser = $UserLogin->find($msg['rid']);
             $nickname = $replyUser['nickname'] != NULL ? $replyUser['nickname'] : "匿名用户";
             if (!empty($msg['cid'])) {
                 $recordCommentData = $RecordComment->where("cid = $msg[cid]")->find();
@@ -164,6 +164,7 @@ class MessageAction extends Action
                     $contentdetail = $recordCommentDetailData['content'];
                 }
                 $contentdetail = $contentdetail == NULL ? "<span class='gray'>回复又被" . $nickname . "删除了</span>" : $contentdetail;
+                $isreply = true;
             } else {
                 $recordSayData = $RecordSay->where("sid = $msg[sid]")->find();
                 $content = $ofunction->cut_str($recordSayData['content'], '15');
@@ -172,6 +173,7 @@ class MessageAction extends Action
                 $recordCommentDetailData = $RecordComment->where("cid = $msg[ncid]")->find();
                 $contentdetail = $recordCommentDetailData['content'];
                 $contentdetail = $contentdetail == NULL ? "<span class='gray'>评论又被" . $nickname . "删除了</span>" : $contentdetail;
+                $isreply = false;
             }
             $msgArray[] = array(
                 'deliver' => $msg['deliver'],
@@ -185,6 +187,7 @@ class MessageAction extends Action
                 'info' => $info,
                 'contentdetail' => stripslashes($contentdetail),
                 'time' => i_time($msg['time']),
+                'isreply' => $isreply
             );
             if ($msg['deliver'] == 0) {
                 $deliverMsgUpdate = array(
