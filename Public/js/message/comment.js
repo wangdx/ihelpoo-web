@@ -19,10 +19,10 @@ $().ready(function(){
      * comment
      */
     $('.comment_reply_submit').live('click', function(){
-    	alert('dsd');
     	var $this = $(this);
         var i_comment_textarea = $(this).parent().find('textarea').val();
         if (i_comment_textarea == '') {
+        	alert('ds');
             ajaxInfo('写点东西吧，评论不能为空');
         } else if (i_comment_textarea.length > 200) {
             ajaxInfo('内容太长了 不能超过200个字符');
