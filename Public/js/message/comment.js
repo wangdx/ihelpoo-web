@@ -19,6 +19,7 @@ $().ready(function(){
      * comment
      */
     $('.comment_reply_submit').live('click', function(){
+    	alert('dsd');
     	var $this = $(this);
         var i_comment_textarea = $(this).parent().find('textarea').val();
         if (i_comment_textarea == '') {
