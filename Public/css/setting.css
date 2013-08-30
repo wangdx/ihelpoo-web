@@ -496,7 +496,14 @@
     bottom: 0;
 }
 
-
+.replyemotionbox{
+    z-index: 1111;
+    background: #FFF;
+    border: 1px solid #DDDDDD;
+    display: none;
+    min-height: 160px;
+    min-width: 300px;
+}
 .emotionbox_close_p{
     background: #EEEEEE;
     padding: 10px 10px 5px;
