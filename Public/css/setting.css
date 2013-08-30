@@ -451,7 +451,8 @@
     margin-bottom: 10px;
     position: relative;
     height: 65px;
-    margin: 10px 0 0 50px;
+    margin: 10px 0 0 80px;
+    width: 410px;
 }
 .comment_view_div_box_replyinner_textarea{
     width: 400px;
@@ -492,6 +493,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    font-size: 12px;
 }
 
 /*--- realfirst.phtml ---*/
