@@ -39,8 +39,7 @@
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_blank' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a></p>";
       echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
       echo "<span class='msg_li_time'>".$msg['time']." ".$msg['toid']."</span>";
-var_dump($isreply);
-      if ($isreply) {
+      if ($msg['isreply']) {
           echo '<div class="comment_view_div_box_replyinner" sid=' . $msg['sid'] . ' cid=' . $msg['ncid'] . ' toid=' . $msg['toid'] . '>';
       } else {
           echo '<div class="comment_view_div_box_replyinner" sid=' . $msg['sid'] . ' cid=' . $msg['ncid'] . '>';
