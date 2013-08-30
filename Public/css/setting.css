@@ -452,10 +452,10 @@
     position: relative;
     height: 65px;
     margin: 10px 0 0 80px;
-    width: 410px;
+    width: 510px;
 }
 .comment_view_div_box_replyinner_textarea{
-    width: 400px;
+    width: 500px;
     height: 30px;
     border-radius: 3px;    
     position: absolute;
