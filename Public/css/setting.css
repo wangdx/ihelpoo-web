@@ -454,6 +454,7 @@
     margin: 10px 0 0 80px;
     width: 510px;
     font-size: 12px;
+    display: none;
 }
 .comment_view_div_box_replyinner_textarea{
     width: 500px;
