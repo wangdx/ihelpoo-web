@@ -135,11 +135,6 @@ class MessageAction extends Action
          */
         $MsgComment = M("MsgComment");
         $totalMsgCommentNums = $MsgComment->where("uid = $userloginid")->count();
-        if ($totalMsgCommentNums > $count) {
-            //$msgComment = $MsgComment->where("uid = $userloginid")->limit(($totalMsgCommentNums - ($page + 1) * $count),$count)->select();
-        } else {
-            //$msgComment = $MsgComment->where("uid = $userloginid")->select();
-        }
         $msgComment = $MsgComment->where("uid = $userloginid")->order('id DESC')->limit($offset, $count)->select();
 
         /**
