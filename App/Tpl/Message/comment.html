@@ -39,11 +39,8 @@
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_blank' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a></p>";
       echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])." <a class='c_v_d_b_ul_li_content_reply_btn f12'>回复</a></p>";
       echo "<span class='msg_li_time'>".$msg['time']."</span>";
-      if ($msg['isreply']) {
+
           echo '<div class="comment_view_div_box_replyinner" sid=' . $msg['sid'] . ' cid=' . $msg['ncid'] . ' toid=' . $msg['toid'] . '>';
-      } else {
-          echo '<div class="comment_view_div_box_replyinner" sid=' . $msg['sid'] . ' cid=' . $msg['ncid'] . '>';
-      }
           echo '<textarea class="comment_view_div_box_replyinner_textarea textarea_style"></textarea>';
           echo '<span class="post_icon comment_textareaicon_replyinner" title="表情"></span>';
           echo '<span class="comment_reply_verification_stream">';

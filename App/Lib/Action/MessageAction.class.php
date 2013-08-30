@@ -166,7 +166,6 @@ class MessageAction extends Action
                     $contentdetail = $recordCommentDetailData['content'];
                 }
                 $contentdetail = $contentdetail == NULL ? "<span class='gray'>回复又被" . $nickname . "删除了</span>" : $contentdetail;
-                $isreply = true;
             } else {
                 $recordSayData = $RecordSay->where("sid = $msg[sid]")->find();
                 $content = $ofunction->cut_str($recordSayData['content'], '15');
@@ -175,7 +174,6 @@ class MessageAction extends Action
                 $recordCommentDetailData = $RecordComment->where("cid = $msg[ncid]")->find();
                 $contentdetail = $recordCommentDetailData['content'];
                 $contentdetail = $contentdetail == NULL ? "<span class='gray'>评论又被" . $nickname . "删除了</span>" : $contentdetail;
-                $isreply = false;
             }
             $msgArray[] = array(
                 'deliver' => $msg['deliver'],
@@ -189,7 +187,6 @@ class MessageAction extends Action
                 'info' => $info,
                 'contentdetail' => stripslashes($contentdetail),
                 'time' => i_time($msg['time']),
-                'isreply' => $isreply
             );
             if ($msg['deliver'] == 0) {
                 $deliverMsgUpdate = array(
