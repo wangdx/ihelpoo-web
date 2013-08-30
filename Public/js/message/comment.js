@@ -6,10 +6,14 @@ $().ready(function(){
 		$(this).parent().parent().removeClass('msg_notread');
 	});
 	
-	$('.c_v_d_b_ul_li_content_reply_btn').live('click',function(){
-    	var $commentViewDivBoxReply = $(this).parent().parent().find('.comment_view_div_box_replyinner');
-    	$commentViewDivBoxReply.slideDown('fast');
-    });
+	$('.c_v_d_b_ul_li_content_reply_btn').toggle(
+	    function(){
+	    	$(this).parent().parent().find('.comment_view_div_box_replyinner').slideDown('fast');
+	    },
+	    function(){
+	    	$(this).parent().parent().find('.comment_view_div_box_replyinner').slideUp('fast');
+	    }
+	);
     
     /**
      * comment
