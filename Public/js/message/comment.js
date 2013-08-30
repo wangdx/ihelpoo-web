@@ -59,6 +59,7 @@ $().ready(function(){
 	                    ajaxInfo('回复成功');
 	                    $("#ajax_info_div").delay(1000).fadeOut("fast");
 	                    $("#ajax_info_div_outer").delay(1000).hide();
+	                    $this.parent().parent().removeClass('msg_notread');
 	                } else {
 	                    ajaxInfo(msg.info);
 	                }
