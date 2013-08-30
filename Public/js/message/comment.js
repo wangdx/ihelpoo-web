@@ -55,7 +55,7 @@ $().ready(function(){
 	                    $('.comment_view_div_box_replyinner_textarea').val('');
 	                    $this.parent().find('.comment_reply_verification_stream').hide();
 	                    $this.parent().find('.comment_reply_verification_streamcode').val('999');
-	                    notice.send('comment', msg.info);
+	                    notice.send('comment', ''+msg.info);
 	                    ajaxInfo('回复成功');
 	                    $("#ajax_info_div").delay(1000).fadeOut("fast");
 	                    $("#ajax_info_div_outer").delay(1000).hide();
