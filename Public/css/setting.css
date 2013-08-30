@@ -528,6 +528,16 @@
     right: 5px;
     top: 5px;
 }
+.emotionbox_show_ul_inner{
+    padding: 5px;
+}
+.emotionbox_show_ul_inner li{
+    padding: 3px 8px;
+}
+.emotionbox_show_ul_inner li img{
+    cursor: pointer;
+    padding: 1px;
+}
 
 /*--- realfirst.phtml ---*/
 .realfirst{
