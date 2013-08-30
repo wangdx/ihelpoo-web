@@ -181,6 +181,7 @@ class MessageAction extends Action
                 'cid' => $msg['cid'],
                 'ncid' => $msg['ncid'],
                 'sid' => $msg['sid'],
+                'toid' => $recordCommentDetailData['uid'],
                 'info' => $info,
                 'contentdetail' => stripslashes($contentdetail),
                 'time' => i_time($msg['time']),
