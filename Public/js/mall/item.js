@@ -95,9 +95,9 @@ $().ready(function(){
     	    	$('.shop_item_detail').prepend('<div class="item_assess_show_info_div f12 black_l"><span class="icon_pump"></span> 关于评价分数说明:1~5分 1分最差,5分最好 满分! (差评:1~2分; 中评:3分; 好评:4~5分)</div>');
     	    	for(var i = 0; i < msg.data.length; i++) {
     	    		$('.item_assess_show_list').append(
-    	    			"<li class='black_l'><a href='" + baseUrl + "/stream/u/" + msg.data[i].uid + "' target='_blank'>"
+    	    			"<li class='black_l'><a href='" + baseUrl + "/wo/" + msg.data[i].uid + "' target='_blank'>"
     	    	    	+ "<img src='" + msg.data[i].icon_url + "' width='50' class='radius3' />"
-    	    	    	+ "</a> <a href='" + baseUrl + "/stream/u/" + msg.data[i].uid + "' target='_blank' class='f14'>"
+    	    	    	+ "</a> <a href='" + baseUrl + "/wo/" + msg.data[i].uid + "' target='_blank' class='f14'>"
     	    	    	+ msg.data[i].nickname
     	    	    	+ "</a> "
     	    	    	+ msg.data[i].content
@@ -134,9 +134,9 @@ $().ready(function(){
     	    	for(var i = 0; i < msg.data.length; i++) {
     	    		if (null == msg.data[i].end_ti) {
 	    	    		$('.item_assess_show_list').append(
-	    	    			"<li class='black_l'><a href='" + baseUrl + "/stream/u/" + msg.data[i].uid + "' target='_blank'>"
+	    	    			"<li class='black_l'><a href='" + baseUrl + "/wo/" + msg.data[i].uid + "' target='_blank'>"
 	    	    			+ "<img src='" + msg.data[i].icon_url + "' width='50' class='radius3' />"
-	    	    			+ "</a> <a href='" + baseUrl + "/stream/u/" + msg.data[i].uid + "' target='_blank'>"
+	    	    			+ "</a> <a href='" + baseUrl + "/wo/" + msg.data[i].uid + "' target='_blank'>"
 	    	    			+ msg.data[i].nickname
 	    	    			+ "</a> "
 	    	    			+ " 购买数量:<span class='black_l fb'>" + msg.data[i].buynums + "</span>"
@@ -153,9 +153,9 @@ $().ready(function(){
 	    	    			var finishwords = " <span class='f12 gray' title='完成交易时间" + msg.data[i].end_ti + "'><span class='icon_attention'></span>已完成 拒绝交易,原因:" + msg.data[i].refusereason + "</span>";
 	    	    		}
     	    			$('.item_assess_show_list').append(
-    	    	    		"<li class='black_l'><a href='" + baseUrl + "/stream/u/" + msg.data[i].uid + "' target='_blank'>"
+    	    	    		"<li class='black_l'><a href='" + baseUrl + "/wo/" + msg.data[i].uid + "' target='_blank'>"
     	    	    		+ "<img src='" + msg.data[i].icon_url + "' width='50' class='radius3' />"
-    	    	    		+ "</a> <a href='" + baseUrl + "/stream/u/" + msg.data[i].uid + "' target='_blank'>"
+    	    	    		+ "</a> <a href='" + baseUrl + "/wo/" + msg.data[i].uid + "' target='_blank'>"
     	    	    		+ msg.data[i].nickname
     	    	    		+ "</a> "
     	    	    		+ " 购买数量:<span class='black_l fb'>" + msg.data[i].buynums + "</span>"
