@@ -25,6 +25,15 @@ $().ready(function(){
 		loadBackground();
 	});
 	
+	$('#email').focus(function(){
+		var emailvalue = $('#email').val();
+		if (emailvalue == '邮箱') {
+			$('#email').val('');
+		} else if (emailvalue == '') {
+			$('#email').val('邮箱');
+		}
+	});
+	
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait_login.gif', 'title': '检测中...请稍等'});
     $('#email').blur(function(){
         var emailcheck = $('#email').val();
