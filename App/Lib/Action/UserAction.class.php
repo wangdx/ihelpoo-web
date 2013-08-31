@@ -33,7 +33,9 @@ class UserAction extends Action {
             $recordUserStatus = $UserStatus->find($uid);
             $logintimeThis = date('z', $logintime);
             $logintimeLast = date('z', $lastlogintime);
-            if (($logintimeLast + 1 == $logintimeThis) || ($logintimeLast - 365 == $logintimeThis)) {//FIXME should be 366 when leap year
+
+
+            if (($logintimeLast + 1 == $logintimeThis) || ($logintimeLast - getDaysOfLastYear($lastlogintime) == $logintimeThis)) {
             	$timeGap = 'followday';
             } else if ($logintimeLast == $logintimeThis) {
                 $timeGap = 'sameday';
@@ -185,6 +187,30 @@ class UserAction extends Action {
             	$MsgActive->add($msgActiveArray);
             }
             return 'update status ok';
+        }
+
+        /**
+         * @param $lastlogintime
+         * @return total days of last year
+         */
+        function getDaysOfLastYear($lastlogintime)
+        {
+            $minusOneYear = $lastlogintime - 31557600;
+            $daysOfLastYear = 365;
+            if (isLeapYear($minusOneYear)) {
+                $daysOfLastYear = 366;
+                return $daysOfLastYear;
+            }
+            return $daysOfLastYear;
+        }
+
+        /**
+         * @param $minusOneYear
+         * @return 1 闰年， 否则 0
+         */
+        function isLeapYear($minusOneYear)
+        {
+            return date('L', $minusOneYear);
         }
 
         $userloginid = session('userloginid');
