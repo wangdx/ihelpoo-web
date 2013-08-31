@@ -15,20 +15,24 @@
 			var $this = $(this);
 			var emailstrings = $('#emailstrings').val();
 			var noticecontent = $('#noticecontent').val();
-			$.ajax({
-                type: 'POST',
-                url: baseUrl + 'rooter/emailtowebmaster',
-                dataType: 'json',
-                data: { emailstrings: emailstrings, noticecontent: noticecontent },
-                success: function(msg) {
-                	if (msg.status == 'ok') {
-                		$("form").submit();
-                		$(".already_send_div").html(msg.data);
-                	} else {
-                		$this.html('× ' + msg.info);
-                	}
-                }
-            });
+			if (noticecontent == '') {
+				$this.html('内容不能为空');
+			} else {
+				$.ajax({
+	                type: 'POST',
+	                url: baseUrl + 'rooter/emailtowebmaster',
+	                dataType: 'json',
+	                data: { emailstrings: emailstrings, noticecontent: noticecontent },
+	                success: function(msg) {
+	                	if (msg.status == 'ok') {
+	                		$("form").submit();
+	                		$(".already_send_div").html(msg.data);
+	                	} else {
+	                		$this.html('× ' + msg.info);
+	                	}
+	                }
+	            });
+			}
 	    });
 	});
 	</script>
