@@ -92,10 +92,13 @@ $().ready(function(){
      * enter keydown submit
      */
     $(window).keydown(function(e){
-    	if(e.which == 13) {
+    	alert(e.keyCode);
+    	/**
+    	if(e.keyCode == 13) {
     		$('#submit').click();
     		document.body.focus();
     	}
+    	*/
     });
     
     /**
