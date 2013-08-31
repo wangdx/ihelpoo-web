@@ -206,7 +206,7 @@ class WoAction extends Action {
         /**
          * page link
          */
-        $totalRecords = $RecordSay->where("uid = $userId AND say_type = 0")->count();
+        $totalRecords = $RecordSay->where("uid = $userId AND i_record_say.say_type IN (0, 9)")->count();
         $totalPages = ceil($totalRecords / $count);
         $this->assign('totalRecords',$totalRecords);
         $this->assign('totalPages',$totalPages);
