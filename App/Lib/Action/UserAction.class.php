@@ -170,7 +170,6 @@ class UserAction extends Action {
             	);
             	$userStatusData = array(
                     'uid' => $uid,
-                    'login_days_co' => $recordUserLogin['login_days_co'],
                     'active_flag' => $activeFlag,
             	);
             }
@@ -195,6 +194,7 @@ class UserAction extends Action {
          */
         function getDaysOfLastYear($lastlogintime)
         {
+            // 365.25 x 86400
             $minusOneYear = $lastlogintime - 31557600;
             $daysOfLastYear = 365;
             if (isLeapYear($minusOneYear)) {
