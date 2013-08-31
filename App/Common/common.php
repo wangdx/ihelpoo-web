@@ -97,6 +97,9 @@ function i_grade($enteryear)
         $num = $thisyear['year'] - $enteryear;
     }
     switch ($num) {
+    	case 0 :
+            return "要上大学了";
+            break;
         case 1 :
             return "大一";
             break;

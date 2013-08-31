@@ -62,10 +62,8 @@
             <li>
                 <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>"
                    style="display: inline-block; position: relative; width: 72px; height: 56px">
-                    <img src="<?php echo i_icon_check($toUserRecord['uid'], $toUserRecord['icon_url'], 's') ?>"
-                         height="51"/>
-                    <span class="online<?php echo $toUserRecord['online'] ?>"
-                          style="position: absolute; bottom: 0; right: 0;"></span>
+                    <img src="<?php echo i_icon_check($toUserRecord['uid'], $toUserRecord['icon_url'], 's') ?>" height="51"/>
+                    <span class="online<?php echo $toUserRecord['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
                 </a>
             </li>
             <li><span class="fb"><?php echo $toUserRecord['nickname']; ?></span></li>
