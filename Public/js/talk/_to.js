@@ -114,18 +114,16 @@ function prepareUI() {
     $('#img_upload_comment_form_div_close').live('click', function () {
         $('.img_upload_comment_form_div').fadeOut('fast');
     });
+    
     /**
-     * send messgae keydown submit
+     * enter keydown submit
      */
-    $(window).keydown(function (e) {
-        if (e.ctrlKey && e.which == 13 || e.which == 10) {
-            $('#send_message').click();
-            document.body.focus();
-        } else if (e.shiftKey && e.which == 13 || e.which == 10) {
-            $('#send_message').click();
-            document.body.focus();
-        }
-    })
+    $(window).keydown(function(e){
+    	if(e.keyCode == 13 && e.ctrlKey) {
+    		$('#send_message').click();
+    		document.body.focus();
+    	}
+    });
 
 
 }

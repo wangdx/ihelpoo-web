@@ -649,8 +649,7 @@ $().ready(function(){
      */
     $(window).keydown(function(e){
     	if(e.keyCode == 13 && e.ctrlKey) {
-    		//$('#s_t_submit').click();
-    		alert('y');
+    		$('#s_t_submit').click();
     		document.body.focus();
     	}
     });
