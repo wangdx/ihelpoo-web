@@ -1711,7 +1711,6 @@ class RooterAction extends Action {
 	                }
             	}
             }
-            $this->assign('emailsended', $emailsended);
     	
 	    	/**
 	    	 * admin user operating record
@@ -1726,6 +1725,7 @@ class RooterAction extends Action {
 	    		);
 	    		$AdminUserrecord->add($newAdminUserrecordData);
 	    	}
+	    	$this->ajaxReturn($emailsended,'emailsended ok','ok');
     	}
     	$this->display();
     }
