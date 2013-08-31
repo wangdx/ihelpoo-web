@@ -125,7 +125,6 @@ function prepareUI() {
     	}
     });
 
-
 }
 
 function Chat(state) {

@@ -92,8 +92,6 @@ $().ready(function(){
      * enter keydown submit
      */
     $(window).keydown(function(e){
-    	var e = e || event;
-    	alert(e.keyCode);
     	if(e.keyCode == 13) {
     		$('#submit').click();
     		document.body.focus();
