@@ -33,7 +33,7 @@ class UserAction extends Action {
             $recordUserStatus = $UserStatus->find($uid);
             $logintimeThis = date('z', $logintime);
             $logintimeLast = date('z', $lastlogintime);
-            if (($logintimeLast + 1 == $logintimeThis) || ($logintimeLast - 365 == $logintimeThis)) {
+            if (($logintimeLast + 1 == $logintimeThis) || ($logintimeLast - 365 == $logintimeThis)) {//FIXME should be 366 when leap year
             	$timeGap = 'followday';
             } else if ($logintimeLast == $logintimeThis) {
                 $timeGap = 'sameday';
