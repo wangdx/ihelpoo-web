@@ -29,8 +29,6 @@ $().ready(function(){
 		var emailvalue = $('#email').val();
 		if (emailvalue == '邮箱') {
 			$('#email').val('');
-		} else if (emailvalue == '') {
-			$('#email').val('邮箱');
 		}
 	});
 	
