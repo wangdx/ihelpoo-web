@@ -37,7 +37,7 @@ $().ready(function(){
         var emailcheck = $('#email').val();
         $('#logininfo').html($infoLoading);
         if (emailcheck == '') {
-            $('#emailinfo').html('<span class="icon_index_wrong"></span>邮箱不能为空');
+            $('#logininfo').html('× 邮箱不能为空');
         } else {
             $.ajax({
                 type: 'POST',
