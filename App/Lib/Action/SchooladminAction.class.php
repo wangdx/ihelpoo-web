@@ -635,7 +635,7 @@ class SchooladminAction extends Action {
 		    		redirect('/schooladmin/dormitory', 1, '添加寝室成功 ok...');
 	    		} else {
 	    			$updateOpDormitory = array(
-		    			'id' => $schoolpostid,
+		    			'id' => $dormitoryid,
 		    			'name' => $name,
 		    			'type' => $type,
 		    			'school' => $schoolid
