@@ -84,7 +84,7 @@ class IndexAction extends Action {
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	
     	$SchoolInfo = M("SchoolInfo");
-    	$recordsSchoolInfo = $SchoolInfo->where("stauts = 1")->order("initial ASC")->select();
+    	$recordsSchoolInfo = $SchoolInfo->where("status = 1")->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
         $this->display();
@@ -95,7 +95,7 @@ class IndexAction extends Action {
     	$title = "我帮圈圈 快速定位学校 帮助主题社交网站";
     	$this->assign('title',$title);
     	$SchoolInfo = M("SchoolInfo");
-    	$recordsSchoolInfo = $SchoolInfo->where("stauts = 1")->order("initial ASC")->select();
+    	$recordsSchoolInfo = $SchoolInfo->where("status = 1")->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
         if (!empty($_COOKIE['userLoginSchool'])) {
