@@ -381,7 +381,10 @@ class RooterAction extends Action {
     		$domain = $_POST['domain'];
     		$domain_main = $_POST['domain_main'];
     		$remark = $_POST['remark'];
-    		
+    		$status = (int)$_POST['status'];
+    		if ($status > 1) {
+    			$status = 1;
+    		}
     		if (!empty($id)) {
     			
     			/**
@@ -394,7 +397,8 @@ class RooterAction extends Action {
     				'city_op' => $city,
     				'domain' => $domain,
     				'domain_main' => $domain_main,
-    				'remark' => $remark
+    				'remark' => $remark,
+    				'status' => $status,
     			);
     			$SchoolInfo->save($updateSchoolData);
     			
@@ -406,7 +410,7 @@ class RooterAction extends Action {
     				$newAdminUserrecordData = array(
 					    'id' => '',
 					    'uid' => $admin['uid'],
-					    'record' => '更新学校信息 学校:'.$school.'-主域名:'.$domain_main.'-次域名:'.$domain.'-备注:'.$remark,
+					    'record' => '更新学校信息 学校:'.$school.'-主域名:'.$domain_main.'-次域名:'.$domain.'-备注:'.$remark.'-状态:'.$status,
 					    'time' => time(),
     				);
     				$AdminUserrecord->add($newAdminUserrecordData);
@@ -425,7 +429,8 @@ class RooterAction extends Action {
     				'domain' => $domain,
     				'domain_main' => $domain_main,
     				'remark' => $remark,
-    				'time' => time()
+    				'time' => time(),
+    				'status' => 1,
     			);
     			$newSchoolId = $SchoolInfo->add($newSchoolData);
     			
@@ -456,7 +461,7 @@ class RooterAction extends Action {
     	$page = i_page_get_num();
         $count = 10;
         $offset = $page * $count;
-        $recordSchoolInfo = $SchoolInfo->order("id ASC")->limit($offset,$count)->select();
+        $recordSchoolInfo = $SchoolInfo->order("status DESC,id ASC")->limit($offset,$count)->select();
         $this->assign('recordSchoolInfo', $recordSchoolInfo);
 
         /**
