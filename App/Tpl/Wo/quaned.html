@@ -21,7 +21,7 @@
       <a href="__ROOT__/wo/<?php echo $userPriority['uid'] ?>" class="getuserinfo" userid="<?php echo $userPriority['uid'] ?>"><?php echo $userPriority['nickname'] ?></a>
       <span class="f12 gray" style="display:inline-block"><span class="sex<?php echo $userPriority['sex'] ?>"></span><?php echo i_grade($userPriority['enteryear']) ?></span>
       <span class="level<?php echo i_degree($userPriority['active']) ?>" title="等级: level<?php echo i_degree($userPriority['active']) ?>"></span> &nbsp;
-      <span class="gray f12"><?php echo $sexname ?>圈的时间: <?php echo i_time($userPriority['time']) ?></span>
+      <span class="gray f12">圈的时间: <?php echo i_time($userPriority['time']) ?></span>
   </li>
   <?php endforeach ?>
   </ul>
