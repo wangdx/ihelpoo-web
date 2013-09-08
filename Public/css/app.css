@@ -33,7 +33,7 @@
 .download_ios_code_p{
     color: #FFFFFF;
     font-size: 12px;
-    left: 330px;
+    left: 390px;
     position: absolute;
     top: 280px
 }
@@ -57,7 +57,7 @@
 
 .mi_div_intro_ios{
 	position: absolute;
-	left: 330px;
+	left: 390px;
 	top: 90px;
 	text-align: left;
 	color: #666;
@@ -68,7 +68,7 @@
 
 .mi_div_intro{
 	position: absolute;
-	left: 670px;
+	left: 720px;
 	top: 90px;
 	text-align: left;
 	color: #666;
@@ -78,8 +78,8 @@
 }
 .download_btn{
     position: absolute;
-	bottom: 150px;
-	right: 150px;
+	left: 720px;
+	top: 280px;
 	background: url(../image/mobile/download_button.png) no-repeat 0px 0px;
 	width: 200px;
 	height: 66px;
