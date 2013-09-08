@@ -17,6 +17,19 @@
 	text-align: center;
 	position: relative;
 }
+.download_anriod_code_p{
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    color: #FFF;
+    font-size: 12px;
+}
+.download_anriod_code_p_img{
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-bottom: 5px;
+}
 .mi_div_intro_text_p{
     position: absolute;
     left: 660px;
