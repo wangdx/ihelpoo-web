@@ -2,3 +2,40 @@
     position: relative;
     border: 0px;
 }
+.mi_div{
+	margin:-10px;
+}
+.mi_div_logo{
+	padding: 20px 30px;
+}
+.mi_div_logo img{
+    vertical-align: text-bottom;
+	margin-right: 5px;
+}
+.mi_div_main{
+	background: #76c3eb;
+	text-align: center;
+	border-top: 3px solid #BBB;
+	position: relative;
+}
+.mi_div_intro{
+	position: absolute;
+	left: 670px;
+	top: 160px;
+	text-align: left;
+}
+.mi_div_intro li{
+	padding: 3px;
+}
+.download_btn{
+    position: absolute;
+	bottom: 150px;
+	right: 200px;
+	background: url(../image/mobile/download_button.png) no-repeat 0px 0px;
+	width: 200px;
+	height: 66px;
+	cursor: pointer;
+}
+.download_btn:hover{
+	background: url(../image/mobile/download_button.png) no-repeat 0px -66px;
+}
