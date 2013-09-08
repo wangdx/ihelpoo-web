@@ -47,7 +47,7 @@
 .mi_div_intro_andriod{
 	position: absolute;
 	left: 90px;
-	top: 160px;
+	top: 130px;
 	text-align: left;
 	color: #666;
 }
@@ -58,7 +58,7 @@
 .mi_div_intro_ios{
 	position: absolute;
 	left: 330px;
-	top: 160px;
+	top: 130px;
 	text-align: left;
 	color: #666;
 }
@@ -66,12 +66,10 @@
 	padding: 3px;
 }
 
-
-
 .mi_div_intro{
 	position: absolute;
 	left: 670px;
-	top: 160px;
+	top: 130px;
 	text-align: left;
 	color: #666;
 }
