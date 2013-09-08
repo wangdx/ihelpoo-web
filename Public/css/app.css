@@ -43,11 +43,31 @@
     display: block;
     margin-bottom: 5px;
 }
-.mi_div_intro_text_p{
-    position: absolute;
-    left: 660px;
-    top: 105px;
+
+.mi_div_intro_andriod{
+	position: absolute;
+	left: 90px;
+	top: 160px;
+	text-align: left;
+	color: #666;
 }
+.mi_div_intro_andriod li{
+	padding: 3px;
+}
+
+.mi_div_intro_ios{
+	position: absolute;
+	left: 330px;
+	top: 160px;
+	text-align: left;
+	color: #666;
+}
+.mi_div_intro_ios li{
+	padding: 3px;
+}
+
+
+
 .mi_div_intro{
 	position: absolute;
 	left: 670px;
