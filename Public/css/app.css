@@ -17,6 +17,11 @@
 	text-align: center;
 	position: relative;
 }
+.mi_div_intro_text_p{
+    position: absolute;
+    left: 670px;
+    top: 130px;
+}
 .mi_div_intro{
 	position: absolute;
 	left: 670px;
@@ -29,7 +34,7 @@
 .download_btn{
     position: absolute;
 	bottom: 150px;
-	right: 200px;
+	right: 150px;
 	background: url(../image/mobile/download_button.png) no-repeat 0px 0px;
 	width: 200px;
 	height: 66px;
