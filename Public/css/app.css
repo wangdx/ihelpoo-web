@@ -20,9 +20,9 @@
 .download_anriod_code_p{
     color: #FFFFFF;
     font-size: 12px;
-    left: 50px;
+    left: 90px;
     position: absolute;
-    top: 250px
+    top: 280px
 }
 .download_anriod_code_p_img{
     width: 120px;
@@ -33,9 +33,9 @@
 .download_ios_code_p{
     color: #FFFFFF;
     font-size: 12px;
-    left: 200px;
+    left: 330px;
     position: absolute;
-    top: 250px
+    top: 280px
 }
 .download_ios_code_p_img{
     width: 120px;
