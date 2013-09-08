@@ -19,14 +19,15 @@
 }
 .mi_div_intro_text_p{
     position: absolute;
-    left: 670px;
-    top: 130px;
+    left: 660px;
+    top: 105px;
 }
 .mi_div_intro{
 	position: absolute;
 	left: 670px;
 	top: 160px;
 	text-align: left;
+	color: #666;
 }
 .mi_div_intro li{
 	padding: 3px;
