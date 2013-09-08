@@ -13,9 +13,11 @@
 	margin-right: 5px;
 }
 .mi_div_main{
-	background: url("../image/mobile/bg.png");
-	text-align: center;
-	position: relative;
+    background: url("../image/mobile/bg.png") repeat scroll 0 0 #EEEEEE;
+    height: 500px;
+    position: relative;
+    text-align: center;
+    width: 100%;
 }
 .download_anriod_code_p{
     color: #FFFFFF;
