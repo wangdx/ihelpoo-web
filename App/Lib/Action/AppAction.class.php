@@ -23,8 +23,7 @@ class AppAction extends Action {
     public function index()
     {
     	$userloginid = session('userloginid');
-    	$recordSchoolInfo = i_school_domain();
-    	$title = "App ".$recordSchoolInfo['school']." 帮助主题社交网站";
+    	$title = "App下载 校园帮助主题社交网站";
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title',$title);
         $this->display();
