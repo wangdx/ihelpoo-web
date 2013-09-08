@@ -18,15 +18,28 @@
 	position: relative;
 }
 .download_anriod_code_p{
-    position: absolute;
-    top: 200px;
-    left: 20px;
-    color: #FFF;
+    color: #FFFFFF;
     font-size: 12px;
+    left: 50px;
+    position: absolute;
+    top: 250px
 }
 .download_anriod_code_p_img{
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin-bottom: 5px;
+}
+.download_ios_code_p{
+    color: #FFFFFF;
+    font-size: 12px;
+    left: 200px;
+    position: absolute;
+    top: 250px
+}
+.download_ios_code_p_img{
+    width: 120px;
+    height: 120px;
     display: block;
     margin-bottom: 5px;
 }
