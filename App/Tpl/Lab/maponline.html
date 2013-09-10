@@ -100,7 +100,7 @@
 					<?php $user['id'] = 'unknown'; ?>
 					<?php } ?>
 					<li>
-					<?php if ($user['id']) { ?>
+					<?php if (is_int($user['id'])) { ?>
 						<div class="maponline_ul_academy"><a href="/index/mate?w=academy&n=<?php echo $user['id']; ?>"><i class="ico_school"></i><?php echo $user['name']; ?></a></div>
 						<div class="maponline_ul_academy_house" value="<?php echo $user['id']; ?>">
 					<?php } else if ($user['id'] = 'unknown') { ?>
