@@ -201,6 +201,24 @@ class RooterAction extends Action {
         $this->assign('totalPages',$totalPages);
         $this->display();
     }
+    
+    public function applyverify()
+    {
+    	$admin = logincheck();
+    	$this->assign('title','校园组织、周边商家用户申请');
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+        $UserApplyverify = M("UserApplyverify");
+        $recordUserApplyverify = $UserApplyverify->order("time DESC")
+        ->join('i_school_info ON i_user_applyverify.school_id = i_school_info.id')->limit($offset,$count)->select();
+    	$this->assign('recordUserApplyverify', $recordUserApplyverify);
+    	$totalrecords = $UserApplyverify->count();
+    	$this->assign('totalrecords', $totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages', $totalPages);
+    	$this->display();
+    }
 
     public function indexbgimg()
     {
