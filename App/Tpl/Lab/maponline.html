@@ -85,7 +85,7 @@
 		<!-- academy list start -->
 		<ul class="maponline_ul">
 		<?php foreach($userOnlineObject as $user) { ?>
-			<?php if ("1" == $user['online']) { ?>
+			<?php if ("1" == $user['online'] && !empty($user['id'])) { ?>
 			<?php $academyListedArray[] = $user['id']; ?>
 				<?php if ($academyLastid == $user['id'] && !empty($user['id'])) { ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
