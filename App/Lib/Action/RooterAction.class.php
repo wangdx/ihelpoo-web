@@ -210,7 +210,7 @@ class RooterAction extends Action {
         $count = 25;
         $offset = $page * $count;
         $UserApplyverify = M("UserApplyverify");
-        $recordUserApplyverify = $UserApplyverify->order("time DESC")
+        $recordUserApplyverify = $UserApplyverify->order("i_user_applyverify.time DESC")
         ->join('i_school_info ON i_user_applyverify.school_id = i_school_info.id')->limit($offset,$count)->select();
     	$this->assign('recordUserApplyverify', $recordUserApplyverify);
     	$totalrecords = $UserApplyverify->count();
