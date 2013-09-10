@@ -87,7 +87,7 @@
 		<?php foreach($userOnlineObject as $user) { ?>
 			<?php if ("1" == $user['online']) { ?>
 			<?php $academyListedArray[] = $user['id']; ?>
-				<?php if ($academyLastid == $user['id']) { ?>
+				<?php if ($academyLastid == $user['id'] && !empty($user['id'])) { ?>
 					<p id="<?php echo $user['uid'] ?>" class="user_show_p">
 			          <a href="__ROOT__/talk/to/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?> <?php echo i_grade($user['enteryear']) ?> <?php echo i_constellation($user['birthday']),i_sex($user['sex']) ?> ，点击聊天" style="display:inline-block; position: relative; width: 40px; height: 30px">
 			            <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 's') ?>" height="30" />
@@ -111,11 +111,7 @@
 			          </a>
 			        </p>
 		        <?php } ?>
-		        <?php if ($user['id']) { ?>
-	    			<?php $academyLastid = $user['id']; ?>
-	    		<?php } else { ?>
-	    			<?php $academyLastid = 'unknown'; ?>
-	    		<?php } ?>
+	    		<?php $academyLastid = $user['id']; ?>
 			<?php } ?>
 		<?php } ?>
 		</ul>
