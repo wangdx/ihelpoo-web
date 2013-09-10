@@ -96,6 +96,9 @@
 			        </p>
 				<?php } else { ?>
 					<?php echo empty($academyLastid) ? '' : '</div></li>'; ?>
+					<?php if (!$user['id']) { ?>
+					<?php $academyLastid = 'unknown'; ?>
+					<?php } ?>
 					<li>
 					<?php if ($user['id']) { ?>
 						<div class="maponline_ul_academy"><a href="/index/mate?w=academy&n=<?php echo $user['id']; ?>"><i class="ico_school"></i><?php echo $user['name']; ?></a></div>
@@ -111,7 +114,11 @@
 			          </a>
 			        </p>
 		        <?php } ?>
-	    		<?php $academyLastid = $user['id']; ?>
+		        <?php if ($user['id']) { ?>
+	    			<?php $academyLastid = $user['id']; ?>
+	    		<?php } else { ?>
+	    			<?php $academyLastid = 'unknown'; ?>
+	    		<?php } ?>
 			<?php } ?>
 		<?php } ?>
 		</ul>
