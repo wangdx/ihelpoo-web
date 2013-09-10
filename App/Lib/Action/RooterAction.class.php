@@ -210,10 +210,16 @@ class RooterAction extends Action {
         $count = 25;
         $offset = $page * $count;
         $UserApplyverify = M("UserApplyverify");
-        $recordUserApplyverify = $UserApplyverify->order("i_user_applyverify.time DESC")
-        ->join('i_school_info ON i_user_applyverify.school_id = i_school_info.id')->limit($offset,$count)->select();
+        if (!empty($_GET['undo'])) {
+        	$recordUserApplyverify = $UserApplyverify->where("verify_status = 0")->order("i_user_applyverify.time DESC")
+	        ->join('i_school_info ON i_user_applyverify.school_id = i_school_info.id')->limit($offset,$count)->select();
+			$totalrecords = $UserApplyverify->count();
+        } else {
+	        $recordUserApplyverify = $UserApplyverify->order("i_user_applyverify.time DESC")
+	        ->join('i_school_info ON i_user_applyverify.school_id = i_school_info.id')->limit($offset,$count)->select();
+			$totalrecords = $UserApplyverify->count();
+        }
     	$this->assign('recordUserApplyverify', $recordUserApplyverify);
-    	$totalrecords = $UserApplyverify->count();
     	$this->assign('totalrecords', $totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages', $totalPages);
