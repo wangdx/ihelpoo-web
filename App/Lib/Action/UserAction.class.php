@@ -710,7 +710,7 @@ class UserAction extends Action {
         		echo "<li><a href='".__ROOT__."/user/register?school=$schoolInfo[id]'>$schoolInfo[school]</a></li>";
         	}
         	echo '</ul>';
-        	echo '<p><a href="/about/sns" class="f12 gray fr">还没你们学校?</a><br /></p>';
+        	echo '<br /><p><a href="/about/sns" class="f12 gray fr">还没你们学校?</a></p><br />';
         	echo '</div>';
         	exit();
         }
