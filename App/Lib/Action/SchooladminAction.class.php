@@ -163,7 +163,7 @@ class SchooladminAction extends Action {
     	$this->assign('title','校园参数配置');
     	$recordSchoolInfo = i_school_domain();
     	$SchoolSystem = M("SchoolSystem");
-    	$recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->select();
+    	$recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->limit(15)->select();
     	$this->assign('recordSchoolSystem',$recordSchoolSystem);
     	$lastrecordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
     	$this->assign('lastrecordSchoolSystem',$lastrecordSchoolSystem);
