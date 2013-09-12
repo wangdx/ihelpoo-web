@@ -288,13 +288,13 @@ class UserAction extends Action {
                     $schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
                     $schoolDomain = "http://".$schoolDomain;
                     if ($recordSchoolInfo['id'] != $dbUser['school']) {
-                    	redirect($schoolDomain.'/stream', 3, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                    	redirect($schoolDomain.'/stream', 2, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
                     } else {
                     	setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
                     	redirect('/stream', 0, '登录成功...');
                     }
 	            } else {
-	            	redirect('/', 3, $dbUser.'，请重新登录，3秒后页面跳转...');
+	            	redirect('/', 2, $dbUser.'，请重新登录，3秒后页面跳转...');
 	            }
 	        }
     	}
@@ -328,13 +328,13 @@ class UserAction extends Action {
                 if ($recordSchoolInfo['id'] != $dbUser['school']) {
                  	$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
                     $schoolDomain = "http://".$schoolDomain;
-                    redirect($schoolDomain.'/stream', 3, '快速登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
+                    redirect($schoolDomain.'/stream', 2, '快速登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
                 } else {
                     redirect('/stream', 0, '快速登录成功...');
                 }
     		}
     	}
-    	redirect('/?login=new', 3, '上次已经点击退出 or 账号密码错误, 快速登录失败...');
+    	redirect('/?login=new', 2, '上次已经点击退出 or 账号密码错误, 快速登录失败...');
     }
     
     
