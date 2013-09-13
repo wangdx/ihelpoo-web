@@ -700,7 +700,13 @@ class StreamAction extends Action
         $SchoolAd = M("SchoolAd");
         $streamRightSchoolAd = $SchoolAd->where("type = '2' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(3)->select();
         $this->assign('streamRightSchoolAd', $streamRightSchoolAd);
-
+        
+        /**
+         * is birthday
+         */
+        echo $userBirthdayChar = substr($recordUserLogin['birthday'],4,6);
+        $dateInfo = getdate();
+        $todayChar = $dateInfo['mon'].'-'.$dateInfo['mday'];
         $this->display();
     }
 
