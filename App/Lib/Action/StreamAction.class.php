@@ -704,7 +704,7 @@ class StreamAction extends Action
         /**
          * is birthday
          */
-        echo $userBirthdayChar = substr($recordUserLogin['birthday'],4,6);
+        echo 'ss '.$userBirthdayChar = substr($recordUserLogin['birthday'],4,6);
         $dateInfo = getdate();
         $todayChar = $dateInfo['mon'].'-'.$dateInfo['mday'];
         $this->display();
