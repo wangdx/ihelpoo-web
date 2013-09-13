@@ -243,7 +243,7 @@
   <!-- stream list -->
   <?php if($streamway == "time" || $streamway == "default") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
-  		<?php if (!empty($userBirthday)) { echo '<img width="18" height="18" style="vertical-align: bottom;" title="蛋糕" src="/Public/image/emotion/qq69.gif" > 亲爱的'.$recordUserInfo['realname_re'].'，生日快乐:) '; } ?>
+  		<?php if (!empty($userBirthday)) { echo '<img width="18" height="18" style="vertical-align: bottom;" title="蛋糕" src="/Public/image/emotion/qq69.gif" > 亲爱的'.$recordUserInfo['realname'].'，生日快乐:) '; } ?>
   		<?php if (!empty($indexSpreadInfoVaule)) { echo $indexSpreadInfoVaule; } ?>
         <i class="icon_feedctrrefresh"></i> 排序
     	<a href="__ROOT__/stream" class='<?php if($streamway == "default") { echo "stream_list_ul_sort_a"; } ?>'>默认</a>
