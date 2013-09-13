@@ -5,13 +5,6 @@
 	Vendor('Ihelpoo.Ofunction');
     $ofunction = new Ofunction();
 	$SchoolInfo = M("SchoolInfo");
-
-	/**
-     * is birthday
-     */
-    echo $userBirthdayChar = substr($userloginedrecord['birthday'],5,6);
-    $dateInfo = getdate();
-    $todayChar = $dateInfo['mon'].'-'.$dateInfo['mday'];
 ?>
 <include file="Public:header" />
 <link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
@@ -250,6 +243,7 @@
   <!-- stream list -->
   <?php if($streamway == "time" || $streamway == "default") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
+  		<?php if ($userBirthday) { echo $userBirthdayVaule; } ?>
   		<?php if (!empty($indexSpreadInfoVaule)) { echo $indexSpreadInfoVaule; } ?>
         <i class="icon_feedctrrefresh"></i> 排序
     	<a href="__ROOT__/stream" class='<?php if($streamway == "default") { echo "stream_list_ul_sort_a"; } ?>'>默认</a>

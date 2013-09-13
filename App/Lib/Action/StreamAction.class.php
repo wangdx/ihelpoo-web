@@ -17,6 +17,19 @@ class StreamAction extends Action
             $UserLogin = M("UserLogin");
             $userloginedrecord = $UserLogin->find($userloginid);
             $this->assign('userloginedrecord', $userloginedrecord);
+            
+            /**
+             * is birthday
+             */
+            $userBirthdayChar = substr($userloginedrecord['birthday'],5,6);
+            $dateInfo = getdate();
+            $todayChar = $dateInfo['mon'].'-'.$dateInfo['mday'];
+            if ($userBirthdayChar = $todayChar) {
+            	$userBirthday = true;
+            }
+            $userBirthdayVaule = '<img width="16" height="16" title="蛋糕" src="/Public/image/emotion/qq69.gif" > 亲，生日快乐:) ';
+            $this->assign('userBirthday', $userBirthday);
+            $this->assign('userBirthdayVaule', $userBirthdayVaule);
         } else {
             redirect('/user/notlogin', 0, '你还没有登录呢...');
         }
