@@ -5,6 +5,13 @@
 	Vendor('Ihelpoo.Ofunction');
     $ofunction = new Ofunction();
 	$SchoolInfo = M("SchoolInfo");
+
+	/**
+     * is birthday
+     */
+    echo 'ss '.$userBirthdayChar = substr($userloginedrecord['birthday'],4,6);
+    $dateInfo = getdate();
+    $todayChar = $dateInfo['mon'].'-'.$dateInfo['mday'];
 ?>
 <include file="Public:header" />
 <link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
