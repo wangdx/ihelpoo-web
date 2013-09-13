@@ -27,7 +27,7 @@ class StreamAction extends Action
             if ($userBirthdayChar = $todayChar) {
             	$userBirthday = true;
             }
-            $userBirthdayVaule = '<img width="16" height="16" title="蛋糕" src="/Public/image/emotion/qq69.gif" > 亲，生日快乐:) ';
+            $userBirthdayVaule = '<img width="18" height="18" style="vertical-align: bottom;" title="蛋糕" src="/Public/image/emotion/qq69.gif" > 亲，生日快乐:) ';
             $this->assign('userBirthday', $userBirthday);
             $this->assign('userBirthdayVaule', $userBirthdayVaule);
         } else {
