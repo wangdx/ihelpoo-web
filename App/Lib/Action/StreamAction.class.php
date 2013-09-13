@@ -24,7 +24,7 @@ class StreamAction extends Action
             $userBirthdayChar = substr($userloginedrecord['birthday'],5,6);
             $dateInfo = getdate();
             $todayChar = $dateInfo['mon'].'-'.$dateInfo['mday'];
-            if ($userBirthdayChar = $todayChar) {
+            if ($userBirthdayChar == $todayChar) {
             	$userBirthday = true;
             }
             $this->assign('userBirthday', $userBirthday);
