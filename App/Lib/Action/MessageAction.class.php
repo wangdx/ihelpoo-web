@@ -62,6 +62,7 @@ class MessageAction extends Action
         $this->assign('totalpages', $totalPages);
 
 
+        $this->resetNoticeCount($redis, $userloginid);
         $msgIdsStr = '';
         foreach ($notices as $msg) {
             $msgIdsStr .= $msg . ",";
@@ -77,7 +78,6 @@ class MessageAction extends Action
         }
 
         $UserLogin = M("UserLogin");
-        $this->resetNoticeCount($redis, $userloginid);
         foreach($msgNotice as $notice){
             $view = '';
 
@@ -87,7 +87,7 @@ class MessageAction extends Action
             $detailId = $notice['detail_id'];
             if($notice['format_id'] == 'diffusiontoowner' || $notice['format_id'] == 'diffusion'){
                 $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
-                $detailId =  $recordDiffusion['sid'];
+//                $detailId =  $recordDiffusion['sid'];
                 if(!empty($recordDiffusion['view'])){
                     $view = ' 并表示：'.$recordDiffusion['view'];
                 }
