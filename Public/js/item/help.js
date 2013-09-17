@@ -236,10 +236,10 @@ $().ready(function(){
                     $('#help_content_from_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('帮助回复成功').delay(800).fadeOut('fast');
                     var helpContent = "<li class='bg_l_yellow'>";
-                    helpContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
+                    helpContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>";
                     helpContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     helpContent += "<div class='i_c_l_u_li_div black_l'>";
-                    helpContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
+                    helpContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
                     helpContent += msg.data.content;
                     if (msg.data.image != '') {
                     	helpContent += "<img src='" + msg.data.image + "' width='80' />";
@@ -289,10 +289,10 @@ $().ready(function(){
                     $("#i_shine_hit_in").fadeIn('fast').html('追问成功').delay(600).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
                     commentContent += "<span class='i_c_l_u_li_spannum gray'><span class='blue f12 fi'>new</span></span>";
-                    commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>";
+                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
-                    commentContent += "<a href='" + baseUrl + "stream/u/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
+                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
                     if (!msg.data.toid == '') {
                         commentContent += "<span class='f12 gray fb'>[追问:" + msg.data.toidnickname + "]</span>";
                     }

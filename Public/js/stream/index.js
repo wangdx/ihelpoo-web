@@ -214,7 +214,7 @@ $().ready(function(){
                 				$('#s_t_textarea_div_at').slideDown('normal').empty();
                 				for(var i = 0; i < msg.data.length; i++) {
                 					$('#s_t_textarea_div_at').append(
-                						"<li><a href='" + baseUrl + "stream/u/" + msg.data[i].uid + "' title='" + msg.data[i].nickname + "' target='_blank'>"
+                						"<li><a href='" + baseUrl + "wo/" + msg.data[i].uid + "' title='" + msg.data[i].nickname + "' target='_blank'>"
                 						+ "<img src='" + msg.data[i].icon_url + "' height='25' class='radius3' /></a></li>");
                 				}
                 			}
@@ -278,7 +278,7 @@ $().ready(function(){
     	var nickname = $(this).text();
     	var uid = $(this).attr('value');
     	$('#s_t_textarea_div_at').fadeIn('fast').append(
-    		"<li><a href='" + baseUrl + "stream/u/" + uid + "' title='" + nickname + "' target='_blank'>"
+    		"<li><a href='" + baseUrl + "wo/" + uid + "' title='" + nickname + "' target='_blank'>"
     		+ "<img src='" + iconurl + "' height='25' class='radius3' /></a></li>");
     	$('.auto_load_div').slideUp('normal');
     	atswitch = 'off';
