@@ -97,7 +97,8 @@
     color: #FFF;
 }
 .find_form{
-    margin: 30px 10px 20px;
+    margin: 30px auto 20px;
+    width: 390px;
 }
 .find_form_type{
     margin-bottom: 10px;
