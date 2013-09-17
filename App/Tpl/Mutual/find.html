@@ -59,6 +59,7 @@
 	    <?php if($result['id'] != $thisschoolid) { ?>
 	    	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
 	    <?php } ?>
+	    <span class="f12 gray"><?php echo i_time($result['nickname']); ?></span>
 	    <?php if (empty($result['say_type'])) { ?>
 	    	<a href="/item/say/<?php echo $result['sid'] ?>" class="f12">详细</a>
 	    <?php } else { ?>
