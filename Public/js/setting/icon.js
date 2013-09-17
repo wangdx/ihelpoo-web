@@ -37,6 +37,11 @@ $().ready(function(){
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
             $('.icon_handle_info').fadeIn('fast').html($infoImgUploading);
+            var img = new Image();
+            img.src = $('#icon_upload_form').file.value;
+            alert(img.fileSize);
+            
+            /*
         	$.ajaxFileUpload({
         		url: baseUrl + 'setting/icon',
             	secureuri: false,
@@ -65,7 +70,7 @@ $().ready(function(){
             	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
             	    }
             	}
-            });
+            });*/
         }
     });
     
