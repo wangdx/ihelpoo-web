@@ -1,19 +1,20 @@
 <include file="Public:header" />
 <link href="__PUBLIC__/css/mutual.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<?php $searchWords = empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>
 <div class="main">
 <div class="find">
   <p class="find_info black_l"><span class="icon_search"></span>我帮圈圈 - 找人 找校友</p>
   <form method="get" class="find_form">
     <?php if (!empty($_GET['recordcontent'])) { ?>
     <p class="find_form_type">
-    	<a href="/mutual/find?username=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1">找人</a> | <a href="/mutual/find?recordcontent=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1" class="fb">信息流</a>
+    	<a href="/mutual/find?username=<?php echo $searchWords; ?>&p=1">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $searchWords; ?>&p=1" class="fb">信息流</a>
     </p>
-    <input class="find_input" type="text" name="recordcontent" value="<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>" />
+    <input class="find_input" type="text" name="recordcontent" value="<?php echo $searchWords; ?>" />
     <?php } else { ?>
     <p class="find_form_type">
-    	<a href="/mutual/find?username=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1" class="fb">找人</a> | <a href="/mutual/find?recordcontent=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1">信息流</a>
+    	<a href="/mutual/find?username=<?php echo $searchWords; ?>&p=1" class="fb">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $searchWords; ?>&p=1">信息流</a>
     </p>
-    <input class="find_input" type="text" name="username" value="<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>" />
+    <input class="find_input" type="text" name="username" value="<?php echo $searchWords; ?>" />
     <?php } ?>
     <input type="hidden" name="p" value="1" />
     <input class="find_submit" type="submit" value="搜索">
@@ -54,7 +55,7 @@
 	  <li>
 	  	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
 	    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>"><?php echo $result['nickname'] ?></a> 
-	    <?php echo $result['content']; ?> 
+	    <?php echo str_replace($searchWords,"<font class='red'>".$searchWords."</font>", $result['content']); ?> 
 	    <?php if($result['id'] != $thisschoolid) { ?>
 	    	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
 	    <?php } ?>
