@@ -403,7 +403,10 @@ class MutualAction extends Action
                 $count = 10;
                 $offset = $page * $count;
 
-                $searchResult = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")->join("i_school_info ON i_record_say.school_id = i_school_info.id")->limit($offset, $count)->order("sid DESC")->select();
+                $searchResult = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")
+                ->join("i_user_login ON i_record_say.uid = i_user_login.uid")
+                ->join("i_school_info ON i_record_say.school_id = i_school_info.id")
+                ->limit($offset, $count)->order("sid DESC")->select();
                 if ($searchResult) {
                     $searchNameNums = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")->count();
                     $this->assign('searchNameNums', $searchNameNums);
