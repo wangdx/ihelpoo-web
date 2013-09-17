@@ -195,7 +195,7 @@ $().ready(function () {
     $("#inputSearchBox").focusout(function () {
         var textareaValue = $(this).val();
         if (textareaValue == '') {
-            $(this).val('找人');
+            $(this).val('找人，找信息');
         }
     });
     $("#inputSearchButton").click(function () {
