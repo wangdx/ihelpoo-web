@@ -4,7 +4,7 @@
 <div class="find">
   <p class="find_info black_l"><span class="icon_search"></span>我帮圈圈 - 找人 找校友</p>
   <form method="get" class="find_form">
-    <span class="black_l">请输入用户昵称</span>
+    <a href="/mutual/find?username=<?php echo $_GET['username']; ?>&p=1">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $_GET['recordcontent']; ?>&p=1">信息流</a>
     <input class="find_input" type="text" name="username" />
     <input type="hidden" name="p" value="1" />
     <input class="find_submit" type="submit" value="搜索">
