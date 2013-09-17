@@ -3,16 +3,16 @@
 <?php $searchWords = empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>
 <div class="main">
 <div class="find">
-  <p class="find_info black_l"><span class="icon_search"></span>我帮圈圈 - 找人 找校友</p>
+  <p class="find_info black_l"><span class="icon_search"></span>我帮圈圈 - 找人 找校友 找信息</p>
   <form method="get" class="find_form">
     <?php if (!empty($_GET['recordcontent'])) { ?>
     <p class="find_form_type">
-    	<a href="/mutual/find?username=<?php echo $searchWords; ?>&p=1">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $searchWords; ?>&p=1" class="fb">信息流</a>
+    	<a href="/mutual/find?username=<?php echo $searchWords; ?>&p=1">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $searchWords; ?>&p=1" class="fb">找信息</a>
     </p>
     <input class="find_input" type="text" name="recordcontent" value="<?php echo $searchWords; ?>" />
     <?php } else { ?>
     <p class="find_form_type">
-    	<a href="/mutual/find?username=<?php echo $searchWords; ?>&p=1" class="fb">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $searchWords; ?>&p=1">信息流</a>
+    	<a href="/mutual/find?username=<?php echo $searchWords; ?>&p=1" class="fb">找人</a> | <a href="/mutual/find?recordcontent=<?php echo $searchWords; ?>&p=1">找信息</a>
     </p>
     <input class="find_input" type="text" name="username" value="<?php echo $searchWords; ?>" />
     <?php } ?>

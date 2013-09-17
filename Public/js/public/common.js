@@ -188,7 +188,7 @@ $().ready(function () {
      */
     $("#inputSearchBox").focus(function () {
         var textareaValue = $(this).val();
-        if (textareaValue == '找人') {
+        if (textareaValue == '找人，找信息') {
             $(this).val('');
         }
     });
