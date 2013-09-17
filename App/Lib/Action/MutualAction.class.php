@@ -363,6 +363,7 @@ class MutualAction extends Action
         $this->assign('schoolname', $recordSchoolInfo['school']);
         $this->assign('title', '找人 找校友 ' . $recordSchoolInfo['school']);
         if (preg_match("/username/iUs", $_SERVER["REQUEST_URI"])) {
+        	$this->assign('searchway', 'nickname');
             $username = trim(addslashes(htmlspecialchars(strip_tags($_GET["username"]))));
             $p = (int)htmlspecialchars(trim($_GET["p"]));
             $p = $p <= 0 ? 1 : $p;
@@ -380,6 +381,31 @@ class MutualAction extends Action
                 $searchResult = $UserLogin->where("`nickname` LIKE '%" . $searchname . "%'")->join("i_school_info ON i_user_login.school = i_school_info.id")->limit($offset, $count)->order("active DESC")->select();
                 if ($searchResult) {
                     $searchNameNums = $UserLogin->where("`nickname` LIKE '%" . $searchname . "%'")->count();
+                    $this->assign('searchNameNums', $searchNameNums);
+                    $totalPages = ceil($searchNameNums / $count);
+                    $this->assign('totalPages', $totalPages);
+                    $this->assign('searchResult', $searchResult);
+                }
+            }
+        }
+        if (preg_match("/recordcontent/iUs", $_SERVER["REQUEST_URI"])) {
+        	$this->assign('searchway', 'record');
+            $recordcontent = trim(addslashes(htmlspecialchars(strip_tags($_GET["recordcontent"]))));
+            $p = (int)htmlspecialchars(trim($_GET["p"]));
+            $p = $p <= 0 ? 1 : $p;
+            if (!empty($recordcontent) && is_int($p)) {
+                $RecordSay = M("RecordSay");
+
+                /**
+                 * Pageing
+                 */
+                $page = $p - 1;
+                $count = 10;
+                $offset = $page * $count;
+
+                $searchResult = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")->join("i_school_info ON i_record_say.school_id = i_school_info.id")->limit($offset, $count)->order("sid DESC")->select();
+                if ($searchResult) {
+                    $searchNameNums = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")->count();
                     $this->assign('searchNameNums', $searchNameNums);
                     $totalPages = ceil($searchNameNums / $count);
                     $this->assign('totalPages', $totalPages);

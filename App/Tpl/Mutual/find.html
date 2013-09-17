@@ -9,50 +9,64 @@
     <input type="hidden" name="p" value="1" />
     <input class="find_submit" type="submit" value="搜索">
   </form>
-  <?php if($searchResult) { ?>
-  <ul class="find_ul">
-  <?php foreach ($searchResult as $result) : ?>
-  <li>
-  	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
-    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>"><?php echo $result['nickname'] ?></a> 
-    <span class="f12 gray" style="display:inline-block;"><?php echo i_constellation($result['birthday']); echo i_sex($result['sex']) ?> | <?php echo i_grade($result['enteryear']) ?><span class="sex<?php echo $result['sex'] ?>"></span></span> 
-    <span class="level<?php echo i_degree($result['active']) ?>" title="等级: level<?php echo i_degree($result['active']) ?>"></span> &nbsp; 
-    <?php if($result['id'] != $thisschoolid) { ?>
-    	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
-    <?php } ?>
-  </li>
-  <?php endforeach; ?>
-  </ul>
-  <?php } else { ?>
-  <p class="find_p_searchmore">
-  	<?php if (empty($searchNameNums) && !empty($_GET['username'])) { ?>
-  		<span class="icon_pump"></span> sorry! 没有找到相关用户 :( <br /><br /><br /><br /><br /><br />
-  		<a href="__ROOT__/index/mate" title="更多好玩的人点这里">
-	      <img src="__PUBLIC__/image/common/search_more.jpg" />
-	    </a>
-  	<?php } else { ?>
-	    <a href="__ROOT__/index/mate" title="更多好玩的人点这里">
-	      <img src="__PUBLIC__/image/common/search_more.jpg" />
-	    </a>
-    <?php } ?>
-  </p>
+  <?php if ($searchway == "nickname") { ?>
+	  <?php if($searchResult) { ?>
+	  <ul class="find_ul">
+	  <?php foreach ($searchResult as $result) : ?>
+	  <li>
+	  	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
+	    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>"><?php echo $result['nickname'] ?></a> 
+	    <span class="f12 gray" style="display:inline-block;"><?php echo i_constellation($result['birthday']); echo i_sex($result['sex']) ?> | <?php echo i_grade($result['enteryear']) ?><span class="sex<?php echo $result['sex'] ?>"></span></span> 
+	    <span class="level<?php echo i_degree($result['active']) ?>" title="等级: level<?php echo i_degree($result['active']) ?>"></span> &nbsp; 
+	    <?php if($result['id'] != $thisschoolid) { ?>
+	    	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
+	    <?php } ?>
+	  </li>
+	  <?php endforeach; ?>
+	  </ul>
+	  <?php } else { ?>
+	  <p class="find_p_searchmore">
+	  	<?php if (empty($searchNameNums) && !empty($_GET['username'])) { ?>
+	  		<span class="icon_pump"></span> sorry! 没有找到相关用户 :( <br /><br /><br /><br /><br /><br />
+	  		<a href="__ROOT__/index/mate" title="更多好玩的人点这里">
+		      <img src="__PUBLIC__/image/common/search_more.jpg" />
+		    </a>
+	  	<?php } else { ?>
+		    <a href="__ROOT__/index/mate" title="更多好玩的人点这里">
+		      <img src="__PUBLIC__/image/common/search_more.jpg" />
+		    </a>
+	    <?php } ?>
+	  </p>
+	  <?php } ?>
+  <?php } else if ($searchway == "record") { ?>
+  	  <?php if($searchResult) { ?>
+	  <ul class="find_ul">
+	  <?php foreach ($searchResult as $result) : ?>
+	  <li>
+	  	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
+	    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>"><?php echo $result['nickname'] ?></a> 
+	    <?php if($result['id'] != $thisschoolid) { ?>
+	    	<a href="http://<?php echo $result['domain_main'] == NULL ? $result['domain'] : $result['domain_main']; ?>" class="f12 gray" >[<?php echo $result['school']; ?>]</a>
+	    <?php } ?>
+	    <?php echo $result['content'] ?>
+	  </li>
+	  <?php endforeach; ?>
+	  </ul>
+	  <?php } else { ?>
+	  <p class="find_p_searchmore">
+	  	 <span class="icon_pump"></span> sorry! 没有搜索到相关信息 :( <br /><br /><br /><br /><br /><br />
+	  </p>
+	  <?php } ?>
   <?php } ?>
   <?php if($searchResult) { ?>
   <div class="i_list_link">
     <p class="i_list_num f12 gray">搜索到<?php echo $searchNameNums ?>条结果 共<?php echo $totalPages ?>页</p>
     <?php
-    if ($totalPages > 1) {
-        $i = 1;
-        while ($i <= $totalPages) {
-            if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i){
-                echo "<a href='".__ROOT__."/mutual/find?username=".$_GET[username]."&p=".$i."' class='s_l_l_a_select'>".$i."</a> ";
-            } else {
-                echo "<a href='".__ROOT__."/mutual/find?username=".$_GET[username]."&p=".$i."' class='s_l_l_a'>".$i."</a> ";
-            }
-            $i++;
-        }
-    }
-    ?>
+    if ($searchway == "nickname") {
+    	if ($totalPages > 1) { i_page_show("mutual/find?username=".$_GET[username]."&p=".$i, $totalPages, "&"); }
+	} else {
+		if ($totalPages > 1) { i_page_show("mutual/find?recordcontent=".$_GET[recordcontent]."&p=".$i, $totalPages, "&"); }
+	} ?>
   </div>
   <?php } ?>
 </div>
