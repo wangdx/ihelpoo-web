@@ -97,8 +97,12 @@
     color: #FFF;
 }
 .find_form{
-    width: 400px;
-    margin: 30px auto 20px auto;
+    margin: 30px 10px 20px;
+}
+.find_form_type{
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #999;    
 }
 .find_input{
     width: 200px;
