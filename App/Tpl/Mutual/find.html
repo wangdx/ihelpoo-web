@@ -25,7 +25,7 @@
 	  <?php foreach ($searchResult as $result) : ?>
 	  <li>
 	  	<a href="__ROOT__/wo/<?php echo $result['uid'] ?>" target="_blank"><img src="<?php echo i_icon_check($result['uid'], $result['icon_url'], 's'); ?>" width="40" height="30" class="radius3"/></a> 
-	    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>"><?php echo $result['nickname'] ?></a> 
+	    <a href="__ROOT__/wo/<?php echo $result['uid'] ?>"><?php echo str_replace($searchWords,"<font class='red'>".$searchWords."</font>", $result['nickname']); ?> </a> 
 	    <span class="f12 gray" style="display:inline-block;"><?php echo i_constellation($result['birthday']); echo i_sex($result['sex']) ?> | <?php echo i_grade($result['enteryear']) ?><span class="sex<?php echo $result['sex'] ?>"></span></span> 
 	    <span class="level<?php echo i_degree($result['active']) ?>" title="等级: level<?php echo i_degree($result['active']) ?>"></span> &nbsp; 
 	    <?php if($result['id'] != $thisschoolid) { ?>
