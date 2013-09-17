@@ -105,11 +105,23 @@
     color: #999;    
 }
 .find_input{
-    width: 200px;
-    padding: 3px 2px;
+    width: 300px;
     color: #666;
-    font-size: 14px;
 	vertical-align: baseline;
+	-moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
+	border: 1px solid #D0D0D0;
+	font-size: 14px;
+	outline: medium none;
+	padding: 5px;
+	word-wrap: break-word;
+}
+.find_input:focus{
+    color: #333;
+    border-color: #7BD6F6;
+    -moz-outline: 4px solid #E2F5FB;
+    -moz-outline-radius: 8px;
+    -webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
+    box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 }
 .find_submit{
     padding: 2px 2px;
