@@ -406,6 +406,7 @@ class MutualAction extends Action
                 $searchResult = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")
                 ->join("i_user_login ON i_record_say.uid = i_user_login.uid")
                 ->join("i_school_info ON i_record_say.school_id = i_school_info.id")
+                ->field("i_record_say.uid,i_record_say.sid,i_record_say.content,i_record_say.time,i_user_login.nickname,i_user_login.icon_url,i_school_info.id,i_school_info.school,i_school_info.domain,i_school_info.domain_main")
                 ->limit($offset, $count)->order("sid DESC")->select();
                 if ($searchResult) {
                     $searchNameNums = $RecordSay->where("`content` LIKE '%" . $recordcontent . "%'")->count();
