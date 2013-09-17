@@ -8,12 +8,12 @@
     <p class="find_form_type">
     	<a href="/mutual/find?username=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1">找人</a> | <a href="/mutual/find?recordcontent=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1" class="fb">信息流</a>
     </p>
-    <input class="find_input" type="text" name="recordcontent" />
+    <input class="find_input" type="text" name="recordcontent" value="<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>" />
     <?php } else { ?>
     <p class="find_form_type">
     	<a href="/mutual/find?username=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1" class="fb">找人</a> | <a href="/mutual/find?recordcontent=<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>&p=1">信息流</a>
     </p>
-    <input class="find_input" type="text" name="username" />
+    <input class="find_input" type="text" name="username" value="<?php echo empty($_GET['recordcontent']) ? $_GET['username'] : $_GET['recordcontent']; ?>" />
     <?php } ?>
     <input type="hidden" name="p" value="1" />
     <input class="find_submit" type="submit" value="搜索">
