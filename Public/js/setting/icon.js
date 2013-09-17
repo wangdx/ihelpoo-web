@@ -33,7 +33,7 @@ $().ready(function(){
      */
     $("#icon_upload_btn").click(function(){
     	var img = new Image();
-        img.src = document.iconUploadForm.file.value;
+        img.src = filepath;
         alert(img.fileSize);
         var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
