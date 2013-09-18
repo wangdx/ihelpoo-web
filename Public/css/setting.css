@@ -642,7 +642,7 @@
 	background-color: #FF6600;
 	border-radius: 3px;
 	color: #FFF;
-	font: 14px;
+	font-size: 12px;
 	text-align: center;
 }
 .uploadify:hover .uploadify-button {
