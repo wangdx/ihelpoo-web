@@ -32,7 +32,6 @@ $().ready(function(){
     	'formData' : {'userloginid': $("#sessionuserloginid").val()},
 		'fileObjName'      : 'uploadedimg',
 		'fileSizeLimit' : '1000KB',
-		'progressData' : 'speed',
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' :  baseUrl + '/other/iconupload',
 		'buttonText' : '上传图片',
