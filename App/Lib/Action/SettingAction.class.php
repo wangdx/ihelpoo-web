@@ -794,6 +794,11 @@ class SettingAction extends Action
         }
         $this->display();
     }
+    
+    public function iconupload()
+    {
+    	echo 'ok';
+    }
 
     public function bind()
     {
