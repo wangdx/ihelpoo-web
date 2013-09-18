@@ -32,6 +32,21 @@ $().ready(function(){
      * new icon from upload
      */
     $("#icon_upload_btn").click(function(){
+    	
+    	var isIE = /msie/i.test(navigator.userAgent) && !window.opera;  
+        var fileSize = 0;           
+        if (isIE && !target.files){       
+            var filePath = target.value;       
+            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");          
+            var file = fileSystem.GetFile (filePath);       
+            fileSize = file.Size;      
+        } else {      
+            fileSize = target.files[0].size;       
+        }     
+        var size = fileSize / 1024*1024;
+        alert(size);
+        
+        /**
         var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
@@ -65,7 +80,7 @@ $().ready(function(){
             	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
             	    }
             	}
-            });
+            });*/
         }
     });
     
