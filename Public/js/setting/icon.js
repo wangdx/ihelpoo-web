@@ -143,7 +143,6 @@ function chksize(strFileName){
 	objStream.LoadFromFile(strFileName);
 	if(Math.round(objStream.Size/1024)>maxsize)
 		{alert ("抱歉！您选择的文件为 "+Math.round(objStream.Size/1024,2)+" KB　n超过了程序"+maxsize+" KB 的限制！");
-		document.form1.reset();
 		return false;
 	}
 	else
