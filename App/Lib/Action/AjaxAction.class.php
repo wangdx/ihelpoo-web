@@ -62,6 +62,11 @@ class AjaxAction extends Action {
     		$this->ajaxReturn($returnData,'message ajax','ok');
     	}
     }
+    
+    public function iconupload()
+    {
+    	exit('wrong');
+    }
 
     /**
      *
