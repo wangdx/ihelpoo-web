@@ -39,7 +39,7 @@ class OtherAction extends Action {
     
     public function iconupload()
     {	
-    	$this->ajaxReturn(0,'message ajax','ok');
+    	var_dump($_FILES["uploadedimg"]);
     }
 
 }
