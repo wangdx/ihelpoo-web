@@ -598,8 +598,8 @@
     width: 500px;
 }
 #preview_div_box{
-    width: 500px;
-    height: 375px;
+    width: 300px;
+    height: 225px;
     overflow: hidden;
     border: 5px solid #CCC;
     margin: 0 0 15px 0;
