@@ -639,7 +639,7 @@
 	margin-bottom: 1em;
 }
 .uploadify-button {
-	background-color: #505050;
+	background-color: #FF6600;
 	background-image: linear-gradient(bottom, #505050 0%, #707070 100%);
 	background-image: -o-linear-gradient(bottom, #505050 0%, #707070 100%);
 	background-image: -moz-linear-gradient(bottom, #505050 0%, #707070 100%);
@@ -657,7 +657,6 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	border: 2px solid #808080;
 	color: #FFF;
 	font: bold 14px Arial, Helvetica, sans-serif;
 	text-align: center;
