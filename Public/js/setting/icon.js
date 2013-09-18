@@ -32,21 +32,6 @@ $().ready(function(){
      * new icon from upload
      */
     $("#icon_upload_btn").click(function(){
-    	var target = $("#icon_upload_form");
-    	var isIE = /msie/i.test(navigator.userAgent) && !window.opera;  
-        var fileSize = 0;           
-        if (isIE && !target.files){       
-            var filePath = target.value;       
-            var fileSystem = new ActiveXObject("Scripting.FileSystemObject");          
-            var file = fileSystem.GetFile (filePath);       
-            fileSize = file.Size;      
-        } else {      
-            fileSize = target.files[0].size;       
-        }     
-        var size = fileSize / 1024*1024;
-        alert(size);
-        
-        /**
         var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
@@ -81,7 +66,7 @@ $().ready(function(){
             	    }
             	}
             });
-        }*/
+        }
     });
     
     //icon cut submit
@@ -135,16 +120,4 @@ function updatePreview(c){
         });
     }
 };
-function chksize(strFileName){
-	var maxsize = 100;
-	var objStream = new ActiveXObject("ADODB.Stream");
-	objStream.Type = 1;
-	objStream.Open();
-	objStream.LoadFromFile(strFileName);
-	if(Math.round(objStream.Size/1024)>maxsize)
-		{alert ("抱歉！您选择的文件为 "+Math.round(objStream.Size/1024,2)+" KB　n超过了程序"+maxsize+" KB 的限制！");
-		return false;
-	}
-	else
-		alert("可以上传");
-}
+
