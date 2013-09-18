@@ -42,7 +42,7 @@ $().ready(function(){
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
 			$('.icon_handle_info').fadeIn('fast').html(data.status);
-			if (data.status == 'uploaded') {
+			if (data != 'error') {
     	        $('#usericontarget').attr({'src': msg.data});
     	        $('#preview').attr({'src': msg.data});
     	        $('#img_temp_path').val(msg.data);
@@ -60,8 +60,8 @@ $().ready(function(){
     	        });
     	        $('.icon_handle_info').html('');
     	        return false;
-    	    } else if (data.status == 'error') {
-    	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
+    	    } else {
+    	        $('.icon_handle_info').fadeIn('fast').html("出错了").delay(1000).fadeOut('fast');
     	    }
         }
 	});
