@@ -626,6 +626,11 @@
     display: none;
     position: relative;
 }
+.image_new_div_span{
+    position: absolute;
+    bottom: -25px;
+    left: 0px;
+}
 .image_new_large{
     border: 1px solid #EEE;
 }
