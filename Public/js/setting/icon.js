@@ -32,7 +32,8 @@ $().ready(function(){
      * new icon from upload
      */
     $("#icon_upload_btn").click(function(){
-        var upload_icon_file = $('#upload_form_icon_file').val();
+    	checkPic(picForm);
+        /*var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
@@ -66,7 +67,7 @@ $().ready(function(){
             	    }
             	}
             });
-        }
+        }*/
     });
     
     //icon cut submit
