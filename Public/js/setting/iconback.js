@@ -34,6 +34,8 @@ $().ready(function(){
 		'uploader' : '/ajax/iconupload',
 		'buttonText' : '上传图片',
 		'width' : '90',
+		'height' : '25',
+		'uploadLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
             $('.icon_handle_info').html('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
         }
