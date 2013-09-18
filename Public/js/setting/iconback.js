@@ -30,7 +30,7 @@ $().ready(function(){
     
     $('#file_upload').uploadify({
 		'swf'      : '/Public/js/public/uploadify.swf',
-		'uploader' : baseUrl + 'setting/iconupload',
+		'uploader' : '/setting/iconupload',
 	});
     /**
      * new icon from upload
