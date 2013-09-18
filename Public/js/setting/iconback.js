@@ -35,6 +35,7 @@ $().ready(function(){
 		'fileTypeDesc' : '*.jpg;*.png;',
 		'progressData' : 'speed',
 		'swf'      : '/Public/js/public/uploadify.swf',
+		'cancelImg'      : '/Public/image/common/uploadify-cancel.png',
 		'uploader' : '/ajax/iconupload',
 		'buttonText' : '上传图片',
 		'width' : '90',
