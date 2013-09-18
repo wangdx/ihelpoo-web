@@ -41,7 +41,7 @@ $().ready(function(){
 		'height' : '25',
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
-			$('.icon_handle_info').fadeIn('fast').html(data);
+			$('.icon_handle_info').fadeIn('fast').html(data.status);
 			if (data.status == 'uploaded') {
     	        $('#usericontarget').attr({'src': msg.data});
     	        $('#preview').attr({'src': msg.data});
