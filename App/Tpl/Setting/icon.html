@@ -40,10 +40,10 @@
 </div>
 <div class="s_right">
   <div class="image_upload_div">
-    <img src='<?php echo i_icon_check("$userloginedrecord[uid]", "$userloginedrecord[icon_url]", "l"); ?>' width='500' height='375' />
+    <img src='<?php echo i_icon_check("$userloginedrecord[uid]", "$userloginedrecord[icon_url]", "l"); ?>' width='400' height='300' />
     <form enctype="multipart/form-data" method="post" action="" id="icon_upload_form">
-      <input id="upload_form_icon_file" name="uploadedimg" type="file" />
-      <a class="btn f12" id="icon_upload_btn">上传图片</a>
+      <input id="file_upload" name="file_upload" type="file" />
+      <input id="sessionuserloginid" value="<?php echo $userloginedrecord['uid']; ?>" type="hidden" />
       <span class="icon_handle_info"></span>
     </form>
     <div class="image_upload_div_right">
@@ -69,11 +69,15 @@
     <div class="image_upload_div_right">
     	<a href="__ROOT__/wo/album/<?php echo $userloginedrecord['uid']; ?>/1"><span class="icon_pump"></span> 返回相册</a>
     </div>
+    <div class="image_upload_div_right_preview f12 gray">
+    头像预览
+    </div>
   </div>
   <div class="image_new_div">
-    <img src="" width="500" class="image_new_large" />
+    <img src="" width="300" class="image_new_large" />
     <img src="" width="180" class="image_new_middle" />
     <img src="" width="68" class="image_new_small" />
+    <span class="image_new_div_span f12 black_l"><span class="icon_right"></span>修改头像成功</span>
   </div>
   <?php if(!empty($_GET['img'])) { ?>
   	<input id="image_album" type="hidden" value="<?php echo $_GET['img']; ?>" />
@@ -82,7 +86,7 @@
   <?php } ?>
 </div>
 </div>
-<script type="text/javascript" src="__PUBLIC__/js/public/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/public/uploadify.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/public/jcrop.js"></script>
-<script type="text/javascript" src="__PUBLIC__/js/setting/icon.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/setting/iconback.js"></script>
 <include file="Public:footer" />
