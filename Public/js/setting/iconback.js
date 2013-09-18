@@ -34,7 +34,7 @@ $().ready(function(){
 		'fileSizeLimit' : '1000KB',
 		'progressData' : 'speed',
 		'swf'      : '/Public/js/public/uploadify.swf',
-		'uploader' :  baseUrl + '/ajaxx',
+		'uploader' :  baseUrl + '/ajax',
 		'buttonText' : '上传图片',
 		'width' : '90',
 		'height' : '25',
