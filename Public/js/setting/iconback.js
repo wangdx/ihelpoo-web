@@ -148,8 +148,8 @@ function updateCoords(c){
 };
 function updatePreview(c){
     if (parseInt(c.w) > 0) {
-        var rx = 300 / c.w;
-        var ry = 225 / c.h;
+        var rx = 500 / c.w;
+        var ry = 375 / c.h;
         $('#preview').css({
             width: Math.round(rx * $('#usericontarget').width()) + 'px',
             height: Math.round(ry * $('#usericontarget').height()) + 'px',
