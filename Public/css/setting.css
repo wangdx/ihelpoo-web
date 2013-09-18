@@ -584,10 +584,10 @@
 }
 /*--- icon.phtml ---*/
 .image_upload_div img{
-    border: 5px solid #EEE;
+    border: 1px solid #EEE;
 }
 #icon_upload_form{
-    margin: 20px 5px 10px 5px;
+    margin: 20px 0 10px;
 }
 .image_cut_div{
     display: none;
