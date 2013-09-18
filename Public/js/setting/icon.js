@@ -121,3 +121,32 @@ function updatePreview(c){
     }
 };
 
+
+function checkPic(picForm){
+	var img = null;
+	var location = picForm.pic.value;
+	if(location == ""){
+	   alert("请先选择图片文件");
+	   return false;
+	}
+	var point = location.lastIndexOf(".");
+	var type = location.substr(point);
+	if(type==".jpg"||type==".gif"||type==".JPG"||type==".GIF"){
+	   img=document.createElement("img"); 
+	   img.src=location;
+	   if(img.fileSize>102400){
+	    alert("图片尺寸请不要大于100KB");
+	    return false;
+	   }else
+	      return true;
+	}
+	else{
+	   alert("只能输入jpg或者gif格式的图片");
+	   return false;
+	}
+	return true;
+	
+	}function changesrc(){
+	yourpic.src=picForm.pic.value;
+};
+
