@@ -32,7 +32,7 @@ $().ready(function(){
      * new icon from upload
      */
     $("#icon_upload_btn").click(function(){
-    	var target = $("#upload_form_icon_file");
+    	var target = $("#icon_upload_form");
     	var isIE = /msie/i.test(navigator.userAgent) && !window.opera;  
         var fileSize = 0;           
         if (isIE && !target.files){       
