@@ -709,6 +709,11 @@ class AjaxAction extends Action {
     	}
     }
     
+    public function iconupload()
+    {
+    	echo 'ok';
+    }
+    
     public function weiboswitch()
     {
         if ($this->isPost()) {

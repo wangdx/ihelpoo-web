@@ -795,11 +795,6 @@ class SettingAction extends Action
         $this->display();
     }
     
-    public function iconupload()
-    {
-    	echo 'ok';
-    }
-
     public function bind()
     {
         $this->assign('title', '绑定微博');
