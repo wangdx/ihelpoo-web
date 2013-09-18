@@ -136,22 +136,16 @@ function updatePreview(c){
     }
 };
 function chksize(strFileName){
-    try
-    {
-     var maxsize = 100;
-     var objStream = new ActiveXObject("ADODB.Stream");
-     objStream.Type = 1;
-     objStream.Open();
-     objStream.LoadFromFile(strFileName);
-     if(Math.round(objStream.Size/1024)>maxsize)
-         {alert ("抱歉！您选择的文件为 "+Math.round(objStream.Size/1024,2)+" KB　n超过了程序"+maxsize+" KB 的限制！");
-         document.form1.reset();
-         return false;
-     }
-     else
-        alert("可以上传");
-    }catch(e)
-    {
-        alert("不支持");
-    }
+	var maxsize = 100;
+	var objStream = new ActiveXObject("ADODB.Stream");
+	objStream.Type = 1;
+	objStream.Open();
+	objStream.LoadFromFile(strFileName);
+	if(Math.round(objStream.Size/1024)>maxsize)
+		{alert ("抱歉！您选择的文件为 "+Math.round(objStream.Size/1024,2)+" KB　n超过了程序"+maxsize+" KB 的限制！");
+		document.form1.reset();
+		return false;
+	}
+	else
+		alert("可以上传");
 }
