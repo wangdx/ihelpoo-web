@@ -46,15 +46,12 @@ class OtherAction extends Action {
                     $this->ajaxReturn(0, '上传图片失败, info' . $_FILES["uploadedimg"]["error"], 'error');
                 } else {
                     $imageOldName = $_FILES["uploadedimg"]["name"];
-                    $imageType = $_FILES["uploadedimg"]["type"];
-                    $imageType = trim($imageType);
                     $imageSize = $_FILES["uploadedimg"]["size"];
                     $imageTmpName = $_FILES["uploadedimg"]["tmp_name"];
                 }
-                $this->ajaxReturn(0, $_FILES["uploadedimg"], 'error');
                 if ($imageSize > 3670016) {
                     $this->ajaxReturn(0, '上传图片太大, 最大能上传单张 3.5MB', 'error');
-                } else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
+                } else {
 
                     /**
                      * storage in upyun
@@ -97,8 +94,6 @@ class OtherAction extends Action {
                      * ajax return
                      */
                     $this->ajaxReturn($newfilepath, '上传成功', 'uploaded');
-                } else {
-                    $this->ajaxReturn(0, '上传图片格式错误, 目前仅支持.jpg .png .gif', 'error');
                 }
             }
         }	
