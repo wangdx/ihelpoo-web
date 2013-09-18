@@ -35,6 +35,7 @@ $().ready(function(){
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' :  baseUrl + '/other/iconupload',
 		'buttonText' : '上传图片',
+		'cancelImage' : '/Public/image/common/uploadify-cancel.png',
 		'width' : '90',
 		'height' : '25',
 		'queueSizeLimit' : '1',
