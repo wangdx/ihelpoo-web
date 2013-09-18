@@ -42,7 +42,6 @@ $().ready(function(){
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
 			var msg = JSON.parse(data);
-			alert(msg.status);
 			if (msg.status == 'uploaded') {
     	        $('#usericontarget').attr({'src': msg.data});
     	        $('#preview').attr({'src': msg.data});
@@ -66,6 +65,7 @@ $().ready(function(){
     	    }
         }
 	});
+    
     /**
      * new icon from upload
     $("#icon_upload_btn").click(function(){
