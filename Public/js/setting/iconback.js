@@ -29,7 +29,7 @@ $().ready(function(){
     }
     
     $('#file_upload').uploadify({
-		'swf'      : 'uploadify.swf',
+		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' : 'uploadify.php'
 	});
     /**
