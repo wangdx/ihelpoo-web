@@ -34,7 +34,7 @@ $().ready(function(){
 		'uploader' : '/ajax/iconupload',
 		'buttonImage' : '/Public/image/common/back-top.png',
 		'onUploadSuccess' : function(file, data, response) {
-            alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+            $('.icon_handle_info').html('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
         }
 	});
     /**
