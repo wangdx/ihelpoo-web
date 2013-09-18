@@ -639,6 +639,8 @@
     border-radius: 3px;
     text-align: center;
     font-size: 12px;
+    height: 25px;
+    width: 100px;
 }
 .uploadify:hover{
     color: #FFF;
