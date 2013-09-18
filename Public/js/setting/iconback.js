@@ -41,11 +41,12 @@ $().ready(function(){
 		'height' : '25',
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
-			$('.icon_handle_info').fadeIn('fast').html(data.status);
-			if (data != 'error') {
-    	        $('#usericontarget').attr({'src': data});
-    	        $('#preview').attr({'src': data});
-    	        $('#img_temp_path').val(data);
+			var msg = JSON.parse(data);
+			alert(msg.status);
+			if (msg.status == 'uploaded') {
+    	        $('#usericontarget').attr({'src': msg.data});
+    	        $('#preview').attr({'src': msg.data});
+    	        $('#img_temp_path').val(msg.data);
     	        $('.image_upload_div').slideUp('slow');
     	        $('.image_cut_div').slideDown('fast');
     	        //icon cut
@@ -60,8 +61,8 @@ $().ready(function(){
     	        });
     	        $('.icon_handle_info').html('');
     	        return false;
-    	    } else {
-    	        $('.icon_handle_info').fadeIn('fast').html("出错了").delay(1000).fadeOut('fast');
+    	    } else if (msg.status == 'error') {
+    	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
     	    }
         }
 	});
