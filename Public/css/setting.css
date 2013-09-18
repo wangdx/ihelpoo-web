@@ -651,6 +651,7 @@
     -moz-outline-radius:8px;
     -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6);
     box-shadow:0 0 10px rgba(123, 214, 246, .6);
+    text-decoration: none;
 } 
 /*---bind.phtml ---*/
 .s_bind_ul{
