@@ -633,6 +633,15 @@
     bottom: 165px;
 }
 
+
+.uploadify-button {
+    background-color: transparent;
+    border: 1px solid red;
+    padding: 0;
+}
+.uploadify:hover .uploadify-button {
+    background-color: transparent;
+} 
 /*---bind.phtml ---*/
 .s_bind_ul{
     border-bottom: 1px solid #CCC;
