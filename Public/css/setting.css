@@ -634,11 +634,11 @@
 }
 
 
-.uploadify-button {
+.uploadify-button{
     background-color: #FE6600;
     border-radius: 3px;
 }
-.uploadify:hover{
+.uploadify:hover, .uploadify-button{
     color: #FFF;
     background-color: #999;
     border-color:#7BD6F6;
