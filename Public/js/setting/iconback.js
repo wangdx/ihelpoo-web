@@ -39,7 +39,7 @@ $().ready(function(){
 		'height' : '25',
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
-			alert(data.status);
+			$('.icon_handle_info').fadeIn('fast').html(data);
 			if (data.status == 'uploaded') {
     	        $('#usericontarget').attr({'src': msg.data});
     	        $('#preview').attr({'src': msg.data});
