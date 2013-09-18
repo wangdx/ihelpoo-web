@@ -33,7 +33,7 @@ $().ready(function(){
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' : '/ajax/iconupload',
 		'buttonText' : '上传图片',
-		'width' : '80',
+		'width' : '90',
 		'onUploadSuccess' : function(file, data, response) {
             $('.icon_handle_info').html('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
         }
