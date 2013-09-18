@@ -43,9 +43,9 @@ $().ready(function(){
 		'onUploadSuccess' : function(file, data, response) {
 			$('.icon_handle_info').fadeIn('fast').html(data.status);
 			if (data != 'error') {
-    	        $('#usericontarget').attr({'src': msg.data});
-    	        $('#preview').attr({'src': msg.data});
-    	        $('#img_temp_path').val(msg.data);
+    	        $('#usericontarget').attr({'src': data});
+    	        $('#preview').attr({'src': data});
+    	        $('#img_temp_path').val(data);
     	        $('.image_upload_div').slideUp('slow');
     	        $('.image_cut_div').slideDown('fast');
     	        //icon cut
