@@ -39,6 +39,7 @@ class OtherAction extends Action {
     
     public function iconupload()
     {	
+    	echo $_POST['userloginid'];
     	var_dump($_FILES["uploadedimg"]);
     }
 
