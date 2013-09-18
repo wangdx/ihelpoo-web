@@ -29,6 +29,7 @@ $().ready(function(){
     }
     
     $('#file_upload').uploadify({
+    	'formData' : {'userloginid': $("#sessionuserloginid").val()},
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' : '/setting/iconupload',
 		'buttonImage' : '/Public/image/common/back-top.png',
