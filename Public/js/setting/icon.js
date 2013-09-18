@@ -80,8 +80,8 @@ $().ready(function(){
             	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
             	    }
             	}
-            });*/
-        }
+            });
+        }*/
     });
     
     //icon cut submit
