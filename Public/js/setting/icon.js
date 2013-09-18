@@ -32,7 +32,12 @@ $().ready(function(){
      * new icon from upload
      */
     $("#icon_upload_btn").click(function(){
-    	checkPic($("#icon_upload_form"));
+    	img = document.createElement("img"); 
+    	img.src = $("#upload_form_icon_file");
+    	if(img.fileSize > 102400){
+    		alert("图片尺寸请不要大于100KB");
+    		return false;
+    	}
         /*var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
@@ -121,33 +126,3 @@ function updatePreview(c){
         });
     }
 };
-
-
-function checkPic(picForm){
-	var img = null;
-	var location = picForm.pic.value;
-	if(location == ""){
-	   alert("请先选择图片文件");
-	   return false;
-	}
-	var point = location.lastIndexOf(".");
-	var type = location.substr(point);
-	if(type==".jpg"||type==".gif"||type==".JPG"||type==".GIF"){
-	   img=document.createElement("img"); 
-	   img.src=location;
-	   if(img.fileSize>102400){
-	    alert("图片尺寸请不要大于100KB");
-	    return false;
-	   }else
-	      return true;
-	}
-	else{
-	   alert("只能输入jpg或者gif格式的图片");
-	   return false;
-	}
-	return true;
-	
-	}function changesrc(){
-	yourpic.src=picForm.pic.value;
-};
-
