@@ -640,6 +640,7 @@
     text-align: center;
     font-size: 14px;
     color: #FFF;
+    text-decoration: none;
 }
 .uploadify:hover{
     color: #FFF;
