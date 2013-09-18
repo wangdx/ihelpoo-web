@@ -627,19 +627,19 @@
     position: relative;
 }
 .image_new_large{
-    border: 5px solid #EEE;
+    border: 1px solid #EEE;
 }
 .image_new_middle{
-    border: 4px solid #9C0;
+    border: 1px solid #9C0;
     position: absolute;
-    left: 530px;
-    bottom: 5px;
+    left: 330px;
+    bottom: 0px;
 }
 .image_new_small{
-    border: 3px solid #F60;
+    border: 1px solid #F60;
     position: absolute;
-    left: 530px;
-    bottom: 165px;
+    left: 535px;
+    bottom: 0px;
 }
 
 
