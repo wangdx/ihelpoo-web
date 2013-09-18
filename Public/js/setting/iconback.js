@@ -28,9 +28,12 @@ $().ready(function(){
         });
     }
     
+    $('#file_upload').uploadify({
+		'swf'      : 'uploadify.swf',
+		'uploader' : 'uploadify.php'
+	});
     /**
      * new icon from upload
-     */
     $("#icon_upload_btn").click(function(){
         var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
@@ -68,6 +71,7 @@ $().ready(function(){
             });
         }
     });
+     */
     
     //icon cut submit
     $('#icon_cut_btn').click(function(){
