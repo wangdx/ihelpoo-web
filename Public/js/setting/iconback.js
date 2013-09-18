@@ -2,6 +2,7 @@ $().ready(function(){
     $('.stream_top_notice_info .icon_index_wrong').click(function(){
         $(this).parent().slideUp('fast');
     });
+    var $infoImgUploading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '上传中...请稍等'});
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/loading.gif', 'title': '处理中...请稍等'});
     var urlcheckpattern = /(http:\/\/)?[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*/;
     
@@ -31,17 +32,18 @@ $().ready(function(){
      * new icon from upload
      */
     $("#icon_upload_btn").click(function(){
-        var upload_icon_file = $('#file_upload').val();
+        var upload_icon_file = $('#upload_form_icon_file').val();
         if (upload_icon_file == '') {
             $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
-        	$('#file_upload').uploadify({
-				'swf'      : '/Public/js/public/uploadify.swf',
-				'uploader' : baseUrl + 'setting/icon',
-				'fileDataName' : 'uploadedimg',
-				'onUploadSuccess' : function(msg)
-				{
-					if (msg.status == 'uploaded') {
+            $('.icon_handle_info').fadeIn('fast').html($infoImgUploading);
+        	$.ajaxFileUpload({
+        		url: baseUrl + 'setting/icon',
+            	secureuri: false,
+            	fileElementId: 'upload_form_icon_file',
+            	dataType: 'json',
+            	success: function (msg){
+            	    if (msg.status == 'uploaded') {
             	        $('#usericontarget').attr({'src': msg.data});
             	        $('#preview').attr({'src': msg.data});
             	        $('#img_temp_path').val(msg.data);
@@ -62,8 +64,8 @@ $().ready(function(){
             	    } else if (msg.status == 'error') {
             	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
             	    }
-				};
-			});
+            	}
+            });
         }
     });
     
