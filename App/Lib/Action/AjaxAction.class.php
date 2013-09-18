@@ -711,7 +711,7 @@ class AjaxAction extends Action {
     
     public function iconupload()
     {
-    	echo 'ok';
+    	$this->ajaxReturn(0,'上传图片格式错误, 目前仅支持.jpg .png .gif','error');
     }
     
     public function weiboswitch()
