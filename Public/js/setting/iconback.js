@@ -32,7 +32,7 @@ $().ready(function(){
     	'formData' : {'userloginid': $("#sessionuserloginid").val()},
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' : '/ajax/iconupload',
-		'buttonImage' : '/Public/image/common/back-top.png',
+		'buttonText' : '上传图片',
 		'onUploadSuccess' : function(file, data, response) {
             $('.icon_handle_info').html('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
         }
