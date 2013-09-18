@@ -38,8 +38,8 @@ class OtherAction extends Action {
     }
     
     public function iconupload()
-    {
-    	exit('error');
+    {	
+    	$this->ajaxReturn(0,'message ajax','ok');
     }
 
 }
