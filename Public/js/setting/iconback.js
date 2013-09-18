@@ -41,6 +41,7 @@ $().ready(function(){
 		'height' : '25',
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
+			alert(data);
 			var msg = JSON.parse(data);
 			if (msg.status == 'uploaded') {
     	        $('#usericontarget').attr({'src': msg.data});
