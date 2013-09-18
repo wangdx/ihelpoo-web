@@ -32,7 +32,7 @@ $().ready(function(){
     	'formData' : {'userloginid': $("#sessionuserloginid").val()},
 		'fileObjName'      : 'uploadedimg',
 		'fileSizeLimit' : '1000KB',
-		'fileTypeDesc' : '*.jpg;*.png;',
+		'fileTypeDesc' : '*.jpg;,*.png;',
 		'progressData' : 'speed',
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'cancelImg'      : '/Public/image/common/uploadify-cancel.png',
