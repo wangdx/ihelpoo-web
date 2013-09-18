@@ -39,7 +39,7 @@ $().ready(function(){
 		'height' : '25',
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
-			if (msg.status == 'uploaded') {
+			if (data.status == 'uploaded') {
     	        $('#usericontarget').attr({'src': msg.data});
     	        $('#preview').attr({'src': msg.data});
     	        $('#img_temp_path').val(msg.data);
@@ -57,7 +57,7 @@ $().ready(function(){
     	        });
     	        $('.icon_handle_info').html('');
     	        return false;
-    	    } else if (msg.status == 'error') {
+    	    } else if (data.status == 'error') {
     	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
     	    }
         }
