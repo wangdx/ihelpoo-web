@@ -34,30 +34,33 @@ $().ready(function(){
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' : baseUrl + 'setting/icon',
 		'fileDataName' : 'uploadedimg',
-		'onUploadSuccess' : function(msg)
-		{
-			if (msg.status == 'uploaded') {
-    	        $('#usericontarget').attr({'src': msg.data});
-    	        $('#preview').attr({'src': msg.data});
-    	        $('#img_temp_path').val(msg.data);
-    	        $('.image_upload_div').slideUp('slow');
-    	        $('.image_cut_div').slideDown('fast');
-    	        //icon cut
-    	        jQuery('#usericontarget').Jcrop({
-    	            minSize: [200, 150],
-    	            setSelect: [10, 8, 480, 360],
-    	            bgColor: "#000",
-    	            bgOpacity: 0.6,
-    	            onChange: updatePreview,
-    	            onSelect: updateCoords,
-    	            aspectRatio: 4/3
-    	        });
-    	        $('.icon_handle_info').html('');
-    	        return false;
-    	    } else if (msg.status == 'error') {
-    	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
-    	    }
-		}
+//		'onUploadSuccess' : function(msg)
+//		{
+//			if (msg.status == 'uploaded') {
+//    	        $('#usericontarget').attr({'src': msg.data});
+//    	        $('#preview').attr({'src': msg.data});
+//    	        $('#img_temp_path').val(msg.data);
+//    	        $('.image_upload_div').slideUp('slow');
+//    	        $('.image_cut_div').slideDown('fast');
+//    	        //icon cut
+//    	        jQuery('#usericontarget').Jcrop({
+//    	            minSize: [200, 150],
+//    	            setSelect: [10, 8, 480, 360],
+//    	            bgColor: "#000",
+//    	            bgOpacity: 0.6,
+//    	            onChange: updatePreview,
+//    	            onSelect: updateCoords,
+//    	            aspectRatio: 4/3
+//    	        });
+//    	        $('.icon_handle_info').html('');
+//    	        return false;
+//    	    } else if (msg.status == 'error') {
+//    	        $('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
+//    	    }
+//		}
+	    'onUploadSuccess' : function(file, data, response) {
+	    	alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+	    }
 	});
     
     //icon cut submit
