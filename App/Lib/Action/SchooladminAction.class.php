@@ -975,8 +975,8 @@ class SchooladminAction extends Action {
     			$icon_fl = $userLoginRecord['icon_fl'];
     			if ($way == 'up') {
     				$icon_fl++;
-    				if ($icon_fl > 5) {
-    					$icon_fl = 5;
+    				if ($icon_fl > 3) {
+    					$icon_fl = 3;
     				}
     				$newUserIconFlArray = array(
     					'uid' => $userLoginRecord['uid'],
@@ -1001,7 +1001,7 @@ class SchooladminAction extends Action {
     			} else if ($way = 'down') {
     				$icon_fl--;
     				if ($icon_fl < 1) {
-    					$icon_fl = 1;
+    					$icon_fl = 0;
     				}
     				$newUserIconFlArray = array(
     					'uid' => $userLoginRecord['uid'],
