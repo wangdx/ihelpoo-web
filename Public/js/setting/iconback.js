@@ -41,7 +41,7 @@ $().ready(function(){
 		'height' : '25',
 		'queueSizeLimit' : '1',
 		'onUploadSuccess' : function(file, data, response) {
-            $('.icon_handle_info').html('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data.info);
+            $('.icon_handle_info').html('The file ' + file.name + 'successfully' + response + ' : ' + data);
         }
 	});
     /**
