@@ -31,7 +31,7 @@ $().ready(function(){
     $('#file_upload').uploadify({
 		'swf'      : '/Public/js/public/uploadify.swf',
 		'uploader' : '/setting/iconupload',
-		'buttonImg' : '/Public/image/common/back-top',
+		'buttonImg' : '/Public/image/common/back-top.png',
 		'onUploadSuccess' : function(file, data, response) {
             alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
         }
