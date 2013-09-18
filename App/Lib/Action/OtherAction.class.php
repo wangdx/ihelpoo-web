@@ -41,6 +41,7 @@ class OtherAction extends Action {
     {
     	if ($this->isPost()) {
             if (!empty($_FILES)) {
+            	$this->ajaxReturn('http://ihelpoo.b0.upaiyun.com/useralbum/10001/iconorignal100011379422409.jpg', '上传成功', 'uploaded');
             	echo $_POST['userloginid'];
             	var_dump($_FILES["uploadedimg"]);
             	exit();
