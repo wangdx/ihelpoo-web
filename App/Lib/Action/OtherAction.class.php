@@ -51,7 +51,7 @@ class OtherAction extends Action {
                     $imageSize = $_FILES["uploadedimg"]["size"];
                     $imageTmpName = $_FILES["uploadedimg"]["tmp_name"];
                 }
-                $this->ajaxReturn(0, $imageType, 'error');
+                $this->ajaxReturn(0, $_FILES["uploadedimg"], 'error');
                 if ($imageSize > 3670016) {
                     $this->ajaxReturn(0, '上传图片太大, 最大能上传单张 3.5MB', 'error');
                 } else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
