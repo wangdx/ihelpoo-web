@@ -675,7 +675,7 @@
 	background-color: #FDE5DD !important;
 }
 .uploadify-queue-item .cancel a {
-	background: url('../img/uploadify-cancel.png') 0 0 no-repeat;
+	background: url('../image/common/uploadify-cancel.png') 0 0 no-repeat;
 	float: right;
 	height:	16px;
 	text-indent: -9999px;
