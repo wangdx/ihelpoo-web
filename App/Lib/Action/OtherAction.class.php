@@ -36,6 +36,11 @@ class OtherAction extends Action {
     	$verifi = new Verifi();
     	$verifi->img_create($_SESSION['verificationcode']);
     }
+    
+    public function iconupload()
+    {
+    	exit('error');
+    }
 
 }
 
