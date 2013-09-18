@@ -31,7 +31,7 @@ $().ready(function(){
     $('#file_upload').uploadify({
     	'formData' : {'userloginid': $("#sessionuserloginid").val()},
 		'fileObjName'      : 'uploadedimg',
-		'fileSizeLimit' : '100KB',
+		'fileSizeLimit' : '1000KB',
 		'fileTypeDesc' : '*.jpg;*.png;',
 		'progressData' : 'speed',
 		'swf'      : '/Public/js/public/uploadify.swf',
