@@ -635,12 +635,17 @@
 
 
 .uploadify-button {
-    background-color: transparent;
-    border: 1px solid red;
-    padding: 0;
+    background-color: #FE6600;
+    border-radius: 3px;
 }
-.uploadify:hover .uploadify-button {
-    background-color: transparent;
+.uploadify:hover{
+    color: #FFF;
+    background-color: #999;
+    border-color:#7BD6F6;
+    -moz-outline:4px solid #E2F5FB;
+    -moz-outline-radius:8px;
+    -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6);
+    box-shadow:0 0 10px rgba(123, 214, 246, .6);
 } 
 /*---bind.phtml ---*/
 .s_bind_ul{
