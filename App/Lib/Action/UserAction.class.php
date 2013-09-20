@@ -450,7 +450,8 @@ class UserAction extends Action {
 	            	'say_type' => 2,
 	            	'content' => $recordDynamicContent,
 	            	'time' => time(),
-	            	'from' => '动态'
+	            	'from' => '动态',
+	            	'school_id' => $recordSchoolInfo['id']
 	            );
 	            $newRecordSayId = $RecordSay->add($newRecordSayData);
 	            
@@ -606,7 +607,8 @@ class UserAction extends Action {
 		            	'say_type' => 2,
 		            	'content' => $recordDynamicContent,
 		            	'time' => time(),
-		            	'from' => '动态'
+		            	'from' => '动态',
+		            	'school_id' => $recordSchoolInfo['id']
 		            );
 		            $newRecordSayId = $RecordSay->add($newRecordSayData);
 		            
@@ -852,7 +854,8 @@ class UserAction extends Action {
 	            	'say_type' => 2,
 	            	'content' => $recordDynamicContent,
 	            	'time' => time(),
-	            	'from' => '动态'
+	            	'from' => '动态',
+	            	'school_id' => $recordSchoolInfo['id']
 	            );
 	            $newRecordSayId = $RecordSay->add($newRecordSayData);
 	            $newRecordDynamicData = array(

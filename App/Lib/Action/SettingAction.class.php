@@ -385,6 +385,7 @@ class SettingAction extends Action
         $this->assign('title', '修改头像');
         $userloginid = session('userloginid');
         $UserLogin = M("UserLogin");
+        $recordSchoolInfo = i_school_domain();
         if (!empty($_POST['icontemppath'])) {
             $cutIconFullPath = $_POST['icontemppath'];
             $iconTempRealSize = getimagesize($cutIconFullPath);
@@ -507,7 +508,8 @@ class SettingAction extends Action
                 'say_type' => 2,
                 'content' => $recordDynamicContent,
                 'time' => time(),
-                'from' => '动态'
+                'from' => '动态',
+            	'school_id' => $recordSchoolInfo['id']
             );
             $newRecordSayId = $RecordSay->add($newRecordSayData);
 

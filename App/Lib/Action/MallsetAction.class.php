@@ -517,7 +517,8 @@ class MallsetAction extends Action {
 		            	'say_type' => 2,
 		            	'content' => $recordDynamicContent,
 		            	'time' => time(),
-		            	'from' => '买卖动态'
+		            	'from' => '买卖动态',
+		            	'school_id' => $recordSchoolInfo['id']
 		            );
 		            $newRecordSayId = $RecordSay->add($newRecordSayData);
 		            $newRecordDynamicData = array(
@@ -822,7 +823,7 @@ class MallsetAction extends Action {
     	$RecordCommodityassess = M("RecordCommodityassess");
     	$UserLogin = M("UserLogin");
     	$UserShop = M("UserShop");
-    	
+    	$recordSchoolInfo = i_school_domain();
     	if ($this->isPost()) {
     		if (!empty($_POST['cid']) && !empty($_POST['deliveryaddressid'])) {
 	    		$commodityId = (int)trim(htmlspecialchars(strip_tags($_POST['cid'])));
@@ -949,6 +950,7 @@ class MallsetAction extends Action {
     	$userloginid = session('userloginid');
     	$RecordCommodity = M("RecordCommodity");
     	$RecordCommodityassess = M("RecordCommodityassess");
+    	$recordSchoolInfo = i_school_domain();
 
     	if ($this->isPost()) {
     		if (!empty($_POST['caid'])) {
@@ -1005,7 +1007,7 @@ class MallsetAction extends Action {
     	$RecordCommodity = M("RecordCommodity");
     	$RecordCommodityassess = M("RecordCommodityassess");
     	$UserShop = M("UserShop");
-
+    	$recordSchoolInfo = i_school_domain();
     	if ($this->isPost()) {
     		if (!empty($_POST['caid'])) {
     			$caid = (int)trim(htmlspecialchars(strip_tags($_POST['caid'])));
@@ -1069,7 +1071,8 @@ class MallsetAction extends Action {
 		            	'say_type' => 2,
 		            	'content' => $recordDynamicContent,
 		            	'time' => time(),
-		            	'from' => '买卖动态'
+		            	'from' => '买卖动态',
+		            	'school_id' => $recordSchoolInfo['id']
 		            );
 		            $newRecordSayId = $RecordSay->add($newRecordSayData);
 		            $newRecordDynamicData = array(
