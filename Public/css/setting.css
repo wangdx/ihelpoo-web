@@ -710,7 +710,8 @@
 }
 
 .image_from_internet_div{
-    display: ;
+    display: none;
+    margin-top: 15px;
 }
 /*---bind.phtml ---*/
 .s_bind_ul{
