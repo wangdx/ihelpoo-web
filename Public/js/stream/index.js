@@ -140,6 +140,7 @@ $().ready(function(){
     });
 	
 	/**
+	 * TODO
      * pull message
      */
     mseeageNums();
@@ -416,7 +417,7 @@ $().ready(function(){
 
     $("#img_upload_btn").click(function(){
         var upload_image_file = $('#upload_form_img_file').val();
-        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
+        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '上传中...请稍等'});
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
