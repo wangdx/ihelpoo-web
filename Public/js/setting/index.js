@@ -12,7 +12,7 @@ $().ready(function(){
         } else if (globalPattern.test(nickname)){
             $("#nicknameinfo").html('<span class="red f12"><span class="icon_wrong"></span> 不能包含& $ % \/ \\ \* < > \' `等特殊字符</span>');
             nicknameOk = "no";
-        } else if (nicknameLength < 3) {
+        } else if (nicknameLength < 2) {
             $("#nicknameinfo").html('<span class="red f12"><span class="icon_wrong"></span> 昵称太短了哦</span>');
             nicknameOk = "no";
         } else if (nicknameLength > 20) {
