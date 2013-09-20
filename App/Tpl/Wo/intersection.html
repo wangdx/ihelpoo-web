@@ -10,7 +10,7 @@
   $intersectionResult = $intersection->compare($userFirst, $userSecond);
   ?>
   <div class="wo_main">
-    <p class="wo_main_ul_p_top_intersection"><span class="fb"><?php echo $userSecond['nickname'] ?></span><span class="sex<?php echo $userSecond['sex']  ?>"></span> 和 <span class="fb">您</span><span class="sex<?php echo $userFirst['sex']  ?>"></span> 的交集</p>
+    <p class="wo_main_ul_p_top_intersection"><span class="fb"><?php echo $userSecond['nickname'] ?><span class="sex<?php echo $userSecond['sex']  ?>"></span></span> 和 <span class="fb">您<span class="sex<?php echo $userFirst['sex']  ?>"></span></span> 的交集</p>
     <ul class="wo_main_intersection">
       <li class="wo_ma_i_li_title"><span class="icon_n_color"></span>根据个人信息：</li>
       <li><?php echo $intersectionResult['sex']['text'] ?></li>
