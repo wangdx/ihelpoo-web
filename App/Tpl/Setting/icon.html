@@ -45,6 +45,11 @@
       <input id="file_upload" name="file_upload" type="file" />
       <input id="sessionuserloginid" value="<?php echo $userloginedrecord['uid']; ?>" type="hidden" />
       <span class="icon_handle_info"></span>
+      <a class="f12" id="image_from_internet">网络图片</a>
+      <div class="image_from_internet_div">
+      	输入地址: <input id="image_from_internet_input" type="text" class="input_style"/> <span class="f12 gray">(例如http://www.example.com/a.jpg)</span>
+      	<a class="btn" id="image_from_internet_submit">确定</a>
+      </div>
     </form>
     <div class="image_upload_div_right">
     	<a href="__ROOT__/wo/album/<?php echo $userloginedrecord['uid']; ?>/1"><span class="icon_pump"></span> 从相册挑选</a>

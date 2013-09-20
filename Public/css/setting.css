@@ -708,6 +708,10 @@
 	height: 3px;
 	width: 1px;
 }
+
+.image_from_internet_div{
+    display: ;
+}
 /*---bind.phtml ---*/
 .s_bind_ul{
     border-bottom: 1px solid #CCC;
