@@ -133,10 +133,11 @@
     padding-top: 15px;
 }
 .about_company_img_ul li{
-    padding: 5px;
-    display: inline;
+    padding: 7px;
+    display: inline-block;
 }
 .about_company_img_ul li img{
     width: 370px;
     height: 231px;
+    border: 1px solid #CCC;
 }
