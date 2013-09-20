@@ -714,7 +714,8 @@
     margin-top: 15px;
 }
 #image_from_internet_input{
-    width: 200px;
+    width: 260px;
+    font-size: 12px;
 }
 /*---bind.phtml ---*/
 .s_bind_ul{
