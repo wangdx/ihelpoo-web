@@ -134,8 +134,9 @@
 }
 .about_company_img_ul li{
     padding: 5px;
+    display: inline;
 }
 .about_company_img_ul li img{
-    width: 760px;
-    height: 475px;
+    width: 370px;
+    height: 231px;
 }
