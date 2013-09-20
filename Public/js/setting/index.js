@@ -105,8 +105,8 @@ $().ready(function(){
         });
     });
     $("#set_submit").click(function(){
-        $('#ajaxprogressbar').html($infoLoading);
         if (nicknameOk == "yes" && introductionOk == "yes") {
+        	$('#ajaxprogressbar').html($infoLoading);
             $.post(baseUrl + "setting/index", $("#settingform").serialize(), function(data){
                 if (data.status == "yes") {
                     $("#ajaxprogressbar").html("<p id='infoupdateok'><span class='icon_right'></span> 更新成功</p>");
