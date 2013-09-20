@@ -66,7 +66,7 @@ var _hmt = _hmt || [];
 			<p class="index_loginfast_div_name_p">
 				<a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '2') { echo "潜水登录"; } else { echo "正常登录"; } ?>)</span></a>
 			</p>
-			<p class="index_loginfast_div_registe_p"><a href="__ROOT__/user/register" class="black_l f12">注册账号</a></p>
+			<p class="index_loginfast_div_registe_p"><a href="__ROOT__/user/register" class="white f12">注册账号</a></p>
 		</div>
 	<?php } else { ?>
 	    <div class="mim_loginbox">
@@ -93,9 +93,9 @@ var _hmt = _hmt || [];
 				  <?php if ($configIsLoginQq) { ?><span id="qqLoginBtn"></span><?php } ?>
 			  </div>
 			  <div class="loginbox_more gray f12">
-			  	<a href="__ROOT__/user/resetpw">忘记密码</a> | <a href="__ROOT__/user/register">注册</a>
+			  	<a href="__ROOT__/user/resetpw" class="white">忘记密码</a> | <a href="__ROOT__/user/register" class="white">注册</a>
 			  	<?php if ($configIsLoginWeibo || $configIsLoginQq) { ?>
-			  	<a id="login_weibo_qq_switch" class="fr" isclick="false">微博、QQ登录</a>
+			  	<a id="login_weibo_qq_switch" class="fr white" isclick="false">微博、QQ登录</a>
 			  	<?php } ?>
 			  </div>
 		  </form>
