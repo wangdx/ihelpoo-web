@@ -717,6 +717,7 @@
     width: 260px;
     font-size: 12px;
     border-radius: 2px;
+    vertical-align: middle;
 }
 /*---bind.phtml ---*/
 .s_bind_ul{
