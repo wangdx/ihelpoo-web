@@ -716,6 +716,7 @@
 #image_from_internet_input{
     width: 260px;
     font-size: 12px;
+    border-radius: 2px;
 }
 /*---bind.phtml ---*/
 .s_bind_ul{
