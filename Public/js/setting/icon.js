@@ -7,6 +7,41 @@ $().ready(function(){
     var urlcheckpattern = /(http:\/\/)?[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*/;
     
     /**
+     * image from internet
+     */
+    $('#image_from_internet').toggle(
+        function(){
+        	$('.image_from_internet_div').slideDown('fast');
+        },
+        function(){
+        	$('.image_from_internet_div').slideUp('fast');
+        }
+    );
+    
+    $('#image_from_internet_submit').live('click', function(){
+    	var album_image_url_internet = $('#image_from_internet_input').val();
+        if (urlcheckpattern.test(album_image_url_internet) && album_image_url_internet != '0') {
+        	$('#usericontarget').attr({'src': album_image_url_internet});
+            $('#preview').attr({'src': album_image_url_internet});
+            $('#img_temp_path').val(album_image_url_internet);
+            $('.image_upload_div').slideUp('slow');
+            $('.image_cut_div').slideDown('fast');
+            //icon cut
+            jQuery('#usericontarget').Jcrop({
+                minSize: [200, 150],
+                setSelect: [10, 8, 480, 360],
+                bgColor: "#000",
+                bgOpacity: 0.6,
+                onChange: updatePreview,
+                onSelect: updateCoords,
+                aspectRatio: 4/3
+            });
+        } else {
+        	$('.icon_handle_info').fadeIn('fast').html("<span class='f12 red'>图片地址格式错误</span>").delay(1000).fadeOut('fast');
+        }
+	});
+    
+    /**
      * new icon from url
      */
     var album_image_url = $('#image_album').val();
