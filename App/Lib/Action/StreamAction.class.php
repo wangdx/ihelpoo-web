@@ -180,8 +180,6 @@ class StreamAction extends Action
                 foreach ($tempImageUrlsArray as $tempImageUrlString) {
                     if (preg_match("/undefined/", $tempImageUrlString)) {
                         $imageUrlString;
-                    } else if (preg_match("/ihelpooupload/", $tempImageUrlString)) {
-                        $imageUrlString .= $tempImageUrlString . ";";
                     } else {
                         $imageOutNewData = array(
                             'id' => '',

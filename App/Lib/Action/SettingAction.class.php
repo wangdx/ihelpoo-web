@@ -500,6 +500,19 @@ class SettingAction extends Action
             /**
              * add default dynamic record.
              */
+            $RecordOutimg = M("RecordOutimg");
+            $icoRealPath = i_icon_check($userloginid, $newImageName, "l");
+            $imageOutNewData = array(
+                'id' => '',
+                'uid' => $userloginid,
+                'rpath' => $icoRealPath,
+                'time' => time(),
+            );
+            $imageOutLastInsertId = $RecordOutimg->add($imageOutNewData);
+            
+            /**
+             * 
+             */
             $recordDynamicContent = "我刚刚换了新头像噢 :)";
             $RecordSay = M("RecordSay");
             $RecordDynamic = M("RecordDynamic");
@@ -507,6 +520,7 @@ class SettingAction extends Action
                 'uid' => $userloginid,
                 'say_type' => 2,
                 'content' => $recordDynamicContent,
+                'image' => $imageOutLastInsertId,
                 'time' => time(),
                 'from' => '动态',
             	'school_id' => $recordSchoolInfo['id']
@@ -521,214 +535,8 @@ class SettingAction extends Action
                 'url_id' => $lastRecordUserAlbum['id']
             );
             $RecordDynamic->add($newRecordDynamicData);
+            
             $this->ajaxReturn($newfilepath, '保存成功', 'ok');
-        }
-        $this->display();
-    }
-    
-	public function iconback()
-    {
-        $this->assign('title', '修改头像');
-        $userloginid = session('userloginid');
-        $UserLogin = M("UserLogin");
-        if (!empty($_POST['icontemppath'])) {
-            $cutIconFullPath = $_POST['icontemppath'];
-            $iconTempRealSize = getimagesize($cutIconFullPath);
-            $iconRealWidth = $iconTempRealSize['0'];
-            $iconRealHeight = $iconTempRealSize['1'];
-            $imageType = $iconTempRealSize['mime'];
-
-            /**
-             * Calculate the ratio first
-             */
-            $iconRatio = $iconRealWidth / 500;
-            $dst_x = round($_POST['iconx'] * $iconRatio);
-            $dst_y = round($_POST['icony'] * $iconRatio);
-            $dst_w = round($_POST['iconw'] * $iconRatio);
-            $dst_h = round($_POST['iconh'] * $iconRatio);
-
-            if ($imageType == 'image/jpeg') {
-                $imgOld = imagecreatefromjpeg($cutIconFullPath);
-            } else if ($imageType == 'image/gif') {
-                $imgOld = imagecreatefromgif($cutIconFullPath);
-            } else if ($imageType == 'image/png') {
-                $imgOld = imagecreatefrompng($cutIconFullPath);
-            }
-
-            /**
-             * 500 * 375 size
-             */
-            $imgObj = imagecreatetruecolor(500, 375);
-
-            /**
-             * php function book page 398
-             */
-            imagecopyresampled($imgObj, $imgOld, 0, 0, $dst_x, $dst_y, 500, 375, $dst_w, $dst_h);
-
-            /**
-             * new image file
-             */
-            $srcTempLargeIconFilename = 'temp' . $userloginid . '.jpg';
-            $srcTempMiddleIconFilename = 'temp' . $userloginid . '_m.jpg';
-            $srcTempSmallIconFilename = 'temp' . $userloginid . '_s.jpg';
-            imagejpeg($imgObj, $srcTempLargeIconFilename);
-
-            /**
-             * destroy
-             */
-            imagedestroy($imgObj);
-            imagedestroy($imgOld);
-
-            /**
-             * create size middle 180 * 135 & small 68 * 51
-             */
-            $imgLarge = imagecreatefromjpeg($srcTempLargeIconFilename);
-            $imgMiddleObj = imagecreatetruecolor(180, 135);
-            imagecopyresampled($imgMiddleObj, $imgLarge, 0, 0, 0, 0, 180, 135, 500, 375);
-            imagejpeg($imgMiddleObj, $srcTempMiddleIconFilename, 100);
-            $imgSmallObj = imagecreatetruecolor(68, 51);
-            imagecopyresampled($imgSmallObj, $imgLarge, 0, 0, 0, 0, 68, 51, 500, 375);
-            imagejpeg($imgSmallObj, $srcTempSmallIconFilename, 100);
-            imagedestroy($imgMiddleObj);
-            imagedestroy($imgSmallObj);
-            imagedestroy($imgLarge);
-
-            /**
-             * image handle ok print json
-             */
-            $fullpath = "/useralbum/" . $userloginid . "/";
-            $newImageName = "icon" . $userloginid . time();
-            $storageLargeIconFilename = $fullpath . $newImageName . ".jpg";
-            $storageMiddleIconFilename = $fullpath . $newImageName . "_m.jpg";
-            $storageSmallIconFilename = $fullpath . $newImageName . "_s.jpg";
-
-            /**
-             * storage in upyun
-             */
-            Vendor('Ihelpoo.Upyun');
-            $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-            try {
-                $fh = fopen($srcTempLargeIconFilename, 'rb');
-                $rsp = $upyun->writeFile($storageLargeIconFilename, $fh, True);
-                fclose($fh);
-
-                $fh = fopen($srcTempMiddleIconFilename, 'rb');
-                $rsp = $upyun->writeFile($storageMiddleIconFilename, $fh, True);
-                fclose($fh);
-
-                $fh = fopen($srcTempSmallIconFilename, 'rb');
-                $rsp = $upyun->writeFile($storageSmallIconFilename, $fh, True);
-                fclose($fh);
-                $imageStorageUrl = image_storage_url();
-                $newfilepath = $imageStorageUrl . $storageLargeIconFilename;
-            } catch (Exception $e) {
-                $errorUpyunCode = $e->getCode();
-                $errorUpyunMessage = $e->getMessage();
-                $errorUpyun = 'upyun-code:' . $errorUpyunCode . 'upyun-message:' . $errorUpyunMessage;
-                $this->ajaxReturn(0, $errorUpyun, 'wrong');
-            }
-
-            unset($srcTempLargeIconFilename);
-            unset($srcTempMiddleIconFilename);
-            unset($srcTempSmallIconFilename);
-
-            /**
-             * update i_user_login
-             */
-            $newLoginIconData = array(
-                'uid' => $userloginid,
-                'icon_fl' => 1,
-                'icon_url' => $newImageName,
-            );
-            $UserLogin->save($newLoginIconData);
-
-            /**
-             * add default dynamic record.
-             */
-            $recordDynamicContent = "我刚刚换了新头像噢 :)";
-            $RecordSay = M("RecordSay");
-            $RecordDynamic = M("RecordDynamic");
-            $newRecordSayData = array(
-                'uid' => $userloginid,
-                'say_type' => 2,
-                'content' => $recordDynamicContent,
-                'time' => time(),
-                'from' => '动态'
-            );
-            $newRecordSayId = $RecordSay->add($newRecordSayData);
-
-            $UserAlbum = M("UserAlbum");
-            $lastRecordUserAlbum = $UserAlbum->where("uid = $userloginid")->order('time DESC')->find();
-            $newRecordDynamicData = array(
-                'sid' => $newRecordSayId,
-                'type' => 'changeicon',
-                'url_id' => $lastRecordUserAlbum['id']
-            );
-            $RecordDynamic->add($newRecordDynamicData);
-            $this->ajaxReturn($newfilepath, '保存成功', 'ok');
-        }
-
-        if ($this->isPost()) {
-            if (!empty($_FILES)) {
-                if ($_FILES["uploadedimg"]["error"] > 0) {
-                    $this->ajaxReturn(0, '上传图片失败, info' . $_FILES["uploadedimg"]["error"], 'error');
-                } else {
-                    $imageOldName = $_FILES["uploadedimg"]["name"];
-                    $imageType = $_FILES["uploadedimg"]["type"];
-                    $imageType = trim($imageType);
-                    $imageSize = $_FILES["uploadedimg"]["size"];
-                    $imageTmpName = $_FILES["uploadedimg"]["tmp_name"];
-                }
-                if ($imageSize > 3670016) {
-                    $this->ajaxReturn(0, '上传图片太大, 最大能上传单张 3.5MB', 'error');
-                } else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
-
-                    /**
-                     * storage in upyun
-                     */
-                    Vendor('Ihelpoo.Upyun');
-                    $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-                    $fh = fopen($imageTmpName, 'rb');
-                    $fileName = 'iconorignal' . $userloginid . time() . '.jpg';
-                    $storageTempFilename = '/useralbum/' . $userloginid . '/' . $fileName;
-                    $rsp = $upyun->writeFile($storageTempFilename, $fh, True);
-                    fclose($fh);
-                    $imageStorageUrl = image_storage_url();
-                    $newfilepath = $imageStorageUrl . $storageTempFilename;
-
-                    $opts = array(
-                        UpYun::X_GMKERL_TYPE => 'fix_max',
-                        UpYun::X_GMKERL_VALUE => 150,
-                        UpYun::X_GMKERL_QUALITY => 95,
-                        UpYun::X_GMKERL_UNSHARP => True
-                    );
-                    $fh = fopen($imageTmpName, 'rb');
-                    $storageThumbTempFilename = '/useralbum/' . $userloginid . '/thumb_' . $fileName;
-                    $rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
-                    fclose($fh);
-
-                    /**
-                     * insert into i_user_album
-                     */
-                    $UserAlbum = M("UserAlbum");
-                    $newAlbumIconData = array(
-                        'uid' => $userloginid,
-                        'type' => 1,
-                        'url' => $newfilepath,
-                        'size' => $imageSize,
-                        'time' => time()
-                    );
-                    $UserAlbum->add($newAlbumIconData);
-
-                    /**
-                     * ajax return
-                     */
-                    $this->ajaxReturn($newfilepath, '上传成功', 'uploaded');
-                } else {
-                    $this->ajaxReturn(0, '上传图片格式错误, 目前仅支持.jpg .png .gif', 'error');
-                }
-            }
-            exit();
         }
         $this->display();
     }
