@@ -61,8 +61,10 @@ $().ready(function(){
         $('#nicknameinfo').html($infoLoading);
         if (nicknamecheck == '') {
             $('#nicknameinfo').html('× 昵称不能为空');
-        } else if (nicknamelength > 25) {
+        } else if (nicknamelength > 20) {
             $('#nicknameinfo').html('× 昵称太长了');
+        } else if (nicknamelength < 2) {
+            $('#nicknameinfo').html('× 昵称太短了');
         } else {
         	$.ajax({
                 type: 'POST',
