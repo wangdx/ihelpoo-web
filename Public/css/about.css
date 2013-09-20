@@ -139,5 +139,5 @@
 .about_company_img_ul li img{
     width: 370px;
     height: 231px;
-    border: 1px solid #CCC;
+    border-radius: 3px;
 }
