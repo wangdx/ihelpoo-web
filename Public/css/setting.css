@@ -596,6 +596,7 @@
     border: 1px solid #EEE;
     margin: 0 0 15px 0;
     width: 500px;
+    z-index: 9999;
 }
 #preview_div_box{
     border: 1px solid #CCCCCC;
