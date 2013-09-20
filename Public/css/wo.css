@@ -554,6 +554,9 @@
     width: 740px;
     position: relative;
 }
+.wo_main_ul_p_top_intersection .fb{
+    display: inline-block;
+}
 .wo_main_diffudion{
     width: 750px;
 }
