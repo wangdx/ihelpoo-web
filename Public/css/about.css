@@ -119,7 +119,7 @@
 /*--- company ---*/
 .about_company_ul{
     background: none repeat scroll 0 0 #F5F5F5;
-    border: 1px solid #EEEEEE;
+    border: 1px dotted #EEEEEE;
     border-radius: 3px 3px 3px 3px;
     padding: 10px;
 }
