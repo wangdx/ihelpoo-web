@@ -713,6 +713,9 @@
     display: none;
     margin-top: 15px;
 }
+#image_from_internet_input{
+    width: 200px;
+}
 /*---bind.phtml ---*/
 .s_bind_ul{
     border-bottom: 1px solid #CCC;
