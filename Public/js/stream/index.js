@@ -915,10 +915,12 @@ $().ready(function(){
 		    		var reg = new RegExp("thumb_","g");
 		    		var imageurllarge = imageurl.replace(reg,"");
 		    	}
-		    	imageTempContent = $(this).parent().html();
+		    	var imageTempContent = $(this).parent().html();
+		    	$(this).parent().val(imageTempContent);
 		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" enlargeswitch="on" title="点击缩小" /></p>');
 	    	} else {
-	    		$(this).parent().html(imageTempContent);
+	    		var imageTempContentBack = $(this).parent().val();
+	    		$(this).parent().html(imageTempContentBack);
 	    	}
     	} else {
 	    	var enlargeSwitch = $(this).attr('enlargeswitch');
@@ -928,10 +930,12 @@ $().ready(function(){
 		    		var reg = new RegExp("thumb_","g");
 		    		var imageurllarge = imageurl.replace(reg,"");
 		    	}
-		    	imageTempContent = $(this).parent().html();
+		    	var imageTempContent = $(this).parent().html();
+		    	$(this).parent().val(imageTempContent);
 		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" enlargeswitch="on" title="点击缩小" /></p>');
 	    	} else {
-	    		$(this).parent().html(imageTempContent);
+	    		var imageTempContentBack = $(this).parent().val();
+	    		$(this).parent().html(imageTempContentBack);
 	    	}
     	}
     });
