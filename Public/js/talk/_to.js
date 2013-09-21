@@ -52,9 +52,9 @@ $(function () {
             dataType: "json",
             success: function (msg) {
                 if (msg.status == 'ok') {
-                    $('#add_talklist_user').html('&#12288; <span class="icon_right"></span> ' + msg.info);
+                    $('#add_talklist_user').html('&#12288;<span class="icon_right"></span> ' + msg.info);
                 } else {
-                	$('#add_talklist_user').html('&#12288; <span class="icon_attention"></span> ' + msg.info);
+                	$('#add_talklist_user').html('&#12288;<span class="icon_attention"></span> ' + msg.info);
                 }
             }
         });
