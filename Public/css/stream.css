@@ -1114,8 +1114,14 @@
     border-radius: 3px;
 }
 .i_record_diffusion li{
+    display: inline-block;
+    margin: 3px 5px 3px 0;
+}
+*+html .i_record_diffusion li{
     display: inline;
-    margin: 5px 15px 5px 0;
+}
+*html .i_record_diffusion li{
+    display: inline;
 }
 .i_record_plus_info{
     margin: 10px 0 5px;
@@ -1129,7 +1135,7 @@
 }
 .i_record_plus li{
     display: inline-block;
-    margin: 5px 10px 5px 0;
+    margin: 3px 5px 3px 0;
 }
 .i_record_plus li span{
     display: block;
