@@ -797,7 +797,33 @@ class AjaxAction extends Action {
         		);
         		$UserInfo->save($newUserInfoPrioritiedData);
         		
-        		//TODO
+                /**
+                 * msg active
+                 */
+                $MsgActive = M("MsgActive");
+                $recordMsgActive = $MsgActive->where("uid = $quanUid AND `reason` LIKE '%" . $userloginid . "%'")->find();
+                if (empty($recordMsgActive['id'])) {
+	                $recordUserLogin['active'] = $recordUserLogin['active'] == NULL ? 0 : $recordUserLogin['active'];
+	                $msgActiveArray = array(
+	                    'id' => '',
+	                    'uid' => $quanUid,
+	                    'total' => $recordUserLogin['active'],
+	                    'change' => 5,
+	                    'way' => 'add',
+	                    'reason' => '有人圈了你 (每人最多加1次 user:'.$userloginid.')',
+	                    'time' => time(),
+	                    'deliver' => 0,
+	                );
+	                $MsgActive->add($msgActiveArray);
+	                $recordUserLoginActive = $recordUserLogin['active'] + 5;
+	                $updateUserLoginInfo = array(
+	                    'uid' => $quanUid,
+	                    'active' => $recordUserLoginActive,
+	                );
+	                $UserLogin->save($updateUserLoginInfo);
+                }
+                
+                //TODO
         		/**
         		 * send system message to prioritied user
         		 *
@@ -805,11 +831,7 @@ class AjaxAction extends Action {
                  * if ($userLogin['type'] == 2) 
 	             * $msgPriorityUserType2Content = "你加入了 ".$userLogin['nickname']." 组织; 默认接收我们组织推送的消息, 信息会越来越灵通:)";
         		 */
-
-
                 i_savenotice($userloginid, $quanUid, 'mutual/priority', '');
-
-        		
         		$this->ajaxReturn(0,'成功圈了ta','ok');
         	}
         }
