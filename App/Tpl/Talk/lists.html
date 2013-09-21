@@ -29,8 +29,7 @@
     </a>
     <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" style="display:inline-block"><span class="sex<?php echo $talkList['sex'] ?>"></span><?php echo $talkList['nickname'] ?></a>
     <span class="f12 gray"><?php echo i_time($talkList['time']) ?></span>
-    <a href="__ROOT__/talk/lists/<?php echo $talkList['uid'] ?>?action=delete">移除</a>
-    <p class="f12 gray"><?php echo $talkList['introduction'] ?></p>
+    <a href="__ROOT__/talk/lists/<?php echo $talkList['uid'] ?>?action=delete" class="f12 fr">移除</a>
     </li>
     <?php
       $i++;
