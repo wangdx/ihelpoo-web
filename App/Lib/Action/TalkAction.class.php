@@ -438,9 +438,7 @@ class TalkAction extends Action
         if (!empty($allTalkList['id'])) {
             $talkLists = $TalkList->where("i_talk_list.uid = $userloginid")
                 ->join('i_user_login ON i_talk_list.listuid = i_user_login.uid')
-                ->join('i_user_info ON i_talk_list.listuid = i_user_info.uid')
-                ->order('i_user_login.online DESC')
-                ->limit(100)
+                ->order('i_talk_list.time DESC')
                 ->select();
             $this->assign('talkLists', $talkLists);
         }

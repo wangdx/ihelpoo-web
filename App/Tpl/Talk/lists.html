@@ -20,12 +20,16 @@
     <?php
     $i = 0;
     foreach ($talkLists as $talkList):?>
-    <li><a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>">
+    <li>
+    <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>">
       <span style="display: inline-block; position: relative; width: 72px; height: 56px" >
         <img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="51" />
         <span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
       </span>
-    </a> <span class="sex<?php echo $talkList['sex'] ?>"></span><?php echo $talkList['nickname'] ?> <a href="__ROOT__/talk/lists/<?php echo $talkList['uid'] ?>?action=delete">移除</a>
+    </a>
+    <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" style="display:inline-block"><span class="sex<?php echo $talkList['sex'] ?>"></span><?php echo $talkList['nickname'] ?></a>
+    <span class="f12 gray"><?php echo i_time($talkList['time']) ?></span>
+    <a href="__ROOT__/talk/lists/<?php echo $talkList['uid'] ?>?action=delete">移除</a>
     <p class="f12 gray"><?php echo $talkList['introduction'] ?></p>
     </li>
     <?php
