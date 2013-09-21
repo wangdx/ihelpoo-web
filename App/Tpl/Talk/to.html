@@ -4,10 +4,7 @@
 ?>
 <include file="Talk:header"/>
 <link href="__PUBLIC__/css/talk.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
-
-
 <div class="main">
-
     <?php
     Vendor('Ihelpoo.Ofunction');
     $ofunction = new Ofunction();
@@ -32,19 +29,12 @@
 	}
 ?>
     <ul class="user_list_ul">
-        <?php
-  foreach ($talkLists as $talkList):
-  ?>
+        <?php foreach ($talkLists as $talkList): ?>
         <li>
-            <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a"
-               style="display: inline-block; position: relative; width: 56px; height: 46px"
-               id="<?php echo $talkList['uid'] ?>">
-                <img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40"
-                     class="radius3"/>
-                <span class="online<?php echo $talkList['online'] ?>"
-                      style="position: absolute; bottom: 0; right: 0;"></span>
+            <a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px" id="<?php echo $talkList['uid'] ?>">
+                <img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3"/>
+                <span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
             </a>
-
             <p class="user_list_nickname">
                 <span class="blue_link"><?php echo $ofunction->cut_str($talkList['nickname'],5) ?></span><span
                     class="sex<?php echo $talkList['sex'] ?>"></span>
@@ -60,8 +50,7 @@
     <div class="user_talk_info">
         <ul class="user_talk_info_ul">
             <li>
-                <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>"
-                   style="display: inline-block; position: relative; width: 72px; height: 56px">
+                <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>" style="display: inline-block; position: relative; width: 72px; height: 56px">
                     <img src="<?php echo i_icon_check($toUserRecord['uid'], $toUserRecord['icon_url'], 's') ?>" height="51"/>
                     <span class="online<?php echo $toUserRecord['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
                 </a>
@@ -92,16 +81,14 @@
 
     <div class="user_talk_ad">
         <a href="__ROOT__/talk" class="f12 gray"><i class="ico_talk"></i>悄悄话首页</a><br/><br/>
-        <a href="__ROOT__/talk/add/<?php echo $toUserRecord['uid'] ?>" class="f12 gray"><i class="ico_favourite"></i>加好友</a>
+        <a id ="add_talklist_user" class="f12 gray"><i class="ico_favourite"></i>加好友</a>
     </div>
     <div class="user_talk_main_box">
   <span class="gray u_t_m_b_talkto">
     你正在和 <a href="__ROOT__/wo/<?php echo $toUserRecord['uid'] ?>"><?php echo $toUserRecord['nickname']; ?></a> 对话
     <span id="input_status" class="f12 black_l"></span>
   </span>
-        <a href="__ROOT__/talk/history/<?php echo $toUserRecord['uid'] ?>" class="u_t_m_b_more"><span
-                class="icon_plus"></span>更多对话记录</a>
-
+        <a href="__ROOT__/talk/history/<?php echo $toUserRecord['uid'] ?>" class="u_t_m_b_more"><span class="icon_plus"></span>更多对话记录</a>
         <div id="show_message_div_outer">
             <div id="show_message_div">
 
@@ -118,9 +105,7 @@
             </div>
         </div>
         <div class="send_message_textarea_div">
-            <p>&nbsp;&nbsp;<span class="post_icon" id="textareaicon" title="表情"></span> &nbsp;<span class="post_img"
-                                                                                                    id="textareaimg"
-                                                                                                    title="图片"></span>
+            <p>&nbsp;&nbsp;<span class="post_icon" id="textareaicon" title="表情"></span> &nbsp;<span class="post_img" id="textareaimg" title="图片"></span>
             </p>
             <!-- emotionbox hide -->
             <div id="emotionbox_item">
@@ -136,7 +121,6 @@
             <!-- image upload hide -->
             <div class="img_upload_comment_form_div">
                 <span id="img_upload_comment_form_div_close" class="icon_quit" title="关闭"></span>
-
                 <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
                     <input id="upload_form_img_file" name="uploadedimg" type="file"/>
                     <a class="btn f12" id="img_upload_btn">上传</a>
@@ -152,7 +136,5 @@
         </div>
         <input type="hidden" id="data_touid" value="<?php echo $toUserRecord['uid'] ?>"/>
     </div>
-
 </div>
-
 <include file="Public:footer"/>

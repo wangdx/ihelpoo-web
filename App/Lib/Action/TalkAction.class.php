@@ -366,16 +366,33 @@ class TalkAction extends Action
     {
         $userloginid = session('userloginid');
         $this->assign('title', '加好友 悄悄话');
+        $UserLogin = M("UserLogin");
+        $TalkList = M("TalkList");
+        
+        if ($this->isPost()) {
+        	$toUid = (int)$_POST['touid'];
+        	$talkListRecord = $TalkList->where("uid = $userloginid AND listuid = $toUid")->find();
+        	if (empty($talkListRecord['id'])) {
+        		$talkListData = array(
+	                'id' => '',
+	                'uid' => $userloginid,
+	                'listuid' => $toUid,
+	                'time' => time(),
+        		);
+        		$TalkList->add($talkListData);
+        		$this->ajaxReturn(0, '添加成功', 'ok');
+        	} else {
+        		$this->ajaxReturn(0, '已经添加了', 'exist');
+        	}
+        }
+        
         $addUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
-
-        $IUserLogin = D("IUserLogin");
-        $addUserRecord = $IUserLogin->userExists($addUserId);
+        $addUserRecord = $UserLogin->find($addUserId);
         $this->assign('addUserLoginRecord', $addUserRecord);
-
+        
         /**
          * add to talk list
          */
-        $TalkList = M("TalkList");
         $talkListRecord = $TalkList->where("uid = $userloginid AND listuid = $addUserId")->find();
         if (empty($talkListRecord['id'])) {
             $talkListData = array(

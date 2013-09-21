@@ -39,6 +39,27 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
+    
+    /**
+     * add talklist user 
+     */
+    $('#add_talklist_user').click(function () {
+    	var data_touid = $('#data_touid').val();
+    	$.ajax({
+            type: "POST",
+            url: baseUrl + "talk/add",
+            data: {touid: data_touid},
+            dataType: "json",
+            success: function (msg) {
+                if (msg.status == 'ok') {
+                    $('#add_talklist_user').html('<span class="icon_right"></span>' + msg.info);
+                } else {
+                	$('#add_talklist_user').html('<span class="icon_attention"></span>' + msg.info);
+                }
+            }
+        });
+    });
+    
 });
 
 function prepareUI() {
