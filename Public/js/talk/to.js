@@ -13,14 +13,12 @@ $(function () {
         chat.send();
     });
 
-
     prepareUI();
 
     var noActionInterval = 5; // seconds
     $("textarea#send_message_textarea").keypress(function () {
         typing();
     });
-
 
     var noTypeTimeout = setTimeout(inActive, noActionInterval * 1000);
 
@@ -313,7 +311,6 @@ function Chat(state) {
         var image = message.data.image;
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
-
 
         var curTo = $('#data_touid').val();
 
