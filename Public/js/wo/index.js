@@ -42,7 +42,7 @@ $().ready(function(){
     });
     
     $('.s_li_p_content_image_title_up').live('click', function(){
-    	var imageTempContentBack = $(this).parent().val();
+    	var imageTempContentBack = $(this).parent().parent().val();
 		$(this).parent().html(imageTempContentBack);
 	});
 
