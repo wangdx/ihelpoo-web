@@ -940,7 +940,8 @@ $().ready(function(){
     	}
     });
     $('.s_li_p_content_image_title_up').live('click', function(){
-	    $(this).parent().parent().html(imageTempContent);
+    	var imageTempContentBack = $(this).parent().val();
+		$(this).parent().html(imageTempContentBack);
 	});
 
     /**
