@@ -657,7 +657,7 @@ class StreamAction extends Action
         $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
         if (15 < (time() - $recordWebStatus['time'])) {
             $userOnlineObject = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->select();
-            $recordOnlineUserNums = $userOnlineObject->count();
+            $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
             $newWebStats = array(
                 'sid' => $recordSchoolInfo['id'],
                 'online_nums' => $recordOnlineUserNums,
