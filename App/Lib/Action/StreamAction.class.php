@@ -656,13 +656,23 @@ class StreamAction extends Action
         $WebStatus = M("WebStatus");
         $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
         if (15 < (time() - $recordWebStatus['time'])) {
-            $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
+            $userOnlineObject = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->select();
+            $recordOnlineUserNums = $userOnlineObject->count();
             $newWebStats = array(
                 'sid' => $recordSchoolInfo['id'],
                 'online_nums' => $recordOnlineUserNums,
                 'time' => time(),
             );
             $WebStatus->save($newWebStats);
+            foreach ($userOnlineObject as $userOnlineOne) {
+	        	if (60 < (time() - $userOnlineOne['last_active_ti'])) {
+	        		$updateUserOnlineStatusData = array(
+	                    'uid' => $userOnlineOne['uid'],
+	            	    'online' => 0,
+	        		);
+	        		$UserLogin->save($updateUserOnlineStatusData);
+	        	}
+        	}
         } else {
             $recordOnlineUserNums = $recordWebStatus['online_nums'];
         }
