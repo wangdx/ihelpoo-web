@@ -76,7 +76,7 @@ class LabAction extends Action {
         $WebStatus = M("WebStatus");
         $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
         if (5 < (time() - $recordWebStatus['time'])) {
-        	$userOnlineNums = $UserLogin->where("online != 0 AND school = $recordSchoolInfo[id]")->count();
+        	$userOnlineNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
         	$newWebStats = array(
         		'sid' => $recordSchoolInfo['id'],
         		'online_nums' => $userOnlineNums,
@@ -99,7 +99,7 @@ class LabAction extends Action {
         /**
          * hidden online user nums 
          */
-        $allUserOnlineNums = $UserLogin->where("online != 0")->count();
+        $allUserOnlineNums = $UserLogin->where("online > 0")->count();
         $otherSchoolOnlineNums = $allUserOnlineNums - $userOnlineNums;
         $hiddenUserNums = $UserLogin->where("online = 2 AND school = $recordSchoolInfo[id]")->count();
         $this->assign('hiddenUserNums', $hiddenUserNums);
