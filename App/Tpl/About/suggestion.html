@@ -35,6 +35,7 @@
   </form>
   <?php } ?>
   </div>
+  <div class="suggestion_list_div">
   <ul class="suggestion_list_ul">
   <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
   	<li>
@@ -71,6 +72,7 @@
   <p class="paging_p f12 gray">共<?php echo $totalRecordNums ?>条建议 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
   <?php if ($totalPages > 1) {  i_page_show("about/suggestion", $totalPages); } ?>
+  </div>
   </div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/about/suggestion.js?id=1"></script>
