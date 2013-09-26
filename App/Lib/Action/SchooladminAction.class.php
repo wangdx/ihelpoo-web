@@ -229,10 +229,12 @@ class SchooladminAction extends Action {
     			if ($_FILES["uploadimage"]["error"] > 0) {
     				redirect('/schooladmin/indexbgimg', 3, 'file error...'.$_FILES["uploadimage"]["error"]);
     			} else {
-    				$imageOldName = $_FILES["uploadimage"]["name"];
     				$imageType = $_FILES["uploadimage"]["type"];
     				$imageSize = $_FILES["uploadimage"]["size"];
     				$imageTmpName = $_FILES["uploadimage"]["tmp_name"];
+    				$tempRealSize = getimagesize($_FILES["uploadimage"]["tmp_name"]);
+    				$imageRealWidth = $tempRealSize['0'];
+    				$imageRealHeight = $tempRealSize['1'];
     			}
     			
     			if ($imageSize > 800000) {
@@ -247,6 +249,21 @@ class SchooladminAction extends Action {
         			$rsp = $upyun->writeFile($storageFilename, $fh, True);
         			fclose($fh);
         			$newfilepath = $imageStorageUrl.$storageFilename;
+        			
+        			/**
+        			 * insert into i_school_album
+        			 */
+        			$SchoolAlbum = M("UserAlbum");
+        			$newAlbumIconData = array(
+        				'id' => '',
+        				'school_id' => $schoolid,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'height' => $imageRealHeight,
+        				'width' => $imageRealWidth,
+        				'time' => time()
+        			);
+        			$SchoolAlbum->add($newAlbumIconData);
         			
         			/**
         			 * webmaster user operating record
