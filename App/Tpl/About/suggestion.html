@@ -68,6 +68,10 @@
   	</li>
   <?php } ?>
   </ul>
+  <p class="i_comment_list_num f12 gray">共<?php echo $totalRecordNums ?>条建议 <?php echo $totalPages ?>页</p>
+  <div class="i_comment_list_link">
+  <?php if ($totalPages > 1) {  i_page_show("about/suggestion", $totalPages); } ?>
+  </div>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/about/suggestion.js?id=1"></script>
 <include file="Public:footer" />
