@@ -50,7 +50,7 @@
 			<a>匿名用户</a> 
 		<?php } ?> 
 		<?php echo $dataSuggestion['suggestion']; ?>
-		<?php echo i_time($dataSuggestion['time']); ?>
+		<span class="f12 gray"><?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
 			<p title="<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>">
 			    <i class="ico_friendfeed"></i>
