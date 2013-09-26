@@ -285,11 +285,13 @@ class SchooladminAction extends Action {
     		}
     	}
     	
-    	if (!empty($schoolid) && !empty($_GET['list'])) {
-    		$imagestoragelist = $upyun->getList("/school/$schoolid/");
-    		$this->assign('imagestoragelist', $imagestoragelist);
-    		$this->assign('imagestorageurlfolder', $imageStorageUrl."/school/".$schoolid."/");
-    	}
+    	$SchoolAlbum = M("SchoolAlbum");
+    	$recordSchoolAlbum = $SchoolAlbum->where("school_id = $schoolid")->order("time DESC")->limit($offset, $count)->select();
+    	$this->assign('recordSchoolAlbum',$recordSchoolAlbum);
+    	$totalRecordNums = $SchoolAlbum->where("school_id = $schoolid")->count();
+        $this->assign('totalRecordNums', $totalRecordNums);
+        $totalPages = ceil($totalRecordNums / $count);
+        $this->assign('totalPages', $totalPages);
     	$this->display();
     }
     

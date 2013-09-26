@@ -11,14 +11,18 @@
 	<li>2. 目前仅支持jpg的图片</li>
 	<li>3. 考虑到下载网速，图片不要超过500k（200k最为适宜，限制最大0.8MB），可以在ps中调低图片质量 8~9为适谊</li>
 	</ul>
-	<?php if (!empty($schoolid)) { ?>
+	<?php if (!empty($recordSchoolAlbum)) { ?>
 	<br />
 	<ul>
-	<li>已上传图片列表: <a href="?list=true">查看</a></li>
-	<?php foreach ($imagestoragelist as $imagestorage) { ?>
-	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorageurlfolder,$imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?>
+	<li>已上传图片</li>
+	<?php foreach ($recordSchoolAlbum as $schoolAlbum) { ?>
+	<li><a href="<?php echo $schoolAlbum['url']; ?>" target="_blank"><?php echo $schoolAlbum['url']; ?></a> 大小:<?php echo $schoolAlbum['size']; ?> 宽高:<?php echo i_time($schoolAlbum['width']); ?>*<?php echo i_time($schoolAlbum['height']); ?>时间:<?php echo i_time($schoolAlbum['time']); ?>
 	</li>
 	<?php } ?>
 	</ul>
+	<p class="paging_p f12 gray">共<?php echo $totalRecordNums ?>张图片 <?php echo $totalPages ?>页</p>
+    <div class="paging_div">
+    <?php if ($totalPages > 1) {  i_page_show("schooladmin/indexbgimg", $totalPages); } ?>
+    </div>
 	<?php } ?>
 <include file="Public:footerwebmaster" />
