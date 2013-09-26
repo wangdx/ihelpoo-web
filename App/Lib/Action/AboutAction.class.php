@@ -174,14 +174,40 @@ class AboutAction extends Action {
     	$this->assign('schoolname', $recordSchoolInfo['school']);
     	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
+    	
+    	$SchoolWebmaster = M("SchoolWebmaster");
+		$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')->select();
+    	var_dump($recordSchoolWebmaster);
+		
     	if ($this->isPost()) {
-	    	$connection = trim(strip_tags($_POST["connection"]));
-	    	$content = trim(strip_tags($_POST["content"]));
-	    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
-	    	i_send('admin@tvery.com','我帮圈圈 意见建议', $emailcontent);
-	    	i_send('echowdx@gmail.com','我帮圈圈 意见建议', $emailcontent);
-	    	i_send('122501511@qq.com','我帮圈圈 意见建议', $emailcontent);
-	    	$this->ajaxReturn(0, "提交成功", "yes");
+	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
+	    	$content = trim(addslashes(strip_tags($_POST["content"])));
+	    	if (!empty($content) && !empty($connection)) {
+		    	$DataSuggestion = M("DataSuggestion");
+		    	$newDataSuggestion = array(
+		    		'id' => '',
+		    		'uid' => $userloginid,
+		    		'contact' => $connection,
+		    		'suggestion' => $content,
+		    		'time' => time(),
+		    		'school_id' => $recordSchoolInfo['id']
+		    	);
+		    	$DataSuggestion->add($newDataSuggestion);
+		    	
+		    	/**
+		    	 * send email to ihelpoo group && school group
+		    	 */
+		    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
+		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
+		    	//i_send('admin@tvery.com', $emailtitle, $emailcontent);
+		    	//i_send('echowdx@gmail.com', $emailtitle, $emailcontent);
+		    	//i_send('122501511@qq.com', $emailtitle, $emailcontent);
+		    	
+		    	
+		    	$this->ajaxReturn(0, "提交成功", "yes");
+	    	} else {
+	    		$this->ajaxReturn(0, "提交失败了", "error");
+	    	}
     	}
     	$this->display();
     }
