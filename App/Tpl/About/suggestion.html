@@ -35,31 +35,31 @@
   </form>
   <?php } ?>
   </div>
-  <ul>
+  <ul class="suggestion_list_ul">
   <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
   	<li>
   	    <?php if (!empty($dataSuggestion['uid'])) { ?>
 	  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>">
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
-			</a>
+			</a> 
 			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a> 
 		<?php } else { ?>
 			<a>
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
-			</a>
+			</a> 
 			<a>匿名用户</a> 
 		<?php } ?> 
 		<?php echo $dataSuggestion['suggestion']; ?>
 		<span class="f12 gray"><?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
-			<p title="<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>">
+			<p class="suggestion_ihelpoo_reply_p" title="处理人员uid:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>">
 			    <i class="ico_friendfeed"></i>
 			    我帮圈圈团队回复: <?php echo $dataSuggestion['ihelpoo_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?></span>
 			</p>
 		<?php } ?>
 		<?php if (!empty($dataSuggestion['school_reply'])) { ?>
-			<p title="<?php echo $dataSuggestion['school_reply_uid']; ?>">
+			<p class="suggestion_school_reply_p" title="处理人员uid:<?php echo $dataSuggestion['school_reply_uid']; ?>">
 				<i class="ico_school"></i>
 				校园团队回复: <?php echo $dataSuggestion['school_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['school_reply_time']); ?></span>
@@ -68,8 +68,8 @@
   	</li>
   <?php } ?>
   </ul>
-  <p class="i_comment_list_num f12 gray">共<?php echo $totalRecordNums ?>条建议 <?php echo $totalPages ?>页</p>
-  <div class="i_comment_list_link">
+  <p class="paging_p f12 gray">共<?php echo $totalRecordNums ?>条建议 <?php echo $totalPages ?>页</p>
+  <div class="paging_div">
   <?php if ($totalPages > 1) {  i_page_show("about/suggestion", $totalPages); } ?>
   </div>
 </div>
