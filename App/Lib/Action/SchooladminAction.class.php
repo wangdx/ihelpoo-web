@@ -309,11 +309,11 @@ class SchooladminAction extends Action {
 			            'time' => time()
 	    			);
 	    			$SchoolRecord->add($newSchoolRecordData);
-	    			$SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->delete();
+	    			
 	    			$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteSchoolAlbum['url']);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
-    				
     				if ($isStorageDeleteFlag) {
+    					$SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->delete();
     					redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
     				}
     			}
