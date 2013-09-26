@@ -174,7 +174,6 @@ class AboutAction extends Action {
     	$this->assign('schoolname', $recordSchoolInfo['school']);
     	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
-    	
     	if ($this->isPost()) {
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
@@ -192,7 +191,8 @@ class AboutAction extends Action {
 		    	
 		    	/**
 		    	 * send email to ihelpoo group && school group
-		    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
+		    	 *
+		    	$emailcontent = "联系方式:<br />".$userloginedrecord['nickname']." ".$connection."<hr />内容:<br />".$content;
 		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
 		    	i_send('admin@tvery.com', $emailtitle, $emailcontent);
 		    	i_send('echowdx@gmail.com', $emailtitle, $emailcontent);
