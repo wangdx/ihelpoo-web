@@ -21,7 +21,7 @@
 	<?php
 	    $nameimage = $imagestorageurlfolder.$imagestorage['name'];
 	    $recordSchoolAlbum = $SchoolAlbum->where("url = '$nameimage'")->find();
-        if (empty($recordSchoolAlbum['id']) {
+        if (empty($recordSchoolAlbum['id'])) {
 	    $tempRealSize = getimagesize($imagestorageurlfolder.$imagestorage['name']);
     	$imageRealWidth = $tempRealSize['0'];
     	$imageRealHeight = $tempRealSize['1'];
