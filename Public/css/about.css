@@ -143,13 +143,17 @@
 
 /*--- suggestion ---*/
 .suggestion_list_div{
-    padding: 10px;
-}
-.suggestion_list_ul{
-    
+    padding: 0 10px;
 }
 .suggestion_list_ul li{
     margin: 5px 0;
     background: #f5f5f5;
     border-radius: 3px;
+    padding: 5px;
+}
+.suggestion_ihelpoo_reply_p{
+    margin: 5px 0 5px 30px;
+}
+.suggestion_school_reply_p{
+    margin: 5px 0 5px 30px;
 }
