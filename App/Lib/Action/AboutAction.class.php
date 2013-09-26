@@ -176,7 +176,9 @@ class AboutAction extends Action {
     	$this->assign('title', $title);
     	
     	$SchoolWebmaster = M("SchoolWebmaster");
-		$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')->select();
+		$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
+		->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
+		->select();
     	var_dump($recordSchoolWebmaster);
 		
     	if ($this->isPost()) {
