@@ -174,11 +174,12 @@ class AboutAction extends Action {
     	$this->assign('schoolname', $recordSchoolInfo['school']);
     	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
+    	$DataSuggestion = M("DataSuggestion");
+    	
     	if ($this->isPost()) {
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
 	    	if (!empty($content) && !empty($connection)) {
-		    	$DataSuggestion = M("DataSuggestion");
 		    	$newDataSuggestion = array(
 		    		'id' => '',
 		    		'uid' => $userloginid,
@@ -210,6 +211,20 @@ class AboutAction extends Action {
 	    		$this->ajaxReturn(0, "提交失败了", "error");
 	    	}
     	}
+    	
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	$recordDataSuggestion = $DataSuggestion->where("school_id = $recordSchoolInfo[id]")
+    	->join('i_user_login ON i_data_suggestion.uid = i_user_login.uid')
+    	->join('i_school_info ON i_data_suggestion.school_id = i_school_info.id')
+        ->field('i_data_suggestion.id,i_user_login.uid,i_data_suggestion.suggestion,i_data_suggestion.time,i_data_suggestion.ihelpoo_reply,i_data_suggestion.ihelpoo_reply_uid,i_data_suggestion.ihelpoo_reply_time,i_data_suggestion.school_reply,i_data_suggestion.school_reply_uid,i_data_suggestion.school_reply_time,i_data_suggestion.school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_school_info.school,i_school_info.domain,i_school_info.domain_main')
+    	->limit($offset, $count)->select();
+    	$this->assign('recordDataSuggestion', $recordDataSuggestion);
+    	$totalRecordNums = $DataSuggestion->where("school_id = $recordSchoolInfo[id]")->count();
+        $this->assign('totalRecordNums', $totalRecordNums);
+        $totalPages = ceil($totalRecordNums / $count);
+        $this->assign('totalPages', $totalPages);
     	$this->display();
     }
 
