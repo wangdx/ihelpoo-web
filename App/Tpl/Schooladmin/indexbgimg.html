@@ -16,7 +16,7 @@
 	<ul>
 	<li>已上传图片</li>
 	<?php foreach ($recordSchoolAlbum as $schoolAlbum) { ?>
-	<li><a href="<?php echo $schoolAlbum['url']; ?>" target="_blank"><?php echo $schoolAlbum['url']; ?></a> 大小:<?php echo $schoolAlbum['size']; ?> 宽高:<?php echo i_time($schoolAlbum['width']); ?>*<?php echo i_time($schoolAlbum['height']); ?>时间:<?php echo i_time($schoolAlbum['time']); ?>
+	<li><a href="<?php echo $schoolAlbum['url']; ?>" target="_blank"><?php echo $schoolAlbum['url']; ?></a> 大小:<?php echo $schoolAlbum['size']; ?> 宽高:<?php echo $schoolAlbum['width']; ?>*<?php echo $schoolAlbum['height']; ?>时间:<?php echo i_time($schoolAlbum['time']); ?>
 	</li>
 	<?php } ?>
 	</ul>
