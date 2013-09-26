@@ -163,7 +163,16 @@ class AboutAction extends Action {
     
     public function suggestion()
     {
-    	$title = "意见建议";
+    	$userloginid = session('userloginid');
+    	if (!empty($userloginid)) {
+    		i_db_update_activetime($userloginid);
+    		$UserLogin = M("UserLogin");
+    		$userloginedrecord = $UserLogin->find($userloginid);
+    		$this->assign('userloginedrecord',$userloginedrecord);
+    	}
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname', $recordSchoolInfo['school']);
+    	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
     	if ($this->isPost()) {
 	    	$connection = trim(strip_tags($_POST["connection"]));
