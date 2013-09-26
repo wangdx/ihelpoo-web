@@ -52,17 +52,17 @@
 		<?php echo $dataSuggestion['suggestion']; ?>
 		<?php echo i_time($dataSuggestion['time']); ?>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
-			<p>
-				<?php echo $dataSuggestion['ihelpoo_reply']; ?>
-				<?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?>
-				<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>
+			<p title="<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>">
+			    <i class="ico_friendfeed"></i>
+			    我帮圈圈团队回复: <?php echo $dataSuggestion['ihelpoo_reply']; ?>
+				<span class="f12 gray"><?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?></span>
 			</p>
 		<?php } ?>
 		<?php if (!empty($dataSuggestion['school_reply'])) { ?>
-			<p>
-				<?php echo $dataSuggestion['school_reply']; ?>
-				<?php echo i_time($dataSuggestion['school_reply_time']); ?>
-				<?php echo $dataSuggestion['school_reply_uid']; ?>
+			<p title="<?php echo $dataSuggestion['school_reply_uid']; ?>">
+				<i class="ico_school"></i>
+				校园团队回复: <?php echo $dataSuggestion['school_reply']; ?>
+				<span class="f12 gray"><?php echo i_time($dataSuggestion['school_reply_time']); ?></span>
 			</p>
 		<?php } ?>
   	</li>
