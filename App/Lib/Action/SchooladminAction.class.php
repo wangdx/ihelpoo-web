@@ -288,7 +288,7 @@ class SchooladminAction extends Action {
     	}
     	
     	/**
-    	 * delete advertisement
+    	 * delete image
     	 */
     	if (!empty($_GET['suredel'])) {
     		$suredelid = (int)$_GET['suredel'];
