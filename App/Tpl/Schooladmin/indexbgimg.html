@@ -13,10 +13,17 @@
 	</ul>
 	<?php if (!empty($recordSchoolAlbum)) { ?>
 	<br />
+	<?php if (!empty($_GET['del'])) { ?>
+		<div><span class="icon_attention"></span><a href="/schooladmin/indexbgimg?suredel=<?php echo $_GET['del']; ?>">确认</a> <a href="/schooladmin/indexbgimg">取消</a></div>
+	<?php } ?>
 	<ul>
 	<li>已上传图片</li>
 	<?php foreach ($recordSchoolAlbum as $schoolAlbum) { ?>
-	<li><a href="<?php echo $schoolAlbum['url']; ?>" target="_blank"><img src="<?php echo $schoolAlbum['url']; ?>" height="80" /></a> <?php if ($schoolAlbum['size'] < '300000') { ?><span class="icon_right" title="大小合格"></span><?php } ?>大小:<?php echo $schoolAlbum['size']; ?> <?php if ($schoolAlbum['width'].$schoolAlbum['height'] == '1600900') { ?><span class="icon_right" title="宽高合格"></span><?php } ?>宽高:<?php echo $schoolAlbum['width']; ?>*<?php echo $schoolAlbum['height']; ?> 时间:<?php echo i_time($schoolAlbum['time']); ?>
+	<li>
+		<a href="<?php echo $schoolAlbum['url']; ?>" target="_blank" title="<?php echo $schoolAlbum['url']; ?>"><img src="<?php echo $schoolAlbum['url']; ?>" height="80" /></a> 
+		<?php if ($schoolAlbum['size'] < '300000') { ?><span class="icon_right" title="大小合格"></span><?php } ?>大小:<?php echo $schoolAlbum['size']; ?> 
+		<?php if ($schoolAlbum['width'].$schoolAlbum['height'] == '1600900') { ?><span class="icon_right" title="宽高合格"></span><?php } ?>宽高:<?php echo $schoolAlbum['width']; ?>*<?php echo $schoolAlbum['height']; ?> 
+		<a href="?del=<?php echo $schoolAlbum['id']; ?>">删除</a><span class="gray"><?php echo i_time($schoolAlbum['time']); ?></span>
 	</li>
 	<?php } ?>
 	</ul>
