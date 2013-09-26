@@ -147,13 +147,19 @@
 }
 .suggestion_list_ul li{
     margin: 5px 0;
+    border-radius: 3px;
+    border: 1px solid #EEE;
+    padding: 10px;
+}
+.suggestion_ihelpoo_reply_p{
+    margin: 5px 0 5px 50px;
     background: #f5f5f5;
     border-radius: 3px;
     padding: 5px;
 }
-.suggestion_ihelpoo_reply_p{
-    margin: 5px 0 5px 30px;
-}
 .suggestion_school_reply_p{
-    margin: 5px 0 5px 30px;
+    margin: 5px 0 5px 50px;
+    background: #f5f5f5;
+    border-radius: 3px;
+    padding: 5px;
 }
