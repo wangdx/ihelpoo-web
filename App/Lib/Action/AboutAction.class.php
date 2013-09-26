@@ -175,12 +175,6 @@ class AboutAction extends Action {
     	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
     	
-    	$SchoolWebmaster = M("SchoolWebmaster");
-		$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
-		->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
-		->select();
-    	var_dump($recordSchoolWebmaster);
-		
     	if ($this->isPost()) {
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
@@ -198,14 +192,19 @@ class AboutAction extends Action {
 		    	
 		    	/**
 		    	 * send email to ihelpoo group && school group
-		    	 */
 		    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
 		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
-		    	//i_send('admin@tvery.com', $emailtitle, $emailcontent);
-		    	//i_send('echowdx@gmail.com', $emailtitle, $emailcontent);
-		    	//i_send('122501511@qq.com', $emailtitle, $emailcontent);
-		    	
-		    	
+		    	i_send('admin@tvery.com', $emailtitle, $emailcontent);
+		    	i_send('echowdx@gmail.com', $emailtitle, $emailcontent);
+		    	i_send('122501511@qq.com', $emailtitle, $emailcontent);
+		    	$SchoolWebmaster = M("SchoolWebmaster");
+		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
+		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
+		    	->select();
+		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
+		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    	}
+		    	*/
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} else {
 	    		$this->ajaxReturn(0, "提交失败了", "error");
