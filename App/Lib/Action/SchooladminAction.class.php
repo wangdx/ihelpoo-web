@@ -284,7 +284,9 @@ class SchooladminAction extends Action {
     			}
     		}
     	}
-    	
+    	$page = i_page_get_num();
+        $count = 15;
+        $offset = $page * $count;
     	$SchoolAlbum = M("SchoolAlbum");
     	$recordSchoolAlbum = $SchoolAlbum->where("school_id = $schoolid")->order("time DESC")->limit($offset, $count)->select();
     	$this->assign('recordSchoolAlbum',$recordSchoolAlbum);
