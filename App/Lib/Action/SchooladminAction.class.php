@@ -311,7 +311,7 @@ class SchooladminAction extends Action {
 	    			$SchoolRecord->add($newSchoolRecordData);
 	    			
 	    			$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteSchoolAlbum['url']);
-    				$upyun->delete($urlThumbFilename);
+    				$upyun->delete($urlFilename);
     				if ($isStorageDeleteFlag) {
     					$SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->delete();
     					redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
