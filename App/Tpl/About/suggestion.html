@@ -35,7 +35,32 @@
   </form>
   <?php } ?>
   </div>
-  <?php var_dump($recordDataSuggestion); ?>
+  <ul>
+  <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
+  	<li>
+  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>">
+			<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
+		</a>
+		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a>
+		<?php echo $dataSuggestion['suggestion']; ?>
+		<?php echo i_time($dataSuggestion['time']); ?>
+		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
+			<p>
+				<?php echo $dataSuggestion['ihelpoo_reply']; ?>
+				<?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?>
+				<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>
+			</p>
+		<?php } ?>
+		<?php if (!empty($dataSuggestion['school_reply'])) { ?>
+			<p>
+				<?php echo $dataSuggestion['school_reply']; ?>
+				<?php echo i_time($dataSuggestion['school_reply_time']); ?>
+				<?php echo $dataSuggestion['school_reply_uid']; ?>
+			</p>
+		<?php } ?>
+  	</li>
+  <?php } ?>
+  </ul>
 </div>
 <script type="text/javascript" src="__PUBLIC__/js/about/suggestion.js?id=1"></script>
 <include file="Public:footer" />
