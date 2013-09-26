@@ -221,11 +221,11 @@ class SchooladminAction extends Action {
     	$schoolid = $recordSchoolInfo['id'];
     	$this->assign('schoolid',$schoolid);
     	
+    	Vendor('Ihelpoo.Upyun');
+    	$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+    	$imageStorageUrl = image_storage_url();
     	if ($this->isPost()) {
     		if (!empty($_FILES)) {
-    			Vendor('Ihelpoo.Upyun');
-    			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-    			$imageStorageUrl = image_storage_url();
     			if ($_FILES["uploadimage"]["error"] > 0) {
     				redirect('/schooladmin/indexbgimg', 3, 'file error...'.$_FILES["uploadimage"]["error"]);
     			} else {
@@ -294,7 +294,7 @@ class SchooladminAction extends Action {
     		$suredelid = (int)$_GET['suredel'];
     		if (!empty($suredelid)) {
     			$deleteSchoolAlbum = $SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->find();
-    			if (empty($deleteSchoolAlbum['id'])) {
+    			if (!empty($deleteSchoolAlbum['id'])) {
     				
 	    			/**
 	    			 * webmaster user operating record
@@ -309,8 +309,13 @@ class SchooladminAction extends Action {
 			            'time' => time()
 	    			);
 	    			$SchoolRecord->add($newSchoolRecordData);
-	    			$SchoolAlbum->where("id = $suredelid AND sid = $schoolid")->delete();
-	    			redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
+	    			
+	    			$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteSchoolAlbum['url']);
+    				$upyun->delete($urlThumbFilename);
+    				if ($isStorageDeleteFlag) {
+    					$SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->delete();
+    					redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
+    				}
     			}
     		}
     	}
