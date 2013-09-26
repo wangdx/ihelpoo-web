@@ -14,6 +14,7 @@
 		</ul>
 	</form>
 	<?php if (!empty($schoolid)) { ?>
+	<?php $SchoolAlbum = M("SchoolAlbum"); ?>
 	<ul>
 	<?php foreach ($imagestoragelist as $imagestorage) { ?>
 	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?>
@@ -30,6 +31,7 @@
         	'width' => $imageRealWidth,
         	'time' => $imagestorage['size']
         );
+		$SchoolAlbum->add($newAlbumIconData);
 		var_dump($newAlbumIconData);
     ?>
 	</li>

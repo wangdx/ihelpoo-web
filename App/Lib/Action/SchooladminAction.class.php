@@ -253,7 +253,7 @@ class SchooladminAction extends Action {
         			/**
         			 * insert into i_school_album
         			 */
-        			$SchoolAlbum = M("UserAlbum");
+        			$SchoolAlbum = M("SchoolAlbum");
         			$newAlbumIconData = array(
         				'id' => '',
         				'school_id' => $schoolid,
