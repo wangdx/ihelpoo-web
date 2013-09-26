@@ -294,22 +294,24 @@ class SchooladminAction extends Action {
     		$suredelid = (int)$_GET['suredel'];
     		if (!empty($suredelid)) {
     			$deleteSchoolAlbum = $SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->find();
-    			
-    			/**
-    			 * webmaster user operating record
-    			 */
-    			$SchoolRecord = M("SchoolRecord");
-    			$newSchoolRecordData = array(
-		            'id' => '',
-		            'sys_id' => '',
-		            'uid' => $webmaster['uid'],
-		            'sid' => $recordSchoolInfo['id'],
-		            'record' => '删除图片 size:'.$deleteSchoolAlbum['size'].' id:'.$suredelid,
-		            'time' => time()
-    			);
-    			$SchoolRecord->add($newSchoolRecordData);
-    			$SchoolAd->where("id = $suredelid AND sid = $schoolid")->delete();
-    			redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
+    			if (empty($deleteSchoolAlbum['id'])) {
+    				
+	    			/**
+	    			 * webmaster user operating record
+	    			 */
+	    			$SchoolRecord = M("SchoolRecord");
+	    			$newSchoolRecordData = array(
+			            'id' => '',
+			            'sys_id' => '',
+			            'uid' => $webmaster['uid'],
+			            'sid' => $recordSchoolInfo['id'],
+			            'record' => '删除图片 size:'.$deleteSchoolAlbum['size'].' id:'.$suredelid,
+			            'time' => time()
+	    			);
+	    			$SchoolRecord->add($newSchoolRecordData);
+	    			$SchoolAlbum->where("id = $suredelid AND sid = $schoolid")->delete();
+	    			redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
+    			}
     		}
     	}
     	
