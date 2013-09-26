@@ -13,6 +13,13 @@
 			<li><input type="submit" value="上传" /></li>
 		</ul>
 	</form>
+	<?php if (!empty($_GET['del'])) { ?>
+		<div>
+		<span class="icon_attention"></span> 确定删除这张图片? <br /><br />
+		<a href="/rooter/indexbgimg?suredel=<?php echo $_GET['del']; ?>" class="btn">确认</a> <a href="/rooter/indexbgimg">取消</a>
+		<br /><br />
+		</div>
+	<?php } ?>
 	<?php if (!empty($recordSchoolAlbum)) { ?>
 	<ul class="para_right_ul">
 	<?php foreach ($recordSchoolAlbum as $schoolAlbum) { ?>
@@ -21,7 +28,7 @@
 		<a href="<?php echo $schoolAlbum['url']; ?>" target="_blank" title="<?php echo $schoolAlbum['url']; ?>"><?php echo $schoolAlbum['url']; ?></a>   
 		<?php if ($schoolAlbum['size'] < '300000') { ?><span class="icon_right" title="大小合格"></span><?php } ?>大小:<?php echo $schoolAlbum['size']; ?> 
 		<?php if ($schoolAlbum['width'].$schoolAlbum['height'] == '1600900') { ?><span class="icon_right" title="宽高合格"></span><?php } ?>宽高:<?php echo $schoolAlbum['width']; ?>*<?php echo $schoolAlbum['height']; ?> 
-		<span class="gray fr">上传时间:<?php echo i_time($schoolAlbum['time']); ?></span>
+		<a href="?del=<?php echo $schoolAlbum['id']; ?>">删除</a> <span class="gray fr">上传时间:<?php echo i_time($schoolAlbum['time']); ?></span>
 	</li>
 	<?php } ?>
 	</ul>

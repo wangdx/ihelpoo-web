@@ -301,6 +301,39 @@ class RooterAction extends Action {
     		}
     	}
     	
+    	/**
+    	 * delete image
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteSchoolAlbum = $SchoolAlbum->where("id = $suredelid")->find();
+    			if (!empty($deleteSchoolAlbum['id'])) {
+    				
+	    			/**
+        			 * admin user operating record
+        			 */
+        			if (!empty($admin['uid'])) {
+        				$AdminUserrecord = M("AdminUserrecord");
+        				$newAdminUserrecordData = array(
+							'id' => '',
+							'uid' => $admin['uid'],
+							'record' => '删除图片 size:'.$deleteSchoolAlbum['size'].' id:'.$suredelid,
+							'time' => time(),
+        				);
+        				$AdminUserrecord->add($newAdminUserrecordData);
+        			}
+	    			
+	    			$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteSchoolAlbum['url']);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
+    				if ($isStorageDeleteFlag) {
+    					$SchoolAlbum->where("id = $suredelid")->delete();
+    					redirect('/rooter/indexbgimg', 1, '删除图片成功 ok...');
+    				}
+    			}
+    		}
+    	}
+    	
     	$SchoolInfo = M("SchoolInfo");
 		$recordSchoolInfo = $SchoolInfo->select();
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
