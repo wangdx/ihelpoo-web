@@ -14,16 +14,17 @@
     	<a href="/wo/<?php echo $userloginedrecord['uid']; ?>" target="_blank">
 			<img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url']); ?>" width="50" height="37" class="radius3" />
 		</a>
-		<a href="/wo/<?php echo $userloginedrecord['uid']; ?>" target="_blank"><?php echo $userloginedrecord['nickname']; ?></a>
+		Hi, <a href="/wo/<?php echo $userloginedrecord['uid']; ?>" target="_blank"><?php echo $userloginedrecord['nickname']; ?></a> 欢迎给我帮圈圈提意见，真诚希望听到您的声音，我们会以最快的速度处理后联系你:)
 	</li>
-	<?php } ?>
+	<?php } else { ?>
   	<li>欢迎给我帮圈圈提意见，真诚希望听到您的声音，我们会以最快的速度处理后联系你:)</li>
+  	<?php } ?>
   </ul>
   <form method="post" id="applyverifyform">
   <ul class="about_snsapply_ul">
   	<li>
   		<p>&#12288;您的联系方式 <span class="f12 gray">称呼 + 邮箱、qq或手机等</span></p>
-  		<input name="connection" class="input_style" id="connection" /><span class="red">*</span>
+  		<input name="connection" class="input_style" id="connection" value="<?php echo $userloginedrecord['email']; ?>" /><span class="red">*</span>
   	</li>
   	<li>
   		<p>&#12288;意见建议</p>
