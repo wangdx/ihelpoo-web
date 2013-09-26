@@ -233,6 +233,7 @@ class RooterAction extends Action {
     	Vendor('Ihelpoo.Upyun');
         $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
         $imageStorageUrl = image_storage_url();
+        $SchoolAlbum = M("SchoolAlbum");
     	if ($this->isPost()) {
     		$schoolid = $_POST['schoolid'];
     		if (!empty($_FILES)) {
@@ -243,6 +244,9 @@ class RooterAction extends Action {
     				$imageType = $_FILES["uploadimage"]["type"];
     				$imageSize = $_FILES["uploadimage"]["size"];
     				$imageTmpName = $_FILES["uploadimage"]["tmp_name"];
+    				$tempRealSize = getimagesize($imageTmpName);
+    				$imageRealWidth = $tempRealSize['0'];
+    				$imageRealHeight = $tempRealSize['1'];
     			}
 
     			/**
@@ -262,6 +266,20 @@ class RooterAction extends Action {
         			$rsp = $upyun->writeFile($storageFilename, $fh, True);
         			fclose($fh);
         			$newfilepath = $imageStorageUrl.$storageFilename;
+        			
+        			/**
+        			 * insert into i_school_album
+        			 */
+        			$newAlbumIconData = array(
+        				'id' => '',
+        				'school_id' => $schoolid,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'height' => $imageRealHeight,
+        				'width' => $imageRealWidth,
+        				'time' => time()
+        			);
+        			$SchoolAlbum->add($newAlbumIconData);
         			
         			/**
         			 * admin user operating record
@@ -290,7 +308,6 @@ class RooterAction extends Action {
 		$schoolid = (int)$_GET['schoolid'];
     	$this->assign('schoolid',$schoolid);
     	if (!empty($schoolid)) {
-    		$SchoolAlbum = M("SchoolAlbum");
 			$page = i_page_get_num();
 			$count = 10;
 			$offset = $page * $count;

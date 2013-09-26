@@ -224,6 +224,9 @@ class SchooladminAction extends Action {
     	Vendor('Ihelpoo.Upyun');
     	$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
     	$imageStorageUrl = image_storage_url();
+    	
+    	$SchoolAlbum = M("SchoolAlbum");
+    	
     	if ($this->isPost()) {
     		if (!empty($_FILES)) {
     			if ($_FILES["uploadimage"]["error"] > 0) {
@@ -253,7 +256,6 @@ class SchooladminAction extends Action {
         			/**
         			 * insert into i_school_album
         			 */
-        			$SchoolAlbum = M("SchoolAlbum");
         			$newAlbumIconData = array(
         				'id' => '',
         				'school_id' => $schoolid,
@@ -284,8 +286,6 @@ class SchooladminAction extends Action {
     			}
     		}
     	}
-    	
-    	$SchoolAlbum = M("SchoolAlbum");
     	
     	/**
     	 * delete advertisement
