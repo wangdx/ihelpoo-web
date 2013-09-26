@@ -221,11 +221,11 @@ class SchooladminAction extends Action {
     	$schoolid = $recordSchoolInfo['id'];
     	$this->assign('schoolid',$schoolid);
     	
-    	Vendor('Ihelpoo.Upyun');
-        $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-        $imageStorageUrl = image_storage_url();
     	if ($this->isPost()) {
     		if (!empty($_FILES)) {
+    			Vendor('Ihelpoo.Upyun');
+    			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+    			$imageStorageUrl = image_storage_url();
     			if ($_FILES["uploadimage"]["error"] > 0) {
     				redirect('/schooladmin/indexbgimg', 3, 'file error...'.$_FILES["uploadimage"]["error"]);
     			} else {
@@ -284,10 +284,38 @@ class SchooladminAction extends Action {
     			}
     		}
     	}
+    	
+    	$SchoolAlbum = M("SchoolAlbum");
+    	
+    	/**
+    	 * delete advertisement
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteSchoolAlbum = $SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->find();
+    			
+    			/**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+		            'id' => '',
+		            'sys_id' => '',
+		            'uid' => $webmaster['uid'],
+		            'sid' => $recordSchoolInfo['id'],
+		            'record' => '删除图片 size:'.$deleteSchoolAlbum['size'].' id:'.$suredelid,
+		            'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			$SchoolAd->where("id = $suredelid AND sid = $schoolid")->delete();
+    			redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
+    		}
+    	}
+    	
     	$page = i_page_get_num();
         $count = 10;
         $offset = $page * $count;
-    	$SchoolAlbum = M("SchoolAlbum");
     	$recordSchoolAlbum = $SchoolAlbum->where("school_id = $schoolid")->order("time DESC")->limit($offset, $count)->select();
     	$this->assign('recordSchoolAlbum',$recordSchoolAlbum);
     	$totalRecordNums = $SchoolAlbum->where("school_id = $schoolid")->count();
