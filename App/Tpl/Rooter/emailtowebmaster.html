@@ -25,6 +25,8 @@
 	                data: { emailstrings: emailstrings, noticecontent: noticecontent },
 	                success: function(msg) {
 	                	if (msg.status == 'ok') {
+	                		$('#noticecontent').val('');
+	                		$this.show();
 	                		$(".already_send_div").html(msg.data);
 	                	} else {
 	                		$this.show().html('× ' + msg.info);
