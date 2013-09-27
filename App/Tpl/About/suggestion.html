@@ -42,12 +42,12 @@
   	    <?php if (!empty($dataSuggestion['uid'])) { ?>
 	  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>">
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
-			</a> 
+			</a>&#12288; 
 			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a> 
 		<?php } else { ?>
 			<a>
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
-			</a> 
+			</a>&#12288; 
 			<a>匿名用户</a> 
 		<?php } ?> 
 		<?php echo $dataSuggestion['suggestion']; ?>
