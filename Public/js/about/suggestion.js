@@ -15,9 +15,9 @@ $().ready(function(){
                     $("#submit_info").html("<span class='icon_right'></span> 提交成功");
                     window.location = baseUrl + 'about/suggestion?succ=ok';
                 } else if (data.status == "error") {
-                	$("#submit_info").html(data.info);
+                	$("#submit_info").html("<span class='icon_attention'></span>"+data.info);
                 } else if (data.status == "verifi") {
-                	$("#submit_info").html("<span class='icon_attention'></span>请输入验证码");
+                	$("#submit_info").html("请输入验证码");
             		$('.verification_code_p').fadeIn('fast');
             		$('#verification_code_img').attr({'src': baseUrl + 'other/verifi' });
             	}
