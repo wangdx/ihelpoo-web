@@ -583,6 +583,18 @@ function i_configure_album_size($userLevel)
     }
 }
 
+/**
+ * check is email
+ */
+function i_check_email($mailaddr)
+{
+	if (!ereg("^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*$", $mailaddr)) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 
 /**
  * Queue the mails to memory, they'll get opportunity to be sent every ten seconds

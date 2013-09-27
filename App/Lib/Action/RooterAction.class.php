@@ -2775,6 +2775,117 @@ class RooterAction extends Action {
     	$adminuid = $admin['uid'];
     	$this->assign('title','意见建议');
     	$DataSuggestion = M("DataSuggestion");
+    	
+    	if (!empty($_POST['replyid']) && !empty($_POST['replyid'])) {
+    		$replyid = (int)$_POST['replyid'];
+    		$replycontent = (int)$_POST['replycontent'];
+    		$recordDataSuggestion = $DataSuggestion->find($replyid);
+    		$updateReply = array(
+    			'id' => $replyid,
+    			'ihelpoo_reply' => $replycontent,
+    			'ihelpoo_reply_uid' => $adminuid,
+    			'ihelpoo_reply_time' => time()
+    		);
+    		$DataSuggestion->save($updateReply);
+    		
+    		if (!empty($recordDataSuggestion['ihelpoo_reply'])) {
+    			/**
+                 * admin user operating record
+                 */
+                if (!empty($admin['uid'])) {
+                	$AdminUserrecord = M("AdminUserrecord");
+                	$newAdminUserrecordData = array(
+						'id' => '',
+						'uid' => $admin['uid'],
+						'record' => '修改建议回复:'.$recordDataSuggestion['suggestion'].' oldreply:'.$recordDataSuggestion['ihelpoo_reply'].' newreply:'.$replycontent,
+						'time' => time(),
+                	);
+                	$AdminUserrecord->add($newAdminUserrecordData);
+                }
+    			
+    			$this->ajaxReturn(0,'修改成功','yes');
+    		} else {
+    			
+    			/**
+		    	 * send msg && email to suggester
+		    	 */
+		    	$SchoolInfo = M("SchoolInfo");
+		    	$recordSchoolInfo = $SchoolInfo->find($recordDataSuggestion['school_id']);
+		    	$recordSchoolInfoDomain = empty($recordSchoolInfo['domain_main']) ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+		    	
+    			/**
+    			 * new reply
+    			 * send msg to webmaster
+    			 */
+    			$SchoolWebmaster = M("SchoolWebmaster");
+		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordDataSuggestion[school_id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
+		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
+		    	->select();
+		    	$emailtitle = "建议回复";
+		    	$emailcontent = "我帮圈圈团队回复了用户建议:“".$recordDataSuggestion['suggestion']."”，希望校园团队安排人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
+		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
+		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    	}
+		    	
+		    	if (!empty($recordDataSuggestion['uid'])) {
+		    		if (i_check_email($recordDataSuggestion['contact'])) {
+		    			$emailtitle = "建议回复";
+		    			$emailcontent = "我帮圈圈团队回复了您的建议:“".$recordDataSuggestion['suggestion']."”：“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
+		    			i_send($recordDataSuggestion['contact'], $emailtitle, $emailcontent);
+		    		}
+		    		
+		    		$UserLogin = M("UserLogin");
+		    		$recordUserLogin = $UserLogin->find($recordDataSuggestion['uid']);
+		    		if (!empty($recordUserLogin['uid'])) {
+		    			/**
+		    			 * TODO
+		    			 * send msg system
+		    			 * 我帮圈圈团队回复了你的建议
+		    			 */
+		    		}
+		    		
+		    	}
+    			
+    			/**
+                 * admin user operating record
+                 */
+                if (!empty($admin['uid'])) {
+                	$AdminUserrecord = M("AdminUserrecord");
+                	$newAdminUserrecordData = array(
+						'id' => '',
+						'uid' => $admin['uid'],
+						'record' => '回复建议:'.$recordDataSuggestion['suggestion'].' reply:'.$replycontent,
+						'time' => time(),
+                	);
+                	$AdminUserrecord->add($newAdminUserrecordData);
+                }
+    			
+    			$this->ajaxReturn(0,'回复成功','yes');
+    		}
+    	}
+    	
+    	if (!empty($_POST['suredel'])) {
+    		$suredel = (int)$_POST['suredel'];
+    		$recordDataSuggestion = $DataSuggestion->find($suredel);
+    		
+    		/**
+    		 * admin user operating record
+    		 */
+    		if (!empty($admin['uid'])) {
+    			$AdminUserrecord = M("AdminUserrecord");
+    			$newAdminUserrecordData = array(
+					'id' => '',
+					'uid' => $admin['uid'],
+					'record' => '删除建议:'.$recordDataSuggestion['suggestion'].' reply:'.$recordDataSuggestion['ihelpoo_reply'],
+					'time' => time(),
+    			);
+    			$AdminUserrecord->add($newAdminUserrecordData);
+    		}
+    		
+    		$DataSuggestion->where("id = $suredel")->delete();
+    		$this->ajaxReturn(0,'删除成功','yes');
+    	}
+    	
     	$page = i_page_get_num();
         $count = 25;
         $offset = $page * $count;

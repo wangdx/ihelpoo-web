@@ -1,5 +1,6 @@
 <include file="Public:headerrooter" />
   <script type="text/javascript" src="__PUBLIC__/js/rooter/suggestion.js"></script>
+  <?php var_dump(i_check_email($_GET['email'])); ?>
   <ul class="suggestion_list_ul">
   <?php foreach($recordsDataSuggestion as $dataSuggestion) { ?>
   	<li>
@@ -19,14 +20,14 @@
 			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?>
 			<?php if (empty($dataSuggestion['ihelpoo_reply'])) { ?><br /><a class="reply_show_a">回复</a><?php } ?>
 			</p>
-			<div class="suggestion_reply_div">
-			<textarea name="content" class="textarea_style" id="content"><?php echo $dataSuggestion['ihelpoo_reply']; ?></textarea>
-			<?php if (empty($dataSuggestion['ihelpoo_reply'])) { ?>
-				<a id="submit" class="btn f12">回复</a> 
-			<?php } else { ?>
-				<a id="submit" class="btn f12">修改</a>
-			<?php } ?>
-			<span id="submit_info" class="f12 gray"></span>
+			<div class="suggestion_reply_div" suggestionid="<?php echo $dataSuggestion['id']; ?>">
+				<textarea class="textarea_style"><?php echo $dataSuggestion['ihelpoo_reply']; ?></textarea>
+				<?php if (empty($dataSuggestion['ihelpoo_reply'])) { ?>
+					<a class="reply_submit btn f12">回复</a> 
+				<?php } else { ?>
+					<a class="reply_submit btn f12">修改</a>
+				<?php } ?>
+				<span class="reply_submit_info f12 gray"></span>
 			</div>
 			</p>
 		</div>
