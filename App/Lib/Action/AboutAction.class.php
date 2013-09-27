@@ -210,20 +210,26 @@ class AboutAction extends Action {
 		    	
 		    	/**
 		    	 * send email to ihelpoo group && school group
-		    	 *
-		    	$emailcontent = "联系方式:<br />".$userloginedrecord['nickname']." ".$connection."<hr />内容:<br />".$content;
+		    	 */
+		    	$emailcontent = "联系方式:<br />".$userloginedrecord['nickname']." ".$connection."<hr />内容:<br />".$content." <br/><br/><span style='color:gray;font-size:12px'>请登录后台及时处理回复，并做好记录</span>";
 		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
 		    	i_send('admin@tvery.com', $emailtitle, $emailcontent);
-		    	i_send('echowdx@gmail.com', $emailtitle, $emailcontent);
-		    	i_send('122501511@qq.com', $emailtitle, $emailcontent);
+		    	/**
+		    	$AdminUser = M("AdminUser");
+		    	$recordsAdminUser = $AdminUser->select();
+		    	foreach ($recordsAdminUser as $adminUser) {
+		    		if (!empty($adminUser['email'])) {
+		    			i_send($adminUser['email'], $emailtitle, $emailcontent);
+		    		}
+		    	}
+		    	
 		    	$SchoolWebmaster = M("SchoolWebmaster");
 		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
 		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
 		    	->select();
 		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
 		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
-		    	}
-		    	*/
+		    	}*/
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} else {
 	    		$this->ajaxReturn(0, "提交失败了", "error");
