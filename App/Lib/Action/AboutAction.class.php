@@ -175,7 +175,7 @@ class AboutAction extends Action {
     	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
     	$DataSuggestion = M("DataSuggestion");
-    	
+    	i_send('admin@tvery.com', 'ddd', 'ddsss');
     	if ($this->isPost()) {
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
