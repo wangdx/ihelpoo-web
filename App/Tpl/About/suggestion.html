@@ -27,8 +27,12 @@
   </ul>
   <form method="post" id="applyverifyform">
   <ul class="about_snsapply_ul">
+    <li>
+  		<p>&#12288;您的称呼 <span class="f12 gray">称呼 + qq或手机等</span></p>
+  		<input name="suggester" class="input_style" id="suggester" value="<?php echo $userloginedrecord['nickname']; ?>" /><span class="red">*</span>
+  	</li>
   	<li>
-  		<p>&#12288;您的联系方式 <span class="f12 gray">称呼 + 邮箱、qq或手机等</span></p>
+  		<p>&#12288;您的邮箱</p>
   		<input name="connection" class="input_style" id="connection" value="<?php echo $userloginedrecord['email']; ?>" /><span class="red">*</span>
   	</li>
   	<li>

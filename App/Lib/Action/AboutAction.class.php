@@ -176,6 +176,7 @@ class AboutAction extends Action {
     	$this->assign('title', $title);
     	$DataSuggestion = M("DataSuggestion");
     	if ($this->isPost()) {
+	    	$suggester = trim(addslashes(strip_tags($_POST["suggester"])));
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
 	    	$verificationcode = (int)strtolower(trim($_POST["verificationcode"]));
@@ -200,6 +201,7 @@ class AboutAction extends Action {
 		    	$newDataSuggestion = array(
 		    		'id' => '',
 		    		'uid' => $userloginid,
+		    		'suggester' => $suggester,
 		    		'contact' => $connection,
 		    		'suggestion' => $content,
 		    		'time' => time(),
