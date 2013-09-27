@@ -54,16 +54,21 @@
   	    <?php if (!empty($dataSuggestion['uid'])) { ?>
 	  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>">
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
-			</a>&nbsp;
+			</a>
+            <div class="suggestion_content_div">
 			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a> 
+			<?php echo $dataSuggestion['suggestion']; ?>
+			</div>
 		<?php } else { ?>
 			<a>
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
-			</a>&nbsp;
+			</a>
+			<div class="suggestion_content_div">
 			<a>匿名用户</a> 
+			<?php echo $dataSuggestion['suggestion']; ?> 
+			</div>
 		<?php } ?> 
-		<?php echo $dataSuggestion['suggestion']; ?>
-		<span class="f12 gray fr"><?php echo i_time($dataSuggestion['time']); ?></span>
+		<span class="f12 gray suggestion_time_span"><?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
 			<p class="suggestion_ihelpoo_reply_p f12">
 			    <a href="/about/ihelpoo" title="处理人员:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>"><i class="ico_friendfeed"></i></a>

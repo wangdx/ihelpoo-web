@@ -171,6 +171,14 @@
     right: 10px;
     bottom: 10px;
 }
+.suggestion_time_span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.suggestion_content_div{
+    margin: 10px 0 10px 65px;
+}
 .verification_code_p{
     display: none;
 }
