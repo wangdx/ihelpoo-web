@@ -16,8 +16,8 @@
 			<a>匿名用户</a>
 		<?php } ?> 
 			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?>
-			<br />
-			<?php if (empty($dataSuggestion['ihelpoo_reply'])) { ?><a>回复</a></p>
+			<?php if (empty($dataSuggestion['ihelpoo_reply'])) { ?><br /><a>回复</a><?php } ?>
+			</p>
 			<div>
 			<textarea name="content" class="textarea_style" id="content"><?php echo $dataSuggestion['ihelpoo_reply']; ?></textarea>
 			<?php if (empty($dataSuggestion['ihelpoo_reply'])) { ?>
