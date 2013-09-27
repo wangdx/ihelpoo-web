@@ -3,6 +3,7 @@ $().ready(function(){
     $("#submit").click(function(){
         var connection = $("#connection").val();
         var content = $("#content").val();
+        var verificationcode = $('#verification_code').val('');
     	 $("#submit_info").html($infoLoading);
     	 if (connection == "") {
          	$("#submit_info").html('联系方式不能为空哦');
@@ -19,7 +20,6 @@ $().ready(function(){
                 	$("#submit_info").html("<span class='icon_attention'></span>请输入验证码");
             		$('.verification_code_p').fadeIn('fast');
             		$('#verification_code_img').attr({'src': baseUrl + 'other/verifi' });
-            		$('#verification_code').val('');
             	}
             }, "json");
         }
