@@ -2769,6 +2769,24 @@ class RooterAction extends Action {
     	$this->display();
     }
     
+    public function suggestion()
+    {
+    	$admin = logincheck();
+    	$adminuid = $admin['uid'];
+    	$this->assign('title','意见建议');
+    	$DataSuggestion = M("DataSuggestion");
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	$recordsDataSuggestion = $DataSuggestion->join('i_school_info ON i_data_suggestion.school_id = i_school_info.id')->order("time DESC")->select();
+    	$totalrecords = $DataSuggestion->count();
+    	$this->assign('recordsDataSuggestion',$recordsDataSuggestion);
+    	$this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
+    	$this->display();
+    }
+    
     public function useroperatingrecord()
     {
     	$admin = logincheck();
