@@ -166,6 +166,9 @@
     padding: 5px 5px 5px 0px;
     display: inline-block;
 }
+.suggestion_school_reply_p a, .suggestion_ihelpoo_reply_p a{
+    position: absolute;
+}
 .suggestion_icon_a{
     position: absolute;
     left: 10px;
@@ -189,7 +192,7 @@
     line-height: 130%;
 }
 .suggestion_reply_p{
-    margin: 5px;
+    margin: 0 0 0 30px;
 }
 .verification_code_p{
     display: none;
