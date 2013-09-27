@@ -3,7 +3,7 @@ $().ready(function(){
     $("#submit").click(function(){
         var connection = $("#connection").val();
         var content = $("#content").val();
-        var verificationcode = $('#verification_code').val('');
+        var verificationcode = $("#verification_code").val();
     	 $("#submit_info").html($infoLoading);
     	 if (connection == "") {
          	$("#submit_info").html('联系方式不能为空哦');
