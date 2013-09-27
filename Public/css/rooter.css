@@ -216,6 +216,6 @@ a:hover{
 .suggestion_list_ul .textarea_style {
     border-radius: 3px 3px 3px 3px;
     height: 60px;
-    margin: 0 15px;
+    margin: 10px 0;
     width: 350px;
 }
