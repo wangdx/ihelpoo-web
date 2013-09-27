@@ -2778,7 +2778,7 @@ class RooterAction extends Action {
     	
     	if (!empty($_POST['replyid']) && !empty($_POST['replyid'])) {
     		$replyid = (int)$_POST['replyid'];
-    		$replycontent = (int)$_POST['replycontent'];
+    		$replycontent = $_POST['replycontent'];
     		$recordDataSuggestion = $DataSuggestion->find($replyid);
     		$updateReply = array(
     			'id' => $replyid,
