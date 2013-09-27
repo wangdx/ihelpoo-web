@@ -171,3 +171,15 @@
     right: 10px;
     bottom: 10px;
 }
+.verification_code_p{
+    display: none;
+}
+.verification_code_p input{
+    padding: 2px;
+    width: 68px;
+    color: #666;
+    font-size: 12px;
+}
+.verification_code_p img{
+    vertical-align: bottom;
+}

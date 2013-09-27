@@ -18,8 +18,8 @@ $().ready(function(){
                 	$("#submit_info").html("<span class='icon_attention'></span>"+data.info);
                 } else if (data.status == "verifi") {
                 	$("#submit_info").html("请输入验证码");
-            		$('.verification_code_p').fadeIn('fast');
-            		$('#verification_code_img').attr({'src': baseUrl + 'other/verifi' });
+            		$(".verification_code_p").fadeIn('fast');
+            		$("#verification_code_img").attr({'src': baseUrl + 'other/verifi' });
             	}
             }, "json");
         }
