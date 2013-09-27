@@ -213,3 +213,9 @@ a:hover{
     margin: 0 0 5px 65px;
     line-height: 130%;
 }
+.suggestion_list_ul .textarea_style {
+    border-radius: 3px 3px 3px 3px;
+    height: 60px;
+    margin: 0 15px;
+    width: 350px;
+}
