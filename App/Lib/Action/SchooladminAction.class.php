@@ -1970,7 +1970,7 @@ class SchooladminAction extends Action {
 		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
 		    	->select();
 		    	$emailtitle = "建议回复";
-		    	$emailcontent = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了用户建议:“".$recordDataSuggestion['suggestion']."”， 请内部工作人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
+		    	$emailcontent = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了用户建议:<br />“".$recordDataSuggestion['suggestion']."”。<br />请内部工作人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
 		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
 		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
 		    	}
@@ -1978,7 +1978,7 @@ class SchooladminAction extends Action {
 		    	if (!empty($recordDataSuggestion['uid'])) {
 		    		if (i_check_email($recordDataSuggestion['contact'])) {
 		    			$emailtitlesuggester = "建议回复";
-		    			$emailcontentsuggester = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了您的建议:“".$recordDataSuggestion['suggestion']."”：“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
+		    			$emailcontentsuggester = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了您的建议:<br />“".$recordDataSuggestion['suggestion']."”<br />回复内容:“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
 		    			i_send($recordDataSuggestion['contact'], $emailtitlesuggester, $emailcontentsuggester);
 		    		}
 		    		
