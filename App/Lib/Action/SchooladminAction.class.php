@@ -1925,7 +1925,7 @@ class SchooladminAction extends Action {
     	$this->assign('title','意见建议');
     	$DataSuggestion = M("DataSuggestion");
     	
-    	if (!empty($_POST['replyid']) && !empty($_POST['replyid'])) {
+    	if (!empty($_POST['replyid']) && !empty($_POST['replycontent'])) {
     		$replyid = (int)$_POST['replyid'];
     		$replycontent = $_POST['replycontent'];
     		$recordDataSuggestion = $DataSuggestion->find($replyid);
