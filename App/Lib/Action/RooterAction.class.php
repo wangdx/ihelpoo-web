@@ -2840,7 +2840,7 @@ class RooterAction extends Action {
 		    			/**
 		    			 * TODO
 		    			 * send msg system
-		    			 * 我帮圈圈团队回复了你的建议
+		    			 * 我帮圈圈团队回复了你的建议<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>
 		    			 */
 		    		}
 		    		

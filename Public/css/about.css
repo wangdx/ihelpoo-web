@@ -188,6 +188,9 @@
     margin: 0 0 5px 65px;
     line-height: 130%;
 }
+.suggestion_reply_p{
+    margin: 5px;
+}
 .verification_code_p{
     display: none;
 }

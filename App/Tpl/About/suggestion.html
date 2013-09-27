@@ -80,19 +80,23 @@
 		<?php } ?> 
 		<span class="f12 gray suggestion_time_span"><?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
-			<p class="suggestion_ihelpoo_reply_p f12">
+			<div class="suggestion_ihelpoo_reply_p f12">
 			    <a href="/about/ihelpoo" title="处理人员:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>"><i class="ico_friendfeed"></i></a>
+			    <p class="suggestion_reply_p">
 			    <span class="gray">我帮圈圈团队回复:</span> <?php echo $dataSuggestion['ihelpoo_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?></span>
-			</p>
+				</p>
+			</div>
 			<br />
 		<?php } ?>
 		<?php if (!empty($dataSuggestion['school_reply'])) { ?>
-			<p class="suggestion_school_reply_p f12">
+			<div class="suggestion_school_reply_p f12">
 				<a href="/about" title="处理人员uid:<?php echo $dataSuggestion['school_reply_uid']; ?>"><i class="ico_school"></i></a>
+				<p class="suggestion_reply_p">
 				<span class="gray">校园团队回复:</span> <?php echo $dataSuggestion['school_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['school_reply_time']); ?></span>
-			</p>
+				</p>
+			</div>
 		<?php } ?>
 		<?php if (!empty($liststyle)) { ?>
 			<a href="http://<?php echo empty($dataSuggestion['domain_main']) ? $dataSuggestion['domain'] : $dataSuggestion['domain_main'] ?>" class="suggestion_school_a f12 gray" title="来自<?php echo $dataSuggestion['school']; ?>"><span class="icon_plus"></span><?php echo $dataSuggestion['school']; ?></a>
