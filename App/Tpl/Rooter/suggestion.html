@@ -1,6 +1,5 @@
 <include file="Public:headerrooter" />
   <script type="text/javascript" src="__PUBLIC__/js/rooter/suggestion.js"></script>
-  <?php var_dump(i_check_email($_GET['email'])); ?>
   <ul class="suggestion_list_ul">
   <?php foreach($recordsDataSuggestion as $dataSuggestion) { ?>
   	<li>
@@ -31,7 +30,7 @@
 			</div>
 			</p>
 		</div>
-		<span class="f12 gray suggestion_time_span"><a class="red">删除</a> <?php echo i_time($dataSuggestion['time']); ?></span>
+		<span class="f12 gray suggestion_time_span"><a class="deletesuggestion red">删除</a> <?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
 			<p class="suggestion_ihelpoo_reply_p f12">
 			    <a href="/about/ihelpoo" title="处理人员:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>"><i class="ico_friendfeed"></i></a>
