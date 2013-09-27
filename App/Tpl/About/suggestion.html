@@ -36,7 +36,7 @@
   <?php } ?>
   </div>
   <div class="suggestion_list_div">
-  <a href="?school=all" class="f12">所有学校建议</a>
+  <a href="/about/suggestion" class="f12"><?php echo $schoolname; ?>建议</a> | <a href="?school=all" class="f12">所有学校建议</a>
   <ul class="suggestion_list_ul">
   <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
   	<li>
