@@ -25,7 +25,7 @@ class SchooladminAction extends Action {
     		$this->assign('webmasterloginid',$webmasterloginid);
     		$this->assign('webmasterloginname',$webmasterloginname);
     	}
-    	
+
     	function logincheck()
     	{
     		$webmasterloginid = session('webmasterloginid');
@@ -1985,11 +1985,7 @@ class SchooladminAction extends Action {
 		    		$UserLogin = M("UserLogin");
 		    		$recordUserLogin = $UserLogin->find($recordDataSuggestion['uid']);
 		    		if (!empty($recordUserLogin['uid'])) {
-		    			/**
-		    			 * TODO
-		    			 * send msg system
-		    			 * "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了你的建议<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>
-		    			 */
+                        i_savenotice("10000", $recordUserLogin['uid'], "system/suggestion:school-reply", "");
 		    		}
 		    	}
                 
