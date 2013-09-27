@@ -36,6 +36,7 @@
   <?php } ?>
   </div>
   <div class="suggestion_list_div">
+  <a href="?school=all" class="f12">所有学校建议</a>
   <ul class="suggestion_list_ul">
   <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
   	<li>
@@ -66,6 +67,9 @@
 				<span class="gray">校园团队回复:</span> <?php echo $dataSuggestion['school_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['school_reply_time']); ?></span>
 			</p>
+		<?php } ?>
+		<?php if (!empty($liststyle)) { ?>
+			<a href="<?php echo empty($dataSuggestion['domain_main']) ? $dataSuggestion['domain'] : $dataSuggestion['domain_main'] ?>" class="f12"><?php echo $dataSuggestion['school']; ?></a>
 		<?php } ?>
   	</li>
   <?php } ?>
