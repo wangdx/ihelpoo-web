@@ -614,54 +614,6 @@ function i_send($to, $subject, $body)
     $redis->lPush(C('MAIL_QUEUE_BODY'), $body);
 }
 
-
-/**
- * @deprecated use i_send instead
- */
-function i_sendmail($address, $title, $message)
-{
-
-    vendor('Ihelpoo.Phpmailer');
-
-    $mail = new PHPMailer();
-    // 设置PHPMailer使用SMTP服务器发送Email
-    $mail->IsSMTP();
-
-    // 设置邮件的字符编码，若不指定，则为'UTF-8'
-    $mail->CharSet = 'UTF-8';
-
-    // 添加收件人地址，可以多次使用来添加多个收件人
-    $mail->AddAddress($address);
-
-    // 设置邮件正文
-    $tpl = '<div style="font-family:verdana;font-size:12px;color:#555555;line-height:14pt"> <div style="width:590px"> <div style="background:url(\'http://42.62.50.238/Public/image/common/email_top.png\') no-repeat;width:100%;min-height:75px;display:block"> <div style="padding-top:30px;padding-left:50px;padding-right:50px"><a target="_blank" href="http://www.ihelpoo.com"><img style="border:none" src="http://42.62.50.238/Public/image/common/logo.jpg"></a> </div> </div> <div style="background:url(\'http://www.gstatic.com/android/market_images/email/email_mid.png\') repeat-y;width:100%;display:block"> <div style="padding-left:50px;padding-right:50px;padding-bottom:1px"> <div style="border-bottom:1px solid #ededed"></div> <div style="border-bottom:1px solid #ededed"></div> <div style="margin:30px 0">' . $message . ' </div> <div style="border-bottom:1px solid #ededed"></div> <div style="border-bottom:1px solid #ededed"></div> <div style="font-size:9px;color:#B0B0B0">需要帮助吗？请访问 <a target="_blank" href="http://www.ihelpoo.com">我帮圈圈官网</a>。<br>请勿回复此邮件。<br>&copy; 2013 我帮圈圈 | 保留所有权利。<br>我帮圈圈团队 ♥ </div> </div> </div> <div style="background:url(\'http://42.62.50.238/Public/image/common/email_bottom.png\') no-repeat;width:100%;min-height:50px;display:block" class="adL"> <div style="padding-left:50px;padding-right:50px"></div> </div> </div></div>';
-    $mail->Body = $tpl;
-    $mail->IsHTML(true);
-
-    // 设置邮件头的From字段。
-    $mail->From = C('MAIL_ADDRESS');
-
-    // 设置发件人名字
-    $mail->FromName = '我帮圈圈';
-
-    // 设置邮件标题
-    $mail->Subject = $title;
-
-    // 设置SMTP服务器。
-    $mail->Host = C('MAIL_SMTP');
-
-    // 设置为"需要验证"
-    $mail->SMTPAuth = true;
-
-    // 设置用户名和密码。
-    $mail->Username = C('MAIL_LOGINNAME');
-    $mail->Password = C('MAIL_PASSWORD');
-
-    // 发送邮件。
-    return ($mail->Send());
-}
-
-
 /**
  *
  * use this to store system notice message that triggered by some user
