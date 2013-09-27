@@ -150,6 +150,7 @@
     border-radius: 3px;
     border: 1px solid #EEE;
     padding: 10px;
+    position: relative;
 }
 .suggestion_ihelpoo_reply_p{
     margin: 10px 0 10px 65px;
@@ -164,4 +165,9 @@
     border-radius: 3px;
     padding: 5px 5px 5px 0px;
     display: inline-block;
+}
+.suggestion_school_a{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
