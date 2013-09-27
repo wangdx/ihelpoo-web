@@ -53,16 +53,16 @@
 		<?php echo $dataSuggestion['suggestion']; ?>
 		<span class="f12 gray fr"><?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
-			<p class="suggestion_ihelpoo_reply_p" title="处理人员uid:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>">
+			<p class="suggestion_ihelpoo_reply_p f12" title="处理人员uid:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>">
 			    <i class="ico_friendfeed"></i>
-			    <span class="gray f12">我帮圈圈团队回复:</span> <?php echo $dataSuggestion['ihelpoo_reply']; ?>
+			    <span class="gray">我帮圈圈团队回复:</span> <?php echo $dataSuggestion['ihelpoo_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?></span>
 			</p>
 		<?php } ?>
 		<?php if (!empty($dataSuggestion['school_reply'])) { ?>
-			<p class="suggestion_school_reply_p" title="处理人员uid:<?php echo $dataSuggestion['school_reply_uid']; ?>">
+			<p class="suggestion_school_reply_p f12" title="处理人员uid:<?php echo $dataSuggestion['school_reply_uid']; ?>">
 				<i class="ico_school"></i>
-				<span class="gray f12">校园团队回复:</span> <?php echo $dataSuggestion['school_reply']; ?>
+				<span class="gray">校园团队回复:</span> <?php echo $dataSuggestion['school_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['school_reply_time']); ?></span>
 			</p>
 		<?php } ?>
