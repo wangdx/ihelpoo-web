@@ -179,6 +179,24 @@ class AboutAction extends Action {
     	if ($this->isPost()) {
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
+	    	$verificationcode = (int)strtolower(trim($_POST["verificationcode"]));
+	    	if (empty($verificationcode)) {
+	    		
+	    		/**
+	    		 * create virification code
+	    		 */
+	    		Vendor('Ihelpoo.Verifi');
+	    		$verifi = new Verifi();
+	    		$verifiString = $verifi->value_rand();
+	    		$_SESSION['verificationcode'] = $verifiString['formula'];
+	    		$_SESSION['verificationresult'] = $verifiString['result'];
+	    		$this->ajaxReturn(0, "请输入验证码", 'verifi');
+	    	}
+	    	
+	    	if ($verificationcode != $_SESSION['verificationresult']) {
+	    		$this->ajaxReturn(0, "验证码错误", 'error');
+	    	}
+	    	
 	    	if (!empty($content) && !empty($connection)) {
 		    	$newDataSuggestion = array(
 		    		'id' => '',

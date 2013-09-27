@@ -35,6 +35,12 @@
   		<p>&#12288;意见建议</p>
   		<textarea name="content" class="textarea_style" id="content"><?php echo $recordSchoolApplyverify[question2]; ?></textarea><span class="red">*</span>
   	</li>
+  	<li>
+  		<p class="verification_code_p">
+	        <img id="verification_code_img" src="" />
+	        <input type="text" name="verificationcode" value="999" id="verification_code"/>
+	    </p>
+  	</li>
   	<li><a id="submit" class="btn f12">确定</a> <span id="submit_info" class="f12 gray"></span></li>
   </ul>
   </form>
