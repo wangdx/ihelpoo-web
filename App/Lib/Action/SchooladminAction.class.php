@@ -1931,13 +1931,13 @@ class SchooladminAction extends Action {
     		$recordDataSuggestion = $DataSuggestion->find($replyid);
     		$updateReply = array(
     			'id' => $replyid,
-    			'ihelpoo_reply' => $replycontent,
-    			'ihelpoo_reply_uid' => $adminuid,
-    			'ihelpoo_reply_time' => time()
+    			'school_reply' => $replycontent,
+    			'school_reply_uid' => $webmaster['uid'],
+    			'school_reply_time' => time()
     		);
     		$DataSuggestion->save($updateReply);
     		
-    		if (!empty($recordDataSuggestion['ihelpoo_reply'])) {
+    		if (!empty($recordDataSuggestion['school_reply'])) {
                 /**
     			 * webmaster user operating record
     			 */
