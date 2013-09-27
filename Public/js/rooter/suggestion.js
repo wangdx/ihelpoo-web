@@ -23,7 +23,7 @@ $().ready(function(){
     
     $(".reply_change_show_a").click(function(){
     	$this = $(this);
-    	$this.parent().parent().parent().find('.suggestion_reply_div').show();
+    	$this.parent().parent().find('.suggestion_reply_div').show();
     });
     
     $(".usericon_down").click(function(){
