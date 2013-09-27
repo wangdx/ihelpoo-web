@@ -168,3 +168,56 @@ a:hover{
 	-webkit-box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 	box-shadow: 0 0 10px rgba(123, 214, 246, .6);
 }
+
+/*--- suggestion ---*/
+.suggestion_list_ul li{
+    margin: 5px 0;
+    border-radius: 3px;
+    border: 1px solid #EEE;
+    padding: 10px;
+    position: relative;
+}
+.suggestion_ihelpoo_reply_p{
+    margin: 0 0 5px 65px;
+    background: #f5f5f5;
+    border-radius: 3px;
+    padding: 5px 5px 5px 0px;
+    display: inline-block;
+}
+.suggestion_school_reply_p{
+    margin: 0 0 0 65px;
+    background: #f5f5f5;
+    border-radius: 3px;
+    padding: 5px 5px 5px 0px;
+    display: inline-block;
+}
+.suggestion_icon_a{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.suggestion_school_a{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.suggestion_content_div_p{
+    margin-top: 5px;
+}
+.suggestion_time_span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.suggestion_content_div{
+    margin: 0 0 5px 65px;
+    line-height: 130%;
+}
+.suggestion_reply_div .textarea_style {
+    border-radius: 3px 3px 3px 3px;
+    height: 50px;
+    width: 350px;
+}
+.suggestion_reply_div{
+    display: none;
+}

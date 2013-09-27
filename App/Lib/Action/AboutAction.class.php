@@ -163,17 +163,102 @@ class AboutAction extends Action {
     
     public function suggestion()
     {
-    	$title = "意见建议";
-    	$this->assign('title', $title);
-    	if ($this->isPost()) {
-	    	$connection = trim(strip_tags($_POST["connection"]));
-	    	$content = trim(strip_tags($_POST["content"]));
-	    	$emailcontent = "联系方式:<br />".$connection."<hr />内容:<br />".$content;
-	    	i_send('admin@tvery.com','我帮圈圈 意见建议', $emailcontent);
-	    	i_send('echowdx@gmail.com','我帮圈圈 意见建议', $emailcontent);
-	    	i_send('122501511@qq.com','我帮圈圈 意见建议', $emailcontent);
-	    	$this->ajaxReturn(0, "提交成功", "yes");
+    	$userloginid = session('userloginid');
+    	if (!empty($userloginid)) {
+    		i_db_update_activetime($userloginid);
+    		$UserLogin = M("UserLogin");
+    		$userloginedrecord = $UserLogin->find($userloginid);
+    		$this->assign('userloginedrecord',$userloginedrecord);
     	}
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('schoolname', $recordSchoolInfo['school']);
+    	$title = "意见建议 ".$recordSchoolInfo['school'];
+    	$this->assign('title', $title);
+    	$DataSuggestion = M("DataSuggestion");
+    	if ($this->isPost()) {
+	    	$suggester = trim(addslashes(strip_tags($_POST["suggester"])));
+	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
+	    	$content = trim(addslashes(strip_tags($_POST["content"])));
+	    	$verificationcode = (int)strtolower(trim($_POST["verificationcode"]));
+	    	if (empty($verificationcode)) {
+	    		
+	    		/**
+	    		 * create virification code
+	    		 */
+	    		Vendor('Ihelpoo.Verifi');
+	    		$verifi = new Verifi();
+	    		$verifiString = $verifi->value_rand();
+	    		$_SESSION['verificationcode'] = $verifiString['formula'];
+	    		$_SESSION['verificationresult'] = $verifiString['result'];
+	    		$this->ajaxReturn(0, "请输入验证码", 'verifi');
+	    	}
+	    	
+	    	if ($verificationcode != $_SESSION['verificationresult']) {
+	    		$this->ajaxReturn(0, "验证码错误", 'error');
+	    	}
+	    	
+	    	if (!empty($content) && !empty($connection)) {
+		    	$newDataSuggestion = array(
+		    		'id' => '',
+		    		'uid' => $userloginid,
+		    		'suggester' => $suggester,
+		    		'contact' => $connection,
+		    		'suggestion' => $content,
+		    		'time' => time(),
+		    		'school_id' => $recordSchoolInfo['id']
+		    	);
+		    	$DataSuggestion->add($newDataSuggestion);
+		    	
+		    	/**
+		    	 * send email to ihelpoo group && school group
+		    	 */
+		    	$emailcontent = "联系方式:<br />".$userloginedrecord['nickname']." ".$connection."<hr />内容:<br />".$content." <br/><br/><span style='color:gray;font-size:12px'>请登录后台及时处理回复，并做好记录</span>";
+		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
+		    	$AdminUser = M("AdminUser");
+		    	$recordsAdminUser = $AdminUser->select();
+		    	foreach ($recordsAdminUser as $adminUser) {
+		    		if (!empty($adminUser['email'])) {
+		    			i_send($adminUser['email'], $emailtitle, $emailcontent);
+		    		}
+		    	}
+		    	
+		    	$SchoolWebmaster = M("SchoolWebmaster");
+		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordSchoolInfo[id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
+		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
+		    	->select();
+		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
+		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    	}
+		    	$this->ajaxReturn(0, "提交成功", "yes");
+	    	} else {
+	    		$this->ajaxReturn(0, "提交失败了", "error");
+	    	}
+    	}
+    	
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+        
+        if (!empty($_GET['school'])) {
+        	$recordDataSuggestion = $DataSuggestion->where("school_id")
+        	->join('i_user_login ON i_data_suggestion.uid = i_user_login.uid')
+        	->join('i_school_info ON i_data_suggestion.school_id = i_school_info.id')
+        	->field('i_data_suggestion.id,i_user_login.uid,i_data_suggestion.suggestion,i_data_suggestion.time,i_data_suggestion.ihelpoo_reply,i_data_suggestion.ihelpoo_reply_uid,i_data_suggestion.ihelpoo_reply_time,i_data_suggestion.school_reply,i_data_suggestion.school_reply_uid,i_data_suggestion.school_reply_time,i_data_suggestion.school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_school_info.school,i_school_info.domain,i_school_info.domain_main')
+        	->limit($offset, $count)->order("i_data_suggestion.time DESC")->select();
+        	$totalRecordNums = $DataSuggestion->where("school_id")->count();
+        	$this->assign('liststyle', 'schoolall');
+        } else {
+        	$recordDataSuggestion = $DataSuggestion->where("school_id = $recordSchoolInfo[id]")
+        	->join('i_user_login ON i_data_suggestion.uid = i_user_login.uid')
+        	->join('i_school_info ON i_data_suggestion.school_id = i_school_info.id')
+        	->field('i_data_suggestion.id,i_user_login.uid,i_data_suggestion.suggestion,i_data_suggestion.time,i_data_suggestion.ihelpoo_reply,i_data_suggestion.ihelpoo_reply_uid,i_data_suggestion.ihelpoo_reply_time,i_data_suggestion.school_reply,i_data_suggestion.school_reply_uid,i_data_suggestion.school_reply_time,i_data_suggestion.school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_school_info.school,i_school_info.domain,i_school_info.domain_main')
+        	->limit($offset, $count)->order("i_data_suggestion.time DESC")->select();
+        	$totalRecordNums = $DataSuggestion->where("school_id = $recordSchoolInfo[id]")->count();
+        }
+        $this->assign('recordDataSuggestion', $recordDataSuggestion);
+        $this->assign('totalRecordNums', $totalRecordNums);
+        $totalPages = ceil($totalRecordNums / $count);
+        $this->assign('totalPages', $totalPages);
     	$this->display();
     }
 

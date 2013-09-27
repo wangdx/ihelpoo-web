@@ -11,13 +11,30 @@
 	<li>2. 目前仅支持jpg的图片</li>
 	<li>3. 考虑到下载网速，图片不要超过500k（200k最为适宜，限制最大0.8MB），可以在ps中调低图片质量 8~9为适谊</li>
 	</ul>
-	<?php if (!empty($schoolid)) { ?>
+	<?php if (!empty($recordSchoolAlbum)) { ?>
 	<br />
-	<ul>
-	<li>已上传图片列表: <a href="?list=true">查看</a></li>
-	<?php foreach ($imagestoragelist as $imagestorage) { ?>
-	<li><a href="<?php echo $imagestorageurlfolder,$imagestorage['name']; ?>" target="_blank"><?php echo $imagestorageurlfolder,$imagestorage['name']; ?></a> 大小:<?php echo $imagestorage['size']; ?> 时间:<?php echo i_time($imagestorage['time']); ?></li>
+	<?php if (!empty($_GET['del'])) { ?>
+		<div>
+		<span class="icon_attention"></span> 确定删除这张图片? <br /><br />
+		<a href="/schooladmin/indexbgimg?suredel=<?php echo $_GET['del']; ?>" class="btn">确认</a> <a href="/schooladmin/indexbgimg">取消</a>
+		<br /><br />
+		</div>
+	<?php } ?>
+	<ul class="para_right_ul">
+	<li>已上传图片</li>
+	<?php foreach ($recordSchoolAlbum as $schoolAlbum) { ?>
+	<li>
+		<a href="<?php echo $schoolAlbum['url']; ?>" target="_blank" title="<?php echo $schoolAlbum['url']; ?>"><img src="<?php echo $schoolAlbum['url']; ?>" height="80" /></a> 
+		<a href="<?php echo $schoolAlbum['url']; ?>" target="_blank" title="<?php echo $schoolAlbum['url']; ?>"><?php echo $schoolAlbum['url']; ?></a>   
+		<?php if ($schoolAlbum['size'] < '300000') { ?><span class="icon_right" title="大小合格"></span><?php } ?>大小:<?php echo $schoolAlbum['size']; ?> 
+		<?php if ($schoolAlbum['width'].$schoolAlbum['height'] == '1600900') { ?><span class="icon_right" title="宽高合格"></span><?php } ?>宽高:<?php echo $schoolAlbum['width']; ?>*<?php echo $schoolAlbum['height']; ?> 
+		<a href="?del=<?php echo $schoolAlbum['id']; ?>">删除</a> <span class="gray fr">上传时间:<?php echo i_time($schoolAlbum['time']); ?></span>
+	</li>
 	<?php } ?>
 	</ul>
+	<p class="paging_p f12 gray">共<?php echo $totalRecordNums ?>张图片 <?php echo $totalPages ?>页</p>
+    <div class="paging_div">
+    <?php if ($totalPages > 1) {  i_page_show("schooladmin/indexbgimg", $totalPages); } ?>
+    </div>
 	<?php } ?>
 <include file="Public:footerwebmaster" />

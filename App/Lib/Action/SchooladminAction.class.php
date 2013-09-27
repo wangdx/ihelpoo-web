@@ -222,17 +222,22 @@ class SchooladminAction extends Action {
     	$this->assign('schoolid',$schoolid);
     	
     	Vendor('Ihelpoo.Upyun');
-        $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
-        $imageStorageUrl = image_storage_url();
+    	$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+    	$imageStorageUrl = image_storage_url();
+    	
+    	$SchoolAlbum = M("SchoolAlbum");
+    	
     	if ($this->isPost()) {
     		if (!empty($_FILES)) {
     			if ($_FILES["uploadimage"]["error"] > 0) {
     				redirect('/schooladmin/indexbgimg', 3, 'file error...'.$_FILES["uploadimage"]["error"]);
     			} else {
-    				$imageOldName = $_FILES["uploadimage"]["name"];
     				$imageType = $_FILES["uploadimage"]["type"];
     				$imageSize = $_FILES["uploadimage"]["size"];
     				$imageTmpName = $_FILES["uploadimage"]["tmp_name"];
+    				$tempRealSize = getimagesize($_FILES["uploadimage"]["tmp_name"]);
+    				$imageRealWidth = $tempRealSize['0'];
+    				$imageRealHeight = $tempRealSize['1'];
     			}
     			
     			if ($imageSize > 800000) {
@@ -247,6 +252,20 @@ class SchooladminAction extends Action {
         			$rsp = $upyun->writeFile($storageFilename, $fh, True);
         			fclose($fh);
         			$newfilepath = $imageStorageUrl.$storageFilename;
+        			
+        			/**
+        			 * insert into i_school_album
+        			 */
+        			$newAlbumIconData = array(
+        				'id' => '',
+        				'school_id' => $schoolid,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'height' => $imageRealHeight,
+        				'width' => $imageRealWidth,
+        				'time' => time()
+        			);
+        			$SchoolAlbum->add($newAlbumIconData);
         			
         			/**
         			 * webmaster user operating record
@@ -268,11 +287,48 @@ class SchooladminAction extends Action {
     		}
     	}
     	
-    	if (!empty($schoolid) && !empty($_GET['list'])) {
-    		$imagestoragelist = $upyun->getList("/school/$schoolid/");
-    		$this->assign('imagestoragelist', $imagestoragelist);
-    		$this->assign('imagestorageurlfolder', $imageStorageUrl."/school/".$schoolid."/");
+    	/**
+    	 * delete image
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteSchoolAlbum = $SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->find();
+    			if (!empty($deleteSchoolAlbum['id'])) {
+    				
+	    			/**
+	    			 * webmaster user operating record
+	    			 */
+	    			$SchoolRecord = M("SchoolRecord");
+	    			$newSchoolRecordData = array(
+			            'id' => '',
+			            'sys_id' => '',
+			            'uid' => $webmaster['uid'],
+			            'sid' => $recordSchoolInfo['id'],
+			            'record' => '删除图片 size:'.$deleteSchoolAlbum['size'].' id:'.$suredelid,
+			            'time' => time()
+	    			);
+	    			$SchoolRecord->add($newSchoolRecordData);
+	    			
+	    			$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteSchoolAlbum['url']);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
+    				if ($isStorageDeleteFlag) {
+    					$SchoolAlbum->where("id = $suredelid AND school_id = $schoolid")->delete();
+    					redirect('/schooladmin/indexbgimg', 1, '删除图片成功 ok...');
+    				}
+    			}
+    		}
     	}
+    	
+    	$page = i_page_get_num();
+        $count = 10;
+        $offset = $page * $count;
+    	$recordSchoolAlbum = $SchoolAlbum->where("school_id = $schoolid")->order("time DESC")->limit($offset, $count)->select();
+    	$this->assign('recordSchoolAlbum',$recordSchoolAlbum);
+    	$totalRecordNums = $SchoolAlbum->where("school_id = $schoolid")->count();
+        $this->assign('totalRecordNums', $totalRecordNums);
+        $totalPages = ceil($totalRecordNums / $count);
+        $this->assign('totalPages', $totalPages);
     	$this->display();
     }
     
@@ -1862,6 +1918,113 @@ class SchooladminAction extends Action {
     	$this->display();
     }
 
+    public function suggestion()
+    {
+    	$webmaster = logincheck();
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('title','意见建议');
+    	$DataSuggestion = M("DataSuggestion");
+    	
+    	if (!empty($_POST['replyid']) && !empty($_POST['replycontent'])) {
+    		$replyid = (int)$_POST['replyid'];
+    		$replycontent = $_POST['replycontent'];
+    		$recordDataSuggestion = $DataSuggestion->find($replyid);
+    		$updateReply = array(
+    			'id' => $replyid,
+    			'school_reply' => $replycontent,
+    			'school_reply_uid' => $webmaster['uid'],
+    			'school_reply_time' => time()
+    		);
+    		$DataSuggestion->save($updateReply);
+    		
+    		if (!empty($recordDataSuggestion['school_reply'])) {
+                /**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => '修改建议回复:'.$recordDataSuggestion['suggestion'].' oldreply:'.$recordDataSuggestion['ihelpoo_reply'].' newreply:'.$replycontent,
+					'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			$this->ajaxReturn(0,'修改成功','yes');
+    		} else {
+    			
+    			/**
+		    	 * send msg && email to suggester
+		    	 */
+		    	$SchoolInfo = M("SchoolInfo");
+		    	$recordSchoolInfo = $SchoolInfo->find($recordDataSuggestion['school_id']);
+		    	$recordSchoolInfoDomain = empty($recordSchoolInfo['domain_main']) ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+		    	
+    			/**
+    			 * new reply
+    			 * send msg to rooter
+    			 */
+    			$SchoolWebmaster = M("SchoolWebmaster");
+		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordDataSuggestion[school_id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
+		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
+		    	->select();
+		    	$emailtitle = "建议回复";
+		    	$emailcontent = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了用户建议:<br />“".$recordDataSuggestion['suggestion']."”。<br />请内部工作人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
+		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
+		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    	}
+		    	
+		    	if (!empty($recordDataSuggestion['uid'])) {
+		    		if (i_check_email($recordDataSuggestion['contact'])) {
+		    			$emailtitlesuggester = "建议回复";
+		    			$emailcontentsuggester = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了您的建议:<br />“".$recordDataSuggestion['suggestion']."”<br />回复内容:“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
+		    			i_send($recordDataSuggestion['contact'], $emailtitlesuggester, $emailcontentsuggester);
+		    		}
+		    		
+		    		$UserLogin = M("UserLogin");
+		    		$recordUserLogin = $UserLogin->find($recordDataSuggestion['uid']);
+		    		if (!empty($recordUserLogin['uid'])) {
+		    			/**
+		    			 * TODO
+		    			 * send msg system
+		    			 * "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了你的建议<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>
+		    			 */
+		    		}
+		    	}
+                
+                /**
+    			 * webmaster user operating record
+    			 */
+    			$SchoolRecord = M("SchoolRecord");
+    			$newSchoolRecordData = array(
+					'id' => '',
+					'sys_id' => '',
+					'uid' => $webmaster['uid'],
+					'sid' => $recordSchoolInfo['id'],
+					'record' => '回复建议:'.$recordDataSuggestion['suggestion'].' reply:'.$replycontent,
+					'time' => time()
+    			);
+    			$SchoolRecord->add($newSchoolRecordData);
+    			
+    			$this->ajaxReturn(0,'回复成功','yes');
+    		}
+    	}
+    	
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	$recordsDataSuggestion = $DataSuggestion->where("school_id = $recordSchoolInfo[id]")->join('i_school_info ON i_data_suggestion.school_id = i_school_info.id')
+    	->join('i_user_login ON i_data_suggestion.uid = i_user_login.uid')
+    	->field('i_data_suggestion.id,i_user_login.uid,i_data_suggestion.suggester,i_data_suggestion.contact,i_data_suggestion.suggestion,i_data_suggestion.time,i_data_suggestion.ihelpoo_reply,i_data_suggestion.ihelpoo_reply_uid,i_data_suggestion.ihelpoo_reply_time,i_data_suggestion.school_reply,i_data_suggestion.school_reply_uid,i_data_suggestion.school_reply_time,i_data_suggestion.school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_school_info.school,i_school_info.domain,i_school_info.domain_main')
+    	->order("i_data_suggestion.time DESC")->select();
+    	$totalrecords = $DataSuggestion->where("school_id = $recordSchoolInfo[id]")->count();
+    	$this->assign('recordsDataSuggestion',$recordsDataSuggestion);
+    	$this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
+    	$this->display();
+    }
     
     /**
      * operating record

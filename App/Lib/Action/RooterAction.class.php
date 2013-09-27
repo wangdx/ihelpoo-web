@@ -233,6 +233,7 @@ class RooterAction extends Action {
     	Vendor('Ihelpoo.Upyun');
         $upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
         $imageStorageUrl = image_storage_url();
+        $SchoolAlbum = M("SchoolAlbum");
     	if ($this->isPost()) {
     		$schoolid = $_POST['schoolid'];
     		if (!empty($_FILES)) {
@@ -243,6 +244,9 @@ class RooterAction extends Action {
     				$imageType = $_FILES["uploadimage"]["type"];
     				$imageSize = $_FILES["uploadimage"]["size"];
     				$imageTmpName = $_FILES["uploadimage"]["tmp_name"];
+    				$tempRealSize = getimagesize($imageTmpName);
+    				$imageRealWidth = $tempRealSize['0'];
+    				$imageRealHeight = $tempRealSize['1'];
     			}
 
     			/**
@@ -264,6 +268,20 @@ class RooterAction extends Action {
         			$newfilepath = $imageStorageUrl.$storageFilename;
         			
         			/**
+        			 * insert into i_school_album
+        			 */
+        			$newAlbumIconData = array(
+        				'id' => '',
+        				'school_id' => $schoolid,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'height' => $imageRealHeight,
+        				'width' => $imageRealWidth,
+        				'time' => time()
+        			);
+        			$SchoolAlbum->add($newAlbumIconData);
+        			
+        			/**
         			 * admin user operating record
         			 */
         			if (!empty($admin['uid'])) {
@@ -283,6 +301,39 @@ class RooterAction extends Action {
     		}
     	}
     	
+    	/**
+    	 * delete image
+    	 */
+    	if (!empty($_GET['suredel'])) {
+    		$suredelid = (int)$_GET['suredel'];
+    		if (!empty($suredelid)) {
+    			$deleteSchoolAlbum = $SchoolAlbum->where("id = $suredelid")->find();
+    			if (!empty($deleteSchoolAlbum['id'])) {
+    				
+	    			/**
+        			 * admin user operating record
+        			 */
+        			if (!empty($admin['uid'])) {
+        				$AdminUserrecord = M("AdminUserrecord");
+        				$newAdminUserrecordData = array(
+							'id' => '',
+							'uid' => $admin['uid'],
+							'record' => '删除图片 size:'.$deleteSchoolAlbum['size'].' id:'.$suredelid,
+							'time' => time(),
+        				);
+        				$AdminUserrecord->add($newAdminUserrecordData);
+        			}
+	    			
+	    			$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteSchoolAlbum['url']);
+    				$isStorageDeleteFlag = $upyun->delete($urlFilename);
+    				if ($isStorageDeleteFlag) {
+    					$SchoolAlbum->where("id = $suredelid")->delete();
+    					redirect('/rooter/indexbgimg', 1, '删除图片成功 ok...');
+    				}
+    			}
+    		}
+    	}
+    	
     	$SchoolInfo = M("SchoolInfo");
 		$recordSchoolInfo = $SchoolInfo->select();
 		$this->assign('recordSchoolInfo',$recordSchoolInfo);
@@ -290,9 +341,15 @@ class RooterAction extends Action {
 		$schoolid = (int)$_GET['schoolid'];
     	$this->assign('schoolid',$schoolid);
     	if (!empty($schoolid)) {
-			$imagestoragelist = $upyun->getList("/school/$schoolid/");
-			$this->assign('imagestoragelist',$imagestoragelist);
-			$this->assign('imagestorageurlfolder',$imageStorageUrl."/school/".$schoolid."/");
+			$page = i_page_get_num();
+			$count = 10;
+			$offset = $page * $count;
+			$recordSchoolAlbum = $SchoolAlbum->where("school_id = $schoolid")->order("time DESC")->limit($offset, $count)->select();
+			$this->assign('recordSchoolAlbum',$recordSchoolAlbum);
+			$totalRecordNums = $SchoolAlbum->where("school_id = $schoolid")->count();
+			$this->assign('totalRecordNums', $totalRecordNums);
+			$totalPages = ceil($totalRecordNums / $count);
+			$this->assign('totalPages', $totalPages);
     	}
     	$this->display();
     }
@@ -2709,6 +2766,138 @@ class RooterAction extends Action {
     	$UserLogin = M("UserLogin");
     	$recordsUserLogin = $UserLogin->where("email = ''")->select();
     	$this->assign('recordsUserLogin',$recordsUserLogin);
+    	$this->display();
+    }
+    
+    public function suggestion()
+    {
+    	$admin = logincheck();
+    	$adminuid = $admin['uid'];
+    	$this->assign('title','意见建议');
+    	$DataSuggestion = M("DataSuggestion");
+    	
+    	if (!empty($_POST['replyid'])) {
+    		$replyid = (int)$_POST['replyid'];
+    		$replycontent = $_POST['replycontent'];
+    		$recordDataSuggestion = $DataSuggestion->find($replyid);
+    		$updateReply = array(
+    			'id' => $replyid,
+    			'ihelpoo_reply' => $replycontent,
+    			'ihelpoo_reply_uid' => $adminuid,
+    			'ihelpoo_reply_time' => time()
+    		);
+    		$DataSuggestion->save($updateReply);
+    		
+    		if (!empty($recordDataSuggestion['ihelpoo_reply'])) {
+    			/**
+                 * admin user operating record
+                 */
+                if (!empty($admin['uid'])) {
+                	$AdminUserrecord = M("AdminUserrecord");
+                	$newAdminUserrecordData = array(
+						'id' => '',
+						'uid' => $admin['uid'],
+						'record' => '修改建议回复:'.$recordDataSuggestion['suggestion'].' oldreply:'.$recordDataSuggestion['ihelpoo_reply'].' newreply:'.$replycontent,
+						'time' => time(),
+                	);
+                	$AdminUserrecord->add($newAdminUserrecordData);
+                }
+    			
+    			$this->ajaxReturn(0,'修改成功','yes');
+    		} else {
+    			
+    			/**
+		    	 * send msg && email to suggester
+		    	 */
+		    	$SchoolInfo = M("SchoolInfo");
+		    	$recordSchoolInfo = $SchoolInfo->find($recordDataSuggestion['school_id']);
+		    	$recordSchoolInfoDomain = empty($recordSchoolInfo['domain_main']) ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
+		    	
+    			/**
+    			 * new reply
+    			 * send msg to webmaster
+    			 */
+    			$SchoolWebmaster = M("SchoolWebmaster");
+		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordDataSuggestion[school_id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
+		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
+		    	->select();
+		    	$emailtitle = "建议回复处理";
+		    	$emailcontent = "我帮圈圈团队回复了用户建议:<br />“".$recordDataSuggestion['suggestion']."”。<br />希望校园团队安排人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
+		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
+		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    	}
+		    	
+		    	if (!empty($recordDataSuggestion['uid'])) {
+		    		if (i_check_email($recordDataSuggestion['contact'])) {
+		    			$emailtitlesuggester = "建议回复";
+		    			$emailcontentsuggester = "我帮圈圈团队回复了您的建议:<br />“".$recordDataSuggestion['suggestion']."”。<br />回复内容:“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
+		    			i_send($recordDataSuggestion['contact'], $emailtitlesuggester, $emailcontentsuggester);
+		    		}
+		    		
+		    		$UserLogin = M("UserLogin");
+		    		$recordUserLogin = $UserLogin->find($recordDataSuggestion['uid']);
+		    		if (!empty($recordUserLogin['uid'])) {
+		    			/**
+		    			 * TODO
+		    			 * send msg system
+		    			 * 我帮圈圈团队回复了你的建议<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>
+		    			 */
+		    		}
+		    		
+		    	}
+    			
+    			/**
+                 * admin user operating record
+                 */
+                if (!empty($admin['uid'])) {
+                	$AdminUserrecord = M("AdminUserrecord");
+                	$newAdminUserrecordData = array(
+						'id' => '',
+						'uid' => $admin['uid'],
+						'record' => '回复建议:'.$recordDataSuggestion['suggestion'].' reply:'.$replycontent,
+						'time' => time(),
+                	);
+                	$AdminUserrecord->add($newAdminUserrecordData);
+                }
+    			
+    			$this->ajaxReturn(0,'回复成功','yes');
+    		}
+    	}
+    	
+    	if (!empty($_POST['suredel'])) {
+    		$suredel = (int)$_POST['suredel'];
+    		$recordDataSuggestion = $DataSuggestion->find($suredel);
+    		
+    		/**
+    		 * admin user operating record
+    		 */
+    		if (!empty($admin['uid'])) {
+    			$AdminUserrecord = M("AdminUserrecord");
+    			$newAdminUserrecordData = array(
+					'id' => '',
+					'uid' => $admin['uid'],
+					'record' => '删除建议:'.$recordDataSuggestion['suggestion'].' reply:'.$recordDataSuggestion['ihelpoo_reply'],
+					'time' => time(),
+    			);
+    			$AdminUserrecord->add($newAdminUserrecordData);
+    		}
+    		
+    		$DataSuggestion->where("id = $suredel")->delete();
+    		$this->ajaxReturn(0,'删除成功','yes');
+    	}
+    	
+    	$page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+    	$recordsDataSuggestion = $DataSuggestion->join('i_school_info ON i_data_suggestion.school_id = i_school_info.id')
+    	->join('i_user_login ON i_data_suggestion.uid = i_user_login.uid')
+    	->field('i_data_suggestion.id,i_user_login.uid,i_data_suggestion.suggester,i_data_suggestion.contact,i_data_suggestion.suggestion,i_data_suggestion.time,i_data_suggestion.ihelpoo_reply,i_data_suggestion.ihelpoo_reply_uid,i_data_suggestion.ihelpoo_reply_time,i_data_suggestion.school_reply,i_data_suggestion.school_reply_uid,i_data_suggestion.school_reply_time,i_data_suggestion.school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_school_info.school,i_school_info.domain,i_school_info.domain_main')
+    	->order("i_data_suggestion.time DESC")->select();
+    	$totalrecords = $DataSuggestion->count();
+    	$this->assign('recordsDataSuggestion',$recordsDataSuggestion);
+    	$this->assign('totalrecords',$totalrecords);
+    	$totalPages = ceil($totalrecords / $count);
+        $this->assign('totalPages',$totalPages);
     	$this->display();
     }
     
