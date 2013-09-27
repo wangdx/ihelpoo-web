@@ -8,17 +8,22 @@
 			</a>
             <div class="suggestion_content_div">
 			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a>
-			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?></p>
-			</div>
 		<?php } else { ?>
 			<a class="suggestion_icon_a">
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
 			</a>
 			<div class="suggestion_content_div">
 			<a>匿名用户</a>
-			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?></p>
-			</div>
 		<?php } ?> 
+			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?>
+			<br />
+			<a>回复</a>
+			<div>
+			<textarea name="content" class="textarea_style" id="content"></textarea>
+			<a id="submit" class="btn f12">回复</a> <span id="submit_info" class="f12 gray"></span>
+			</div>
+			</p>
+		</div>
 		<span class="f12 gray suggestion_time_span"><a class="red">删除</a> <?php echo i_time($dataSuggestion['time']); ?></span>
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
 			<p class="suggestion_ihelpoo_reply_p f12">
