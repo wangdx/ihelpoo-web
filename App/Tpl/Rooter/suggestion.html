@@ -19,8 +19,13 @@
 			<br />
 			<a>回复</a>
 			<div>
-			<textarea name="content" class="textarea_style" id="content"></textarea>
-			<a id="submit" class="btn f12">回复</a> <span id="submit_info" class="f12 gray"></span>
+			<textarea name="content" class="textarea_style" id="content"><?php echo $dataSuggestion['ihelpoo_reply']; ?></textarea>
+			<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
+				<a id="submit" class="btn f12">回复</a> 
+			<?php } else { ?>
+				<a id="submit" class="btn f12">修改</a>
+			<?php } ?>
+			<span id="submit_info" class="f12 gray"></span>
 			</div>
 			</p>
 		</div>
@@ -28,7 +33,7 @@
 		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
 			<p class="suggestion_ihelpoo_reply_p f12">
 			    <a href="/about/ihelpoo" title="处理人员:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>"><i class="ico_friendfeed"></i></a>
-			    <span class="gray">我帮圈圈团队回复:</span> <?php echo $dataSuggestion['ihelpoo_reply']; ?> <a>修改</a>
+			    <span class="gray">我帮圈圈团队回复:</span> <?php echo $dataSuggestion['ihelpoo_reply']; ?>
 				<span class="f12 gray"><?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?></span>
 			</p>
 		<?php } ?>
