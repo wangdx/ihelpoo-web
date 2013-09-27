@@ -56,7 +56,7 @@
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
 			</a>
             <div class="suggestion_content_div">
-			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a> 
+			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a><br />
 			<?php echo $dataSuggestion['suggestion']; ?>
 			</div>
 		<?php } else { ?>
@@ -64,7 +64,7 @@
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
 			</a>
 			<div class="suggestion_content_div">
-			<a>匿名用户</a> 
+			<a>匿名用户</a><br />
 			<?php echo $dataSuggestion['suggestion']; ?> 
 			</div>
 		<?php } ?> 
