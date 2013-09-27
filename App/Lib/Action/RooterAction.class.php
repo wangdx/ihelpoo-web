@@ -2824,14 +2824,14 @@ class RooterAction extends Action {
 		    	$emailtitle = "建议回复处理";
 		    	$emailcontent = "我帮圈圈团队回复了用户建议:“".$recordDataSuggestion['suggestion']."”，希望校园团队安排人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
 		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
-		    		//i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
 		    	}
 		    	
 		    	if (!empty($recordDataSuggestion['uid'])) {
 		    		if (i_check_email($recordDataSuggestion['contact'])) {
-		    			$emailtitle = "建议回复";
-		    			$emailcontent = "我帮圈圈团队回复了您的建议:“".$recordDataSuggestion['suggestion']."”：“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
-		    			i_send($recordDataSuggestion['contact'], $emailtitle, $emailcontent);
+		    			$emailtitlesuggester = "建议回复";
+		    			$emailcontentsuggester = "我帮圈圈团队回复了您的建议:“".$recordDataSuggestion['suggestion']."”：“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
+		    			i_send($recordDataSuggestion['contact'], $emailtitlesuggester, $emailcontentsuggester);
 		    		}
 		    		
 		    		$UserLogin = M("UserLogin");

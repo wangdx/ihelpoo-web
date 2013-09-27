@@ -1977,9 +1977,9 @@ class SchooladminAction extends Action {
 		    	
 		    	if (!empty($recordDataSuggestion['uid'])) {
 		    		if (i_check_email($recordDataSuggestion['contact'])) {
-		    			$emailtitle = "建议回复";
-		    			$emailcontent = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了您的建议:“".$recordDataSuggestion['suggestion']."”：“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
-		    			i_send($recordDataSuggestion['contact'], $emailtitle, $emailcontent);
+		    			$emailtitlesuggester = "建议回复";
+		    			$emailcontentsuggester = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了您的建议:“".$recordDataSuggestion['suggestion']."”：“".$replycontent."”。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";
+		    			i_send($recordDataSuggestion['contact'], $emailtitlesuggester, $emailcontentsuggester);
 		    		}
 		    		
 		    		$UserLogin = M("UserLogin");
@@ -1991,7 +1991,6 @@ class SchooladminAction extends Action {
 		    			 * 校园团队回复了你的建议
 		    			 */
 		    		}
-		    		
 		    	}
                 
                 /**
