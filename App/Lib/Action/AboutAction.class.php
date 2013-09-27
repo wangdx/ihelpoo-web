@@ -175,9 +175,6 @@ class AboutAction extends Action {
     	$title = "意见建议 ".$recordSchoolInfo['school'];
     	$this->assign('title', $title);
     	$DataSuggestion = M("DataSuggestion");
-    	$emailcontent = "联系方式:<br />".$userloginedrecord['nickname']." ".$connection."<hr />内容:<br />".$content." <br/><br/><span style='color:gray;font-size:12px'>请登录后台及时处理回复，并做好记录</span>";
-		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
-		    	i_send('admin@tvery.com', $emailtitle, $emailcontent);
     	if ($this->isPost()) {
 	    	$connection = trim(addslashes(strip_tags($_POST["connection"])));
 	    	$content = trim(addslashes(strip_tags($_POST["content"])));
@@ -216,7 +213,6 @@ class AboutAction extends Action {
 		    	$emailcontent = "联系方式:<br />".$userloginedrecord['nickname']." ".$connection."<hr />内容:<br />".$content." <br/><br/><span style='color:gray;font-size:12px'>请登录后台及时处理回复，并做好记录</span>";
 		    	$emailtitle = "我帮圈圈 意见建议 ".$recordSchoolInfo['school'];
 		    	i_send('admin@tvery.com', $emailtitle, $emailcontent);
-		    	/**
 		    	$AdminUser = M("AdminUser");
 		    	$recordsAdminUser = $AdminUser->select();
 		    	foreach ($recordsAdminUser as $adminUser) {
@@ -231,7 +227,7 @@ class AboutAction extends Action {
 		    	->select();
 		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
 		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
-		    	}*/
+		    	}
 		    	$this->ajaxReturn(0, "提交成功", "yes");
 	    	} else {
 	    		$this->ajaxReturn(0, "提交失败了", "error");
