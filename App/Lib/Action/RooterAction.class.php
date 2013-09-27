@@ -2821,7 +2821,7 @@ class RooterAction extends Action {
 		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordDataSuggestion[school_id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
 		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
 		    	->select();
-		    	$emailtitle = "建议回复";
+		    	$emailtitle = "建议回复处理";
 		    	$emailcontent = "我帮圈圈团队回复了用户建议:“".$recordDataSuggestion['suggestion']."”，希望校园团队安排人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
 		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
 		    		//i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
