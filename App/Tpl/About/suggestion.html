@@ -47,7 +47,13 @@
   <?php } ?>
   </div>
   <div class="suggestion_list_div">
-  <p align="right" class="f12 gray"><a href="/about/suggestion"><?php echo $schoolname; ?>建议</a> | <a href="?school=all">所有学校建议</a></p>
+  <p align="right" class="f12 gray">
+    <?php if (!empty($liststyle)) { ?>
+  	<a href="/about/suggestion"><?php echo $schoolname; ?>建议</a> | <a href="?school=all" class="fb">所有学校建议</a>
+  	<?php } else { ?>
+  	<a href="/about/suggestion" class="fb"><?php echo $schoolname; ?>建议</a> | <a href="?school=all">所有学校建议</a>
+  	<?php } ?>
+  </p>
   <ul class="suggestion_list_ul">
   <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
   	<li>
