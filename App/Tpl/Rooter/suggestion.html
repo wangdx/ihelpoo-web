@@ -1,10 +1,45 @@
 <include file="Public:headerrooter" />
-  <ul class="para_right_ul">
-  <?php foreach ($recordsDataSuggestion as $dataSuggestion) : ?>
-  <li>
-  <?php var_dump($dataSuggestion); ?>
-  </li>
-  <?php endforeach; ?>
+  <ul class="suggestion_list_ul">
+  <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
+  	<li>
+  	    <?php if (!empty($dataSuggestion['uid'])) { ?>
+	  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>" class="suggestion_icon_a">
+				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
+			</a>
+            <div class="suggestion_content_div">
+			<a href="/wo/<?php echo $dataSuggestion['uid']; ?>"><?php echo $dataSuggestion['nickname']; ?></a>
+			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?></p>
+			</div>
+		<?php } else { ?>
+			<a class="suggestion_icon_a">
+				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
+			</a>
+			<div class="suggestion_content_div">
+			<a>匿名用户</a>
+			<p class="suggestion_content_div_p"><?php echo $dataSuggestion['suggestion']; ?></p>
+			</div>
+		<?php } ?> 
+		<span class="f12 gray suggestion_time_span"><?php echo i_time($dataSuggestion['time']); ?></span>
+		<?php if (!empty($dataSuggestion['ihelpoo_reply'])) { ?>
+			<p class="suggestion_ihelpoo_reply_p f12">
+			    <a href="/about/ihelpoo" title="处理人员:<?php echo $dataSuggestion['ihelpoo_reply_uid']; ?>"><i class="ico_friendfeed"></i></a>
+			    <span class="gray">我帮圈圈团队回复:</span> <?php echo $dataSuggestion['ihelpoo_reply']; ?>
+				<span class="f12 gray"><?php echo i_time($dataSuggestion['ihelpoo_reply_time']); ?></span>
+			</p>
+		<?php } ?>
+		<br />
+		<?php if (!empty($dataSuggestion['school_reply'])) { ?>
+			<p class="suggestion_school_reply_p f12">
+				<a href="/about" title="处理人员uid:<?php echo $dataSuggestion['school_reply_uid']; ?>"><i class="ico_school"></i></a>
+				<span class="gray">校园团队回复:</span> <?php echo $dataSuggestion['school_reply']; ?>
+				<span class="f12 gray"><?php echo i_time($dataSuggestion['school_reply_time']); ?></span>
+			</p>
+		<?php } ?>
+		<?php if (!empty($liststyle)) { ?>
+			<a href="http://<?php echo empty($dataSuggestion['domain_main']) ? $dataSuggestion['domain'] : $dataSuggestion['domain_main'] ?>" class="suggestion_school_a f12 gray" title="来自<?php echo $dataSuggestion['school']; ?>"><span class="icon_plus"></span><?php echo $dataSuggestion['school']; ?></a>
+		<?php } ?>
+  	</li>
+  <?php } ?>
   </ul>
   <p class="f12 gray paging_p">共<?php echo $totalRecordNums ?>条建议 <?php echo $totalPages ?>页</p>
   <div class="paging_div">
