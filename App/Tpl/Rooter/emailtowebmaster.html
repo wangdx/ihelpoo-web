@@ -16,7 +16,7 @@
 			var emailstrings = $('#emailstrings').val();
 			var noticecontent = $('#noticecontent').val();
 			if (noticecontent == '') {
-				$this.html('内容不能为空');
+				$this.show().html('内容不能为空');
 			} else {
 				$.ajax({
 	                type: 'POST',
@@ -27,7 +27,7 @@
 	                	if (msg.status == 'ok') {
 	                		$(".already_send_div").html(msg.data);
 	                	} else {
-	                		$this.html('× ' + msg.info);
+	                		$this.show().html('× ' + msg.info);
 	                	}
 	                }
 	            });
