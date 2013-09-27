@@ -200,3 +200,6 @@
 .verification_code_p img{
     vertical-align: bottom;
 }
+.paging_p{
+    margin: 5px 0;
+}
