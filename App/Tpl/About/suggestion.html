@@ -52,7 +52,7 @@
   <?php foreach($recordDataSuggestion as $dataSuggestion) { ?>
   	<li>
   	    <?php if (!empty($dataSuggestion['uid'])) { ?>
-	  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>">
+	  		<a href="/wo/<?php echo $dataSuggestion['uid']; ?>" class="suggestion_icon_a">
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
 			</a>
             <div class="suggestion_content_div">
@@ -60,7 +60,7 @@
 			<?php echo $dataSuggestion['suggestion']; ?>
 			</div>
 		<?php } else { ?>
-			<a>
+			<a class="suggestion_icon_a">
 				<img src="<?php echo i_icon_check($dataSuggestion['uid'], $dataSuggestion['icon_url']); ?>" width="50" height="37" class="radius3" />
 			</a>
 			<div class="suggestion_content_div">
