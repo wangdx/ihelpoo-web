@@ -231,7 +231,7 @@ class AboutAction extends Action {
     	}
     	
     	$page = i_page_get_num();
-        $count = 25;
+        $count = 1;
         $offset = $page * $count;
         
         if (!empty($_GET['school'])) {
