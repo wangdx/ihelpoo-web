@@ -1985,6 +1985,10 @@ class SchooladminAction extends Action {
 		    		$UserLogin = M("UserLogin");
 		    		$recordUserLogin = $UserLogin->find($recordDataSuggestion['uid']);
 		    		if (!empty($recordUserLogin['uid'])) {
+		    			
+		    			/**
+		    			 * TODO is url handeled
+		    			 */
                         i_savenotice("10000", $recordUserLogin['uid'], "system/suggestion:school-reply", "");
 		    		}
 		    	}

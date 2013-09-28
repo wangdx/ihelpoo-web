@@ -2839,6 +2839,7 @@ class RooterAction extends Action {
 		    		if (!empty($recordUserLogin['uid'])) {
 		    			/**
 		    			 * send msg system
+		    			 * is url handeled
 		    			 * 我帮圈圈团队回复了你的建议<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>
 		    			 */
                           i_savenotice("10000",$recordUserLogin['uid'], "system/suggestion:reply", "");//TODO 最后一个参数，回复内容的id
