@@ -774,6 +774,7 @@
     width: 810px;
     margin: 50px auto;
     position: relative;
+    min-height: 500px;
 }
 .privious_photo_part_text{
     background: #EFEFEF;
