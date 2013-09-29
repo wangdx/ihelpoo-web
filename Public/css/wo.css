@@ -744,6 +744,9 @@
 *html .album_list_ul li{
     display: inline;
 }
+.wo_main_album_nav{
+    margin-bottom: 20px;
+}
 .album_list_ul_p{
     padding: 5px;
     height: 150px;

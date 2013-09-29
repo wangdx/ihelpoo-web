@@ -5,7 +5,7 @@
 <include file="Wo:wo_top" />
   <div class="wo_main">
   <?php if (!empty($imageItem)) { ?>
-  	<div class="black_l f12">
+  	<div class="wo_main_album_nav black_l f12">
   		<span class="fl">
 		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($imageItem['type'] == 1) { ?>
@@ -29,7 +29,6 @@
 			 <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">删除</a>
 			<?php } ?>
 		</span>
-		<br /><br />
 	</div>
 	<div class="album_image_content">
 		<p class="album_image_content_p" thisimageid="<?php echo $imageItem['id']; ?>" thisuserid="<?php echo $userLogin['uid']; ?>">
