@@ -427,7 +427,6 @@ class WoAction extends Action {
     	 * ajax delete part
     	 */
     	if ($this->isPost()) {
-    		
     		if (!empty($_POST['changeway']) && !empty($_POST['thisimageid']) && !empty($_POST['thisuserid'])) {
     			$photoId = (int)$_POST['thisimageid'];
     			$changeway = $_POST['changeway'];
@@ -451,6 +450,8 @@ class WoAction extends Action {
 	    			'hit' => $imageItemNext['hit'] + 1,
     			);
     			$UserAlbum->save($imageItemUpdateHit);
+    			$imageItemNext['time'] = i_time($imageItemNext['time']);
+    			$imageItemNext['size'] = round($imageItemNext['size']/1024)."KB";
     			$this->ajaxReturn($imageItemNext,'返回图片数据','ok');
     		}
     		
