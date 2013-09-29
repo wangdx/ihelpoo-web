@@ -439,6 +439,9 @@ class WoAction extends Action {
     			}
     			if (empty($imageItemNext['id'])) {
     				$imageItemNext['id'] = $imageItem['id'];
+    				$imageItemNext['url'] = $imageItem['url'];
+    				$imageItemNext['size'] = round($imageItem['size']/1024)."KB";
+    				$imageItemNext['time'] = i_time($imageItem['time']);
     				$imageItemNext['empty'] = 'true';
     			}
     			
