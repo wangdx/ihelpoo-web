@@ -765,13 +765,13 @@
      text-align: center;
 }
 .album_image_content_img{
-    max-width: 800px;
+    max-width: 930px;
     border: 1px solid #EEE;
     border-radius: 3px;
 	z-index: 0;
 }
 .album_image_content_p{
-    width: 810px;
+    width: 930px;
     margin: 50px auto;
     position: relative;
     min-height: 500px;
@@ -780,7 +780,7 @@
     background: #EFEFEF;
     border-radius: 3px;
     color: #999999;
-    left: 4px;
+    left: 0;
     padding: 5px 10px;
     position: absolute;
     top: -35px;
@@ -789,7 +789,7 @@
     background: #EFEFEF;
     border-radius: 3px;
     color: #999999;
-    right: 4px;
+    right: 0;
     padding: 5px 10px;
     position: absolute;
     top: -35px;
