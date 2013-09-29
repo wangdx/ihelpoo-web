@@ -30,6 +30,33 @@ $().ready(function(){
         });
     });
 	
+	$('#next_image').live('click', function(){
+    	var thisimageid = $('.album_image_content_p').attr('thisimageid');
+    	var thisuserid = $('.album_image_content_p').attr('thisuserid');
+    	$.ajax({
+    		type: "POST",
+    		url: baseUrl + "wo/album",
+    		data:{changeway: 'next', thisimageid: thisimageid, thisuserid: thisuserid},
+    		dataType: "json",
+    		success:function(msg){
+    			if (msg.status == 'ok') {
+    				$('.album_image_content_p').attr({'thisimageid':msg.data.id});
+    				$('.album_image_content_img').attr({'src':msg.data.url});
+    				$('#this_image_upload_url').attr({'href':msg.data.url});
+    				$('#this_image_upload_time').html(msg.data.time);
+    				$('#this_image_upload_size').html(msg.data.size);
+    				$('#this_image_upload_hit').html(msg.data.hit);
+    				if (msg.data.empty == 'true') {
+    					ajaxInfo('已经是最后一张了');
+    					$('#next_image').addClass('gray').html('已经是第一张了');
+    				}
+    			} else {
+    				ajaxInfo(msg.info);
+    			}
+            }
+        });
+    });
+	
     /**
      * delete image
      */
