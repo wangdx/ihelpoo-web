@@ -19,7 +19,7 @@ $().ready(function(){
     				$('#this_image_upload_time').html(msg.data.time);
     				$('#this_image_upload_size').html(msg.data.size);
     				$('#this_image_upload_hit').html(msg.data.hit);
-    				$('#privious_image').removeClass('gray').html('上一张');
+    				$('#next_image').removeClass('gray').html('下一张');
     				if (msg.data.empty == 'true') {
     					ajaxInfo('已经是第一张了');
     					$('#privious_image').addClass('gray').html('已经是第一张了');
@@ -47,7 +47,7 @@ $().ready(function(){
     				$('#this_image_upload_time').html(msg.data.time);
     				$('#this_image_upload_size').html(msg.data.size);
     				$('#this_image_upload_hit').html(msg.data.hit);
-    				$('#next_image').removeClass('gray').html('下一张');
+    				$('#privious_image').removeClass('gray').html('上一张');
     				if (msg.data.empty == 'true') {
     					ajaxInfo('已经是最后一张了');
     					$('#next_image').addClass('gray').html('已经是最后一张了');
