@@ -438,10 +438,7 @@ class WoAction extends Action {
     				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id > $imageItem[id]")->order("time ASC")->find();
     			}
     			if (empty($imageItemNext['id'])) {
-    				$imageItemNext['id'] = $imageItem['id'];
-    				$imageItemNext['url'] = $imageItem['url'];
-    				$imageItemNext['size'] = round($imageItem['size']/1024)."KB";
-    				$imageItemNext['time'] = i_time($imageItem['time']);
+    				$imageItemNext = $imageItem;
     				$imageItemNext['empty'] = 'true';
     			}
     			
