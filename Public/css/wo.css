@@ -777,24 +777,24 @@
 }
 .privious_photo_part_text{
     background: #EFEFEF;
-    border-radius: 3px 3px 0 0;
+    border-radius: 3px;
     color: #999999;
     left: 4px;
     padding: 5px 10px;
     position: absolute;
-    top: -25px;
+    top: -30px;
 }
 .next_photo_part_text{
     background: #EFEFEF;
-    border-radius: 3px 3px 0 0;
+    border-radius: 3px;
     color: #999999;
     right: 4px;
     padding: 5px 10px;
     position: absolute;
-    top: -25px;
+    top: -30px;
 }
 .privious_photo_part_text:hover,.next_photo_part_text:hover{
-    background: #F60;
+    background: #999999;
     color: #FFF;
 }
 #i_shine_hit{
