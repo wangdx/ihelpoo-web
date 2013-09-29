@@ -36,7 +36,7 @@ $().ready(function(){
         });
     });
 	
-	$(document).mousemove(function(e){
+	$('.album_image_content').mousemove(function(e){
 		$("#next_image").css({ position:'fixed', left: e.pageX, top:e.pageY});
 	});
 	
