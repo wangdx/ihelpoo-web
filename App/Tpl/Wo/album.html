@@ -29,7 +29,7 @@
 		<br /><br />
 	</div>
 	<div class="album_image_content">
-		<p class="album_image_content_p" thisimageid="<?php echo $imageItem['id']; ?>" thisuserid="<?php echo $userLogin['id']; ?>">
+		<p class="album_image_content_p" thisimageid="<?php echo $imageItem['id']; ?>" thisuserid="<?php echo $userLogin['uid']; ?>">
   			<img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" />
   			<?php if (!empty($imageItemPrivious['id'])) { ?>
   				<a title="上一张" class="privious_photo_part_text f12" id="privious_image">上一张</a>
