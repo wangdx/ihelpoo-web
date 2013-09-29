@@ -37,8 +37,7 @@ $().ready(function(){
     });
 	
 	$('.album_image_content').mousemove(function(e){
-		var position = $("#next_image").position();
-		$("#next_image").css({ position:'fixed', left: position.pageX, top: position.pageY});
+		$("#next_image").css({ position:'fixed', left: e.pageX, top:e.pageY});
 	});
 	
 	$('#next_image').live('click', function(){
