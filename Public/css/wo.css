@@ -761,18 +761,16 @@
     vertical-align: middle;
 }
 .album_image_content{
-     margin: 20px 0px;
-     text-align: center;
+    margin: 50px 0px 20px 0;
+    text-align: center;
 }
 .album_image_content_img{
-    max-width: 930px;
+    max-width: 940px;
     border: 1px solid #EEE;
     border-radius: 3px;
 	z-index: 0;
 }
 .album_image_content_p{
-    width: 930px;
-    margin: 50px auto;
     position: relative;
     min-height: 500px;
 }
