@@ -903,7 +903,7 @@ $().ready(function(){
     var imageTempContent = '';
     $('.s_li_p_content_image img').live('click', function(){
     	var totalImageNums = $(this).parent().find("img").size();
-    	var imagelodingmarginheight = $('.s_li_p_content_image').height();
+    	var imagelodingmarginheight = $(this).parent().height();
     	if (totalImageNums > 1) {
     		
     		/**
@@ -920,7 +920,7 @@ $().ready(function(){
 		    	$(this).parent().val(imageTempContent);
 		    	var $imageobjectpart = $(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img class="enlargeimg" style="margin-bottom:'+imagelodingmarginheight+'px;" src="'+baseUrl+'Public/image/common/ajax_wait_login.gif" enlargeswitch="on" title="点击缩小" />');
 		    	var $imageobject = $imageobjectpart.find('.enlargeimg');
-		    	$imageobject.attr({'src':imageurllarge, 'style': 'margin-bottom:0px;'});
+		    	$imageobject.attr({'src':imageurllarge, 'style': 'margin-bottom:5px;'});
 		    	$imageobject.ready(function(){
 		    		$imageobject.attr({'src':imageurllarge});
 				});
