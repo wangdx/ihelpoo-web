@@ -37,7 +37,7 @@ $().ready(function(){
     });
 	
 	$(document).mousemove(function(e){
-		$("#next_image").css({ position:absulote, left: e.pageX, top:e.pageY});
+		$("#next_image").css({ position:'absulote', left: e.pageX, top:e.pageY});
 	});
 	
 	$('#next_image').live('click', function(){
