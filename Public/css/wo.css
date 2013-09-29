@@ -765,6 +765,7 @@
 }
 .album_image_content{
     padding: 50px 0 0;
+    text-align: center;
 }
 .album_image_content_img{
     max-width: 940px;
