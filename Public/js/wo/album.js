@@ -17,7 +17,7 @@ $().ready(function(){
     				$('.album_image_content_img').attr({'src':msg.data.url});
     				$('.album_image_content_img').ready(function(){
     					$('.album_image_content_img').attr({'src':msg.data.url});
-    				};
+    				});
     				$('.album_image_content_p').attr({'thisimageid':msg.data.id});
     				$('#delete_image').attr({'imageid':msg.data.id});
     				$('#this_image_upload_url').attr({'href':msg.data.url});
