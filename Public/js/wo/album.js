@@ -19,7 +19,7 @@ $().ready(function(){
     				$('#this_image_upload_time').html(msg.data.time);
     				$('#this_image_upload_size').html(msg.data.size);
     				$('#this_image_upload_hit').html(msg.data.hit);
-    				if (msg.data.url == '') {
+    				if (msg.data.empty == 'true') {
     					ajaxInfo('已经是第一张了');
     					$('#privious_image').addClass('gray').html('已经是第一张了');
     				}
