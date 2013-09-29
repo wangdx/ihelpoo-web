@@ -14,6 +14,7 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == 'ok') {
     				$('.album_image_content_p').attr({'thisimageid':msg.data.id});
+    				$('#delete_image').attr({'imageid':msg.data.id});
     				$('.album_image_content_img').attr({'src':msg.data.url});
     				$('#this_image_upload_url').attr({'href':msg.data.url});
     				$('#this_image_upload_time').html(msg.data.time);
@@ -42,6 +43,7 @@ $().ready(function(){
     		success:function(msg){
     			if (msg.status == 'ok') {
     				$('.album_image_content_p').attr({'thisimageid':msg.data.id});
+    				$('#delete_image').attr({'imageid':msg.data.id});
     				$('.album_image_content_img').attr({'src':msg.data.url});
     				$('#this_image_upload_url').attr({'href':msg.data.url});
     				$('#this_image_upload_time').html(msg.data.time);
