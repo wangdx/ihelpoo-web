@@ -78,7 +78,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .icon_attention{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -60px -45px; display:inline-block; vertical-align:text-bottom; }
 .icon_garbage{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -75px -14px; display:inline-block; vertical-align:text-bottom; }
 .icon_listen{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_search{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px 0; display:inline-block; vertical-align:text-bottom; }
+.icon_search{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px 0; display:inline-block; vertical-align:bottom; }
 .icon_arrowupd{ width:15px; height:13px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 -75px; display:inline-block; vertical-align:text-bottom; }
 .icon_notice{ width:20px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -90px; display:inline-block; vertical-align:text-bottom; }
 .icon_words{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -15px 0; display:inline-block; vertical-align:text-bottom; }
