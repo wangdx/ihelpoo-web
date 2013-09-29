@@ -13,12 +13,15 @@ $().ready(function(){
     		dataType: "json",
     		success:function(msg){
     			if (msg.status == 'ok') {
+    				$('.album_image_content_p').attr({'thisimageid':msg.data.id});
     				$('.album_image_content_img').attr({'src':msg.data.url});
     				$('#this_image_upload_url').attr({'href':msg.data.url});
     				$('#this_image_upload_time').html(msg.data.time);
     				$('#this_image_upload_size').html(msg.data.size);
     				$('#this_image_upload_hit').html(msg.data.hit);
-    				alert(msg.data);
+    				if (msg.data.id == '') {
+    					ajaxInfo('已经是第一张了');
+    				}
     			} else {
     				ajaxInfo(msg.info);
     			}
