@@ -578,6 +578,7 @@ class WoAction extends Action {
     			$UserAlbum->save($imageItemUpdateHit);
     			$this->ajaxReturn($imageItemNext,'返回图片数据','ok');
     		}
+    		exit();
     	}
 
     	/**

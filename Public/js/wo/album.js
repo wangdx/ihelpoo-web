@@ -4,8 +4,8 @@ $().ready(function(){
 	 * show next previous image
 	 */
 	$('#privious_image').live('click', function(){
-    	var thisimageid = $(this).attr('thisimageid');
-    	var thisuserid = $(this).attr('thisuserid');
+    	var thisimageid = $('.album_image_content_p').attr('thisimageid');
+    	var thisuserid = $('.album_image_content_p').attr('thisuserid');
     	$.ajax({
     		type: "POST",
     		url: baseUrl + "wo/album",
