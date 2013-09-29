@@ -24,7 +24,7 @@
         <?php } else { ?>
         <a href="__ROOT__/item/say/<?php echo $recordPlus['sid'] ?>">详细</a>
         <?php } ?>
-        <span class="f12 gray"><?php echo i_time($recordPlus['time']) ?></span> <?php if(!empty($recordPlus['view'])) echo '<- 并表示：'.$recordPlus['view'] ?>
+        <span class="f12 gray"><?php echo i_time($recordPlus['create_time']) ?></span> <?php if(!empty($recordPlus['view'])) echo '<- 并表示：'.$recordPlus['view'] ?>
       </li>
     <?php endforeach; ?>
     </ul>
