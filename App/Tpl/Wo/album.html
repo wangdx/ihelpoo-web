@@ -6,8 +6,8 @@
   <div class="wo_main">
   <?php if (!empty($imageItem)) { ?>
   	<div class="black_l">
-  		<span class="fl">
-		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> -
+  		<span class="fl f12">
+		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($imageItem['type'] == 1) { ?>
 			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册">头像相册</a>
 		<?php } else if ($imageItem['type'] == 2) { ?>
@@ -17,9 +17,9 @@
 		<?php } else if ($imageItem['type'] == 4) { ?>
 			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" title="店铺图片">悄悄话聊天</a>
 		<?php } ?>
-		 - 图片详情
+		 <span class="arrow">&gt;</span> 图片详情
 		</span>
-		<span class="f12 fr gray">
+		<span class="fr gray">
 			<a href="<?php echo $imageItem['url']; ?>" target="_blank" class="f12" id="this_image_upload_url"><span class="icon_search"></span>查看原图</a>
 			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> 大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> 浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
 			<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
@@ -46,7 +46,7 @@
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
 	<div class="black_l">
-		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> -
+		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($albumId == 1) { ?>
 			头像相册
 		<?php } else if ($albumId == 2) { ?>

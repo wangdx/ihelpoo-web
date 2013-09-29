@@ -239,7 +239,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 /*--css3---*/
 .radius3{border-radius:3px;}
 .radius5{border-radius:5px;}
-
+.arrow{font-family: simsun; margin: 0 4px;}
 /*ie7*/
 *+html .icon_quit{ vertical-align:bottom; display:inline-block; margin-top:1px; }
 *+html .icon_recycle{ vertical-align:bottom; }

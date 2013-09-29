@@ -783,7 +783,7 @@
     left: 4px;
     padding: 5px 10px;
     position: absolute;
-    top: -30px;
+    top: -35px;
 }
 .next_photo_part_text{
     background: #EFEFEF;
@@ -792,7 +792,7 @@
     right: 4px;
     padding: 5px 10px;
     position: absolute;
-    top: -30px;
+    top: -35px;
 }
 .privious_photo_part_text:hover,.next_photo_part_text:hover{
     background: #999999;
