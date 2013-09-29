@@ -9,7 +9,7 @@ $().ready(function(){
     	$.ajax({
     		type: "POST",
     		url: baseUrl + "wo/album",
-    		data:{changeway: 'privious', imageid: thisimageid, userid: thisuserid},
+    		data:{changeway: 'privious', thisimageid: thisimageid, thisuserid: thisuserid},
     		dataType: "json",
     		success:function(msg){
     			if (msg.status == 'ok') {

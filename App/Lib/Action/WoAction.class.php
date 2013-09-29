@@ -427,6 +427,33 @@ class WoAction extends Action {
     	 * ajax delete part
     	 */
     	if ($this->isPost()) {
+    		
+    		if (!empty($_POST['changeway']) && !empty($_POST['thisimageid']) && !empty($_POST['thisuserid'])) {
+    			$photoId = (int)$_POST['thisimageid'];
+    			$changeway = $_POST['changeway'];
+    			$userId = (int)$_POST['thisuserid'];
+    			$imageItem = $UserAlbum->where("id = $photoId")->find();
+    			if ($changeway == "next") {
+    				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id < $imageItem[id]")->order("time DESC")->find();
+    			} else {
+    				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id > $imageItem[id]")->order("time ASC")->find();
+    			}
+    			
+    			/**
+    			 * image access control
+    			 */
+    			if ($userloginid != $userId && $imageItem['type'] == 4) {
+    				$this->ajaxReturn(0,'聊天图片仅主人自己可见...','error');
+    			}
+    			
+    			$imageItemUpdateHit = array(
+	    			'id' => $imageItemNext['id'],
+	    			'hit' => $imageItemNext['hit'] + 1,
+    			);
+    			$UserAlbum->save($imageItemUpdateHit);
+    			$this->ajaxReturn($imageItemNext,'返回图片数据','ok');
+    		}
+    		
     		if (!empty($userloginid) && !empty($_POST['imageid'])) {
     			$deleteImageId = (int)$_POST['imageid'];
     			$deleteAlbumRecord = $UserAlbum->find($deleteImageId);
@@ -551,32 +578,6 @@ class WoAction extends Action {
     				}
     				$this->ajaxReturn($isStorageDeleteFlag,'删除聊天图片失败','wrong');
     			}
-    		}
-    		
-    		if (!empty($_POST['changeway']) && !empty($_POST['imageid']) && !empty($_POST['userid'])) {
-    			$photoId = (int)$_POST['imageid'];
-    			$changeway = $_POST['changeway'];
-    			$userId = (int)$_POST['userid'];
-    			$imageItem = $UserAlbum->where("id = $photoId")->find();
-    			if ($changeway == "next") {
-    				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id < $imageItem[id]")->order("time DESC")->find();
-    			} else {
-    				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id > $imageItem[id]")->order("time ASC")->find();
-    			}
-    			
-    			/**
-    			 * image access control
-    			 */
-    			if ($userloginid != $userId && $imageItem['type'] == 4) {
-    				$this->ajaxReturn(0,'聊天图片仅主人自己可见...','error');
-    			}
-    			
-    			$imageItemUpdateHit = array(
-	    			'id' => $imageItemNext['id'],
-	    			'hit' => $imageItemNext['hit'] + 1,
-    			);
-    			$UserAlbum->save($imageItemUpdateHit);
-    			$this->ajaxReturn($imageItemNext,'返回图片数据','ok');
     		}
     		exit();
     	}
