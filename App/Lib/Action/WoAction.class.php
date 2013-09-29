@@ -352,7 +352,7 @@ class WoAction extends Action {
        	/**
          * pageing link
          */
-       	$userRecordPlusNums = $RecordPlus->where("uid = $userId")->count();
+       	$userRecordPlusNums = $RecordPlus->where("i_record_plus.uid = $userId AND i_record_say.sid != ''")->join('i_record_say ON i_record_plus.sid = i_record_say.sid')->count();
         $totalPages = ceil($userRecordPlusNums / $count);
         $this->assign('totalRecords',$userRecordPlusNums);
         $this->assign('totalPages',$totalPages);
