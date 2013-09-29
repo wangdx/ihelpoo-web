@@ -32,19 +32,13 @@
 		<p class="album_image_content_p">
   			<img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" />
   			<?php if (!empty($imageItemPrivious['id'])) { ?>
-  				<a class="privious_photo_part" title="上一张" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemPrivious['id'] ?>"></a>
-  				<span class="privious_img f16 fb">&lt;</span>
-  				<a title="上一张" class="privious_photo_part_text f12" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemPrivious['id'] ?>">上一张</a>
+  				<a title="上一张" class="privious_photo_part_text f12" href="/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemPrivious['id'] ?>">上一张</a>
   			<?php } else { ?>
-  				<a class="privious_photo_part" title="已经是第一张了"></a>
   				<a title="已经是第一张了" class="privious_photo_part_text f12 gray">已经是第一张了</a>
   			<?php } ?>
   			<?php if (!empty($imageItemNext['id'])) { ?>
-  				<a class="next_photo_part" title="下一张" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemNext['id'] ?>"></a>
-  				<span class="next_img f16 fb">&gt;</span>
-  				<a title="下一张" class="next_photo_part_text f12" href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemNext['id'] ?>">下一张</a>
+  				<a title="下一张" class="next_photo_part_text f12" href="/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $imageItemNext['id'] ?>">下一张</a>
   			<?php } else { ?>
-  				<a class="next_photo_part" title="已经是最后一张了"></a>
   				<a title="已经是最后一张了" class="next_photo_part_text f12 gray">已经是最后一张了</a>
   			<?php } ?>
   		</p>
@@ -151,6 +145,5 @@
   </div>
 </div>
 </div>
-
 <script type="text/javascript" src="__PUBLIC__/js/wo/album.js"></script>
 <include file="Public:footer" />

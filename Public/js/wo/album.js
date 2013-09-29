@@ -1,15 +1,9 @@
 $().ready(function(){
-    $('.privious_photo_part').hover(function(){
-    	$('.privious_img').fadeIn('fast');
-    }, function(){
-    	$('.privious_img').fadeOut('fast');
-    });
-    $('.next_photo_part').hover(function(){
-    	$('.next_img').fadeIn('fast');
-    }, function(){
-    	$('.next_img').fadeOut('fast');
-    });
     
+	/**
+	 * show next previous image
+	 */
+	
     /**
      * delete image
      */
