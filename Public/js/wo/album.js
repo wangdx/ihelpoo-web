@@ -36,10 +36,6 @@ $().ready(function(){
         });
     });
 	
-	$('.album_image_content').mousemove(function(e){
-		$("#next_image").css({ position:'absulote', left: e.offsetX, top:e.offsetY});
-	});
-	
 	$('#next_image').live('click', function(){
     	var thisimageid = $('.album_image_content_p').attr('thisimageid');
     	var thisuserid = $('.album_image_content_p').attr('thisuserid');
