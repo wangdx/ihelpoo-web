@@ -439,6 +439,7 @@ class WoAction extends Action {
     			}
     			if (empty($imageItemNext['id'])) {
     				$imageItemNext['id'] = '';
+    				$imageItemNext['id'] = $imageItem['id'];
     			}
     			
     			/**
