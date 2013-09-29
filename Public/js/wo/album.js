@@ -36,6 +36,10 @@ $().ready(function(){
         });
     });
 	
+	$(document).mousemove(function(e){
+		$("#next_image").css({ position:absulote, left: e.pageX, top:e.pageY});
+	});
+	
 	$('#next_image').live('click', function(){
     	var thisimageid = $('.album_image_content_p').attr('thisimageid');
     	var thisuserid = $('.album_image_content_p').attr('thisuserid');
