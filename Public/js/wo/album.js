@@ -21,6 +21,7 @@ $().ready(function(){
     				$('#this_image_upload_hit').html(msg.data.hit);
     				if (msg.data.id == '') {
     					ajaxInfo('已经是第一张了');
+    					$('#privious_image').addClass('gray').html('已经是第一张了');
     				}
     			} else {
     				ajaxInfo(msg.info);
