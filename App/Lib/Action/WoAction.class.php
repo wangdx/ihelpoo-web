@@ -437,6 +437,9 @@ class WoAction extends Action {
     			} else {
     				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id > $imageItem[id]")->order("time ASC")->find();
     			}
+    			if (empty($imageItemNext['id'])) {
+    				$imageItemNext['id'] = '';
+    			}
     			
     			/**
     			 * image access control
