@@ -904,6 +904,7 @@ $().ready(function(){
     $('.s_li_p_content_image img').live('click', function(){
     	var totalImageNums = $(this).parent().find("img").size();
     	var imagelodingmarginheight = $(this).parent().height();
+    	alert(imagelodingmarginheight);
     	if (totalImageNums > 1) {
     		
     		/**
