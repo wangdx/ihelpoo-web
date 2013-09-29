@@ -917,8 +917,8 @@ $().ready(function(){
 		    	}
 		    	var imageTempContent = $(this).parent().html();
 		    	$(this).parent().val(imageTempContent);
-		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+baseUrl+'Public/image/common/ajax_wait_login.gif" enlargeswitch="on" title="点击缩小" />');
-		    	var $imageobject = $(this).parent().find('img');
+		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img class="enlargeimg" src="'+baseUrl+'Public/image/common/ajax_wait_login.gif" enlargeswitch="on" title="点击缩小" />');
+		    	var $imageobject = $(this).parent().find('.enlargeimg');
 		    	$imageobject.attr({'src':imageurllarge});
 		    	$imageobject.ready(function(){
 		    		$imageobject.attr({'src':imageurllarge});
