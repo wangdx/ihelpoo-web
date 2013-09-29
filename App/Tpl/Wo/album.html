@@ -20,8 +20,8 @@
 		 - 图片详情
 		</span>
 		<span class="f12 fr gray">
-			<a href="<?php echo $imageItem['url']; ?>" target="_blank" class="f12"><span class="icon_search"></span>查看原图</a>
-			上传时间:<?php echo i_time($imageItem['time']); ?> 大小:<?php echo round($imageItem['size']/1024); ?>KB 浏览:<?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?>
+			<a href="<?php echo $imageItem['url']; ?>" target="_blank" class="f12" id="this_image_upload_url"><span class="icon_search"></span>查看原图</a>
+			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> 大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> 浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
 			<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
 				<a id="set_default_icon" href="__ROOT__/setting/icon?img=<?php echo urlencode($imageItem['url']); ?>">设为头像</a> | <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">删除</a>
 			<?php } ?>
