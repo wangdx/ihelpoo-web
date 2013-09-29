@@ -554,28 +554,29 @@ class WoAction extends Action {
     		}
     		
     		if (!empty($_POST['changeway']) && !empty($_POST['imageid']) && !empty($_POST['userid'])) {
-    			$photoId = $_POST['imageid'];
+    			$photoId = (int)$_POST['imageid'];
     			$changeway = $_POST['changeway'];
-    			$userId =  $_POST['userid'];
+    			$userId = (int)$_POST['userid'];
     			$imageItem = $UserAlbum->where("id = $photoId")->find();
     			if ($changeway == "next") {
     				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id < $imageItem[id]")->order("time DESC")->find();
     			} else {
     				$imageItemNext = $UserAlbum->where("type = $imageItem[type] AND uid = $userId AND id > $imageItem[id]")->order("time ASC")->find();
     			}
-    			$imageItemUpdateHit = array(
-	    			'id' => $imageItemNext['id'],
-	    			'hit' => $imageItemNext['hit'] + 1,
-    			);
-    			$UserAlbum->save($imageItemUpdateHit);
-    			$this->ajaxReturn($imageItemNext,'返回图片数据','ok');
-
+    			
     			/**
     			 * image access control
     			 */
     			if ($userloginid != $userId && $imageItem['type'] == 4) {
     				$this->ajaxReturn(0,'聊天图片仅主人自己可见...','error');
     			}
+    			
+    			$imageItemUpdateHit = array(
+	    			'id' => $imageItemNext['id'],
+	    			'hit' => $imageItemNext['hit'] + 1,
+    			);
+    			$UserAlbum->save($imageItemUpdateHit);
+    			$this->ajaxReturn($imageItemNext,'返回图片数据','ok');
     		}
     	}
 

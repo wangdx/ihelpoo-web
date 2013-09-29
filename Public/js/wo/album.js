@@ -3,6 +3,23 @@ $().ready(function(){
 	/**
 	 * show next previous image
 	 */
+	$('#privious_image').live('click', function(){
+    	var thisimageid = $(this).attr('thisimageid');
+    	var thisuserid = $(this).attr('thisuserid');
+    	$.ajax({
+    		type: "POST",
+    		url: baseUrl + "wo/album",
+    		data:{changeway: 'privious', imageid: thisimageid, userid: thisuserid},
+    		dataType: "json",
+    		success:function(msg){
+    			if (msg.status == 'ok') {
+    				alert(msg.data);
+    			} else {
+    				ajaxInfo(msg.info);
+    			}
+            }
+        });
+    });
 	
     /**
      * delete image
