@@ -3,41 +3,32 @@ $().ready(function(){
      * enlarge image
      */
     $('.s_li_p_content_image img').live('click', function(){
-    	var totalImageNums = $(this).parent().find("img").size();
-    	if (totalImageNums > 1) {
-    		
-    		/**
-    		 * more than one image , should list next page
-    		 */
-    		var enlargeSwitch = $(this).attr('enlargeswitch');
-	    	if (enlargeSwitch != 'on') {
-		    	var imageurl = $(this).attr('src');
-		    	if (imageurl.match("ihelpoo-public") != '') {
-		    		var reg = new RegExp("thumb_","g");
-		    		var imageurllarge = imageurl.replace(reg,"");
-		    	}
-		    	var imageTempContent = $(this).parent().html();
-		    	$(this).parent().val(imageTempContent);
-		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" enlargeswitch="on" title="点击缩小" /></p>');
-	    	} else {
-	    		var imageTempContentBack = $(this).parent().val();
-	    		$(this).parent().html(imageTempContentBack);
+    	/**
+    	 * var totalImageNums = $(this).parent().find("img").size();
+    	 * totalImageNums > 1
+    	 * more than one image , should list next page
+    	 */
+    	var $slipContentImagePart = $(this).parent();
+    	var imagelodingmarginheight = $slipContentImagePart.height();
+    	var enlargeSwitch = $(this).attr('enlargeswitch');
+    	if (enlargeSwitch != 'on') {
+	    	var imageurl = $(this).attr('src');
+	    	if (imageurl.match("ihelpoo-public") != '') {
+	    		var reg = new RegExp("thumb_","g");
+	    		var imageurllarge = imageurl.replace(reg,"");
 	    	}
+	    	var imageTempContent = $(this).parent().html();
+	    	$(this).parent().val(imageTempContent);
+	    	var $imageobjectpart = $(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img class="enlargeimg" src="'+baseUrl+'Public/image/common/ajax_wait_login.gif" enlargeswitch="on" title="点击缩小" />');
+	    	var $imageobject = $imageobjectpart.find('.enlargeimg');
+	    	$slipContentImagePart.attr({'style': 'min-height:'+imagelodingmarginheight+'px'});
+	    	$imageobject.attr({'src':imageurllarge});
+	    	$imageobject.ready(function(){
+	    		$imageobject.attr({'src':imageurllarge});
+			});
     	} else {
-	    	var enlargeSwitch = $(this).attr('enlargeswitch');
-	    	if (enlargeSwitch != 'on') {
-		    	var imageurl = $(this).attr('src');
-		    	if (imageurl.match("ihelpoo-public") != '') {
-		    		var reg = new RegExp("thumb_","g");
-		    		var imageurllarge = imageurl.replace(reg,"");
-		    	}
-		    	var imageTempContent = $(this).parent().html();
-		    	$(this).parent().val(imageTempContent);
-		    	$(this).parent().html('<p class="f12 s_li_p_content_image_title"><a href="'+imageurllarge+'" target="_blank"><span class="icon_plus"></span>查看原图</a> <a class="s_li_p_content_image_title_up"><span class="icon_up"></span>收起</a></p><img src="'+imageurllarge+'" enlargeswitch="on" title="点击缩小" /></p>');
-	    	} else {
-	    		var imageTempContentBack = $(this).parent().val();
-	    		$(this).parent().html(imageTempContentBack);
-	    	}
+    		var imageTempContentBack = $(this).parent().val();
+    		$(this).parent().html(imageTempContentBack);
     	}
     });
     
