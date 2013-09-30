@@ -306,7 +306,7 @@
       <?php } ?>
       <?php if ($record['type'] == '1' || $record['type'] == '4' || $record['type'] == '5') { ?>
       	<?php if ($record['school'] != $thisschoolid) { ?>
-      		<a href="http://<?php echo $record['domain']; ?>/" target="_blank" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">{<?php echo $record['schoolname']; ?>}</a>
+      		<a href="http://<?php echo $record['domain']; ?>/" target="_blank" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">(<?php echo $record['schoolname']; ?>)</a>
       	<?php } else { ?>
       		<?php if (!empty($record['name'])) { ?>
       			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
