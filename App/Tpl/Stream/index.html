@@ -306,7 +306,7 @@
       <?php } ?>
       <?php if ($record['type'] == '1' || $record['type'] == '4' || $record['type'] == '5') { ?>
       	<?php if ($record['school'] != $thisschoolid) { ?>
-      		<a href="http://<?php echo $record['domain']; ?>/" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">[<?php echo $record['schoolname']; ?>]</a>
+      		<a href="http://<?php echo $record['domain']; ?>/" target="_blank" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">{<?php echo $record['schoolname']; ?>}</a>
       	<?php } else { ?>
       		<?php if (!empty($record['name'])) { ?>
       			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
@@ -316,17 +316,17 @@
       	<?php if ($record['school'] != $thisschoolid) { ?>
       		<a href="http://<?php echo $record['domain']; ?>/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的组织</a>
       	<?php } else { ?>
-      		<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织?</a>
+      		<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织</a>
       	<?php } ?>
       <?php } else if ($record['type'] == '3') { ?>
       	<?php if ($record['school'] != $thisschoolid) { ?>
       		<a href="http://<?php echo $record['domain']; ?>/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的商家</a>
       	<?php } else { ?>
-      		<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家?</a>
+      		<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家</a>
       	<?php } ?>
       <?php } ?>
     </div>
-    <span class="priority_shield f12"><a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target='_blank'>圈ta Or 屏蔽ta</a> <i class="icon_feedctrset"></i></span>
+    <span class="priority_shield f12"><a href="__ROOT__/wo/<?php echo $record['uid'] ?>">圈ta Or 屏蔽ta</a> <i class="icon_feedctrset"></i></span>
     <p class="s_li_p_content lh15">
       <?php
           echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
@@ -344,7 +344,6 @@
           echo '</div>';
       }
       ?>
-
       <?php if (!empty($record['url'])) {
     	$videoResult = VideoUrlParser::parse($record['url']);
 		if (!empty($videoResult)) {
@@ -360,7 +359,6 @@
 			</p>
 		</div>
 	  <?php } } ?>
-
     </p>
     <span class="s_li_s_time f12 gray">
       <?php
