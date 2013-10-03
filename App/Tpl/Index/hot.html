@@ -73,7 +73,7 @@
       <?php } else if ($_GET['w'] == 'useractive') { ?>
         <span class="red_l h_r_ul_li_time"><span class="icon_star"></span><span class="f12 black_l"> 活跃: </span><?php echo $record['active'] ?></span>
       <?php } else { ?>
-        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo ($record['total_co']); ?></span>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo ($record['comment_co']+$record['plus_co']+$record['diffusion_co']+$record['hit_co']); ?></span>
       <?php } ?>
       
       <?php if ($_GET['w'] != 'useractive') { ?>
