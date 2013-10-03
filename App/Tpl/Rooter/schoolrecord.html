@@ -22,7 +22,7 @@
 		<span class="black_l fb"><?php echo $WebmasterUserrecord['school']; ?></span> 
 		<span class="black_l fb"><a href="__ROOT__/rooter/user/<?php echo $WebmasterUserrecord['uid']; ?>"><?php echo $WebmasterUserrecord['nickname']; ?></a></span>
 		<?php echo $WebmasterUserrecord['position'] == 'm' ? '站长' : '副站长'; ?>
-		<span class="f12 gray">record:</span> <span class="red_l"><?php echo $WebmasterUserrecord['record']; ?></span>
+		<span class="f12 gray">record:</span> <span class="red_l"><?php echo stripslashes($WebmasterUserrecord['record']); ?></span>
 		<span class="f12 gray"><?php echo empty($WebmasterUserrecord['sys_id']) ? NULL : "systemid:".$WebmasterUserrecord['sys_id']; ?> 时间:<?php echo i_time($WebmasterUserrecord['time']); ?></span>
 	</li>
 <?php } ?>
