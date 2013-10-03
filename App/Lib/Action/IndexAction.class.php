@@ -146,7 +146,6 @@ class IndexAction extends Action {
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
        	    ->limit(50)
        	    ->select();
-       	    $recordList['total_co'] = $recordList['comment_co'] + $recordList['plus_co'] + $recordList['diffusion_co'] + $recordList['hit_co'];
         } else if($_GET['w'] == 'comment') {
             $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
