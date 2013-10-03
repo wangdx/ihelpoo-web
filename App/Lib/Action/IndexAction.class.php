@@ -151,9 +151,9 @@ class IndexAction extends Action {
        	     * sort order by total count
        	     */
        	    foreach ($recordList as $key => $row) {
-       	    	$total_co['total_co'] = $row['comment_co']+$row['plus_co']+$row['diffusion_co']+$row['hit_co'];
+       	    	$total_co[$key]['total_co'] = $row['comment_co']+$row['plus_co']+$row['diffusion_co']+$row['hit_co'];
        	    }
-       	    array_multisort('total_co', SORT_DESC, $recordList);
+       	    array_multisort($total_co, SORT_DESC, $recordList);
         } else if($_GET['w'] == 'comment') {
             $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
         	->join('i_user_login ON i_record_say.uid = i_user_login.uid')
