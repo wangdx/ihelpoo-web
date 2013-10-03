@@ -144,6 +144,7 @@ class IndexAction extends Action {
         } else if ($_GET['w'] == 'hit') {
             $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
+            ->order('i_record_say.comment_co DESC')
        	    ->limit(50)
        	    ->select();
        	    
