@@ -135,7 +135,13 @@ class IndexAction extends Action {
         	redirect('/index/hot?w=hit&t=week', 0, '缺少参数, 跳转到指定页面 :)...');
         }
 
-        if ($_GET['w'] == 'hit') {
+        if ($_GET['w'] == 'plus') {
+            $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
+            ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
+            ->order('i_record_say.plus_co DESC')
+       	    ->limit(50)
+       	    ->select();
+        } else if ($_GET['w'] == 'hit') {
             $recordList = $RecordSay->where("school_id = $recordSchoolInfo[id] AND say_type = 0 AND time > $timeWidth")
             ->join('i_user_login ON i_record_say.uid = i_user_login.uid')
             ->order('i_record_say.hit_co DESC')
