@@ -258,11 +258,11 @@
     position: relative;
     padding: 10px;
 }
-.resetpw_submit{
-	height: 28px;
-	width: 80px;
-	color: #666;
-	padding: 3px 0 3px 0;
+*+html .resetpw_submit{
+    font-size: 12px;
+}
+*html .resetpw_submit{
+    font-size: 12px;
 }
 .resetpw_input{
     width: 180px;

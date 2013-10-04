@@ -22,7 +22,7 @@
 		        <li>你要找回的密码的用户登录邮箱是 <span class="f14 fb">...<?php echo substr($userLoginNickname['email'],6); ?></span> , 昵称:  <span class="f14 fb"><?php echo $userLoginNickname['nickname']; ?></span>, 请补全登录邮箱
 		        <br /><br />
 		        <form action="__ROOT__/user/resetpw" method="post">
-			        完整邮箱<input type="text" name="email" value="" />
+			        完整邮箱<input type="text" name="email" value="" class="input_style" />
 			        <input type="submit" value="确定" class="resetpw_submit" />
 		    	</form>
 		        </li>
@@ -34,7 +34,7 @@
 		    <p class="resetpw_p_main black_l">
 		      <form action="__ROOT__/user/resetpw" method="post" class="resetpw_form">
 		        <ul>
-		        <li class="gray">登录邮箱: <input type="text" name="email" class="resetpw_input" /> <input type="submit" value="确定" class="resetpw_submit" /></li>
+		        <li class="gray">登录邮箱: <input type="text" name="email" class="resetpw_input input_style" /> <input type="submit" value="确定" class="resetpw_submit" /></li>
 		        </ul>
 		      </form>
 		    </p>
@@ -49,9 +49,9 @@
 		    </p>
 	    <?php } else { ?>
 	    	<ul class="resetpw_div_ul black_l">
-		        <li><span class="gray fb">1.</span> 通过登录邮箱, <a href="__ROOT__/user/resetpw?way=email" class="fb">开始</a></li>
-		        <li><span class="gray fb">2.</span> 忘了登录邮箱？通过昵称查找提示登录邮箱, <a href="__ROOT__/user/resetpw?way=nickname" class="fb">开始</a></li>
-		        <li><span class="gray fb">3.</span> 都忘了？<a href="__ROOT__/about" class="fb">联系</a> 我帮圈圈, 人工帮你重置密码:)</li>
+		        <li>1. 通过登录邮箱, <a href="__ROOT__/user/resetpw?way=email" class="fb">开始</a></li>
+		        <li>2. 忘了登录邮箱？通过昵称查找提示登录邮箱, <a href="__ROOT__/user/resetpw?way=nickname" class="fb">开始</a></li>
+		        <li>3. 都忘了？<a href="__ROOT__/about" class="fb">联系</a> 我帮圈圈, 人工帮你重置密码:)</li>
 	        </ul>
 	    <?php } ?>
 	    <?php } ?>
