@@ -2042,6 +2042,17 @@ class SchooladminAction extends Action {
     }
     
     /**
+     * document
+     */
+    public function document()
+    {
+    	$webmaster = logincheck();
+    	$this->assign('title','相关文档');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->display();
+    }
+    
+    /**
      * operating record
      */
     public function operatingrecord()
