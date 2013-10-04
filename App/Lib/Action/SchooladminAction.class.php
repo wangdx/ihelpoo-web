@@ -875,10 +875,16 @@ class SchooladminAction extends Action {
             	if ($newUserType == '2' || $newUserType == '3') {
             		$setRecordLimit = array(
 	            		'uid' => $isUserExist['uid'],
-	            	    'record_limit' => '3',
+	            	    'record_limit' => 3,
             		);
-            		$UserStatus->save($setRecordLimit);
+            	} else {
+            		$setRecordLimit = array(
+	            		'uid' => $isUserExist['uid'],
+	            	    'record_limit' => 6,
+            		);
             	}
+            	$UserStatus->save($setRecordLimit);
+            	
             	$setUserType = array(
 	            	'uid' => $isUserExist['uid'],
 	            	'type' => $newUserType,
