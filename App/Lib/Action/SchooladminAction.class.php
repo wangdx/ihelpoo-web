@@ -777,6 +777,7 @@ class SchooladminAction extends Action {
         $UserLogin = M("UserLogin");
         $userId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         $recordSchoolInfo = i_school_domain();
+        $UserStatus = M("UserStatus");
         
         /**
          * search
@@ -839,9 +840,8 @@ class SchooladminAction extends Action {
                 redirect('/schooladmin/user', 1, 'update user password ok...');
             }
         }
-
+        
         if (!empty($_POST['recordlimit']) && !empty($_POST['uid'])) {
-        	$UserStatus = M("UserStatus");
         	$newRecordLimit = (int)$_POST['recordlimit'];
             $isUserExist = $UserStatus->find($_POST['uid']);
             if ($isUserExist['uid']) {
@@ -872,9 +872,16 @@ class SchooladminAction extends Action {
         	$newUserType = (int)$_POST['type'];
 			$isUserExist = $UserLogin->find($_POST['uid']);
             if ($isUserExist['uid']) {
+            	if ($newUserType == '2' || $newUserType == '3') {
+            		$setRecordLimit = array(
+	            		'uid' => $isUserExist['uid'],
+	            	    'record_limit' => '3',
+            		);
+            		$UserStatus->save($setRecordLimit);
+            	}
             	$setUserType = array(
-            		'uid' => $isUserExist['uid'],
-            	    'type' => $newUserType,
+	            	'uid' => $isUserExist['uid'],
+	            	'type' => $newUserType,
             	);
                 $UserLogin->save($setUserType);
                 
@@ -903,6 +910,8 @@ class SchooladminAction extends Action {
         	}
         	$UserInfo = M("UserInfo");
         	$recordUserInfo = $UserInfo->find($userId);
+        	$recordUserStatus = $UserStatus->find($userId);
+        	$this->assign('recordUserStatus',$recordUserStatus);
         	
         	/**
         	 * user album
