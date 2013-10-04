@@ -1033,7 +1033,6 @@ class StreamAction extends Action
             echo 'ERR_WHEN_DEL_OPEN: ' . $hs->getError(), PHP_EOL;
             die();
         }
-
         if ($hs->executeDelete(4, '=', array($noticeId)) === false) {
             echo 'ERR_WHEN_DEL: ' . $hs->getError(), PHP_EOL;
             die();
@@ -1045,7 +1044,6 @@ class StreamAction extends Action
     {
         $RecordSay = M("RecordSay");
         $resultRecordSay = $RecordSay->find($diffusionSidArray[1]);
-
         $UserLogin = M("UserLogin");
         $recordUserLogin = $UserLogin->find($userloginid);
         $recordSaySet = array(
@@ -1075,7 +1073,6 @@ class StreamAction extends Action
         $userPriorityObj = $UserPriority->where("pid = $userloginid")->join("i_user_login ON i_user_priority.uid = i_user_login.uid")->select();
         $userPriorityNums = sizeof($userPriorityObj);
         $resultData = $this->saveDiffusionRelations($noticeIdForOwner, $noticeIdForFollowers, $userPriorityObj, $recordOwnerId);
-
         $resultInfo = $this->outputMessage($userPriorityNums, $userPriorityObj);
         $result = array(
             "data" => $resultData,
@@ -1115,14 +1112,12 @@ class StreamAction extends Action
         return $data;
     }
 
-
     public function deliverTo($who, $noticeId)
     {
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hSet(C('R_ACCOUNT') . C('R_MESSAGE') . $who, $noticeId, 0);
     }
-
 
     /*
      * remove one's single notice
@@ -1132,9 +1127,7 @@ class StreamAction extends Action
         $redis = new Redis();
         $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
         $redis->hDel(C('R_ACCOUNT') . C('R_MESSAGE') . $who, $noticeId);
-
     }
-
 
 }
 
