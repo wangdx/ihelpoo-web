@@ -464,7 +464,19 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     font-size: 0;
 }
 
-
+.ico_notice{
+    background-position: -467px -20px;
+    height: 18px;
+    width: 18px;
+    margin: 0 5px;
+    overflow: hidden;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    float: left;
+    display: inline-block;
+    font-size: 0;
+    background-image: url("../image/common/icon_main.png");
+}
 
 
 
