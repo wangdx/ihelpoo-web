@@ -374,10 +374,9 @@ lable{
     text-align: center;
     position: relative;
 }
-.app_show_title_info_span{
-    position: absolute;
-    right: 0;
-    top: 0;
+.app_show_title_info_p{
+    margin: 0 auto;
+    text-align: center;
 }
 *+html .main_index_sub_ul li{
     display: inline;
