@@ -58,6 +58,14 @@ $().ready(function(){
     });
     
     /**
+     * app show title info 
+     */
+    $('.app_show_title').click(function(){
+    	var titleinfo = $(this).attr('title');
+    	alert(titleinfo);
+    });
+    
+    /**
      * click submit
      */
     $('#submit').click(function(){
