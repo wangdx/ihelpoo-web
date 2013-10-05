@@ -61,8 +61,9 @@ $().ready(function(){
      * app show title info 
      */
     $('.app_show_title').click(function(){
-    	var titleinfo = $(this).attr('title');
-    	$(this).after(titleinfo).delay('1000').fadeOut('fast');
+    	var $titleinfo = $(this).attr('title');
+    	$(this).after($titleinfo);
+    	$titleinfo.delay('1000').fadeOut('fast');
     });
     
     /**
