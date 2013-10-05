@@ -62,8 +62,7 @@ $().ready(function(){
      */
     $('.app_show_title').click(function(){
     	var titleinfo = $(this).attr('title');
-    	var $infospan = '<span class="app_show_title_info_span">'+titleinfo+'</span>';
-    	$(this).append($infospan);
+    	$('.app_show_title_info_p').html(titleinfo);
     });
     
     /**
