@@ -451,7 +451,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     background-position: -957px 0px;
 }
 
-
 .icon_hand{
     background-image: url("../image/common/icon_main.png");
     background-position: -957px -17px;
@@ -463,22 +462,6 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     display: inline-block;
     font-size: 0;
 }
-
-.ico_notice{
-    background-position: -467px -20px;
-    height: 18px;
-    width: 18px;
-    margin: 0 5px;
-    overflow: hidden;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    float: left;
-    display: inline-block;
-    font-size: 0;
-    background-image: url("../image/common/icon_main.png");
-}
-
-
 
 .icon_feedctrall, .icon_feedctrblog, .icon_feedctrrefresh, .icon_feedctrset{
     background-image: url("../image/common/icon_main.png");
