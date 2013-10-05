@@ -667,7 +667,7 @@ function i_is_mobile()
 		return stristr($_SERVER['HTTP_VIA'],"wap") ? true : false;
 	}
 
-	//脑残法，判断手机发送的客户端标志,兼容性有待提高
+	//判断手机发送的客户端标志,兼容性有待提高
 	if(isset($_SERVER['HTTP_USER_AGENT']))
 	{
 		$clientkeywords = array('nokia','sony','ericsson','mot','samsung',
@@ -683,7 +683,7 @@ function i_is_mobile()
 		}
 	}
 
-	//协议法，因为有可能不准确，放到最后判断
+	//通过协议，因为有可能不准确，放到最后判断
 	if (isset($_SERVER['HTTP_ACCEPT'])) {
 		// 如果只支持wml并且不支持html那一定是移动设备
 		// 如果支持wml和html但是wml在html之前则是移动设备
