@@ -372,6 +372,12 @@ lable{
     display: inline-block;
     margin: 0 20px;
     text-align: center;
+    position: relative;
+}
+.app_show_title_info_span{
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 *+html .main_index_sub_ul li{
     display: inline;
