@@ -29,7 +29,7 @@ class AppAction extends Action {
     	if(i_is_mobile()) {
         	$this->display();
     	} else {
-    		$this->display('/mobile/app_index');
+    		$this->display('Mobile:app_index');
     	}
     }
 
