@@ -377,6 +377,7 @@ lable{
 .app_show_title_info_p{
     margin: 0 auto 15px auto;
     text-align: center;
+    color: #FFF;
 }
 *+html .main_index_sub_ul li{
     display: inline;
