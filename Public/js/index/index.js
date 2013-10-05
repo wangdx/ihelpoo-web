@@ -64,7 +64,7 @@ $().ready(function(){
     	var titleinfo = $(this).attr('title');
     	var $infospan = '<span class="app_show_title_info_span">'+titleinfo+'</span>';
     	$(this).after($infospan);
-    	$infospan.fadeOut('fast');
+    	$infospan.remove();
     });
     
     /**
