@@ -62,7 +62,7 @@ $().ready(function(){
      */
     $('.app_show_title').click(function(){
     	var titleinfo = $(this).attr('title');
-    	$('.app_show_title_info_p').fadeIn('fast').html(titleinfo).delay('1000').fadeOut('fast');
+    	$('.app_show_title_info_p').fadeIn('fast').html(titleinfo).delay('2000').fadeOut('fast');
     });
     
     /**
