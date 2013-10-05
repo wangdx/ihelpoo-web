@@ -61,7 +61,7 @@ $().ready(function(){
      * app show title info 
      */
     $('.app_show_title').click(function(){
-    	var $titleinfo = $(this).attr('title');
+    	var titleinfo = $(this).attr('title');
     	var $infospan = '<span class="app_show_title_info_span">'+titleinfo+'</span>';
     	$(this).after($infospan);
     	$infospan.delay('1000').fadeOut('fast');
