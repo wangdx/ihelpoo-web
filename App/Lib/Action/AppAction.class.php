@@ -27,9 +27,9 @@ class AppAction extends Action {
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title',$title);
     	if(i_is_mobile()) {
-        	$this->display();
+        	$this->display('Mobile:app_index');
     	} else {
-    		$this->display('Mobile:app_index');
+    		$this->display();
     	}
     }
 
