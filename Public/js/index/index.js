@@ -62,7 +62,7 @@ $().ready(function(){
      */
     $('.app_show_title').click(function(){
     	var titleinfo = $(this).attr('title');
-    	$(this).after(titleinfo);
+    	$(this).find('span').html(titleinfo);
     });
     
     /**
