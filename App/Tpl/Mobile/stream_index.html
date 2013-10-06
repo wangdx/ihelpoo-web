@@ -159,6 +159,15 @@
       ?>
     </span>
     <div data-role="navbar" data-iconpos="left" class="s_li_s_comment">
+        <?php if ($record['say_type'] == '1') { ?>
+            <ul>
+                <li>
+                    <a data-transition="fade" data-theme="" data-icon="">
+                        赞<span id="plus_view_region_ih-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
+                    </a>
+                </li>
+            </ul>
+         <?php } ?>
     </div>
   </li>
   <?php endforeach; ?>
