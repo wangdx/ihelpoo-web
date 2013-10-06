@@ -38,6 +38,9 @@
 .bg_bluegreen{ background-color:#CCEBDC; }
 .bg_bluelight{ background-color:#EDF4FB; }
 .bg_l_yellow{ background-color:#FFFA85; }
+.radius3{border-radius:3px;}
+.radius5{border-radius:5px;}
+.arrow{font-family: simsun; margin: 0 4px;}
 /* Swatches */
 /* A
 -----------------------------------------------------------------------------------------------------------*/

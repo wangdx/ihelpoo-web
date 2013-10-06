@@ -45,15 +45,15 @@
     </div>
     <div data-role="content">
     <div class="mim_loginbox">
-	    <p class="index_loginfast_div_nav_p"><span class="i_l_div_nav_p_span_info">您已经登录{$schoolname}</span></p>
-		<p class="index_loginfast_div_info_p"><span class="f12 black_l">圈圈欢迎您! <a href="__ROOT__/user/quit">[退出]</a></span></p>
-		<p class="index_loginfast_div_icon_p">
+	    <p align="center"><span class="i_l_div_nav_p_span_info">您已经登录{$schoolname}</span></p>
+		<p align="center"><span class="f14 black_l">圈圈欢迎您!</span></p>
+		<p align="center">
 			<a href="/stream/">
 			     <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url']); ?>" width="80" height="60" class="radius5" />
 			</a>
 		</p>
-		<p class="index_loginfast_div_name_p">
-			<a href="/stream" class="f16 reb_back fb" ><?php echo $cookieUserLogin['nickname']; ?> <span class="fn f12 black_l">进入个人中心</span></a>
+		<p>
+			 <a data-role="button" href="/user/quit" target="_self" >退出</a>
 		</p>
 	</div>
     </div>
