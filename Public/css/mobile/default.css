@@ -58,8 +58,9 @@ li{ list-style:none; }
     font-weight: bold;
     font-size: 16px;
 }
-.school_list_ul li a{
+.school_list_ul li .ui-btn{
     display: block;
+    margin-bottom: 5px;
 }
 
 /*--- stream_index ---*/
