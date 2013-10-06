@@ -23,7 +23,7 @@
     <?php if ($_GET['p'] > 1) { ?>
     <div class="stream_list_link">
     <?php $beforepage = $_GET['p'] - 1; ?>
-    <a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$beforepage; ?>'>上一页动态...</a>
+    <a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$beforepage; ?>' target='_self'>上一页动态...</a>
     </div>
     <?php } ?>
 <ul class="stream_list_ul">
