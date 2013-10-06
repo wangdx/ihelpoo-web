@@ -71,14 +71,14 @@
     </div>
     <div class="s_li_user_constellation f12 black_l">
         <?php echo i_grade($record['enteryear']); ?> <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
-        <?php if ($record['online'] == 1) { ?>
-		<span class="blue f12">在线</span>
-		<?php } ?>
 		<?php if (i_degree($record['active']) > 4) { ?>
 	    <span class="level<?php echo i_degree($record['active']) ?>"><?php echo i_degree($record['active']) ?>级</span>
 	    <?php } else if (i_degree($record['active']) < 2) { ?>
 	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
 	    <?php } ?>
+	    <?php if ($record['online'] == 1) { ?>
+		<span class="blue f12 fr">在线</span>
+		<?php } ?>
     </div>
     <div class="s_li_user_time f12 black_l">
        <?php echo i_time($record['last_comment_ti']); ?> 
