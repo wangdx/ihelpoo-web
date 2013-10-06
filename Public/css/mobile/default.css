@@ -122,7 +122,12 @@ li{ list-style:none; }
 }
 .s_li_user_constellation{
     position: absolute;
-    top: 44px;
+    top: 50px;
+    left: 90px;
+}
+.s_li_user_time{
+    position: absolute;
+    top: 60px;
     left: 90px;
 }
 .s_li_p_content{

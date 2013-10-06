@@ -49,8 +49,10 @@
       </a>
     </p>
     <div class="s_li_user_constellation f12 black_l">
-        <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
-        <?php echo i_time($record['last_comment_ti']); ?> 
+        <?php echo i_grade($record['enteryear']); ?> <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
+    </div>
+    <div class="s_li_user_time f12 black_l">
+       <?php echo i_time($record['last_comment_ti']); ?> 
         <?php if ($record['school_record'] != $thisschoolid) { ?>
 	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
 	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
