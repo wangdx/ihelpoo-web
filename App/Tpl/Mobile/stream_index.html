@@ -160,20 +160,22 @@
     </span>
     <div data-role="navbar" data-iconpos="left" class="s_li_s_comment">
         <?php if ($record['say_type'] == '1') { ?>
+            
+         <?php } else { ?>
             <ul>
                 <li>
-                    <a data-transition="fade" data-theme="" data-icon="">
-                        赞<span id="plus_view_region_ih-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
+                    <a href="#page1" data-transition="fade" data-theme="" data-icon="">
+                        赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
                     </a>
                 </li>
                 <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="ih-<?php echo .$record['sid']; ?>">
+                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="i-<?php echo .$record['sid']; ?>">
                         扩散 <?php if (!empty($record['diffusion_co'])) { echo "(".$record['diffusion_co'].")"; } ?>
                     </a>
                 </li>
                 <li>
-                    <a href="/item/help/<?php echo $record['sid']; ?>" target="_self" data-transition="fade" data-theme="" data-icon="">
-                        帮助 <?php if (!empty($record['comment_co'])) { echo "(".$record['comment_co'].")"; } ?>
+                    <a data-transition="fade" data-theme="" data-icon="" class="comment_button" value="i-<?php echo $record['sid']; ?>" isclick="false">
+                        评论 <?php if (!empty($record['comment_co'])) { echo "(".$record['comment_co'].")"; } ?>
                     </a>
                 </li>
             </ul>
