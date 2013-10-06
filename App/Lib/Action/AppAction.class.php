@@ -30,6 +30,7 @@ class AppAction extends Action {
     	} else {
     		$this->display();
     	}
+    	
     }
 
 }
