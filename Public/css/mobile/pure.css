@@ -6,6 +6,38 @@
 .fb{ font-weight:bold; }
 .fn{ font-weight:normal; }
 .fi{ font-style:italic; }
+/*---*/
+.white{ color:#FFF; }
+.green{ color:#9C0; }
+.green_d{ color: #6CCACD; }
+.orange{ color:#F60; }
+.reb_back{ color: #FE6600; }
+.red_l{ color:#F30; }
+.red{ color: #B20000; }
+.yellow{ color:#FC0; }
+.blue{ color:#09F; }
+.blue_link{ color:#059; }
+.blue_black{ color:#23405E; }
+.blue_d{ color:#37579E; }
+.blue_m{ color:#2A78C8; }
+.blue_l{ color:#5CA3F3; }
+.blue_w_d{ color:#E8EDF0; }
+.blue_w_l{ color:#EDF4FB; }
+.black{ color:#000; }
+.black_m{ color:#333; }
+.black_l{ color:#666; }
+.gray{ color:#A8A8A8; }
+.gray_l{ color:#CCC; }
+/*---*/
+.bg_green{ background-color:#9C0; color: #FFF; }
+.bg_orange{ background-color:#F60; color: #FFF; }
+.bg_blue{ background-color:#2A78C8; color: #FFF; }
+.bg_gray{ background-color:#A8A8A8; color: #FFF; }
+.bg_red{ background-color:#B20000; color: #FFF;}
+.bg_brown{ background-color:#B16E3A; color: #FFF;}
+.bg_bluegreen{ background-color:#CCEBDC; }
+.bg_bluelight{ background-color:#EDF4FB; }
+.bg_l_yellow{ background-color:#FFFA85; }
 /* Swatches */
 /* A
 -----------------------------------------------------------------------------------------------------------*/
