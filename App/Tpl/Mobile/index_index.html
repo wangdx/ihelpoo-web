@@ -1,5 +1,6 @@
 <include file="Public:headermobile" />
 <!-- Home -->
+    <?php if (empty($userloginedrecord['uid'])) { ?>
     <div data-theme="b" data-role="header">
     	<a data-role="button" href="/index/school" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
             串校
@@ -11,6 +12,19 @@
             {$schoolname} - 我帮圈圈
         </h3>
     </div>
+    <?php } else { ?>
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/stream" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
+            记录
+        </a>
+        <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
+            设置
+        </a>
+        <h3>
+            我帮圈圈欢迎您
+        </h3>
+    </div>
+    <?php } ?>
     <div data-role="content">
           <div id="logininfo"></div>
 		  <form action="/user/login" method="post" target="_self">

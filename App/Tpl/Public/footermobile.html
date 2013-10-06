@@ -1,7 +1,36 @@
+    <?php if (empty($userloginedrecord['uid'])) { ?>
     <div data-theme="a" data-role="footer" data-position="fixed">
         <h5>
             <span class="f12 fn gray">Copyright © 2013 我帮圈圈{$schoolname} | </span><a href="?changviewtype=web" target="_self"><span class="f12 fn">网页版</span></a>
         </h5>
     </div>
+    <?php } else { ?>
+    <div data-theme="b" data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="/stream" target="_self" data-transition="turn" data-theme="b" data-icon="home">
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="/message" target="_self" data-transition="fade" data-theme="" data-icon="grid">
+                        消息
+                    </a>
+                </li>
+                <li>
+                    <a href="/wo" target="_self" data-theme="" data-icon="info">
+                        我
+                    </a>
+                </li>
+                <li>
+                    <a href="/" target="_self" data-transition="fade" data-theme="" data-icon="plus">
+                        更多
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <?php } ?>
 </body>
 </html>
