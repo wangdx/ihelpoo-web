@@ -145,7 +145,7 @@
 .ui-btn-up-a,
 .ui-btn-hover-a,
 .ui-btn-down-a {
-	 font-family: Helvetica, Arial, sans-serif /*{global-font-family}*/;
+	font-family: tahoma,Helvetica,Arial /*{global-font-family}*/;
 	text-decoration: none;
 }
 /* B
