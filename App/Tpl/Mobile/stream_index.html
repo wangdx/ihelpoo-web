@@ -166,6 +166,11 @@
                         赞<span id="plus_view_region_ih-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
                     </a>
                 </li>
+                <li>
+                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="ih-<?php echo .$record['sid']; ?>">
+                        扩散 <?php if (!empty($record['diffusion_co'])) { echo "(".$record['diffusion_co'].")"; } ?>
+                    </a>
+                </li>
             </ul>
          <?php } ?>
     </div>
