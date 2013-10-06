@@ -723,7 +723,11 @@ class StreamAction extends Action
         $streamRightSchoolAd = $SchoolAd->where("type = '2' AND sid = $recordSchoolInfo[id]")->order("time DESC")->limit(3)->select();
         $this->assign('streamRightSchoolAd', $streamRightSchoolAd);
         
-        $this->display();
+        if(i_is_mobile()) {
+        	$this->display('Mobile:stream_index');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function fav()
