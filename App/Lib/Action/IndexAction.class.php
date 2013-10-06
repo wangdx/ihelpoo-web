@@ -73,7 +73,7 @@ class IndexAction extends Action {
          */
         $this->assign('configIsLoginWeibo',C('IS_LOGIN_WEIBO'));
         $this->assign('configIsLoginQq',C('IS_LOGIN_QQ'));
-        if(!i_is_mobile()) {
+        if(i_is_mobile()) {
         	$this->display('Mobile:index_index');
     	} else {
     		$this->display();
