@@ -91,7 +91,11 @@ class IndexAction extends Action {
     	$recordsSchoolInfo = $SchoolInfo->where("status = 1")->order("initial ASC")->select();
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
-        $this->display();
+        if(i_is_mobile()) {
+        	$this->display('Mobile:index_school');
+    	} else {
+    		$this->display();
+    	}
     }
     
     public function changeschool()
