@@ -69,7 +69,7 @@
       	<?php } ?>
       <?php } ?>
     </div>
-    <div class="s_li_user_constellation f12 black_l">
+    <div class="s_li_user_constellation f12 gray">
         <?php echo i_grade($record['enteryear']); ?> <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
 		<?php if (i_degree($record['active']) > 4) { ?>
 	    <span class="level<?php echo i_degree($record['active']) ?>"><?php echo i_degree($record['active']) ?>级</span>
@@ -80,7 +80,7 @@
 		 <span class="blue f12">在线</span>
 		<?php } ?>
     </div>
-    <div class="s_li_user_time f12 black_l">
+    <div class="s_li_user_time f12 gray">
        <?php echo i_time($record['last_comment_ti']); ?> 
         <?php if ($record['school_record'] != $thisschoolid) { ?>
 	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
