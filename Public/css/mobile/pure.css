@@ -46,6 +46,7 @@ li{ list-style:none; }
 /*--- index_school ---*/
 .school_list_ul{
     margin: 10px;
+    padding: 0;
 }
 .school_list_ul_initial_p{
     font-weight: bold;
