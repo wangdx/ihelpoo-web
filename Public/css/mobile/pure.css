@@ -868,10 +868,13 @@ li{ list-style:none; }
     padding: 10px;
 }
 .stream_list_ul_li{
-    padding: 15px 5px;
-    position: relative;
-    border-bottom: 1px solid #EEE;
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
     min-height: 88px;
+    padding: 15px 10px;
+    position: relative;
 }
 .steam_repate_li{
     display: none;
@@ -892,7 +895,7 @@ li{ list-style:none; }
 .s_li_p_icon{
     width: 100px;
     position: absolute;
-    left: 5px;
+    left: 10px;
     top: 0px;
 }
 .s_li_p_user{
