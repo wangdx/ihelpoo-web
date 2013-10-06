@@ -75,7 +75,7 @@
 		<span class="blue f12">在线</span>
 		<?php } ?>
 		<?php if (i_degree($record['active']) > 4) { ?>
-	    <span class="level<?php echo i_degree($record['active']) ?>">level<?php echo i_degree($record['active']) ?></span>
+	    <span class="level<?php echo i_degree($record['active']) ?>"><?php echo i_degree($record['active']) ?>级</span>
 	    <?php } else if (i_degree($record['active']) < 2) { ?>
 	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
 	    <?php } ?>
