@@ -244,7 +244,7 @@ class UserAction extends Action {
 	        $result = $UserLogin->create();
 	        if (!$result) {
 	            $loginerror = $UserLogin->getError();
-	            exit($loginerror);
+	            redirect('/', 2, $loginerror.'，请重新登录，3秒后页面跳转...');
 	        } else {
 	            $email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));//strip_tags
