@@ -19,12 +19,6 @@
     </div>
 <div data-role="content">
 
-  <?php if ($_GET['p'] > 1) { ?>
-    <div class="stream_list_link">
-    <?php $beforepage = $_GET['p'] - 1; ?>
-    <a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$beforepage; ?>'>上一页动态...</a>
-    </div>
-  <?php } ?>
 <ul class="stream_list_ul">
   <?php foreach ($recordSay as $record): ?>
     <li class="stream_list_ul_li">
@@ -178,7 +172,9 @@
   	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>' >点击查看更多动态...</a>
   <?php } else { ?>
     <?php $nextpage = $_GET['p'] + 1; ?>
-  	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>' >下一页动态...</a>
+    <?php $beforepage = $_GET['p'] - 1; ?>
+    <a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$beforepage; ?>'>上一页动态</a> | 
+  	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>' >下一页动态</a>
   <?php } ?>
   </div>
 
