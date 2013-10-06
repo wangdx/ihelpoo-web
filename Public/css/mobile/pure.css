@@ -957,8 +957,8 @@ li{ list-style:none; }
 .s_li_s_time{
     margin-left: 115px;
 }
-.ui-navbar.ui-mini{
-    margin: 20px 0 10px 0;
+.s_li_s_comment {
+    padding: 20px 0 10px 0;
 }
 .comment_view_div_box_reply{
     margin-bottom: 10px;
