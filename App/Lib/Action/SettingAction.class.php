@@ -527,12 +527,9 @@ class SettingAction extends Action
             );
             $newRecordSayId = $RecordSay->add($newRecordSayData);
 
-            $UserAlbum = M("UserAlbum");
-            $lastRecordUserAlbum = $UserAlbum->where("uid = $userloginid")->order('time DESC')->find();
             $newRecordDynamicData = array(
                 'sid' => $newRecordSayId,
                 'type' => 'changeicon',
-                'url_id' => $lastRecordUserAlbum['id']
             );
             $RecordDynamic->add($newRecordDynamicData);
             
