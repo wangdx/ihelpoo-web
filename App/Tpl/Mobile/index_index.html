@@ -1,13 +1,30 @@
 <include file="Public:headermobile" />
 <!-- Home -->
     <div data-theme="b" data-role="header">
+    	<a data-role="button" href="/index/changeschool" target="_self" data-icon="arrow-r" data-iconpos="right" class="ui-btn-left">
+            串校
+        </a>
         <h3>
             {$schoolname} - 我帮圈圈
         </h3>
     </div>
     <div data-role="content">
-        <ul>
-        <li>登录</li>
-        </ul>
+        <div id="logininfo"></div>
+		  <form action="/user/login" method="post">
+		      <div class="loginbox_email_bg">
+		      <div class="loginbox_email">
+			    <input type="text" name="email" id="email" class="loginbox_email_input" value="邮箱" />
+			  </div>
+			  </div>
+			  <div class="loginbox_password_bg">
+			  <div class="loginbox_password">
+			  	<input type="password" name="password" id="password" class="loginbox_password_input" />
+			  </div>
+			  </div>
+			  <div class="loginbox_submit">
+			  	<a id="submit">登 录</a>
+			  </div>
+		  </form>
+		</div>
     </div>
 <include file="Public:footermobile" />
