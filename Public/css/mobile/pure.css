@@ -179,9 +179,7 @@ li{ list-style:none; }
     margin-left: 115px;
 }
 .s_li_s_comment{
-    float: right;
-    position: absolute;
-    right: 0;
+
 }
 .comment_view_div_box_reply{
     margin-bottom: 10px;
