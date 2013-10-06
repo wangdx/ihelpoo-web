@@ -207,8 +207,8 @@
   <?php } else { ?>
     <?php $nextpage = $_GET['p'] + 1; ?>
     <?php $beforepage = $_GET['p'] - 1; ?>
-    <a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$beforepage; ?>' >上一页动态</a>
-  	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>' >更多动态</a>
+    <a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$beforepage; ?>' >上一页动态</a> | 
+  	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>' >下一页动态</a>
   <?php } ?>
   </div>
     </div>
