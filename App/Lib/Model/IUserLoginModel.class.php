@@ -24,7 +24,7 @@ class IUserLoginModel extends Model{
         $dateInfo = getdate();
         $todayChar = $dateInfo['yday'];
         if (!$user['uid']) {
-            return 'user is not exist';
+            return '用户不存在';
         } else {
             if ($user['password'] == $password) {
                 $data['uid'] = $user['uid'];
@@ -47,7 +47,7 @@ class IUserLoginModel extends Model{
                 	'school' => $user['school']
                 );
             } else {
-                return 'password wrong';
+                return '密码错误';
             }
         }
     }
