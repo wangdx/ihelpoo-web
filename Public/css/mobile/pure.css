@@ -1,15 +1,11 @@
-/*!
-* jQuery Mobile 1.3.2
-* Git HEAD hash: 528cf0e96940644ea644096bfeb913ed920ffaef <> Date: Fri Jul 19 2013 22:17:57 UTC
-* http://jquerymobile.com
-*
-* Copyright 2010, 2013 jQuery Foundation, Inc. and other contributors
-* Released under the MIT license.
-* http://jquery.org/license
-*
-*/
-
-
+/* ihelpoo */
+.f10{ font-size:10px; }
+.f12{ font-size:12px; }
+.f14{ font-size:14px; }
+.f16{ font-size:16px; }
+.fb{ font-weight:bold; }
+.fn{ font-weight:normal; }
+.fi{ font-style:italic; }
 /* Swatches */
 /* A
 -----------------------------------------------------------------------------------------------------------*/
