@@ -14,7 +14,7 @@
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php $schoolUserNums = $userLogin->where("school = $school[id]")->count(); ?>
 	  	<?php if ($initialShow == $school['initial']) { ?>
-		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
+		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" data-role="button" target="_self" data-icon="arrow-l" data-iconpos="home" class="ui-btn-left">
 		    	<?php echo $school['school']; ?>
 		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12 fn'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fn'>new</span>"; ?>
 		    </a>
