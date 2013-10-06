@@ -16,7 +16,7 @@
 	  	<?php if ($initialShow == $school['initial']) { ?>
 		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
 		    	<?php echo $school['school']; ?>
-		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12'>new</span>"; ?>
+		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12 fn'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fn'>new</span>"; ?>
 		    </a>
 	    <?php } else { ?>
 	    </li>
@@ -24,7 +24,7 @@
 	    	<p class="school_list_ul_initial_p"><?php echo strtoupper($school['initial']); ?></p>
 		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
 		    	<?php echo $school['school']; ?>
-		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12'>new</span>"; ?>
+		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12 fn'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fn'>new</span>"; ?>
 		    </a>
 		    <?php $initialShow = $school['initial']; ?>
 	    <?php } ?>
