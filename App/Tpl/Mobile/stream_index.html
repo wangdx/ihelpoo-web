@@ -42,14 +42,43 @@
           <span class="gradesen"></span>
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($record['enteryear']) ?>"></span>
-        <?php }
-        if ($record['online'] == 1) { ?>
-		<span class="online_dot_status" title="在线"></span>
-		<?php } ?>
+        <?php } ?>
       </a>
     </p>
+    <div class="s_li_p_user f12">
+      <a href="__ROOT__/wo/<?php echo $record['uid']; ?>" class="fb f14 getuserinfo" userid="<?php echo $record['uid']; ?>"><?php echo $record['nickname']; ?><?php echo $record['remark'] != NULL ? "<span class='f12 fn'>($record[remark])</span>" : ""; ?></a>
+      <?php if ($record['type'] == '1' || $record['type'] == '4' || $record['type'] == '5') { ?>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/" target="_blank" class="gray f12">(<?php echo $record['schoolname']; ?>)</a>
+      	<?php } else { ?>
+      		<?php if (!empty($record['name'])) { ?>
+      			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
+      		<?php } ?>
+      	<?php } ?>
+      <?php } else if ($record['type'] == '2') { ?>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/index/group" target="_blank" class="gray f12"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的组织</a>
+      	<?php } else { ?>
+      		<a href="__ROOT__/index/group" target="_blank" class="gray f12"><span class="icon_plus"></span>组织</a>
+      	<?php } ?>
+      <?php } else if ($record['type'] == '3') { ?>
+      	<?php if ($record['school'] != $thisschoolid) { ?>
+      		<a href="http://<?php echo $record['domain']; ?>/index/business" target="_blank" class="gray f12"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的商家</a>
+      	<?php } else { ?>
+      		<a href="__ROOT__/index/business" target="_blank" class="gray f12"><span class="icon_plus"></span>商家</a>
+      	<?php } ?>
+      <?php } ?>
+    </div>
     <div class="s_li_user_constellation f12 black_l">
         <?php echo i_grade($record['enteryear']); ?> <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
+        <?php if ($record['online'] == 1) { ?>
+		<span class="blue f12">在线</span>
+		<?php } ?>
+		<?php if (i_degree($record['active']) > 4) { ?>
+	    <span class="level<?php echo i_degree($record['active']) ?>">level<?php echo i_degree($record['active']) ?></span>
+	    <?php } else if (i_degree($record['active']) < 2) { ?>
+	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
+	    <?php } ?>
     </div>
     <div class="s_li_user_time f12 black_l">
        <?php echo i_time($record['last_comment_ti']); ?> 
@@ -66,35 +95,6 @@
           }
         }
         ?>
-    </div>
-    <div class="s_li_p_user f12">
-      <a href="__ROOT__/wo/<?php echo $record['uid']; ?>" class="fb f14 getuserinfo" userid="<?php echo $record['uid']; ?>"><?php echo $record['nickname']; ?><?php echo $record['remark'] != NULL ? "<span class='f12 fn'>($record[remark])</span>" : ""; ?></a>
-      <?php if (i_degree($record['active']) > 4) { ?>
-      <span class="level<?php echo i_degree($record['active']) ?>" title="等级:<?php echo i_degree($record['active']) ?>"></span>
-      <?php } else if (i_degree($record['active']) < 2) { ?>
-      <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
-      <?php } ?>
-      <?php if ($record['type'] == '1' || $record['type'] == '4' || $record['type'] == '5') { ?>
-      	<?php if ($record['school'] != $thisschoolid) { ?>
-      		<a href="http://<?php echo $record['domain']; ?>/" target="_blank" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">(<?php echo $record['schoolname']; ?>)</a>
-      	<?php } else { ?>
-      		<?php if (!empty($record['name'])) { ?>
-      			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
-      		<?php } ?>
-      	<?php } ?>
-      <?php } else if ($record['type'] == '2') { ?>
-      	<?php if ($record['school'] != $thisschoolid) { ?>
-      		<a href="http://<?php echo $record['domain']; ?>/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的组织</a>
-      	<?php } else { ?>
-      		<a href="__ROOT__/index/group" target="_blank" class="gray f12" title="点击查看更多组织"><span class="icon_plus"></span>组织</a>
-      	<?php } ?>
-      <?php } else if ($record['type'] == '3') { ?>
-      	<?php if ($record['school'] != $thisschoolid) { ?>
-      		<a href="http://<?php echo $record['domain']; ?>/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>来自<?php echo $record['schoolname']; ?>的商家</a>
-      	<?php } else { ?>
-      		<a href="__ROOT__/index/business" target="_blank" class="gray f12" title="点击查看更多商家"><span class="icon_plus"></span>商家</a>
-      	<?php } ?>
-      <?php } ?>
     </div>
     <p class="s_li_p_content lh15">
       <?php
