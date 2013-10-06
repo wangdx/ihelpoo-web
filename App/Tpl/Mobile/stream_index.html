@@ -202,7 +202,6 @@
 </ul>
   <div class="stream_list_link">
   <?php $i = (ceil($_GET['p'] / 10) - 1) * 10; ?>
-  <?php if ($i < 0 ) { $i = 1; } ?>
   <?php if ($_GET['p'] == 0) { ?>
   	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$i; ?>' >点击查看更多动态...</a>
   <?php } else { ?>
