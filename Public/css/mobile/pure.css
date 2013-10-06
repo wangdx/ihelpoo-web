@@ -44,6 +44,9 @@ li{ list-style:none; }
 .arrow{font-family: simsun; margin: 0 4px;}
 
 /*--- index_school ---*/
+.school_list_ul{
+    margin: 10px;
+}
 .school_list_ul_initial_p{
     font-weight: bold;
     font-size: 16px;
