@@ -662,7 +662,11 @@ class UserAction extends Action {
         if (empty($_GET['way'])) {
         	redirect('/user/quit?way=already', 0, 'quit...');
         }
-        $this->display();
+        if(i_is_mobile()) {
+        	$this->display('Mobile:user_quit');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function notlogin()
