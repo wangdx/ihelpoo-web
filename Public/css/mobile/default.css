@@ -126,10 +126,7 @@ li{ list-style:none; }
     left: 90px;
 }
 .s_li_p_content{
-    width: 520px;
-    margin: 25px 0 10px 80px;
-    min-height: 25px;
-    overflow: hidden;
+    margin: 65px 0 0;
 }
 .s_li_p_content_image{
     width: 400px;
@@ -173,7 +170,7 @@ li{ list-style:none; }
     background:url(../../image/common/video.gif) no-repeat 0 -60px;
 }
 .s_li_s_comment {
-    padding: 30px 0 0;
+    padding: 10px 0 0;
 }
 .comment_view_div_box_reply{
     margin-bottom: 10px;
