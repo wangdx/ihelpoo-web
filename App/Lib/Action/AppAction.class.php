@@ -26,7 +26,7 @@ class AppAction extends Action {
     	$title = "App下载 校园帮助主题社交网站";
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	$this->assign('title',$title);
-    	if(i_is_mobile()) {
+    	if(!i_is_mobile()) {
         	$this->display('Mobile:app_index');
     	} else {
     		$this->display();
