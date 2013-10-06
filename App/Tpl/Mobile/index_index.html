@@ -26,7 +26,6 @@
     </div>
     <?php } ?>
     <div data-role="content">
-          <div id="logininfo"></div>
 		  <form action="/user/login" method="post" target="_self">
 		      <div>邮箱</div>
 		      <div class="loginbox_email">
@@ -40,5 +39,9 @@
 			  	<input value="登录" type="submit">
 			  </div>
 		  </form>
+		  <p class="f14">
+      		<span class="icon_pump"></span> 目前共有 <span class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>我帮圈圈!
+	      	<?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
+	      </p>
     </div>
 <include file="Public:footermobile" />
