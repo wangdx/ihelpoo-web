@@ -12,19 +12,6 @@
             {$schoolname} - 我帮圈圈
         </h3>
     </div>
-    <?php } else { ?>
-    <div data-theme="b" data-role="header">
-        <a data-role="button" href="/stream" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
-            记录
-        </a>
-        <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
-            设置
-        </a>
-        <h3>
-            我帮圈圈欢迎您
-        </h3>
-    </div>
-    <?php } ?>
     <div data-role="content">
 		  <form action="/user/login" method="post" target="_self">
 		      <div>邮箱</div>
@@ -44,4 +31,31 @@
 	      	<?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
 	      </p>
     </div>
+    <?php } else { ?>
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/stream" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
+            记录
+        </a>
+        <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
+            设置
+        </a>
+        <h3>
+            我帮圈圈欢迎您
+        </h3>
+    </div>
+    <div data-role="content">
+    <div class="mim_loginbox">
+	    <p class="index_loginfast_div_nav_p"><span class="i_l_div_nav_p_span_info">您已经登录{$schoolname}</span></p>
+		<p class="index_loginfast_div_info_p"><span class="f12 black_l">圈圈欢迎您! <a href="__ROOT__/user/quit">[退出]</a></span></p>
+		<p class="index_loginfast_div_icon_p">
+			<a href="/stream/">
+			     <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url']); ?>" width="80" height="60" class="radius5" />
+			</a>
+		</p>
+		<p class="index_loginfast_div_name_p">
+			<a href="/stream" class="f16 reb_back fb" ><?php echo $cookieUserLogin['nickname']; ?> <span class="fn f12 black_l">进入个人中心</span></a>
+		</p>
+	</div>
+    </div>
+    <?php } ?>
 <include file="Public:footermobile" />
