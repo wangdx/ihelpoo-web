@@ -82,7 +82,7 @@ li{ list-style:none; }
 .stream_list_ul{
     padding: 10px;
 }
-.stream_list_ul li{
+.stream_list_ul_li{
     padding: 15px 5px;
     position: relative;
     border-bottom: 1px solid #EEE;
