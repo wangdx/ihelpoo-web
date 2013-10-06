@@ -3,7 +3,7 @@
 	<!-- Home -->
     <div data-theme="b" data-role="header">
     	<a data-role="button" href="/" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
-            登陆页
+            登录
         </a>
         <h3>
             切换学校 我帮圈圈
@@ -14,15 +14,15 @@
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php $schoolUserNums = $userLogin->where("school = $school[id]")->count(); ?>
 	  	<?php if ($initialShow == $school['initial']) { ?>
-		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>">
+		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
 		    	<?php echo $school['school']; ?>
 		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fi'>new</span>"; ?>
 		    </a>
 	    <?php } else { ?>
 	    </li>
 	    <li>
-	    	<p class="fb f14 school_list_ul_initial_p"><?php echo strtoupper($school['initial']); ?></p>
-		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>">
+	    	<p class="school_list_ul_initial_p"><?php echo strtoupper($school['initial']); ?></p>
+		    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
 		    	<?php echo $school['school']; ?>
 		    	<?php echo $schoolUserNums > 100 ? "<span class='blue f12'>(".$schoolUserNums."人)</span>" : "<span class='red f12 fi'>new</span>"; ?>
 		    </a>
