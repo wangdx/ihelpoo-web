@@ -1,5 +1,5 @@
 /* ihelpoo */
-.f10{ font-size:10px; }
+li{ list-style:none; }
 .f12{ font-size:12px; }
 .f14{ font-size:14px; }
 .f16{ font-size:16px; }
@@ -41,6 +41,14 @@
 .radius3{border-radius:3px;}
 .radius5{border-radius:5px;}
 .arrow{font-family: simsun; margin: 0 4px;}
+
+/*--- index_school ---*/
+.school_list_ul li a{
+    display: block;
+    margin: 3px 0;
+}
+
+
 /* Swatches */
 /* A
 -----------------------------------------------------------------------------------------------------------*/
