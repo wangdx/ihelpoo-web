@@ -210,17 +210,17 @@ li{ list-style:none; }
 	color: #FFFFFF /*{b-bar-color}*/;
 }
 .ui-bar-b a.ui-link {
-	color: #7cc4e7 /*{b-bar-link-color}*/;
+	color: #059 /*{b-bar-link-color}*/;
 	font-weight: bold;
 }
 .ui-bar-b a.ui-link:visited {
-    color: #2489ce /*{b-bar-link-visited}*/;
+    color: #059 /*{b-bar-link-visited}*/;
 }
 .ui-bar-b a.ui-link:hover {
-	color: #2489ce /*{b-bar-link-hover}*/;
+	color: #059 /*{b-bar-link-hover}*/;
 }
 .ui-bar-b a.ui-link:active {
-	color: #2489ce /*{b-bar-link-active}*/;
+	color: #059 /*{b-bar-link-active}*/;
 }
 .ui-bar-b,
 .ui-bar-b input,
