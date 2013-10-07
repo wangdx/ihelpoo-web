@@ -38,9 +38,9 @@
   <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
   <div class="i_comment_list_link">
   <select>
-	<option value="1" url="/message/system?p=1" target="_self">第1页</option>
-	<option value="2">第2页</option>
-	<option value="3">第3页</option>
+	<option onclick="javascript:window.location='/message/system?p=1'">第1页</option>
+	<option onclick="javascript:window.location='/message/system?p=2'">第2页</option>
+	<option onclick="javascript:window.location='/message/system?p=3'">第3页</option>
   </select>
   <?php i_page_show("message/system", $totalpages); ?>
   </div>
