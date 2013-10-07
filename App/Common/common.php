@@ -503,6 +503,66 @@ function i_page_show($urlstring, $total, $connectionMode = "?")
 }
 
 /**
+ * i_page_mobile_show
+ */
+function i_page_mobile_show($urlstring, $total, $connectionMode = "?")
+{
+	if ($total > 1) {
+		echo "<select>";
+	}
+	if (!empty($_GET['p']) && $_GET['p'] >= '11') {
+        $i = (ceil($_GET['p'] / 10) - 1) * 10;
+        $totalturn = ceil($total / 10) * 10;
+        $nowturn = ceil($_GET['p'] / 10) * 10;
+        if ($nowturn < $totalturn) {
+            $turn = $nowturn;
+        } else {
+            $turn = $total;
+        }
+        while ($i <= $turn) {
+            if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
+                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第$i页</option>";
+            } else {
+                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第$i页</option>";
+            }
+            $i++;
+        }
+        if ($nowturn < $totalturn) {
+            echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>更多...</option>";
+        }
+    } else {
+        $i = 1;
+        if ($total > 10) {
+            while ($i <= 10) {
+                if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第$i页</option>";
+                } else {
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第$i页</option>";
+                }
+                $i++;
+            }
+            if ($total > 10) {
+                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>更多...</option>";
+            }
+        } else {
+            while ($i <= $total) {
+                if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第$i页</option>";
+                } else {
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第$i页</option>";
+                    
+                }
+                $i++;
+            }
+        }
+    }
+    if ($total > 1) {
+		echo "</select>";
+	}
+}
+
+
+/**
  *
  * Get image url from Storage
  * record field data link 1;2;3 or ihelpooupload10001time().jpg
