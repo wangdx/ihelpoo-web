@@ -595,6 +595,9 @@ li{ list-style:none; }
 .main_mate_user_ul li{
     margin: 5px;
     padding: 10px;
+    border: 1px solid #EEE;
+    background-color: #FFF;
+    border-radius: 5px;
 }
 
 /*--- stream_index ---*/
