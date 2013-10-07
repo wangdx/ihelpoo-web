@@ -65,9 +65,6 @@
 	       | <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a> | 
 	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
 	      <?php } ?>
-	      <?php if ($userLogin['type'] == '2') { ?>
-	       | <a href="/stream/index/group/<?php echo $userLogin['uid']; ?>">成员信息流</a>
-	      <?php } ?>
 	      <?php } ?>
       </div>
       <div class="wo_top_div_intro f12 gray">
@@ -76,7 +73,7 @@
       <ul class="wo_top_div_ul f12 blaxk_l">
 	      <li>
 	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
-	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}><?php echo $sexname ?>圈</a>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" {$selectQuan}>ta圈</a>
 	      </li>
 	      <li>
 	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb" id="quaned_nums">{$recordUserInfo['fans']}</span></a>
@@ -89,8 +86,8 @@
 	      <?php } else if ($shieldExist) { ?>
 	    	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del" class="btn_quaned" title="取消屏蔽"><span class="icon_attention"></span>已经屏蔽</a>
 	      <?php } else { ?>
-	      	<a class="btn_quan f12 do_quanta_wo" userid="<?php echo $userLogin['uid'] ?>"><i class="icon_plus"></i>圈<?php echo $sexname ?></a>
-	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned">屏蔽<?php echo $sexname ?></a>
+	      	<a class="btn_quan f12 do_quanta_wo" userid="<?php echo $userLogin['uid'] ?>"><i class="icon_plus"></i>圈ta</a>
+	      	<a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" class="btn_quaned">屏蔽ta</a>
 	      <?php } ?>
       </div>
     </div>
