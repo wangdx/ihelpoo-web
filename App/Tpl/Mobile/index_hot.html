@@ -33,13 +33,13 @@
     <?php foreach ($recordList as $record) : ?>
     <li>
       <?php if ($i == 1) { ?>
-          <i class="icon_hot_first rank_nums_i"></i>
+          <i class="h_r_ul_li_num red fb rank_nums_i"><?php echo $i; ?></i>
       <?php } else if ($i == 2) { ?>
-      	  <i class="icon_hot_second rank_nums_i"></i>
+      	  <i class="h_r_ul_li_num blue fb rank_nums_i"><?php echo $i; ?></i>
       <?php } else if ($i == 3) { ?>
-          <i class="icon_hot_third rank_nums_i"></i>
+          <i class="h_r_ul_li_num green fb rank_nums_i"><?php echo $i; ?></i>
       <?php } else { ?>
-      	  <i class="h_r_ul_li_num gray rank_nums_i"><?php echo $i; ?></i>
+      	  <i class="h_r_ul_li_num gray fb rank_nums_i"><?php echo $i; ?></i>
       <?php } ?>
       <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img getuserinfo" userid="<?php echo $record['uid'] ?>">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="40" />
