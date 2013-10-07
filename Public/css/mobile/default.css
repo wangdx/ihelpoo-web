@@ -150,7 +150,7 @@ li{ list-style:none; }
 
 /*---*/
 .sex1{
-    background: url("../image/common/sex.png") no-repeat scroll -1px -2px transparent;
+    background: url("../../image/common/sex.png") no-repeat scroll -1px -2px transparent;
     display: inline-block;
     float: left;
     height: 18px;
@@ -158,7 +158,7 @@ li{ list-style:none; }
     margin-right: 3px;
 }
 .sex2{
-    background: url("../image/common/sex.png") no-repeat scroll -22px -2px transparent;
+    background: url("../../image/common/sex.png") no-repeat scroll -22px -2px transparent;
     display: inline-block;
     float: left;
     height: 18px;
@@ -243,7 +243,7 @@ li{ list-style:none; }
 
 
 .ico_setup{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
     background-position: -804px -34px;
     height: 16px;
     width: 16px;
@@ -253,7 +253,7 @@ li{ list-style:none; }
     overflow: hidden;
 }
 .ico_msg{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
     background-position: -821px 0;
     height: 16px;
     width: 16px;
@@ -306,7 +306,7 @@ li{ list-style:none; }
     outline: medium none;
     vertical-align: top;
     width: 25px;
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
     background-position: -126px -35px;
 }
 
@@ -320,7 +320,7 @@ li{ list-style:none; }
     float: left;
     display: inline-block;
     font-size: 0;
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
 }
 .ico_friendfeed{
     background-position: -467px -20px;
@@ -382,7 +382,7 @@ li{ list-style:none; }
     float: left;
     display: inline-block;
     font-size: 0;
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
 }
 .ico_gift{
     background-position: -668px -51px;
@@ -395,7 +395,7 @@ li{ list-style:none; }
 }
 
 .icon_hand{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
     background-position: -957px -17px;
     cursor: pointer;
     height: 16px;
@@ -407,7 +407,7 @@ li{ list-style:none; }
 }
 
 .icon_feedctrall, .icon_feedctrblog, .icon_feedctrrefresh, .icon_feedctrset{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
     height: 14px;
     width: 16px;
     vertical-align: bottom;
@@ -429,7 +429,7 @@ li{ list-style:none; }
 }
 
 .icon_stateplay{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("../../image/common/icon_main.png");
     background-position: -838px 0;
     height: 16px;
     width: 8px;
@@ -444,38 +444,38 @@ li{ list-style:none; }
     display: inline-block;
 }
 .icon_iphone {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("../../image/common/index_login.png");
     background-position: -58px -71px;
     height: 28px;
     width: 28px;
 }
 .icon_ipad {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("../../image/common/index_login.png");
     background-position: -58px -100px;
     height: 28px;
     width: 28px;
 }
 .icon_android {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("../../image/common/index_login.png");
     background-position: -87px -42px;
     height: 28px;
     width: 28px;
 }
 .icon_windowsphone {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("../../image/common/index_login.png");
     background-position: -87px -100px;
     height: 28px;
     width: 28px;
 }
 .icon_mobileother {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("../../image/common/index_login.png");
     background-position: -87px -71px;
     height: 28px;
     width: 28px;
 }
 
 .icon_hover_top_mate, .icon_hover_top_group, .icon_hover_top_business, .icon_hover_top_help, .icon_hover_top_activity, .icon_hover_top_teacher, .icon_hover_top_ranking, .icon_hover_top_senior, .icon_hover_top_postgraduate, .icon_hover_top_app {
-    background-image: url("../image/common/hover_top.png");
+    background-image: url("../../image/common/hover_top.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     vertical-align: middle;
