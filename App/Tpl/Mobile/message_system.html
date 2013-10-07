@@ -4,6 +4,9 @@
         <a data-role="button" href="/message" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             消息
         </a>
+        <a data-role="button" href="/message/system?delsys" target="_self" class="ui-btn-right">
+            <span class="icon_garbage" title="清空这类消息"></span>
+        </a>
         <h3>
             帮助与系统
         </h3>
@@ -21,7 +24,6 @@
     <p class="f12 black_l"><span class="icon_sigh"></span> 已经清空消息</p> 
   </div>
   <?php } ?>
-  <p class="msg_explain f12 black_l">帮助与系统消息 <a href="__ROOT__/message/system?delsys" target="_self" class="fr white icon_garbage_del"><span class="icon_garbage" title="清空这类消息"></span></a></p>
   <ul class="msg_ul">
   <?php 
 	foreach ($msgsysarray as $msg):
