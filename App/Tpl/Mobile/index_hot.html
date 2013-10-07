@@ -41,20 +41,20 @@
       <?php } else { ?>
       	  <i class="h_r_ul_li_num gray fb rank_nums_i"><?php echo $i; ?></i>
       <?php } ?>
-      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img getuserinfo" userid="<?php echo $record['uid'] ?>">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_self" class="h_r_ul_li_img getuserinfo" userid="<?php echo $record['uid'] ?>">
         <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="40" />
       </a>
       <p class="h_r_ul_li_comtent black_l">
-        <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_comtent_nickname">
+        <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_self" class="h_r_ul_li_comtent_nickname">
           <?php echo $record['nickname'] ?>
           <?php if (!empty($record['active'])) { echo "<span class='level".i_degree($record['active'])."'></span>"; } ?>
         </a>
         <span class="h_r_ul_li_comtent_con"><?php echo $ofunction->cut_str(strip_tags($record['content']), 33); ?>
         <?php if ($_GET['w'] == 'help' || $_GET['w'] == 'helpreply') { ?>
-          <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_blank">详情</a>
+          <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_self">详情</a>
         <?php } else if ($_GET['w'] == 'useractive') { ?>
         <?php } else { ?>
-          <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_blank">详情</a>
+          <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_self">详情</a>
         <?php } ?>
         </span>
       </p>
