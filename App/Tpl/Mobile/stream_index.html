@@ -22,10 +22,7 @@
 <ul class="stream_list_ul">
   <?php foreach ($recordSay as $record): ?>
     <li class="stream_list_ul_li">
-    <p class="s_li_p_icon">
-      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>">
-        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 'm') ?>" width="73" height="56" class="radius5" userid="<?php echo $record['uid'] ?>" />
-        <?php if ($record['type'] == '2') { ?>
+    <?php if ($record['type'] == '2') { ?>
           <span class="gradeg"></span>
         <?php } else if ($record['type'] == '3') { ?>
           <span class="grades"></span>
@@ -37,7 +34,10 @@
           <span class="gradesen"></span>
         <?php } else { ?>
           <span class="grade<?php echo i_gradeNum($record['enteryear']) ?>"></span>
-        <?php } ?>
+    <?php } ?>
+    <p class="s_li_p_icon">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>">
+        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 'm') ?>" width="73" height="56" class="radius5" userid="<?php echo $record['uid'] ?>" />
       </a>
     </p>
     <div class="s_li_p_user f12">
@@ -67,7 +67,7 @@
     <div class="s_li_user_constellation f12 gray">
         <?php echo i_grade($record['enteryear']); ?> <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
 		<?php if (i_degree($record['active']) > 4) { ?>
-	    <span class="level<?php echo i_degree($record['active']) ?>"><?php echo i_degree($record['active']) ?>级</span>
+	    <span class="level<?php echo i_degree($record['active']) ?>"></span>
 	    <?php } else if (i_degree($record['active']) < 2) { ?>
 	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
 	    <?php } ?>
