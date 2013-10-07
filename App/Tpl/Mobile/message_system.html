@@ -37,17 +37,11 @@
   </ul>
   <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
   <div class="i_comment_list_link">
-  <select id="reward_coins" name="reward_coins">
-	        <option value="0">0</option>
-	        <option value="10">10</option>
-	        <option value="20">20</option>
-	        <option value="30">30</option>
-	        <option value="50">50</option>
-	        <option value="80">80</option>
-	        <option value="100">100</option>
-	        <option value="200">200</option>
-	        <option value="500">500</option>
-	      </select>
+  <select>
+	<option value="1" url="/message/system?p=1" target="_self">第1页</option>
+	<option value="2">第2页</option>
+	<option value="3">第3页</option>
+  </select>
   <?php i_page_show("message/system", $totalpages); ?>
   </div>
   
