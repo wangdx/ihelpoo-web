@@ -23,7 +23,7 @@
   			</span>
   		详细: <?php echo $msgActive['way'] == 'min' ? "<span class='fb 16 blue pointer' title='惩罚'>-<span class='f14'>".$msgActive['change']."</span></span>" : "<span class='fb 16 red pointer' title='奖励'>+<span class='f14'>".$msgActive['change']."</span></span>"; ?> 
   		<?php echo $msgActive['reason']; ?> 
-  		<?php echo i_time($msgActive['time']); ?>
+  		<span class='msg_li_time'><?php echo i_time($msgActive['time']); ?></span>
   	</li>
   <?php } } else { ?>
   	<li>暂时没有活跃详细记录</li>
