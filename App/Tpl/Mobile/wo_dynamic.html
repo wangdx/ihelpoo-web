@@ -38,17 +38,15 @@
     <p>
     </p>
     <div class="wo_top_div black_l">
-      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" class="f16 black fb"><?php echo $userLogin['nickname'] ?></a>
+      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" target="_self" class="f16 black fb"><?php echo $userLogin['nickname'] ?></a>
       <?php if (!empty($recordUserRemark['remark'])) { ?>
       	<a class="remark_wo_top_a f12" userid="<?php echo $userLogin['uid']; ?>">(<?php echo $recordUserRemark['remark']; ?>)</a>
       <?php } ?>
-      <a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="gray f12"><span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span></a>
+      <span title="level<?php echo i_degree($userLogin['active']) ?>" class="level<?php echo i_degree($userLogin['active']) ?>"></span>
       <span class="fn f12 gray">
       	<?php if (!empty($totalUserHonorNums)) { ?>
-		<a href="__ROOT__/wo/honor/<?php echo $userLogin['uid'] ?>" class="f12 gray" title="查看荣誉详情">
 			{$totalUserHonorNums}荣誉
 			<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
-		</a>
 	  <?php } ?>
       </span>
       
@@ -59,11 +57,11 @@
 	      <?php } ?>
 	      <?php if ($userLogin['type'] == '1' || $userLogin['type'] == '2' || $userLogin['type'] == '4' || $userLogin['type'] == '5') { ?>
 	      <?php if ($recordSchoolInfo['id'] != $userLogin['school']) { ?>
-	       | <a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> | 
-	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
+	       | <a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" target="_self" title="学院"><?php echo $userLoginSchoolInfo['school']; ?><?php echo $userAcademy['name']; ?></a> | 
+	    	<a href="http://<?php echo $userLoginSchoolInfo['domain_main'] == NULL ? $userLoginSchoolInfo['domain'] : $userLoginSchoolInfo['domain_main']; ?>/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" target="_self" title="专业"><?php echo $userSpecialty['name']; ?></a>
 	      <?php } else { ?>
-	       | <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" title="学院"><?php echo $userAcademy['name']; ?></a> | 
-	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" title="专业"><?php echo $userSpecialty['name']; ?></a>
+	       | <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>" target="_self" title="学院"><?php echo $userAcademy['name']; ?></a> | 
+	    	<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['id']; ?>&specialty=<?php echo $userSpecialty['id']; ?>" target="_self" title="专业"><?php echo $userSpecialty['name']; ?></a>
 	      <?php } ?>
 	      <?php } ?>
       </div>
@@ -72,24 +70,24 @@
       </div>
       <ul class="wo_top_div_ul f12 blaxk_l">
           <li>
-	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$totalRecords}</span></a>
-	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="black_l fn">记录</span></a>
+	        <a href="__ROOT__/wo/index/<?php echo $userLogin['uid'] ?>" target="_self"><span class="wo_top_div_ul_num f16 fb">{$totalRecords}</span></a>
+	        <a href="__ROOT__/wo/index/<?php echo $userLogin['uid'] ?>" target="_self"><span class="black_l fn">记录</span></a>
 	      </li>
 	      <li>
-	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
-	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>"><span class="black_l fn">ta圈</span></a>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" target="_self"><span class="wo_top_div_ul_num f16 fb">{$recordUserInfo['follow']}</span></a>
+	        <a href="__ROOT__/wo/quan/<?php echo $userLogin['uid'] ?>" target="_self"><span class="black_l fn">ta圈</span></a>
 	      </li>
 	      <li>
-	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="wo_top_div_ul_num f16 fb" id="quaned_nums">{$recordUserInfo['fans']}</span></a>
-	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>"><span class="black_l fn">圈子</span></a>
+	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" target="_self"><span class="wo_top_div_ul_num f16 fb" id="quaned_nums">{$recordUserInfo['fans']}</span></a>
+	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" target="_self"><span class="black_l fn">圈子</span></a>
 	      </li>
 	      <?php if($priorityExist) { ?>
 	    	<li><a class="do_quantacancel_wo" title="取消圈" userid="<?php echo $userLogin['uid'] ?>">已经圈了<?php echo $sexname ?></a></li>
 	      <?php } else if ($shieldExist) { ?>
-	    	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">已经屏蔽</a></li>
+	    	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del" target="_self">已经屏蔽</a></li>
 	      <?php } else { ?>
 	      	<li><a class="do_quanta_wo" userid="<?php echo $userLogin['uid'] ?>">圈ta</a></li>
-	      	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>">屏蔽ta</a></li>
+	      	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>" target="_self">屏蔽ta</a></li>
 	      <?php } ?>
       </ul>
     </div>
@@ -137,8 +135,6 @@
     </div>
   </div>
   <?php } ?>
-
-
 
 <p>最新记录</p>
 <ul class="stream_list_ul">
