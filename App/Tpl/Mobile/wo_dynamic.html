@@ -80,11 +80,11 @@
 	        <a href="__ROOT__/wo/quaned/<?php echo $userLogin['uid'] ?>" {$selectQuaned}>圈子</a>
 	      </li>
 	      <?php if($priorityExist) { ?>
-	    	<li><a class="do_quantacancel_wo" title="取消圈" userid="<?php echo $userLogin['uid'] ?>"><span class="icon_heart"></span>已经圈了<?php echo $sexname ?></a></li>
+	    	<li><a class="do_quantacancel_wo" title="取消圈" userid="<?php echo $userLogin['uid'] ?>">已经圈了<?php echo $sexname ?></a></li>
 	      <?php } else if ($shieldExist) { ?>
-	    	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del"><span class="icon_attention"></span>已经屏蔽</a></li>
+	    	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>?del">已经屏蔽</a></li>
 	      <?php } else { ?>
-	      	<li><a class="do_quanta_wo" userid="<?php echo $userLogin['uid'] ?>"><i class="icon_plus"></i>圈ta</a></li>
+	      	<li><a class="do_quanta_wo" userid="<?php echo $userLogin['uid'] ?>">圈ta</a></li>
 	      	<li><a href="__ROOT__/mutual/shield/<?php echo $userLogin['uid'] ?>">屏蔽ta</a></li>
 	      <?php } ?>
       </ul>

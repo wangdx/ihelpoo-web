@@ -990,15 +990,16 @@ li{ list-style:none; }
     bottom: 10px;
 }
 .wo_top_div_ul{
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
     padding: 0;
-    border: 1px solid #DDDDDD;
-    border-radius: 5px;
 }
 .wo_top_div_ul li{
-    border-right: 1px solid #DDDDDD;
+    border-right: 1px solid #EEEEEE;
     display: inline-block;
     height: 33px;
-    padding: 5px 15px;
+    padding: 5px 20px;
     position: relative;
     text-align: center;
     vertical-align: bottom;
