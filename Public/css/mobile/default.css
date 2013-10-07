@@ -926,10 +926,12 @@ li{ list-style:none; }
 }
 .msg_com_ul li .a_view_info{
     font-weight: normal;
+    font-size: 14px;
 }
 .msg_comment_info{
     position: absolute;
-    left: 70px;
+    left: 95px;
+    margin: 0;
     top: 15px;
 }
 
