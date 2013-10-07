@@ -40,7 +40,7 @@
       echo "</p>";
       echo "<p class='msg_comment_sub_info'>";
       echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
-      echo "<a href='".__ROOT__."/item/say/".$msg['sid']."' target='_self'><span class='gray'>".$msg['info']."</span> 详情</a>";
+      echo "<a href='".__ROOT__."/item/say/".$msg['sid']."' target='_self' class='a_view_info'><span class='gray'>".$msg['info']."</span> 详情</a>";
       echo "</p>";
       echo "<p class='msg_comment_contentdetail'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
       echo "<span class='msg_li_time'>".$msg['time']."</span>";
