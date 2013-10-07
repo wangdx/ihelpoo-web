@@ -565,6 +565,9 @@ li{ list-style:none; }
 .h_r_ul_li_hit{
     float: right;
 }
+.h_r_ul_li_comtent{
+    padding: 10px 0;
+}
 
 
 /*--- stream_index ---*/
