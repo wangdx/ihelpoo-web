@@ -10,6 +10,32 @@
         </h3>
     </div>
     <div data-role="content">
+    
+      <?php if (!empty($schoolOpCity['0']['school'])) { ?>
+	  <ul class="school_list_recomand_ul">
+	  <li>
+		  <p class="fb f14 school_list_ul_initial_p"><i class="ico_favourite"></i>快速定位校园</p>
+		  <div class="school_list_ip_div">
+		  	<span class="icon_plus"></span><span class="gray">你的ip来自:</span><?php echo $dataArray['region']; ?><?php echo $dataArray['city']; ?><?php echo $dataArray['isp']; ?>(<?php echo $dataArray['country']; ?><?php echo $dataArray['area']; ?>)
+		  </div>
+	  </li>
+	  <li>
+	  <?php foreach ($schoolOpCity as $school) :?>
+	    <?php if (!empty($school['school'])) { ?>
+	    <?php if (empty($schoolOpCity['1']['school'])) { ?>
+		    <?php $changeschoolurl = empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>
+		    <?php $changeschoolurl = 'http://'.$changeschoolurl; ?>
+		    <?php redirect($changeschoolurl, 0, '跳转页面 :)...'); ?>
+	    <?php } ?>
+	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
+		   <?php echo $school['school']; ?>
+		</a>
+		<?php } ?>
+	  <?php endforeach; ?>
+	  </li>
+	  </ul>
+	  
+	  <?php } ?>
       <ul class="school_list_ul">
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php $schoolUserNums = $userLogin->where("school = $school[id]")->count(); ?>
