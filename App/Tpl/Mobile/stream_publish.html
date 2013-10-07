@@ -1,0 +1,117 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	$SchoolInfo = M("SchoolInfo");
+?>
+<include file="Public:headermobile" />
+<!-- Home -->
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/stream" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
+            记录
+        </a>
+        <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
+            设置
+        </a>
+        <h3>
+            {$schoolname} 校园动态
+        </h3>
+    </div>
+<div data-role="content">
+
+<!-- stream box -->
+  <div class="stream_left_form_div">
+  	<p class="s_t_send_info">
+		<a href="/index/school" title="你正在访问的是{$schoolname}, 点击查看更多学校!">
+			<img src="__PUBLIC__/image/school/stream{$thisschoolid}.png" />
+		</a>
+		<span class="s_l_textarea_info f12 gray">还能输入<span class="blue">222</span>个字</span>
+	</p>
+	<!-- publish form -->
+    <form action="__ROOT__/stream" method="post" id="s_t_form">
+	    <ul class="stream_textbox_ul">
+	    <li>
+		  <div id="s_t_textarea_div">
+		      <textarea id="s_t_textarea" name="content"></textarea>
+		      <ul id="s_t_textarea_div_at"></ul>
+		  </div>
+	      <input type="hidden" name="authority" id="authority" value="0">
+	      <span class="f12 gray" id="quietlyreleased" title="不出现在我帮圈圈信息流，只显示在你的小窝"><input type="checkbox" name="quietlyreleased"> 悄悄发布</span>
+	      <a id="s_t_submit" class="btn f12">发布</a>
+	      <p class="verification_code_p">
+	        <img id="verification_code_img" src="" />
+	        <input type="text" name="verificationcode" value="999" id="verification_code"/>
+	      </p>
+	    </li>
+	    <li class="s_t_option">
+	      <span class="post_icon" id="textareaicon" title="表情"></span>
+	      <span class="post_img" id="textareaimg" title="图片"></span>
+	      <span class="post_video" id="textarealink" title="视频"></span>
+	      <?php if ($userloginedrecord['type'] == '2' || $userloginedrecord['type'] == '3') { ?>
+	      <span class="post_appendix" id="textareagroupmsgpush" title="组织信息推送"></span>
+	      <?php } ?>
+	      <span class="helpleaf s_t_option_help" id="textareahelp" title="点击求帮助"></span>
+	      <!-- data storage -->
+	      <input type="hidden" name="help_is" id="help_is_input" value="0"/>
+	      <input type="hidden" name="schoolpublishid" id="schoolpublishid" value="<?php echo $thisschoolid; ?>"/>
+	      <input type="hidden" name="imageurls" id="imageurls" />
+	      <input type="hidden" name="atusers" id="atusers" />
+	      <input type="hidden" name="textareacontent" id="textareacontent" />
+	      <!-- emotionbox hide -->
+	      <div id="emotionbox">
+			  <p class="emotionbox_close_p">
+				  <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
+				  <a class="emotionbox_change_page" title="微博" value="2">微博</a>
+				  <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
+				  <span id="emotionbox_close" class="close_x" title="关闭">×</span>
+			  </p>
+		  	  <ul class="emotionbox_show_ul"></ul>
+		  </div>
+		  <!-- /emotionbox -->
+	    </li>
+	    <li id="post_link_li" class="f12 gray">
+	      视频 <input type="text" id="videourl" name="videourl" value="" /> <a id="url_video_btn" class="btn">确定</a>
+	      <div class="post_link_li_info"></div>
+	    </li>
+	    <li id="post_help_reword" class="f12 gray">
+	      活跃悬赏: <select id="reward_coins" name="reward_coins">
+	        <option value="0">0</option>
+	        <option value="10">10</option>
+	        <option value="20">20</option>
+	        <option value="30">30</option>
+	        <option value="50">50</option>
+	        <option value="80">80</option>
+	        <option value="100">100</option>
+	        <option value="200">200</option>
+	        <option value="500">500</option>
+	      </select>
+	      &nbsp;&nbsp;
+	      <span class="f12" id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
+	    </li>
+	    <?php if ($userloginedrecord['type'] != '1' ) { ?>
+	    <li class="f12 gray" id="post_groupmsgpush_li">
+	   		<span class="f12 gray" title="给你的组织内用户发送系统消息通知"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
+	   		<span class="f12 gray" title="给你的组织内用户发送邮件消息通知"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
+	   		<span class="icon_pump"></span> <a href="__ROOT__/activity/add" class="f12 gray">举办活动?</a>
+	    </li>
+	    <?php } ?>
+	    </ul>
+    </form>
+    <!-- /publish form -->
+
+    <!-- image upload hide -->
+    <div class="img_upload_form_div">
+      <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+        <input id="upload_form_img_file" name="uploadedimg" type="file" />
+        <a class="btn f12" id="img_upload_btn">上传</a>
+        <span class="imgajaxloading_span"></span>
+      </form>
+      <p class="img_upload_form_div_p f12 black_l">网络图片地址 <input id="img_upload_net" type="text" /> <a id="img_upload_net_btn" class="btn f12">确定</a></p>
+      <ul id="image_upload_list_ul"></ul>
+    </div>
+    <!-- /image upload -->
+  </div>
+  <!-- /stream box -->
+
+</div>
+<include file="Public:footermobile" />
