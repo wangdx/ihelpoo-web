@@ -987,7 +987,7 @@ li{ list-style:none; }
 .img_part_me i{
     position: absolute;
     left: 5px;
-    bottom: 5px;
+    bottom: 10px;
 }
 .wo_top_div_ul{
     padding: 0;
