@@ -63,14 +63,14 @@
       		<a href="__ROOT__/index/business" target="_blank" class="gray f12"><span class="icon_plus"></span>商家</a>
       	<?php } ?>
       <?php } ?>
-    </div>
-    <div class="s_li_user_constellation f12 gray">
-        <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
-		<?php if (i_degree($record['active']) > 4) { ?>
+      <?php if (i_degree($record['active']) > 4) { ?>
 	    <span class="level<?php echo i_degree($record['active']) ?>"></span>
 	    <?php } else if (i_degree($record['active']) < 2) { ?>
 	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
-	    <?php } ?>
+	  <?php } ?>
+    </div>
+    <div class="s_li_user_constellation f12 gray">
+        <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
 	    <?php if ($record['online'] == 1) { ?>
 		 <span class="blue f12">[在线]</span>
 		<?php } ?>
