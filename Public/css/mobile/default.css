@@ -945,7 +945,7 @@ li{ list-style:none; }
     color: #333;
     font-weight: normal;
 }
-.msg_comment_contentdetail_a{
+.msg_comment_contentdetail .msg_comment_contentdetail_a{
     color: #333;
     font-weight: normal;
 }
