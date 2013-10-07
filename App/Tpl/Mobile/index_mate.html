@@ -15,7 +15,7 @@
     </div>
     <?php } else { ?>
     <div data-theme="b" data-role="header">
-        <a data-role="button" href="/stream" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+        <a data-role="button" href="/stream" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             返回
         </a>
         <h3>
@@ -25,5 +25,167 @@
     <?php } ?>
     <div data-role="content">
     
+    
+    <div class="main_mate_info">
+    <a href="__ROOT__/index/mate?w=new" {$_GET['w'] == "new" ? "class='fb'":NULL}>最新加入</a> |
+    <a href="__ROOT__/index/mate?w=grade&sex={$_GET['sex']}" {$_GET['w'] == "grade" ? "class='fb'":NULL}>按年级</a> |
+    <a href="__ROOT__/index/mate?w=academy&n=&sex={$_GET['sex']}" {$_GET['w'] == "academy" ? "class='fb'":NULL}>按学院</a> <a href="__ROOT__/lab/maponline?academy=select" class="f12 gray" title="看在线的">[在线]</a> |
+    <a href="__ROOT__/index/mate?w=dormitory&n=" {$_GET['w'] == "dormitory" ? "class='fb'":NULL}>按寝室楼栋</a> <a href="__ROOT__/lab/maponline" class="f12 gray" title="看在线的">[在线]</a> |
+    <a href="__ROOT__/index/group" class="f12 gray">组织</a> + 
+    <a href="__ROOT__/index/business" class="f12 gray">商家</a>
+    <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
+    	<span class="f12">
+	    <?php if ($_GET['sex'] == 1) { ?>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex1"></span>只看男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>女生</a>
+	    <?php } else if ($_GET['sex'] == 2) { ?>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex1"></span>男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex2"></span>只看女生</a>
+	    <?php } else { ?>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex1"></span>只看男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>只看女生</a>
+	    <?php } ?>
+	    </span>
+    <?php } ?>
+    <span class="main_mate_info_user_nums f12 black_l">
+    	<span class="icon_plus"></span>我帮圈圈{$schoolname}现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋<a href="__ROOT__/index/school" title="更多学校">[更多]</a>
+    </span>
+    <?php if ($_GET['w'] == "academy") { ?>
+    <ul class="main_mate_op_ul">
+    <?php foreach ($academy as $academy) : ?>
+    <li>
+      <?php if ($_GET['n'] == $academy['id']) { ?>
+      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a_select"><?php echo $academy['name'] ?></a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a"><?php echo $academy['name'] ?></a>
+      <?php } ?>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+	
+	<?php if ($_GET['specialty']) { ?>
+    <a href="__ROOT__/stream/index/specialty/{$_GET['specialty']}" class="main_mate_stream_specialty_a"><span class="icon_pump"></span>他们都在说什么</a>
+	<?php } ?>
+	
+    <ul class="main_mate_op_ul">
+    <?php foreach ($resultsSpecialty as $specialty) : ?>
+    <li>
+      <?php if ($_GET['specialty'] == $specialty['id']) { ?>
+      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $_GET['n'] ?>&specialty=<?php echo $specialty['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a_select"><?php echo $specialty['name'] ?></a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $_GET['n'] ?>&specialty=<?php echo $specialty['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a"><?php echo $specialty['name'] ?></a>
+      <?php } ?>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+
+    <?php } else if ($_GET['w'] == "dormitory") { ?>
+    <ul class="main_mate_op_ul">
+    <?php foreach ($dormitory as $dormitory) : ?>
+    <li>
+      <?php if ($_GET['n'] == $dormitory['id']) { ?>
+      <a href="__ROOT__/index/mate?w=dormitory&n=<?php echo $dormitory['id'] ?>" class="f12 m_m_op_a_select">
+      <?php echo $dormitory['name']; ?>
+      <?php if ($dormitory['type'] == "1") { echo "男生寝室";} else if ($dormitory['type'] == "2") { echo "女生寝室"; } ?>
+      </a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=dormitory&n=<?php echo $dormitory['id'] ?>" class="f12 m_m_op_a"><?php echo $dormitory['name'] ?></a>
+      <?php } ?>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php } else if ($_GET['w'] == "grade") { ?>
+    <ul class="main_mate_op_ul">
+    <li>
+      <?php if ($_GET['n'] == "1") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=1&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大一</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=1&sex={$_GET['sex']}" class="f12 m_m_op_a">大一</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "2") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=2&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大二</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=2&sex={$_GET['sex']}" class="f12 m_m_op_a">大二</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "3") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=3&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大三</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=3&sex={$_GET['sex']}" class="f12 m_m_op_a">大三</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "4") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=4&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大四</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=4&sex={$_GET['sex']}" class="f12 m_m_op_a">大四</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "5") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=5&sex={$_GET['sex']}" class="f12 m_m_op_a_select">已经毕业</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=5&sex={$_GET['sex']}" class="f12 m_m_op_a">已经毕业</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "994") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=994&sex={$_GET['sex']}" class="f12 m_m_op_a_select">老师</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=994&sex={$_GET['sex']}" class="f12 m_m_op_a">老师</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "995") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=995&sex={$_GET['sex']}" class="f12 m_m_op_a_select">研究生</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=995&sex={$_GET['sex']}" class="f12 m_m_op_a">研究生</a>
+      <?php } ?>
+    </li>
+    <li>
+      <?php if ($_GET['n'] == "996") { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=996&sex={$_GET['sex']}" class="f12 m_m_op_a_select">高中生</a>
+      <?php } else { ?>
+      <a href="__ROOT__/index/mate?w=grade&n=996&sex={$_GET['sex']}" class="f12 m_m_op_a">高中生</a>
+      <?php } ?>
+    </li>
+    </ul>
+    <?php } ?>
+  </div>
+  <ul class="main_mate_user_ul">
+  <?php foreach ($userList as $user) :?>
+    <li>
+    <p style="position: relative; width: 180px; display: inline-block">
+    <?php if (!empty($userloginedrecord['uid'])) { ?>
+      	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>" class="getuserinfo" userid="<?php echo $user['uid'] ?>">
+    <?php } else { ?>
+    	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>">
+    <?php } ?>
+        <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 'm') ?>" width="180" height="135" />
+        <?php if ($user['type'] == '4') { ?>
+          <span class="gradetea"></span>
+        <?php } else if ($user['type'] == '5') { ?>
+          <span class="gradegra"></span>
+        <?php } else if ($user['type'] == '6') { ?>
+          <span class="gradesen"></span>
+        <?php } else { ?>
+        	<span class="grade<?php echo i_gradenum($user['enteryear']) ?>"></span>
+        <?php } ?>
+        <span style="position: absolute; left: 0; bottom: 0;" class="online<?php echo $user['online'] ?>"></span>
+      </a>
+    </p>
+    <span class="m_m_u_u_li_name"><a href="__ROOT__/wo/<?php echo $user['uid'] ?>" ><?php echo $ofunction->cut_str($user['nickname'],9); ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
+    </li>
+  <?php endforeach ?>
+  </ul>
+  <p class="main_mate_list_num f12 gray"><?php if ($totalusers == 150) { ?>显示<?php echo $totalusers ?>位童鞋 <?php } else { ?>共<?php echo $totalusers ?>位童鞋 <?php } echo $totalPages ?>页</p>
+  <div class="main_mate_list_link">
+  	<?php if ($totalPages > 1) { i_page_show("index/mate?w=".$_GET['w']."&n=".$_GET['n']."&sex=".$_GET['sex']."&specialty=".$_GET['specialty'], $totalPages, '&'); } ?>
+  </div>
+  
+  
     </div>
 <include file="Public:footermobile" />

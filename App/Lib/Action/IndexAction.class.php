@@ -431,7 +431,12 @@ class IndexAction extends Action {
     	$OpDormitory = M("OpDormitory");
     	$dormitory = $OpDormitory->where("school = $recordSchoolInfo[id]")->select();
     	$this->assign('dormitory',$dormitory);
-    	$this->display();
+    	
+    	if(i_is_mobile()) {
+        	$this->display('Mobile:index_mate');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function group()
