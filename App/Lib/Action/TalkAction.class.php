@@ -181,11 +181,10 @@ class TalkAction extends Action
         $this->assign('title', '聊天 悄悄话');
         $toUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
 
-
         $TalkContent = M("TalkContent");
         $leaveWords = $TalkContent->where("i_talk_content.uid = $toUserId AND touid = $userloginid AND deliver = '0' ")
-            ->join('i_user_login ON i_talk_content.uid = i_user_login.uid')
-            ->order("time ASC")->select();
+        ->join('i_user_login ON i_talk_content.uid = i_user_login.uid')
+        ->order("time ASC")->select();
 
         $this->assign('leaveWords', $leaveWords);
         foreach ($leaveWords as $leaveWord) {
@@ -210,7 +209,6 @@ class TalkAction extends Action
                 ->select();
             $this->assign('talkLists', $talkList);
         }
-
 
         /**
          * view
@@ -248,7 +246,12 @@ class TalkAction extends Action
             $userLoginSchoolInfo = $SchoolInfo->find($toUserRecord['school']);
             $this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
         }
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:talk_to');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function history()
@@ -299,7 +302,12 @@ class TalkAction extends Action
             }
             $this->assign('deleteFlag', 'yes');
         }
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:talk_history');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function add()
