@@ -558,8 +558,9 @@ li{ list-style:none; }
 }
 .h_r_ul_li_num{
     position: absolute;
-    left: 0;
-    top: 0;
+    right: 15px;
+    top: 15px;
+    font-size: 16px;        
 }
 .h_r_ul_li_hit{
     float: right;
