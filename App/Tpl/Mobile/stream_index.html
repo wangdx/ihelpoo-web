@@ -7,7 +7,7 @@
 <include file="Public:headermobile" />
 <!-- Home -->
     <div data-theme="b" data-role="header">
-        <a data-role="button" href="/stream" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
+        <a data-role="button" href="/stream/publish" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
             记录
         </a>
         <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
@@ -65,14 +65,14 @@
       <?php } ?>
     </div>
     <div class="s_li_user_constellation f12 gray">
-        <?php echo i_grade($record['enteryear']); ?> <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
+        <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
 		<?php if (i_degree($record['active']) > 4) { ?>
 	    <span class="level<?php echo i_degree($record['active']) ?>"></span>
 	    <?php } else if (i_degree($record['active']) < 2) { ?>
 	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
 	    <?php } ?>
 	    <?php if ($record['online'] == 1) { ?>
-		 <span class="blue f12">在线</span>
+		 <span class="blue f12">[在线]</span>
 		<?php } ?>
     </div>
     <div class="s_li_user_time f12 gray">
