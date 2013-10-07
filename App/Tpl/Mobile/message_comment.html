@@ -37,7 +37,7 @@
       echo "<p class='msg_info f12'>";
       echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_blank' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a></p>";
-      echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])." <a class='c_v_d_b_ul_li_content_reply_btn fr f12'><i class='icon_plus'></i> 回复</a></p>";
+      echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
       echo "<span class='msg_li_time'>".$msg['time']."</span>";
       echo "</li>";
     ?>
