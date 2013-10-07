@@ -729,6 +729,18 @@ class StreamAction extends Action
     		$this->display();
     	}
     }
+    
+    /**
+     * for mobile publish
+     */
+    public function publish()
+    {
+    	$userloginid = session('userloginid');
+        $recordSchoolInfo = i_school_domain();
+        $this->assign('thisschoolid', $recordSchoolInfo['id']);
+        $this->assign('schoolname', $recordSchoolInfo['school']);
+        $this->display('Mobile:stream_publish');
+    }
 
     public function fav()
     {
