@@ -64,7 +64,7 @@
           	<?php } else { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3" />
           	<?php } ?>
-            <?php echo $historyUidRecord['nickname']; ?> <span class="f12 gray"><?php echo date('m-d H:i', $talkHistory['time']); ?></span>
+            <?php echo $historyUidRecord['nickname']; ?> <span class="f12 gray fn"><?php echo date('m-d H:i', $talkHistory['time']); ?></span>
         </li>
         </a>
         <?php } endforeach; ?>
