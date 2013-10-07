@@ -36,7 +36,7 @@
 		      <ul id="s_t_textarea_div_at"></ul>
 		  </div>
 	      <input type="hidden" name="authority" id="authority" value="0">
-	      <span class="f12 gray" id="quietlyreleased" title="不出现在我帮圈圈信息流，只显示在你的小窝"><input type="checkbox" name="quietlyreleased"> 悄悄发布</span>
+	      <span class="f12 gray" id="quietlyreleased"><input type="checkbox" name="quietlyreleased"> 悄悄发布</span>
 	      <a id="s_t_submit" class="btn f12">发布</a>
 	      <p class="verification_code_p">
 	        <img id="verification_code_img" src="" />
@@ -90,8 +90,8 @@
 	    </li>
 	    <?php if ($userloginedrecord['type'] != '1' ) { ?>
 	    <li class="f12 gray" id="post_groupmsgpush_li">
-	   		<span class="f12 gray" title="给你的组织内用户发送系统消息通知"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
-	   		<span class="f12 gray" title="给你的组织内用户发送邮件消息通知"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
+	   		<span class="f12 gray"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
+	   		<span class="f12 gray"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
 	   		<span class="icon_pump"></span> <a href="__ROOT__/activity/add" class="f12 gray">举办活动?</a>
 	    </li>
 	    <?php } ?>
@@ -106,7 +106,6 @@
         <a class="btn f12" id="img_upload_btn">上传</a>
         <span class="imgajaxloading_span"></span>
       </form>
-      <p class="img_upload_form_div_p f12 black_l">网络图片地址 <input id="img_upload_net" type="text" /> <a id="img_upload_net_btn" class="btn f12">确定</a></p>
       <ul id="image_upload_list_ul"></ul>
     </div>
     <!-- /image upload -->
