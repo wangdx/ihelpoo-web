@@ -37,7 +37,7 @@
     <?php
     foreach ($talkHistories as $talkHistory) :
         echo "<li><span class='gray'>";
-        echo "<a href='".__ROOT__."/wo/".$talkHistory['uid']."'>";
+        echo "<a href='".__ROOT__."/wo/".$talkHistory['uid']."' target='_self'>";
         if ($talkHistory['uid'] == $userloginedrecord['uid']) {
         	echo "您自己";
         } else {
@@ -45,7 +45,7 @@
         }
         echo "</a>";
         echo " to ";
-        echo "<a href='".__ROOT__."/wo/".$talkHistory['touid']."'>";
+        echo "<a href='".__ROOT__."/wo/".$talkHistory['touid']."' target='_self'>";
         if ($talkHistory['touid'] == $userloginedrecord['uid']) {
         	echo "您";
         } else {
@@ -64,11 +64,7 @@
     </ul>
     <p class="i_comment_list_num f12 gray">共<?php echo $totalTalkHistoryNums ?>条对话记录 <?php echo $totalPages ?>页</p>
     <div class="i_comment_list_link">
-      <?php
-      if ($totalPages > 1) {
-          i_page_mobile_show("talk/history/".$toUserLogin['uid'], $totalPages);
-      }
-      ?>
+      <?php if ($totalPages > 1) { i_page_mobile_show("talk/history/".$toUserLogin['uid'], $totalPages); } ?>
     </div>
 <?php } ?>
 </div>
