@@ -27,16 +27,9 @@
     </div>
     <?php } ?>
     <div data-role="content">
-    
-    <div class="main_mate_info">
-    <select onchange="self.location.href=options[selectedIndex].value">
-	<option value="/index/mate?w=new" {$_GET['w'] == 'new' ? 'selected':NULL}>最新加入</option>
-	<option value="/index/mate?w=grade&sex={$_GET['sex']}" {$_GET['w'] == 'grade' ? 'selected':NULL}>按年级</option>
-	<option value="/index/mate?w=academy&n=&sex={$_GET['sex']}" {$_GET['w'] == 'academy' ? 'selected':NULL}>按学院</option>
-	<option value="/index/mate?w=dormitory&n=" {$_GET['w'] == 'dormitory' ? 'selected':NULL}>按寝室楼栋</option>
-	<option value="/index/group">组织</option>
-	<option value="/index/business">商家</option>
-    </select>
+    <span class="main_mate_info_user_nums f12 black_l">
+    	<span class="icon_plus"></span>我帮圈圈{$schoolname}现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋<a href="__ROOT__/index/school" title="更多学校">[更多]</a>
+    </span>
     
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
     	<span class="f12">
@@ -53,9 +46,15 @@
 	    </span>
     <?php } ?>
     
-    <span class="main_mate_info_user_nums f12 black_l">
-    	<span class="icon_plus"></span>我帮圈圈{$schoolname}现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋<a href="__ROOT__/index/school" title="更多学校">[更多]</a>
-    </span>
+    <div class="main_mate_info">
+    <select onchange="self.location.href=options[selectedIndex].value">
+	<option value="/index/mate?w=new" {$_GET['w'] == 'new' ? 'selected':NULL}>最新加入</option>
+	<option value="/index/mate?w=grade&sex={$_GET['sex']}" {$_GET['w'] == 'grade' ? 'selected':NULL}>按年级</option>
+	<option value="/index/mate?w=academy&n=&sex={$_GET['sex']}" {$_GET['w'] == 'academy' ? 'selected':NULL}>按学院</option>
+	<option value="/index/mate?w=dormitory&n=" {$_GET['w'] == 'dormitory' ? 'selected':NULL}>按寝室楼栋</option>
+	<option value="/index/group">组织</option>
+	<option value="/index/business">商家</option>
+    </select>
     
     <?php if ($_GET['w'] == "academy") { ?>
     
@@ -68,7 +67,7 @@
       <?php } ?>
       <?php endforeach; ?>
 	</select>
-	<?php if ($_GET['specialty']) { ?>
+	
     <select onchange="self.location.href=options[selectedIndex].value">
       <?php foreach ($resultsSpecialty as $specialty) : ?>
       <?php if ($_GET['specialty'] == $specialty['id']) { ?>
@@ -78,6 +77,8 @@
       <?php } ?>
       <?php endforeach; ?>
 	</select>
+	
+	<?php if ($_GET['specialty']) { ?>
     <a href="__ROOT__/stream/index/specialty/{$_GET['specialty']}" class="main_mate_stream_specialty_a"><span class="icon_pump"></span>他们都在说什么</a>
 	<?php } ?>
 
