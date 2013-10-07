@@ -934,6 +934,12 @@ li{ list-style:none; }
     margin: 0;
     top: 15px;
 }
+.msg_comment_sub_info{
+    position: absolute;
+    left: 95px;
+    margin: 0;
+    top: 50px;
+}
 .msg_comment_contentdetail{
     margin: 15px 0;
 }
