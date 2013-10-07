@@ -33,7 +33,7 @@
   <?php echo "<li ";
       echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
       echo ">";
-      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' target='_self' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
       echo "<p class='msg_comment_info'>";
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' target='_self' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a>";
       echo "</p>";
