@@ -1,7 +1,3 @@
-<?php
-    Vendor('Ihelpoo.Ofunction');
-    $ofunction = new Ofunction();
-?>
 <include file="Public:headermobile" />
 	<!-- Home -->
     <?php if (empty($userloginedrecord['uid'])) { ?>
@@ -118,11 +114,7 @@
   <?php foreach ($userList as $user) :?>
     <li>
     <p style="position: relative; width: 180px; display: inline-block">
-    <?php if (!empty($userloginedrecord['uid'])) { ?>
-      	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>" class="getuserinfo" userid="<?php echo $user['uid'] ?>">
-    <?php } else { ?>
-    	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>">
-    <?php } ?>
+    	<a href="__ROOT__/wo/<?php echo $user['uid'] ?>" target="_self">
         <img src="<?php echo i_icon_check($user['uid'], $user['icon_url'], 'm') ?>" width="180" height="135" />
         <?php if ($user['type'] == '4') { ?>
           <span class="gradetea"></span>
@@ -136,7 +128,7 @@
         <span style="position: absolute; left: 0; bottom: 0;" class="online<?php echo $user['online'] ?>"></span>
       </a>
     </p>
-    <span class="m_m_u_u_li_name"><a href="__ROOT__/wo/<?php echo $user['uid'] ?>" ><?php echo $ofunction->cut_str($user['nickname'],9); ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
+    <span class="m_m_u_u_li_name"><a href="__ROOT__/wo/<?php echo $user['uid'] ?>" target="_self" ><?php echo $user['nickname']; ?></a> <span class="f12 gray">等级<?php echo i_degree($user['active']) ?></span></span>
     </li>
   <?php endforeach ?>
   </ul>
