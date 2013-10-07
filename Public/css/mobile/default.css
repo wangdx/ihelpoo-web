@@ -973,3 +973,19 @@ li{ list-style:none; }
     margin: 10px 0;
     padding: 15px;
 }
+
+
+/*--- wo_index ---*/
+.img_part_me{
+    position: relative;
+    width: 300px;
+    margin: 15px 20px 20px 20px;
+}
+.img_part_me img{
+    border: 1px solid #EEE;
+}
+.img_part_me i{
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+}
