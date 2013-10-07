@@ -13,7 +13,7 @@
   <?php if (isset($_GET['delsys'])) { ?>
   <div class="msg_div_del radius3">
     <p class="f12 black_l"><span class="icon_attention"></span> 清空所有关于您的系统消息</p> 
-    <p class="msg_div_del_sure"><a href="__ROOT__/message/system?suredelsys" class="btn_yes radius3">继续清空</a> <a href="__ROOT__/message/system" class="btn_no radius3">取消</a></p>
+    <p class="msg_div_del_sure"><a href="__ROOT__/message/system?suredelsys" target="_self" class="btn_yes radius3">继续清空</a> <a href="__ROOT__/message/system" target="_self" class="btn_no radius3">取消</a></p>
   </div>
   <?php } ?>
   <?php if (isset($_GET['suredel']) || isset($_GET['suredelsys'])) { ?>
@@ -21,7 +21,7 @@
     <p class="f12 black_l"><span class="icon_sigh"></span> 已经清空消息</p> 
   </div>
   <?php } ?>
-  <p class="msg_explain f12 black_l">帮助与系统消息 <a href="__ROOT__/message/system?delsys" class="fr white icon_garbage_del"><span class="icon_garbage" title="清空这类消息"></span></a></p>
+  <p class="msg_explain f12 black_l">帮助与系统消息 <a href="__ROOT__/message/system?delsys" target="_self" class="fr white icon_garbage_del"><span class="icon_garbage" title="清空这类消息"></span></a></p>
   <ul class="msg_ul">
   <?php 
 	foreach ($msgsysarray as $msg):
@@ -37,6 +37,17 @@
   </ul>
   <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
   <div class="i_comment_list_link">
+  <select id="reward_coins" name="reward_coins">
+	        <option value="0">0</option>
+	        <option value="10">10</option>
+	        <option value="20">20</option>
+	        <option value="30">30</option>
+	        <option value="50">50</option>
+	        <option value="80">80</option>
+	        <option value="100">100</option>
+	        <option value="200">200</option>
+	        <option value="500">500</option>
+	      </select>
   <?php i_page_show("message/system", $totalpages); ?>
   </div>
   
