@@ -41,123 +41,74 @@
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
     	<span class="f12">
 	    <?php if ($_GET['sex'] == 1) { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex1"></span>只看男生</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex_select">只看男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex">女生</a>
 	    <?php } else if ($_GET['sex'] == 2) { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex1"></span>男生</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex_select"><span class="sex2"></span>只看女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex">男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex_select">只看女生</a>
 	    <?php } else { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex1"></span>只看男生</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex"><span class="sex2"></span>只看女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" class="main_mate_info_sex">只看男生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" class="main_mate_info_sex">只看女生</a>
 	    <?php } ?>
 	    </span>
     <?php } ?>
+    
     <span class="main_mate_info_user_nums f12 black_l">
     	<span class="icon_plus"></span>我帮圈圈{$schoolname}现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋<a href="__ROOT__/index/school" title="更多学校">[更多]</a>
     </span>
+    
     <?php if ($_GET['w'] == "academy") { ?>
-    <ul class="main_mate_op_ul">
-    <?php foreach ($academy as $academy) : ?>
-    <li>
+    
+    <select onchange="self.location.href=options[selectedIndex].value">
+      <?php foreach ($academy as $academy) : ?>
       <?php if ($_GET['n'] == $academy['id']) { ?>
-      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a_select"><?php echo $academy['name'] ?></a>
+      	<option value="/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" selected><?php echo $academy['name'] ?></option>
       <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a"><?php echo $academy['name'] ?></a>
+        <option value="/index/mate?w=academy&n=<?php echo $academy['id'] ?>&sex={$_GET['sex']}"><?php echo $academy['name'] ?></option>
       <?php } ?>
-    </li>
-    <?php endforeach; ?>
-    </ul>
-	
+      <?php endforeach; ?>
+	</select>
 	<?php if ($_GET['specialty']) { ?>
+    <select onchange="self.location.href=options[selectedIndex].value">
+      <?php foreach ($resultsSpecialty as $specialty) : ?>
+      <?php if ($_GET['specialty'] == $specialty['id']) { ?>
+      	<option value="/index/mate?w=academy&n=<?php echo $_GET['n'] ?>&specialty=<?php echo $specialty['id'] ?>&sex={$_GET['sex']}" selected><?php echo $specialty['name'] ?></option>
+      <?php } else { ?>
+        <option value="/index/mate?w=academy&n=<?php echo $_GET['n'] ?>&specialty=<?php echo $specialty['id'] ?>&sex={$_GET['sex']}"><?php echo $specialty['name'] ?></option>
+      <?php } ?>
+      <?php endforeach; ?>
+	</select>
     <a href="__ROOT__/stream/index/specialty/{$_GET['specialty']}" class="main_mate_stream_specialty_a"><span class="icon_pump"></span>他们都在说什么</a>
 	<?php } ?>
-	
-    <ul class="main_mate_op_ul">
-    <?php foreach ($resultsSpecialty as $specialty) : ?>
-    <li>
-      <?php if ($_GET['specialty'] == $specialty['id']) { ?>
-      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $_GET['n'] ?>&specialty=<?php echo $specialty['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a_select"><?php echo $specialty['name'] ?></a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=academy&n=<?php echo $_GET['n'] ?>&specialty=<?php echo $specialty['id'] ?>&sex={$_GET['sex']}" class="f12 m_m_op_a"><?php echo $specialty['name'] ?></a>
-      <?php } ?>
-    </li>
-    <?php endforeach; ?>
-    </ul>
 
     <?php } else if ($_GET['w'] == "dormitory") { ?>
-    <ul class="main_mate_op_ul">
-    <?php foreach ($dormitory as $dormitory) : ?>
-    <li>
+    
+    <select onchange="self.location.href=options[selectedIndex].value">
+      <?php foreach ($dormitory as $dormitory) : ?>
       <?php if ($_GET['n'] == $dormitory['id']) { ?>
-      <a href="__ROOT__/index/mate?w=dormitory&n=<?php echo $dormitory['id'] ?>" class="f12 m_m_op_a_select">
-      <?php echo $dormitory['name']; ?>
-      <?php if ($dormitory['type'] == "1") { echo "男生寝室";} else if ($dormitory['type'] == "2") { echo "女生寝室"; } ?>
-      </a>
+      	<option value="/index/mate?w=dormitory&n=<?php echo $dormitory['id'] ?>" selected>
+      	<?php echo $dormitory['name']; ?>
+        <?php if ($dormitory['type'] == "1") { echo "男生寝室";} else if ($dormitory['type'] == "2") { echo "女生寝室"; } ?>
+	    </option>
       <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=dormitory&n=<?php echo $dormitory['id'] ?>" class="f12 m_m_op_a"><?php echo $dormitory['name'] ?></a>
+        <option value="/index/mate?w=dormitory&n=<?php echo $dormitory['id'] ?>"><?php echo $dormitory['name'] ?></option>
       <?php } ?>
-    </li>
-    <?php endforeach; ?>
-    </ul>
+      <?php endforeach; ?>
+	</select>
+    
     <?php } else if ($_GET['w'] == "grade") { ?>
-    <ul class="main_mate_op_ul">
-    <li>
-      <?php if ($_GET['n'] == "1") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=1&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大一</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=1&sex={$_GET['sex']}" class="f12 m_m_op_a">大一</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "2") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=2&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大二</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=2&sex={$_GET['sex']}" class="f12 m_m_op_a">大二</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "3") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=3&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大三</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=3&sex={$_GET['sex']}" class="f12 m_m_op_a">大三</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "4") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=4&sex={$_GET['sex']}" class="f12 m_m_op_a_select">大四</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=4&sex={$_GET['sex']}" class="f12 m_m_op_a">大四</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "5") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=5&sex={$_GET['sex']}" class="f12 m_m_op_a_select">已经毕业</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=5&sex={$_GET['sex']}" class="f12 m_m_op_a">已经毕业</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "994") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=994&sex={$_GET['sex']}" class="f12 m_m_op_a_select">老师</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=994&sex={$_GET['sex']}" class="f12 m_m_op_a">老师</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "995") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=995&sex={$_GET['sex']}" class="f12 m_m_op_a_select">研究生</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=995&sex={$_GET['sex']}" class="f12 m_m_op_a">研究生</a>
-      <?php } ?>
-    </li>
-    <li>
-      <?php if ($_GET['n'] == "996") { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=996&sex={$_GET['sex']}" class="f12 m_m_op_a_select">高中生</a>
-      <?php } else { ?>
-      <a href="__ROOT__/index/mate?w=grade&n=996&sex={$_GET['sex']}" class="f12 m_m_op_a">高中生</a>
-      <?php } ?>
-    </li>
-    </ul>
+    
+    <select onchange="self.location.href=options[selectedIndex].value">
+	<option value="/index/mate?w=grade&n=1&sex={$_GET['sex']}" {$_GET['n'] == '1' ? 'selected':NULL}>大一</option>
+	<option value="/index/mate?w=grade&n=2&sex={$_GET['sex']}" {$_GET['n'] == '2' ? 'selected':NULL}>大二</option>
+	<option value="/index/mate?w=grade&n=3&sex={$_GET['sex']}" {$_GET['n'] == '3' ? 'selected':NULL}>大三</option>
+	<option value="/index/mate?w=grade&n=4&sex={$_GET['sex']}" {$_GET['n'] == '4' ? 'selected':NULL}>大四</option>
+	<option value="/index/mate?w=grade&n=5&sex={$_GET['sex']}" {$_GET['n'] == '5' ? 'selected':NULL}>已经毕业</option>
+	<option value="/index/mate?w=grade&n=994&sex={$_GET['sex']}" {$_GET['n'] == '994' ? 'selected':NULL}>老师</option>
+	<option value="/index/mate?w=grade&n=995&sex={$_GET['sex']}" {$_GET['n'] == '995' ? 'selected':NULL}>研究生</option>
+	<option value="/index/mate?w=grade&n=996&sex={$_GET['sex']}" {$_GET['n'] == '996' ? 'selected':NULL}>高中生</option>
+    </select>
+    
     <?php } ?>
   </div>
   <ul class="main_mate_user_ul">
