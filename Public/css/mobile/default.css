@@ -907,6 +907,8 @@ li{ list-style:none; }
     margin-bottom: 10px;
     background-color: #EEE;
 }
+
+/*--- message_comment ---*/
 .msg_com_ul{
     padding: 0;
 }
