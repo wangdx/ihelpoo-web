@@ -922,6 +922,7 @@ li{ list-style:none; }
     border-radius: 5px 5px 5px 5px;
     margin: 10px 0;
     padding: 15px;
+    position: relative;
 }
 .msg_comment_info{
     position: absolute;
