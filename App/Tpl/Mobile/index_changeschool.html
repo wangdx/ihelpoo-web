@@ -14,10 +14,7 @@
       <?php if (!empty($schoolOpCity['0']['school'])) { ?>
 	  <ul class="school_list_recomand_ul">
 	  <li>
-		  <p class="school_list_ul_initial_p"><i class="ico_favourite"></i>快速定位校园</p>
-		  <p class="school_list_ul_from_p">
-		  	<span class="gray">你的ip来自:</span><?php echo $dataArray['region']; ?><?php echo $dataArray['city']; ?><?php echo $dataArray['isp']; ?>(<?php echo $dataArray['country']; ?><?php echo $dataArray['area']; ?>)
-		  </p>
+		  <p class="school_list_ul_initial_p"><i class="ico_favourite"></i>快速定位校园 <span class="gray f12">你的ip来自: <?php echo $dataArray['region']; ?><?php echo $dataArray['city']; ?><?php echo $dataArray['isp']; ?>(<?php echo $dataArray['country']; ?><?php echo $dataArray['area']; ?>)</span></p>
 	  </li>
 	  <li>
 	  <?php foreach ($schoolOpCity as $school) :?>
