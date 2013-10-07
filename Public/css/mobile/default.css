@@ -924,8 +924,12 @@ li{ list-style:none; }
     padding: 15px;
     position: relative;
 }
+.msg_com_ul li .a_view_info{
+    font-weight: normal;
+}
 .msg_comment_info{
     position: absolute;
     left: 70px;
     top: 15px;
 }
+
