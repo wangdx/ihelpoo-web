@@ -12,8 +12,7 @@
 <form action="__ROOT__/setting" method="post" id="settingform">
   <ul class="setindex">
     <li class="black_l">
-      <span class="settitle">登录名:</span> 
-      <p class="accountinfo">{$recorduserlogin['email']}</p>
+      登录名:{$recorduserlogin['email']}
       <if condition="$recorduserlogin['type'] eq 1">[个人用户]
         <elseif condition="$recorduserlogin['type'] eq 2"/>[组织]
         <elseif condition="$recorduserlogin['type'] eq 3"/>[商家]
