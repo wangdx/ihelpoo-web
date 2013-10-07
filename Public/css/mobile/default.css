@@ -512,13 +512,13 @@ li{ list-style:none; }
 /*--- index_index ---*/
 .index_hot_mate_ul{
     padding: 10px;
-    margin: 15px 0 0 0;
+    margin: 20px 0 0 0;
     border: 1px solid #EEE;
     background-color: #FFF;
     border-radius: 5px;
 }
 .index_hot_mate_ul li{
-    padding: 10px;
+    padding: 10px 5px;
 }
 .index_hot_mate_ul_li{
     border-bottom: 1px solid #EEE;
