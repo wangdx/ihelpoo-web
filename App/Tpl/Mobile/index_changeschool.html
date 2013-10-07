@@ -14,10 +14,10 @@
       <?php if (!empty($schoolOpCity['0']['school'])) { ?>
 	  <ul class="school_list_recomand_ul">
 	  <li>
-		  <p class="fb f14 school_list_ul_initial_p"><i class="ico_favourite"></i>快速定位校园</p>
-		  <div class="school_list_ip_div">
-		  	<span class="icon_plus"></span><span class="gray">你的ip来自:</span><?php echo $dataArray['region']; ?><?php echo $dataArray['city']; ?><?php echo $dataArray['isp']; ?>(<?php echo $dataArray['country']; ?><?php echo $dataArray['area']; ?>)
-		  </div>
+		  <p class="school_list_ul_initial_p"><i class="ico_favourite"></i>快速定位校园</p>
+		  <p class="school_list_ul_from_p">
+		  	<span class="gray">你的ip来自:</span><?php echo $dataArray['region']; ?><?php echo $dataArray['city']; ?><?php echo $dataArray['isp']; ?>(<?php echo $dataArray['country']; ?><?php echo $dataArray['area']; ?>)
+		  </p>
 	  </li>
 	  <li>
 	  <?php foreach ($schoolOpCity as $school) :?>
@@ -27,7 +27,7 @@
 		    <?php $changeschoolurl = 'http://'.$changeschoolurl; ?>
 		    <?php redirect($changeschoolurl, 0, '跳转页面 :)...'); ?>
 	    <?php } ?>
-	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>">
+	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
 		   <?php echo $school['school']; ?>
 		</a>
 		<?php } ?>
