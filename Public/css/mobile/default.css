@@ -800,7 +800,10 @@ li{ list-style:none; }
     padding: 0;
 }
 .img_upload_form_div{
-    //display: none;
+    display: none;
+}
+#post_help_reword{
+    display: none;
 }
 
 #emotionbox{
