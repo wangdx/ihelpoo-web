@@ -37,7 +37,7 @@
 		  </div>
 	      <input type="hidden" name="authority" id="authority" value="0">
 	      <span id="quietlyreleased"><input type="checkbox" name="quietlyreleased"> 悄悄发布</span>
-	      <a id="s_t_submit" class="btn f12">发布</a>
+	      <a id="s_t_submit" data-role="button">发布</a>
 	      <p class="verification_code_p">
 	        <img id="verification_code_img" src="" />
 	        <input type="text" name="verificationcode" value="999" id="verification_code"/>
@@ -47,9 +47,6 @@
 	      <span class="post_icon" id="textareaicon" title="表情"></span>
 	      <span class="post_img" id="textareaimg" title="图片"></span>
 	      <span class="post_video" id="textarealink" title="视频"></span>
-	      <?php if ($userloginedrecord['type'] == '2' || $userloginedrecord['type'] == '3') { ?>
-	      <span class="post_appendix" id="textareagroupmsgpush" title="组织信息推送"></span>
-	      <?php } ?>
 	      <span class="helpleaf s_t_option_help" id="textareahelp" title="点击求帮助"></span>
 	      <!-- data storage -->
 	      <input type="hidden" name="help_is" id="help_is_input" value="0"/>
@@ -69,10 +66,6 @@
 		  </div>
 		  <!-- /emotionbox -->
 	    </li>
-	    <li id="post_link_li" class="f12 gray">
-	      视频 <input type="text" id="videourl" name="videourl" value="" /> <a id="url_video_btn" class="btn">确定</a>
-	      <div class="post_link_li_info"></div>
-	    </li>
 	    <li id="post_help_reword" class="f12 gray">
 	      活跃悬赏: <select id="reward_coins" name="reward_coins">
 	        <option value="0">0</option>
@@ -88,13 +81,6 @@
 	      &nbsp;&nbsp;
 	      <span class="f12" id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
 	    </li>
-	    <?php if ($userloginedrecord['type'] != '1' ) { ?>
-	    <li class="f12 gray" id="post_groupmsgpush_li">
-	   		<span class="f12 gray"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
-	   		<span class="f12 gray"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
-	   		<span class="icon_pump"></span> <a href="__ROOT__/activity/add" class="f12 gray">举办活动?</a>
-	    </li>
-	    <?php } ?>
 	    </ul>
     </form>
     <!-- /publish form -->

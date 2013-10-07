@@ -215,10 +215,10 @@
 	      <?php } ?>
 	    </li>
 	     <?php } ?>
-	    <?php if ($userloginedrecord['type'] != '1' ) { ?>
+	    <?php if ($userloginedrecord['type'] == '2' || $userloginedrecord['type'] == '3' ) { ?>
 	    <li class="f12 gray" id="post_groupmsgpush_li">
-	   		<span class="f12 gray" title="给你的组织内用户发送系统消息通知"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
-	   		<span class="f12 gray" title="给你的组织内用户发送邮件消息通知"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
+	   		<span class="f12 gray" title="给你的圈子内用户发送系统消息通知"><input type="checkbox" name="groupmsgpush_system" id="groupmsgpush_system"> 系统消息通知</span>
+	   		<span class="f12 gray" title="给你的圈子内用户发送邮件消息通知"><input type="checkbox" name="groupmsgpush_mail" id="groupmsgpush_mail"> 邮件通知</span>
 	   		<span class="icon_pump"></span> <a href="__ROOT__/activity/add" class="f12 gray">举办活动?</a>
 	    </li>
 	    <?php } ?>
