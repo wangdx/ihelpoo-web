@@ -588,8 +588,9 @@ li{ list-style:none; }
     padding: 0;
     margin: 0;
 }
-.hot_left_ul li{
-    
+/*--- index_mate ---*/
+.main_mate_user_ul{
+    padding: 0;   
 }
 
 /*--- stream_index ---*/
