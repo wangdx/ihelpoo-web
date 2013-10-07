@@ -568,7 +568,13 @@ li{ list-style:none; }
 .h_r_ul_li_comtent{
     margin: 10px 0;
 }
-
+.hot_left_ul{
+    padding: 0;
+    margin: 0;
+}
+.hot_left_ul li{
+    
+}
 
 /*--- stream_index ---*/
 .verification_code_p{
