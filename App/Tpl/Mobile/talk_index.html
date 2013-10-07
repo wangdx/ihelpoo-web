@@ -59,13 +59,12 @@
         ?>
         <a href="__ROOT__/talk/to/<?php echo $historyUid ?>" target="_self">
         <li>
-          
           	<?php if (!empty($contentToMe['id'])) { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 flash_icon" />
           	<?php } else { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3" />
           	<?php } ?>
-          <?php echo $historyUidRecord['nickname']; ?> <?php echo date('m-d H:i', $talkHistory['time']); ?>
+            <?php echo $historyUidRecord['nickname']; ?> <span class="f12 gray"><?php echo date('m-d H:i', $talkHistory['time']); ?></span>
         </li>
         </a>
         <?php } endforeach; ?>
