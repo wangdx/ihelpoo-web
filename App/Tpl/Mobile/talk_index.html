@@ -18,8 +18,8 @@
     <span style="position: absolute; top:10px; right:235px;" title="请按需要删除">悄悄话记录<span class="f14 fb fi"> <?php echo $totalTalkNums ?> </span>条</span>
   </p>
   <p class="talk_index_sexnums black_l">
-    和 <span style="display:inline-block;"><span class="sex1"></span><span class="f14 fb fi"><?php echo $talkBoyNums; ?></span> 位帅哥</span>
-    <span style="display:inline-block;"><span class="sex2"></span><span class="f14 fb fi"><?php echo $talkGirlNums; ?></span> 位美女</span>悄悄话过
+    和 <span style="display:inline-block;"><span class="f14 fb fi"><?php echo $talkBoyNums; ?></span> 位帅哥</span>
+    <span style="display:inline-block;"><span class="f14 fb fi"><?php echo $talkGirlNums; ?></span> 位美女</span>悄悄话过
   </p>
   <p class="talk_index_sextext f12 gray">
   圈圈分析:你的聊天类型属于
@@ -59,12 +59,13 @@
 			  $historyUidRecord = $UserLogin->where("uid = $historyUid")->field('uid, nickname, icon_url')->find();
         ?>
         <li>
-          <a href="__ROOT__/talk/to/<?php echo $historyUid ?>" title="<?php echo $historyUidRecord['nickname'].' '.date('m-d H:i', $talkHistory['time']); ?>">
+          <a href="__ROOT__/talk/to/<?php echo $historyUid ?>">
           	<?php if (!empty($contentToMe['id'])) { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 flash_icon" />
           	<?php } else { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3" />
           	<?php } ?>
+          	<?php echo $historyUidRecord['nickname'].' '.date('m-d H:i', $talkHistory['time']); ?>
           </a>
         </li>
         <?php } endforeach; ?>
