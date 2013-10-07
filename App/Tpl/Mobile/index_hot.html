@@ -37,12 +37,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="?w=<?php echo $_GET['w'] ?>&t=week" target="_self" data-transition="fade" data-theme="" data-icon="" {$_GET['t'] == 'day' ? "class = 'ui-btn-active ui-state-persist'" : NULL}>
+                    <a href="?w=<?php echo $_GET['w'] ?>&t=week" target="_self" data-transition="fade" data-theme="" data-icon="" {$_GET['t'] == 'week' ? "class = 'ui-btn-active ui-state-persist'" : NULL}>
                         一周
                     </a>
                 </li>
                 <li>
-                    <a href="?w=<?php echo $_GET['w'] ?>&t=all" data-transition="fade" data-theme="" data-icon="" {$_GET['t'] == 'day' ? "class = 'ui-btn-active ui-state-persist'" : NULL}>
+                    <a href="?w=<?php echo $_GET['w'] ?>&t=all" target="_self" data-transition="fade" data-theme="" data-icon="" {$_GET['t'] == 'all' ? "class = 'ui-btn-active ui-state-persist'" : NULL}>
                         全部
                     </a>
                 </li>
