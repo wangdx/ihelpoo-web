@@ -4,11 +4,45 @@
         <a data-role="button" href="/message" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             消息
         </a>
+        <a data-role="button" href="/message/commentat?delat" target="_self" class="ui-btn-right">
+            <span class="icon_garbage" title="清空这类消息"></span>
+        </a>
         <h3>
             @提到我的
         </h3>
     </div>
 <div data-role="content">
-	
+
+  <?php if (isset($_GET['delat'])) { ?>
+  <div class="msg_div_del">
+    <p><span class="icon_attention"></span> 将会删除最近15条@消息</p> 
+    <p class="msg_div_del_sure"><a href="__ROOT__/message/at?suredel" target="_self" data-role="button">继续删除</a> <a href="__ROOT__/message/at" target="_self" data-role="button">取消</a></p>
+  </div>
+  <?php } ?>
+  <?php if (isset($_GET['suredel']) || isset($_GET['suredel'])) { ?>
+  <div class="msg_div_del">
+    <p><span class="icon_sigh"></span> 已经删除消息</p> 
+  </div>
+  <?php } ?>
+  <ul class="msg_com_ul">
+  <?php
+	  foreach ($msgarray as $msg):
+	  echo "<li ";
+      echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
+      echo ">";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
+      echo "<p class='msg_info f12'>";
+      echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <span class='gray'>".$msg['info']."</span> <a href='".__ROOT__."/item/say/".$msg['sid']."' target='_blank' class='a_view_info'>查看</a></p>";
+      echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
+      echo "<span class='msg_li_time'>".$msg['time']."</span>";
+      echo "</li>";
+      endforeach;
+    ?>
+  </ul>
+  <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
+  <div class="i_comment_list_link">
+  <?php i_page_mobile_show("message/at", $totalpages); ?>
+  </div>
 </div>
 <include file="Public:footermobile" />
