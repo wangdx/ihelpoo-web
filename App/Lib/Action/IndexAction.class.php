@@ -121,7 +121,12 @@ class IndexAction extends Action {
         $OpCity = M("OpCity");
         $schoolOpCity = $OpCity->where("`name` LIKE '%" . $ipcity . "%' AND status = 1")->join("i_school_info ON i_op_city.id = i_school_info.city_op")->select();
         $this->assign('schoolOpCity', $schoolOpCity);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:index_changeschool');
+    	} else {
+    		$this->display();
+    	}
     }
     
     public function hot()
