@@ -1,4 +1,7 @@
-<?php $userLogin = M("UserLogin"); ?>
+<?php
+    Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
+?>
 <include file="Public:headermobile" />
 	<!-- Home -->
     <?php if (empty($userloginedrecord['uid'])) { ?>
