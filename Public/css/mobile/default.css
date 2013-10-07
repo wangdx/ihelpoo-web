@@ -49,104 +49,104 @@ li{ list-style:none; }
 .fl{ float:left; }
 .cb{ clear:both; }
 /*---*/
-.icon_write{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -60px -15px; display:inline-block; vertical-align:text-bottom; }
-.icon_pump{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -60px 0; display:inline-block; vertical-align:text-bottom; }
-.icon_quit{ width:12px; height:12px; background:url(../image/common/ihelpoo_icon.png) no-repeat -76px -76px; display:inline-block; vertical-align:text-bottom; }
-.icon_function{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -45px 0; display:inline-block; vertical-align:top; }
-.icon_text{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 -15px; display:inline-block; vertical-align:text-bottom; }
-.icon_mobile{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -75px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_plus{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -60px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_bplus{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
-.icon_bminus{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -60px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
-.icon_bplus_h{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
-.icon_recycle{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -15px; display:inline-block; vertical-align:text-bottom; }
-.icon_right{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_sigh{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -15px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_wrong{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -45px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_folder{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -15px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
-.icon_folder_close{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
-.icon_folder_lock{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_write{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -15px; display:inline-block; vertical-align:text-bottom; }
+.icon_pump{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px 0; display:inline-block; vertical-align:text-bottom; }
+.icon_quit{ width:12px; height:12px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -76px -76px; display:inline-block; vertical-align:text-bottom; }
+.icon_function{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px 0; display:inline-block; vertical-align:top; }
+.icon_text{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -15px; display:inline-block; vertical-align:text-bottom; }
+.icon_mobile{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -75px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_plus{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_bplus{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
+.icon_bminus{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
+.icon_bplus_h{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
+.icon_recycle{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -15px; display:inline-block; vertical-align:text-bottom; }
+.icon_right{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_sigh{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_wrong{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_folder{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_folder_close{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_folder_lock{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
 
-.icon_download{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -15px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_up{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 -30px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
-.icon_heart{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -15px -15px; display:inline-block; vertical-align:bottom; }
-.icon_attention{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -60px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_garbage{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -75px -14px; display:inline-block; vertical-align:text-bottom; }
-.icon_listen{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_search{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px 0; display:inline-block; vertical-align:bottom; }
-.icon_arrowupd{ width:15px; height:13px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 -75px; display:inline-block; vertical-align:text-bottom; }
-.icon_notice{ width:20px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -90px; display:inline-block; vertical-align:text-bottom; }
-.icon_words{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -15px 0; display:inline-block; vertical-align:text-bottom; }
-.icon_star{ width:15px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 0; display:inline-block; vertical-align:text-bottom; }
+.icon_download{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_up{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -30px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_heart{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -15px; display:inline-block; vertical-align:bottom; }
+.icon_attention{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_garbage{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -75px -14px; display:inline-block; vertical-align:text-bottom; }
+.icon_listen{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_search{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px 0; display:inline-block; vertical-align:bottom; }
+.icon_arrowupd{ width:15px; height:13px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -75px; display:inline-block; vertical-align:text-bottom; }
+.icon_notice{ width:20px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -90px; display:inline-block; vertical-align:text-bottom; }
+.icon_words{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px 0; display:inline-block; vertical-align:text-bottom; }
+.icon_star{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 0; display:inline-block; vertical-align:text-bottom; }
 /*---*/
-.icon_new{ width:26px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -30px -105px; display:inline-block; vertical-align:text-bottom; }
-.icon_recommend{ width:26px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat -45px -120px; display:inline-block; vertical-align:text-bottom; }
-.icon_hot{ width:32px; height:16px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0px -120px; display:inline-block; vertical-align:text-bottom; }
-.icon_contact{ width:30px; height:15px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0px -105px; display:inline-block; vertical-align:text-bottom; }
-.icon_qzone{ width:16px; height:16px; background:url(../image/common/ihelpoo_icon.png) no-repeat 0 -180px; display:inline-block; vertical-align:top; margin-right:3px; }
+.icon_new{ width:26px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -105px; display:inline-block; vertical-align:text-bottom; }
+.icon_recommend{ width:26px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -120px; display:inline-block; vertical-align:text-bottom; }
+.icon_hot{ width:32px; height:16px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0px -120px; display:inline-block; vertical-align:text-bottom; }
+.icon_contact{ width:30px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0px -105px; display:inline-block; vertical-align:text-bottom; }
+.icon_qzone{ width:16px; height:16px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -180px; display:inline-block; vertical-align:top; margin-right:3px; }
 .icon_weibo{ display:inline-block; vertical-align:top; margin-right:3px; }
 .icon_play{ display:inline-block; vertical-align:text-bottom; }
 /*---*/
-.icon_index_mobile{ width:15px; height:18px; background:url(../image/common/index_btn.png) no-repeat 0px -100px; display:inline-block; vertical-align:text-bottom; }
-.icon_index_andriod{ width:15px; height:18px; background:url(../image/common/index_btn.png) no-repeat 0px -118px; display:inline-block; vertical-align:text-bottom; }
-.icon_index_wrong{ width:11px; height:11px; background:url(../image/common/index_btn.png) no-repeat -18px -154px; display:inline-block; vertical-align:text-bottom; }
+.icon_index_mobile{ width:15px; height:18px; background:url(../../image/common/index_btn.png) no-repeat 0px -100px; display:inline-block; vertical-align:text-bottom; }
+.icon_index_andriod{ width:15px; height:18px; background:url(../../image/common/index_btn.png) no-repeat 0px -118px; display:inline-block; vertical-align:text-bottom; }
+.icon_index_wrong{ width:11px; height:11px; background:url(../../image/common/index_btn.png) no-repeat -18px -154px; display:inline-block; vertical-align:text-bottom; }
 /*---*/
-.icon_n_fans{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 0; display:inline-block; vertical-align:middle; }
-.icon_n_follow{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -16px; display:inline-block; vertical-align:middle; }
-.icon_n_msg{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -32px; display:inline-block; vertical-align:middle; }
-.icon_n_thumb{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -48px; display:inline-block; vertical-align:middle; }
-.icon_n_color{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -64px; display:inline-block; vertical-align:text-bottom; }
+.icon_n_fans{ width:18px; height:16px; background:url(../../image/common/icon_n.png) no-repeat 0 0; display:inline-block; vertical-align:middle; }
+.icon_n_follow{ width:18px; height:16px; background:url(../../image/common/icon_n.png) no-repeat 0 -16px; display:inline-block; vertical-align:middle; }
+.icon_n_msg{ width:18px; height:16px; background:url(../../image/common/icon_n.png) no-repeat 0 -32px; display:inline-block; vertical-align:middle; }
+.icon_n_thumb{ width:18px; height:16px; background:url(../../image/common/icon_n.png) no-repeat 0 -48px; display:inline-block; vertical-align:middle; }
+.icon_n_color{ width:18px; height:16px; background:url(../../image/common/icon_n.png) no-repeat 0 -64px; display:inline-block; vertical-align:text-bottom; }
 /*---*/
 .circle_l_b{ background:#FFF; position:absolute; left:0; bottom:0px; height:1px; width:1px; display:block; }
 .circle_r_b{ background:#FFF; position:absolute; right:0; bottom:0px; height:1px; width:1px; display:block; }
 .circle_l_t{ background:#FFF; position:absolute; left:0; top:0px; height:1px; width:1px; display:block; }
 .circle_r_t{ background:#FFF; position:absolute; right:0; top:0px; height:1px; width:1px; display:block; }
 /*---*/
-.grade1{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 0; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.grade2{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -35px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.grade3{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -70px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.grade4{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -105px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.grade5{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -140px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.grade6{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -175px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.gradeg{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -210px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.grades{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -245px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.gradegra{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -280px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.gradesen{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -315px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.gradetea{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-.gradebef{ width:35px; height:35px; background:url(../image/common/grade.png) no-repeat 0 -385px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade1{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 0; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade2{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -35px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade3{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -70px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade4{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -105px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade5{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -140px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grade6{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -175px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.gradeg{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -210px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.grades{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -245px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.gradegra{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -280px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.gradesen{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -315px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.gradetea{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+.gradebef{ width:35px; height:35px; background:url(../../image/common/grade.png) no-repeat 0 -385px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 
 /*---*/
-.post_icon{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
-.post_icon:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px 0; display:inline-block; cursor: pointer; }
-.post_img{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 -20px; display:inline-block; cursor: pointer; }
-.post_img:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -20px; display:inline-block; cursor: pointer; }
-.post_video{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -0 -40px; display:inline-block; cursor: pointer; }
-.post_video:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -40px; display:inline-block; cursor: pointer; }
-.post_at{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 -60px; display:inline-block; cursor: pointer; }
-.post_at:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -60px; display:inline-block; cursor: pointer; }
-.post_link{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -40px -120px; display:inline-block; cursor: pointer; }
-.post_link:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -60px -120px; display:inline-block; cursor: pointer; }
-.post_appendix{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
-.post_appendix:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -120px; display:inline-block; cursor: pointer; }
-.post_appendix_gray{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
-.post_colck{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -140px; display:inline-block; cursor: pointer; }
-.post_status{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -100px; display:inline-block; cursor: pointer; }
-.post_link_static{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -60px -120px; display:inline-block; }
-.post_img_static{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -20px; display:inline-block; }
+.post_icon{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
+.post_icon:hover{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px 0; display:inline-block; cursor: pointer; }
+.post_img{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat 0 -20px; display:inline-block; cursor: pointer; }
+.post_img:hover{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -20px; display:inline-block; cursor: pointer; }
+.post_video{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -0 -40px; display:inline-block; cursor: pointer; }
+.post_video:hover{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -40px; display:inline-block; cursor: pointer; }
+.post_at{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat 0 -60px; display:inline-block; cursor: pointer; }
+.post_at:hover{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -60px; display:inline-block; cursor: pointer; }
+.post_link{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -40px -120px; display:inline-block; cursor: pointer; }
+.post_link:hover{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -60px -120px; display:inline-block; cursor: pointer; }
+.post_appendix{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
+.post_appendix:hover{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -120px; display:inline-block; cursor: pointer; }
+.post_appendix_gray{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
+.post_colck{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -140px; display:inline-block; cursor: pointer; }
+.post_status{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -100px; display:inline-block; cursor: pointer; }
+.post_link_static{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -60px -120px; display:inline-block; }
+.post_img_static{ width: 18px; height: 18px; background:url(../../image/common/poster.png) no-repeat -20px -20px; display:inline-block; }
 
 /*--- btn.png ---*/
-.btn_back{ width: 24px; height: 15px; background:url(../image/common/btn.png) no-repeat -24px -100px; display:inline-block; cursor: pointer; }
-.btn_back:hover{ width: 24px; height: 15px; background:url(../image/common/btn.png) no-repeat 0px -100px; display:inline-block; cursor: pointer; }
-.btn_more{ width: 24px; height: 12px; background:url(../image/common/btn.png) no-repeat -48px -75px; display:inline-block; cursor: pointer; margin-left: 10px; }
+.btn_back{ width: 24px; height: 15px; background:url(../../image/common/btn.png) no-repeat -24px -100px; display:inline-block; cursor: pointer; }
+.btn_back:hover{ width: 24px; height: 15px; background:url(../../image/common/btn.png) no-repeat 0px -100px; display:inline-block; cursor: pointer; }
+.btn_more{ width: 24px; height: 12px; background:url(../../image/common/btn.png) no-repeat -48px -75px; display:inline-block; cursor: pointer; margin-left: 10px; }
 
 /*---*/
-.helpleaf{ width: 40px; height: 18px; background:url(../image/common/helpleaf.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
-.helpleaf:hover{ width: 40px; height: 18px; background:url(../image/common/helpleaf.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
-.helpleaf_select{ width: 40px; height: 18px; background:url(../image/common/helpleaf.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
+.helpleaf{ width: 40px; height: 18px; background:url(../../image/common/helpleaf.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
+.helpleaf:hover{ width: 40px; height: 18px; background:url(../../image/common/helpleaf.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
+.helpleaf_select{ width: 40px; height: 18px; background:url(../../image/common/helpleaf.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
 /*---*/
-.btn_weibo{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
-.btn_weibo:hover{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
-.btn_weibo_select{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
+.btn_weibo{ width: 24px; height: 18px; background:url(../../image/common/weibo_select.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
+.btn_weibo:hover{ width: 24px; height: 18px; background:url(../../image/common/weibo_select.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
+.btn_weibo_select{ width: 24px; height: 18px; background:url(../../image/common/weibo_select.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
 
 /*---*/
 .sex1{
@@ -166,20 +166,20 @@ li{ list-style:none; }
     margin-right: 3px;
 }
 /*---*/
-.online0{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
-.online1{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px 0px; display:inline-block; }
-.online2{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
+.online0{ width: 40px; height: 12px; background:url(../../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
+.online1{ width: 40px; height: 12px; background:url(../../image/common/onlinestatus.png) no-repeat 0px 0px; display:inline-block; }
+.online2{ width: 40px; height: 12px; background:url(../../image/common/onlinestatus.png) no-repeat 0px -12px; display:inline-block; }
 /*---*/
-.level1{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px 0px; display:inline-block; }
-.level2{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -14px; display:inline-block; }
-.level3{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -28px; display:inline-block; }
-.level4{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -42px; display:inline-block; }
-.level5{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -56px; display:inline-block; }
-.level6{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -70px; display:inline-block; }
-.level7{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -84px; display:inline-block; }
-.level8{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -98px; display:inline-block; }
-.level9{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -112px; display:inline-block; }
-.level10{ width: 14px; height: 14px; background:url(../image/common/level.png) no-repeat 0px -126px; display:inline-block; }
+.level1{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px 0px; display:inline-block; }
+.level2{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -14px; display:inline-block; }
+.level3{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -28px; display:inline-block; }
+.level4{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -42px; display:inline-block; }
+.level5{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -56px; display:inline-block; }
+.level6{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -70px; display:inline-block; }
+.level7{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -84px; display:inline-block; }
+.level8{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -98px; display:inline-block; }
+.level9{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -112px; display:inline-block; }
+.level10{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -126px; display:inline-block; }
 
 /*---*/
 .dot_choose{display: inline-block; width: 13px; height: 5px; background: #C00; margin: 6px; float: right; position: absolute; right: 10px; top: 5px;}
@@ -216,8 +216,8 @@ li{ list-style:none; }
 .btn_quan{padding: 3px 10px 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; }
 .btn_quan:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.login_status_online{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 0; display:inline-block; cursor: pointer; vertical-align: bottom; }
-.login_status_hidden{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 -16px; display:inline-block; cursor: pointer; vertical-align: bottom; }
+.login_status_online{ width: 16px; height: 16px; background:url(../../image/common/login_status.png) no-repeat 0 0; display:inline-block; cursor: pointer; vertical-align: bottom; }
+.login_status_hidden{ width: 16px; height: 16px; background:url(../../image/common/login_status.png) no-repeat 0 -16px; display:inline-block; cursor: pointer; vertical-align: bottom; }
 /*--css3---*/
 .radius3{border-radius:3px;}
 .radius5{border-radius:5px;}
