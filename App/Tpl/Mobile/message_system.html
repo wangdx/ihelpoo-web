@@ -14,14 +14,14 @@
 <div data-role="content">
 
   <?php if (isset($_GET['delsys'])) { ?>
-  <div class="msg_div_del radius3">
+  <div class="msg_div_del">
     <p><span class="icon_attention"></span> 清空所有关于您的系统消息</p> 
-    <p class="msg_div_del_sure"><a href="__ROOT__/message/system?suredelsys" target="_self" data-role="button">继续清空</a> <a href="__ROOT__/message/system" target="_self" data-role="button">取消</a></p>
+    <p class="msg_div_del_sure"><a href="__ROOT__/message/system?suredelsys" target="_self" data-role="button">确认清空</a> <a href="__ROOT__/message/system" target="_self" data-role="button">取消</a></p>
   </div>
   <?php } ?>
   <?php if (isset($_GET['suredel']) || isset($_GET['suredelsys'])) { ?>
   <div class="msg_div_del">
-    <p class="f12 black_l"><span class="icon_sigh"></span> 已经清空消息</p> 
+    <p><span class="icon_sigh"></span> 已经清空消息</p> 
   </div>
   <?php } ?>
   <ul class="msg_ul">

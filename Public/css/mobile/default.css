@@ -885,6 +885,9 @@ li{ list-style:none; }
 .message_index_ul li{
     padding: 5px 0;
 }
+.msg_notread{
+    background: #FFFA85;
+}
 
 /*--- message_system ---*/
 .msg_ul{
@@ -903,4 +906,14 @@ li{ list-style:none; }
     border-radius: 5px;
     margin-bottom: 10px;
     background-color: #EEE;
+}
+.msg_com_ul{
+    padding: 0;
+}
+.msg_com_ul li{
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    margin: 10px 0;
+    padding: 15px;
 }

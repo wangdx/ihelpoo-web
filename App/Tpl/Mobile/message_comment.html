@@ -8,11 +8,44 @@
         <a data-role="button" href="/message" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             消息
         </a>
+        <a data-role="button" href="/message/comment?del" target="_self" class="ui-btn-right">
+            <span class="icon_garbage" title="清空这类消息"></span>
+        </a>
         <h3>
             评论与回复
         </h3>
     </div>
 <div data-role="content">
-	
+
+ <?php if (isset($_GET['del'])) { ?>
+  <div class="msg_div_del">
+    <p><span class="icon_attention"></span> 将会清空关于您的评论和回复消息</p> 
+    <p class="msg_div_del_sure"><a href="__ROOT__/message/comment?suredel" target="_self" data-role="button">确认清空</a> <a href="__ROOT__/message/comment" target="_self" data-role="button">取消</a></p>
+  </div>
+  <?php } ?>
+  <?php if (isset($_GET['suredel']) || isset($_GET['suredelsys'])) { ?>
+  <div class="msg_div_del">
+    <p><span class="icon_sigh"></span> 已经删除清空消息</p> 
+  </div>
+  <?php } ?>
+  <ul class="msg_com_ul">
+  <?php foreach ($msgarray as $msg): ?>
+  <?php echo "<li ";
+      echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
+      echo ">";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
+      echo "<p class='msg_info f12'>";
+      echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_blank' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a></p>";
+      echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])." <a class='c_v_d_b_ul_li_content_reply_btn fr f12'><i class='icon_plus'></i> 回复</a></p>";
+      echo "<span class='msg_li_time'>".$msg['time']."</span>";
+      echo "</li>";
+    ?>
+    <?php endforeach; ?>
+    </ul>
+  <p class="i_comment_list_num f12 gray">共{$totalrecordnums}条信息  {$totalpages}页</p>
+  <div class="i_comment_list_link">
+  <?php i_page_mobile_show("message/comment", $totalpages); ?>
+  </div>
 </div>
 <include file="Public:footermobile" />
