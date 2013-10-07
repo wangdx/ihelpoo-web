@@ -508,7 +508,7 @@ function i_page_show($urlstring, $total, $connectionMode = "?")
 function i_page_mobile_show($urlstring, $total, $connectionMode = "?")
 {
 	if ($total > 1) {
-		echo "<select>";
+		echo "<select onchange='self.location.href=options[selectedIndex].value'>";
 	}
 	if (!empty($_GET['p']) && $_GET['p'] >= '11') {
         $i = (ceil($_GET['p'] / 10) - 1) * 10;
@@ -521,35 +521,35 @@ function i_page_mobile_show($urlstring, $total, $connectionMode = "?")
         }
         while ($i <= $turn) {
             if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
-                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
+                echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
             } else {
-                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
+                echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
             }
             $i++;
         }
         if ($nowturn < $totalturn) {
-            echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>更多...</option>";
+            echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>更多...</option>";
         }
     } else {
         $i = 1;
         if ($total > 10) {
             while ($i <= 10) {
                 if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
+                    echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
                 } else {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
+                    echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
                 }
                 $i++;
             }
             if ($total > 10) {
-                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>更多...</option>";
+                echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>更多...</option>";
             }
         } else {
             while ($i <= $total) {
                 if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
+                    echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
                 } else {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
+                    echo "<option value='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
                     
                 }
                 $i++;
