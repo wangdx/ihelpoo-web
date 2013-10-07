@@ -6,13 +6,13 @@
 <!-- Home -->
     <div data-theme="b" data-role="header">
         <a data-role="button" href="/talk" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
-            悄悄话首页
+            返回
         </a>
-        <a data-role="button" href="/talk/to" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
+        <a data-role="button" href="/talk/to/<?php echo $toUserLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
             写悄悄话
         </a>
         <h3>
-            <?php echo $toUserLogin['nickname']; ?>悄悄话
+            <?php echo $toUserLogin['nickname']; ?> 悄悄话
         </h3>
     </div>
 <div data-role="content">
