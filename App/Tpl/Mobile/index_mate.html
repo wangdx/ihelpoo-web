@@ -1,0 +1,29 @@
+<?php $userLogin = M("UserLogin"); ?>
+<include file="Public:headermobile" />
+	<!-- Home -->
+    <?php if (empty($userloginedrecord['uid'])) { ?>
+    <div data-theme="b" data-role="header">
+    	<a data-role="button" href="/index/school" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+            串校
+        </a>
+    	<a data-role="button" href="/" target="_self" data-icon="arrow-r" data-iconpos="right" class="ui-btn-right">
+            登录
+        </a>
+        <h3>
+            大家 {$schoolname} - 我帮圈圈
+        </h3>
+    </div>
+    <?php } else { ?>
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/stream" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+            返回
+        </a>
+        <h3>
+            大家 {$schoolname} - 我帮圈圈
+        </h3>
+    </div>
+    <?php } ?>
+    <div data-role="content">
+    
+    </div>
+<include file="Public:footermobile" />
