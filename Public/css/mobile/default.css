@@ -556,6 +556,14 @@ li{ list-style:none; }
     padding: 15px;
     position: relative;
 }
+.h_r_ul_li_num{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.h_r_ul_li_hit{
+    float: right;
+}
 
 
 /*--- stream_index ---*/
