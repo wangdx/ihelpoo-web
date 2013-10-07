@@ -8,7 +8,7 @@
         <a data-role="button" href="/message" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             消息
         </a>
-        <a data-role="button" href="/message/commentat?delat" target="_self" class="ui-btn-right">
+        <a data-role="button" href="/message/at?delat" target="_self" class="ui-btn-right">
             <span class="icon_garbage" title="清空这类消息"></span>
         </a>
         <h3>
@@ -35,10 +35,14 @@
       echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
       echo ">";
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
-      echo "<p class='msg_info f12'>";
+      echo "<p class='msg_comment_info'>";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a>";
+      echo "</p>";
+      echo "<p class='msg_comment_sub_info'>";
       echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
-      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> <span class='gray'>".$msg['info']."</span> <a href='".__ROOT__."/item/say/".$msg['sid']."' target='_blank' class='a_view_info'>查看</a></p>";
-      echo "<p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
+      echo "<a href='".__ROOT__."/item/say/".$msg['sid']."' target='_blank' class='a_view_info'><span class='gray'>".$msg['info']."</span></a>";
+      echo "</p>";
+      echo "<a href='".__ROOT__."/item/say/".$msg['sid']."' target='_blank' class='a_view_info'><p class='msg_contentdetail black_l'>".$emotion->transEmotion($msg['contentdetail'])."</p></a>";
       echo "<span class='msg_li_time'>".$msg['time']."</span>";
       echo "</li>";
       endforeach;
