@@ -907,6 +907,10 @@ li{ list-style:none; }
     margin-bottom: 10px;
     background-color: #EEE;
 }
+.msg_li_time{
+    color: #A8A8A8;
+    font-size: 12px;
+}
 
 /*--- message_comment ---*/
 .msg_com_ul{
@@ -919,7 +923,8 @@ li{ list-style:none; }
     margin: 10px 0;
     padding: 15px;
 }
-.msg_li_time{
-    color: #A8A8A8;
-    font-size: 12px;
+.msg_comment_info{
+    position: absolute;
+    left: 70px;
+    top: 15px;
 }
