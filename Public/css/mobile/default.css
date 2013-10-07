@@ -519,6 +519,8 @@ li{ list-style:none; }
 }
 .index_hot_mate_ul li{
     padding: 5px 0;
+}
+.index_hot_mate_ul_li{
     border-bottom: 1px solid #DDD;
 }
 
