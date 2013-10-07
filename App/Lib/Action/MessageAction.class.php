@@ -83,7 +83,7 @@ class MessageAction extends Action
         foreach($msgNotice as $notice){
             $view = '';
             $fromUser = $UserLogin->find($notice['source_id']);
-            $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_blank' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a> ";
+            $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a> ";
             $detailId = $notice['detail_id'];
             if($notice['format_id'] == 'diffusiontoowner' || $notice['format_id'] == 'diffusion'){
                 $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
