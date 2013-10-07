@@ -991,14 +991,17 @@ li{ list-style:none; }
 }
 .wo_top_div_ul{
     padding: 0;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
 }
 .wo_top_div_ul li{
+    border-right: 1px solid #DDDDDD;
     display: inline-block;
-    position: relative;
-    width: 50px;
     height: 33px;
+    padding: 5px 15px;
+    position: relative;
     text-align: center;
-    border-right: 1px solid #CCC;
+    vertical-align: bottom;
 }
 .wo_top_div_ul_num{
     display: block;
