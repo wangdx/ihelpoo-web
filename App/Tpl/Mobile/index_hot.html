@@ -25,5 +25,56 @@
     <?php } ?>
     <div data-role="content">
     
+    <ul class="hot_right_ul">
+    <?php foreach ($recordList as $record) : ?>
+    <li>
+      <?php if ($i == 1) { ?>
+          <i class="icon_hot_first rank_nums_i"></i>
+      <?php } else if ($i == 2) { ?>
+      	  <i class="icon_hot_second rank_nums_i"></i>
+      <?php } else if ($i == 3) { ?>
+          <i class="icon_hot_third rank_nums_i"></i>
+      <?php } else { ?>
+      	  <i class="h_r_ul_li_num gray rank_nums_i"><?php echo $i; ?></i>
+      <?php } ?>
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_img getuserinfo" userid="<?php echo $record['uid'] ?>">
+        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" class="radius3" height="40" />
+      </a>
+      <p class="h_r_ul_li_comtent black_l">
+        <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="h_r_ul_li_comtent_nickname">
+          <?php echo $record['nickname'] ?>
+          <?php if (!empty($record['active'])) { echo "<span class='level".i_degree($record['active'])."'></span>"; } ?>
+        </a>
+        <span class="h_r_ul_li_comtent_con"><?php echo $ofunction->cut_str(strip_tags($record['content']), 33); ?>
+        <?php if ($_GET['w'] == 'help' || $_GET['w'] == 'helpreply') { ?>
+          <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_blank">详情</a>
+        <?php } else if ($_GET['w'] == 'useractive') { ?>
+        <?php } else { ?>
+          <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" target="_blank">详情</a>
+        <?php } ?>
+        </span>
+      </p>
+      <?php if ($_GET['w'] == 'plus') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['plus_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'comment') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['comment_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'helpreply') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['comment_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'diffusion') { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo $record['diffusion_co'] ?></span>
+      <?php } else if ($_GET['w'] == 'useractive') { ?>
+        <span class="red_l h_r_ul_li_time"><span class="icon_star"></span><span class="f12 black_l"> 活跃: </span><?php echo $record['active'] ?></span>
+      <?php } else { ?>
+        <span class="red_l h_r_ul_li_hit"><?php if ($i <= 11) { echo "<span class='icon_up'></span>"; } echo ($record['comment_co']+$record['plus_co']+$record['diffusion_co']+$record['hit_co']); ?></span>
+      <?php } ?>
+      
+      <?php if ($_GET['w'] != 'useractive') { ?>
+        <span class="f12 gray h_r_ul_li_time"><?php echo i_time($record['time']) ?></span>
+      <?php } ?>
+    </li>
+    <?php $i++; ?>
+    <?php endforeach; ?>
+  	</ul>
+  	
     </div>
 <include file="Public:footermobile" />

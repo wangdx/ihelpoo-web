@@ -200,7 +200,12 @@ class IndexAction extends Action {
        	    redirect('/index/hot?w=hit&t=week', 0, '缺少参数, 跳转到指定页面 :)...');
         }
         $this->assign('recordList',$recordList);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:index_hot');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function mate()
