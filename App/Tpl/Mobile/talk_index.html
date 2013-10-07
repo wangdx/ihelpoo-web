@@ -9,7 +9,7 @@
             消息
         </a>
         <h3>
-            悄悄话
+            悄悄话 最近联系的人
         </h3>
     </div>
 <div data-role="content">
@@ -43,7 +43,6 @@
   <span class='fi blue_l'>良民正常型</span> 男女比例适当，加油啊，希望你多多参与帮助。
   <?php } ?>
   <div class="talk_index_history">
-    <p class="talk_index_history_p f12 gray">最近联系的人</p>
     <ul class="talk_index_history_ul">
         <?php
           $tempHistoryUid = array();
@@ -58,16 +57,17 @@
         	  $tempHistoryUid[] = $historyUid;
 			  $historyUidRecord = $UserLogin->where("uid = $historyUid")->field('uid, nickname, icon_url')->find();
         ?>
+        <a href="__ROOT__/talk/to/<?php echo $historyUid ?>" target="_self">
         <li>
-          <a href="__ROOT__/talk/to/<?php echo $historyUid ?>">
+          
           	<?php if (!empty($contentToMe['id'])) { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 flash_icon" />
           	<?php } else { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3" />
           	<?php } ?>
-          </a>
           <?php echo $historyUidRecord['nickname']; ?> <?php echo date('m-d H:i', $talkHistory['time']); ?>
         </li>
+        </a>
         <?php } endforeach; ?>
     </ul>
   </div>
