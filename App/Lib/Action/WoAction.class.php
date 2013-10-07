@@ -212,7 +212,7 @@ class WoAction extends Action {
         $this->assign('totalPages',$totalPages);
         
         if(i_is_mobile()) {
-        	$this->display('Mobile:wo_index');
+        	$this->display('Mobile:wo_dynamic');
     	} else {
     		$this->display('index');
     	}
@@ -251,7 +251,7 @@ class WoAction extends Action {
         $this->assign('totalPages',$totalPages);
         
         if(i_is_mobile()) {
-        	$this->display('Mobile:wo_dynamic');
+        	$this->display('Mobile:wo_index');
     	} else {
     		$this->display();
     	}
