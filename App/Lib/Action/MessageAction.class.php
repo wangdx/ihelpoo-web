@@ -161,6 +161,7 @@ class MessageAction extends Action
             if (!empty($msg['cid'])) {
                 $recordCommentData = $RecordComment->where("cid = $msg[cid]")->find();
                 $content = $ofunction->cut_str($recordCommentData['content'], '15');
+                $content = htmlspecialchars($content);
                 $content = $content == NULL ? "<span class='gray'>这条评论被你删除了的</span>" : $content;
                 $info = "回复了你的评论: " . $content;
                 if (!empty($msg['ncid'])) {
@@ -171,6 +172,7 @@ class MessageAction extends Action
             } else {
                 $recordSayData = $RecordSay->where("sid = $msg[sid]")->find();
                 $content = $ofunction->cut_str($recordSayData['content'], '15');
+                $content = htmlspecialchars($content);
                 $content = $content == NULL ? "<span class='gray'>内容被你删除了的</span>" : $content;
                 $info = "评论了你: " . $content;
                 $recordCommentDetailData = $RecordComment->where("cid = $msg[ncid]")->find();
