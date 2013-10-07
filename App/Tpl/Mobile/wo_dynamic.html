@@ -1,14 +1,110 @@
 <include file="Public:headermobile" />
 <!-- Home -->
     <div data-theme="b" data-role="header">
-        <a data-role="button" href="/talk/to/<?php echo $toUserLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
+        <a data-role="button" href="/talk/to/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
             写悄悄话
         </a>
         <h3>
-            的小窝
+            <?php echo $userLogin['nickname']; ?>的小窝
         </h3>
     </div>
 <div data-role="content">
-	
+
+<p>最新动态</p>
+<ul class="stream_list_ul">
+  <?php $record = $sayRecord['0'];?>
+    <li class="stream_list_ul_li">
+    <?php if ($record['type'] == '2') { ?>
+          <span class="gradeg"></span>
+        <?php } else if ($record['type'] == '3') { ?>
+          <span class="grades"></span>
+        <?php } else if ($record['type'] == '4') { ?>
+          <span class="gradetea"></span>
+        <?php } else if ($record['type'] == '5') { ?>
+          <span class="gradegra"></span>
+        <?php } else if ($record['type'] == '6') { ?>
+          <span class="gradesen"></span>
+        <?php } else { ?>
+          <span class="grade<?php echo i_gradeNum($record['enteryear']) ?>"></span>
+    <?php } ?>
+    <p class="s_li_p_icon">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>">
+        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 'm') ?>" width="73" height="56" class="radius5" userid="<?php echo $record['uid'] ?>" />
+      </a>
+    </p>
+    <div class="s_li_p_user f12">
+      <a href="__ROOT__/wo/<?php echo $record['uid']; ?>" class="fb f14 getuserinfo" userid="<?php echo $record['uid']; ?>"><?php echo $record['nickname']; ?><?php echo $record['remark'] != NULL ? "<span class='f12 fn'>($record[remark])</span>" : ""; ?></a>
+      <?php if (i_degree($record['active']) > 4) { ?>
+	    <span class="level<?php echo i_degree($record['active']) ?>"></span>
+	    <?php } else if (i_degree($record['active']) < 2) { ?>
+	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
+	  <?php } ?>
+    </div>
+    <div class="s_li_user_constellation f12 gray">
+        <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
+	    <?php if ($record['online'] == 1) { ?>
+		 <span class="blue f12">[在线]</span>
+		<?php } ?>
+    </div>
+    <div class="s_li_user_time f12 gray">
+       <?php echo i_time($record['last_comment_ti']); ?> 
+        <?php if ($record['school_record'] != $thisschoolid) { ?>
+	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
+	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
+	      <?php } ?>
+	      <?php
+	      if (!empty($record['from'])) {
+          if ("3" == $record['from']) {
+          	  echo "<span title='来自我帮圈圈Andriod客户端' class='pointer'>我帮圈圈Andriod</span>";
+          } else {
+          	  echo "<span title='来自".$record['from']."' class='pointer'>".$record['from']."</span>";
+          }
+        }
+        ?>
+    </div>
+    <p class="s_li_p_content lh15">
+      <?php
+          echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
+		  if (!empty($record['url'])) {
+              echo "<a href='".$record['url']."' target='_blank'><span class='post_video'></span></a>";
+          }
+      ?>
+      <?php
+      if (!empty($record['image'])) {
+          $imageRecordArray = i_get_image($record['image'],'s');
+    	  echo '<div class="s_li_p_content_image">';
+		  foreach($imageRecordArray as $imageRecord) {
+             echo "<img src='".$imageRecord."' style='max-height:120px;max-width:150px;' title='查看大图' />";
+          }
+          echo '</div>';
+      }
+      ?>
+      <?php if (!empty($record['url'])) {
+    	$videoResult = VideoUrlParser::parse($record['url']);
+		if (!empty($videoResult)) {
+		?>
+		<div class="s_li_p_content_mv">
+		    <p class="s_li_p_content_mv_img_p" title="<?php echo $videoResult['title']; ?>">
+				<span class="s_li_p_content_video_icon"></span>
+				<img src="<?php echo $videoResult['img']; ?>" class="s_li_p_content_mv_img"/>
+			</p>
+			<p class="s_li_p_content_mv_object_p" style="display:none">
+				<a class="s_li_p_content_mv_object_up f12"><span class="icon_up"></span>收起</a>
+				<?php echo $videoResult['object']; ?>
+			</p>
+		</div>
+	  <?php } } ?>
+    </p>
+    <div data-role="navbar" data-iconpos="left" class="s_li_s_comment">
+        <ul>
+            <li>
+                 <a href="/wo/dynamic/<?php echo $record['uid']; ?>" data-transition="fade" data-theme="" data-icon="">
+                      查看更多记录 &gt;
+                 </a>
+            </li>
+        </ul>
+    </div>
+  </li>
+</ul>
 </div>
 <include file="Public:footermobile" />
