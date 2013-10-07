@@ -167,7 +167,12 @@ class TalkAction extends Action
             }
             $this->assign('talkHistoryObjectArray', $talkHistoryObjectArray);
         }
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:talk_index');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function to()
