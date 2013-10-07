@@ -521,9 +521,9 @@ function i_page_mobile_show($urlstring, $total, $connectionMode = "?")
         }
         while ($i <= $turn) {
             if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
-                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第$i页</option>";
+                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
             } else {
-                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第$i页</option>";
+                echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
             }
             $i++;
         }
@@ -535,9 +535,9 @@ function i_page_mobile_show($urlstring, $total, $connectionMode = "?")
         if ($total > 10) {
             while ($i <= 10) {
                 if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第$i页</option>";
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
                 } else {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第$i页</option>";
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
                 }
                 $i++;
             }
@@ -547,9 +547,9 @@ function i_page_mobile_show($urlstring, $total, $connectionMode = "?")
         } else {
             while ($i <= $total) {
                 if (!empty($_GET['p']) && $_GET['p'] == $i || !isset($_GET['p']) && 1 == $i) {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第$i页</option>";
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' selected>第" . $i . "页</option>";
                 } else {
-                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第$i页</option>";
+                    echo "<option onclick=javascript:window.location='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "'>第" . $i . "页</option>";
                     
                 }
                 $i++;
