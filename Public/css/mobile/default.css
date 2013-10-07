@@ -885,9 +885,6 @@ li{ list-style:none; }
 .message_index_ul li{
     padding: 5px 0;
 }
-.msg_notread{
-    background: #FFFA85;
-}
 
 /*--- message_system ---*/
 .msg_ul{
@@ -949,7 +946,9 @@ li{ list-style:none; }
     color: #333;
     font-weight: normal;
 }
-
+.msg_com_ul li .msg_notread{
+    background: #FFFA85;
+}
 /*--- talk_index ---*/
 .talk_index_history_ul{
     padding: 0;
