@@ -134,7 +134,7 @@
   </ul>
   <p class="main_mate_list_num f12 gray"><?php if ($totalusers == 150) { ?>显示<?php echo $totalusers ?>位童鞋 <?php } else { ?>共<?php echo $totalusers ?>位童鞋 <?php } echo $totalPages ?>页</p>
   <div class="main_mate_list_link">
-  	<?php if ($totalPages > 1) { i_page_show("index/mate?w=".$_GET['w']."&n=".$_GET['n']."&sex=".$_GET['sex']."&specialty=".$_GET['specialty'], $totalPages, '&'); } ?>
+  	<?php if ($totalPages > 1) { i_page_mobile_show("index/mate?w=".$_GET['w']."&n=".$_GET['n']."&sex=".$_GET['sex']."&specialty=".$_GET['specialty'], $totalPages, '&'); } ?>
   </div>
   
     </div>
