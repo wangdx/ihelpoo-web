@@ -1011,6 +1011,10 @@ li{ list-style:none; }
 .wo_user_timebar{
     margin: 30px 0;
 }
+.wo_top_div{
+    background-color: #f5f5f5;
+    border: 1px solid #EEE;
+}
 .wo_top_div_school{
     margin: 5px 0;
 }
