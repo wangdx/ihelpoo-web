@@ -210,7 +210,12 @@ class WoAction extends Action {
         $totalPages = ceil($totalRecords / $count);
         $this->assign('totalRecords',$totalRecords);
         $this->assign('totalPages',$totalPages);
-        $this->display('index');
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:wo_index');
+    	} else {
+    		$this->display('index');
+    	}
     }
 
 	public function dynamic()
