@@ -221,7 +221,12 @@ class SettingAction extends Action
         $this->assign('birthmonth', $birthmonth);
         $this->assign('birthdate', $birthdate);
         $this->assign('dormitorytype', $recordDormitory['type']);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:setting_index');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function g()
