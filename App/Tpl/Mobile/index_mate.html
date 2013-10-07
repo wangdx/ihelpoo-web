@@ -18,8 +18,8 @@
     </div>
     <?php } else { ?>
     <div data-theme="b" data-role="header">
-        <a data-role="button" href="/stream" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
-            返回
+        <a data-role="button" href="/stream" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+            首页
         </a>
         <h3>
             大家 {$schoolname} - 我帮圈圈
@@ -28,14 +28,16 @@
     <?php } ?>
     <div data-role="content">
     
-    
     <div class="main_mate_info">
-    <a href="__ROOT__/index/mate?w=new" {$_GET['w'] == "new" ? "class='fb'":NULL}>最新加入</a> |
-    <a href="__ROOT__/index/mate?w=grade&sex={$_GET['sex']}" {$_GET['w'] == "grade" ? "class='fb'":NULL}>按年级</a> |
-    <a href="__ROOT__/index/mate?w=academy&n=&sex={$_GET['sex']}" {$_GET['w'] == "academy" ? "class='fb'":NULL}>按学院</a> <a href="__ROOT__/lab/maponline?academy=select" class="f12 gray" title="看在线的">[在线]</a> |
-    <a href="__ROOT__/index/mate?w=dormitory&n=" {$_GET['w'] == "dormitory" ? "class='fb'":NULL}>按寝室楼栋</a> <a href="__ROOT__/lab/maponline" class="f12 gray" title="看在线的">[在线]</a> |
-    <a href="__ROOT__/index/group" class="f12 gray">组织</a> + 
-    <a href="__ROOT__/index/business" class="f12 gray">商家</a>
+    <select onchange="self.location.href=options[selectedIndex].value">
+	<option value="/index/mate?w=new" {$_GET['w'] == 'new' ? 'selected':NULL}>最新加入</option>
+	<option value="/index/mate?w=grade&sex={$_GET['sex']}" {$_GET['w'] == 'grade' ? 'selected':NULL}>按年级</option>
+	<option value="/index/mate?w=academy&n=&sex={$_GET['sex']}" {$_GET['w'] == 'academy' ? 'selected':NULL}>按学院</option>
+	<option value="/index/mate?w=dormitory&n=" {$_GET['w'] == 'dormitory' ? 'selected':NULL}>按寝室楼栋</option>
+	<option value="/index/group">组织</option>
+	<option value="/index/business">商家</option>
+    </select>
+    
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
     	<span class="f12">
 	    <?php if ($_GET['sex'] == 1) { ?>
