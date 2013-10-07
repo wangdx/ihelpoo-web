@@ -1,15 +1,15 @@
 <include file="Public:headermobile" />
 <!-- Home -->
     <div data-theme="b" data-role="header">
-        <a data-role="button" href="/talk/history/<?php echo $toUserLogin['uid']; ?>" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+        <a data-role="button" href="/talk/history/<?php echo $toUserRecord['uid']; ?>" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             返回
         </a>
         <h3>
-           <?php echo $toUserLogin['nickname']; ?> 悄悄话
+           <?php echo $toUserRecord['nickname']; ?> 悄悄话
         </h3>
     </div>
 <div data-role="content">
-	<textarea id="send_message_textarea"><?php echo $say_hello_words ?></textarea>
+	<textarea id="send_message_textarea"></textarea>
     <a  data-role="button">发送</a>
 </div>
 <include file="Public:footermobile" />
