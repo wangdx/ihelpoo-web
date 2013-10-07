@@ -35,10 +35,9 @@
       echo ">";
       echo "<a href='".__ROOT__."/wo/".$msg['uid']."' class='getuserinfo' userid='".$msg['uid']."'><img src='",i_icon_check($msg['uid'], $msg['icon_url'], "s"),"' width='68' height='51' class='msg_icon radius3' /></a>";
       echo "<p class='msg_comment_info'>";
-      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' target='_self' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a>";
+      echo "<a href='".__ROOT__."/wo/".$msg['uid']."' target='_self' class='getuserinfo' userid='".$msg['uid']."'>".$msg['nickname']."</a> ";
       echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
-      echo "<a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_self' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a>";
-      echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
+      echo " <a href='".__ROOT__."/item/say/".$msg['sid']."?ncid=".$msg['ncid']."' target='_self' class='a_view_info'><span class='gray'>".$msg['info']."</span> ...</a>";
       echo "</p>";
       echo "<p class='msg_comment_contentdetail'>".$emotion->transEmotion($msg['contentdetail'])."</p>";
       echo "<span class='msg_li_time'>".$msg['time']."</span>";
