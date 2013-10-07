@@ -18,21 +18,20 @@
 <div data-role="content">
 
 <?php if (!empty($deleteFlag)) { echo "<span class='icon_pump'></span> 删除成功! "; ?>
-    <a href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>">继续浏览</a>
+    <a href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>" target="_self" >继续浏览</a>
 <?php } else { ?>
     <?php if ($_GET['action'] == 'delete') { ?>
     	<div class="talk_delete">
     	  <p><span class="icon_attention"></span> 你将要删除本页记录?</p>
     	  <p class="talk_delete_sure">
-    	    <a class="btn f12" href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>?p=<?php echo $_GET['p'] ?>&delete=sure">确定</a>
-    	    <a class="btn f12" href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>?p=<?php echo $_GET['p'] ?>">取消</a>
+    	    <a href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>?p=<?php echo $_GET['p'] ?>&delete=sure" target="_self" data-role="button" >确定</a>
+    	    <a href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>?p=<?php echo $_GET['p'] ?>" target="_self" data-role="button" >取消</a>
     	  </p>
     	</div>
     <?php } ?>
     <div class="talk_history_top">
-    <a href="__ROOT__/talk/to/<?php echo $toUserLogin['uid'] ?>"><span class="btn_back"></span>返回</a>
-    <span class="black_l">共<?php echo $totalTalkHistoryNums ?>条对话记录</span>
-    <a href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>?p=<?php echo $_GET['p'] ?>&action=delete" class="talk_history_top_delete f12"><span class="icon_garbage"></span>删除本页记录</a>
+    <span>共<?php echo $totalTalkHistoryNums ?>条对话记录</span>
+    <a href="__ROOT__/talk/history/<?php echo $toUserLogin['uid'] ?>?p=<?php echo $_GET['p'] ?>&action=delete" target="_self"><span class="icon_garbage"></span></a>
     </div>
     <ul class="talk_history_ul">
     <?php
