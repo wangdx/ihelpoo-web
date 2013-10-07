@@ -34,7 +34,12 @@ class MessageAction extends Action
     {
         $userloginid = session('userloginid');
         $this->assign('title', '消息');
-        redirect('/message/system', 0, '页面跳转...');
+        if(i_is_mobile()) {
+        	$this->display('Mobile:message_index');
+    	} else {
+    		 redirect('/message/system', 0, '页面跳转...');
+    	}
+       
     }
 
     public function system()
