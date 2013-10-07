@@ -678,7 +678,12 @@ class UserAction extends Action {
         	redirect('/stream', 1, '已经登录...');
         }
         $this->assign('title','您还没有登录呢!');
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:user_notlogin');
+    	} else {
+    		$this->display();
+    	}
     }
     
     /**
