@@ -592,6 +592,10 @@ li{ list-style:none; }
 .main_mate_user_ul{
     padding: 0;   
 }
+.main_mate_user_ul li{
+    margin: 5px;
+    padding: 10px;
+}
 
 /*--- stream_index ---*/
 .verification_code_p{
