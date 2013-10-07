@@ -1,0 +1,26 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	$SchoolInfo = M("SchoolInfo");
+?>
+<include file="Public:headermobile" />
+<!-- Home -->
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/talk" target="_self" data-icon="arrow-r" data-iconpos=right class="ui-btn-right">
+            悄悄话
+        </a>
+        <h3>
+            消息
+        </h3>
+    </div>
+<div data-role="content">
+	<ul class="message_index_ul">
+		<li><a href="/message/system" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">帮助与系统</a></li>
+		<li><a href="/message/comment" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">评论与回复</a></li>
+		<li><a href="/message/at" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">@提到我的</a></li>
+		<li><a href="/message/active" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">活跃记录</a></li>
+		<li><a href="/talk" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">悄悄话</a></li>
+	</ul>
+</div>
+<include file="Public:footermobile" />
