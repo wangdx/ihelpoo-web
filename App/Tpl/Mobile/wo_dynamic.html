@@ -38,7 +38,7 @@
     <p>
     </p>
     <div class="wo_top_div black_l">
-      <a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" target="_self" class="f16 black fb"><?php echo $userLogin['nickname'] ?></a>
+      <span class="f16 black fb"><?php echo $userLogin['nickname'] ?></span>
       <?php if (!empty($recordUserRemark['remark'])) { ?>
       	<a class="remark_wo_top_a f12" userid="<?php echo $userLogin['uid']; ?>">(<?php echo $recordUserRemark['remark']; ?>)</a>
       <?php } ?>
@@ -50,7 +50,7 @@
 	  <?php } ?>
       </span>
       
-      <div class="wo_top_div_school f12 gray">
+      <div class="wo_top_div_school f14 black_l">
 	      <?php echo i_constellation($userLogin['birthday']); echo i_sex($userLogin['sex']) ?>
 	      <?php if ($userLogin['type'] == '1' || $userLogin['type'] == '5') { ?>
 	       | <span class="gray">入学年份<?php echo $userLogin['enteryear'] ?></span>
@@ -65,10 +65,10 @@
 	      <?php } ?>
 	      <?php } ?>
       </div>
-      <div class="wo_top_div_intro f12 gray">
+      <div class="wo_top_div_intro f14 black_l">
       		<?php echo stripslashes($recordUserInfo['introduction']); ?><span class="icon_write"></span>
       </div>
-      <ul class="wo_top_div_ul f12 blaxk_l">
+      <ul class="wo_top_div_ul f14 black_l">
           <li>
 	        <a href="__ROOT__/wo/index/<?php echo $userLogin['uid'] ?>" target="_self"><span class="wo_top_div_ul_num f16 fb">{$totalRecords}</span></a>
 	        <a href="__ROOT__/wo/index/<?php echo $userLogin['uid'] ?>" target="_self"><span class="black_l fn">记录</span></a>
