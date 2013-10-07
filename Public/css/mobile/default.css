@@ -979,7 +979,7 @@ li{ list-style:none; }
 .img_part_me{
     position: relative;
     width: 300px;
-    margin: 15px 20px 20px 20px;
+    margin: 15px auto;
 }
 .img_part_me img{
     border: 1px solid #EEE;
