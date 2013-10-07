@@ -9,12 +9,7 @@
 class MessageAction extends Action
 {
 
-    public function resetNoticeCount($redismq, $userloginid)
-    {
-        $redismq->hDel(C('R_NOTICE') . C('R_SYSTEM') . substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
-    }
-
-    protected function _initialize()
+	protected function _initialize()
     {
         $userloginid = session('userloginid');
         if (!empty($userloginid)) {
@@ -28,6 +23,11 @@ class MessageAction extends Action
             redirect('/user/notlogin', 0, '你还没有登录呢...');
         }
         header("Content-Type:text/html; charset=utf-8");
+    }
+    
+    public function resetNoticeCount($redismq, $userloginid)
+    {
+        $redismq->hDel(C('R_NOTICE') . C('R_SYSTEM') . substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
     }
 
     public function index()
@@ -58,14 +58,11 @@ class MessageAction extends Action
 
         $redis = new Redis();
         $redis->connect(C('REDIS_HOST'), C('REDIS_PORT'));
-
         $notices = $redis->hKeys(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid);
         $totalMsgSystemNums =  sizeof($notices);
-
         $totalPages = ceil($totalMsgSystemNums / $count);
         $this->assign('totalrecordnums', $totalMsgSystemNums);
         $this->assign('totalpages', $totalPages);
-
 
         $this->resetNoticeCount($redis, $userloginid);
         $msgIdsStr = '';
@@ -85,23 +82,18 @@ class MessageAction extends Action
         $UserLogin = M("UserLogin");
         foreach($msgNotice as $notice){
             $view = '';
-
             $fromUser = $UserLogin->find($notice['source_id']);
             $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_blank' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a> ";
-
             $detailId = $notice['detail_id'];
             if($notice['format_id'] == 'diffusiontoowner' || $notice['format_id'] == 'diffusion'){
                 $recordDiffusion = $RecordDiffusion->where("id = ".$notice['detail_id'])->find();
-//                $detailId =  $recordDiffusion['sid'];
                 if(!empty($recordDiffusion['view'])){
                     $view = ' 并表示：'.$recordDiffusion['view'];
                 }
             }
-
-            $tpl =   $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
+            $tpl = $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
             $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $detailId, "a_view_info_sys");
             $content .= $view;
-
             $msgSysArray[] = array(
                 'deliver' => $redis->hGet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $notice['notice_id']),
                 'content' => $content,
@@ -120,7 +112,12 @@ class MessageAction extends Action
             }
             redirect('/message/system', 1, '删除成功...');
         }
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:message_system');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function comment()
@@ -208,7 +205,11 @@ class MessageAction extends Action
             $MsgComment->where("uid = $userloginid")->delete();
             redirect('/message/comment', 1, '删除成功...');
         }
-        $this->display();
+        if(i_is_mobile()) {
+        	$this->display('Mobile:message_comment');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function at()
@@ -290,9 +291,17 @@ class MessageAction extends Action
             $MsgAt->where("touid = $userloginid")->order('time ASC')->limit($count)->delete();
             redirect('/message/at', 1, '删除成功...');
         }
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:message_at');
+    	} else {
+    		$this->display();
+    	}
     }
 
+    /**
+     * this is the before version
+     */
     public function coin()
     {
         $userloginid = session('userloginid');
@@ -361,7 +370,12 @@ class MessageAction extends Action
         $totalPages = ceil($totalMsgActiveNums / $count);
         $this->assign('totalrecordnums', $totalMsgActiveNums);
         $this->assign('totalpages', $totalPages);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:message_active');
+    	} else {
+    		$this->display();
+    	}
     }
 
 }
