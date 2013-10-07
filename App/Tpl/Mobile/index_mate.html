@@ -28,20 +28,20 @@
     <?php } ?>
     <div data-role="content">
     <span class="main_mate_info_user_nums">
-    	<span class="icon_plus"></span>我帮圈圈{$schoolname}现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋<a href="__ROOT__/index/school" target="_self" title="更多学校">[更多]</a>
+    	我帮圈圈{$schoolname}现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋 <a href="__ROOT__/index/school" target="_self" title="更多学校">[更多]</a>
     </span>
     
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
-    	<span class="f12">
+    	<span>
 	    <?php if ($_GET['sex'] == 1) { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">只看男生</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看男生]</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[女生]</a>
 	    <?php } else if ($_GET['sex'] == 2) { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">男生</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">只看女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[男生]</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看女生]</a>
 	    <?php } else { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">只看男生</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">只看女生</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[只看男生]</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[只看女生]</a>
 	    <?php } ?>
 	    </span>
     <?php } ?>
