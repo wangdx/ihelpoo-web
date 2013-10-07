@@ -885,3 +885,11 @@ li{ list-style:none; }
 .message_index_ul li{
     padding: 5px 0;
 }
+
+/*--- message_system ---*/
+.msg_ul{
+    padding: 0;
+}
+.msg_ul li{
+    padding: 5px 0;
+}
