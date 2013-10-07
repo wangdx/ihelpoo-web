@@ -894,3 +894,8 @@ li{ list-style:none; }
     border-bottom: 1px solid #DDDDDD;
     padding: 15px 0;
 }
+.msg_div_del{
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
