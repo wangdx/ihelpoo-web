@@ -183,9 +183,6 @@ li{ list-style:none; }
 
 /*---*/
 .dot_choose{display: inline-block; width: 13px; height: 5px; background: #C00; margin: 6px; float: right; position: absolute; right: 10px; top: 5px;}
-*html .dot_choose{ left: 60px; display: none; }
-/*---*/
-.footer{ clear:both; width:980px; margin:0px auto 5px; text-align:center;}
 /*---*/
 .message{position: relative;  bottom: 5px; right: 3px; background-color: #FE6600; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
 .message_blue{position: relative; bottom: 5px; right: 2px; background-color: #6CCACD; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
