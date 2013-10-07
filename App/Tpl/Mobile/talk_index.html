@@ -57,7 +57,7 @@
         	  $tempHistoryUid[] = $historyUid;
 			  $historyUidRecord = $UserLogin->where("uid = $historyUid")->field('uid, nickname, icon_url')->find();
         ?>
-        <a href="__ROOT__/talk/to/<?php echo $historyUid ?>" target="_self">
+        <a href="__ROOT__/talk/history/<?php echo $historyUid ?>" target="_self">
         <li>
           	<?php if (!empty($contentToMe['id'])) { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 flash_icon" />
