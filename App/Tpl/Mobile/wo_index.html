@@ -1,0 +1,127 @@
+<include file="Public:headermobile" />
+<!-- Home -->
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/talk/to/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
+            写悄悄话
+        </a>
+        <h3>
+            <?php echo $userLogin['nickname']; ?>的记录
+        </h3>
+    </div>
+<div data-role="content">
+	<div class="wo_main">
+    <p class="wo_main_ul_p_top black_l">
+    	<a href="__ROOT__/wo/<?php echo $userLogin['uid'] ?>" class="a_select">记录</a>
+    	<a href="__ROOT__/wo/dynamic/<?php echo $userLogin['uid'] ?>">动态</a>
+		<span class="fr fi">共<span class="green f16 fb"><?php echo $totalRecords ?></span>条记录</span>
+    </p>
+    <ul class="wo_main_ul">
+    <?php foreach ($sayRecord as $record):?>
+      <li>
+        <p class="wo_li_p_icon">
+          <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank" class="getuserinfo" userid="<?php echo $record['uid'] ?>">
+            <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 's') ?>" width="68" height="51" class="radius3" />
+          </a>
+        </p>
+
+        <div class="wo_li_p_user f12">
+        </div>
+
+        <div class="wo_li_p_content lh13">
+          <?php echo "<a href='".__ROOT__."/wo/".$record['uid']."' class='fb getuserinfo' userid='".$record['uid']."'>".$record['nickname']."</a>" ?>
+          <?php echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
+		  if (!empty($record['url'])) {
+              echo "<a href='".$record['url']."' target='_blank'><span class='post_video'></span></a>";
+          }?>
+          <a href="__ROOT__/item/say/<?php echo $record['sid'] ?>" class="f12" target="_blank">详情</a>
+		  <?php
+      		if (!empty($record['image'])) {
+          		$imageRecordArray = i_get_image($record['image'],'s');
+    	 		 echo '<p class="s_li_p_content_image">';
+				 foreach($imageRecordArray as $imageRecord) {
+        		     echo "<img src='".$imageRecord."' style='max-height:120px;' title='查看大图' />";
+        		 }
+        		 echo '</p>';
+     		 }
+		    if (!empty($record['url'])) {
+    		$videoResult = VideoUrlParser::parse($record['url']);
+			if (!empty($videoResult)) {
+			?>
+			<div class="s_li_p_content_mv">
+			    <p class="s_li_p_content_mv_img_p" title="<?php echo $videoResult['title']; ?>">
+					<span class="s_li_p_content_video_icon"></span>
+					<img src="<?php echo $videoResult['img']; ?>" class="s_li_p_content_mv_img"/>
+				</p>
+				<p class="s_li_p_content_mv_object_p" style="display:none">
+					<a class="s_li_p_content_mv_object_up f12"><span class="icon_up"></span>收起</a>
+					<?php echo $videoResult['object']; ?>
+				</p>
+			</div>
+		  <?php } } ?>
+        </div>
+
+        <span class="wo_li_s_time f12 gray">
+	      <?php
+			echo "<a href='".__ROOT__."/item/say/".$record['sid']."' target='_blank'>";
+            echo i_time($record['time']);
+			echo "</a>";
+          ?>
+	      <?php
+	      if (!empty($record['from'])) {
+          if ("2" == $record['from']) {
+          	  echo "来自我帮圈圈抓取程序";
+          } else if ("3" == $record['from']) {
+          	  echo "来自我帮圈圈Andriod客户端";
+          } else {
+          	  echo "来自<span title='".$record['from']."'>".$record['from']."</span>";
+          }
+      }
+      ?>
+	    <?php if ($record['school_id'] != $thisschoolid) { ?>
+	    <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_id']); ?>
+	       <a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
+	    <?php } ?>
+	  </span>
+	    
+      <span class="wo_li_s_comment f12 black_l">
+      <?php if ($record['say_type'] == '1') { ?>
+        <a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="ih-<?php echo $record['sid']; ?>">
+      <?php } else { ?>
+      	<a id="plus_button_<?php echo $record['sid'];?>" class='plus_button' value="i-<?php echo $record['sid']; ?>">
+      <?php } ?>
+      <i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; }?>
+      </span></a> |
+      <?php
+		echo " <a class='diffusion' value='i-".$record['sid']."'>扩散";
+		if (!empty($record['diffusion_co'])) {
+            echo "(".$record['diffusion_co'].")";
+        }
+		echo "</a> | ";
+        echo "<a class='comment_button' value='i-".$record['sid']."' isclick='false'>评论";
+        if (!empty($record['comment_co'])) {
+            echo "(".$record['comment_co'].")";
+        }
+		echo "</a>";
+      ?>
+      </span>
+      <div class="comment_view_div_box f12">
+      </div>
+
+      <div class="diffusion_view_div_box align-right">
+        <form action="" method="post" class="diffusion_view_form">
+            <textarea class="diffusion_view_textarea" name="diffusion_view">说点什么吧...</textarea>
+            <a class="diffusion_view_btn btn">直接扩散</a>
+        </form>
+      </div>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+
+    <div class="wo_paging">
+      <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条记录 <?php echo $totalPages ?>页</p>
+      <span>
+      <?php if ($totalPages > 1) { i_page_mobile_show("wo/".$userLogin['uid'], $totalPages); } ?>
+      </span>
+    </div>
+</div>
+<include file="Public:footermobile" />
