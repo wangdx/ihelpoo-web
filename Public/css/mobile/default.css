@@ -509,6 +509,19 @@ li{ list-style:none; }
 .icon_hover_top_app{
     background-position: 0 -450px;
 }
+/*--- index_index ---*/
+.index_hot_mate_ul{
+    padding: 10;
+    margin: 0;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+}
+.index_hot_mate_ul li{
+    padding: 5px 0;
+    border-bottom: 1px solid #EEE;
+}
+
+
 
 /*--- index_school ---*/
 .school_list_ul{
