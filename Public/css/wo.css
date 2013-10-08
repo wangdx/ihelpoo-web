@@ -556,6 +556,7 @@
 .wo_main_diffudion li{
     padding: 8px 0;
     border-bottom: 1px dotted #EEE;
+    position: relative;
 }
 .wo_user_li_icon{
     position: absolute;
