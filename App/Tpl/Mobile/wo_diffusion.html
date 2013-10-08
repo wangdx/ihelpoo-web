@@ -17,12 +17,11 @@
     <ul class="wo_main_diffudion">
     <?php foreach ($recordDiffusion as $recordDiffusion): ?>
       <li>
-        <span class="f12 black_l">
+        <span class="black_l">
 	        <a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']; ?>" target="_self">
 	          <img src='<?php echo i_icon_check("$recordDiffusion[uid]", "$recordDiffusion[icon_url]", "s"); ?>' width="50" class="radius3" /> 
 	        </a>
-	        <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span> 
-	        <span class="f12">扩散了</span> 
+	        <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span> 扩散了
 	        <a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']; ?>" target="_self">
 	          <?php echo $recordDiffusion['nickname']; ?>
 	        </a> 
