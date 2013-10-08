@@ -20,10 +20,10 @@
   </div>
   <form action="/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
   <ul class="registe_ul black_l">
-    <li>邮箱<input id="email" type="text" name="email" class="input_style" /><span id="emailinfo" class="f12 red_l"></span><input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" /></li>
-    <li>创建密码<input id="password" type="password" name="password" class="input_style" /><span id="passwordinfo" class="f12 red_l"></span></li>
-    <li>密码重复<input id="passwordrepeat" type="password" name="passwordrepeat" class="input_style" /><span id="passwordrepeatinfo" class="f12 red_l"></span></li>
-    <li>昵称<input id="nickname" type="text" name="nickname" class="input_style" /><span id="nicknameinfo" class="f12 red_l"></span></li>
+    <li>邮箱<span id="emailinfo" class="f12 red_l"></span><input id="email" type="text" name="email" class="input_style" /><input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" /></li>
+    <li>创建密码<span id="passwordinfo" class="f12 red_l"></span><input id="password" type="password" name="password" class="input_style" /></li>
+    <li>密码重复<span id="passwordrepeatinfo" class="f12 red_l"></span><input id="passwordrepeat" type="password" name="passwordrepeat" class="input_style" /></li>
+    <li>昵称<span id="nicknameinfo" class="f12 red_l"></span><input id="nickname" type="text" name="nickname" class="input_style" /></li>
     <li>
         <div data-role="fieldcontain">
             <fieldset data-role="controlgroup" data-type="horizontal">
