@@ -602,6 +602,9 @@ li{ list-style:none; }
 .m_m_u_u_li_name{
     display: block;
 }
+.select_view_sex_span{
+    display: block;
+}
 
 /*--- stream_index ---*/
 .verification_code_p{

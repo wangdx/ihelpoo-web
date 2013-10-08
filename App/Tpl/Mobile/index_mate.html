@@ -24,11 +24,11 @@
     <?php } ?>
     <div data-role="content">
     <span class="main_mate_info_user_nums">
-    	我帮圈圈<a href="__ROOT__/index/school" target="_self" title="更多学校">{$schoolname}</a>现有 <span class="f14 fb blue"><?php echo $allUserNums ?></span> 位童鞋
+    	我帮圈圈<a href="__ROOT__/index/school" target="_self" title="更多学校">{$schoolname}</a>现有 <span class="fb blue"><?php echo $allUserNums ?></span> 位童鞋
     </span>
     
     <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
-    	<span>
+    	<span class="select_view_sex_span">
 	    <?php if ($_GET['sex'] == 1) { ?>
 	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看男生]</a>
 	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[女生]</a>
