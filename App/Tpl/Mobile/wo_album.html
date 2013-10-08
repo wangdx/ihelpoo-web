@@ -15,7 +15,7 @@
 
 <div class="wo_main">
   <?php if (!empty($imageItem)) { ?>
-  	<div class="wo_main_album_nav black_l f12">
+  	<div class="wo_main_album_nav black_l">
 		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>" target="_self">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($imageItem['type'] == 1) { ?>
 			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" target="_self" title="头像相册">头像相册</a>
@@ -50,7 +50,7 @@
   		</p>
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
-	<div class="black_l f12">
+	<div class="black_l">
 		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>" target="_self">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($albumId == 1) { ?>
 			头像相册
