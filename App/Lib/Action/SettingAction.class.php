@@ -100,7 +100,6 @@ class SettingAction extends Action
                  * 5 for postgraduate
                  * 6 for senior
                  */
-	            $type = 1;
 	            if ($usertype == 'default') {
 	            	$type = 1;
 	            } else if ($usertype == 'teacher') {
@@ -123,6 +122,9 @@ class SettingAction extends Action
                 	'type' => $type,
                     'school' => $school
                 );
+                if (!empty($usertype)) {
+                	$updateUserloginData['type'] = $type;
+                }
                 $UserLogin->save($updateUserloginData);
 
                 /**

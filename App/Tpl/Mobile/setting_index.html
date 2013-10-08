@@ -30,16 +30,18 @@
       <span id="nicknameinfo"></span>
     </li>
     <li>
-      <span class="settitle">性别:</span>
-      <p class="sex_part">
-      	<if condition="$recorduserlogin['sex'] eq 1">
-            <input type="radio" name="sex" value="1" checked /><label for="man">男</label>
-        	<input type="radio" name="sex" value="2" /><label for="woman">女</label>  		
-      	<else />
-			<input type="radio" name="sex" value="1" /><label for="man">男</label>
-        	<input type="radio" name="sex" value="2" checked /><label for="woman">女</label>  	
-		</if>
-      </p>
+      <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup" data-type="horizontal">
+              <legend>性别</legend>
+              <if condition="$recorduserlogin['sex'] eq 1">
+	              <input id="radio1" name="sex" value="1" type="radio" checked><label for="radio1">男</label>
+	              <input id="radio2" name="sex" value="2" type="radio"><label for="radio2">女</label>
+              <else />
+              	  <input id="radio1" name="sex" value="1" type="radio"><label for="radio1">男</label>
+	              <input id="radio2" name="sex" value="2" type="radio" checked><label for="radio2">女</label>
+              </if>
+          </fieldset>
+      </div>
     </li>
     <li>
       <span class="settitle">入学年份:</span>
@@ -52,10 +54,6 @@
 			</if>
         </for>
       </select>
-      <span class="user_type_info">
-      	<a class="user_type" value="teacher" isclick="false">老师?</a> <a class="user_type" value="postgraduate" isclick="false">研究生?</a> <a class="user_type" value="senior" isclick="false">高中生?</a>
-      	<input type="hidden" id="input_user_type" name="usertype" value="default" />
-      </span>
     </li>
     <li>
       <span class="settitle">学校:</span>
