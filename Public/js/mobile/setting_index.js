@@ -36,7 +36,8 @@ $().ready(function(){
         }
     });
     $("#academy").click(function(){
-        var academy = $("#academy").attr("value");
+        var academy = $("#academy").selected();
+        alert(academy);
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
