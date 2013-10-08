@@ -21,10 +21,10 @@
 		<!-- content  -->
 		<div class="i_content">
 			<span class="i_content_img">
-		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."'><img src='".i_icon_check($itemUserLogin['uid'], $itemUserLogin['icon_url'], 's')."' height='30' class='radius3'  /></a>"; ?>
+		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' target='_self'><img src='".i_icon_check($itemUserLogin['uid'], $itemUserLogin['icon_url'], 's')."' height='30' class='radius3'  /></a>"; ?>
 		  	</span>
 			<span class="i_content_span_user">
-		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
+		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."'  target='_self' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
 		    	<span class="f12 black_l">发布于
 		    		<?php echo i_time($sayRecord['time']);
     				if (!empty($sayRecord['from'])) {
@@ -37,7 +37,7 @@
           				}
     				} ?>
 	    			<?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
-	    			 此信息原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/say/<?php echo $sayRecord['sid']; ?>"><?php echo $sayRecordSchoolInfo['school']; ?></a>
+	    			 此信息原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/say/<?php echo $sayRecord['sid']; ?>" target="_self"><?php echo $sayRecordSchoolInfo['school']; ?></a>
         			<?php } ?>
 		  		</span>
 			</span>
@@ -92,7 +92,7 @@
 			<ul class="i_record_diffusion black_l f12">
 				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
 				<li>
-		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
+		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" target="_self" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
 		        	扩散过 <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
 		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
 		    	<?php endforeach; ?>
@@ -110,7 +110,7 @@
 			<ul class="i_record_plus black_l f12">
 				<?php foreach ($recordPlusArray as $recordPlus): ?>
 				<li>
-		        	<a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>" >
+		        	<a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" target="_self" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>" >
 		        		<img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3" /> <?php echo $recordPlus['nickname'] ?>
 		        	</a>
 		        	赞过 
@@ -175,11 +175,11 @@
 		  <?php } else { ?>
 		  <li>
 		  <?php } ?>
-		    <a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
+		    <a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" target="_self" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
 		    	<img src="<?php echo i_icon_check($comment['uid'], $comment['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
 		    </a>
 		    <div class="i_c_l_u_li_div black_l">
-		    	<a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
+		    	<a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" target="_self" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
 		    	<span class="f12 gray fb">
 		    	<?php
 		      		if (!empty($comment['toid'])) {
