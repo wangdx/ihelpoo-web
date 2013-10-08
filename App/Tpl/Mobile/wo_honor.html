@@ -1,0 +1,50 @@
+<include file="Public:headermobile" />
+<!-- Home -->
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/wo/index/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            小窝
+        </a>
+        <a data-role="button" href="/talk/to/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
+            写悄悄话
+        </a>
+        <h3>
+           等级荣誉 <?php echo $userLogin['nickname']; ?>
+        </h3>
+    </div>
+<div data-role="content">
+
+	<ul class="wo_main_honor">
+      <li><span class="icon_star"></span> 活跃: <span class="fb f14 fi"><?php echo $userStatus['active'] ?></span></li>
+      <li>
+        <span class="ico_channel_user"></span> 等级:<?php
+           $degreeRatio = floor($degreeArray['ratio'] * 100)."%";
+        ?>
+        level<?php echo $userLever ?>
+        <span class="f12 gray">(<?php echo $degreeArray['start'] ?> ~ <?php echo $degreeArray['end'] ?>) 升级进度 <span class="f14 black_l fi"><?php echo $degreeRatio ?></span></span>
+        <div class="degree_ratio">
+          <p class="degree_ratio_in" style="width:<?php echo $degreeRatio?>"></p>
+        </div>
+      </li>
+    </ul>
+    <ul class="wo_main_honor">
+      <?php if ($userLever >= 2) { ?><li><span class="level2"></span>&nbsp; 特权: 扩散、评论、帮助后，你操作的信息(90天之内)可以在社区中置顶! <span class="ico_post_due"></span></li><?php } ?>
+      <?php if ($userLever >= 3) { ?><li><span class="level3"></span>&nbsp; 特权: 查看社区用户QQ在线状态，点击即可直接QQ聊天。可选择切换两种皮肤。<span class="ico_post_due"></span></li><?php } ?>
+      <?php if ($userLever >= 4) { ?><li><span class="level4"></span>&nbsp; 特权: 可选择切换四种皮肤。<span class="ico_post_due"></span></li><?php } ?>
+      <?php if ($userLever >= 5) { ?><li><span class="level5"></span>&nbsp; 特权: 可选择切换所有皮肤。<span class="ico_post_due"></span></li><?php } ?>
+	  <?php if ($userLever >= 6) { ?><li><span class="level6"></span>&nbsp; 特权: 相册扩容至1G。<span class="ico_post_due"></span></li><?php } ?>
+	  <?php if ($userLever >= 7) { ?><li><span class="level7"></span>&nbsp; 特权: 相册扩容至4G。<span class="ico_post_due"></span></li><?php } ?>
+	  <?php if ($userLever >= 8) { ?><li><span class="level8"></span>&nbsp; 特权: 相册扩容至16G。<span class="ico_post_due"></span></li><?php } ?>
+    </ul>
+    <ul class="wo_main_honor">
+      <?php
+          if (!empty($userHonors)) {
+              foreach ($userHonors as $userHonor): ?>
+                  <li><span class="icon_star"></span>&nbsp; <?php echo $userHonor['content']; ?> <span class="f12 gray">授予时间 <?php echo i_time($userHonor['time']); ?></span></li>
+                  <?php
+              endforeach;
+          }
+      ?>
+    </ul>
+    
+</div>
+<include file="Public:footermobile" />
