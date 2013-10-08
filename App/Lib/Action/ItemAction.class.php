@@ -50,9 +50,6 @@ class ItemAction extends Action {
 	        $this->assign('sayRecordSchoolInfo',$sayRecordSchoolInfo);
         }
 
-        //$userLogin = $dbUserLogin->userExists($user->uid);
-        //$this->view->itemUserLogin = $userLogin = $dbUserLogin->userExists($sayRecord->uid);
-
         $UserLogin = M("UserLogin");
         $itemUserLogin = $UserLogin->find($sayRecord['uid']);
         $this->assign('title','详细内容 '.$recordSchoolInfo['school'].'信息流 by '.$itemUserLogin['nickname']);
@@ -144,7 +141,12 @@ class ItemAction extends Action {
          */
         $configIsLoginWeibo = C('IS_LOGIN_WEIBO');
 	    $this->assign('configIsLoginWeibo', $configIsLoginWeibo);
-        $this->display();
+	    
+	    if(i_is_mobile()) {
+        	$this->display('Mobile:item_say');
+    	} else {
+    		$this->display();
+    	}
     }
 
     /**

@@ -1,3 +1,10 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	$UserLogin = M("UserLogin");
+	$findReplyPlace = false;
+?>
 <include file="Public:headermobile" />
 <!-- Home -->
     <div data-theme="b" data-role="header">
@@ -10,5 +17,232 @@
     </div>
 <div data-role="content">
 
+    <div class="main_item">
+		<!-- content  -->
+		<div class="i_content">
+			<span class="i_content_img">
+		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."'><img src='".i_icon_check($itemUserLogin['uid'], $itemUserLogin['icon_url'], 's')."' height='30' class='radius3'  /></a>"; ?>
+		  	</span>
+			<span class="i_content_span_user">
+		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
+		    	<span class="f12 black_l">发布于
+		    		<?php echo i_time($sayRecord['time']);
+    				if (!empty($sayRecord['from'])) {
+          				if ("2" == $sayRecord['from']) {
+          	  				echo " 来自我帮圈圈抓取程序";
+          				} else if ("3" == $sayRecord['from']) {
+          	  				echo " 来自我帮圈圈Andriod客户端";
+          				} else {
+          	 				echo " 来自".$sayRecord['from'];
+          				}
+    				} ?>
+	    			<?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
+	    			 此信息原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/say/<?php echo $sayRecord['sid']; ?>"><?php echo $sayRecordSchoolInfo['school']; ?></a>
+        			<?php } ?>
+		  		</span>
+			</span>
+			<span class="fr f12 black_l i_content_span_info">
+			  	<span class='icon_up'></span>深度浏览<?php echo $sayRecord['hit_co']; ?>° 
+			  	<span class='icon_words'></span> 评论(<?php echo empty($sayRecord['comment_co']) ? '0' : $sayRecord['comment_co']; ?>)
+			  	<i class="icon_hand"></i>赞(<?php echo $sayRecord['plus_co'] ?>) 
+				扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
+				<?php if (!empty($userloginedrecord['uid'])) { ?>
+				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
+				<?php } ?>
+		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
+		    	<a class="black_l" id="del_record_btn"><span class="icon_garbage"></span>删除</a>
+		    	<?php } ?>
+		  	</span>
+		  	<input type="hidden" name="sid" id="recordsid" value="<?php echo $sayRecord['sid'] ?>" />
+			<div class="i_content_p lh15">
+		    	<?php echo $emotion->transEmotion(i_content(strip_tags($sayRecord['content'],"<a><span>"))); ?>
+				<?php
+			  		if (!empty($sayRecord['url'])) {
+          				echo "<a href='".$sayRecord['url']."' target='_blank'><span class='post_video'></span></a>";
+    	 				$videoResult = VideoUrlParser::parse($sayRecord['url']);
+		  				if (!empty($videoResult)) {
+			  				echo "<p>".$videoResult['object']."</p>";
+		  				}
+	 				}?>
+		    	<p>
+		    	<?php
+					if (!empty($imageRecordArray)) {
+        				foreach($imageRecordArray as $imageRecord) {
+        					$imageResize = getimagesize($imageRecord);
+       						$imageWidth = $imageResize['0'];
+       						if ($imageWidth > 800) {
+          	    				echo "<img src='".$imageRecord."' width='800' style='border:6px solid #EEE' />";
+         					} else {
+          	   					echo "<img src='".$imageRecord."' style='border:6px solid #EEE' />";
+          					}
+        				}
+    				} 
+    			?>
+				</p>
+			</div>
+
+			<div class="i_record_plus_info f12">
+				<?php if (!empty($userloginedrecord['uid'])) { ?>
+				<a class="diffusion" value="i-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</a>
+				<?php } else { ?>
+				<span>扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)</span>
+				<?php } ?>
+			</div>
+			<?php if (!empty($sayRecord['diffusion_co'])) {?>
+			<ul class="i_record_diffusion black_l f12">
+				<?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
+				<li>
+		        	<a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>" ><?php echo $recordDiffusion['nickname'] ?></a>
+		        	扩散过 <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
+		        	<span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
+		    	<?php endforeach; ?>
+			</ul>
+			<?php } ?>
+			
+			<div class="i_record_plus_info f12">
+				<?php if (!empty($userloginedrecord['uid'])) { ?>
+				<a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span></a> 
+				<?php } else { ?>
+				<i class="icon_hand"></i>赞<span id="plus_view_region_i-<?php echo $sayRecord['sid']; ?>">(<?php echo $sayRecord['plus_co'] ?>)</span> 
+				<?php } ?>
+			</div>
+			<?php if (!empty($sayRecord['plus_co'])) { ?>
+			<ul class="i_record_plus black_l f12">
+				<?php foreach ($recordPlusArray as $recordPlus): ?>
+				<li>
+		        	<a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>" >
+		        		<img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3" /> <?php echo $recordPlus['nickname'] ?>
+		        	</a>
+		        	赞过 
+		        	<span class="gray"><?php echo i_time($recordPlus['create_time']) ?></span></li>
+		    	<?php endforeach; ?>
+			</ul>
+			<?php } ?>
+		</div>
+		<!-- /content -->
+
+		<!-- comment -->
+		<div class="i_comment_box f12">
+		  <form action="" method="post" id="i_c_b_form">
+		    <input type="hidden" id="sayid" name="sid" value="<?php echo $sayRecord['sid'] ?>"/>
+		    <input type="hidden" name="imageurl" id="imageurl" />
+		    <input type="hidden" name="atusers" id="atusers" />
+		    <input type="hidden" name="textareacontent" id="textareacontent" />
+		    <textarea name="comment" id="i_comment_textarea"></textarea>
+		    <span class="i_c_b_verification">
+		        <img id="i_c_b_verification_code_img" src="" />
+		        <input class="i_c_b_verificationcode" id="verificationcode" type="text" name="verificationcode" value="999"/>
+		    </span>
+		    <a id="i_c_b_submit" class="btn">评论</a>
+		    <span class="i_comment_textarea_info"></span>
+		    <p class="i_c_b_form_icon_p">
+		    	<span class="post_icon" id="textareaicon" title="表情"></span>
+		    	<span class="post_img" id="textareaimg" title="图片"></span>
+		    </p>
+		  </form>
+		  <!-- emotionbox hide -->
+	      <div id="emotionbox_item">
+			  <p class="emotionbox_close_p">
+				  <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
+				  <a class="emotionbox_change_page" title="微博" value="2">微博</a>
+				  <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
+				  <span id="emotionbox_close" class="close_x" title="关闭">×</span>
+			  </p>
+		  	  <ul class="emotionbox_show_ul"></ul>
+		  </div>
+		  <!-- /emotionbox -->
+		  <!-- image upload hide -->
+		  <div class="img_upload_comment_form_div">
+		      <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+		        <input id="upload_form_img_file" name="uploadedimg" type="file" />
+		        <a class="btn f12" id="img_upload_btn">上传</a>
+		        <span class="imgajaxloading_span"></span>
+		      </form>
+		      <ul id="image_upload_list_ul"></ul>
+		  </div>
+		  <!-- /image upload -->
+		</div>
+		<!-- /comment -->
+
+		<!-- comment_list -->
+		<div class="i_comment_list">
+		  <ul class="i_comment_list_ul">
+		  <?php foreach ($sayComment as $comment): ?>
+      	  <?php if ($_GET['ncid'] == $comment['cid']) {
+      	  $findReplyPlace = true;
+      	  ?>
+		  <li class="now_reply_this_id">
+		  <?php } else { ?>
+		  <li>
+		  <?php } ?>
+		    <a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
+		    	<img src="<?php echo i_icon_check($comment['uid'], $comment['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
+		    </a>
+		    <div class="i_c_l_u_li_div black_l">
+		    	<a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
+		    	<span class="f12 gray fb">
+		    	<?php
+		      		if (!empty($comment['toid'])) {
+		  				$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
+         		 		echo "[回复:".$commentReplyUser['nickname']."]";
+					} ?>
+		    	</span>
+		    	<?php echo $emotion->transEmotion(stripslashes($comment['content']));
+					if (!empty($comment['image'])) {
+				?>
+				<p class="i_c_l_u_li_div_img_p">
+					<a href="<?php echo $comment['image']; ?>" title="点击查看原图" target="_blank">
+						<img src="<?php echo i_image_thumbnail($comment['image']); ?>" class="" />
+					</a>
+				</p>
+				<?php } ?>
+		    	<span class="i_c_l_u_li_div_time f12 gray"><?php echo i_time($comment['time']) ?></span>
+		    	<span class="f12 fr">
+			      	<?php if (!empty($comment['uid']) && $comment['uid'] != $userloginedrecord['uid']) { ?>
+			        	<a class="reply_box_btn">回复</a> <span class="icon_plus"></span>
+			      	<?php } ?>
+			      	<?php if ($comment['uid'] == $userloginedrecord['uid'] || $userloginedrecord['uid']== $sayRecord['uid']) { ?>
+			      		<input type="hidden" class="reply_delete_cid" name="delcomment" value="<?php echo $comment['cid'] ?>" />
+			      		<a class="reply_delete_btn red_l">删除</a>
+			      	<?php } ?>
+		    	</span>
+		    </div>
+		    <!-- replybox -->
+		    <?php if (!empty($comment['uid']) && $comment['uid'] != $userloginedrecord['uid']) { ?>
+		    <div class="comment_reply_div_box">
+		      <form action="" method="post" class="comment_reply_form">
+		        <input type="hidden" name="sid" value="<?php echo $sayRecord['sid'] ?>"/>
+		        <input type="hidden" name="toid" value="<?php echo $comment['uid'] ?>" />
+		        <input type="hidden" name="cid" value="<?php echo $comment['cid'] ?>" />
+		        <input type="hidden" name="atusers" class="reply_atusers" />
+		        <input type="hidden" name="textareacontent" class="reply_textareacontent" />
+		        <textarea class="comment_reply_textarea" name="comment"></textarea>
+		        <span class="comment_reply_verification">
+		        	<img class="comment_reply_verification_code_img" src="" />
+		        	<input class="comment_reply_verificationcode" type="text" name="verificationcode" value="999"/>
+		    	</span>
+		        <input type="button" class="comment_reply_btn" value="回复" />
+				<p style="padding-left:315px;"><span class="post_icon reply_emotionbox_icon"></span></p>
+		      </form>
+		    </div>
+		    <?php } ?>
+		    <!-- /replybox -->
+		  </li>
+		  <?php endforeach; ?>
+		  </ul>
+		  <p class="i_comment_list_num f12 gray">共<?php echo $sayRecord['comment_co'] ?>条评论 <?php echo $totalPages ?>页</p>
+		  <div class="i_comment_list_link">
+		  <?php i_page_show("item/say/".$sayRecord['sid'], $totalPages); ?>
+		  </div>
+		</div>
+		<!-- /comment_list -->
+	    <div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
+	</div>
+
+<?php 
+if (!$findReplyPlace && !empty($_GET['ncid']) && $pagenow <= $totalPages) {
+	redirect('/item/say/'.$sayRecord['sid'].'?ncid='.$_GET['ncid'].'&p='.$totalPages, 0, '跳转查找记录页面中...');
+}
+?>
 </div>
 <include file="Public:footermobile" />
