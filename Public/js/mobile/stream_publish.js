@@ -15,7 +15,7 @@ $().ready(function(){
     $('#emotionbox_close').click(function(){
         $('#emotionbox').slideUp('fast');
     });
-    $('.emotionbox_show_ul img').live('click', function(){
+    $('.emotionbox_show_ul img').click(function(){
         var imgtitle = $(this).attr('title');
         var textareavalue = $('#s_t_textarea').val();
         var imgtitlemark = '[' + imgtitle + ']';
