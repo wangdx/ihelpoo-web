@@ -12,7 +12,7 @@ $().ready(function(){
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
         return false;
     });
-    $('#emotionbox_close').click(function(){
+    $('#emotionbox_close').live('click', function(){
         $('#emotionbox').slideUp('fast');
     });
     $('.emotionbox_show_ul img').live('click', function(){
@@ -23,8 +23,6 @@ $().ready(function(){
         $('#s_t_textarea').val(textareanow);
         $('#emotionbox').fadeOut('fast');
         contentOk = 'yes';
-        alert(imgtitlemark);
-        return false;
     });
     $('.emotionbox_change_page').click(function(){
     	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
