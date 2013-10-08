@@ -42,7 +42,7 @@ $().ready(function(){
             type: "POST",
             url: baseUrl+"setting/ajax",
             data: "selectAcademy=" + academy,
-            datatype: "text",
+            dataType: "text",
             success:function(specialty){
                 $("#specialty").replaceWith(specialty);
                 $('#ajaxprogressbar').html('');
