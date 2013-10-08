@@ -15,14 +15,14 @@
 
   <div class="wo_main_ul_p_top">
     <?php if (!isset($_GET['win'])) { ?> 
-    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" class="a_select"><span class="ico_help"></span>求助的</a>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" target="_self" class="a_select"><span class="ico_help"></span>求助的</a>
     <?php } else { ?>
-    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>"><span class="ico_help"></span>求助的</a>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" target="_self"><span class="ico_help"></span>求助的</a>
     <?php } ?>
     <?php if (isset($_GET['win'])) { ?> 
-    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win" class="a_select"><span class="ico_expert"></span>被采纳</a>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win" target="_self" class="a_select"><span class="ico_expert"></span>被采纳</a>
     <?php } else { ?>
-    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win"><span class="ico_expert"></span>被采纳</a>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win" target="_self"><span class="ico_expert"></span>被采纳</a>
     <?php } ?>
     
     <span class="wo_main_ul_p_top_span fi black_l">
@@ -38,16 +38,16 @@
   foreach ($recordSayHelp as $record): ?>
   <li>
     <p class="wo_li_p_icon">
-      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_self">
         <img src='<?php echo i_icon_check("$record[uid]", "$record[icon_url]", "s"); ?>' width="68" height="51" class="radius3"/>
       </a>
     </p>
     <div class="wo_li_p_user f12">
-      <?php echo " <a href='".__ROOT__."/wo/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?>
+      <?php echo " <a href='".__ROOT__."/wo/".$record['uid']."' target='_self' class='fb'>".$record['nickname']."</a>" ?>
     </div>
     <p class="wo_li_p_content_help lh13">
       <?php echo $record['content']; ?>
-      <?php echo "<a href='".__ROOT__."/item/help/".$record['sid']."' class='f12'>详情</a>"; ?>
+      <?php echo "<a href='".__ROOT__."/item/help/".$record['sid']."' target='_self' class='f12'>详情</a>"; ?>
     </p>
     <span class="wo_li_s_time f12 gray">
       <?php echo i_time($record['time']) ?>
@@ -66,7 +66,7 @@
     
     <span class="wo_li_s_comment f12 black_l">
       <?php echo "<span class='gray' title='状态'>状态:".i_helpstatus($record['status'])."</span> "; ?>
-      <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>">帮助</a>
+      <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>" target="_self">帮助</a>
       <?php if (!empty($record['comment_co'])) echo "(".$record['comment_co'].")" ?> | 扩散 <?php echo $record['diffusion_co'] ?> | 浏览 <?php echo $record['hit_co'] ?>°
     </span>
     

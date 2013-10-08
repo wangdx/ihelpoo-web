@@ -1157,6 +1157,23 @@ li{ list-style:none; }
     margin: 5px 0;
 }
 
+/*--- wo_help ---*/
+.wo_main_ul{
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+}
+.wo_main_ul li{
+    border-right: 1px solid #EEEEEE;
+    display: inline-block;
+    height: 33px;
+    padding: 5px 25px;
+    position: relative;
+    text-align: center;
+    vertical-align: bottom;
+}
+
 /*--- setting_index ---*/
 .setindex{
     padding: 0;
