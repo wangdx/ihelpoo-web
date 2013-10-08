@@ -48,7 +48,6 @@
 		<p class="album_image_content_p" thisimageid="<?php echo $imageItem['id']; ?>" thisuserid="<?php echo $userLogin['uid']; ?>">
   			<img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" />
   		</p>
-  		<div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
 	<div class="black_l f12">
@@ -76,9 +75,6 @@
 				<span class="f12 black_l">
 					浏览: <?php echo $resultAlbum['hit'] == NULL ? "0" : $resultAlbum['hit']; ?> 大小: <?php echo round($resultAlbum['size']/1024); ?>KB
 					<br /><span class="gray">上传时间 <?php echo i_time($resultAlbum['time']); ?></span>
-					<?php if ($albumId == 1) { ?>
-						<br /><span class="icon_plus"></span><a id="set_default_icon" href="__ROOT__/setting/icon?img=<?php echo urlencode($resultAlbum['url']); ?>" class="f12 gray">设为头像</a>
-					<?php } ?>
 				</span>
 			</li>
 		<?php } ?>
