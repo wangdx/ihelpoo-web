@@ -554,8 +554,11 @@
     width: 750px;
 }
 .wo_main_diffudion li{
-    padding: 8px 0;
-    border-bottom: 1px dotted #EEE;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    padding: 15px 10px;
     position: relative;
 }
 .wo_user_li_icon{
