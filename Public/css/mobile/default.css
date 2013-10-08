@@ -1166,7 +1166,6 @@ li{ list-style:none; }
 }
 .wo_main_ul li{
     border-right: 1px solid #EEEEEE;
-    display: inline-block;
     height: 33px;
     padding: 5px 25px;
     position: relative;
