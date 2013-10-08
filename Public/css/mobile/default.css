@@ -616,6 +616,13 @@ li{ list-style:none; }
     padding: 0;
     margin: 0;
 }
+.registe_toptext_school_p{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #EEE;
+    background-color: #FFF;
+    border-radius: 3px;
+}
 /*--- stream_index ---*/
 .verification_code_p{
     position: absolute;
