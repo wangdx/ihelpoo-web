@@ -1167,6 +1167,11 @@ li{ list-style:none; }
     padding: 15px 10px;
     position: relative;
 }
+.wo_li_p_user{
+    position: absolute;
+    left: 90px;
+    top: 15px;
+}
 
 /*--- setting_index ---*/
 .setindex{
