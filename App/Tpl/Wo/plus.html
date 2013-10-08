@@ -8,23 +8,22 @@
     <ul class="wo_main_diffudion">
     <?php foreach ($resultRecordPlus as $recordPlus): ?>
       <li>
-        <span class="f12 black_l">
-	        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" >
-	          <img src='<?php echo i_icon_check("$recordPlus[uid]", "$recordPlus[icon_url]", "s"); ?>' width="50" class="radius3" /> 
-	        </a>
+        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" class="wo_user_li_icon">
+	       <img src='<?php echo i_icon_check("$recordPlus[uid]", "$recordPlus[icon_url]", "s"); ?>' width="50" class="radius3" /> 
+	    </a>
+        <p class="wo_user_li_p f12 black_l">
 	        <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span> 
 	        <span class="f12">赞了</span> 
 	        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" >
 	          <?php echo $recordPlus['nickname']; ?>
-	        </a> 
-	        的 <?php echo $recordPlus['content'] ?>
-        </span>
-        <?php if($recordPlus['say_type'] == 1) { ?>
-        <a href="__ROOT__/item/help/<?php echo $recordPlus['sid'] ?>">详细</a> <span class="ico_help" title="帮助"></span>
-        <?php } else { ?>
-        <a href="__ROOT__/item/say/<?php echo $recordPlus['sid'] ?>">详细</a>
-        <?php } ?>
-        <span class="f12 gray"><?php echo i_time($recordPlus['create_time']) ?></span> <?php if(!empty($recordPlus['view'])) echo '<- 并表示：'.$recordPlus['view'] ?>
+	        </a> 的 <?php echo $recordPlus['content'] ?>
+	        <?php if($recordPlus['say_type'] == 1) { ?>
+	        <a href="__ROOT__/item/help/<?php echo $recordPlus['sid'] ?>">详细</a> <span class="ico_help" title="帮助"></span>
+	        <?php } else { ?>
+	        <a href="__ROOT__/item/say/<?php echo $recordPlus['sid'] ?>">详细</a>
+	        <?php } ?>
+	        <span class="wo_user_li_time_span"><?php echo i_time($recordPlus['time']) ?></span>
+        </p>
       </li>
     <?php endforeach; ?>
     </ul>
