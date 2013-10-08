@@ -823,6 +823,7 @@ class UserAction extends Action {
 	            );
 	            
 	            var_dump($newUserlogignData);
+	            redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
 	            exit();
 	            
 	            $newUserId = $UserLogin->add($newUserlogignData);
