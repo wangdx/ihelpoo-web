@@ -119,7 +119,6 @@ class SettingAction extends Action
                     'sex' => $sex,
                     'birthday' => $birthday,
                     'enteryear' => $enteryear,
-                	'type' => $type,
                     'school' => $school
                 );
                 if (!empty($usertype)) {
@@ -136,12 +135,22 @@ class SettingAction extends Action
                     'academy_op' => $academy,
                     'specialty_op' => $specialty,
                     'dormitory_op' => $dormitory,
-                    'province_op' => $province,
-                    'city_op' => $city,
-                    'mobile' => $mobile,
-                    'qq' => $qq,
-                    'weibo' => $weibo,
                 );
+                if (!empty($province)) {
+                	$updateUserInfoData['province_op'] = $province;
+                }
+                if (!empty($city)) {
+                	$updateUserInfoData['city_op'] = $city;
+                }
+                if (!empty($mobile)) {
+                	$updateUserInfoData['mobile'] = $mobile;
+                }
+                if (!empty($qq)) {
+                	$updateUserInfoData['qq'] = $qq;
+                }
+                if (!empty($$weibo)) {
+                	$updateUserInfoData['weibo'] = $weibo;
+                }
                 $UserInfo->save($updateUserInfoData);
                 $this->ajaxReturn(0, "修改成功", 'yes');
             }
