@@ -15,7 +15,7 @@ $().ready(function(){
     $('#emotionbox_close').click(function(){
         $('#emotionbox').slideUp('fast');
     });
-    $('.emotionbox_show_ul img').click(function(){
+    $('.emotionbox_show_ul img').live('click', function(){
         var imgtitle = $(this).attr('title');
         var textareavalue = $('#s_t_textarea').val();
         var imgtitlemark = '[' + imgtitle + ']';
@@ -25,7 +25,7 @@ $().ready(function(){
         $('#emotionbox').fadeOut('fast');
         contentOk = 'yes';
         //important here, refuse default explorer action
-        return false;
+        return true;
     });
     $('.emotionbox_change_page').click(function(){
     	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
