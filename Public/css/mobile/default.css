@@ -523,6 +523,9 @@ li{ list-style:none; }
 .index_hot_mate_ul_li{
     border-bottom: 1px solid #EEE;
 }
+.index_loginfast_div_info_p, .index_loginfast_div_icon_p, .index_loginfast_div_name_p{
+    text-align: center;
+}
 
 
 

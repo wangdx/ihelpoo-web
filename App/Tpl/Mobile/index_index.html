@@ -21,7 +21,6 @@
     <div data-role="content">
         <?php if (!empty($_COOKIE['userEmail'])) { ?>
 	    <div class="index_loginfast_div">
-			<p class="index_loginfast_div_nav_p"><a class="index_loginfast_div_nav_p_select">快速登录</a> <a href="__ROOT__/?login=new" target="_self">使用其他账号</a></p>
 			<p class="index_loginfast_div_info_p"><span class="f12 black_l">检测到上次登录账号，点击头像登录</span></p>
 			<p class="index_loginfast_div_icon_p">
 				<a href="__ROOT__/user/loginfast" target="_self" title="<?php echo $cookieUserLogin['email']; ?>">
@@ -31,6 +30,8 @@
 			<p class="index_loginfast_div_name_p">
 				<a href="__ROOT__/user/loginfast" target="_self" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '2') { echo "潜水登录"; } else { echo "正常登录"; } ?>)</span></a>
 			</p>
+			<a data-role="button" href="/user/register" target="_self">快速登录</a>
+			<a data-role="button" href="?login=new" target="_self">使用其他账号</a>
 		</div>
 	   <?php } else { ?>
 		  <form action="/user/login" method="post" target="_self">
