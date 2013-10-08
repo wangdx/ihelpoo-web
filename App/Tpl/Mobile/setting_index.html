@@ -75,6 +75,7 @@
     </li>
     <li>
       <span class="settitle">专业:</span>
+      <div id="specialty_parent_div">
       <select id="specialty" name="specialty">
         <foreach name="listopspecialty" item="specialty">
          	<if condition="$specialty.id eq $recorduserinfo['specialty_op']"> 
@@ -84,6 +85,7 @@
 			</if>
 		</foreach>
       </select>
+      </div>
     </li>
     <li>
       <span class="settitle">寝室楼栋:</span>
