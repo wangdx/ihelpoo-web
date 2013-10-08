@@ -1355,34 +1355,3 @@ li{ list-style:none; }
     color: #666;
     display: none;
 }
-.setting_school_list_div{
-    -moz-outline-radius: 8px 8px 8px 8px;
-    background-color: #F5F5F5;
-    border: 5px solid #DDDDDD;
-    border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 0 10px rgba(123, 214, 246, 0.6);
-    margin: 0 auto;
-    padding: 15px 10px;
-    position: relative;
-    text-align: left;
-    width: 90%;
-    z-index: 11111;
-}
-#setting_school_close_span{
-    position: absolute;
-    right: 3px;
-    top: 1px;
-}
-#setting_school_close_span .close_x{
-    width: 16px;
-    text-align: center;
-    display: block;
-}
-.setting_school_list_div ul{
-    padding: 0;
-}
-.setting_school_list_div ul li{
-    display: inline-block;
-    margin: 8px;
-    font-weight: bold;
-}

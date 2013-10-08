@@ -67,19 +67,4 @@ $().ready(function(){
             }, "json");
         }
     });
-    $("#selectschool").click(function(){
-        $('#ajaxprogressbar').html($infoLoading);
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "setting/ajax",
-            data: "getschoollist='get'",
-            datatype: "text",
-            success:function(list){
-                $("#ajaxprogressbar").html(list);
-            }
-        });
-    });
-    $("#setting_school_close_span").live("click", function(){
-        $(this).parent().fadeOut('fast');
-    });
 });
