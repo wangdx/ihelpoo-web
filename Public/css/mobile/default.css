@@ -1197,6 +1197,11 @@ li{ list-style:none; }
     margin: 0 0 0 65px;
     min-height: 35px;
 }
+.wo_user_li_time_span{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
 
 /*--- setting_index ---*/
 .setindex{
