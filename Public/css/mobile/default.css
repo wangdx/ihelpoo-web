@@ -1220,7 +1220,7 @@ li{ list-style:none; }
     padding: 10px 0;
 }
 .degree_ratio{
-    width: 880px;
+    width: 100%;
     border: 1px solid #EEE;
     background: #CCC;
     height: 5px;
