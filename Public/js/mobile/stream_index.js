@@ -1,4 +1,9 @@
 $().ready(function(){
+	
+	var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
+    var contentOk = 'no';
+	var imageNums = 0;
+	
 	    var elem = document.getElementById("s_t_textarea");
 	    var focus = document.getElementById("cursorfocus");
 	    var input = function () {
