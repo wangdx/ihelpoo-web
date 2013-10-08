@@ -211,7 +211,7 @@ class WoAction extends Action {
         $this->assign('totalRecords',$totalRecords);
         $this->assign('totalPages',$totalPages);
         
-        if(i_is_mobile()) {
+        if (i_is_mobile()) {
         	$this->display('Mobile:wo_dynamic');
     	} else {
     		$this->display('index');
@@ -250,7 +250,7 @@ class WoAction extends Action {
         $this->assign('totalRecords',$totalRecords);
         $this->assign('totalPages',$totalPages);
         
-        if(i_is_mobile()) {
+        if (i_is_mobile()) {
         	$this->display('Mobile:wo_index');
     	} else {
     		$this->display();
@@ -301,7 +301,7 @@ class WoAction extends Action {
         $this->assign('totalRecords',$totalRecords);
         $this->assign('totalPages',$totalPages);
         
-        if(i_is_mobile()) {
+        if (i_is_mobile()) {
         	$this->display('Mobile:wo_help');
     	} else {
     		$this->display();
@@ -339,7 +339,7 @@ class WoAction extends Action {
         $this->assign('totalRecords',$userRecordDiffusionNums);
         $this->assign('totalPages',$totalPages);
         
-        if(i_is_mobile()) {
+        if (i_is_mobile()) {
         	$this->display('Mobile:wo_diffusion');
     	} else {
     		$this->display();
@@ -377,7 +377,7 @@ class WoAction extends Action {
         $this->assign('totalRecords',$userRecordPlusNums);
         $this->assign('totalPages',$totalPages);
         
-        if(i_is_mobile()) {
+        if (i_is_mobile()) {
         	$this->display('Mobile:wo_plus');
     	} else {
     		$this->display();
@@ -440,7 +440,7 @@ class WoAction extends Action {
         $userHonors = $UserHonor->where("uid = $userId")->select();
         $this->assign('userHonors',$userHonors);
         
-        if(i_is_mobile()) {
+        if (i_is_mobile()) {
         	$this->display('Mobile:wo_honor');
     	} else {
     		$this->display();
@@ -729,7 +729,12 @@ class WoAction extends Action {
         }
     	$this->assign('totalImages',$totalImages);
     	$this->assign('totalAlbumSize',$totalAlbumSize);
-        $this->display();
+    	
+    	if (i_is_mobile()) {
+        	$this->display('Mobile:wo_album');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function quan()
@@ -762,7 +767,12 @@ class WoAction extends Action {
         $totalPages = ceil($userPrioritiedNums / $count);
         $this->assign('userPrioritiedNums',$userPrioritiedNums);
         $this->assign('totalPages',$totalPages);
-        $this->display();
+        
+        if (i_is_mobile()) {
+        	$this->display('Mobile:wo_quan');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function quaned()
@@ -795,7 +805,12 @@ class WoAction extends Action {
         $totalPages = ceil($userPrioritiedNums / $count);
         $this->assign('userPrioritiedNums',$userPrioritiedNums);
         $this->assign('totalPages',$totalPages);
-        $this->display();
+        
+        if (i_is_mobile()) {
+        	$this->display('Mobile:wo_quaned');
+    	} else {
+    		$this->display();
+    	}
     }
 
 }
