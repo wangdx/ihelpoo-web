@@ -4,22 +4,6 @@ $().ready(function(){
     var contentOk = 'no';
 	var imageNums = 0;
 
-    //key check
-    var atswitch = 'off';
-    $("#s_t_textarea").keyup(function(){
-
-        if (textareacontent.length > 0) {
-        	var letterlimit = 222 - textareacontent.length;
-        	if (letterlimit > 0) {
-        		$('.s_l_textarea_info').html('还能输入<span class="blue">' + letterlimit + '</span>个字');
-        		contentOk = 'yes';
-        	} else {
-        		$('.s_l_textarea_info').html('超出字数限制<span class="red">' + letterlimit + '</span>');
-        		contentOk = 'morethenlimit';
-        	}
-        }
-    });
-
     /**
      * icon part
      */
