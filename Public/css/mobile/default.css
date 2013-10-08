@@ -598,6 +598,7 @@ li{ list-style:none; }
     border: 1px solid #EEE;
     background-color: #FFF;
     border-radius: 5px;
+    display: inline-block;
 }
 .m_m_u_u_li_name{
     display: block;
