@@ -960,6 +960,9 @@ li{ list-style:none; }
 }
 
 /*--- item_say ---*/
+.i_content_p{
+    margin: 15px 0;
+}
 .i_record_diffusion{
     padding: 0;
     margin: 10px 0;
