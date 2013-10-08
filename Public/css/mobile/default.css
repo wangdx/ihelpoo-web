@@ -1288,7 +1288,8 @@ li{ list-style:none; }
     display: inline-block;
 }
 .album_image_content_img{
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
 }
 /*--- setting_index ---*/
 .setindex{
