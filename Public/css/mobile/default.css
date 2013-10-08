@@ -1213,11 +1213,11 @@ li{ list-style:none; }
     border: 1px solid #DDDDDD;
     border-radius: 5px 5px 5px 5px;
     margin: 0 0 15px;
-    padding: 15px 10px;
-    position: relative;
+    padding: 10px;
 }
 .wo_main_honor li{
     border-bottom: 1px solid #EEE;
+    padding: 10px 0;
 }
 /*--- setting_index ---*/
 .setindex{
