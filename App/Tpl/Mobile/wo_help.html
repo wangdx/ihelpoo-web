@@ -13,140 +13,77 @@
     </div>
 <div data-role="content">
 
-	<div class="wo_main">
-    <ul class="stream_list_ul">
-  <?php foreach ($recordSayHelp as $record): ?>
-    <li class="stream_list_ul_li">
-    <?php if ($record['type'] == '2') { ?>
-          <span class="gradeg"></span>
-        <?php } else if ($record['type'] == '3') { ?>
-          <span class="grades"></span>
-        <?php } else if ($record['type'] == '4') { ?>
-          <span class="gradetea"></span>
-        <?php } else if ($record['type'] == '5') { ?>
-          <span class="gradegra"></span>
-        <?php } else if ($record['type'] == '6') { ?>
-          <span class="gradesen"></span>
-        <?php } else { ?>
-          <span class="grade<?php echo i_gradeNum($record['enteryear']) ?>"></span>
+  <div class="wo_main_ul_p_top">
+    <?php if (!isset($_GET['win'])) { ?> 
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>" class="a_select"><span class="ico_help"></span>求助的</a>
+    <?php } else { ?>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>"><span class="ico_help"></span>求助的</a>
     <?php } ?>
-    <p class="s_li_p_icon">
-      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>">
-        <img src="<?php echo i_icon_check($record['uid'], $record['icon_url'], 'm') ?>" width="73" height="56" class="radius5" userid="<?php echo $record['uid'] ?>" />
+    <?php if (isset($_GET['win'])) { ?> 
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win" class="a_select"><span class="ico_expert"></span>被采纳</a>
+    <?php } else { ?>
+    <a href="__ROOT__/wo/help/<?php echo $userLogin['uid'] ?>?win"><span class="ico_expert"></span>被采纳</a>
+    <?php } ?>
+    
+    <span class="wo_main_ul_p_top_span fi black_l">
+    <?php if (!isset($_GET['win'])) { ?>
+      <span class="f16 fb green"><?php echo $totalRecords ?></span>条求助
+    <?php } else { ?>
+      <span class="f16 fb orange"><?php echo $totalRecords ?></span>条被选为最佳帮助
+    <?php } ?>
+    </span>
+  </div>
+  <ul class="wo_main_ul">
+  <?php
+  foreach ($recordSayHelp as $record): ?>
+  <li>
+    <p class="wo_li_p_icon">
+      <a href="__ROOT__/wo/<?php echo $record['uid'] ?>" target="_blank">
+        <img src='<?php echo i_icon_check("$record[uid]", "$record[icon_url]", "s"); ?>' width="68" height="51" class="radius3"/>
       </a>
     </p>
-    <div class="s_li_p_user f12">
-      <a href="__ROOT__/wo/<?php echo $record['uid']; ?>" class="fb f14 getuserinfo" userid="<?php echo $record['uid']; ?>"><?php echo $record['nickname']; ?><?php echo $record['remark'] != NULL ? "<span class='f12 fn'>($record[remark])</span>" : ""; ?></a>
-      <?php if (i_degree($record['active']) > 4) { ?>
-	    <span class="level<?php echo i_degree($record['active']) ?>"></span>
-	    <?php } else if (i_degree($record['active']) < 2) { ?>
-	    <span class="red_l f12" title="欢迎新童鞋:D">新童鞋</span>
-	  <?php } ?>
+    <div class="wo_li_p_user f12">
+      <?php echo " <a href='".__ROOT__."/wo/".$record['uid']."' target='_blank' class='fb'>".$record['nickname']."</a>" ?>
     </div>
-    <div class="s_li_user_constellation f12 gray">
-        <?php echo i_constellation($record['birthday']),i_sex($record['sex']); ?> 
-	    <?php if ($record['online'] == 1) { ?>
-		 <span class="blue f12">[在线]</span>
-		<?php } ?>
-    </div>
-    <div class="s_li_user_time f12 gray">
-       <?php echo i_time($record['last_comment_ti']); ?> 
-        <?php if ($record['school_record'] != $thisschoolid) { ?>
-	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
-	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>" target="_self"><?php echo $recordSaySchoolInfo['school']; ?></a>
-	      <?php } ?>
-	      <?php
-	      if (!empty($record['from'])) {
-          if ("3" == $record['from']) {
-          	  echo "<span title='来自我帮圈圈Andriod客户端' class='pointer'>我帮圈圈Andriod</span>";
+    <p class="wo_li_p_content_help lh13">
+      <?php echo $record['content']; ?>
+      <?php echo "<a href='".__ROOT__."/item/help/".$record['sid']."' class='f12'>详情</a>"; ?>
+    </p>
+    <span class="wo_li_s_time f12 gray">
+      <?php echo i_time($record['time']) ?>
+      <?php
+      if (!empty($record['from'])) {
+          if ("2" == $record['from']) {
+          	  echo "来自我帮圈圈抓取程序";
+          } else if ("3" == $record['from']) {
+          	  echo "来自我帮圈圈Andriod客户端";
           } else {
-          	  echo "<span title='来自".$record['from']."' class='pointer'>".$record['from']."</span>";
+          	  echo "来自".$record['from'];
           }
-        }
-        ?>
-    </div>
-    <p class="s_li_p_content lh15">
-      <?php
-          echo $emotion->transEmotion(stripslashes(strip_tags($record['content'],"<a><span>")));
-		  if (!empty($record['url'])) {
-              echo "<a href='".$record['url']."' target='_blank'><span class='post_video'></span></a>";
-          }
-      ?>
-      <?php
-      if (!empty($record['image'])) {
-          $imageRecordArray = i_get_image($record['image'],'s');
-    	  echo '<div class="s_li_p_content_image">';
-		  foreach($imageRecordArray as $imageRecord) {
-             echo "<img src='".$imageRecord."' style='max-height:120px;max-width:150px;' title='查看大图' />";
-          }
-          echo '</div>';
       }
       ?>
-      <?php if (!empty($record['url'])) {
-    	$videoResult = VideoUrlParser::parse($record['url']);
-		if (!empty($videoResult)) {
-		?>
-		<div class="s_li_p_content_mv">
-		    <p class="s_li_p_content_mv_img_p" title="<?php echo $videoResult['title']; ?>">
-				<span class="s_li_p_content_video_icon"></span>
-				<img src="<?php echo $videoResult['img']; ?>" class="s_li_p_content_mv_img"/>
-			</p>
-			<p class="s_li_p_content_mv_object_p" style="display:none">
-				<a class="s_li_p_content_mv_object_up f12"><span class="icon_up"></span>收起</a>
-				<?php echo $videoResult['object']; ?>
-			</p>
-		</div>
-	  <?php } } ?>
-    </p>
-    <div data-role="navbar" data-iconpos="left" class="s_li_s_comment">
-        <?php if ($record['say_type'] == '1') { ?>
-            <ul>
-                <li>
-                    <a data-transition="fade" data-theme="" data-icon="">
-                        赞<span id="plus_view_region_ih-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
-                    </a>
-                </li>
-                <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="ih-<?php echo $record['sid']; ?>">
-                        扩散 <?php if (!empty($record['diffusion_co'])) { echo "(".$record['diffusion_co'].")"; } ?>
-                    </a>
-                </li>
-                <li>
-                    <a href="/item/help/<?php echo $record['sid']; ?>" target="_self" data-transition="fade" data-theme="" data-icon="">
-                        帮助 <?php if (!empty($record['comment_co'])) { echo "(".$record['comment_co'].")"; } ?>
-                    </a>
-                </li>
-            </ul>
-         <?php } else { ?>
-            <ul>
-                <li>
-                    <a data-transition="fade" data-theme="" data-icon="">
-                        赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
-                    </a>
-                </li>
-                <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="i-<?php echo $record['sid']; ?>">
-                        扩散 <?php if (!empty($record['diffusion_co'])) { echo "(".$record['diffusion_co'].")"; } ?>
-                    </a>
-                </li>
-                <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="comment_button" value="i-<?php echo $record['sid']; ?>" isclick="false">
-                        评论 <?php if (!empty($record['comment_co'])) { echo "(".$record['comment_co'].")"; } ?>
-                    </a>
-                </li>
-            </ul>
-         <?php } ?>
-    </div>
+    </span>
+    
+    <span class="wo_li_s_comment f12 black_l">
+      <?php echo "<span class='gray' title='状态'>状态:".i_helpstatus($record['status'])."</span> "; ?>
+      <a href="__ROOT__/item/help/<?php echo $record['sid'] ?>">帮助</a>
+      <?php if (!empty($record['comment_co'])) echo "(".$record['comment_co'].")" ?> | 扩散 <?php echo $record['diffusion_co'] ?> | 浏览 <?php echo $record['hit_co'] ?>°
+    </span>
+    
+    <?php if (isset($_GET['win'])) { ?>
+    <p class="ico_star_answer ico_channel_user_position"></p>
+    <?php } ?>
+    
   </li>
   <?php endforeach; ?>
-</ul>
+  </ul>
 
-    <div class="wo_paging">
-      <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条记录 <?php echo $totalPages ?>页</p>
-      <span>
-      <?php if ($totalPages > 1) { i_page_mobile_show("wo/help/".$userLogin['uid'], $totalPages); } ?>
-      </span>
-    </div>
+<div class="wo_paging">
+    <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条帮助 <?php echo $totalPages ?>页</p>
+    <span>
+    <?php if ($totalPages > 1) { i_page_mobile_show("wo/help/".$userLogin['uid'], $totalPages); } ?>
+    </span>
+  </div>
 
 
 </div>
