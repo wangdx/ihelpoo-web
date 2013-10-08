@@ -715,6 +715,22 @@ function i_savenotice($from, $to, $noticeType, $detailId)
  */
 function i_is_mobile()
 {
+	if (!empty($_GET['changviewtype'])) {
+		$changviewtype = $_GET['changviewtype'];
+		if ($changviewtype == 'web') {
+			session('viewClientType','web');
+		} else if ($changviewtype == 'mobile') {
+			session('viewClientType','mobile');
+		}
+	}
+	
+	$viewClientType = session('viewClientType');
+	if ($viewClientType == 'mobile') {
+		return true;
+	} else if ($viewClientType == 'web') {
+		return false;
+	}
+	
 	if ($_SERVER['HTTP_USER_AGENT'] == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:12.0) Gecko/20100101 Firefox/12.0") {
 		return true;
 	}
