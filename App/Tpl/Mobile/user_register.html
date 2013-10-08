@@ -13,5 +13,70 @@
     </div>
     <div data-role="content">
     
+    
+<div class="registe_main">
+  <?php if (empty($inviteUser['uid'])){ ?>
+  <div class="registe_toptext">
+    <p class="registe_toptext_school_p f14 black_l"><?php echo $recordSchoolInfo['school']; ?> <a class="academyselectschool">[更改]</a></p>
+  </div>
+  <?php } else { ?>
+    <div class="registe_toptext_user">
+    	<p class="registe_toptext_user_p">
+	    	<a href="__ROOT__/wo/<?php echo $inviteUser['uid']; ?>" target="_blank" title="<?php echo $inviteUser['nickname']; ?> 的更多信息"><img src="<?php echo i_icon_check($inviteUser['uid'], $inviteUser['icon_url']); ?>" width="120" height="90" class="registe_toptext_user_p_a_img" />
+	    	<?php if ($inviteUser['type'] == 2) { ?>
+          		<span class="gradeg"></span>
+        	<?php } else { ?>
+          		<span class="grade<?php echo i_gradeNum($inviteUser['enteryear']) ?>"></span>
+        	<?php } 
+        		if ($inviteUser['online'] == 1) { ?>
+				<span class="online_dot_status" title="在线"></span>
+			<?php } ?>
+	    	</a>
+    	</p>
+    	<p class="registe_toptext_info_p">
+    		<a href="__ROOT__/wo/<?php echo $inviteUser['uid']; ?>" target="_blank" title="<?php echo $inviteUser['nickname']; ?>"><?php echo $inviteUser['nickname']; ?></a>
+    		 邀请你加入我帮圈圈 :)
+    		<br />
+    		<span class="black_l f12">Hi，赶快注册圈我吧，记录、分享、方便我的大学生活！让信息有真实的价值。</span>
+    		<span class="registe_toptext_info_p_academy f12 gray">
+    			<?php echo $inviteUser['nickname']; ?> <?php echo i_constellation($inviteUser['birthday']),i_sex($inviteUser['sex']) ?> 等级<?php echo i_degree($inviteUser['active']) ?> , 来自 <a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['number'] ?>" target="_blank"><?php echo $userAcademy['name'] ?></a> 
+    			<a href="__ROOT__/index/mate?w=academy&n=<?php echo $userAcademy['number'] ?>&specialty=<?php echo $userSpecialty['id'] ?>" target="_blank" ><?php echo $userSpecialty['name'] ?></a>
+    		</span>
+    	</p>
+    </div>
+  <?php } ?>
+  <form action="__ROOT__/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
+  <ul class="registe_ul black_l">
+    <li>邮&#12288;&#12288;箱<input id="email" type="text" name="email" class="input_style" /><span id="emailinfo" class="f12 red_l"></span><input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" /></li>
+    <li>创建密码<input id="password" type="password" name="password" class="input_style" /><span id="passwordinfo" class="f12 red_l"></span></li>
+    <li>密码重复<input id="passwordrepeat" type="password" name="passwordrepeat" class="input_style" /><span id="passwordrepeatinfo" class="f12 red_l"></span></li>
+    <li>昵&#12288;&#12288;称<input id="nickname" type="text" name="nickname" class="input_style" /><span id="nicknameinfo" class="f12 red_l"></span></li>
+    <li>性&#12288;&#12288;别<p class="sex_part"><input type="radio" name="sex" value="1" checked="checked" /><label for="man">男</label> <input type="radio" name="sex" value="2"/><label for="woman">女</label></p></li>
+    <li>
+      学&#12288;&#12288;院      
+      <select id="academy" name="academy">
+      <?php foreach ($listOpAcademy as $academy) : ?>
+        <option value="<?php echo $academy['id']; ?>"><?php echo $academy['name']; ?></option>
+      <?php endforeach; ?>
+      </select>
+      &#12288;&#12288;<a class="f12 academyselectschool">[切换学校]</a>
+    </li>
+    <li class="enteryear_li">
+      入学年份
+      <select id="enteryear" name="enteryear">
+        <?php $i = 2013; while ($i >= 1930) { ?>
+        	<option value="<?php echo $i; ?>"><?php echo $i;?></option>
+        <?php $i--; } ?>
+      </select>
+      <span class="user_type_info">
+      	<a class="user_type" value="teacher" isclick="false">老师?</a> <a class="user_type" value="postgraduate" isclick="false">研究生?</a> <a class="user_type" value="senior" isclick="false">高中生?</a>
+      	<input type="hidden" id="input_user_type" name="usertype" value="default" />
+      </span>
+    </li>
+    <li><a id="registe_submit" class="radius3" >注册</a> <span id="registeinfo" class="f12 red_l"></span></li>
+  </ul>
+  </form>
+</div>
+    
     </div>
 <include file="Public:footermobile" />

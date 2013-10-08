@@ -943,7 +943,12 @@ class UserAction extends Action {
 	            redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
 	        }
         }
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:user_register');
+    	} else {
+    		$this->display();
+    	}
     }
 
     /**
