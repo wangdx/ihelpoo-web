@@ -32,6 +32,14 @@
 			</p>
 			<a data-role="button" href="/user/loginfast" target="_self">快速登录</a>
 			<a data-role="button" href="?login=new" target="_self">使用其他账号</a>
+			<p class="f14">
+      		<span class="icon_pump"></span> 共有 <span class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>我帮圈圈!
+	      	<?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
+	        </p>
+	        <ul class="index_hot_mate_ul">
+	      	  <li class="index_hot_mate_ul_li"><a href="/index/hot" target="_self">看看热门</a></li>
+	      	  <li><a href="/index/mate" target="_self">大家</a></li>
+	        </ul>
 		</div>
 	   <?php } else { ?>
 		  <form action="/user/login" method="post" target="_self">
