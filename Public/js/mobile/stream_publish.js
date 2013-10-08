@@ -12,7 +12,7 @@ $().ready(function(){
         $(".emotionbox_show_ul").load(baseUrl + "other/loademotion");
         return false;
     });
-    $('#emotionbox_close').live('click', function(){
+    $('#emotionbox_close').click(function(){
         $('#emotionbox').slideUp('fast');
     });
     $('.emotionbox_show_ul img').live('click', function(){
