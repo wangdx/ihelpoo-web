@@ -856,10 +856,11 @@ class UserAction extends Action {
 	             * add default dynamic record.
 	             */
                 if(i_is_mobile()) {
-                	$recordDynamicContent = "我刚刚通过触屏版加入了我帮圈圈:)";
+                	$recordSayFrom = "动态";
                 } else {
-                	$recordDynamicContent = "我刚刚加入了我帮圈圈:)";
+                	$recordSayFrom = "触屏版动态";
                 }
+                $recordDynamicContent = "我刚刚加入了我帮圈圈:)";
 	            $RecordSay = M("RecordSay");
 	            $RecordDynamic = M("RecordDynamic");
 	            $newRecordSayData = array(
@@ -867,7 +868,7 @@ class UserAction extends Action {
 	            	'say_type' => 2,
 	            	'content' => $recordDynamicContent,
 	            	'time' => time(),
-	            	'from' => '动态',
+	            	'from' => $recordSayFrom,
 	            	'school_id' => $recordSchoolInfo['id']
 	            );
 	            $newRecordSayId = $RecordSay->add($newRecordSayData);
