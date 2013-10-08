@@ -13,6 +13,10 @@
     </div>
 <div data-role="content">
 
+  <?php
+  $userLever = i_degree($userStatus['active']);
+  $degreeArray = i_degreeRatio($userStatus['active']);
+  ?>
 	<ul class="wo_main_honor">
       <li><span class="icon_star"></span> 活跃: <span class="fb f14 fi"><?php echo $userStatus['active'] ?></span></li>
       <li>
