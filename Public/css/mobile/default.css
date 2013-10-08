@@ -1001,6 +1001,15 @@ li{ list-style:none; }
     display: none;
 }
 
+/*--- item_help ---*/
+.i_h_c_content{
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    margin: 10px 0;
+    padding: 15px;
+}
+
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;
