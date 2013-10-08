@@ -16,9 +16,8 @@
       <a href="__ROOT__/wo/<?php echo $userPriority['pid'] ?>" class="getuserinfo" userid="<?php echo $userPriority['uid'] ?>">
         <img src="<?php echo i_icon_check($userPriority['pid'], $userPriority['icon_url'], 's'); ?>" width="68" class="radius3" />
       </a>
-      <span class="sex<?php echo $userPriority['sex'] ?> quan_ul_sex"></span>
       <a href="__ROOT__/wo/<?php echo $userPriority['pid'] ?>" class="getuserinfo" userid="<?php echo $userPriority['uid'] ?>"><?php echo $userPriority['nickname'] ?></a>
-      <span class="f12 gray"><?php echo i_grade($userPriority['enteryear']) ?></span>
+      <span class="f12 gray" style="display:inline-block"><span class="sex<?php echo $userPriority['sex'] ?>"></span><?php echo i_grade($userPriority['enteryear']) ?></span>
       <span class="level<?php echo i_degree($userPriority['active']) ?>" title="等级: level<?php echo i_degree($userPriority['active']) ?>"></span> &nbsp;
       <span class="gray f12"><?php echo $sexname ?>圈的时间: <?php echo i_time($userPriority['time']) ?></span>
       <?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
