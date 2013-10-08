@@ -110,7 +110,7 @@ $().ready(function(){
         if ('ok' == emailok && 'ok' == passwordok && 'ok' == nicknameok) {
         	$("form").submit();
         } else {
-            $('#registeinfo').html('× 出错了! 请检测填写项');
+            alert('× 出错了! 请检测填写项');
             if (emailok == 'no') {
             	$('#emailinfo').html('<span class="icon_attention"></span> 请重新输入');
             }
