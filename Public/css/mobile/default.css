@@ -1201,6 +1201,8 @@ li{ list-style:none; }
     position: absolute;
     right: 10px;
     bottom: 10px;
+    font-size: 12px;
+    color: #A8A8A8;
 }
 
 /*--- setting_index ---*/
