@@ -16,26 +16,22 @@
 <div class="wo_main">
   <?php if (!empty($imageItem)) { ?>
   	<div class="wo_main_album_nav black_l f12">
-		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> <span class="arrow">&gt;</span>
+		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>" target="_self">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($imageItem['type'] == 1) { ?>
-			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册">头像相册</a>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" target="_self" title="头像相册">头像相册</a>
 		<?php } else if ($imageItem['type'] == 2) { ?>
-			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" title="信息流配图">信息流配图</a>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" target="_self" title="信息流配图">信息流配图</a>
 		<?php } else if ($imageItem['type'] == 3) { ?>
-			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="店铺图片">店铺图片</a>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" target="_self" title="店铺图片">店铺图片</a>
 		<?php } else if ($imageItem['type'] == 4) { ?>
-			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" title="店铺图片">悄悄话聊天</a>
+			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" target="_self" title="店铺图片">悄悄话聊天</a>
 		<?php } ?>
 		<span class="arrow">&gt;</span> 图片详情
 		<span class="fr gray">
-			<a href="<?php echo $imageItem['url']; ?>" target="_blank" class="f12" id="this_image_upload_url"><span class="icon_search"></span>查看原图</a> | 
+			<a href="<?php echo $imageItem['url']; ?>" target="_self" class="f12" id="this_image_upload_url"><span class="icon_search"></span>查看原图</a> | 
 			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> | 
 			大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> | 
 			浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
-			<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
-			 | <a id="set_default_icon" href="__ROOT__/setting/icon?img=<?php echo urlencode($imageItem['url']); ?>">设为头像</a> | 
-			 <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">删除</a>
-			<?php } ?>
 		</span>
 	</div>
 	<div class="album_image_content">
@@ -56,7 +52,7 @@
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
 	<div class="black_l f12">
-		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>">相册首页</a> <span class="arrow">&gt;</span>
+		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>" target="_self">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($albumId == 1) { ?>
 			头像相册
 		<?php } else if ($albumId == 2) { ?>
@@ -73,7 +69,7 @@
 		<?php foreach($resultsUserAlbum as $resultAlbum) { ?>
 			<li>
 				<p class="album_list_ul_p">
-				<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $resultAlbum['id'] ?>" title="查看大图">
+				<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/9/<?php echo $resultAlbum['id'] ?>" target="_self" title="查看大图">
 					<img src="<?php echo i_image_thumbnail($resultAlbum['url']); ?>" class="album_list_ul_img" />
 				</a>
 				</p>
@@ -89,7 +85,7 @@
 	</ul>
 	<div class="wo_paging">
       <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>张 <?php echo $totalPages ?>页</p>
-      <?php if ($totalPages > 1) { i_page_show("wo/album/".$userLogin['uid']."/".$albumId, $totalPages); } ?>
+      <?php if ($totalPages > 1) { i_page_mobile_show("wo/album/".$userLogin['uid']."/".$albumId, $totalPages); } ?>
     </div>
   <?php } else { ?>
 	<div class="black_l">
@@ -102,12 +98,12 @@
 	  	<li>
 	  		<div class="user_album_ul_div">
 	  		<p class="user_album_ul_div_p">
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册" class="user_album_ul_div_p_a">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" target="_self" title="头像相册" class="user_album_ul_div_p_a">
 	  			<img src="<?php echo i_image_thumbnail($iconUserAlbum['url']); ?>" />
 	  		</a>
 	  		</p>
 	  		</div>
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" title="头像相册">头像相册</a>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/1" target="_self" title="头像相册">头像相册</a>
 	  		<span class="f12"><?php echo $totalIconImages ?>张</span>
 	  	</li>
 	  	<?php } ?>
@@ -115,12 +111,12 @@
 	  	<li>
 	  		<div class="user_album_ul_div">
 	  		<p class="user_album_ul_div_p">
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" title="信息流配图" class="user_album_ul_div_p_a">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" target="_self" title="信息流配图" class="user_album_ul_div_p_a">
 	  			<img src="<?php echo i_image_thumbnail($recordUserAlbum['url']); ?>" />
 	  		</a>
 	  		</p>
 	  		</div>
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" title="信息流配图">信息流配图</a>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/2" target="_self" title="信息流配图">信息流配图</a>
 	  		<span class="f12"><?php echo $totalRecordImages ?>张</span>
 	  	</li>
 	  	<?php } ?>
@@ -128,12 +124,12 @@
 	  	<li>
 	  		<div class="user_album_ul_div">
 	  		<p class="user_album_ul_div_p">
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="店铺图片" class="user_album_ul_div_p_a">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" target="_self" title="店铺图片" class="user_album_ul_div_p_a">
 	  			<img src="<?php echo i_image_thumbnail($shopUserAlbum['url']); ?>" />
 	  		</a>
 	  		</p>
 	  		</div>
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="店铺图片">店铺图片</a>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" target="_self" title="店铺图片">店铺图片</a>
 	  		<span class="f12"><?php echo $totalShopImages ?>张</span>
 	  	</li>
 	  	<?php } ?>
@@ -141,12 +137,12 @@
 	  	<li>
 	  		<div class="user_album_ul_div">
 	  		<p class="user_album_ul_div_p">
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" title="悄悄话聊天配图" class="user_album_ul_div_p_a">
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" target="_self" title="悄悄话聊天配图" class="user_album_ul_div_p_a">
 	  			<img src="<?php echo i_image_thumbnail($talkUserAlbum['url']); ?>" />
 	  		</a>
 	  		</p>
 	  		</div>
-	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" title="悄悄话聊天配图">悄悄话聊天<span class="f10 red_l">(仅自己可见)</span></a>
+	  		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/3" target="_self" title="悄悄话聊天配图">悄悄话聊天<span class="f10 red_l">(仅自己可见)</span></a>
 	  		<span class="f12"><?php echo $totalTalkImages ?>张</span>
 	  	</li>
 	  	<?php } ?>
