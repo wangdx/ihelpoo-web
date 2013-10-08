@@ -1380,6 +1380,6 @@ li{ list-style:none; }
     display: block;
 }
 .setting_school_list_div ul li{
-    display: block;
+    display: inline-block;
     margin: 3px 5px;
 }
