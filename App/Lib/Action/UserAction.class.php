@@ -821,6 +821,10 @@ class UserAction extends Action {
 	            	'icon_fl' => 0,
 	            	'school' => $school
 	            );
+	            
+	            var_dump($newUserlogignData);
+	            exit();
+	            
 	            $newUserId = $UserLogin->add($newUserlogignData);
 
 	            /**
