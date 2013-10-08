@@ -1316,3 +1316,16 @@ li{ list-style:none; }
 .setindex{
     padding: 0;
 }
+#ajaxprogressbar{
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+#ajaxprogressbar img{
+    padding: 10px 30px;
+    border: 1px solid #EEE;
+    border-radius:5px;
+    background: #EFEFEF;
+}
