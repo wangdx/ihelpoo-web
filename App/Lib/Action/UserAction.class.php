@@ -821,11 +821,6 @@ class UserAction extends Action {
 	            	'icon_fl' => 0,
 	            	'school' => $school
 	            );
-	            
-	            var_dump($newUserlogignData);
-	            redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
-	            exit();
-	            
 	            $newUserId = $UserLogin->add($newUserlogignData);
 
 	            /**
@@ -860,7 +855,11 @@ class UserAction extends Action {
 	            /**
 	             * add default dynamic record.
 	             */
-	            $recordDynamicContent = "我刚刚加入了我帮圈圈:)";
+                if(i_is_mobile()) {
+                	$recordDynamicContent = "我刚刚通过触屏版加入了我帮圈圈:)";
+                } else {
+                	$recordDynamicContent = "我刚刚加入了我帮圈圈:)";
+                }
 	            $RecordSay = M("RecordSay");
 	            $RecordDynamic = M("RecordDynamic");
 	            $newRecordSayData = array(
