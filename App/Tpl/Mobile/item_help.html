@@ -21,9 +21,8 @@
     <?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' target='_self' class='getuserinfo' userid='".$sayRecord['uid']."'>
     <img src='".i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's')."' height='30' class='i_h_c_img fl' /></a>"; ?>
     <div class="i_h_c_describe">
-        <p><span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?></p>
-
         <p>
+        	<span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?>
             <span class="post_appendix"></span>
             <?php if (!empty($helpRecord['reward_coins'])) {?>
             回馈: <font class="f12 black_l">活跃</font> <font
