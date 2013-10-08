@@ -23,8 +23,8 @@ $().ready(function(){
         $('#s_t_textarea').val(textareanow);
         $('#emotionbox').fadeOut('fast');
         contentOk = 'yes';
-        return false;
         alert(imgtitlemark);
+        return false;
     });
     $('.emotionbox_change_page').click(function(){
     	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
