@@ -50,21 +50,6 @@ $().ready(function(){
             }
         });
     });
-    $("#dormitorytype").click(function(){
-        var dormitorytype = $("#dormitorytype").val();
-        var schoolvalue = $("#school").attr("value");
-        $('#ajaxprogressbar').html($infoLoading);
-        $.ajax({
-            type: "POST",
-            url: baseUrl+"setting/ajax",
-            data: {selectDormitory: dormitorytype, selectSchool: schoolvalue },
-            datatype: "text",
-            success:function(dormitory){
-                $("#dormitory").replaceWith(dormitory);
-                $('#ajaxprogressbar').html('');
-            }
-        });
-    });
     $("#set_submit").click(function(){
         if (nicknameOk == "yes" && introductionOk == "yes") {
         	$('#ajaxprogressbar').html($infoLoading);
