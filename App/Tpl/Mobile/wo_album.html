@@ -27,14 +27,17 @@
 			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" target="_self" title="店铺图片">悄悄话聊天</a>
 		<?php } ?>
 		<span class="arrow">&gt;</span> 图片详情
-		<span class="fr gray">
+		<p class="gray">
 			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> | 
 			大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> | 
 			浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
-		</span>
+		</p>
 	</div>
 	<div class="album_image_content">
-	    <?php if (!empty($imageItemPrivious['id'])) { ?>
+		<p class="album_image_content_p" thisimageid="<?php echo $imageItem['id']; ?>" thisuserid="<?php echo $userLogin['uid']; ?>">
+  			<a href="<?php echo $imageItem['url']; ?>" target="_self" class="f12" id="this_image_upload_url"><img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" /></a>
+  		</p>
+  		<?php if (!empty($imageItemPrivious['id'])) { ?>
   			<a title="上一张" class="privious_photo_part_text f12" id="privious_image">上一张</a>
   		<?php } else { ?>
   			<a title="已经是第一张了" class="privious_photo_part_text f12 gray" id="privious_image">已经是第一张了</a>
@@ -44,9 +47,6 @@
   		<?php } else { ?>
   			<a title="已经是最后一张了" class="next_photo_part_text f12 gray" id="next_image">已经是最后一张了</a>
   		<?php } ?>
-		<p class="album_image_content_p" thisimageid="<?php echo $imageItem['id']; ?>" thisuserid="<?php echo $userLogin['uid']; ?>">
-  			<a href="<?php echo $imageItem['url']; ?>" target="_self" class="f12" id="this_image_upload_url"><img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" /></a>
-  		</p>
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
 	<div class="black_l">
