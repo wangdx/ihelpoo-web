@@ -304,7 +304,7 @@ class WoAction extends Action {
         if(i_is_mobile()) {
         	$this->display('Mobile:wo_help');
     	} else {
-    		$this->display('index');
+    		$this->display();
     	}
     }
 
@@ -342,7 +342,7 @@ class WoAction extends Action {
         if(i_is_mobile()) {
         	$this->display('Mobile:wo_diffusion');
     	} else {
-    		$this->display('index');
+    		$this->display();
     	}
     }
     
