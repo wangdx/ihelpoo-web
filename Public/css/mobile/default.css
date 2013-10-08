@@ -1287,6 +1287,13 @@ li{ list-style:none; }
     position: relative;
     display: inline-block;
 }
+.wo_main_album_nav{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    padding: 10px;
+}
 .album_image_content_img{
     max-width: 100%;
     margin: 0 auto;
