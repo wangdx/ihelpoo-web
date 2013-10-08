@@ -599,6 +599,9 @@ li{ list-style:none; }
     background-color: #FFF;
     border-radius: 5px;
 }
+.m_m_u_u_li_name{
+    display: block;
+}
 
 /*--- stream_index ---*/
 .verification_code_p{
