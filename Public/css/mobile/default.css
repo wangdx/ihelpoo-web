@@ -1221,7 +1221,6 @@ li{ list-style:none; }
 }
 .degree_ratio{
     width: 100%;
-    border: 1px solid #DDD;
     border-radius: 5px;
     background: #CCC;
     height: 8px;
