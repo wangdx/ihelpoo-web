@@ -3,89 +3,10 @@ $().ready(function(){
 	var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
     var contentOk = 'no';
 	var imageNums = 0;
-	
-	    var elem = document.getElementById("s_t_textarea");
-	    var focus = document.getElementById("cursorfocus");
-	    var input = function () {
-	    	var textareaoffset = $(".main").offset();
-	    	var addleftoffset = textareaoffset.left + 170;
-	    	var pos = textareaTools.getInputOffset(elem, true, addleftoffset);
-	    	focus.style.left = (pos.left - addleftoffset) + 'px';
-	    	focus.style.top = (pos.top - 100) + 'px';
-	    	focus.style.display = 'block';
-	    };
-	    textareaTools._addEvent(elem, 'input', input);
-	    textareaTools._addEvent(elem, 'propertychange', input);
-	    textareaTools._addEvent(elem, 'click', input);
 
     //key check
     var atswitch = 'off';
     $("#s_t_textarea").keyup(function(){
-    	var textareacontent = $('#s_t_textarea').val();
-    	var currentcontent = $(this).insertAtCaret();
-    	var contentlength = currentcontent.length;
-        lastletter = currentcontent.substr(contentlength - 1);
-        if (atswitch == 'on') {
-            if (lastletter == ' ') {
-            	var result = textareacontent.match(atpattern);
-                if (result != null){
-                	atswitch = 'off';
-                	$('.auto_load_div').slideUp('normal');
-                	$.ajax({
-                		type: "POST",
-                		dataType: "json",
-                		url: baseUrl + "ajax/at",
-                		data:{autospacefillatcontent: result},
-                		success:function(msg){
-                			if (msg.status == 'ok') {
-                				$('#s_t_textarea_div_at').slideDown('normal').empty();
-                				for(var i = 0; i < msg.data.length; i++) {
-                					$('#s_t_textarea_div_at').append(
-                						"<li><a href='" + baseUrl + "wo/" + msg.data[i].uid + "' title='" + msg.data[i].nickname + "' target='_blank'>"
-                						+ "<img src='" + msg.data[i].icon_url + "' height='25' class='radius3' /></a></li>");
-                				}
-                			}
-                		}
-                	});
-                }
-            } else {
-            	$.ajax({
-            		type: "POST",
-            		dataType: "json",
-            		url: baseUrl + "ajax/at",
-            		data:{autofillatcontent: currentcontent},
-            		success:function(msg){
-            			if (msg.status == 'ok') {
-            				$('.auto_load_div').slideDown('normal');
-            				if ("6.0" == $.browser.version || "7.0" == $.browser.version || "8.0" == $.browser.version) {
-            					$('.auto_load_div').css({ position: "absolute", left: "878px", top: "115px" });
-            				} else {
-            					$('.auto_load_div').css({ position: "absolute", left: focus.style.left, top: focus.style.top });
-            				}
-            				$('.auto_load_div').html('<ul class="at_auto_match_ul"></ul>');
-            				for(var i = 0; i < msg.data.length; i++) {
-                	    		$('.at_auto_match_ul').append(
-                	    			"<li class='at_auto_match_ul_li' value='" + msg.data[i].uid + "' url='" + msg.data[i].icon_url + "'><a>" + msg.data[i].nickname + "</a></li>"
-                	    	    );
-                	    	}
-            			}
-            		}
-            	});
-            }
-        } else {
-        	$('.auto_load_div').slideUp('normal');
-        }
-
-        if (lastletter == "@") {
-        	$('.auto_load_div').slideDown('normal');
-        	if ("6.0" == $.browser.version || "7.0" == $.browser.version || "8.0" == $.browser.version) {
-        		$('.auto_load_div').css({ position: "absolute", left: "878px", top: "115px" });
-        	} else {
-				$('.auto_load_div').css({ position: "absolute", left: focus.style.left, top: focus.style.top });
-			}
-        	$('.auto_load_div').html('<ul class="at_auto_match_ul f12 gray"><li>输入用户昵称,空格结束</li></ul>');
-        	atswitch = 'on';
-        }
 
         if (textareacontent.length > 0) {
         	var letterlimit = 222 - textareacontent.length;
@@ -97,38 +18,6 @@ $().ready(function(){
         		contentOk = 'morethenlimit';
         	}
         }
-    });
-
-    //at chose
-    $('.at_auto_match_ul_li').click(function(){
-    	var iconurl = $(this).attr('url');
-    	var nickname = $(this).text();
-    	var uid = $(this).attr('value');
-    	$('#s_t_textarea_div_at').fadeIn('fast').append(
-    		"<li><a href='" + baseUrl + "wo/" + uid + "' title='" + nickname + "' target='_blank'>"
-    		+ "<img src='" + iconurl + "' height='25' class='radius3' /></a></li>");
-    	$('.auto_load_div').slideUp('normal');
-    	atswitch = 'off';
-
-    	var currentcontent = $("#s_t_textarea").insertAtCaret();
-    	var splitcurrentcontent = currentcontent.split("@");
-    	var handleatcontent = '';
-    	for(var i = 0; i < splitcurrentcontent.length; i++) {
-    		if (i == splitcurrentcontent.length - 1) {
-    			handleatcontent += '@' + nickname + ' ';
-    		} else if (i >= 1) {
-    			handleatcontent += '@' + splitcurrentcontent[i];
-    		} else {
-    			handleatcontent += splitcurrentcontent[i];
-    		}
-    	}
-
-    	// IE temp support
-    	if (document.selection) {
-    		$("#s_t_textarea").val(handleatcontent);
-    	} else {
-    		AddOnPos("s_t_textarea",handleatcontent);
-    	}
     });
 
     /**
@@ -239,7 +128,6 @@ $().ready(function(){
         var verification_code_value = $('#verification_code').val();
         var textareacontent = $('#s_t_textarea').val();
         var help_is_input = $('#help_is_input').val();
-        var weibo_is_publish = $('#weibo_is_publish').val();
 
         //store image data in input dom
         var upload_img_url_data = attrListImgValue();
@@ -277,36 +165,7 @@ $().ready(function(){
             	} else if (msg.status == "error") {
             		$('#infotextareacheck').slideDown("fast").html("<span class='icon_wrong'></span>" + msg.info).delay(1000).slideUp("fast");
             	} else if (msg.status == "ok") {
-                    //weibo publish
-                    if (weibo_is_publish == 'on') {
-                    	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	if (uploadImageWeibo != '') {
-	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
-	                        });
-                    	} else {
-                    		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
-	                        });
-                    	}
-                    }
-                    if (help_is_input == '1') {
-                    	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	textareacontent = "#求助#" + textareacontent + " http://www.ihelpoo.com/item/help/" + msg.info;
-                    	if (uploadImageWeibo != '') {
-	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
-	                        });
-                    	} else {
-                    		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
-	                        });
-                    	}
-                    }
                     window.location = baseUrl + 'stream/index/newreply';
-                    if (help_is_input == '1') {
-                    	notice.send('system', msg.data);
-                    }
                 } else {
                     alert('something wrong');
                 }
