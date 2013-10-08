@@ -14,13 +14,13 @@
 <div data-role="content">
 
 	<p class="wo_main_ul_p_top black_l fi"><span class="blue_l f16 fb"><?php echo $totalRecords ?></span> 条赞</p>
-    <ul class="wo_main_diffudion">
+    <ul class="wo_main_diffudion lh13">
     <?php foreach ($resultRecordPlus as $recordPlus): ?>
       <li>
         <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" class="wo_user_li_icon">
 	       <img src='<?php echo i_icon_check("$recordPlus[uid]", "$recordPlus[icon_url]", "s"); ?>' width="50" class="radius3" /> 
 	    </a>
-        <p class="wo_user_li_p f12 black_l">
+        <p class="wo_user_li_p">
 	        <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span> 
 	        <span class="f12">赞了</span> 
 	        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" >
