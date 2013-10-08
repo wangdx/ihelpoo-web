@@ -1,7 +1,4 @@
 $().ready(function(){
-	if ("6.0" == $.browser.version || "7.0" == $.browser.version || "8.0" == $.browser.version) {
-
-	} else {
 	    var elem = document.getElementById("s_t_textarea");
 	    var focus = document.getElementById("cursorfocus");
 	    var input = function () {
@@ -15,7 +12,6 @@ $().ready(function(){
 	    textareaTools._addEvent(elem, 'input', input);
 	    textareaTools._addEvent(elem, 'propertychange', input);
 	    textareaTools._addEvent(elem, 'click', input);
-    }
 
     //key check
     var atswitch = 'off';
