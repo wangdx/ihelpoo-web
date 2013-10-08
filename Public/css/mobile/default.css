@@ -959,6 +959,11 @@ li{ list-style:none; }
     top: 5px;
 }
 
+/*--- item_say ---*/
+.i_c_b_verificationcode, .comment_reply_verificationcode{
+    display: none;
+}
+
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;
