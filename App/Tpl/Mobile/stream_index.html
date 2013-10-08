@@ -133,7 +133,7 @@
                     </a>
                 </li>
                 <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="ih-<?php echo $record['sid']; ?>">
+                    <a href="/item/help/<?php echo $record['sid']; ?>" target="_self" data-transition="fade" data-theme="" data-icon="" class="diffusion" value="ih-<?php echo $record['sid']; ?>">
                         扩散 <?php if (!empty($record['diffusion_co'])) { echo "(".$record['diffusion_co'].")"; } ?>
                     </a>
                 </li>
@@ -151,12 +151,12 @@
                     </a>
                 </li>
                 <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="diffusion" value="i-<?php echo $record['sid']; ?>">
+                    <a href="/item/say/<?php echo $record['sid']; ?>" target="_self" data-transition="fade" data-theme="" data-icon="" class="diffusion" value="i-<?php echo $record['sid']; ?>">
                         扩散 <?php if (!empty($record['diffusion_co'])) { echo "(".$record['diffusion_co'].")"; } ?>
                     </a>
                 </li>
                 <li>
-                    <a data-transition="fade" data-theme="" data-icon="" class="comment_button" value="i-<?php echo $record['sid']; ?>" isclick="false">
+                    <a href="/item/say/<?php echo $record['sid']; ?>" target="_self" data-transition="fade" data-theme="" data-icon="" class="comment_button" value="i-<?php echo $record['sid']; ?>" isclick="false">
                         评论 <?php if (!empty($record['comment_co'])) { echo "(".$record['comment_co'].")"; } ?>
                     </a>
                 </li>
