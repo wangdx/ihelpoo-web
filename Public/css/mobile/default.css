@@ -1290,6 +1290,8 @@ li{ list-style:none; }
 .album_image_content_img{
     max-width: 100%;
     margin: 0 auto;
+    border-radius: 3px;
+    display: block;
 }
 /*--- setting_index ---*/
 .setindex{
