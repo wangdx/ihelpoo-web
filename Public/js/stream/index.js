@@ -145,9 +145,6 @@ $().ready(function(){
      */
     mseeageNums();
 
-    $('.stream_top_notice_info .icon_index_wrong').click(function(){
-        $(this).parent().slideUp('fast');
-    });
     var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
     var contentOk = 'no';
 	var imageNums = 0;
