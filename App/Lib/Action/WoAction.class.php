@@ -376,7 +376,12 @@ class WoAction extends Action {
         $totalPages = ceil($userRecordPlusNums / $count);
         $this->assign('totalRecords',$userRecordPlusNums);
         $this->assign('totalPages',$totalPages);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:wo_plus');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function intersection()

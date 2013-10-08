@@ -13,5 +13,35 @@
     </div>
 <div data-role="content">
 
+	<p class="wo_main_ul_p_top black_l fi"><span class="blue_l f16 fb"><?php echo $totalRecords ?></span> 条赞</p>
+    <ul class="wo_main_diffudion">
+    <?php foreach ($resultRecordPlus as $recordPlus): ?>
+      <li>
+        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" class="wo_user_li_icon">
+	       <img src='<?php echo i_icon_check("$recordPlus[uid]", "$recordPlus[icon_url]", "s"); ?>' width="50" class="radius3" /> 
+	    </a>
+        <p class="wo_user_li_p f12 black_l">
+	        <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span> 
+	        <span class="f12">赞了</span> 
+	        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']; ?>" target="_blank" >
+	          <?php echo $recordPlus['nickname']; ?>
+	        </a> 的 <?php echo $recordPlus['content'] ?>
+	        <?php if($recordPlus['say_type'] == 1) { ?>
+	        <a href="__ROOT__/item/help/<?php echo $recordPlus['sid'] ?>">详细</a> <span class="ico_help" title="帮助"></span>
+	        <?php } else { ?>
+	        <a href="__ROOT__/item/say/<?php echo $recordPlus['sid'] ?>">详细</a>
+	        <?php } ?>
+	        <span class="wo_user_li_time_span"><?php echo i_time($recordPlus['create_time']) ?></span>
+        </p>
+      </li>
+    <?php endforeach; ?>
+    </ul>
+  
+    <div class="wo_paging">
+      <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条赞 <?php echo $totalPages ?>页</p>
+      <span>
+      <?php if ($totalPages > 1) { i_page_mobile_show("wo/plus/".$userLogin['uid'], $totalPages); } ?>
+      </span>
+    </div>
 </div>
 <include file="Public:footermobile" />
