@@ -1262,6 +1262,19 @@ li{ list-style:none; }
     right: 10px;
     top: 15px;
 }
+
+/*--- wo_album ---*/
+.user_album_ul{
+    padding: 0;
+}
+.user_album_ul li{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    padding: 15px 10px;
+    position: relative;
+}
 /*--- setting_index ---*/
 .setindex{
     padding: 0;
