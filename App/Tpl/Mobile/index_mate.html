@@ -27,21 +27,6 @@
     	我帮圈圈<a href="__ROOT__/index/school" target="_self" title="更多学校">{$schoolname}</a>现有 <span class="fb blue"><?php echo $allUserNums ?></span> 位童鞋
     </span>
     
-    <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
-    	<span class="select_view_sex_span">
-	    <?php if ($_GET['sex'] == 1) { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看男生]</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[女生]</a>
-	    <?php } else if ($_GET['sex'] == 2) { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[男生]</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看女生]</a>
-	    <?php } else { ?>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[只看男生]</a>
-	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[只看女生]</a>
-	    <?php } ?>
-	    </span>
-    <?php } ?>
-    
     <div class="main_mate_info">
     <select onchange="self.location.href=options[selectedIndex].value">
 	<option value="/index/mate?w=new" {$_GET['w'] == 'new' ? 'selected':NULL}>最新加入</option>
@@ -109,6 +94,22 @@
     </select>
     
     <?php } ?>
+    
+    <?php if ($_GET['w'] == "academy" || $_GET['w'] == "grade") { ?>
+    	<span class="select_view_sex_span">
+	    <?php if ($_GET['sex'] == 1) { ?>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看男生]</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[女生]</a>
+	    <?php } else if ($_GET['sex'] == 2) { ?>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[男生]</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex_select">[只看女生]</a>
+	    <?php } else { ?>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=1&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[只看男生]</a>
+	    	<a href="__ROOT__/index/mate?w={$_GET['w']}&n={$_GET['n']}&sex=2&specialty={$_GET['specialty']}" target="_self" class="main_mate_info_sex">[只看女生]</a>
+	    <?php } ?>
+	    </span>
+    <?php } ?>
+    
   </div>
   <ul class="main_mate_user_ul">
   <?php foreach ($userList as $user) :?>
