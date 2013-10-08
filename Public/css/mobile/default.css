@@ -960,7 +960,7 @@ li{ list-style:none; }
 }
 
 /*--- item_say ---*/
-.i_c_b_verificationcode, .comment_reply_verificationcode{
+.ui-content .i_c_b_verificationcode,.ui-content .comment_reply_verificationcode{
     display: none;
 }
 
