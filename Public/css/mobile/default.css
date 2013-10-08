@@ -1222,14 +1222,16 @@ li{ list-style:none; }
 .degree_ratio{
     width: 100%;
     border: 1px solid #EEE;
+    border-radius: 3px;
     background: #CCC;
-    height: 5px;
-    margin: 10px;
+    height: 8px;
+    margin: 10px 0 5px;
 }
 .degree_ratio_in{
-    height: 5px;
+    height: 8px;
     background: #F60;
     margin: 0;
+    border-radius: 3px;
 }
 /*--- setting_index ---*/
 .setindex{
