@@ -1217,8 +1217,8 @@ li{ list-style:none; }
     padding: 10px;
 }
 .wo_main_honor li{
-    border-bottom: 1px solid #EEE;
-    padding: 10px 0;
+    border-bottom: 1px dotted #EEE;
+    padding: 10px 5px;
 }
 .degree_ratio{
     width: 100%;
@@ -1243,8 +1243,8 @@ li{ list-style:none; }
     padding: 10px;
 }
 .explain_info_ul li{
-    border-bottom: 1px solid #EEE;
-    padding: 10px 0;
+    border-bottom: 1px dotted #EEE;
+    padding: 10px 5px;
 }
 .quan_ul{
     padding: 0;
