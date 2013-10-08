@@ -1224,11 +1224,12 @@ li{ list-style:none; }
     border: 1px solid #EEE;
     background: #CCC;
     height: 5px;
-    margin: 10px 20px 5px 20px;
+    margin: 10px;
 }
 .degree_ratio_in{
     height: 5px;
     background: #F60;
+    margin: 0;
 }
 /*--- setting_index ---*/
 .setindex{
