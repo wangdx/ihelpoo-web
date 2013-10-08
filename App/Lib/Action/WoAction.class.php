@@ -300,7 +300,12 @@ class WoAction extends Action {
         $totalPages = ceil($totalRecords / $count);
         $this->assign('totalRecords',$totalRecords);
         $this->assign('totalPages',$totalPages);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:wo_help');
+    	} else {
+    		$this->display('index');
+    	}
     }
 
     public function diffusion()
