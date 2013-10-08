@@ -1207,6 +1207,18 @@ li{ list-style:none; }
     color: #A8A8A8;
 }
 
+/*--- wo_honor ---*/
+.wo_main_honor{
+    padding: 0;
+}
+.wo_main_honor li{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    padding: 15px 10px;
+    position: relative;
+}
 /*--- setting_index ---*/
 .setindex{
     padding: 0;
