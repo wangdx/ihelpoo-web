@@ -403,7 +403,12 @@ class ItemAction extends Action {
     			redirect('/item/help/'.$helpRecordSid, 1, '选择最佳帮助成功...');
     		}
     	}
-    	$this->display();
+    	
+    	if(i_is_mobile()) {
+        	$this->display('Mobile:item_help');
+    	} else {
+    		$this->display();
+    	}
     }
 
 	/**

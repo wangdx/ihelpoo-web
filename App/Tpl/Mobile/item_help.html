@@ -1,3 +1,8 @@
+<?php
+	Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	$UserLogin = M("UserLogin");
+?>
 <include file="Public:headermobile" />
 <!-- Home -->
     <div data-theme="b" data-role="header">
@@ -5,10 +10,251 @@
             首页
         </a>
         <h3>
-           {$title} - 帮助
+           {$title}
         </h3>
     </div>
 <div data-role="content">
+
+
+<div class="main_item">
+<div class="i_content">
+    <?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' target='_self' class='getuserinfo' userid='".$sayRecord['uid']."'>
+    <img src='".i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's')."' height='30' class='i_h_c_img fl' /></a>"; ?>
+    <div class="i_h_c_describe">
+        <p><span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?></p>
+
+        <p>
+            <span class="post_appendix"></span>
+            <?php if (!empty($helpRecord['reward_coins'])) {?>
+            回馈: <font class="f12 black_l">活跃</font> <font
+                class="f14 orange fb"><?php echo $helpRecord['reward_coins'] ?></font><span class="icon_star"></span>
+            <?php } ?>
+		    <span class="gray f12" style="position:relative; left: 10px; top:2px">
+		    <?php
+		    if (!empty($sayRecord['from'])) {
+          		if ("2" == $sayRecord['from']) {
+          	  		echo "来自我帮圈圈抓取程序";
+          		} else if ("3" == $sayRecord['from']) {
+          	 		echo "来自我帮圈圈Andriod客户端";
+        		} else {
+          	  		echo "来自".$sayRecord['from'];
+          		}
+    		}
+		    if (!empty($sayRecord['url'])) {
+          		echo "<a href='".$sayRecord[url]."' target='_blank'><span class='post_link_static'></span></a>";
+     		} ?>
+                <?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
+                此求助原始发布于 <a
+                    href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/help/<?php echo $sayRecord['sid']; ?>" target="_self"><?php echo $sayRecordSchoolInfo['school']; ?></a>
+                <?php } ?>
+		    </span>
+        </p>
+		    <span class="i_h_c_describe_time f12 black_l">
+		      <span class="post_colck"></span>
+                <?php if("3" != $helpRecord['status'] && ($sayRecord['time'] + 1296000 - time()) > 0) { ?>
+		      离帮助结束还有<?php echo floor((($sayRecord['time'] + 1296000) - time()) / 86400) ?>天
+                <?php } ?>
+                求助于<?php echo i_time($sayRecord['time']) ?> <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']
+        ?>
+        |
+        <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-{$sayRecord['sid']}">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
+        <?php if (!empty($userloginedrecord['uid'])) { ?>
+        <a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
+        <a class="black_l" id="fav_record_btn" value="<?php echo $sayRecord['sid'] ?>"><span class="icon_star"></span>收藏</a>
+        <?php } else { ?>
+        扩散(<?php echo $recordDiffusionNums ?>)
+        <?php } ?>
+        <?php if($sayRecord['uid'] == $userloginedrecord['uid']) { ?>
+        <input id="del_help_record_value" type="hidden" name="delrecord" value="<?php echo $helpRecord['sid'] ?>"/>
+        <a id="del_help_record_btn"><span class="icon_garbage"></span>删除</a>
+        <?php } ?>
+        </span>
+    </div>
+    <div class="i_h_c_content">
+        <p class="i_h_c_content_p">
+            <span class="fb gray">困难描述:</span>
+            <?php
+		      	echo $emotion->transEmotion(i_content($sayRecord['content']));
+            if (!empty($imageRecordArray)) {
+            foreach($imageRecordArray as $imageRecord) {
+            $imageResize = getimagesize($imageRecord);
+            $imageWidth = $imageResize['0'];
+            if ($imageWidth > 800) {
+            echo "<img src='".$imageRecord."' width='800' style='border:6px solid #EEE'/>";
+            } else {
+            echo "<img src='".$imageRecord."' style='border:6px solid #EEE'/>";
+            }
+            }
+            }
+            ?>
+        </p>
+        <?php if("3" == $helpRecord['status']) { ?>
+        <!-- 帮助流程3 帮助结束 -->
+        <div>
+            <div class="i_h_c_helpend">
+                <p class="fb green_d"><span class="icon_words"></span> 帮助结束</p>
+                <p class="i_h_c_helpend_img">
+                    <span class="icon_n_thumb"></span><span class="fb gray">最佳帮助: <a href="__ROOT__/wo/<?php echo $helpRecord['win_uid'] ?>">
+                    <img src="<?php echo i_icon_check($helpRecordWiner['uid'], $helpRecordWiner['icon_url'], 's') ?>" height="35" class="radius3"/> <?php echo $helpRecordWiner['nickname']; ?></a></span>
+                </p>
+                <p><span class="icon_heart"></span> <span class="fb gray">感谢的话:</span> <?php echo $helpRecord['thanks'] ?> <span class="f12 black_l"><?php echo i_time($helpRecord['thanks_ti']) ?></span></p>
+            </div>
+        </div>
+        <?php } else { ?>
+        <!-- 帮助流程1~2 -->
+        <div class="i_h_c_contentbox">
+            <?php if ($sayRecord['uid'] != $userloginedrecord['uid']) { ?>
+            <form action="" method="post" id="help_content_from">
+                <input type="hidden" name="sid" value="<?php echo $helpRecord['sid'] ?>"/>
+                <input type="hidden" name="recorduid" value="<?php echo $sayRecord['uid'] ?>"/>
+                <input type="hidden" name="imageurl" id="imageurl"/>
+                <input type="hidden" name="atusers" id="atusers"/>
+                <input type="hidden" name="textareacontent" id="textareacontent"/>
+                <textarea id="help_content_from_textarea" name="helpcontent"></textarea>
+                <span class="i_help_comment_textarea_info f12"></span>
+                <a id="help_content_from_btn" class="btn f12">我来帮助</a>
+                <p class="i_c_b_form_icon_p">
+                    <span class="post_icon" id="textareaicon" title="表情"></span>
+                    <span class="post_img" id="textareaimg" title="图片"></span>
+                </p>
+            </form>
+            <!-- emotionbox hide -->
+            <div id="emotionbox_item">
+                <p class="emotionbox_close_p">
+                    <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
+                    <a class="emotionbox_change_page" title="微博" value="2">微博</a>
+                    <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
+                    <span id="emotionbox_close" class="close_x" title="关闭">×</span>
+                </p>
+                <ul class="emotionbox_show_ul"></ul>
+            </div>
+            <!-- /emotionbox -->
+            <!-- image upload hide -->
+            <div class="img_upload_comment_form_div">
+                <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+                    <input id="upload_form_img_file" name="uploadedimg" type="file"/>
+                    <a class="btn f12" id="img_upload_btn">上传</a>
+                    <span class="imgajaxloading_span"></span>
+                </form>
+                <ul id="image_upload_list_ul"></ul>
+            </div>
+            <!-- /image upload -->
+            <?php } ?>
+
+            <!-- 帮助流程2 挑选人回馈-->
+            <?php
+		      	if ($sayRecord['uid'] == $userloginedrecord['uid']) {
+          			if("2" == $helpRecord['status']) {
+              			echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
+            	echo " <form method='post' id='thanksForm'>" ?>
+                <ul>
+                    <?php
+		              	foreach ($userChooseArray as $userChoose) :
+							$userChooseRecord = $UserLogin->field('uid,nickname')->find($userChoose);
+                    echo " <li><a href='".__ROOT__."/wo/".$userChoose."' target='_self' class='getuserinfo' userid='$userChoose'>$userChooseRecord[nickname]</a>";
+                        echo "<input type='radio' name='chooseid' value='".$userChoose."'/>选择
+                    </li> ";
+                    endforeach;
+                    ?>
+                </ul>
+                <p class='i_h_c_thanks_words f12 gray'><span class="icon_heart"></span>说点什么表示感谢吧!</p>
+                <textarea name="choosethanks"></textarea>
+                <input type="hidden" name="sid" value="<?php echo $helpRecord['sid'] ?>">
+                <input type="submit" value="感谢" class="system_notice" />
+                <?php echo "</form> </div> "; } } ?>
+    </div>
+    <?php } ?>
+</div>
+
+<!-- diffusion -->
+<?php if (!empty($recordDiffusionNums)) {?>
+<ul class="i_record_diffusion black_l f12">
+    <?php foreach ($recordDiffusionArray as $recordDiffusion): ?>
+    <li>
+        <a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']?>" target="_self" class="getuserinfo" userid="<?php echo $recordDiffusion['uid']?>"><?php echo $recordDiffusion['nickname'] ?></a>
+        扩散了这条信息. <?php if(!empty($recordDiffusion['view'])) echo "<span class='gray'>并表示：</span>".$recordDiffusion['view']; ?>
+        <span class="gray"><?php echo i_time($recordDiffusion['time']) ?></span></li>
+    <?php endforeach; ?>
+</ul>
+<?php } ?>
+
+<!-- plus -->
+<?php if (!empty($sayRecord['plus_co'])) { ?>
+<ul class="i_record_plus black_l f12">
+    <?php foreach ($recordPlusArray as $recordPlus): ?>
+    <li>
+        <a href="__ROOT__/wo/<?php echo $recordPlus['uid']?>" target="_self" class="getuserinfo" userid="<?php echo $recordPlus['uid']?>">
+            <img src="<?php echo i_icon_check($recordPlus['uid'], $recordPlus['icon_url'], 's') ?>" height="30" class="radius3"/> <?php echo $recordPlus['nickname'] ?>
+        </a>
+        赞过
+        <span class="gray"><?php echo i_time($recordPlus['create_time']) ?></span>
+    </li>
+    <?php endforeach; ?>
+</ul>
+<?php } ?>
+
+<!-- 帮助回复 -->
+<div class="i_comment_list">
+    <ul class="i_comment_list_ul">
+        <?php foreach ($allHelpreply as $helpreply) : ?>
+        <li>
+            <a href="/wo/<?php echo $helpreply['uid']; ?>" target="_self">
+            	<img src="<?php echo i_icon_check($helpreply['uid'], $helpreply['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3"/>
+            </a>
+            <div class="i_c_l_u_li_div black_l">
+                <?php echo "<a href='".__ROOT__."/wo/".$helpreply['uid']."' target='_self' class='getuserinfo' userid='".$helpreply['uid']."'> ".$helpreply['nickname']."</a>" ?>
+		      <span class="f12 gray fb">
+		      <?php
+		      	if (!empty($helpreply['toid'])) {
+		  			$commentReplyUser = $UserLogin->find($helpreply['toid']);
+          			echo "[回复:".$commentReplyUser['nickname']."]";
+      			}
+      		  ?>
+		      </span>
+                <?php echo $emotion->transEmotion(stripslashes($helpreply['content']));
+                if (!empty($helpreply['image'])) {
+                ?>
+                <p class="i_c_l_u_li_div_img_p">
+                    <a href="<?php echo $helpreply['image']; ?>" title="点击查看原图" target="_blank">
+                        <img src="<?php echo i_image_thumbnail($helpreply['image']); ?>" height="80" class=""/>
+                    </a>
+                </p>
+                <?php } ?>
+                <!-- transEmotion -->
+                <span class="i_c_l_u_li_div_time f12 gray"><?php echo i_time($helpreply['time']) ?></span>
+		      <span class="f12 fr">
+			      <?php if ($helpreply['uid'] != $userloginedrecord['uid']) { ?>
+                  <a class="help_comment_reply">追问</a> <span class="icon_plus"></span>
+                  <?php } else { ?>
+                  <span class="icon_plus"></span> <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
+                  <?php } if ($userloginedrecord['uid'] == $sayRecord['uid'] && $helpreply['uid'] != $userloginedrecord['uid']) { ?>
+                  <a class="delete_help_reply_btn red_l" value="<?php echo $helpreply['id'] ?>">删除</a>
+                  <?php } ?>
+		      </span>
+            </div>
+            <?php
+		    if (!empty($helpreply['uid']) && $helpreply['uid'] != $userloginedrecord['uid']) { ?>
+            <form class="help_comment_reply_form" action="" method="post">
+                <input type="hidden" name="sid" value="<?php echo $sayRecord['sid'] ?>"/>
+                <input type="hidden" name="toid" value="<?php echo $helpreply['uid'] ?>"/>
+                <input type="hidden" name="hrid" value="<?php echo $helpreply['id'] ?>"/>
+                <input type="hidden" name="recorduid" value="<?php echo $sayRecord['uid'] ?>"/>
+                <textarea class="help_comment_reply_form_textarea" name="helpcontent"></textarea>
+                <input type="hidden" name="atusers" class="help_reply_atusers"/>
+                <input type="hidden" name="textareacontent" class="help_reply_textareacontent"/>
+                <input type="button" class="help_comment_reply_btn" value="追问" />
+                <p style="padding-left:290px;"><span class="post_icon reply_emotionbox_icon"></span></p>
+            </form>
+            <?php } ?>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+</div>
+<div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
+
+</div>
+
 
 </div>
 <include file="Public:footermobile" />

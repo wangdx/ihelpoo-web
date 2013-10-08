@@ -1,7 +1,7 @@
 <?php
 	Vendor('Ihelpoo.Emotion');
     $emotion = new Emotion();
-	$IUserLogin = D("IUserLogin");
+	$UserLogin = M("UserLogin");
 ?>
 <include file="Public:header"/>
 <link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css"/>
@@ -168,7 +168,7 @@
                 <ul>
                     <?php
 		              	foreach ($userChooseArray as $userChoose) :
-							$userChooseRecord = $IUserLogin->field('uid,nickname')->find($userChoose);
+							$userChooseRecord = $UserLogin->field('uid,nickname')->find($userChoose);
                     echo " <li><a href='".__ROOT__."/wo/".$userChoose."' class='getuserinfo' userid='$userChoose'>$userChooseRecord[nickname]</a>";
                         echo "<input type='radio' name='chooseid' value='".$userChoose."'/>选择
                     </li> ";
@@ -226,7 +226,7 @@
 		      <span class="f12 gray fb">
 		      <?php
 		      	if (!empty($helpreply['toid'])) {
-		  			$commentReplyUser = $IUserLogin->userExists($helpreply['toid']);
+		  			$commentReplyUser = $UserLogin->find($helpreply['toid']);
           			echo "[回复:".$commentReplyUser['nickname']."]";
       			}
       		  ?>
