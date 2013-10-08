@@ -715,11 +715,11 @@ function i_savenotice($from, $to, $noticeType, $detailId)
  */
 function i_is_mobile()
 {
-	if (!empty($_GET['changviewtype'])) {
-		$changviewtype = $_GET['changviewtype'];
-		if ($changviewtype == 'web') {
+	if (!empty($_GET['changeviewtype'])) {
+		$changeviewtype = $_GET['changeviewtype'];
+		if ($changeviewtype == 'web') {
 			session('viewClientType','web');
-		} else if ($changviewtype == 'mobile') {
+		} else if ($changeviewtype == 'mobile') {
 			session('viewClientType','mobile');
 		}
 	}
