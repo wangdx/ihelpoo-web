@@ -900,6 +900,7 @@ li{ list-style:none; }
     background-color: #FFFFFF;
     border: 1px solid #DDDDDD;
     display: none;
+    position: relative;
 }
 #emotionbox_item{    
     display: none;
