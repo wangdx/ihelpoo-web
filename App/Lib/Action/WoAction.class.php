@@ -439,7 +439,12 @@ class WoAction extends Action {
         $UserHonor = M("UserHonor");
         $userHonors = $UserHonor->where("uid = $userId")->select();
         $this->assign('userHonors',$userHonors);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:wo_honor');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function album()
