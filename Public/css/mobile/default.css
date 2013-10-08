@@ -1233,6 +1233,31 @@ li{ list-style:none; }
     margin: 0;
     border-radius: 3px;
 }
+
+/*--- wo_quan ---*/
+.explain_info_ul{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    padding: 10px;
+}
+.explain_info_ul li{
+    border-bottom: 1px solid #EEE;
+    padding: 10px 0;
+}
+.quan_ul{
+    padding: 0;
+}
+.quan_ul li{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    padding: 15px 10px;
+    position: relative;
+}
+
 /*--- setting_index ---*/
 .setindex{
     padding: 0;
