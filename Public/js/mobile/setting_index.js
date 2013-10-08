@@ -44,7 +44,7 @@ $().ready(function(){
             data: "selectAcademy=" + academy,
             dataType: "text",
             success:function(specialty){
-                $("#specialty").replaceWith(specialty);
+                $("#specialty").html(specialty);
                 $('#ajaxprogressbar').html('');
             }
         });
