@@ -24,8 +24,6 @@ $().ready(function(){
         $('#s_t_textarea').val(textareanow);
         $('#emotionbox').fadeOut('fast');
         contentOk = 'yes';
-        //important here, refuse default explorer action
-        return true;
     });
     $('.emotionbox_change_page').click(function(){
     	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
