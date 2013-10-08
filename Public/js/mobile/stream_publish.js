@@ -17,9 +17,10 @@ $().ready(function(){
     });
     $('.emotionbox_show_ul img').live('click', function(){
         var imgtitle = $(this).attr('title');
+        var textareavalue = $('#s_t_textarea').val();
         var imgtitlemark = '[' + imgtitle + ']';
         alert(imgtitlemark);
-        var textareanow = $('#s_t_textarea').val() + imgtitlemark;
+        var textareanow = textareavalue + imgtitlemark;
         $('#s_t_textarea').val(textareanow);
         $('#emotionbox').fadeOut('fast');
         contentOk = 'yes';
