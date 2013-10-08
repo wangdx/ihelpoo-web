@@ -157,12 +157,9 @@ $().ready(function(){
     /**
      * image part
      */
-    $('#textareaimg').toggle(
+    $('#textareaimg').click(
         function(){
             $('.img_upload_form_div').slideDown('fast');
-        },
-        function(){
-            $('.img_upload_form_div').slideUp('fast');
         }
     );
 
@@ -205,7 +202,7 @@ $().ready(function(){
     /**
      * help part
      */
-    $('#textareahelp').toggle(
+    $('#textareahelp').click(
         function(){
             $(this).addClass("helpleaf_select");
             $('#help_is_input').val('1');
@@ -215,11 +212,6 @@ $().ready(function(){
             $('#post_groupmsgpush_li').slideUp('up');
             $('#groupmsgpush_system').removeAttr('checked');
             $('#groupmsgpush_mail').removeAttr('checked');
-        },
-        function(){
-            $(this).removeClass("helpleaf_select");
-            $('#help_is_input').val('0');
-            $('#post_help_reword').slideUp('fast');
         }
     );
 
