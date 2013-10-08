@@ -21,17 +21,6 @@ $().ready(function(){
     	var contentlength = currentcontent.length;
         lastletter = currentcontent.substr(contentlength - 1);
         if (atswitch == 'on') {
-
-            /**
-             *
-             * 1.@[^\s:：，,.。@]*(?=[\s:：，,.。])
-             * 2./@[^@]+?(?=[\s:：(),.。])/g
-             * 3.(@[\\u4E00-\\u9FA5A-Za-z0-9_]+)
-             *
-             * var re = new RegExp("(@[\\u4E00-\\u9FA5A-Za-z0-9_]+)", "g");
-             * var s = "<span class=\"fb red_l\">$1<\/span>";
-             * data = currentcontent.replace(re, s);
-             */
             if (lastletter == ' ') {
             	var result = textareacontent.match(atpattern);
                 if (result != null){
@@ -106,7 +95,7 @@ $().ready(function(){
     });
 
     //at chose
-    $('.at_auto_match_ul_li').live("click", function(){
+    $('.at_auto_match_ul_li').click(function(){
     	var iconurl = $(this).attr('url');
     	var nickname = $(this).text();
     	var uid = $(this).attr('value');
@@ -148,7 +137,7 @@ $().ready(function(){
     $('#emotionbox_close').click(function(){
         $('#emotionbox').slideUp('fast');
     });
-    $('.emotionbox_show_ul img').live("click", function(){
+    $('.emotionbox_show_ul img').click(function(){
         var imgtitle = $(this).attr('title');
         var imgtitlemark = '[' + imgtitle + ']';
         var textareanow = $('#s_t_textarea').val() + imgtitlemark;
@@ -166,56 +155,6 @@ $().ready(function(){
     });
     
     /**
-     * icon reply part
-     */
-    $(".comment_textareaicon_reply").live('click', function(e){
-        var positionleft = e.pageX + 10;
-    	var positiontop = e.pageY + 10;
-    	$replytextarea = $(this).parent().find('.textarea_style');
-        var emotionboxhtml = '<p class="emotionbox_close_p">'
-		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
-		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
-		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
-		+ '<span class="replyemotionbox_close close_x" title="关闭">×</span>'
-		+ '</p><ul class="emotionbox_show_ul_inner"></ul>';
-        $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
-        $(".emotionbox_show_ul_inner").load(baseUrl + "other/loademotion");
-        return false;
-    });
-    $(".comment_textareaicon_replyinner").live('click', function(e){
-        var positionleft = e.pageX + 10;
-    	var positiontop = e.pageY + 10;
-    	$replytextarea = $(this).parent().find('.textarea_style');
-        var emotionboxhtml = '<p class="emotionbox_close_p">'
-		+ '<a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>'
-		+ '<a class="emotionbox_change_page" title="微博" value="2">微博</a>'
-		+ '<a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>'
-		+ '<span class="replyemotionbox_close close_x" title="关闭">×</span>'
-		+ '</p><ul class="emotionbox_show_ul_inner"></ul>';
-        $(".replyemotionbox").fadeIn("fast").css({ position: "absolute", left: positionleft, top: positiontop }).html(emotionboxhtml);
-        $(".emotionbox_show_ul_inner").load(baseUrl + "other/loademotion");
-        return false;
-    });
-    $(".replyemotionbox_close").live('click', function(){
-    	 $(".replyemotionbox").slideUp('fast');
-    	 return false;
-    });
-    $('.emotionbox_show_ul_inner img').live("click", function(){
-        var imgtitle = $(this).attr('title');
-        var imgtitlemarkin = '[' + imgtitle + ']';
-        var textareanow = $replytextarea.val() + imgtitlemarkin;
-        $replytextarea.val(textareanow);
-        $(".replyemotionbox").fadeOut('fast');
-        return false;
-    });
-    $('.emotionbox_change_page').live('click', function(){
-    	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
-    	$(this).addClass('bg_emotionbox_page_select');
-    	$page = $(this).attr("value");
-        $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
-    });
-    
-    /**
      * image part
      */
     $('#textareaimg').toggle(
@@ -227,22 +166,7 @@ $().ready(function(){
         }
     );
 
-    //from the internet
-    $('#img_upload_net_btn').click(function(){
-        var netImgUrl = $('#img_upload_net').val();
-        if (netImgUrl == '') {
-            $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有输入图片地址呢</span>").delay(1000).fadeOut('fast');
-        } else {
-            if (imageNums > 4) {
-                alert('最多一次只能传5张图片');
-            } else {
-                var uploadNetImgList = "<li class='upload_img_list' url='" + netImgUrl + "'><img src='" + netImgUrl +"' width='80'/><a href='" + netImgUrl +"' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <span class='icon_index_wrong' title='删除'></span></li>";
-                $('#image_upload_list_ul').append(uploadNetImgList);
-                imageNums++;
-            }
-        }
-    });
-    $('.upload_img_list .icon_index_wrong').live('click', function(){
+    $('.upload_img_list .icon_index_wrong').click(function(){
         imageNums--;
         $(this).parent().remove();
     });
@@ -277,69 +201,6 @@ $().ready(function(){
         }
     });
 
-    /**
-     * video part
-     */
-    $('#textarealink').toggle(
-    	function(){
-    		$('#post_link_li').slideDown('fast');
-    		$('#videourl').val('支持优酷、土豆、酷六、56、乐视、搜狐');
-    	},
-    	function(){
-    		$('#post_link_li').slideUp('fast');
-    		$('#videourl').val('');
-    	}
-    );
-
-    $('#videourl').focus(function(){
-    	var videourlvalue = $('#videourl').val();
-    	if (videourlvalue == '支持优酷、土豆、酷六、56、乐视、搜狐') {
-    		$(this).val('');
-    	}
-    });
-
-    $('#url_video_btn').click(function(){
-    	var videourlvalue = $('#videourl').val();
-    	$('.post_link_li_info').slideDown('fast').html('<span class="gray">视频加载中...</span>');
-    	if (videourlvalue == '支持优酷、土豆、酷六、56、乐视、搜狐' || videourlvalue == '') {
-    		$('.post_link_li_info').slideDown('fast').html('<span class="red_l">视频地址不能为空</span>');
-    	} else {
-    		$.ajax({
-                type: "POST",
-        		dataType: "json",
-        		url: baseUrl + "ajax/videourl",
-        		data:{videourlvalue: videourlvalue},
-        		success:function(msg){
-                	if (!msg.status) {
-                		$('.post_link_li_info').slideDown('fast').html('<span class="red_l">暂不支持该视频地址</span>');
-    					return false;
-    				} else {
-    					var inhtml = "<div style='border:1px #CCC solid; padding:3px; display: inline-block; background:#FFF; border-radius:3px; padding:5px;'>"
-    						+ "		<a class='open_vedio' href='javascript:;' alt='"+msg.data.title+"'>"
-    						+ "		<img width='136' height='104' src='"+msg.data.img+"' /></a>"
-    						+ "		<div class='vedio' style='display:none;'>"
-    						+ "			<div>"
-    						+ "				<a style='float:right' target='_new' href='"+msg.data.url+"'>"+msg.data.title+"</a>"
-    						+ "				<a class='close_vedio' href='javascript:;'>关闭</a>"
-    						+ "			</div>"
-    						+ msg.data.object
-    						+ "		</div>"
-    						+ "</div>";
-    					$('.post_link_li_info').slideDown('fast').html(inhtml);
-    					return false;
-    				}
-                }
-            });
-    	}
-    });
-    $('.open_vedio').live('click', function(){
-		$(this).hide();
-		$(this).next('.vedio').show();
-	});
-	$('.close_vedio').live('click', function(){
-		$(this).parent().parent().hide();
-		$(this).parent().parent().prev('.open_vedio').show();
-	});
 
     /**
      * help part
@@ -373,27 +234,6 @@ $().ready(function(){
 	        $('#left_coins_calculate').html("<span class='red_l'>活跃不够了</span>");
 	    }
 	});
-
-	/**
-	 * group msg push part
-	 */
-	$('#textareagroupmsgpush').toggle(
-		function(){
-			$('#post_groupmsgpush_li').slideDown('fast');
-			$('#groupmsgpush_system').attr('checked','true');
-			$('#groupmsgpush_mail').attr('checked','true');
-
-			//help close
-			$('#textareahelp').removeClass("helpleaf_select");
-			$('#help_is_input').val('0');
-			$('#post_help_reword').slideUp('fast');
-		},
-		function(){
-			$('#post_groupmsgpush_li').slideUp('fast');
-			$('#groupmsgpush_system').removeAttr('checked');
-			$('#groupmsgpush_mail').removeAttr('checked');
-		}
-	);
 
     /**
      * submit
