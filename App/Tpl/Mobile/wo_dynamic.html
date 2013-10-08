@@ -135,10 +135,11 @@
     </div>
   </div>
   <?php } ?>
-
+  
+<?php $record = $sayRecord['0']; ?>
+<?php if (!empty($record) { ?>
 <p>最新记录</p>
 <ul class="stream_list_ul">
-  <?php $record = $sayRecord['0'];?>
     <li class="stream_list_ul_li">
     <?php if ($record['type'] == '2') { ?>
           <span class="gradeg"></span>
@@ -232,6 +233,7 @@
     </div>
   </li>
 </ul>
+<?php } ?>
 <p><a href="/wo/help/<?php echo $userLogin['uid']; ?>" target="_self" data-role="button" data-icon="edit" data-iconpos="left" class="ui-btn-left"><?php echo $userLogin['nickname']; ?>的帮助</a></p>
 <p><a href="/wo/diffusion/<?php echo $userLogin['uid']; ?>" target="_self" data-role="button" data-icon="edit" data-iconpos="left" class="ui-btn-left"><?php echo $userLogin['nickname']; ?>的扩散</a></p>
 <p><a href="/wo/plus/<?php echo $userLogin['uid']; ?>" target="_self" data-role="button" data-icon="edit" data-iconpos="left" class="ui-btn-left"><?php echo $userLogin['nickname']; ?>的赞</a></p>
