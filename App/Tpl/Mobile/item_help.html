@@ -25,8 +25,7 @@
         	<span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?>
             <span class="post_appendix"></span>
             <?php if (!empty($helpRecord['reward_coins'])) {?>
-            回馈: <font class="f12 black_l">活跃</font> <font
-                class="f14 orange fb"><?php echo $helpRecord['reward_coins'] ?></font><span class="icon_star"></span>
+            回馈: <font class="f12 black_l">活跃</font> <font class="f14 orange fb"><?php echo $helpRecord['reward_coins'] ?></font><span class="icon_star"></span>
             <?php } ?>
 		    <span class="gray f12" style="position:relative; left: 10px; top:2px">
 		    <?php
@@ -43,8 +42,7 @@
           		echo "<a href='".$sayRecord[url]."' target='_blank'><span class='post_link_static'></span></a>";
      		} ?>
                 <?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
-                此求助原始发布于 <a
-                    href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/help/<?php echo $sayRecord['sid']; ?>" target="_self"><?php echo $sayRecordSchoolInfo['school']; ?></a>
+                此求助原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/help/<?php echo $sayRecord['sid']; ?>" target="_self"><?php echo $sayRecordSchoolInfo['school']; ?></a>
                 <?php } ?>
 		    </span>
         </p>
