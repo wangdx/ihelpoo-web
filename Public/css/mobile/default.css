@@ -971,6 +971,9 @@ li{ list-style:none; }
     margin: 10px 0;
     padding: 15px;
 }
+.i_c_b_verification, .comment_reply_verification{
+    display: none;
+}
 
 /*--- message_index ---*/
 .message_index_ul{
