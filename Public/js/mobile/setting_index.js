@@ -79,7 +79,7 @@ $().ready(function(){
             }
         });
     });
-    $("#setting_school_close_span").click(function(){
+    $("#setting_school_close_span").live("click", function(){
         $(this).parent().fadeOut('fast');
     });
 });
