@@ -1356,18 +1356,17 @@ li{ list-style:none; }
     display: none;
 }
 .setting_school_list_div{
-    border-radius: 3px;
-    padding: 15px 20px;
-    width: 400px;
-    margin: 0 auto;
-    text-align: left;
-    position: relative;
     -moz-outline-radius: 8px 8px 8px 8px;
-    background: none repeat scroll 0 0 #F5F5F5;
+    background-color: #F5F5F5;
     border: 5px solid #DDDDDD;
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 0 10px rgba(123, 214, 246, 0.6);
-    z-index: 1111;
+    margin: 0 auto;
+    padding: 15px 10px;
+    position: relative;
+    text-align: left;
+    width: 90%;
+    z-index: 11111;
 }
 #setting_school_close_span{
     position: absolute;
