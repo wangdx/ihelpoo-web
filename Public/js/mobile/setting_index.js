@@ -51,7 +51,7 @@ $().ready(function(){
         });
     });
     $("#dormitorytype").click(function(){
-        var dormitorytype = $("#dormitorytype").attr("value");
+        var dormitorytype = $("#dormitorytype").val();
         var schoolvalue = $("#school").attr("value");
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
