@@ -1221,7 +1221,7 @@ li{ list-style:none; }
 }
 .degree_ratio{
     width: 100%;
-    border-radius: 5px;
+    border-radius: 3px;
     background: #CCC;
     height: 8px;
     margin: 10px 0 5px;
@@ -1230,7 +1230,7 @@ li{ list-style:none; }
     height: 8px;
     background: #F60;
     margin: 0;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 /*--- setting_index ---*/
 .setindex{
