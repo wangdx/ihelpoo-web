@@ -13,5 +13,33 @@
     </div>
 <div data-role="content">
 
+  <ul class="explain_info_ul f12 black_l">
+    <li class="fb"><span class="icon_sigh"></span><?php echo $userLogin['nickname'] ?> 圈 了谁？</li>
+    <li> 1. 当 他/她 有困难时，系统自动提示 <?php echo $userLogin['nickname'] ?>。</li>
+    <li> 2. 他/她 可以扩散消息给 <?php echo $userLogin['nickname'] ?>。</li>
+    <li> 3. 单独列表 他/她 的信息。</li>
+  </ul>
+  <ul class="quan_ul">
+  <?php foreach ($userPrioritys as $userPriority) : ?>
+  <li>
+      <a href="__ROOT__/wo/<?php echo $userPriority['pid'] ?>" target="_self" class="getuserinfo" userid="<?php echo $userPriority['uid'] ?>">
+        <img src="<?php echo i_icon_check($userPriority['pid'], $userPriority['icon_url'], 's'); ?>" width="68" class="radius3" />
+      </a>
+      <a href="__ROOT__/wo/<?php echo $userPriority['pid'] ?>" target="_self" class="getuserinfo" userid="<?php echo $userPriority['uid'] ?>"><?php echo $userPriority['nickname'] ?></a>
+      <span class="f12 gray" style="display:inline-block"><span class="sex<?php echo $userPriority['sex'] ?>"></span><?php echo i_grade($userPriority['enteryear']) ?></span>
+      <span class="level<?php echo i_degree($userPriority['active']) ?>" title="等级: level<?php echo i_degree($userPriority['active']) ?>"></span> &nbsp;
+      <span class="gray f12"><?php echo $sexname ?>圈的时间: <?php echo i_time($userPriority['time']) ?></span>
+      <?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
+          <a class="f12 wo_quan_cancel_a" value="<?php echo $userPriority['uid']; ?>">取消圈</a>
+      <?php } ?>
+  </li>
+  <?php endforeach ?>
+  </ul>
+  <div class="i_list_link">
+    <p class="i_list_num f12 gray">共<?php echo $totalPages ?>页  <?php echo $userPrioritiedNums; ?>人</p>
+    <?php if ($totalPages > 1) { i_page_mobile_show("wo/quan/".$userLogin['uid'], $totalPages); } ?>
+  </div>
+  </div>
+
 </div>
 <include file="Public:footermobile" />
