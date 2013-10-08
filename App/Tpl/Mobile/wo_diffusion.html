@@ -13,5 +13,39 @@
     </div>
 <div data-role="content">
 
+   <p class="wo_main_ul_p_top black_l fi"><span class="blue_l f16 fb"><?php echo $totalRecords ?></span> 条扩散</p>
+    <ul class="wo_main_diffudion">
+    <?php foreach ($recordDiffusion as $recordDiffusion): ?>
+      <li>
+        <span class="f12 black_l">
+	        <a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']; ?>" target="_self">
+	          <img src='<?php echo i_icon_check("$recordDiffusion[uid]", "$recordDiffusion[icon_url]", "s"); ?>' width="50" class="radius3" /> 
+	        </a>
+	        <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span> 
+	        <span class="f12">扩散了</span> 
+	        <a href="__ROOT__/wo/<?php echo $recordDiffusion['uid']; ?>" target="_self">
+	          <?php echo $recordDiffusion['nickname']; ?>
+	        </a> 
+	        的 <?php echo $recordDiffusion['content'] ?> 
+	        <?php if(!empty($recordDiffusion['view'])) echo '<span class="gray">并表示：</span>'.$recordDiffusion['view'] ?>
+        </span>
+        <?php if($recordDiffusion['say_type'] == 1) { ?>
+        <a href="__ROOT__/item/help/<?php echo $recordDiffusion['sid'] ?>" target="_self">详细</a> <span class="ico_help" title="帮助"></span>
+        <?php } else { ?>
+        <a href="__ROOT__/item/say/<?php echo $recordDiffusion['sid'] ?>" target="_self">详细</a>
+        <?php } ?>
+        <span class="f12 gray"><?php echo i_time($recordDiffusion['time']) ?></span>
+      </li>
+    <?php endforeach; ?>
+    </ul>
+  
+    <div class="wo_paging">
+      <p class="wo_paging_p f12 gray">共<?php echo $totalRecords ?>条扩散 <?php echo $totalPages ?>页</p>
+      <span>
+      <?php if ($totalPages > 1) { i_page_mobile_show("wo/diffusion/".$userLogin['uid'], $totalPages); } ?>
+      </span>
+    </div>
+
+
 </div>
 <include file="Public:footermobile" />

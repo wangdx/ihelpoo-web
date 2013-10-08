@@ -1176,6 +1176,20 @@ li{ list-style:none; }
     top: 15px;
 }
 
+/*--- wo_diffusion ---*/
+.wo_main_diffudion{
+    padding: 0;
+}
+.wo_main_diffudion li{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    min-height: 88px;
+    padding: 15px 10px;
+    position: relative;
+}
+
 /*--- setting_index ---*/
 .setindex{
     padding: 0;
