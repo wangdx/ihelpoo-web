@@ -19,11 +19,12 @@ $().ready(function(){
         var imgtitle = $(this).attr('title');
         var textareavalue = $('#s_t_textarea').val();
         var imgtitlemark = '[' + imgtitle + ']';
-        alert(imgtitlemark);
         var textareanow = textareavalue + imgtitlemark;
         $('#s_t_textarea').val(textareanow);
         $('#emotionbox').fadeOut('fast');
         contentOk = 'yes';
+        return false;
+        alert(imgtitlemark);
     });
     $('.emotionbox_change_page').click(function(){
     	$(".emotionbox_change_page").removeClass('bg_emotionbox_page_select');
