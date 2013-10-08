@@ -165,7 +165,7 @@ $().ready(function(){
             	} else if (msg.status == "error") {
             		$('#infotextareacheck').slideDown("fast").html("<span class='icon_wrong'></span>" + msg.info).delay(1000).slideUp("fast");
             	} else if (msg.status == "ok") {
-                    window.location = baseUrl + 'stream/index/newreply';
+                    window.location = baseUrl + 'stream';
                 } else {
                     alert('something wrong');
                 }

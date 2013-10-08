@@ -631,10 +631,10 @@ $().ready(function(){
 	                        });
                     	}
                     }
-                    window.location = baseUrl + 'stream/index/newreply';
                     if (help_is_input == '1') {
                     	notice.send('system', msg.data);
                     }
+                    window.location = baseUrl + 'stream';
                 } else {
                     alert('something wrong');
                 }
