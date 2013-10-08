@@ -35,7 +35,7 @@ $().ready(function(){
             introductionOk = "yes";
         }
     });
-    $("#academy").click(function(){
+    $("#academy").change(function(){
         var academy = $("#academy").attr("value");
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
@@ -49,7 +49,7 @@ $().ready(function(){
             }
         });
     });
-    $("#dormitorytype").click(function(){
+    $("#dormitorytype").change(function(){
         var dormitorytype = $("#dormitorytype").attr("value");
         var schoolvalue = $("#school").attr("value");
         $('#ajaxprogressbar').html($infoLoading);
@@ -64,7 +64,7 @@ $().ready(function(){
             }
         });
     });
-    $("#month").click(function(){
+    $("#month").change(function(){
         var month = $("#month").attr("value");
         var year = $("#year").attr("value");
         $.ajax({
@@ -77,7 +77,7 @@ $().ready(function(){
             }
         })
     });
-    $("#year").click(function(){
+    $("#year").change(function(){
         var month = $("#month").attr("value");
         var year = $("#year").attr("value");
         $.ajax({
@@ -90,7 +90,7 @@ $().ready(function(){
             }
         })
     });
-    $("#province").click(function(){
+    $("#province").change(function(){
         var province = $("#province").attr("value");
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
