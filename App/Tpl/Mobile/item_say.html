@@ -131,7 +131,7 @@
 		    <textarea name="comment" id="i_comment_textarea"></textarea>
 		    <span class="i_c_b_verification">
 		        <img id="i_c_b_verification_code_img" src="" />
-		        <input class="i_c_b_verificationcode" id="verificationcode" type="text" name="verificationcode" value="999"/>
+		        <input class="i_c_b_verificationcode" style="display:none" id="verificationcode" type="text" name="verificationcode" value="999"/>
 		    </span>
 		    <a id="i_c_b_submit" data-role="button">评论</a>
 		    <span class="i_comment_textarea_info"></span>
@@ -219,10 +219,10 @@
 		        <textarea class="comment_reply_textarea" name="comment"></textarea>
 		        <span class="comment_reply_verification">
 		        	<img class="comment_reply_verification_code_img" src="" />
-		        	<input class="comment_reply_verificationcode" type="text" name="verificationcode" value="999"/>
+		        	<input class="comment_reply_verificationcode" style="display:none" type="text" name="verificationcode" value="999"/>
 		    	</span>
 		        <input type="button" class="comment_reply_btn" value="回复" />
-				<p style="padding-left:315px;"><span class="post_icon reply_emotionbox_icon"></span></p>
+				<p><span class="post_icon reply_emotionbox_icon"></span></p>
 		      </form>
 		    </div>
 		    <?php } ?>
