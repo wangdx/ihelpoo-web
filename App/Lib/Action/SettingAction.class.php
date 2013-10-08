@@ -117,12 +117,14 @@ class SettingAction extends Action
                     'uid' => $userloginid,
                     'nickname' => $nickname,
                     'sex' => $sex,
-                    'birthday' => $birthday,
                     'enteryear' => $enteryear,
                     'school' => $school
                 );
                 if (!empty($usertype)) {
                 	$updateUserloginData['type'] = $type;
+                }
+                if (!empty($year) && !empty($month) && !empty($day)) {
+                	$updateUserloginData['birthday'] = $birthday;
                 }
                 $UserLogin->save($updateUserloginData);
 
