@@ -1379,6 +1379,9 @@ li{ list-style:none; }
     text-align: center;
     display: block;
 }
+.setting_school_list_div ul{
+    padding: 0;
+}
 .setting_school_list_div ul li{
     display: inline-block;
     margin: 3px 5px;
