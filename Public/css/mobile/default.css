@@ -960,6 +960,25 @@ li{ list-style:none; }
 }
 
 /*--- item_say ---*/
+.i_record_diffusion{
+    padding: 0;
+    margin: 10px 0;
+}
+.i_record_diffusion li{
+
+}
+.i_record_plus{
+    padding: 0;
+    margin: 10px 0;
+}
+.i_record_plus li{
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 3px;
+    margin: 10px 0;
+    padding: 15px;
+}
 .i_comment_list_ul{
     padding: 0;
     margin: 10px 0;
