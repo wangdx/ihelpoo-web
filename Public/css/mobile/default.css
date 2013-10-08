@@ -716,9 +716,6 @@ li{ list-style:none; }
 .s_li_p_content_video_icon:hover{
     background:url(../../image/common/video.png) no-repeat 0 -60px;
 }
-*html .s_li_p_content_video_icon{
-    background:url(../../image/common/video.gif) no-repeat 0 -60px;
-}
 .s_li_s_comment {
     padding: 10px 0 0;
 }
@@ -1159,18 +1156,16 @@ li{ list-style:none; }
 
 /*--- wo_help ---*/
 .wo_main_ul{
-    background-color: #FFFFFF;
-    border: 1px solid #EEEEEE;
-    border-radius: 5px 5px 5px 5px;
-    padding: 5px;
+    padding: 0;
 }
 .wo_main_ul li{
-    border-right: 1px solid #EEEEEE;
-    height: 33px;
-    padding: 5px 25px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 15px;
+    min-height: 88px;
+    padding: 15px 10px;
     position: relative;
-    text-align: center;
-    vertical-align: bottom;
 }
 
 /*--- setting_index ---*/
