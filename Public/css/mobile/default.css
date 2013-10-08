@@ -1383,6 +1383,6 @@ li{ list-style:none; }
 }
 .setting_school_list_div ul li{
     display: inline-block;
-    margin: 5px 5px;
+    margin: 8px;
     font-weight: bold;
 }
