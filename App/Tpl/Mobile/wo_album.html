@@ -38,14 +38,14 @@
   			<a href="<?php echo $imageItem['url']; ?>" target="_self" class="f12" id="this_image_upload_url"><img src="<?php echo $imageItem['url']; ?>" class="album_image_content_img" /></a>
   		</p>
   		<?php if (!empty($imageItemPrivious['id'])) { ?>
-  			<a title="上一张" class="privious_photo_part_text f12" id="privious_image">[上一张]</a>
+  			<a title="上一张" class="privious_photo_part_text" id="privious_image">[上一张]</a>
   		<?php } else { ?>
-  			<a title="已经是第一张了" class="privious_photo_part_text f12 gray" id="privious_image">已经是第一张了</a>
+  			<a title="已经是第一张了" class="privious_photo_part_text gray" id="privious_image">已经是第一张了</a>
   		<?php } ?>
   		<?php if (!empty($imageItemNext['id'])) { ?>
-  			<a title="下一张" class="next_photo_part_text f12" id="next_image">[下一张]</a>
+  			<a title="下一张" class="next_photo_part_text fr" id="next_image">[下一张]</a>
   		<?php } else { ?>
-  			<a title="已经是最后一张了" class="next_photo_part_text f12 gray" id="next_image">已经是最后一张了</a>
+  			<a title="已经是最后一张了" class="next_photo_part_text gray fr" id="next_image">已经是最后一张了</a>
   		<?php } ?>
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
