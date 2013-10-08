@@ -1,4 +1,5 @@
 <include file="Public:headermobile" />
+<script src="__PUBLIC__/js/mobile/user_register.js"></script>
 <!-- Home -->
     <div data-theme="b" data-role="header">
     	<a data-role="button" href="/index/school" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
@@ -13,12 +14,11 @@
     </div>
     <div data-role="content">
     
-    
 <div class="registe_main">
   <div class="registe_toptext">
     <p class="registe_toptext_school_p black_l">欢迎加入 <?php echo $recordSchoolInfo['school']; ?>我帮圈圈 <a href="/index/school" target="_self">[切换学校]</a></p>
   </div>
-  <form action="__ROOT__/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
+  <form action="/user/register/<?php echo $inviteUser['uid']; ?>" method="post">
   <ul class="registe_ul black_l">
     <li>邮箱<input id="email" type="text" name="email" class="input_style" /><span id="emailinfo" class="f12 red_l"></span><input type="hidden" name="school" value="<?php echo $recordSchoolInfo['id']; ?>" /></li>
     <li>创建密码<input id="password" type="password" name="password" class="input_style" /><span id="passwordinfo" class="f12 red_l"></span></li>
