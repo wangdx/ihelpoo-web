@@ -45,15 +45,13 @@
                 此求助原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/help/<?php echo $sayRecord['sid']; ?>" target="_self"><?php echo $sayRecordSchoolInfo['school']; ?></a>
                 <?php } ?>
 		    </span>
-        </p>
 		    <span class="i_h_c_describe_time f12 black_l">
 		      <span class="post_colck"></span>
                 <?php if("3" != $helpRecord['status'] && ($sayRecord['time'] + 1296000 - time()) > 0) { ?>
 		      离帮助结束还有<?php echo floor((($sayRecord['time'] + 1296000) - time()) / 86400) ?>天
                 <?php } ?>
                 求助于<?php echo i_time($sayRecord['time']) ?> <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']
-        ?>
-        |
+        ?> |
         <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-{$sayRecord['sid']}">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
         <?php if (!empty($userloginedrecord['uid'])) { ?>
         <a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
@@ -66,6 +64,7 @@
         <a id="del_help_record_btn"><span class="icon_garbage"></span>删除</a>
         <?php } ?>
         </span>
+        </p>
     </div>
     <div class="i_h_c_content">
         <p class="i_h_c_content_p">
