@@ -622,6 +622,7 @@
 .degree_ratio_in{
     height: 5px;
     background: #F60;
+    margin: 0;
 }
 /*--- other.phtml ---*/
 .wo_main_other_top{
