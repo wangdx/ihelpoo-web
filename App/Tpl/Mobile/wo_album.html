@@ -27,7 +27,7 @@
 			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" target="_self" title="店铺图片">悄悄话聊天</a>
 		<?php } ?>
 		<span class="arrow">&gt;</span> 图片详情
-		<p class="gray">
+		<p class="gray f12">
 			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> | 
 			大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> | 
 			浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
@@ -49,7 +49,7 @@
   		<?php } ?>
   	</div>
   <?php } else if (!empty($resultsUserAlbum)) { ?>
-	<div class="black_l">
+	<div class="wo_main_album_nav">
 		<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>" target="_self">相册首页</a> <span class="arrow">&gt;</span>
 		<?php if ($albumId == 1) { ?>
 			头像相册
@@ -83,7 +83,7 @@
       <?php if ($totalPages > 1) { i_page_mobile_show("wo/album/".$userLogin['uid']."/".$albumId, $totalPages); } ?>
     </div>
   <?php } else { ?>
-	<div class="black_l">
+	<div class="wo_main_album_nav">
 		共 <span class="orange fb"><?php echo $totalImages; ?></span> 张图片
 		<span class="f12 gray">共<?php echo round($totalAlbumSize/(1024*1024),2); ?>MB | <?php echo round($totalAlbumDefaultSize/(1024*1024*1024),1); ?>GB[<?php echo i_degree($userLogin['active']); ?>级]</span>
 		<span class="f12 gray">使用率:<?php echo round(($totalAlbumSize/$totalAlbumDefaultSize)*100, 2); ?>%</span>
