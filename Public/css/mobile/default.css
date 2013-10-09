@@ -930,9 +930,9 @@ li{ list-style:none; }
     border-bottom: 1px dotted #DDD;
 }
 .ico_change_select{
-    height: 18px;
-    width: 18px;
-    margin: 0 5px;
+    height: 16px;
+    width: 16px;
+    margin: 0;
     overflow: hidden;
     vertical-align: middle;
     background-repeat: no-repeat;
