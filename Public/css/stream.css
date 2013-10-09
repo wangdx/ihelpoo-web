@@ -1114,6 +1114,12 @@
     border: 1px solid #EEE;
     max-width: 100%;
 }
+.i_record_plus_info{
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 15px;
+    padding: 5px;
+}
 .i_record_diffusion{
     background: none repeat scroll 0 0 #F5F5F5;
     border: 1px solid #EEEEEE;
