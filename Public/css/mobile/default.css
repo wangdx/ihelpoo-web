@@ -1086,7 +1086,10 @@ li{ list-style:none; }
 .i_c_b_verification, .comment_reply_verification, .img_upload_comment_form_div{
     display: none;
 }
-
+.i_record_plus_info{
+    padding: 5px;
+    border: 1px solid #EEE;
+}
 /*--- item_help ---*/
 .i_h_c_content{
     background-color: #FFFFFF;
