@@ -136,7 +136,7 @@ function mseeageNumsOnce() {
         success: function (msg) {
             if (msg.status == 'ok') {
                 var acquiremilliseconds = msg.data.acquireSeconds;
-                var totalmsgnums = msg.data.messageSystemNums + msg.data.messageCommentNums + msg.data.messageAtNums + msg.data.messageTalkNums;
+                var totalmsgnums = parseInt(msg.data.messageSystemNums) + parseInt(msg.data.messageCommentNums) + parseInt(msg.data.messageAtNums) + parseInt(msg.data.messageTalkNums);
                 alert(totalmsgnums);
                 if (msg.data.messageSystemNums != 'false') {
                     $('#message_system_nums_a').show();
