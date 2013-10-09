@@ -154,8 +154,13 @@ function mseeageNumsOnce() {
     });
 }
 
-function ajaxInfo(htmlobj) {
+function ajaxInfo(htmlobj, deletevalue = 0) {
+	if (deletevalue != 0) {
+		$("#delete_btn_yes").val(deletevalue);
+	} else {
+		$("#delete_btn_calcel").hide();
+	}
     $("#ajax_info_div_outer").show();
     $("#ajax_info_div").fadeIn('fast');
-    $("#ajax_info_div_msg").fadeIn('fast').html(htmlobj);
+    $("#ajax_info_div_msg_in").fadeIn('fast').html(htmlobj);
 }
