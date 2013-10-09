@@ -35,7 +35,7 @@ $().ready(function(){
      * image part
      */
     $('#textareaimg').click(function(){
-            $('.img_upload_form_div').slideDown('fast');
+        $('.img_upload_form_div').slideDown('fast');
     });
 
     $('.upload_img_list .icon_index_wrong').click(function(){
