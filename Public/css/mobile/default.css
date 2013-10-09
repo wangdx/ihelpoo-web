@@ -912,6 +912,9 @@ li{ list-style:none; }
     border: 1px solid #EEE;
     background-color: #EFEFEF;
 }
+.stream_list_type li{
+    position: relative;
+}
 
 /*--- stream_publish ---*/
 .stream_textbox_ul{
