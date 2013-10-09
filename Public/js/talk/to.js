@@ -167,7 +167,7 @@ function Chat(state) {
         }
 
 //        var cometdURL = location.protocol + "//" + location.host + config.contextPath + "/cometd";
-        var cometdURL = location.protocol + "//" + "comet.ihelpoo.com/c1/cometd";
+        var cometdURL = location.protocol + "//" + "comet.ihelpoo.cn/c1/cometd";
 
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
