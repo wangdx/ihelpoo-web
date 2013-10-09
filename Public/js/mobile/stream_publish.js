@@ -45,16 +45,13 @@ $().ready(function(){
 
     $("#img_upload_btn").click(function(){
         var upload_image_file = $('#upload_form_img_file').val();
-        $.mobile.showPageLoadingMsg();
         if (upload_image_file == '') {
-        	$.mobile.hidePageLoadingMsg();
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
             if (imageNums > 4) {
-            	$.mobile.hidePageLoadingMsg();
                 alert('最多一次只能传5张图片');
             } else {
-                $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
+            	$.mobile.showPageLoadingMsg();
                 $.ajaxFileUpload({
                 	url: baseUrl + 'ajax/imgupload',
                 	secureuri: false,
@@ -125,8 +122,6 @@ $().ready(function(){
         var textareacontentdata = textareacontent.replace(re, s);
         $("#textareacontent").val(textareacontentdata);
 
-        $.mobile.showPageLoadingMsg();
-        
         if (textareacontent.length > 0) {
         	var letterlimits = 222 - textareacontent.length;
         	if (letterlimits > 0) {
@@ -135,16 +130,13 @@ $().ready(function(){
         }
         
         if (contentOk == "no") {
-        	$.mobile.hidePageLoadingMsg();
             alert("发布内容不能为空");
         } else if (contentOk == "morethenlimit") {
-        	$.mobile.hidePageLoadingMsg();
         	alert("超出字数限制，精简一下:)");
         } else if (verification_code_value == "") {
-        	$.mobile.hidePageLoadingMsg();
         	alert("验证码不能为空");
         } else if (contentOk == "yes") {
-        	$.mobile.hidePageLoadingMsg();
+        	$.mobile.showPageLoadingMsg();
             $.post(baseUrl + "stream", $("#s_t_form").serialize(), function(msg){
             	if (msg.status == "verifi") {
             		alert("请输入验证码");
@@ -158,6 +150,7 @@ $().ready(function(){
                 } else {
                     alert('something wrong');
                 }
+            	$.mobile.hidePageLoadingMsg();
             }, "json");
         }
     });
