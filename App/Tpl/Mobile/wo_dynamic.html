@@ -131,21 +131,10 @@
       <span class="fb black_l"><?php echo $userLogin['nickname'] ?></span>的大学时光过去了<span class="f14 fb black_l"><?php echo $schoolDaysRatio ?></span>
     </div>
     <div style="border:1px solid #CCC ; width:100%; height:3px;" class="icon_timebar_out_div">
-      <div style="background:<?php echo $backgroundcolor ?>; height:3px; float:left; width:0" class="icon_timebar_in_div"></div>
+      <div style="background:<?php echo $backgroundcolor; ?>; height:3px; float:left; width:<?php echo $schoolDaysRatio; ?>" class="icon_timebar_in_div"></div>
       <?php echo $timebaranimal; ?>    
     </div>
   </div>
-  <?php } ?>
-  <?php if ($userLogin['type'] == '1') { ?>
-  <script type="text/javascript">
-    $().ready(function(){
-    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
-    	$('#icon_timebar_img').animate({left: <?php echo $schoolDaysWidth - 35; ?>}, 800);
-        $('#say_hello_close').click(function(){
-            $(this).parent().hide();
-        });
-    });
-  </script>
   <?php } ?>
   
 <?php $record = $sayRecord['0']; ?>
