@@ -4,7 +4,7 @@ $().ready(function(){
 	 * choose view type
 	 */
 	
-	$('#stream_index_view_select').click(function(){
+	$('#stream_index_view_select').live('click', (function(){
         $('.stream_list_type_out_div').slideDown('fast');
     });
 	
