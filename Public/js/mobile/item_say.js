@@ -173,9 +173,9 @@ $().ready(function(){
             $.post(baseUrl + "item/sayajax", $comment_reply_form.serialize(), function(msg){
             	if (msg.status == 'verifi') {
             		ajaxInfo('请输入验证码',0,0);
-            		$this.parent().find('.comment_reply_verification').fadeIn('fast');
-            		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
-            		$this.parent().find('.comment_reply_verificationcode').val('');
+            		$this.parent().parent().find('.comment_reply_verification').fadeIn('fast');
+            		$this.parent().parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
+            		$this.parent().parent().find('.comment_reply_verificationcode').val('');
             	} else if (msg.status == 'yes') {
                     $comment_reply_div_box.slideUp('fast');
                     $comment_reply_form.find('.comment_reply_textarea').val('');
@@ -191,8 +191,8 @@ $().ready(function(){
                     commentContent += msg.data.content;
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').prepend(commentContent);
-                    $this.parent().find('.comment_reply_verification').hide();
-                    $this.parent().find('.comment_reply_verificationcode').val('999');
+                    $this.parent().parent().find('.comment_reply_verification').hide();
+                    $this.parent().parent().find('.comment_reply_verificationcode').val('999');
                 } else {
                     ajaxInfo(msg.info,0,0);
                 }
