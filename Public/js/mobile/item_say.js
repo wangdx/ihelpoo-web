@@ -152,7 +152,7 @@ $().ready(function(){
 		    $this.html($infoLoading);
             $.post(baseUrl + "item/sayajax", $("#i_c_b_form").serialize(), function(msg){
             	if (msg.status == 'verifi') {
-            		ajaxInfo('请输入验证码');
+            		ajaxInfo('请输入验证码',0,0);
             		$('.i_c_b_verification').fadeIn('fast');
             		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random()});
             		$('#verificationcode').val('');
@@ -161,10 +161,10 @@ $().ready(function(){
                     $('#i_comment_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('评论成功').delay(800).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
-                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>";
+                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_self'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
-                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
+                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_self'>" + msg.data.uidnickname + "</a>";
                     commentContent += msg.data.content;
                     if (msg.data.image != '') {
                     	commentContent += "<img src='" + msg.data.image + "' width='80' />";
@@ -233,10 +233,10 @@ $().ready(function(){
                     $comment_reply_form.find('.comment_reply_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('回复成功').delay(800).fadeOut('fast');
                     var commentContent = "<li class='bg_l_yellow'>";
-                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>";
+                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_self'>";
                     commentContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
                     commentContent += "<div class='i_c_l_u_li_div black_l'>";
-                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>" + msg.data.uidnickname + "</a>";
+                    commentContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_self'>" + msg.data.uidnickname + "</a>";
                     if (msg.data.toid != '') {
                         commentContent += "<span class='f12 gray fb'>[回复:" + msg.data.toidnickname + "]</span>";
                     }

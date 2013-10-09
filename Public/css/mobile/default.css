@@ -992,6 +992,24 @@ li{ list-style:none; }
 }
 
 /*--- stream_publish ---*/
+#i_shine_hit{
+    position: fixed;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+#i_shine_hit_in{
+    width: 100px;
+    margin: 0 auto;
+    background-color: #F60;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
+    display: none;
+    border-radius: 5px;
+}
 .stream_textbox_ul{
     padding: 0;
     margin: 0;
