@@ -88,7 +88,7 @@ $().ready(function(){
     //i del
     $('#del_record_btn').click(function(){
         var deletesid = $('#recordsid').val();
-    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='del_record_btn_yes' value='"+deletesid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	var infohtml = "<p>确定删除？</p> <a data-role='button' id='del_record_btn_yes' value='"+deletesid+"'>确定</a><a data-role='button'>取消</a>";
     	ajaxInfo(infohtml);
     });
     
