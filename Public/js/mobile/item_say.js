@@ -57,7 +57,6 @@ $().ready(function(){
         var delReplySid = $(this).parent().find('.reply_delete_cid').val();
     	var infohtml = "确定删除评论？";
     	$alreadyDeleteLi = $(this).parent().parent().parent();
-        $alreadyDeleteLi.css("backgroundColor", "#FFFA85");
     	ajaxInfo(infohtml, 'comment' ,delReplySid);
     });
     
