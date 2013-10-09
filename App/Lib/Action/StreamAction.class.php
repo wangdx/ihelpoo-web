@@ -187,8 +187,7 @@ class StreamAction extends Action
                             'rpath' => $tempImageUrlString,
                             'time' => time(),
                         );
-                        //TODO 20131009 test
-                        //$imageOutLastInsertId = $RecordOutimg->add($imageOutNewData);
+                        $imageOutLastInsertId = $RecordOutimg->add($imageOutNewData);
                         $imageUrlString .= $imageOutLastInsertId . ";";
                     }
                 }
@@ -213,6 +212,9 @@ class StreamAction extends Action
                 if ($groupmsgpush_system == 'on' || $groupmsgpush_mail == 'on') {
                     $fromBrowser = '组织推送';
                 }
+                if(i_is_mobile()) {
+                	$fromBrowser = '触屏版';
+                }
 
                 $dataRecordSay = array(
                     'sid' => NULL,
@@ -227,9 +229,6 @@ class StreamAction extends Action
                     'from' => $fromBrowser,
                     'school_id' => $schoolpublishid
                 );
-                //TODO 20131009 test
-                var_dump($dataRecordSay);
-                exit();
                 $sayLastInsertId = $RecordSay->add($dataRecordSay);
 
                 /**
