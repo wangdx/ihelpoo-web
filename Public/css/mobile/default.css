@@ -916,7 +916,6 @@ li{ list-style:none; }
 .stream_list_type li{
     position: relative;
     padding: 10px 5px;
-    text-align: center;
     border-bottom: 1px dotted #DDD;
 }
 
