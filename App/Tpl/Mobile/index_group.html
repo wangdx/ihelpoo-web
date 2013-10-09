@@ -1,0 +1,51 @@
+<include file="Public:headermobile" />
+	<!-- Home -->
+    <?php if (empty($userloginedrecord['uid'])) { ?>
+    <div data-theme="b" data-role="header">
+    	<a data-role="button" href="/index/school" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+            串校
+        </a>
+    	<a data-role="button" href="/" target="_self" data-icon="arrow-r" data-iconpos="right" class="ui-btn-right">
+            登录
+        </a>
+        <h3>
+            组织 {$schoolname} - 我帮圈圈
+        </h3>
+    </div>
+    <?php } else { ?>
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/stream" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+            首页
+        </a>
+        <h3>
+            组织 {$schoolname} - 我帮圈圈
+        </h3>
+    </div>
+    <?php } ?>
+    <div data-role="content">
+    
+  <ul class="main_group_ul">
+  <?php foreach ($groupList as $group) :?>
+    <li>
+    <p class="main_group_img_p">
+	    <a href="__ROOT__/wo/<?php echo $group['uid'] ?>" title="<?php echo $group['nickname'] ?> <?php echo $group['introduction']?>">
+	        <img src="<?php echo i_icon_check($group['uid'], $group['icon_url']) ?>" width="100" height="75" class="radius5 main_group_img_p_img" />
+	        <span class="gradeg"></span>
+	    </a>
+    </p>
+    <p class="group_introduction_p">
+      <a href="__ROOT__/wo/<?php echo $group['uid'] ?>" title="<?php echo $group['nickname'] ?> <?php echo $group['introduction']?>">
+        <?php echo $group['nickname'] ?>
+      </a> 
+    </p>
+    </li>
+  <?php endforeach; ?>
+  </ul>
+  
+  <p class="main_mate_list_num f12 gray">共<?php echo $totalrecords; ?>个组织 <?php echo $totalPages; ?>页</p>
+  <div class="main_mate_list_link">
+  	<?php if ($totalPages > 1) { i_page_show("index/group", $totalPages); } ?>
+  </div>
+  
+    </div>
+<include file="Public:footermobile" />
