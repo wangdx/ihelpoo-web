@@ -38,7 +38,7 @@ $().ready(function(){
         $('.img_upload_form_div').slideDown('fast');
     });
 
-    $('.upload_img_list .icon_index_wrong').live('click', function(){
+    $('.upload_img_list .upload_image_delete').live('click', function(){
         imageNums--;
         $(this).parent().remove();
     });
@@ -59,7 +59,7 @@ $().ready(function(){
                 	dataType: 'json',
                 	success: function (msg){
                 	    if (msg.status == 'uploaded') {
-                	        var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><a href='" + msg.data +"' target='_blank' class='f12'><img src='" + msg.data +"' width='100' /></a> <span class='icon_index_wrong' title='删除'></span></li>";
+                	        var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><a href='" + msg.data +"' target='_blank' class='f12'><img src='" + msg.data +"' width='100' /></a> <span class='upload_image_delete'>[删除]</span></li>";
                 	        $('#image_upload_list_ul').append(uploadImgList);
                 	        imageNums++;
                 	    } else if (msg.status == 'error') {

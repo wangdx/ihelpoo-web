@@ -1003,6 +1003,9 @@ li{ list-style:none; }
     padding: 10px 0;
     border-bottom: 1px solid #EEE;
 }
+#image_upload_list_ul li .upload_image_delete{
+    margin-left: 10px;
+}
 
 /*--- item_say ---*/
 .i_content_p{
