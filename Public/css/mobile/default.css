@@ -941,6 +941,10 @@ li{ list-style:none; }
     background-image: url("../../image/common/icon_main.png");
     background-position: -957px 0;
 }
+.stream_index_view_select span{
+    float: none;
+    margin: 0 5px;
+}
 
 /*--- stream_publish ---*/
 .stream_textbox_ul{
