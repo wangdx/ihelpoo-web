@@ -23,7 +23,7 @@ $().ready(function(){
     				var new_quaned_nums = parseInt(quaned_nums) + parseInt('1');
     				$('#quaned_nums').html(new_quaned_nums);
     			} else {
-    				ajaxInfo(msg.info,0,0);
+    				ajaxInfo(msg.info);
     				$this.html("<span class='icon_plus'></span>圈ta");
     			}
     		}
@@ -47,7 +47,7 @@ $().ready(function(){
     				var new_quaned_nums = parseInt(quaned_nums) - parseInt('1');
     				$('#quaned_nums').html(new_quaned_nums);
     			} else {
-    				ajaxInfo(msg.info,0,0);
+    				ajaxInfo(msg.info);
     				$this.html("取消圈ta");
     			}
     		}

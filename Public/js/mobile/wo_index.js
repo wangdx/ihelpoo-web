@@ -5,9 +5,8 @@ $().ready(function(){
     $(".do_quanta_wo").live('click', function(){
     	$this = $(this);
     	var userid = $this.attr('userid');
-    	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
     	var quaned_nums = $('#quaned_nums').html();
-    	$this.html($infoLoading);
+    	$.mobile.showPageLoadingMsg();
     	$.ajax({
     		type: "POST",
     		dataType: "json",
@@ -20,9 +19,10 @@ $().ready(function(){
     				var new_quaned_nums = parseInt(quaned_nums) + parseInt('1');
     				$('#quaned_nums').html(new_quaned_nums);
     			} else {
-    				ajaxInfo(msg.info);
-    				$this.html("<span class='icon_plus'></span>圈ta");
+    				ajaxInfo(msg.info,0,0);
+    				$this.html("圈ta");
     			}
+    			$.mobile.hidePageLoadingMsg();
     		}
     	});
     });
@@ -30,9 +30,8 @@ $().ready(function(){
     $(".do_quantacancel_wo").live('click', function(){
     	$this = $(this);
     	var userid = $this.attr('userid');
-    	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
     	var quaned_nums = $('#quaned_nums').html();
-    	$this.html($infoLoading);
+    	$.mobile.showPageLoadingMsg();
     	$.ajax({
     		type: "POST",
     		dataType: "json",
@@ -44,9 +43,10 @@ $().ready(function(){
     				var new_quaned_nums = parseInt(quaned_nums) - parseInt('1');
     				$('#quaned_nums').html(new_quaned_nums);
     			} else {
-    				ajaxInfo(msg.info);
+    				ajaxInfo(msg.info,0,0);
     				$this.html("取消圈ta");
     			}
+    			$.mobile.hidePageLoadingMsg();
     		}
     	});
     });
