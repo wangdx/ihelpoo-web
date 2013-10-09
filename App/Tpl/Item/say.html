@@ -43,7 +43,7 @@
 			<span class="fr f12 black_l i_content_span_info">
 			  	<span class='icon_up'></span>深度浏览<?php echo $sayRecord['hit_co']; ?>° 
 			  	<span class='icon_words'></span> 评论(<?php echo empty($sayRecord['comment_co']) ? '0' : $sayRecord['comment_co']; ?>)
-			  	<i class="icon_hand"></i>赞(<?php echo $sayRecord['plus_co'] ?>) 
+			  	赞(<?php echo $sayRecord['plus_co'] ?>) 
 				扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
 				<?php if (!empty($userloginedrecord['uid'])) { ?>
 				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
@@ -63,17 +63,11 @@
 			  				echo "<p>".$videoResult['object']."</p>";
 		  				}
 	 				}?>
-		    	<p>
+		    	<p class="i_content_p_part">
 		    	<?php
 					if (!empty($imageRecordArray)) {
         				foreach($imageRecordArray as $imageRecord) {
-        					$imageResize = getimagesize($imageRecord);
-       						$imageWidth = $imageResize['0'];
-       						if ($imageWidth > 800) {
-          	    				echo "<img src='".$imageRecord."' width='800' style='border:6px solid #EEE' />";
-         					} else {
-          	   					echo "<img src='".$imageRecord."' style='border:6px solid #EEE' />";
-          					}
+          	    			echo "<img src='".$imageRecord."' class='i_content_p_img' />";
         				}
     				} 
     			?>

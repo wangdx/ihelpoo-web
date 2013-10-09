@@ -1107,6 +1107,13 @@
     border: 1px solid #EEEEEE;
     margin-bottom: 10px;    
 }
+.i_content_p_part{
+    margin: 15px 0;
+}
+.i_content_p_img{
+    border: 1px solid #EEE;
+    max-width: 100%;
+}
 .i_record_diffusion{
     background: none repeat scroll 0 0 #F5F5F5;
     border: 1px solid #EEEEEE;
