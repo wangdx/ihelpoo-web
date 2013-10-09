@@ -905,6 +905,13 @@ li{ list-style:none; }
     background: #6ccacd;
     color: #FFF;
 }
+.stream_list_type{
+    padding: 10px;
+    margin: 0 auto;
+    width: 200px;
+    border: 1px solid #EEE;
+    background-color: #EFEFEF;
+}
 
 /*--- stream_publish ---*/
 .stream_textbox_ul{
