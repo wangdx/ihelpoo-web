@@ -249,16 +249,6 @@ $().ready(function(){
         }
     });
 
-    $('.reply_box_btn').hide();
-    $('.reply_delete_btn').hide();
-    $('.i_comment_list_ul li').hover(function(){
-        $(this).find('.reply_box_btn').show();
-        $(this).find('.reply_delete_btn').show();
-    }, function(){
-        $(this).find('.reply_box_btn').hide();
-        $(this).find('.reply_delete_btn').hide();
-    });
-
     //diffusion;
     $('.diffusion').click(function(){
         var diffusionSid = $(this).attr('value');
