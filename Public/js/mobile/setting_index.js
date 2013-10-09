@@ -40,7 +40,7 @@ $().ready(function(){
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
             type: "POST",
-            async: false,
+            async: true,
             url: baseUrl+"setting/ajax",
             data: "selectAcademy=" + academy,
             dataType: "text",
