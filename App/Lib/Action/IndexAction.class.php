@@ -458,7 +458,12 @@ class IndexAction extends Action {
         $this->assign('totalrecords',$totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages',$totalPages);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:index_group');
+    	} else {
+    		$this->display();
+    	}
     }
 
 	public function business()
@@ -479,7 +484,12 @@ class IndexAction extends Action {
         $this->assign('totalrecords',$totalrecords);
     	$totalPages = ceil($totalrecords / $count);
         $this->assign('totalPages',$totalPages);
-        $this->display();
+        
+        if(i_is_mobile()) {
+        	$this->display('Mobile:index_business');
+    	} else {
+    		$this->display();
+    	}
     }
     
     public function app()

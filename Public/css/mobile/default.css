@@ -611,6 +611,18 @@ li{ list-style:none; }
     margin: 15px 10px;
 }
 
+/*--- index_business ---*/
+.main_group_ul{
+    padding: 0;
+}
+.main_group_ul li{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #EEE;
+    background-color: #FFF;
+    border-radius: 5px;
+    display: inline-block;
+}
 /*--- user_register ---*/
 .registe_ul{
     padding: 0;
