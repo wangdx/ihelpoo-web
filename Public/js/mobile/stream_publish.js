@@ -45,11 +45,13 @@ $().ready(function(){
 
     $("#img_upload_btn").click(function(){
         var upload_image_file = $('#upload_form_img_file').val();
-        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '上传中...请稍等'});
+        $.mobile.showPageLoadingMsg();
         if (upload_image_file == '') {
+        	$.mobile.hidePageLoadingMsg();
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
             if (imageNums > 4) {
+            	$.mobile.hidePageLoadingMsg();
                 alert('最多一次只能传5张图片');
             } else {
                 $('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
@@ -66,7 +68,7 @@ $().ready(function(){
                 	    } else if (msg.status == 'error') {
                 	        $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(3000).fadeOut('fast');
                 	    }
-                	    $('.imgajaxloading_span').fadeOut();
+                	    $.mobile.hidePageLoadingMsg();
                 	}
                 });
             }
