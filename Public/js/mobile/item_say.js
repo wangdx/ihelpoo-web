@@ -96,6 +96,7 @@ $().ready(function(){
         var delRecordSid = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
         alert(delInfoType);
+        alert(delRecordSid);
     	/*$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
