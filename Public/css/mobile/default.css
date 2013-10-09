@@ -1047,7 +1047,14 @@ li{ list-style:none; }
 
 /*--- item_say ---*/
 .i_content_p{
+    background-color: #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
     margin: 15px 0;
+    padding: 10px;
+}
+.i_content_p_img{
+    border: 1px solid #EEE;
+    max-width: 100%;
 }
 .i_record_diffusion{
     padding: 0;
@@ -1087,8 +1094,10 @@ li{ list-style:none; }
     display: none;
 }
 .i_record_plus_info{
+    border: 1px solid #DDDDDD;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 15px;
     padding: 5px;
-    border: 1px solid #EEE;
 }
 /*--- item_help ---*/
 .i_h_c_content{

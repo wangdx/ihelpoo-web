@@ -63,13 +63,7 @@
 		    	<?php
 					if (!empty($imageRecordArray)) {
         				foreach($imageRecordArray as $imageRecord) {
-        					$imageResize = getimagesize($imageRecord);
-       						$imageWidth = $imageResize['0'];
-       						if ($imageWidth > 800) {
-          	    				echo "<img src='".$imageRecord."' width='800' style='border:6px solid #EEE' />";
-         					} else {
-          	   					echo "<img src='".$imageRecord."' style='border:6px solid #EEE' />";
-          					}
+          	    			echo "<img src='".$imageRecord."' class='i_content_p_img' />";
         				}
     				} 
     			?>
