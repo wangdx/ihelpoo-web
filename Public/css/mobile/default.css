@@ -622,16 +622,15 @@ li{ list-style:none; }
     background-color: #FFF;
     border-radius: 5px;
     display: inline-block;
+    position: relative;
 }
 .main_group_img_p{
 	position: relative; 
 	width: 100px;
-	display: inline-block;
+	display: block;
+	text-align: center;
 }
 .group_introduction_p{
-    width: 100px;
-	position: absolute;
-	top: 90px;
 	text-align: center;
 }
 /*--- user_register ---*/
