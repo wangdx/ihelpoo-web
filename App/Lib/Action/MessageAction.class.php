@@ -34,6 +34,9 @@ class MessageAction extends Action
     {
         $userloginid = session('userloginid');
         $this->assign('title', '消息');
+        $MsgActive = M("MsgActive");
+        $totalNotReadMsgActive = $MsgActive->where("uid = $userloginid AND deliver = 0")->count();
+        $this->assign('totalNotReadMsgActive', $totalNotReadMsgActive);
         if(i_is_mobile()) {
         	$this->display('Mobile:message_index');
     	} else {
