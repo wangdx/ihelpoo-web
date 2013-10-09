@@ -45,8 +45,31 @@ $().ready(function(){
             }
         });
     });
+    
+    /**
+     * diffusion;
+     */
+    $('.diffusion').click(function(){
+        var diffusionSid = $(this).attr('value');
+        var $thisDiffusion = $(this);
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "stream/diffuseIt",
+            data: "diffusionSid=" + diffusionSid,
+            dataType: "json",
+            success:function(result){
+            	var infohtml = "<p align='left'>" + result.info + "</p>";
+            	ajaxInfo(infohtml, 0, 0);
+                if (result.info != '你已经扩散了这条信息') {
+                    $thisDiffusion.append('<span class="red">+1</span>');
+                }
+            }
+        });
+    });
 
-    //i delete & delete reply
+    /**
+     * delete record & delete record_reply
+     */
     $('#del_record_btn').click(function(){
         var deletesid = $('#recordsid').val();
     	var infohtml = "确定删除记录？";
@@ -63,38 +86,41 @@ $().ready(function(){
     $('#delete_btn_yes').live('click', function(){
         var delRecordSid = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
-        ajaxInfo('删除成功', 0, 0);
-        $("#ajax_info_div").delay(1000).fadeOut("fast");
-		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
-		$alreadyDeleteLi.slideUp('fast');
-    	/*$.ajax({
-            type: "POST",
-            url: baseUrl + "item/del",
-            data: "delrecord=" + delRecordSid,
-            dataType: "json",
-            success:function(msg){
-                $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").hide();
-        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
-                setTimeout('pageToStream()',3000);
-            }
-        });
         
-        delete_comment_btn_yes
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "item/del",
-            data: "delcomment=" + delReplySid,
-            dataType: "json",
-            success:function(msg){
-                $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").hide();
-            }
-        });
-        */
+		if (delInfoType == 'record') {
+			$.ajax({
+	            type: "POST",
+	            url: baseUrl + "item/del",
+	            data: "delrecord=" + delRecordSid,
+	            dataType: "json",
+	            success:function(msg){
+	        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
+	        		$("#ajax_info_div").delay(1000).fadeOut("fast");
+	        		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
+	                setTimeout('pageToStream()',3000);
+	            }
+	        });
+		}
+		
+		if (delInfoType == 'comment') {
+			$.ajax({
+	            type: "POST",
+	            url: baseUrl + "item/del",
+	            data: "delcomment=" + delReplySid,
+	            dataType: "json",
+	            success:function(msg){
+	            	ajaxInfo('删除评论成功', 0, 0);
+	            	$alreadyDeleteLi.slideUp('fast');
+	            	$("#ajax_info_div").delay(1000).fadeOut("fast");
+	        		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
+	            }
+	        });
+		}
     });
     
-    //comment
+    /**
+     * comment
+     */
     $('#i_c_b_submit').click(function(){
     	var $this = $(this);
         var i_comment_textarea = $('#i_comment_textarea').val();
@@ -146,13 +172,17 @@ $().ready(function(){
         }
     });
     
-    //reply
+    /**
+     * reply
+     */
     $('.reply_box_btn').click(function(){
         $comment_reply_div_box = $(this).parent().parent().parent().find('.comment_reply_div_box');
         $comment_reply_div_box.slideDown('fast');
     });
     
-    //reply comment
+    /**
+     * reply comment
+     */
     $('.comment_reply_btn').click(function(){
     	var $this = $(this);
         var i_comment_textarea = $(this).parent().parent().find('.comment_reply_textarea').val();
@@ -201,25 +231,6 @@ $().ready(function(){
             	$.mobile.hidePageLoadingMsg();
             }, "json");
         }
-    });
-
-    //diffusion;
-    $('.diffusion').click(function(){
-        var diffusionSid = $(this).attr('value');
-        var $thisDiffusion = $(this);
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "stream/diffuseIt",
-            data: "diffusionSid=" + diffusionSid,
-            dataType: "json",
-            success:function(result){
-            	var infohtml = "<p align='left'>" + result.info + "</p>";
-            	ajaxInfo(infohtml, 0, 0);
-                if (result.info != '你已经扩散了这条信息') {
-                    $thisDiffusion.append('<span class="red">+1</span>');
-                }
-            }
-        });
     });
 });
 function pageToStream(){
