@@ -910,9 +910,10 @@ li{ list-style:none; }
 }
 .stream_list_type_out_div{
     text-align: center;
+    position: absolute;
+    width: 100%;
 }
 .stream_list_type{
-    position: absolute;
     padding: 10px;
     margin: 0 auto;
     width: 160px;
