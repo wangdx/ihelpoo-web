@@ -996,6 +996,13 @@ li{ list-style:none; }
     margin: 10px 0;
     padding: 10px;
 }
+.image_upload_list_ul{
+    padding: 0;
+}
+.image_upload_list_ul li{
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
+}
 
 /*--- item_say ---*/
 .i_content_p{
