@@ -109,65 +109,6 @@ $().ready(function(){
         });*/
     });
     
-    $('.btn_cancel').live('click', function(){
-    	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").hide();
-    });
-    
-    /**
-     * image part
-     */
-    $('#textareaimg').toggle(
-        function(){
-            $('.img_upload_comment_form_div').slideDown('fast');
-        },
-        function(){
-            $('.img_upload_comment_form_div').slideUp('up');
-        }
-    );
-    var imageNums = 0;
-    $("#img_upload_btn").click(function(){
-        var upload_image_file = $('#upload_form_img_file').val();
-        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
-        if (upload_image_file == '') {
-            $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
-        } else {
-            if (imageNums > 0) {
-                alert('只能传1张图片');
-            } else {
-                $(this).ajaxStart(function(){
-                	$('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
-                }).ajaxComplete(function(){
-                	$infoLoading.remove();
-                });
-                $.ajaxFileUpload({
-                	url: baseUrl + 'ajax/imgupload',
-                	secureuri: false,
-                	fileElementId: 'upload_form_img_file',
-                	dataType: 'json',
-                	success: function (msg){
-                	    if (msg.status == 'uploaded') {
-                	        var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data +"' width='80'/><a href='" + msg.data +"' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
-                	        $('#imageurl').val(msg.data);
-                	        $('#image_upload_list_ul').append(uploadImgList);
-                	        $('#img_upload_form').hide();
-                	        imageNums++;
-                	    } else if (msg.status == 'error') {
-                	        $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
-                	    }
-                	}
-                });
-            }
-        }
-    });
-
-    $('.re_upload_img').live('click', function(){
-    	$('#imageurl').val('');
-    	$('#image_upload_list_ul').empty();
-    	$('#img_upload_form').slideDown('fast');
-    	imageNums = 0;
-    });
-
     //comment
     $('#i_c_b_submit').click(function(){
     	var $this = $(this);
@@ -213,29 +154,6 @@ $().ready(function(){
                     $this.html('评论');
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
-                    notice.send('comment', msg.info);
-                    
-                    /**
-                     * 
-                     */
-                    var weiboswitch = $('#weiboswitchjs').val();
-                    var sayid = $('#sayid').val();
-                    if (weiboswitch == 'on') {
-                    	var sayweiboid = $('#weiboswitchjs').attr('weiboid');
-                    	var newitemsayurl = baseUrl + 'item/say/' + sayid;
-        				WB2.anyWhere(function(W){
-	        	        	W.parseCMD("/comments/create.json", function(sResultCreate, bStatusCreate){
-	        	        		if(bStatusCreate == true) {
-	        	        	    }
-	        	        	},{
-	        	        		id : sayweiboid,
-	        	        		comment : msg.data.uidnickname + ' : ' + msg.data.content + newitemsayurl,
-	        	        		comment_ori : '1'
-	        	        	},{
-	        	        		method: 'post'
-	        	        	});
-	        	        });
-                    }
                 } else {
                     ajaxInfo(msg.info);
                     $this.html('评论');
@@ -359,8 +277,7 @@ $().ready(function(){
             dataType: "json",
             success:function(result){
             	var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
-            	notice.send('system', result.data);
-            	ajaxInfo(infohtml);
+            	ajaxInfo(infohtml, 0, 0);
                 if (result.info != '你已经扩散了这条信息') {
                     $thisDiffusion.append('<span class="red">+1</span>');
                 }
