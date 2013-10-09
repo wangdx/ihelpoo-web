@@ -123,8 +123,7 @@ $().ready(function(){
         var textareacontentdata = textareacontent.replace(re, s);
         $("#textareacontent").val(textareacontentdata);
 
-        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '提交中...请稍等'});
-        $('#infotextareacheck').slideDown("fast").html($infoLoading);
+        $.mobile.showPageLoadingMsg();
         
         if (textareacontent.length > 0) {
         	var letterlimits = 222 - textareacontent.length;
@@ -134,20 +133,21 @@ $().ready(function(){
         }
         
         if (contentOk == "no") {
-            alert("<span class='icon_attention'></span> 发布内容不能为空");
+            alert("发布内容不能为空");
         } else if (contentOk == "morethenlimit") {
-        	alert("<span class='icon_attention'></span> 超出字数限制，精简一下:)");
+        	alert("超出字数限制，精简一下:)");
         } else if (verification_code_value == "") {
-        	alert("<span class='icon_attention'></span> 验证码不能为空");
+        	alert("验证码不能为空");
         } else if (contentOk == "yes") {
             $.post(baseUrl + "stream", $("#s_t_form").serialize(), function(msg){
+            	$.mobile.hidePageLoadingMsg();
             	if (msg.status == "verifi") {
-            		alert("<span class='icon_attention'></span>请输入验证码");
+            		alert("请输入验证码");
             		$('.verification_code_p').fadeIn('fast');
             		$('#verification_code_img').attr({'src': baseUrl + 'other/verifi' });
             		$('#verification_code').val('');
             	} else if (msg.status == "error") {
-            		alert("<span class='icon_wrong'></span>" + msg.info);
+            		alert(msg.info);
             	} else if (msg.status == "ok") {
                     window.location = baseUrl + 'stream';
                 } else {
