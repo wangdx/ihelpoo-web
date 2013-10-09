@@ -390,8 +390,6 @@ function mseeageNumsOnce() {
                 } else {
                     $('#message_talk_nums_div').fadeOut('fast');
                 }
-            } else {
-                alert(msg.info);
             }
         },
         timeout: 10000,
