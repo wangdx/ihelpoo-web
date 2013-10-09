@@ -909,14 +909,14 @@ li{ list-style:none; }
     padding: 10px;
     margin: 0 auto;
     width: 200px;
-    border: 1px solid #EEE;
+    border: 1px solid #DDD;
     background-color: #EFEFEF;
     border-radius: 5px 5px 5px 5px;
 }
 .stream_list_type li{
     position: relative;
     padding: 5px 0;
-    border-bottom: 1px solid #EEE;
+    border-bottom: 1px dotted #DDD;
 }
 
 /*--- stream_publish ---*/
