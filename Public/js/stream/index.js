@@ -565,7 +565,7 @@ $().ready(function(){
      */
     $("#s_t_submit").click(function(){
         var verification_code_value = $('#verification_code').val();
-        var textareacontent = $('#s_t_textarea').val();
+        var textareacontent = $('#s_t_textarea').val() + ' ';
         var help_is_input = $('#help_is_input').val();
         var weibo_is_publish = $('#weibo_is_publish').val();
 
