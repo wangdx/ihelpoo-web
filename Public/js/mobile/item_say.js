@@ -89,12 +89,14 @@ $().ready(function(){
     $('#del_record_btn').click(function(){
         var deletesid = $('#recordsid').val();
     	var infohtml = "确定删除记录？";
-    	ajaxInfo(infohtml, deletesid);
+    	ajaxInfo(infohtml, 'record', deletesid);
     });
     
-    $('#del_record_btn_yes').live('click', function(){
+    $('#delete_btn_yes').live('click', function(){
         var delRecordSid = $(this).attr("value");
-    	$.ajax({
+        var delInfoType = $(this).attr("infotype");
+        alert(delInfoType);
+    	/*$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
             data: "delrecord=" + delRecordSid,
@@ -105,7 +107,7 @@ $().ready(function(){
         		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 setTimeout('pageToStream()',3000);
             }
-        });
+        });*/
     });
     
     $('.btn_cancel').live('click', function(){

@@ -160,9 +160,10 @@ function mseeageNumsOnce() {
     });
 }
 
-function ajaxInfo(htmlobj, deletevalue) {
+function ajaxInfo(htmlobj, infotype , deletevalue) {
 	if (deletevalue != 0) {
 		$("#delete_btn_yes").val(deletevalue);
+		$("#delete_btn_yes").attr({'infotype' : infotype});
 	} else {
 		$("#delete_btn_calcel").hide();
 	}
