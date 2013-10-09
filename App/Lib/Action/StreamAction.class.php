@@ -71,6 +71,9 @@ class StreamAction extends Action
                 $this->ajaxReturn(0, $publishError, 'error');
             } else {
                 $content = i_makechickableLinks(trim(addslashes(strip_tags($_POST["textareacontent"], "<a>"))));
+                if (empty($content)) {
+                	$this->ajaxReturn(0, '内容不能为空', 'error');
+                }
                 $imageurls = htmlspecialchars(strtolower(trim($_POST["imageurls"])));
                 $videourl = trim($_POST["videourl"]);
                 $atusers = htmlspecialchars(addslashes(strtolower(trim($_POST["atusers"]))));
@@ -82,6 +85,7 @@ class StreamAction extends Action
                 $quietlyreleased = htmlspecialchars(strtolower(trim($_POST["quietlyreleased"])));
                 $groupmsgpush_system = htmlspecialchars(strtolower(trim($_POST["groupmsgpush_system"])));
                 $groupmsgpush_mail = htmlspecialchars(strtolower(trim($_POST["groupmsgpush_mail"])));
+                
 
                 $recordUserLogin = $UserLogin->where("uid = $userloginid")->field('uid,logintime,nickname,coins,active')->find();
                 if ($verificationcode == 999) {
