@@ -162,7 +162,7 @@ $().ready(function(){
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
 	        var atresult = i_comment_textarea.match(atpattern);
-	        $(this).parent().find('.reply_atusers').val(atresult);
+	        $(this).parent().parent().find('.reply_atusers').val(atresult);
 	        var re = new RegExp("(@[\\u4E00-\\u9FA5A-Za-z0-9_.]+)", "g");
 	        var s = "<a class=\"getuserinfo\">$1</a>";
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
