@@ -1115,8 +1115,8 @@
     max-width: 100%;
 }
 .i_record_plus_info{
-    border: 1px solid #DDDDDD;
-    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
     margin-top: 15px;
     padding: 5px;
 }
