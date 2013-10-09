@@ -182,7 +182,7 @@ li{ list-style:none; }
 .level10{ width: 14px; height: 14px; background:url(../../image/common/level.png) no-repeat 0px -126px; display:inline-block; vertical-align: middle; }
 
 /*---*/
-.dot_choose{display: inline-block; width: 13px; height: 5px; background: #C00; margin: 6px; float: right; position: absolute; right: 10px; top: 5px;}
+.dot_choose{display: inline-block; width: 13px; height: 5px; background: #C00; margin: 6px; float: right; position: absolute; right: 10px; top: 10px;}
 /*---*/
 .message{position: relative;  bottom: 5px; right: 3px; background-color: #FE6600; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
 .message_blue{position: relative; bottom: 5px; right: 2px; background-color: #6CCACD; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
@@ -915,7 +915,7 @@ li{ list-style:none; }
 }
 .stream_list_type li{
     position: relative;
-    padding: 5px 0;
+    padding: 10px 5px;
     border-bottom: 1px dotted #DDD;
 }
 
