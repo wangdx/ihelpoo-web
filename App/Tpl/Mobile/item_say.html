@@ -43,12 +43,6 @@
 			</span>
 			<span class="fr f12 black_l i_content_span_info">
 			  	<span class='icon_up'></span>深度浏览<?php echo $sayRecord['hit_co']; ?>° 
-			  	<span class='icon_words'></span> 评论(<?php echo empty($sayRecord['comment_co']) ? '0' : $sayRecord['comment_co']; ?>)
-			  	<i class="icon_hand"></i>赞(<?php echo $sayRecord['plus_co'] ?>) 
-				扩散(<?php echo empty($sayRecord['diffusion_co']) ? '0' : $sayRecord['diffusion_co']; ?>)
-				<?php if (!empty($userloginedrecord['uid'])) { ?>
-				 | <a class="black_l" id="fav_record_btn"><span class="icon_star"></span>收藏</a>
-				<?php } ?>
 		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
 		    	<a class="black_l" id="del_record_btn"><span class="icon_garbage"></span>删除</a>
 		    	<?php } ?>
@@ -137,7 +131,6 @@
 		    <span class="i_comment_textarea_info"></span>
 		    <p class="i_c_b_form_icon_p">
 		    	<span class="post_icon" id="textareaicon" title="表情"></span>
-		    	<span class="post_img" id="textareaimg" title="图片"></span>
 		    </p>
 		  </form>
 		  <!-- emotionbox hide -->
@@ -151,16 +144,6 @@
 		  	  <ul class="emotionbox_show_ul"></ul>
 		  </div>
 		  <!-- /emotionbox -->
-		  <!-- image upload hide -->
-		  <div class="img_upload_comment_form_div">
-		      <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
-		        <input id="upload_form_img_file" name="uploadedimg" type="file" />
-		        <a id="img_upload_btn">[上传]</a>
-		        <span class="imgajaxloading_span"></span>
-		      </form>
-		      <ul id="image_upload_list_ul"></ul>
-		  </div>
-		  <!-- /image upload -->
 		</div>
 		<!-- /comment -->
 
