@@ -96,6 +96,8 @@ $().ready(function(){
         var delRecordSid = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
         ajaxInfo('删除成功', 0, 0);
+        $("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").hide();
     	/*$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
