@@ -908,9 +908,6 @@ li{ list-style:none; }
 #stream_index_view_select{
     cursor: pointer;
 }
-#stream_index_view_select_symbol{
-    height: 10px;
-}
 .stream_list_type_out_div{
     text-align: center;
     position: absolute;
