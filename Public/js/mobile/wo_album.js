@@ -18,9 +18,7 @@ $().ready(function(){
     		dataType: "json",
     		success:function(msg){
     			if (msg.status == 'ok') {
-    				$("#ajax_info_div").fadeOut("fast");
-    				$("#ajax_info_div_outer").fadeOut("fast");
-     				$('#i_shine_hit_in').fadeIn('normal').html(msg.info).delay(3000).fadeOut('normal');
+    				ajaxInfo(msg.info, 0, 0);
      				setTimeout('pageToWoAlbum()',3000);
      			} else if (msg.status == 'existsay') {
     				if (msg.data.say_type == '0') {
