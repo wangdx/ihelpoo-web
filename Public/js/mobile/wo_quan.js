@@ -3,7 +3,6 @@ $().ready(function(){
 	$(".wo_quan_cancel_a").click(function(){
 		var deluserid = $(this).attr('value');
 		var infohtml = "确定取消圈ta ？";
-    	ajaxInfo(infohtml);
     	ajaxInfo(infohtml, 'quan', deluserid);
     	$cancelLi = $(this).parent();
     });
