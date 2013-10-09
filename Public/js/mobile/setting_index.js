@@ -1,4 +1,4 @@
-$(document).bind("mobileinit", function() {
+$().ready(function(){
     var globalPattern = /[&$%\/\\\*<>\'\`]/;
     var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
     var nicknameOk = "yes";
