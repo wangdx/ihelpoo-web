@@ -981,11 +981,12 @@ li{ list-style:none; }
     border-style: solid solid none;
     border-width: 1px 1px 0;
 }
-#emotionbox_close{
-    background-color: #EEEEEE;
+#emotionbox_close, #post_help_reword_close, #image_upload_close{
+    background-color: #DDD;
     margin: 0;
     padding: 5px;
     text-align: center;
+    cursor: pointer;
 }
 
 /*--- item_say ---*/

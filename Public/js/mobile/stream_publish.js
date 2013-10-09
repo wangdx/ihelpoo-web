@@ -34,11 +34,9 @@ $().ready(function(){
     /**
      * image part
      */
-    $('#textareaimg').click(
-        function(){
+    $('#textareaimg').click(function(){
             $('.img_upload_form_div').slideDown('fast');
-        }
-    );
+    });
 
     $('.upload_img_list .icon_index_wrong').click(function(){
         imageNums--;
@@ -74,7 +72,10 @@ $().ready(function(){
             }
         }
     });
-
+    
+    $('#image_upload_close').click(function(){
+        $('.img_upload_form_div').slideUp('fast');
+    });
 
     /**
      * help part
@@ -103,6 +104,10 @@ $().ready(function(){
 	        $('#left_coins_calculate').html("<span class='red_l'>活跃不够了</span>");
 	    }
 	});
+	
+	$('#post_help_reword_close').click(function(){
+        $('#post_help_reword').slideUp('fast');
+    });
 
     /**
      * submit
