@@ -1009,14 +1009,11 @@ li{ list-style:none; }
 }
 #emotionbox_item{    
     display: none;
-    position: absolute;
-    top: 140px;
-    left: 5px;
-    background: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    min-height: 160px;
-    min-width: 300px;
-    z-index: 1111;
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
 }
 .emotionbox_show_ul{
     padding: 5px;
