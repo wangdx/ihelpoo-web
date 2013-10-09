@@ -8,7 +8,7 @@ $().ready(function(){
     	$cancelLi = $(this).parent();
     });
 	
-	$("#sure_cancel_quan").live('click', function(){
+	$("#delete_btn_yes").live('click', function(){
 		var deleteId = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
 		if (delInfoType == 'quan') {
