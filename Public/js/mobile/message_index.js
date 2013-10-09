@@ -14,13 +14,13 @@ $().ready(function(){
                     $('#message_system').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageSystemNums+")</span>");
                 }
                 if (msg.data.messageCommentNums != 0) {
-                	$('#message_comment').append(msg.data.messageSystemNums);
+                	$('#message_comment').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageCommentNums+")</span>");
                 }
                 if (msg.data.messageAtNums != 0) {
-                	$('#message_at').append(msg.data.messageSystemNums);
+                	$('#message_at').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageAtNums+")</span>");
                 }
                 if (msg.data.messageTalkNums != 0) {
-                	$('#message_talk').append(msg.data.messageSystemNums);
+                	$('#message_talk').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageTalkNums+")</span>");
                 }
             } else {
             	alert(msg.info);
