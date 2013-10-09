@@ -126,6 +126,10 @@ window.CodiqaControls.define('googlemaps', CodiqaControls.GoogleMap);
   
 })(jQuery);
 
+$().ready(function(){
+	mseeageNumsOnce();
+});
+
 function mseeageNumsOnce() {
     $.ajax({
         type: "POST",
