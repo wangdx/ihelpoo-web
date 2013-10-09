@@ -919,7 +919,9 @@ li{ list-style:none; }
 #post_help_reword{
     display: none;
 }
-
+.s_t_option span{
+    margin: 10px 10px 10px 0;
+}
 #emotionbox{
     background-color: #FFFFFF;
     border: 1px solid #DDDDDD;
