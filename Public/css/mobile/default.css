@@ -905,14 +905,17 @@ li{ list-style:none; }
     background: #6ccacd;
     color: #FFF;
 }
+#stream_index_view_select{
+    cursor: pointer;
+}
 .stream_list_type{
+    position: absolute;
     padding: 10px;
     margin: 0 auto;
     width: 160px;
     border: 1px solid #DDD;
     background-color: #EFEFEF;
     border-radius: 5px 5px 5px 5px;   
-    display: none; 
 }
 .stream_list_type li{
     position: relative;
