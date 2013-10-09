@@ -20,7 +20,7 @@
             <?php } else if ($streamway == "help") { ?>
             	<i class="ico_specialcare"></i>只看帮助
             <?php } else if ($streamway == "time") { ?>
-            	<span class="ico_time"></span> 按时间
+            	<i class="ico_time"></i> 按时间
             <?php } else { ?>
             	<span class="ico_change_select"></span> {$schoolname} 校园动态
             <?php } ?>
@@ -30,7 +30,7 @@
 
 <div class="stream_list_type_out_div">
 <ul class="stream_list_type">
-    <li><a href="__ROOT__/stream/" target="_self"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a href="__ROOT__/stream/" target="_self"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/priority" target="_self"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/help" target="_self"><i class="ico_specialcare"></i>只看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/time" target="_self"><i class="ico_time"></i>按时间<?php if($streamway == "time") { ?><span class="dot_choose"></span><?php } ?></a></li>
