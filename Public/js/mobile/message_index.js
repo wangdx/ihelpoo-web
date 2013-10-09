@@ -11,7 +11,7 @@ $().ready(function(){
                 var totalmsgnums = parseInt(msg.data.messageSystemNums) + parseInt(msg.data.messageCommentNums) + parseInt(msg.data.messageAtNums) + parseInt(msg.data.messageTalkNums);
                 alert(totalmsgnums);
                 if (msg.data.messageSystemNums != 0) {
-                    $('#message_system').find('.ui-btn-text').append( "<span class='red'>("+msg.data.messageSystemNums+")</span>");
+                    $('#message_system').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageSystemNums+")</span>");
                 }
                 if (msg.data.messageCommentNums != 0) {
                 	$('#message_comment').append(msg.data.messageSystemNums);
