@@ -129,7 +129,7 @@ window.CodiqaControls.define('googlemaps', CodiqaControls.GoogleMap);
 $().ready(function(){
 	mseeageNumsOnce();
 	
-	$("#delete_btn_calcel").click(function(){
+	$("#delete_btn_cancel").click(function(){
     	$("#ajax_info_div").fadeOut("fast");
 		$("#ajax_info_div_outer").hide();
     });
@@ -165,7 +165,8 @@ function ajaxInfo(htmlobj, infotype , deletevalue) {
 		$("#delete_btn_yes").val(deletevalue);
 		$("#delete_btn_yes").attr({'infotype' : infotype});
 	} else {
-		$("#delete_btn_calcel").hide();
+		$("#delete_btn_yes").hide();
+		$("#delete_btn_cancel").html("确定");
 	}
     $("#ajax_info_div_outer").show();
     $("#ajax_info_div").fadeIn('fast');
