@@ -1,5 +1,4 @@
 $().ready(function(){
-	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
 
     /**
      * icon emotion part
@@ -19,7 +18,6 @@ $().ready(function(){
         $('#i_comment_textarea').val(textareanow);
         $('#emotionbox_item').fadeOut('fast');
         contentOk = 'yes';
-        //important here, refuse default explorer action
         return false;
     });
     $('.emotionbox_change_page').click(function(){
@@ -48,14 +46,13 @@ $().ready(function(){
         });
     });
 
-    //i del
+    //i delete & delete reply
     $('#del_record_btn').click(function(){
         var deletesid = $('#recordsid').val();
     	var infohtml = "确定删除记录？";
     	ajaxInfo(infohtml, 'record', deletesid);
     });
     
-    //delete reply
     $('.reply_delete_btn').click(function(){
         var delReplySid = $(this).parent().find('.reply_delete_cid').val();
     	var infohtml = "确定删除评论？";
@@ -153,17 +150,6 @@ $().ready(function(){
         $comment_reply_div_box.slideDown('fast');
     });
     
-    //reply auto show 
-    $comment_reply_auto_show_li = $('.now_reply_this_id');
-    if ($comment_reply_auto_show_li != null) {
-    	$comment_reply_div_box = $comment_reply_auto_show_li.find('.comment_reply_div_box');
-    	$comment_reply_div_box.slideDown('fast');
-    	var reply_auto_offset = $comment_reply_auto_show_li.offset();
-    	if (reply_auto_offset != null) {
-    		$("html,body").animate({scrollTop: reply_auto_offset.top - 60}, 200);
-    	}
-    }
-    
     //reply comment
     $('.comment_reply_btn').click(function(){
     	var $this = $(this);
@@ -181,7 +167,7 @@ $().ready(function(){
 	        var s = "<a class=\"getuserinfo\">$1</a>";
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $(this).parent().find('.reply_textareacontent').val(textareacontentdata);
-	        $comment_reply_form = $(this).parent();
+	        $comment_reply_form = $(this).parent().parent();
 		    
 		    $.mobile.showPageLoadingMsg();
             $.post(baseUrl + "item/sayajax", $comment_reply_form.serialize(), function(msg){

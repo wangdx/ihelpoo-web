@@ -3,7 +3,6 @@
     Vendor('Ihelpoo.Emotion');
     $emotion = new Emotion();
 	$UserLogin = M("UserLogin");
-	$findReplyPlace = false;
 ?>
 <include file="Public:headermobile" />
 <script type="text/javascript" src="__PUBLIC__/js/mobile/item_say.js"></script>
@@ -147,13 +146,7 @@
 		<div class="i_comment_list">
 		  <ul class="i_comment_list_ul">
 		  <?php foreach ($sayComment as $comment): ?>
-      	  <?php if ($_GET['ncid'] == $comment['cid']) {
-      	  $findReplyPlace = true;
-      	  ?>
-		  <li class="now_reply_this_id">
-		  <?php } else { ?>
 		  <li>
-		  <?php } ?>
 		    <a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" target="_self" class="getuserinfo" userid="<?php echo $comment['uid']; ?>">
 		    	<img src="<?php echo i_icon_check($comment['uid'], $comment['icon_url'], 's') ?>" height="50" class="i_c_l_u_li_img radius3" />
 		    </a>
@@ -216,11 +209,5 @@
 		<!-- /comment_list -->
 	    <div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
 	</div>
-
-<?php 
-if (!$findReplyPlace && !empty($_GET['ncid']) && $pagenow <= $totalPages) {
-	redirect('/item/say/'.$sayRecord['sid'].'?ncid='.$_GET['ncid'].'&p='.$totalPages, 0, '跳转查找记录页面中...');
-}
-?>
 </div>
 <include file="Public:footermobile" />
