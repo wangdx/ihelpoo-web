@@ -53,20 +53,10 @@
 	      <input type="hidden" name="imageurls" id="imageurls" />
 	      <input type="hidden" name="atusers" id="atusers" />
 	      <input type="hidden" name="textareacontent" id="textareacontent" />
-	      <!-- emotionbox hide -->
-	      <div id="emotionbox">
-			  <p class="emotionbox_close_p">
-				  <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
-				  <a class="emotionbox_change_page" title="微博" value="2">微博</a>
-				  <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
-				  <span id="emotionbox_close" class="close_x" title="关闭">×</span>
-			  </p>
-		  	  <ul class="emotionbox_show_ul"></ul>
-		  </div>
-		  <!-- /emotionbox -->
 	    </li>
-	    <li id="post_help_reword">
-	      活跃悬赏: <select id="reward_coins" name="reward_coins">
+	    <li id="post_help_reword" class="f12 gray">
+	      活跃悬赏:
+	      <select id="reward_coins" name="reward_coins">
 	        <option value="0">0</option>
 	        <option value="10">10</option>
 	        <option value="20">20</option>
@@ -83,6 +73,18 @@
 	    </ul>
     </form>
     <!-- /publish form -->
+    
+    <!-- emotionbox hide -->
+	      <div id="emotionbox">
+			  <p class="emotionbox_close_p">
+				  <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
+				  <a class="emotionbox_change_page" title="微博" value="2">微博</a>
+				  <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
+				  <span id="emotionbox_close" class="close_x" title="关闭">×</span>
+			  </p>
+		  	  <ul class="emotionbox_show_ul"></ul>
+		  </div>
+    <!-- /emotionbox -->
 
     <!-- image upload hide -->
     <div class="img_upload_form_div">
@@ -94,6 +96,7 @@
       <ul id="image_upload_list_ul"></ul>
     </div>
     <!-- /image upload -->
+    
   </div>
   <!-- /stream box -->
 </div>
