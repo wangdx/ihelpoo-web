@@ -89,6 +89,13 @@ $().ready(function(){
     	ajaxInfo(infohtml, 'record', deletesid);
     });
     
+    //delete reply
+    $('.reply_delete_btn').click(function(){
+        var delReplySid = $(this).parent().find('.reply_delete_cid').val();
+    	var infohtml = "<p>确定删除评论？</p> <a class='btn_sure' id='delete_comment_btn_yes' value='"+delReplySid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	ajaxInfo(infohtml, 'comment' ,delReplySid);
+    });
+    
     $('#delete_btn_yes').live('click', function(){
         var delRecordSid = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
@@ -106,7 +113,20 @@ $().ready(function(){
         		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
                 setTimeout('pageToStream()',3000);
             }
-        });*/
+        });
+        
+        delete_comment_btn_yes
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "item/del",
+            data: "delcomment=" + delReplySid,
+            dataType: "json",
+            success:function(msg){
+                $("#ajax_info_div").fadeOut("fast");
+        		$("#ajax_info_div_outer").hide();
+            }
+        });
+        */
     });
     
     //comment
@@ -115,11 +135,11 @@ $().ready(function(){
         var i_comment_textarea = $('#i_comment_textarea').val();
         var verificationcode = $('#verificationcode').val();
         if (i_comment_textarea == '') {
-            ajaxInfo('评论不能为空');
+            ajaxInfo('评论不能为空',0,0);
         } else if (verificationcode == '') {
-            ajaxInfo('验证码不能为空');
+            ajaxInfo('验证码不能为空',0,0);
         } else if (i_comment_textarea.length > 222) {
-        	ajaxInfo('评论内容太长了 不能超过222个字符');
+        	ajaxInfo('评论内容太长了 不能超过222个字符',0,0);
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
@@ -155,7 +175,7 @@ $().ready(function(){
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
                 } else {
-                    ajaxInfo(msg.info);
+                    ajaxInfo(msg.info,0,0);
                     $this.html('评论');
                 }
             }, "json");
@@ -184,9 +204,9 @@ $().ready(function(){
     	var $this = $(this);
         var i_comment_textarea = $(this).parent().find('.comment_reply_textarea').val();
         if (i_comment_textarea == '') {
-            ajaxInfo('回复不能为空');
+            ajaxInfo('回复不能为空',0,0);
         } else if (i_comment_textarea.length > 200) {
-        	ajaxInfo('回复内容太长了 不能超过200个字符');
+        	ajaxInfo('回复内容太长了 不能超过200个字符',0,0);
         } else {
         	i_comment_textarea = i_comment_textarea + ' ';
 	        var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
@@ -204,7 +224,7 @@ $().ready(function(){
             });
             $.post(baseUrl + "item/sayajax", $comment_reply_form.serialize(), function(msg){
             	if (msg.status == 'verifi') {
-            		ajaxInfo('请输入验证码');
+            		ajaxInfo('请输入验证码',0,0);
             		$this.parent().find('.comment_reply_verification').fadeIn('fast');
             		$this.parent().find('.comment_reply_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random() });
             		$this.parent().find('.comment_reply_verificationcode').val('');
@@ -225,37 +245,13 @@ $().ready(function(){
                     $('.i_comment_list_ul').prepend(commentContent);
                     $this.parent().find('.comment_reply_verification').hide();
                     $this.parent().find('.comment_reply_verificationcode').val('999');
-                    notice.send('comment', msg.info);
                 } else {
-                    ajaxInfo(msg.info);
+                    ajaxInfo(msg.info,0,0);
                 }
             }, "json");
         }
     });
 
-    //delete reply
-    $('.reply_delete_btn').click(function(){
-        var delReplySid = $(this).parent().find('.reply_delete_cid').val();
-        $alreadyDeleteLi = $(this).parent().parent().parent();
-        $alreadyDeleteLi.css("backgroundColor", "#FFFA85");
-    	var infohtml = "<p>确定删除评论？</p> <a class='btn_sure' id='delete_comment_btn_yes' value='"+delReplySid+"'>确定</a><a class='btn_cancel'>取消</a>";
-    	ajaxInfo(infohtml);
-    });
-    $('#delete_comment_btn_yes').live('click', function(){
-        var delReplySid = $(this).attr('value');
-        $.ajax({
-            type: "POST",
-            url: baseUrl + "item/del",
-            data: "delcomment=" + delReplySid,
-            dataType: "json",
-            success:function(msg){
-                $alreadyDeleteLi.slideUp('fast');
-                $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").hide();
-            }
-        });
-    });
-    
     $('.reply_box_btn').hide();
     $('.reply_delete_btn').hide();
     $('.i_comment_list_ul li').hover(function(){
