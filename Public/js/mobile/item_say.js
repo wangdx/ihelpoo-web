@@ -201,7 +201,7 @@ $().ready(function(){
     //reply comment
     $('.comment_reply_btn').click(function(){
     	var $this = $(this);
-        var i_comment_textarea = $(this).parent().find('.comment_reply_textarea').val();
+        var i_comment_textarea = $(this).parent().parent().find('.comment_reply_textarea').val();
         if (i_comment_textarea == '') {
             ajaxInfo('回复不能为空',0,0);
         } else if (i_comment_textarea.length > 200) {
