@@ -629,9 +629,11 @@ li{ list-style:none; }
 	width: 100px;
 	display: block;
 	text-align: center;
+	margin: 0 auto;
 }
 .group_introduction_p{
 	text-align: center;
+	margin: 0 auto;
 }
 /*--- user_register ---*/
 .registe_ul{
