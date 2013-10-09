@@ -1149,6 +1149,7 @@ li{ list-style:none; }
     border-radius: 5px 5px 5px 5px;
     margin: 10px 0;
     padding: 15px;
+    position: relative;
 }
 .i_c_b_verification, .comment_reply_verification, .img_upload_comment_form_div{
     display: none;
