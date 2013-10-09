@@ -174,8 +174,18 @@
       <div style="background:<?php echo $backgroundcolor ?>; height:3px; float:left; width:0" class="icon_timebar_in_div"></div>
       <?php echo $timebaranimal; ?>    
     </div>
-    
   </div>
+  <?php } ?>
+  <?php if ($userLogin['type'] == '1') { ?>
+  <script type="text/javascript">
+    $().ready(function(){
+    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
+    	$('#icon_timebar_img').animate({left: <?php echo $schoolDaysWidth - 35; ?>}, 800);
+        $('#say_hello_close').click(function(){
+            $(this).parent().hide();
+        });
+    });
+  </script>
   <?php } ?>
   
   <ul class="wo_user_nav_ul">
@@ -208,15 +218,4 @@
     </p>
     <?php } ?>
   </div>
-  <?php if ($userLogin['type'] == '1') { ?>
-  <script type="text/javascript">
-    $().ready(function(){
-    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
-    	$('#icon_timebar_img').animate({left: <?php echo $schoolDaysWidth - 35; ?>}, 800);
-        $('#say_hello_close').click(function(){
-            $(this).parent().hide();
-        });
-    });
-  </script>
-  <?php } ?>
   <script type="text/javascript" src="__PUBLIC__/js/wo/wo.js"></script>

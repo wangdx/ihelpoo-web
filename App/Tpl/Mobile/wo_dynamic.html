@@ -241,15 +241,4 @@
 <p><a href="/wo/album/<?php echo $userLogin['uid']; ?>" target="_self" data-role="button" data-icon="edit" data-iconpos="left" class="ui-btn-left"><?php echo $userLogin['nickname']; ?>的相册</a></p>
 <p><a href="/wo/honor/<?php echo $userLogin['uid']; ?>" target="_self" data-role="button" data-icon="edit" data-iconpos="left" class="ui-btn-left"><?php echo $userLogin['nickname']; ?>的等级荣誉</a></p>
 </div>
-<?php if ($userLogin['type'] == '1') { ?>
-  <script type="text/javascript">
-    $().ready(function(){
-    	$('.icon_timebar_in_div').animate({width: <?php echo $schoolDaysWidth; ?>}, 800);
-    	$('#icon_timebar_img').animate({left: <?php echo $schoolDaysWidth - 35; ?>}, 800);
-        $('#say_hello_close').click(function(){
-            $(this).parent().hide();
-        });
-    });
-  </script>
-<?php } ?>
 <include file="Public:footermobile" />
