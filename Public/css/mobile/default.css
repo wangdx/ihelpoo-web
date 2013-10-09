@@ -648,9 +648,6 @@ li{ list-style:none; }
 }
 /*--- stream_index ---*/
 .verification_code_p{
-    position: absolute;
-    left: 360px;
-    top: 120px;
     display: none;
 }
 .verification_code_p input{
