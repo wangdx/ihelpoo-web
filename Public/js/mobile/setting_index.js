@@ -35,7 +35,7 @@ $().ready(function(){
             introductionOk = "yes";
         }
     });
-    $("#academy").change(function(){
+    $("#academy").bind("change", function(){
         var academy = $("#academy").val();
         $('#ajaxprogressbar').html($infoLoading);
         $.ajax({
