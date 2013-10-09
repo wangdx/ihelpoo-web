@@ -187,7 +187,8 @@ class StreamAction extends Action
                             'rpath' => $tempImageUrlString,
                             'time' => time(),
                         );
-                        $imageOutLastInsertId = $RecordOutimg->add($imageOutNewData);
+                        //TODO 20131009 test
+                        //$imageOutLastInsertId = $RecordOutimg->add($imageOutNewData);
                         $imageUrlString .= $imageOutLastInsertId . ";";
                     }
                 }
@@ -226,6 +227,9 @@ class StreamAction extends Action
                     'from' => $fromBrowser,
                     'school_id' => $schoolpublishid
                 );
+                //TODO 20131009 test
+                var_dump($dataRecordSay);
+                exit();
                 $sayLastInsertId = $RecordSay->add($dataRecordSay);
 
                 /**

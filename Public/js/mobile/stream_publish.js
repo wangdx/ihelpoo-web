@@ -157,3 +157,13 @@ $().ready(function(){
         }
     });
 });
+
+function attrListImgValue(){
+    var uploadImage1 = $('.upload_img_list:eq(0)').attr('url');
+    var uploadImage2 = $('.upload_img_list:eq(1)').attr('url');
+    var uploadImage3 = $('.upload_img_list:eq(2)').attr('url');
+    var uploadImage4 = $('.upload_img_list:eq(3)').attr('url');
+    var uploadImage5 = $('.upload_img_list:eq(4)').attr('url');
+    var uploadImageAll = uploadImage1 + "---" + uploadImage2 + "---" + uploadImage3 + "---" + uploadImage4 + "---" + uploadImage5;
+    return uploadImageAll;
+}
