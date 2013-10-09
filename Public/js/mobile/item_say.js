@@ -106,7 +106,7 @@ $().ready(function(){
 			$.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/del",
-	            data: "delcomment=" + delReplySid,
+	            data: "delcomment=" + delRecordSid,
 	            dataType: "json",
 	            success:function(msg){
 	            	ajaxInfo('删除评论成功', 0, 0);
