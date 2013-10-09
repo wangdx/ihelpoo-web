@@ -26,7 +26,8 @@
 			<span class="i_content_span_user">
 		    	<?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."'  target='_self' class='getuserinfo' userid='".$sayRecord['uid']."'>".$itemUserLogin['nickname']."</a>"; ?>
 		    	<span class="f12 black_l">发布于
-		    		<?php echo i_time($sayRecord['time']);
+		    		<?php echo i_time($sayRecord['time']); ?>
+    				<?php
     				if (!empty($sayRecord['from'])) {
           				if ("2" == $sayRecord['from']) {
           	  				echo " 来自我帮圈圈抓取程序";
@@ -41,7 +42,7 @@
         			<?php } ?>
 		  		</span>
 			</span>
-			<span class="fr f12 black_l i_content_span_info">
+			<span class="f12 black_l i_content_span_info">
 			  	<span class='icon_up'></span>深度浏览<?php echo $sayRecord['hit_co']; ?>° 
 		    	<?php if ($sayRecord['uid'] == $userloginedrecord['uid'] ) { ?>
 		    	<a class="black_l" id="del_record_btn"><span class="icon_garbage"></span>删除</a>
