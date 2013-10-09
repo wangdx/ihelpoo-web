@@ -1,4 +1,10 @@
 $().ready(function(){
+	
+	var message_active_nums = $("#message_active_nums").val();
+	if (message_active_nums != 0) {
+    	$('#message_active').find('.ui-btn-text').append(" <span class='reb_back'>("+message_active_nums+")</span>");
+    }
+	
 	$.ajax({
         type: "POST",
         url: baseUrl + "ajax/getmessage",
