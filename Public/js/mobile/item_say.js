@@ -97,7 +97,7 @@ $().ready(function(){
         var delInfoType = $(this).attr("infotype");
         ajaxInfo('删除成功', 0, 0);
         $("#ajax_info_div").delay(1000).fadeOut("fast");
-		$("#ajax_info_div_outer").delay(1000).hide();
+		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
     	/*$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
