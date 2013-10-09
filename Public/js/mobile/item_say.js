@@ -88,7 +88,7 @@ $().ready(function(){
     //i del
     $('#del_record_btn').click(function(){
         var deletesid = $('#recordsid').val();
-    	var infohtml = "确定删除？";
+    	var infohtml = "确定删除记录？";
     	ajaxInfo(infohtml, deletesid);
     });
     
