@@ -911,9 +911,12 @@ li{ list-style:none; }
     width: 200px;
     border: 1px solid #EEE;
     background-color: #EFEFEF;
+    border-radius: 5px 5px 5px 5px;
 }
 .stream_list_type li{
     position: relative;
+    padding: 5px 0;
+    border-bottom: 1px solid #EEE;
 }
 
 /*--- stream_publish ---*/
