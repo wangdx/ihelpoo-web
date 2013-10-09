@@ -1005,6 +1005,7 @@ li{ list-style:none; }
 }
 #image_upload_list_ul li .upload_image_delete{
     margin-left: 10px;
+    cursor: pointer;
 }
 
 /*--- item_say ---*/
