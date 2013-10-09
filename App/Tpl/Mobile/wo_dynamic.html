@@ -174,7 +174,7 @@
 		<?php } ?>
     </div>
     <div class="s_li_user_time f12 gray">
-       <?php echo i_time($record['last_comment_ti']); ?> 
+       <?php echo i_time($record['time']); ?> 
         <?php if ($record['school_record'] != $thisschoolid) { ?>
 	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
 	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" target="_self" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
