@@ -144,8 +144,6 @@ function mseeageNumsOnce() {
                 if (totalmsgnums != 0) {
                 	$('#footer_mobile_message').find('.ui-btn-text').append(" <span class='reb_back'>"+msg.data.messageSystemNums+"</span>");
                 }
-            } else {
-            	alert(msg.info);
             }
         },
         timeout: 10000,
