@@ -15,7 +15,13 @@
             设置
         </a>
         <h3 id="stream_index_view_select">
-            <span class="ico_change_select"></span> {$schoolname} 校园动态
+            <?php if($streamway == "priority") { ?>
+            	<i class="ico_specialcare"></i>只看帮助
+            <?php } else if ($streamway == "help") { ?>
+            	<i class="ico_sharespace"></i>看我圈的
+            <?php } else { ?>
+            	<span class="ico_change_select"></span> {$schoolname} 校园动态
+            <?php } ?>
         </h3>
     </div>
 <div data-role="content">
