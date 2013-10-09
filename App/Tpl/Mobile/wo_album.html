@@ -31,6 +31,9 @@
 			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> | 
 			大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> | 
 			浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
+			<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
+			 <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">[删除]</a>
+			<?php } ?>
 		</p>
 	</div>
 	<div class="album_image_content">
