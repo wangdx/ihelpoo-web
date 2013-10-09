@@ -166,6 +166,7 @@ function ajaxInfo(htmlobj, infotype , deletevalue) {
 		$("#delete_btn_yes").attr({'infotype' : infotype});
 	} else {
 		$("#delete_btn_yes").hide();
+		$("#delete_btn_cancel").find('.ui-btn-text').html("确定");
 	}
     $("#ajax_info_div_outer").show();
     $("#ajax_info_div").fadeIn('fast');
