@@ -92,7 +92,7 @@ $().ready(function(){
     //delete reply
     $('.reply_delete_btn').click(function(){
         var delReplySid = $(this).parent().find('.reply_delete_cid').val();
-    	var infohtml = "<p>确定删除评论？</p> <a class='btn_sure' id='delete_comment_btn_yes' value='"+delReplySid+"'>确定</a><a class='btn_cancel'>取消</a>";
+    	var infohtml = "确定删除评论？";
     	ajaxInfo(infohtml, 'comment' ,delReplySid);
     });
     
