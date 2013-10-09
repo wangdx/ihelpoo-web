@@ -10,7 +10,7 @@ $().ready(function(){
                 var acquiremilliseconds = msg.data.acquireSeconds;
                 var totalmsgnums = parseInt(msg.data.messageSystemNums) + parseInt(msg.data.messageCommentNums) + parseInt(msg.data.messageAtNums) + parseInt(msg.data.messageTalkNums);
                 if (totalmsgnums != 0) {
-                	$('#footer_mobile_message').append(" <span class='reb_back'>("+msg.data.messageSystemNums+")</span>");
+                	$('#footer_mobile_message').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageSystemNums+")</span>");
                 }
                 if (msg.data.messageSystemNums != 0) {
                     $('#message_system').find('.ui-btn-text').append(" <span class='reb_back'>("+msg.data.messageSystemNums+")</span>");
