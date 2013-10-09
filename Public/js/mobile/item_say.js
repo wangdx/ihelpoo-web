@@ -89,7 +89,7 @@ $().ready(function(){
     $('#del_record_btn').click(function(){
         var deletesid = $('#recordsid').val();
     	var infohtml = "确定删除？";
-    	ajaxInfo(infohtml, deletevalue);
+    	ajaxInfo(infohtml, deletesid);
     });
     
     $('#del_record_btn_yes').live('click', function(){
