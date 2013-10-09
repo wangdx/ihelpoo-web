@@ -166,7 +166,7 @@ $().ready(function(){
 	        var re = new RegExp("(@[\\u4E00-\\u9FA5A-Za-z0-9_.]+)", "g");
 	        var s = "<a class=\"getuserinfo\">$1</a>";
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
-	        $(this).parent().find('.reply_textareacontent').val(textareacontentdata);
+	        $(this).parent().parent().find('.reply_textareacontent').val(textareacontentdata);
 	        $comment_reply_form = $(this).parent().parent();
 		    
 		    $.mobile.showPageLoadingMsg();
