@@ -20,7 +20,7 @@ $().ready(function(){
     			if (msg.status == 'ok') {
     				$("#ajax_info_div").fadeOut("fast");
     				$("#ajax_info_div_outer").fadeOut("fast");
-     				$('#i_shine_hit_in').fadeIn('normal').html(msg.info).delay(1500).fadeOut('normal');
+     				$('#i_shine_hit_in').fadeIn('normal').html(msg.info).delay(3000).fadeOut('normal');
      				setTimeout('pageToWoAlbum()',3000);
      			} else if (msg.status == 'existsay') {
     				if (msg.data.say_type == '0') {
