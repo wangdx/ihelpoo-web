@@ -152,7 +152,7 @@
 		    </a>
 		    <div class="i_c_l_u_li_div black_l">
 		    	<a href="__ROOT__/wo/<?php echo $comment['uid']; ?>" target="_self" class="getuserinfo" userid="<?php echo $comment['uid']; ?>"><?php echo $comment['nickname']; ?> </a>
-		    	<span class="f12 gray fb">
+		    	<span class="f14 gray">
 		    	<?php
 		      		if (!empty($comment['toid'])) {
 		  				$commentReplyUser = $UserLogin->where("$comment[toid] = uid")->field('uid,nickname')->find();
