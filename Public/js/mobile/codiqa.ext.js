@@ -137,21 +137,8 @@ function mseeageNumsOnce() {
             if (msg.status == 'ok') {
                 var acquiremilliseconds = msg.data.acquireSeconds;
                 var totalmsgnums = parseInt(msg.data.messageSystemNums) + parseInt(msg.data.messageCommentNums) + parseInt(msg.data.messageAtNums) + parseInt(msg.data.messageTalkNums);
-                alert(totalmsgnums);
-                if (msg.data.messageSystemNums != 0) {
-                    $('#message_system_nums_a').show();
-                    $('#message_system_nums_a').children('span').html('+' + msg.data.messageSystemNums);
-                }
-                if (msg.data.messageCommentNums != 0) {
-                    $('#message_comment_nums_a').show();
-                    $('#message_comment_nums_a').children('span').html('+' + msg.data.messageCommentNums);
-                }
-                if (msg.data.messageAtNums != 0) {
-                    $('#message_at_nums_a').show();
-                    $('#message_at_nums_a').children('span').html('@ +' + msg.data.messageAtNums);
-                }
-                if (msg.data.messageTalkNums != 0) {
-                    
+                if (totalmsgnums != 0) {
+                	$('#footer_mobile_message').find('.ui-btn-text').append(" <span class='reb_back'>"+msg.data.messageSystemNums+"</span>");
                 }
             } else {
             	alert(msg.info);
