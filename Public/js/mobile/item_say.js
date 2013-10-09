@@ -86,8 +86,9 @@ $().ready(function(){
     $('#delete_btn_yes').live('click', function(){
         var delRecordSid = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
-        
 		if (delInfoType == 'record') {
+			$("#ajax_info_div").fadeOut("fast");
+			$("#ajax_info_div_outer").fadeOut("fast");
 			$.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/del",
