@@ -56,6 +56,8 @@ $().ready(function(){
     $('.reply_delete_btn').click(function(){
         var delReplySid = $(this).parent().find('.reply_delete_cid').val();
     	var infohtml = "确定删除评论？";
+    	$alreadyDeleteLi = $(this).parent().parent().parent();
+        $alreadyDeleteLi.css("backgroundColor", "#FFFA85");
     	ajaxInfo(infohtml, 'comment' ,delReplySid);
     });
     
@@ -65,6 +67,7 @@ $().ready(function(){
         ajaxInfo('删除成功', 0, 0);
         $("#ajax_info_div").delay(1000).fadeOut("fast");
 		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
+		$alreadyDeleteLi.slideUp('fast');
     	/*$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
