@@ -127,7 +127,7 @@
             <ul>
                 <li>
                     <a data-transition="fade" data-theme="" data-icon="" id="plus_button_<?php echo $record['sid'];?>" class="plus_button" value="i-<?php echo $record['sid']; ?>">
-                        赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?>
+                        赞<span id="plus_view_region_i-<?php echo $record['sid']; ?>"><?php if (!empty($record['plus_co'])) { echo "(".$record['plus_co'].")"; } ?><?php var_dump($record['plus_co']); ?>
                     </a>
                 </li>
                 <li>
