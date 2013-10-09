@@ -133,14 +133,17 @@ $().ready(function(){
         }
         
         if (contentOk == "no") {
+        	$.mobile.hidePageLoadingMsg();
             alert("发布内容不能为空");
         } else if (contentOk == "morethenlimit") {
+        	$.mobile.hidePageLoadingMsg();
         	alert("超出字数限制，精简一下:)");
         } else if (verification_code_value == "") {
+        	$.mobile.hidePageLoadingMsg();
         	alert("验证码不能为空");
         } else if (contentOk == "yes") {
+        	$.mobile.hidePageLoadingMsg();
             $.post(baseUrl + "stream", $("#s_t_form").serialize(), function(msg){
-            	$.mobile.hidePageLoadingMsg();
             	if (msg.status == "verifi") {
             		alert("请输入验证码");
             		$('.verification_code_p').fadeIn('fast');
