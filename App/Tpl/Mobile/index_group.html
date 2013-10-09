@@ -2,8 +2,8 @@
 	<!-- Home -->
     <?php if (empty($userloginedrecord['uid'])) { ?>
     <div data-theme="b" data-role="header">
-    	<a data-role="button" href="/index/school" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
-            串校
+    	<a data-role="button" href="/index/mate" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            大家
         </a>
     	<a data-role="button" href="/" target="_self" data-icon="arrow-r" data-iconpos="right" class="ui-btn-right">
             登录
@@ -14,8 +14,8 @@
     </div>
     <?php } else { ?>
     <div data-theme="b" data-role="header">
-        <a data-role="button" href="/stream" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
-            首页
+        <a data-role="button" href="/index/mate" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            大家
         </a>
         <h3>
             组织 {$schoolname} - 我帮圈圈

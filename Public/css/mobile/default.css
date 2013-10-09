@@ -623,6 +623,17 @@ li{ list-style:none; }
     border-radius: 5px;
     display: inline-block;
 }
+.main_group_img_p{
+	position: relative; 
+	width: 100px;
+	display: inline-block;
+}
+.group_introduction_p{
+    width: 100px;
+	position: absolute;
+	top: 90px;
+	text-align: center;
+}
 /*--- user_register ---*/
 .registe_ul{
     padding: 0;
