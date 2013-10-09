@@ -162,6 +162,7 @@ function mseeageNumsOnce() {
 
 function ajaxInfo(htmlobj, infotype , deletevalue) {
 	if (deletevalue != 0) {
+		$("#delete_btn_cancel").find('.ui-btn-text').html("取消");
 		$("#delete_btn_yes").show().val(deletevalue);
 		$("#delete_btn_yes").attr({'infotype' : infotype});
 	} else {
