@@ -1,6 +1,14 @@
 $().ready(function(){
 	
 	/**
+	 * choose view type
+	 */
+	
+	$('#stream_index_view_select').click(function(){
+        $('.stream_list_type').slideDown('fast');
+    });
+	
+	/**
      * plus part
      */
     $('.plus_button').click(function(){
