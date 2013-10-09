@@ -3,6 +3,7 @@ $().ready(function(){
 	/**
 	 * choose view type
 	 */
+	mseeageNumsOnce();
 	
 	$('#stream_index_view_select').click(function(){
         $('.stream_list_type_out_div').slideDown('fast');
