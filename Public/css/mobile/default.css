@@ -1124,9 +1124,13 @@ li{ list-style:none; }
     color: #333;
     font-weight: normal;
 }
-.msg_notread{
+.msg_com_ul li .msg_notread{
     background: #FFFA85;
 }
+.msg_ul li .msg_notread{
+    background: #FFFA85;
+}
+
 /*--- talk_index ---*/
 .talk_index_history_ul{
     padding: 0;
