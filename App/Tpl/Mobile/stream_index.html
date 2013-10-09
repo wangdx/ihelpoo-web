@@ -169,7 +169,7 @@
   <div class="stream_list_link">
   <?php if ($_GET['p'] <= 1) { ?>
     <?php $nextpage = 2; ?>
-  	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>' data-transition='flip'>点击查看更多动态...</a>
+  	<a href='<?php echo "/stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId."?p=".$nextpage; ?>'>点击查看更多动态...</a>
   <?php } else { ?>
     <?php $nextpage = $_GET['p'] + 1; ?>
     <?php $beforepage = $_GET['p'] - 1; ?>
