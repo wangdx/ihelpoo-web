@@ -154,7 +154,7 @@ function mseeageNumsOnce() {
     });
 }
 
-function ajaxInfo(htmlobj, deletevalue = 0) {
+function ajaxInfo(htmlobj, deletevalue) {
 	if (deletevalue != 0) {
 		$("#delete_btn_yes").val(deletevalue);
 	} else {
