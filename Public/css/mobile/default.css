@@ -984,14 +984,14 @@ li{ list-style:none; }
     border-width: 1px 1px 0;
 }
 #emotionbox_close, #post_help_reword_close, #image_upload_close{
-    background-color: #DDD;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
     margin: 0;
     padding: 5px;
     text-align: center;
-    cursor: pointer;
-    border: 1px solid #CCC;
-    border-radius: 5px;
     font-size: 14px;
+    color: #A8A8A8;
 }
 #post_help_reword, .img_upload_form_div{
     display: block;
