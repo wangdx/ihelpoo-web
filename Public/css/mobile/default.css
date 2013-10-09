@@ -542,7 +542,7 @@ li{ list-style:none; }
     display: none;
 }
 #ajax_info_div{
-    width: 350px;
+    width: 90%;
     min-height: 100px;
     border: 3px solid #CCC;
     background: #FFF;
@@ -556,6 +556,7 @@ li{ list-style:none; }
     padding: 5px 10px;
     position: relative;
     font-size: 12px;
+    margin: 0;
 }
 #ajax_info_div_close{
     position: absolute;
