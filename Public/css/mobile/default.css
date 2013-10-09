@@ -924,10 +924,12 @@ li{ list-style:none; }
     margin: 10px 10px 10px 0;
 }
 #emotionbox{
+    display: block;
     background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    display: none;
-    position: relative;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    margin: 0 0;
+    padding: 10px;
 }
 #emotionbox_item{    
     display: none;
@@ -987,6 +989,17 @@ li{ list-style:none; }
     padding: 5px;
     text-align: center;
     cursor: pointer;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    font-size: 14px;
+}
+#post_help_reword, .img_upload_form_div{
+    display: block;
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px;
+    margin: 0 0;
+    padding: 10px;
 }
 
 /*--- item_say ---*/
