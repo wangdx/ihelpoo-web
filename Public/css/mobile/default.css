@@ -1162,6 +1162,15 @@ li{ list-style:none; }
 .comment_reply_div_box{
     display: none;
 }
+.i_c_l_u_li_img{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+.i_c_l_u_li_div{
+    margin-left: 70px;
+    min-height: 35px;
+}
 /*--- item_help ---*/
 .i_h_c_content{
     background-color: #FFFFFF;
