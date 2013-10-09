@@ -929,6 +929,18 @@ li{ list-style:none; }
     padding: 10px 5px;
     border-bottom: 1px dotted #DDD;
 }
+.ico_change_select{
+    height: 18px;
+    width: 18px;
+    margin: 0 5px;
+    overflow: hidden;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    display: inline-block;
+    font-size: 0;
+    background-image: url("../../image/common/icon_main.png");
+    background-position: -491px -38px;
+}
 
 /*--- stream_publish ---*/
 .stream_textbox_ul{
