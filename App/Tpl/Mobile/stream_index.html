@@ -20,11 +20,13 @@
     </div>
 <div data-role="content">
 
+<div class="stream_list_type_out_div">
 <ul class="stream_list_type">
     <li><a href="__ROOT__/stream/" target="_self"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/priority" target="_self"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
     <li><a href="__ROOT__/stream/index/help" target="_self"><i class="ico_specialcare"></i>只看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
 </ul>
+</div>
 
 <ul class="stream_list_ul">
   <?php foreach ($recordSay as $record): ?>
