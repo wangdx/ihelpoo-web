@@ -24,19 +24,19 @@ $().ready(function(){
      				setTimeout('pageToWoAlbum()',3000);
      			} else if (msg.status == 'existsay') {
     				if (msg.data.say_type == '0') {
-    					var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/say/"+msg.data.sid+"' target='_blank' class='delete_more_info'>详情</a></div>";
+    					var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/say/"+msg.data.sid+"' target='_self' class='delete_more_info'>详情</a></div>";
     				} else if (msg.data.say_type == '1') {
-    					var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/help/"+msg.data.sid+"' target='_blank' class='delete_more_info'>详情</a></div>";
+    					var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/help/"+msg.data.sid+"' target='_self' class='delete_more_info'>详情</a></div>";
     				}
     				ajaxInfo(msg.info + $htmlIn, 0, 0);
      			} else if (msg.status == 'existcomment') {
-     				var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/say/"+msg.data.sid+"' target='_blank' class='delete_more_info'>详情</a></div>";
+     				var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/say/"+msg.data.sid+"' target='_self' class='delete_more_info'>详情</a></div>";
      				ajaxInfo(msg.info + $htmlIn, 0, 0);
      			} else if (msg.status == 'existhelpreply') {
-    				var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/help/"+msg.data.sid+"' target='_blank' class='delete_more_info'>详情</a></div>";
+    				var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"item/help/"+msg.data.sid+"' target='_self' class='delete_more_info'>详情</a></div>";
      				ajaxInfo(msg.info + $htmlIn, 0, 0);
      			} else if (msg.status == 'existcommodity') {
-    				var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"mall/item/"+msg.data.cid+"' target='_blank' class='delete_more_info'>详情</a></div>";
+    				var $htmlIn = "<div><span class='icon_pump'></span><a href='"+baseUrl+"mall/item/"+msg.data.cid+"' target='_self' class='delete_more_info'>详情</a></div>";
      				ajaxInfo(msg.info + $htmlIn, 0, 0);
     			} else {
     				ajaxInfo(msg.info, 0, 0);
