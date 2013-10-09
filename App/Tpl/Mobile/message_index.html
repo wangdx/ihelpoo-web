@@ -18,7 +18,7 @@
 		<li><a href="/message/system" id="message_system" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">帮助与系统</a></li>
 		<li><a href="/message/comment" id="message_comment" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">评论与回复</a></li>
 		<li><a href="/message/at" id="message_at" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">@提到我的</a></li>
-		<li><a href="/message/active" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">活跃记录<?php echo empty($totalNotReadMsgActive) ? "<span class='reb_back'>(" + $totalNotReadMsgActive + ")</span>" : '';?></a></li>
+		<li><a href="/message/active" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">活跃记录<?php echo !empty($totalNotReadMsgActive) ? " <span class='reb_back'>(" + $totalNotReadMsgActive + ")</span>" : '';?></a></li>
 		<li><a href="/talk" id="message_talk" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">悄悄话</a></li>
 	</ul>
 </div>
