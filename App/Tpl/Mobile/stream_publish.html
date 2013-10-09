@@ -54,8 +54,13 @@
 	      <input type="hidden" name="atusers" id="atusers" />
 	      <input type="hidden" name="textareacontent" id="textareacontent" />
 	    </li>
-	    <li id="post_help_reword" class="f12 gray">
-	      活跃悬赏:
+	    </ul>
+    </form>
+    <!-- /publish form -->
+    
+    <!-- help reword hide -->
+    <div id="post_help_reword" class="f12 gray">
+	  活跃悬赏:
 	      <select id="reward_coins" name="reward_coins">
 	        <option value="0">0</option>
 	        <option value="10">10</option>
@@ -67,12 +72,9 @@
 	        <option value="200">200</option>
 	        <option value="500">500</option>
 	      </select>
-	      &nbsp;&nbsp;
-	      <span class="f12" id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
-	    </li>
-	    </ul>
-    </form>
-    <!-- /publish form -->
+	  <span id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
+	</div>
+	<!-- /help reword -->
     
     <!-- emotionbox hide -->
 	      <div id="emotionbox">
