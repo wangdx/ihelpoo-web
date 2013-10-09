@@ -941,7 +941,8 @@ li{ list-style:none; }
     padding: 5px;
 }
 .emotionbox_show_ul li{
-    padding: 3px 8px;
+    display: inline;
+    padding: 3px 0;
 }
 .emotionbox_show_ul li img{
     cursor: pointer;
