@@ -94,9 +94,7 @@ $().ready(function(){
 	            data: "delrecord=" + delRecordSid,
 	            dataType: "json",
 	            success:function(msg){
-	        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
-	        		$("#ajax_info_div").delay(1000).fadeOut("fast");
-	        		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
+	        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(1500).fadeOut('fast');
 	                setTimeout('pageToStream()',3000);
 	            }
 	        });
