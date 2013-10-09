@@ -95,8 +95,7 @@ $().ready(function(){
     $('#delete_btn_yes').live('click', function(){
         var delRecordSid = $(this).attr("value");
         var delInfoType = $(this).attr("infotype");
-        alert(delInfoType);
-        alert(delRecordSid);
+        ajaxInfo('删除成功', 0, 0);
     	/*$.ajax({
             type: "POST",
             url: baseUrl + "item/del",
