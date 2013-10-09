@@ -149,14 +149,14 @@ $().ready(function(){
 	        var s = "<a class=\"getuserinfo\">$1</a>";
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $("#textareacontent").val(textareacontentdata);
-		    $this.html($infoLoading);
+	        
+	        $.mobile.showPageLoadingMsg();
             $.post(baseUrl + "item/sayajax", $("#i_c_b_form").serialize(), function(msg){
             	if (msg.status == 'verifi') {
             		ajaxInfo('请输入验证码',0,0);
             		$('.i_c_b_verification').fadeIn('fast');
             		$('#i_c_b_verification_code_img').attr({'src': baseUrl + 'other/verifi?imageid=' + Math.random()});
             		$('#verificationcode').val('');
-            		$this.html('评论');
             	} else if (msg.status == 'yes') {
                     $('#i_comment_textarea').val('');
                     $("#i_shine_hit_in").fadeIn('fast').html('评论成功').delay(800).fadeOut('fast');
@@ -171,13 +171,12 @@ $().ready(function(){
                     }
                     commentContent += "<span class=\'i_c_l_u_li_div_time f12 gray\'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').prepend(commentContent);
-                    $this.html('评论');
                     $('.i_c_b_verification').hide();
                     $('#verificationcode').val('999');
                 } else {
                     ajaxInfo(msg.info,0,0);
-                    $this.html('评论');
                 }
+            	$.mobile.hidePageLoadingMsg();
             }, "json");
         }
     });
@@ -217,11 +216,8 @@ $().ready(function(){
 	        var textareacontentdata = i_comment_textarea.replace(re, s);
 	        $(this).parent().find('.reply_textareacontent').val(textareacontentdata);
 	        $comment_reply_form = $(this).parent();
-		    $(this).ajaxStart(function(){
-        	    $(this).after($infoLoading);
-            }).ajaxStop(function(){
-        	    $infoLoading.remove();
-            });
+		    
+		    $.mobile.showPageLoadingMsg();
             $.post(baseUrl + "item/sayajax", $comment_reply_form.serialize(), function(msg){
             	if (msg.status == 'verifi') {
             		ajaxInfo('请输入验证码',0,0);
@@ -248,6 +244,7 @@ $().ready(function(){
                 } else {
                     ajaxInfo(msg.info,0,0);
                 }
+            	$.mobile.hidePageLoadingMsg();
             }, "json");
         }
     });
