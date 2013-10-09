@@ -169,13 +169,13 @@
 				</p>
 				<?php } ?>
 		    	<span class="i_c_l_u_li_div_time f12 gray"><?php echo i_time($comment['time']) ?></span>
-		    	<span class="f12 fr">
+		    	<span class="fr">
 			      	<?php if (!empty($comment['uid']) && $comment['uid'] != $userloginedrecord['uid']) { ?>
-			        	<a class="reply_box_btn">回复</a> <span class="icon_plus"></span>
+			        	<a class="reply_box_btn">[回复]</a> <span class="icon_plus"></span>
 			      	<?php } ?>
 			      	<?php if ($comment['uid'] == $userloginedrecord['uid'] || $userloginedrecord['uid']== $sayRecord['uid']) { ?>
 			      		<input type="hidden" class="reply_delete_cid" name="delcomment" value="<?php echo $comment['cid'] ?>" />
-			      		<a class="reply_delete_btn red_l">删除</a>
+			      		<a class="reply_delete_btn red_l">[删除]</a>
 			      	<?php } ?>
 		    	</span>
 		    </div>
