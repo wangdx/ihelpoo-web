@@ -80,18 +80,11 @@ $().ready(function(){
     /**
      * help part
      */
-    $('#textareahelp').click(
-        function(){
-            $(this).addClass("helpleaf_select");
-            $('#help_is_input').val('1');
-            $('#post_help_reword').slideDown('fast');
-
-            //group msg push close
-            $('#post_groupmsgpush_li').slideUp('up');
-            $('#groupmsgpush_system').removeAttr('checked');
-            $('#groupmsgpush_mail').removeAttr('checked');
-        }
-    );
+    $('#textareahelp').click(function(){
+        $(this).addClass("helpleaf_select");
+        $('#help_is_input').val('1');
+        $('#post_help_reword').slideDown('fast');
+    });
 
     //calculate left coins
 	$('#reward_coins').click(function(){
@@ -99,13 +92,16 @@ $().ready(function(){
 	    var use_coins = $(this).val();
 	    var left_coins = total_coins - use_coins;
 	    if (left_coins >= 0) {
-	        $('#left_coins_calculate').html("活跃剩余: " + total_coins + '-' + use_coins + '= <span class="fb black_l">' + left_coins + '</span>');
+	        $('#left_coins_calculate').html("剩余: " + total_coins + '-' + use_coins + '= <span class="fb black_l">' + left_coins + '</span>');
 	    } else {
 	        $('#left_coins_calculate').html("<span class='red_l'>活跃不够了</span>");
 	    }
 	});
 	
 	$('#post_help_reword_close').click(function(){
+        $('#post_help_reword').slideUp('fast');
+        $('#textareahelp').removeClass("helpleaf_select");
+        $('#help_is_input').val('0');
         $('#post_help_reword').slideUp('fast');
     });
 
