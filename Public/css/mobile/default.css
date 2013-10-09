@@ -921,7 +921,8 @@ li{ list-style:none; }
     width: 160px;
     border: 1px solid #DDD;
     background-color: #EFEFEF;
-    border-radius: 5px 5px 5px 5px;   
+    border-radius: 5px 5px 5px 5px;
+    text-align: left;  
 }
 .stream_list_type li{
     position: relative;
