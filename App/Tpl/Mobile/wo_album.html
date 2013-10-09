@@ -26,14 +26,14 @@
 		<?php } else if ($imageItem['type'] == 4) { ?>
 			<a href="__ROOT__/wo/album/<?php echo $userLogin['uid']; ?>/4" target="_self" title="店铺图片">悄悄话聊天</a>
 		<?php } ?>
-		<span class="arrow">&gt;</span> 图片详情
+		<span class="arrow">&gt;</span> 图片详情 
+		<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
+			 <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">[删除]</a>
+		<?php } ?>
 		<p class="gray f12">
 			上传时间:<span id="this_image_upload_time"><?php echo i_time($imageItem['time']); ?></span> | 
 			大小:<span id="this_image_upload_size"><?php echo round($imageItem['size']/1024); ?>KB</span> | 
 			浏览:<span id="this_image_upload_hit"><?php echo $imageItem['hit'] == NULL ? "0" : $imageItem['hit']; ?></span>
-			<?php if ($userLogin['uid'] == $userloginedrecord['uid']) { ?>
-			 <a id="delete_image" imageid="<?php echo $imageItem['id']; ?>">[删除]</a>
-			<?php } ?>
 		</p>
 	</div>
 	<div class="album_image_content">
