@@ -928,7 +928,7 @@ li{ list-style:none; }
     background-color: #FFFFFF;
     border: 1px solid #EEEEEE;
     border-radius: 5px;
-    margin: 0 0;
+    margin: 10px 0;
     padding: 10px;
 }
 #emotionbox_item{    
@@ -998,7 +998,7 @@ li{ list-style:none; }
     background-color: #FFFFFF;
     border: 1px solid #EEEEEE;
     border-radius: 5px;
-    margin: 0 0;
+    margin: 10px 0;
     padding: 10px;
 }
 
