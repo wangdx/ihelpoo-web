@@ -128,6 +128,12 @@ window.CodiqaControls.define('googlemaps', CodiqaControls.GoogleMap);
 
 $().ready(function(){
 	mseeageNumsOnce();
+	
+	$("#delete_btn_calcel").click(function(){
+    	$("#ajax_info_div").fadeOut("fast");
+		$("#ajax_info_div_outer").hide();
+    });
+	
 });
 
 function mseeageNumsOnce() {
