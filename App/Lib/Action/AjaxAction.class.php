@@ -37,7 +37,7 @@ class AjaxAction extends Action {
     		$messageAtNums = $MsgAt->where("touid = $userloginid AND deliver = 0")->count();
     		$messageCommentNums = $MsgComment->where("uid = $userloginid AND deliver = 0")->count();
     		$messageSystemNums = $redis->hGet(C('R_NOTICE').C('R_SYSTEM').substr($userloginid, 0, strlen($userloginid) - 3), substr($userloginid, -3));
-    		$messageSystemNums = $messageSystemNums == 'false' ? '0' : $messageSystemNums;
+    		$messageSystemNums = empty($messageSystemNums) ? '0' : $messageSystemNums;
     		$messageTalkNums = $TalkContent->where("touid = $userloginid AND deliver = 0")->count();
     		if (!empty($messageTalkNums)) {
     			$lastTalkContent = $TalkContent->where("touid = $userloginid AND deliver = 0")
