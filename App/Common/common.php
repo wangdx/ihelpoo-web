@@ -11,7 +11,7 @@ function i_school_domain()
 {
     $SchoolInfo = M("SchoolInfo");
     $domain = $_SERVER['HTTP_HOST'];
-    if (preg_match("/\.ihelpoo\.cn/iUs", $domain)) {
+    if (preg_match("/.ihelpoo.cn/iUs", $domain)) {
         $recordSchoolInfo = $SchoolInfo->where("domain = '$domain'")->find();
     } else {
         $recordSchoolInfo = $SchoolInfo->where("domain_main = '$domain'")->find();
