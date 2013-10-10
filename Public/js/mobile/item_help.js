@@ -53,7 +53,7 @@ $().ready(function(){
      * delete
      */
     $('#del_help_record_btn').click(function(){
-    	var deletesid = $('#recordsid').val();
+    	var deletesid = $(this).val();
     	var infohtml = "确定删除帮助？";
     	ajaxInfo(infohtml, 'help', deletesid);
     });
