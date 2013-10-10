@@ -16,13 +16,12 @@
     </div>
 <div data-role="content">
 
-
-<div class="main_item">
 <div class="i_content">
     <div class="i_h_c_describe">
-        <?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' target='_self' class='getuserinfo' userid='".$sayRecord['uid']."'>
-        <img src='".i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's')."' height='50' class='fl' /></a>"; ?>
-        <p>
+        <a href="/wo/<?php echo $sayRecord['uid']; ?>" target="_self" class="getuserinfo" userid="<?php echo $sayRecord['uid']; ?>">
+        	<img src="<?php echo i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's'); ?>" height="50" class="i_h_c_describe_user" />
+        </a>
+        <p class="i_h_c_describe_status">
         	<span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?>
             <span class="post_appendix"></span>
             <?php if (!empty($helpRecord['reward_coins'])) {?>
@@ -38,7 +37,8 @@
         	    <input id="del_help_record_value" type="hidden" name="delrecord" value="<?php echo $helpRecord['sid'] ?>"/>
         	    <a id="del_help_record_btn" value="<?php echo $helpRecord['sid'] ?>"><span class="icon_garbage"></span>删除</a>
             <?php } ?>
-            <br />
+         </p>
+         <p class="i_h_c_describe_info">
 		    <span class="gray f12">
 		    <?php
 		    if (!empty($sayRecord['from'])) {
@@ -240,7 +240,6 @@
 </div>
 </div>
 <div id="i_shine_hit"><p id="i_shine_hit_in"></p></div>
-</div>
 
 
 </div>
