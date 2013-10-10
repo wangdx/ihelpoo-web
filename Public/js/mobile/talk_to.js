@@ -75,6 +75,7 @@ $().ready(function(){
      * send message
      */
     $('#send_message').click(function () {
+    	var touid = $('#data_touid').val();
     	var image_upload_url = $('#image_upload_url').val();
     	var send_message_textarea = $('#send_message_textarea').val();
     	if (send_message_textarea =='') {
@@ -84,7 +85,7 @@ $().ready(function(){
 	    	$.ajax({
 	            type: "POST",
 	            url: baseUrl+"talk/to",
-	            data: {'image_upload_url' : image_upload_url, 'send_message_textarea' : send_message_textarea },
+	            data: {'image_upload_url' : image_upload_url, 'send_message_textarea' : send_message_textarea, 'touid' : touid},
 	            dataType: "json",
 	            success:function(msg){
 	            	$.mobile.hidePageLoadingMsg();

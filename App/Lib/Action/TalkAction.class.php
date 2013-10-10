@@ -182,6 +182,32 @@ class TalkAction extends Action
         $toUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
 
         $TalkContent = M("TalkContent");
+        
+        /**
+         * TODO 20131010
+         * mobile talk
+         */
+        if (!empty($_POST['send_message_textarea']) && !empty($_POST['touid'])) {
+        	$messagetouid = (int)trim(addslashes(htmlspecialchars(strip_tags($_POST['touid']))));
+        	$messageContent = trim(addslashes(htmlspecialchars(strip_tags($_POST['send_message_textarea']))));
+        	if (empty($messageContent)) {
+        		$this->ajaxReturn(0, "内容不能为空", "error");
+        	}
+        	$imageUploadUrl = trim(addslashes(htmlspecialchars(strip_tags($_POST['image_upload_url']))));
+        	$newTalkData = array(
+        		'uid' => $userloginid,
+        		'touid' => $messagetouid,
+        		'content' => $messageContent,
+        		'time' => time()
+        	);
+        	if (!empty($imageUploadUrl)) {
+        		$newTalkData['image'] = $imageUploadUrl;
+        	}
+        	$TalkList->add($newTalkData);
+        	$this->ajaxReturn(0, "发送成功", 'yes');
+        }
+        
+        
         $leaveWords = $TalkContent->where("i_talk_content.uid = $toUserId AND touid = $userloginid AND deliver = '0' ")
         ->join('i_user_login ON i_talk_content.uid = i_user_login.uid')
         ->order("time ASC")->select();
@@ -245,29 +271,6 @@ class TalkAction extends Action
             $SchoolInfo = M("SchoolInfo");
             $userLoginSchoolInfo = $SchoolInfo->find($toUserRecord['school']);
             $this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
-        }
-        
-        /**
-         * TODO 20131010
-         * mobile talk
-         */
-        if (!empty($_POST['send_message_textarea'])) {
-        	$messageContent = trim(addslashes(htmlspecialchars(strip_tags($_POST['send_message_textarea']))));
-        	if (empty($messageContent)) {
-        		$this->ajaxReturn(0, "内容不能为空", "error");
-        	}
-        	$imageUploadUrl = trim(addslashes(htmlspecialchars(strip_tags($_POST['image_upload_url']))));
-        	$newTalkData = array(
-        		'uid' => $userloginid,
-        		'touid' => $userloginid,
-        		'content' => $messageContent,
-        		'time' => time()
-        	);
-        	if (!empty($imageUploadUrl)) {
-        		$newTalkData['image'] = $imageUploadUrl;
-        	}
-        	$TalkList->add($newTalkData);
-        	$this->ajaxReturn(0, "发送成功", 'yes');
         }
         
         if(i_is_mobile()) {
