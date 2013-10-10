@@ -732,7 +732,7 @@ function i_is_mobile()
 	}
 	
 	if ($_SERVER['HTTP_USER_AGENT'] == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:12.0) Gecko/20100101 Firefox/12.0") {
-		return true;
+		//return true;
 	}
 	
 	// 如果有HTTP_X_WAP_PROFILE则一定是移动设备
