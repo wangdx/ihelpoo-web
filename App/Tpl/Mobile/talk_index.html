@@ -67,7 +67,7 @@
 	  <?php if (!empty($talkList[uid]) && !empty($userloginedrecord[uid])) { ?>
 	  <?php $contentToMe = $TalkContent->where("uid = $talkList[uid] AND touid = $userloginedrecord[uid] AND deliver = 0")->find(); ?>
 	  <li>
-	    	<a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px">
+	    	<a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; width: 56px; height: 46px">
 	    		<img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3" />
 	      		<span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
 	    	</a>
