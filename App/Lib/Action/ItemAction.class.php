@@ -328,7 +328,6 @@ class ItemAction extends Action {
 
     			$chooseId = (int)trim(addslashes(htmlspecialchars(strip_tags($_POST['chooseid']))));
     			if (!$chooseId) {
-    				exit();
     				redirect('/stream', 1, 'choose user is wrong...');
     			}
     			$chooseThanks = trim(addslashes(htmlspecialchars(strip_tags($_POST['choosethanks']))));
