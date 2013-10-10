@@ -492,6 +492,7 @@ class WoAction extends Action {
     		if (!empty($userloginid) && !empty($_POST['imageid'])) {
     			$deleteImageId = (int)$_POST['imageid'];
     			$deleteAlbumRecord = $UserAlbum->find($deleteImageId);
+    			$deleteAlbumRecordUrl = $deleteAlbumRecord['url'];
 
     			Vendor('Ihelpoo.Upyun');
         		$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
@@ -500,7 +501,7 @@ class WoAction extends Action {
     			 * delete icon
     			 */
     			if ($deleteAlbumRecord['type'] == 1) {
-    				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecord['url']);
+    				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
     				$urlThumbFilename = str_ireplace("iconorignal", "thumb_iconorignal", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
@@ -510,7 +511,6 @@ class WoAction extends Action {
     				}
     				$this->ajaxReturn($isStorageDeleteFlag,'删除头像失败','wrong');
     			} else if ($deleteAlbumRecord['type'] == 2) {
-    				$deleteAlbumRecordUrl = $deleteAlbumRecord['url'];
 
     				/**
     				 * check if linked records;
