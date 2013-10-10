@@ -54,9 +54,9 @@
         echo "</a>";
         echo "</span> <span class='f12 gray'>".date("Y-m-d H:i", $talkHistory['time'])."</span>";
 		if (!empty($talkHistory['image'])) {
-        	echo "<p class='talk_history_ul_li_p'>".$talkHistory['deliver']." ".$emotionObj->transEmotion($talkHistory['content'])."<br /><a href='".$talkHistory['image']."' target='_target'><img src='".i_image_thumbnail($talkHistory['image'])."' style='max-width:150px;' /></a></p>";
+        	echo "<p class='talk_history_ul_li_p'>".$emotionObj->transEmotion($talkHistory['content'])."<br /><a href='".$talkHistory['image']."' target='_target'><img src='".i_image_thumbnail($talkHistory['image'])."' style='max-width:150px;' /></a></p>";
 		} else {
-			echo "<p class='talk_history_ul_li_p'>".$emotionObj->transEmotion($talkHistory['content'])."</p>";
+			echo "<p class='talk_history_ul_li_p'>".$talkHistory['deliver']." ".$emotionObj->transEmotion($talkHistory['content'])."</p>";
 		}
         echo "</li>";
     endforeach;
