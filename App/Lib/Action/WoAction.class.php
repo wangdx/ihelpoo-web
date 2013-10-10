@@ -502,6 +502,7 @@ class WoAction extends Action {
     			 */
     			if ($deleteAlbumRecord['type'] == 1) {
     				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
+    				echo $imageStorageUrl;
     				echo $urlFilename;
     				exit();
     				
