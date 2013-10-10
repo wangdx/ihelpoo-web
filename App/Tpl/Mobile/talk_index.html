@@ -100,13 +100,12 @@
         ?>
         <a href="__ROOT__/talk/history/<?php echo $historyUid ?>" target="_self">
         <li>
-          	<?php if (!empty($contentToMe['id'])) { ?>
-          		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 " /> 
-          		<span class="orange f12">新消息</span>
-          	<?php } else { ?>
-          		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3" />
-          	<?php } ?>
-            <?php echo $historyUidRecord['nickname']; ?> <span class="f12 gray fn"><?php echo date('m-d H:i', $talkHistory['time']); ?></span>
+          	<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 " /> 
+            <?php echo $historyUidRecord['nickname']; ?> 
+            <?php if (!empty($contentToMe['id'])) { ?>
+            	<span class="orange f12">新消息</span>
+            <?php } ?>
+            <span class="f12 gray fn"><?php echo i_time($talkHistory['time']); ?></span>
         </li>
         </a>
         <?php } endforeach; ?>
