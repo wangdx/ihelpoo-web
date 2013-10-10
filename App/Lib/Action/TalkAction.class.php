@@ -276,6 +276,14 @@ class TalkAction extends Action
         $offset = $page * $count;
         $talkHistory = $TalkContent->where("(uid = $userloginid AND touid = $toUserId AND del != $userloginid) OR (uid = $toUserId AND touid = $userloginid AND del != $userloginid)")->order("time DESC")->limit($offset, $count)->select();
         $this->assign('talkHistories', $talkHistory);
+        
+        foreach ($talkHistory as $history) {
+            $updateData = array(
+                'id' => $history['id'],
+                'deliver' => '1',
+            );
+            $TalkContent->save($updateData);
+        }
 
         /**
          * page link
