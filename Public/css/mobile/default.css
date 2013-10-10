@@ -1325,7 +1325,8 @@ li{ list-style:none; }
     top: 15px;
 }
 .user_list_nickname{
-    margin: 0 0 0 80px;
+    margin: 0 0 0 70px;
+    min-height: 40px;
 }
 /*--- talk_history ---*/
 .talk_history_ul{
