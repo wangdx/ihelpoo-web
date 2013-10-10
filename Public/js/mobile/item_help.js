@@ -1,7 +1,5 @@
 $().ready(function(){
 
-	var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
-
     /**
      * icon emotion part
      */
@@ -143,12 +141,14 @@ $().ready(function(){
             }
         }
     });
-
     $('.re_upload_img').live('click', function(){
     	$('#imageurl').val('');
     	$('#image_upload_list_ul').empty();
     	$('#img_upload_form').slideDown('fast');
     	imageNums = 0;
+    });
+    $('#image_upload_close').click(function(){
+    	$('.img_upload_comment_form_div').slideUp('up');
     });
 
     /**
