@@ -1317,8 +1317,16 @@ li{ list-style:none; }
     border-radius: 5px 5px 5px 5px;
     margin: 10px 0;
     padding: 15px;
+    position: relative;
 }
-
+.user_list_a{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+.user_list_nickname{
+    margin: 0 80px 0 0;
+}
 /*--- talk_history ---*/
 .talk_history_ul{
     padding: 0;
