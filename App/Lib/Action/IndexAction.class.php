@@ -107,7 +107,7 @@ class IndexAction extends Action {
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
         if (!empty($_COOKIE['userLoginSchool'])) {
-        	//redirect($_COOKIE['userLoginSchool'], 0, '跳转页面 :)...');
+        	redirect($_COOKIE['userLoginSchool'], 0, '跳转页面 :)...');
         }
         
         $ip = get_client_ip();
