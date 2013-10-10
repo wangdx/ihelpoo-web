@@ -62,29 +62,8 @@
    
   <?php if ($_GET['listtype'] == 'friend') { ?>
 	  <ul class="talk_index_history_ul">
-	  <?php foreach ($talkLists as $talkList) {
-		if (!empty($talkList[uid]) && !empty($userloginedrecord[uid])) {
-		$contentToMe = $TalkContent->where("uid = $talkList[uid] AND touid = $userloginedrecord[uid] AND deliver = 0")->find();
-  	  ?>
-	  <li>
-	  	<?php if (!empty($contentToMe['id'])) { ?>
-	    	<a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px">
-	    		<img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3" />
-	      		<span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
-	    	</a>
-	    <?php } else { ?>
-	    	<a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px">
-	    		<img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3" />
-	      		<span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
-	    	</a>
-	    <?php } ?>
-	    <p class="user_list_nickname">
-	    <span class="blue_link"><?php echo $talkList['nickname']; ?></span><span class="sex<?php echo $talkList['sex']; ?>"></span>
-	    <br /><span class="f12 gray"><?php echo $ofunction->cut_str($talkList['introduction'], 13)； ?></span>
-	    <span class="red_back f12">新消息</span>
-	    </p>
-	  </li>
-	  <?php } ?>
+	  <?php foreach ($talkLists as $talkList) { ?>
+	  
 	  <?php } ?>
 	  </ul>
   <?php } else { ?>
