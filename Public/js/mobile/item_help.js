@@ -36,6 +36,7 @@ $().ready(function(){
     $('.plus_button').click(function(){
         var $thisButton = $(this);
         var $region = $('#plus_view_region_'+$(this).attr('value'));
+        $.mobile.showPageLoadingMsg();
         $.ajax({
             type: "POST",
             url: baseUrl+"stream/plusToggle",
@@ -45,40 +46,60 @@ $().ready(function(){
               	if (msg.status != 'error') {
               		$region.html('('+msg.data+')');
               	}
+              	$.mobile.hidePageLoadingMsg();
             }
         });
     });
     
     /**
-     * del
+     * delete
      */
     $('#del_help_record_btn').click(function(){
-        var deletesid = $('#del_help_record_value').val();
-    	var infohtml = "<p>确定删除？</p> <a class='btn_sure' id='del_record_btn_yes' value='"+deletesid+"'>确定</a><a class='btn_cancel'>取消</a>";
-    	ajaxInfo(infohtml);
+    	var deletesid = $('#recordsid').val();
+    	var infohtml = "确定删除帮助？";
+    	ajaxInfo(infohtml, 'help', deletesid);
     });
-    
-    $('#del_record_btn_yes').live('click', function(){
-        var delRecordSid = $(this).attr("value");
-    	$.ajax({
-            type: "POST",
-            url: baseUrl + "item/del",
-            data: "delrecord=" + delRecordSid,
-            dataType: "json",
-            success:function(msg){
-                $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").hide();
-        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
-                setTimeout('pageToStream()',3000);
-            }
-        });
+    $('.delete_help_reply_btn').click(function(){
+        var deleteReplyValue = $(this).attr('value');
+    	var infohtml = "确定删除追问？";
+    	$alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
+    	$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FFFA85");
+    	ajaxInfo(infohtml, 'helpreply', deleteReplyValue);
     });
-    
-    $('.btn_cancel').live('click', function(){
-    	$("#ajax_info_div").fadeOut("fast");
-		$("#ajax_info_div_outer").hide();
+    $('#delete_btn_yes').live('click', function(){
+        var deleteId = $(this).attr("value");
+        var delInfoType = $(this).attr("infotype");
+		if (delInfoType == 'help') {
+			$("#ajax_info_div").fadeOut("fast");
+			$("#ajax_info_div_outer").fadeOut("fast");
+			$.ajax({
+	            type: "POST",
+	            url: baseUrl + "item/del",
+	            data: "delrecord=" + deleteId,
+	            dataType: "json",
+	            success:function(msg){
+	        		ajaxInfo(msg.info, 0, 0);
+	            	$("#ajax_info_div").delay(3000).fadeOut("fast");
+	            	$("#ajax_info_div_outer").delay(3000).fadeOut("fast");
+	                setTimeout('pageToStream()',3000);
+	            }
+	        });
+		}
+		if (delInfoType == 'helpreply') {
+			$.ajax({
+	            type: "POST",
+	            url: baseUrl + "item/del",
+	            data: "delhelpreply=" + deleteId,
+	            dataType: "json",
+	            success:function(msg){
+	        		ajaxInfo('删除帮助回复成功', 0, 0);
+	        		$alreadyDeleteHelpreplyLi.slideUp('fast');
+	            	$("#ajax_info_div").delay(1000).fadeOut("fast");
+	        		$("#ajax_info_div_outer").delay(1000).fadeOut("fast");
+	            }
+	        });
+		}
     });
-    
 
     /**
      * image part
@@ -94,18 +115,13 @@ $().ready(function(){
     var imageNums = 0;
     $("#img_upload_btn").click(function(){
         var upload_image_file = $('#upload_form_img_file').val();
-        var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/progressbar.gif', 'title': '加载中...请稍等'});
         if (upload_image_file == '') {
             $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>还没有选择图片呢</span>").delay(1000).fadeOut('fast');
         } else {
             if (imageNums > 0) {
-                alert('只能传1张图片');
+                ajaxInfo('只能传1张图片', 0, 0);
             } else {
-                $(this).ajaxStart(function(){
-                	$('.imgajaxloading_span').fadeIn('fast').html($infoLoading);
-                }).ajaxComplete(function(){
-                	$infoLoading.remove();
-                });
+            	$.mobile.showPageLoadingMsg();
                 $.ajaxFileUpload({
                 	url: baseUrl + 'ajax/imgupload',
                 	secureuri: false,
@@ -121,6 +137,7 @@ $().ready(function(){
                 	    } else if (msg.status == 'error') {
                 	        $('.imgajaxloading_span').fadeIn('fast').html("<span class='f12 red_l'>" + msg.info + "</span>").delay(1000).fadeOut('fast');
                 	    }
+                	    $.mobile.hidePageLoadingMsg();
                 	}
                 });
             }
@@ -139,7 +156,7 @@ $().ready(function(){
      */
     $('#help_content_from_btn').click(function(){
     	var $this = $(this);
-        var help_content_from_textarea = $('#help_content_from_textarea').val();
+        var help_content_from_textarea = $('#help_content_from_textarea').val() + " ";
         var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
         var atresult = help_content_from_textarea.match(atpattern);
         $('#atusers').val(atresult);
@@ -147,16 +164,16 @@ $().ready(function(){
         var s = "<a class=\"getuserinfo\">$1</a>";
         var textareacontentdata = help_content_from_textarea.replace(re, s);
         $("#textareacontent").val(textareacontentdata);
-        if (textareacontentdata == '') {
-        	ajaxInfo('帮助内容不能为空');
+        if (textareacontentdata == ' ') {
+        	ajaxInfo('帮助内容不能为空', 0, 0);
         } else if (textareacontentdata.length > 222) {
-        	ajaxInfo('帮助内容太长了 不能超过222个字符');
+        	ajaxInfo('帮助内容太长了 不能超过222个字符', 0, 0);
         } else {
-		    $this.html($infoLoading);
+        	$.mobile.showPageLoadingMsg();
             $.post(baseUrl + "item/helpajax", $("#help_content_from").serialize(), function(msg){
                 if (msg.status == 'yes') {
                     $('#help_content_from_textarea').val('');
-                    $("#i_shine_hit_in").fadeIn('fast').html('帮助回复成功').delay(800).fadeOut('fast');
+                    $("#i_shine_hit_in").fadeIn('fast').html('帮助回复成功').delay(1000).fadeOut('fast');
                     var helpContent = "<li class='bg_l_yellow'>";
                     helpContent += "<a href='" + baseUrl + "wo/" + msg.data.uid + "' target='_blank'>";
                     helpContent += "<img src='" + msg.data.uidicon + "' class='i_c_l_u_li_img' height='50' /></a>";
@@ -168,24 +185,27 @@ $().ready(function(){
                     }
                     helpContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').append(helpContent);
-                    var bodyHeight = $("body").height();
-                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
-                    notice.send('system', msg.info);
                 } else {
-                    ajaxInfo(msg.info);
+                    ajaxInfo(msg.info, 0, 0);
                 }
-                $this.html('我来帮助');
+                $.mobile.hidePageLoadingMsg();
             }, "json");
         }
     });
-    //help reply
+    
+    /**
+     * help reply
+     */
     $('.help_comment_reply').click(function(){
         $help_comment_reply_form = $(this).parent().parent().parent().find('.help_comment_reply_form');
         $help_comment_reply_form.slideDown('fast');
     });
-    //help reply comment
+    
+    /**
+     * help reply comment
+     */
     $('.help_comment_reply_btn').click(function(){
-        var help_comment_reply_form_textarea = $(this).parent().find('.help_comment_reply_form_textarea').val();
+        var help_comment_reply_form_textarea = $(this).parent().find('.help_comment_reply_form_textarea').val() + " ";
         var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
         var atresult = help_comment_reply_form_textarea.match(atpattern);
         $(this).parent().find('.help_reply_atusers').val(atresult);
@@ -194,16 +214,12 @@ $().ready(function(){
         var textareacontentdata = help_comment_reply_form_textarea.replace(re, s);
         $(this).parent().find('.help_reply_textareacontent').val(textareacontentdata);
         $help_comment_reply_form = $(this).parent();
-        if (textareacontentdata == '') {
-        	ajaxInfo('追问不能为空');
+        if (textareacontentdata == ' ') {
+        	ajaxInfo('追问不能为空', 0, 0);
         } else if (textareacontentdata.length > 222) {
-        	ajaxInfo('帮助内容太长了 不能超过222个字符');
+        	ajaxInfo('内容太长了 不能超过222个字符', 0, 0);
         } else {
-		    $(this).ajaxStart(function(){
-        	    $(this).after($infoLoading);
-            }).ajaxStop(function(){
-        	    $infoLoading.remove();
-            });
+        	$.mobile.showPageLoadingMsg();
             $.post(baseUrl + "item/helpajax", $help_comment_reply_form.serialize(), function(msg){
             	if (msg.status == 'yes') {
                     $help_comment_reply_form.slideUp('fast');
@@ -221,39 +237,12 @@ $().ready(function(){
                     commentContent += msg.data.content;
                     commentContent += "<span class='i_c_l_u_li_div_time f12 gray'>" + msg.data.time + "</span></div></li>";
                     $('.i_comment_list_ul').append(commentContent);
-                    var bodyHeight = $("body").height();
-                    $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
-                    notice.send('system', msg.info);
                 } else {
-                    ajaxInfo(msg.info);
+                    ajaxInfo(msg.info, 0, 0);
                 }
+            	$.mobile.hidePageLoadingMsg();
             }, "json");
         }
-    });
-
-    //del help reply
-    $('.delete_help_reply_btn').click(function(){
-        var deleteReplyValue = $(this).attr('value');
-    	var infohtml = "<p>确定删除追问？</p> <a class='btn_sure' id='del_record_helpreply_btn_yes' value='"+deleteReplyValue+"'>确定</a><a class='btn_cancel'>取消</a>";
-    	$alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
-    	$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FFFA85");
-    	ajaxInfo(infohtml);
-    });
-    
-    $('#del_record_helpreply_btn_yes').live('click', function(){
-        var delRecordHelpreplyid = $(this).attr("value");
-    	$.ajax({
-            type: "POST",
-            url: baseUrl + "item/del",
-            data: "delhelpreply=" + delRecordHelpreplyid,
-            dataType: "json",
-            success:function(msg){
-                $("#ajax_info_div").fadeOut("fast");
-        		$("#ajax_info_div_outer").hide();
-        		$("#i_shine_hit_in").fadeIn('fast').html(msg.info).delay(800).fadeOut('fast');
-        		$alreadyDeleteHelpreplyLi.slideUp('fast');
-            }
-        });
     });
     
     /**
@@ -268,9 +257,8 @@ $().ready(function(){
             data: "diffusionSid=" + diffusionSid,
             dataType: "json",
             success:function(result){
-                var infohtml = "<p align='left'>" + result.info + "</p> <a class='btn_cancel'>确定</a>";
-                notice.send('system', result.data);
-            	ajaxInfo(infohtml);
+                var infohtml = "<p align='left'>" + result.info + "</p>";
+            	ajaxInfo(infohtml, 0, 0);
                 if (result.info != '你已经扩散了这条信息') {
                     $thisDiffusion.append('<span class="red">+1</span>');
                 }
