@@ -1212,6 +1212,10 @@ li{ list-style:none; }
 .i_c_l_u_li_div_img_p{
     margin: 10px 0;
 }
+.i_c_l_u_li_div_img_p_img{
+    max-height: 100px;
+    max-width: 150px;
+}
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;
