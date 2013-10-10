@@ -28,6 +28,16 @@
             <?php if (!empty($helpRecord['reward_coins'])) {?>
             回馈: <font class="f12 black_l">活跃</font> <font class="f14 orange fb"><?php echo $helpRecord['reward_coins'] ?></font><span class="icon_star"></span>
             <?php } ?>
+            <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']; ?> | <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-{$sayRecord['sid']}">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
+            <?php if (!empty($userloginedrecord['uid'])) { ?>
+        	     <a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
+            <?php } else { ?>
+        	    扩散(<?php echo $recordDiffusionNums ?>)
+            <?php } ?>
+            <?php if($sayRecord['uid'] == $userloginedrecord['uid']) { ?>
+        	    <input id="del_help_record_value" type="hidden" name="delrecord" value="<?php echo $helpRecord['sid'] ?>"/>
+        	    <a id="del_help_record_btn" value="<?php echo $helpRecord['sid'] ?>"><span class="icon_garbage"></span>删除</a>
+            <?php } ?>
             <br />
 		    <span class="gray f12">
 		    <?php
@@ -48,23 +58,12 @@
             <?php } ?>
 		    </span>
 		    <span class="i_h_c_describe_time f12 black_l">
-		      <span class="post_colck"></span>
+		    <span class="post_colck"></span>
               <?php if("3" != $helpRecord['status'] && ($sayRecord['time'] + 1296000 - time()) > 0) { ?>
-		      离帮助结束还有<?php echo floor((($sayRecord['time'] + 1296000) - time()) / 86400) ?>天
+		        离帮助结束还有<?php echo floor((($sayRecord['time'] + 1296000) - time()) / 86400) ?>天
               <?php } ?>
-              求助于<?php echo i_time($sayRecord['time']) ?> <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']
-        ?> |
-        <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-{$sayRecord['sid']}">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
-        <?php if (!empty($userloginedrecord['uid'])) { ?>
-        	<a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
-        <?php } else { ?>
-        	扩散(<?php echo $recordDiffusionNums ?>)
-        <?php } ?>
-        <?php if($sayRecord['uid'] == $userloginedrecord['uid']) { ?>
-        	<input id="del_help_record_value" type="hidden" name="delrecord" value="<?php echo $helpRecord['sid'] ?>"/>
-        	<a id="del_help_record_btn" value="<?php echo $helpRecord['sid'] ?>"><span class="icon_garbage"></span>删除</a>
-        <?php } ?>
-        </span>
+              求助于<?php echo i_time($sayRecord['time']) ?>
+            </span>
         </p>
     </div>
     <div class="i_h_c_content">
