@@ -26,7 +26,7 @@ $config = array(
 	'VERIFI_RECORD_UNMS'=>'3',
 	'VERIFI_COMMENT_UNMS'=>'60',
 	'VERIFI_COMMENT_TIME'=>'10',
-	'IMAGE_STORAGE_URL'=>'http://ihelpoo.b0.upaiyun.com',
+	'IMAGE_STORAGE_URL'=>'http://img.ihelpoo.cn',
 );
 
 return array_merge($config,$ooconfig);
