@@ -1216,6 +1216,14 @@ li{ list-style:none; }
     max-height: 100px;
     max-width: 150px;
 }
+.thanks_form_ul{
+    padding: 0;
+}
+.thanks_form_ul li{
+    padding: 5px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+}
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;

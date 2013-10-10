@@ -137,13 +137,13 @@
             <?php
 		      	if ($sayRecord['uid'] == $userloginedrecord['uid']) {
           			if("2" == $helpRecord['status']) {
-              			echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
-            	echo " <form method='post' id='thanksForm'>" ?>
-                <ul>
+              		echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
+            		echo " <form method='post' id='thanksForm'>" ?>
+                <ul class="thanks_form_ul">
                     <?php
 		              	foreach ($userChooseArray as $userChoose) :
 							$userChooseRecord = $UserLogin->field('uid,nickname')->find($userChoose);
-                    echo " <li><a href='".__ROOT__."/wo/".$userChoose."' target='_self' class='getuserinfo' userid='$userChoose'>$userChooseRecord[nickname]</a>";
+                   		echo "<li><a href='".__ROOT__."/wo/".$userChoose."' target='_self' class='getuserinfo' userid='$userChoose'>$userChooseRecord[nickname]</a>";
                         echo "<input type='radio' name='chooseid' value='".$userChoose."'/>选择
                     </li> ";
                     endforeach;
