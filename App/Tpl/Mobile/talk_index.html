@@ -61,7 +61,7 @@
    </div>
   <?php if ($_GET['listtype'] == 'friend') { ?>
   <ul class="talk_index_history_ul">
-  <?php foreach ($talkLists as $talkList):
+  <?php foreach ($talkLists as $talkList) {
 	if (!empty($talkList[uid]) && !empty($userloginedrecord[uid])) {
 	$contentToMe = $TalkContent->where("uid = $talkList[uid] AND touid = $userloginedrecord[uid] AND deliver = 0")->find();
   ?>
@@ -83,6 +83,7 @@
     <span class="red_back f12">新消息</span>
     </p>
   </li>
+  <?php } } ?>
   </ul>
   <?php } else { ?>
   <div class="talk_index_history">
