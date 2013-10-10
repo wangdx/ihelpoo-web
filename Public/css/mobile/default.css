@@ -1229,6 +1229,9 @@ li{ list-style:none; }
     padding: 10px;
     display: block;
 }
+.help_comment_reply_form{
+    display: none;
+}
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;
