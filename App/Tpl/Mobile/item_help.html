@@ -21,13 +21,14 @@
 <div class="i_content">
     <div class="i_h_c_describe">
         <?php echo "<a href='".__ROOT__."/wo/".$sayRecord['uid']."' target='_self' class='getuserinfo' userid='".$sayRecord['uid']."'>
-        <img src='".i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's')."' height='30' class='i_h_c_img fl' /></a>"; ?>
+        <img src='".i_icon_check($helpRecordOwener['uid'], $helpRecordOwener['icon_url'], 's')."' height='50' class='i_h_c_img' /></a>"; ?>
         <p>
         	<span class="post_status"></span> 状态:<?php echo i_helpstatus($helpRecord['status']) ?>
             <span class="post_appendix"></span>
             <?php if (!empty($helpRecord['reward_coins'])) {?>
             回馈: <font class="f12 black_l">活跃</font> <font class="f14 orange fb"><?php echo $helpRecord['reward_coins'] ?></font><span class="icon_star"></span>
             <?php } ?>
+            <br />
 		    <span class="gray f12">
 		    <?php
 		    if (!empty($sayRecord['from'])) {
@@ -42,26 +43,26 @@
 		    if (!empty($sayRecord['url'])) {
           		echo "<a href='".$sayRecord[url]."' target='_blank'><span class='post_link_static'></span></a>";
      		} ?>
-                <?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
+            <?php if ($sayRecord['school_id'] != $recordSchoolInfo['id']) { ?>
                 此求助原始发布于 <a href="http://<?php echo $sayRecordSchoolInfo['domain_main'] == NULL ? $sayRecordSchoolInfo['domain'] : $sayRecordSchoolInfo['domain_main']; ?>/item/help/<?php echo $sayRecord['sid']; ?>" target="_self"><?php echo $sayRecordSchoolInfo['school']; ?></a>
-                <?php } ?>
+            <?php } ?>
 		    </span>
 		    <span class="i_h_c_describe_time f12 black_l">
 		      <span class="post_colck"></span>
-                <?php if("3" != $helpRecord['status'] && ($sayRecord['time'] + 1296000 - time()) > 0) { ?>
+              <?php if("3" != $helpRecord['status'] && ($sayRecord['time'] + 1296000 - time()) > 0) { ?>
 		      离帮助结束还有<?php echo floor((($sayRecord['time'] + 1296000) - time()) / 86400) ?>天
-                <?php } ?>
-                求助于<?php echo i_time($sayRecord['time']) ?> <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']
+              <?php } ?>
+              求助于<?php echo i_time($sayRecord['time']) ?> <?php echo "帮助".$sayRecord['comment_co']." <span class='icon_up'></span>人气".$sayRecord['hit_co']
         ?> |
         <a id="plus_button_<?php echo $sayRecord['sid'];?>" class='plus_button' value="i-<?php echo $sayRecord['sid']; ?>"><i class="icon_hand"></i>赞<span id="plus_view_region_i-{$sayRecord['sid']}">(<?php echo $sayRecord['plus_co'] ?>)</span></a>
         <?php if (!empty($userloginedrecord['uid'])) { ?>
-        <a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
+        	<a class="diffusion" value="ih-<?php echo $sayRecord['sid'] ?>">扩散(<?php echo $recordDiffusionNums ?>)</a>
         <?php } else { ?>
-        扩散(<?php echo $recordDiffusionNums ?>)
+        	扩散(<?php echo $recordDiffusionNums ?>)
         <?php } ?>
         <?php if($sayRecord['uid'] == $userloginedrecord['uid']) { ?>
-        <input id="del_help_record_value" type="hidden" name="delrecord" value="<?php echo $helpRecord['sid'] ?>"/>
-        <a id="del_help_record_btn" value="<?php echo $helpRecord['sid'] ?>"><span class="icon_garbage"></span>删除</a>
+        	<input id="del_help_record_value" type="hidden" name="delrecord" value="<?php echo $helpRecord['sid'] ?>"/>
+        	<a id="del_help_record_btn" value="<?php echo $helpRecord['sid'] ?>"><span class="icon_garbage"></span>删除</a>
         <?php } ?>
         </span>
         </p>
