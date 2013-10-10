@@ -202,7 +202,7 @@ $().ready(function(){
     	var textareacontent = $('#help_content_from_textarea').val();
         if (textareacontent.length > 0) {
         	var letterlimit = 222 - textareacontent.length;
-        	if (letterlimit > 0) {
+        	if (letterlimit >= 0) {
         		$('.i_help_comment_textarea_info').html('还能输入<span class="blue">' + letterlimit + '</span>个字');
         		contentOk = 'yes';
         	} else {
