@@ -13,6 +13,7 @@ $().ready(function(){
     		url: baseUrl + "ajax/quanta",
     		data:{uid: userid},
     		success:function(msg){
+    			$.mobile.hidePageLoadingMsg();
     			if (msg.status == 'ok') {
     				$this.removeClass().addClass("btn_quaned do_quantacancel_wo").html("已圈ta");
     				notice.send('system', userid);
@@ -22,7 +23,6 @@ $().ready(function(){
     				ajaxInfo(msg.info,0,0);
     				$this.html("圈ta");
     			}
-    			$.mobile.hidePageLoadingMsg();
     		}
     	});
     });
@@ -38,15 +38,15 @@ $().ready(function(){
     		url: baseUrl + "ajax/quantacancel",
     		data:{uid: userid},
     		success:function(msg){
+    			$.mobile.hidePageLoadingMsg();
     			if (msg.status == 'ok') {
-    				$this.removeClass().addClass("btn_quan do_quanta_wo").html("<span class='icon_plus'></span>圈ta");
+    				$this.removeClass().addClass("btn_quan do_quanta_wo").html("圈ta");
     				var new_quaned_nums = parseInt(quaned_nums) - parseInt('1');
     				$('#quaned_nums').html(new_quaned_nums);
     			} else {
     				ajaxInfo(msg.info,0,0);
     				$this.html("取消圈ta");
     			}
-    			$.mobile.hidePageLoadingMsg();
     		}
     	});
     });
