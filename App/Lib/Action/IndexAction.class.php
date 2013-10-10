@@ -223,6 +223,11 @@ class IndexAction extends Action {
     	$page = i_page_get_num();
         $count = 15;
         $offset = $count * $page;
+        
+        $_GET['sex'] = htmlentities($_GET['sex']);
+        $_GET['n'] = htmlentities($_GET['n']);
+        $_GET['w'] = htmlentities($_GET['w']);
+        
         if (!empty($_GET['n'])) {
             if (preg_match("/[0-9]/", $_GET['n']) && $_GET['n'] > 0) {
                 $number = (int)$_GET['n'];
