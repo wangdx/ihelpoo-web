@@ -1339,6 +1339,9 @@ li{ list-style:none; }
     margin: 10px 0;
     padding: 15px;
 }
+.talk_history_ul .msg_notread{
+    background: #FFFA85;
+}
 
 
 /*--- wo_index ---*/
