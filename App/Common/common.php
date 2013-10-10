@@ -16,6 +16,8 @@ function i_school_domain()
     } else {
         $recordSchoolInfo = $SchoolInfo->where("domain_main = '$domain'")->find();
     }
+    var_dump($recordSchoolInfo);
+    exit();
     if (!is_array($recordSchoolInfo)) {
     	redirect('/index/changeschool', 0, '跳转页面 :)...');
     }
