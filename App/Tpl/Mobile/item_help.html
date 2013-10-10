@@ -139,15 +139,15 @@
           			if("2" == $helpRecord['status']) {  ?>
               		<div class="i_h_c_thanks"><p class="i_h_c_thanks_info f12"><span class="icon_pump"></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>
             		<form method="post" target="_self">
-		            <div id="checkboxes1" data-role="fieldcontain">
-			            <fieldset data-role="controlgroup" data-type="horizontal">
+			        <div data-role="fieldcontain">
+			            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
 			                <legend>
 			                    选择:
 			                </legend>
 			                <?php foreach ($userChooseArray as $userChoose) { ?>
 							<?php $userChooseRecord = $UserLogin->field('uid,nickname')->find($userChoose); ?>
-			                <input id="checkbox<?php echo $userChoose; ?>" name="chooseid" data-theme="b" type="checkbox">
-			                <label for="checkbox<?php echo $userChoose; ?>">
+			                <input id="radio<?php echo $userChoose; ?>" name="chooseid" value="<?php echo $userChoose; ?>" data-theme="b" type="radio">
+			                <label for="radio<?php echo $userChoose; ?>">
 			                    <?php echo $userChooseRecord[nickname]; ?>
 			                </label>
 			                <?php } ?>
