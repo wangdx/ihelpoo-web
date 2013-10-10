@@ -1,4 +1,6 @@
 <?php
+    Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
 	$UserLogin = M("UserLogin");
 	$TalkContent = M("TalkContent");
 ?>
@@ -42,6 +44,47 @@
   ?>
   <span class='fi blue_l'>良民正常型</span> 男女比例适当，加油啊，希望你多多参与帮助。
   <?php } ?>
+  
+  <div data-role="navbar" data-iconpos="left">
+            <ul>
+                <li>
+                    <a href="?listtype=new" target="_self" data-transition="fade" data-theme="" data-icon="">
+                        最近联系
+                    </a>
+                </li>
+                <li>
+                    <a href="?listtype=friend" target="_self" data-transition="fade" data-theme="" data-icon="">
+                        好友列表
+                    </a>
+                </li>
+            </ul>
+   </div>
+  <?php if ($_GET['listtype'] == 'friend') { ?>
+  <ul class="talk_index_history_ul">
+  <?php foreach ($talkLists as $talkList):
+	if (!empty($talkList[uid]) && !empty($userloginedrecord[uid])) {
+	$contentToMe = $TalkContent->where("uid = $talkList[uid] AND touid = $userloginedrecord[uid] AND deliver = 0")->find();
+  ?>
+  <li>
+  	<?php if (!empty($contentToMe['id'])) { ?>
+    	<a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px">
+    		<img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3" />
+      		<span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
+    	</a>
+    <?php } else { ?>
+    	<a href="__ROOT__/talk/to/<?php echo $talkList['uid'] ?>" class="user_list_a" style="display: inline-block; position: relative; width: 56px; height: 46px">
+    		<img src="<?php echo i_icon_check($talkList['uid'], $talkList['icon_url'], 's') ?>" height="40" class="radius3" />
+      		<span class="online<?php echo $talkList['online'] ?>" style="position: absolute; bottom: 0; right: 0;"></span>
+    	</a>
+    <?php } ?>
+    <p class="user_list_nickname">
+    <span class="blue_link"><?php echo $talkList['nickname']; ?></span><span class="sex<?php echo $talkList['sex']; ?>"></span>
+    <br /><span class="f12 gray"><?php echo $ofunction->cut_str($talkList['introduction'], 13)； ?></span>
+    <span class="red_back f12">新消息</span>
+    </p>
+  </li>
+  </ul>
+  <?php } else { ?>
   <div class="talk_index_history">
     <ul class="talk_index_history_ul">
         <?php
@@ -71,5 +114,6 @@
         <?php } endforeach; ?>
     </ul>
   </div>
+  <?php } ?>
 </div>
 <include file="Public:footermobile" />
