@@ -1225,8 +1225,8 @@ li{ list-style:none; }
     border-radius: 3px;
     display: inline-block;
 }
-.thanks_form_ul li input{
-    margin-top: 10px;
+.thanks_form_ul li a{
+    padding: 10px;
 }
 /*--- message_index ---*/
 .message_index_ul{
