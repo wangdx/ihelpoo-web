@@ -204,14 +204,14 @@ $().ready(function(){
      * help reply comment
      */
     $('.help_comment_reply_btn').click(function(){
-        var help_comment_reply_form_textarea = $(this).parent().find('.help_comment_reply_form_textarea').val() + " ";
+        var help_comment_reply_form_textarea = $(this).parent().parent().find('.help_comment_reply_form_textarea').val() + " ";
         var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
         var atresult = help_comment_reply_form_textarea.match(atpattern);
-        $(this).parent().find('.help_reply_atusers').val(atresult);
+        $(this).parent().parent().find('.help_reply_atusers').val(atresult);
         var re = new RegExp("(@[\\u4E00-\\u9FA5A-Za-z0-9_.]+)", "g");
         var s = "<a class=\"getuserinfo\">$1</a>";
         var textareacontentdata = help_comment_reply_form_textarea.replace(re, s);
-        $(this).parent().find('.help_reply_textareacontent').val(textareacontentdata);
+        $(this).parent().parent().find('.help_reply_textareacontent').val(textareacontentdata);
         $help_comment_reply_form = $(this).parent();
         if (textareacontentdata == ' ') {
         	ajaxInfo('追问不能为空', 0, 0);
