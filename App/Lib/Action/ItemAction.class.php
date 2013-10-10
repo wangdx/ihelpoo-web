@@ -439,6 +439,9 @@ class ItemAction extends Action {
     				$this->ajaxReturn(0,$publishError,'error');
     			} else {
     				$commentcontent = i_makechickableLinks(trim(addslashes(strip_tags($_POST["textareacontent"],"<a>"))));
+    				if (empty($commentcontent)) {
+    					$this->ajaxReturn(0,'评论回复内容不能为空','error');
+    				}
     				$imageurl = trim(addslashes($_POST["imageurl"]));
     				$atusers = htmlspecialchars(addslashes(strtolower(trim($_POST["atusers"]))));
     				$sid = (int)htmlspecialchars(strtolower(trim($_POST["sid"])));
@@ -715,6 +718,9 @@ class ItemAction extends Action {
     				$hrid = (int)htmlspecialchars(strtolower(trim($_POST["hrid"])));
     				$recorduid = (int)htmlspecialchars(strtolower(trim($_POST["recorduid"])));
     				$helpcontent = i_makechickableLinks(trim(addslashes(strip_tags($_POST["textareacontent"],"<a>"))));
+    				if (empty($helpcontent)) {
+    					$this->ajaxReturn(0,'内容不能为空','error');
+    				}
     				$imageurl = trim(addslashes($_POST["imageurl"]));
     				$atusers = htmlspecialchars(addslashes(strtolower(trim($_POST["atusers"]))));
     				$recordUserLogin = $UserLogin->find($userloginid);
