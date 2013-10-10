@@ -70,19 +70,12 @@
         <p class="i_h_c_content_p">
             <span class="fb gray">困难描述:</span>
             <?php
-		      	echo $emotion->transEmotion(i_content($sayRecord['content']));
+		    echo $emotion->transEmotion(i_content($sayRecord['content']));
             if (!empty($imageRecordArray)) {
-            foreach($imageRecordArray as $imageRecord) {
-            $imageResize = getimagesize($imageRecord);
-            $imageWidth = $imageResize['0'];
-            if ($imageWidth > 800) {
-            echo "<img src='".$imageRecord."' width='800' style='border:6px solid #EEE'/>";
-            } else {
-            echo "<img src='".$imageRecord."' style='border:6px solid #EEE'/>";
-            }
-            }
-            }
-            ?>
+            	foreach($imageRecordArray as $imageRecord) {
+            		echo "<img src='".$imageRecord."' class='i_content_p_img' />";
+            	}
+            } ?>
         </p>
         <?php if("3" == $helpRecord['status']) { ?>
         <!-- 帮助流程3 帮助结束 -->
