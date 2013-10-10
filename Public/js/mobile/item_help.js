@@ -127,7 +127,7 @@ $().ready(function(){
                 	dataType: 'json',
                 	success: function (msg){
                 	    if (msg.status == 'uploaded') {
-                	        var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><img src='" + msg.data +"' width='80'/><a href='" + msg.data +"' target='_blank' class='f12'><span class='icon_search' title='看大图'></span>大图</a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
+                	        var uploadImgList = "<li class='upload_img_list' url='" + msg.data + "'><a href='" + msg.data +"' target='_blank'><img src='" + msg.data +"' width='100' /></a> <a class='re_upload_img'><span class='icon_recycle'></span>重传</a></li>";
                 	        $('#imageurl').val(msg.data);
                 	        $('#image_upload_list_ul').append(uploadImgList);
                 	        $('#img_upload_form').hide();
