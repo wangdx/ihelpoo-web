@@ -348,7 +348,7 @@ class Email
                       <br />
                       <p style='color:gray; font-size:12px; font-style:italic;'>
                       ".$this->schoolname."校园帮助主题社交网站 - <a href='http://".$this->ihelpoo."/'>我帮圈圈</a>敬上!
-                      <a href='http://www.weibo.com/ihelpoo' style='font-size:10px; color:gray'>(新浪微博)</a><br />
+                      <a href='http://www.weibo.com/ihelpoogroup' style='font-size:10px; color:gray'>(新浪微博)</a><br />
                       ".$toNickname."天天开心:D 祝好
                       </p>";
         $this->sendDefault($toEmail, $toSubject, $toContent, $toNickname);

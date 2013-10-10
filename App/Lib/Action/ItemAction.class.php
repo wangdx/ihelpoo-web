@@ -752,7 +752,7 @@ class ItemAction extends Action {
     						 */
         					$isMailSendRule = C('IS_SEND_MAIL');
     						if ($isMailSendRule) {
-    							if ($isTimeHelpMailSend['id']) {
+    							if (!$isTimeHelpMailSend['id']) {
     								$helpRecordOwener = $UserLogin->find($recorduid);
 
     								/**
@@ -770,8 +770,8 @@ class ItemAction extends Action {
             	                        'type' => 2,
             	                        'time' => time(),
     								);
-    								//TODO test 20131010
-    								//$AuMailSend->add($newHelperInfoSendData);
+    								//TODO email bug 20131010
+    								$AuMailSend->add($newHelperInfoSendData);
     							}
     						}
     					} else {
