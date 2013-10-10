@@ -1058,6 +1058,8 @@ li{ list-style:none; }
     background: #EEEEEE;
     padding: 10px 10px 5px;
     margin: 0;
+    cursor: pointer;
+    font-size: 12px;
 }
 .emotionbox_close_p .emotionbox_change_page{
     padding: 6px 8px;
