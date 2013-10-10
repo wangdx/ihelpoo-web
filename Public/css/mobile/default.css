@@ -1209,6 +1209,9 @@ li{ list-style:none; }
 .i_c_b_form_icon_p span{
     margin-right: 15px;
 }
+.i_c_l_u_li_div_img_p{
+    margin: 5px 0;
+}
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;
