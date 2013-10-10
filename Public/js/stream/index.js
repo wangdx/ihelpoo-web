@@ -260,7 +260,7 @@ $().ready(function(){
 
         if (textareacontent.length > 0) {
         	var letterlimit = 222 - textareacontent.length;
-        	if (letterlimit > 0) {
+        	if (letterlimit >= 0) {
         		$('.s_l_textarea_info').html('还能输入<span class="blue">' + letterlimit + '</span>个字');
         		contentOk = 'yes';
         	} else {
@@ -584,7 +584,7 @@ $().ready(function(){
         
         if (textareacontent.length > 0) {
         	var letterlimits = 222 - textareacontent.length;
-        	if (letterlimits > 0) {
+        	if (letterlimits >= 0) {
         		contentOk = 'yes';
         	}
         }

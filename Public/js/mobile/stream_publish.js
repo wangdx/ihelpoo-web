@@ -124,7 +124,7 @@ $().ready(function(){
 
         if (textareacontent.length > 0) {
         	var letterlimits = 222 - textareacontent.length;
-        	if (letterlimits > 0) {
+        	if (letterlimits >= 0) {
         		contentOk = 'yes';
         	}
         }
