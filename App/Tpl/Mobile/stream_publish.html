@@ -55,26 +55,27 @@
 	      <input type="hidden" name="textareacontent" id="textareacontent" />
 	    </li>
 	    </ul>
+	    <!-- help reword hide -->
+	    <div id="post_help_reword" class="f12 gray">
+		  活跃悬赏 <span id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
+		      <select id="reward_coins" name="reward_coins">
+		        <option value="0">0</option>
+		        <option value="10">10</option>
+		        <option value="20">20</option>
+		        <option value="30">30</option>
+		        <option value="50">50</option>
+		        <option value="80">80</option>
+		        <option value="100">100</option>
+		        <option value="200">200</option>
+		        <option value="500">500</option>
+		      </select>
+		    <p id="post_help_reword_close">点击收起</p>
+		</div>
+		<!-- /help reword -->
     </form>
     <!-- /publish form -->
     
-    <!-- help reword hide -->
-    <div id="post_help_reword" class="f12 gray">
-	  活跃悬赏 <span id="left_coins_calculate" value="{$userloginedrecord['active']}"></span>
-	      <select id="reward_coins" name="reward_coins">
-	        <option value="0">0</option>
-	        <option value="10">10</option>
-	        <option value="20">20</option>
-	        <option value="30">30</option>
-	        <option value="50">50</option>
-	        <option value="80">80</option>
-	        <option value="100">100</option>
-	        <option value="200">200</option>
-	        <option value="500">500</option>
-	      </select>
-	    <p id="post_help_reword_close">点击收起</p>
-	</div>
-	<!-- /help reword -->
+    
     
     <!-- emotionbox hide -->
 	<div id="emotionbox">
