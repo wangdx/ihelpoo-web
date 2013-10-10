@@ -1115,6 +1115,7 @@ li{ list-style:none; }
 .i_content_p_img{
     border: 1px solid #EEE;
     max-width: 100%;
+    margin: 10px 0;
 }
 .i_record_diffusion{
     padding: 0;
@@ -1202,7 +1203,12 @@ li{ list-style:none; }
     margin: 10px 0;
     padding: 15px;
 }
-
+.i_c_b_form_icon_p{
+    margin: 10px 0;
+}
+.i_c_b_form_icon_p span{
+    margin-right: 15px;
+}
 /*--- message_index ---*/
 .message_index_ul{
     padding: 0;
