@@ -79,9 +79,8 @@
 	    	</a>
 	    <?php } ?>
 	    <p class="user_list_nickname">
-	    <span class="blue_link"><?php echo $talkList['nickname']; ?></span><span class="sex<?php echo $talkList['sex']; ?>"></span>
+	    <span class="blue_link"><?php echo $talkList['nickname']; ?></span><span class="sex<?php echo $talkList['sex']; ?>"></span><span class="orange f12">新消息</span>
 	    <br /><span class="f12 gray"><?php echo $ofunction->cut_str($talkList['introduction'], 13); ?></span>
-	    <span class="red_back f12">新消息</span>
 	    </p>
 	  </li>
 	  <?php } ?>
@@ -109,7 +108,7 @@
         <li>
           	<?php if (!empty($contentToMe['id'])) { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3 " /> 
-          		<span class="red_back f12">新消息</span>
+          		<span class="orange f12">新消息</span>
           	<?php } else { ?>
           		<img src="<?php echo i_icon_check($historyUid, $historyUidRecord['icon_url'], 's') ?>" height="35"  class="radius3" />
           	<?php } ?>
