@@ -332,6 +332,7 @@ class StreamAction extends Action
 				    		 */
                         	$userPrioritiedMail = $UserLogin->find($userPrio['uid']);
                         	if (!empty($userPrioritiedMail['email'])) {
+				    			//TODO test 20131010
 				    			//$emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
                         	}
                         }
