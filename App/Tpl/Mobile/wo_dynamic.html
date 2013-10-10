@@ -8,9 +8,11 @@
 <script type="text/javascript" src="__PUBLIC__/js/mobile/wo_index.js"></script>
 <!-- Home -->
     <div data-theme="b" data-role="header">
+        <?php if ($userLogin['uid'] != $userloginedrecord['uid']) { ?>
         <a data-role="button" href="/talk/to/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
             写悄悄话
         </a>
+        <?php } ?>
         <h3>
             <?php echo $userLogin['nickname']; ?>的小窝
         </h3>
