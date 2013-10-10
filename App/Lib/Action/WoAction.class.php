@@ -502,6 +502,9 @@ class WoAction extends Action {
     			 */
     			if ($deleteAlbumRecord['type'] == 1) {
     				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
+    				echo $urlFilename;
+    				exit();
+    				
     				$urlThumbFilename = str_ireplace("iconorignal", "thumb_iconorignal", $urlFilename);
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
     				$upyun->delete($urlThumbFilename);
@@ -563,7 +566,6 @@ class WoAction extends Action {
     				}
     				$this->ajaxReturn($isStorageDeleteFlag,'删除信息流图片失败','wrong');
     			} else if ($deleteAlbumRecord['type'] == 3) {
-    				$deleteAlbumRecordUrl = $deleteAlbumRecord['url'];
     				$RecordCommodity = M("RecordCommodity");
 
     				/**
@@ -598,7 +600,6 @@ class WoAction extends Action {
     				}
     				$this->ajaxReturn($isStorageDeleteFlag,'删除店铺图片失败','wrong');
     			} else if ($deleteAlbumRecord['type'] == 4) {
-    				$deleteAlbumRecordUrl = $deleteAlbumRecord['url'];
 
     				/**
     				 * delete
