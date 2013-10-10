@@ -86,7 +86,6 @@ class StreamAction extends Action
                 $groupmsgpush_system = htmlspecialchars(strtolower(trim($_POST["groupmsgpush_system"])));
                 $groupmsgpush_mail = htmlspecialchars(strtolower(trim($_POST["groupmsgpush_mail"])));
                 
-
                 $recordUserLogin = $UserLogin->where("uid = $userloginid")->field('uid,logintime,nickname,coins,active')->find();
                 if ($verificationcode == 999) {
 
@@ -333,7 +332,7 @@ class StreamAction extends Action
 				    		 */
                         	$userPrioritiedMail = $UserLogin->find($userPrio['uid']);
                         	if (!empty($userPrioritiedMail['email'])) {
-				    			$emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
+				    			//$emailObj->helpstatusNeed($userPrioritiedMail['email'], $userPrioritiedMail['nickname'], $recordUserLogin['nickname'], $content);
                         	}
                         }
                         $tos = rtrim($tos, ",");
