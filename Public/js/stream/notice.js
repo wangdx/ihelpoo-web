@@ -119,7 +119,7 @@ function Notice(state) {
         } else if (chat == '1') {
 
             $('#message_talk_nums_div').show().fadeIn('fast');
-            $('#message_talk_nums_img_icon').show().attr({'src': 'http://ihelpoo.b0.upaiyun.com/useralbum/'+from+'/'+imageThumb+'_m.jpg', 'title': fromUser})
+            $('#message_talk_nums_img_icon').show().attr({'src': 'http://img.ihelpoo.cn/useralbum/'+from+'/'+imageThumb+'_m.jpg', 'title': fromUser})
                 .error(function(){$(this).unbind("error").attr("src", "/Public/image/common/0.jpg");});
             $('#message_talk_nums_span_content').html(' ' + image);
             $('#message_talk_nums_p_content_info').html('来自' + fromUser+ '的悄悄话');
