@@ -94,6 +94,9 @@ $().ready(function(){
 	              	} else {
 	              		ajaxInfo('发送成功', 0 , 0);
 	              		$('#send_message_textarea').val('');
+	              		$('#image_upload_url').val('');
+	                    $('#image_upload_list_ul').empty();
+	                    $('#img_upload_form').slideDown('fast');
 	              	}
 	            }
 	        });

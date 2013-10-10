@@ -184,7 +184,7 @@ class TalkAction extends Action
         $TalkContent = M("TalkContent");
         
         /**
-         * TODO 20131010
+         * add 20131010
          * mobile talk
          */
         if (!empty($_POST['send_message_textarea']) && !empty($_POST['touid'])) {
@@ -198,8 +198,10 @@ class TalkAction extends Action
         		'uid' => $userloginid,
         		'touid' => $messagetouid,
         		'content' => $messageContent,
-        		'deliver' => 0,
-        		'time' => time()
+        		'deliver' => '0',
+        		'image' => '',
+        		'time' => time(),
+        		'del' => '0'
         	);
         	if (!empty($imageUploadUrl)) {
         		$newTalkData['image'] = $imageUploadUrl;
