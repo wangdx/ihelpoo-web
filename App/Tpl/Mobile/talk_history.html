@@ -36,7 +36,11 @@
     <ul class="talk_history_ul">
     <?php
     foreach ($talkHistories as $talkHistory) :
-        echo "<li><span class='gray'>";
+        if (empty($talkHistory['deliver'])) {
+        	echo "<li class='msg_notread'><span class='gray'>";
+        } else {
+        	echo "<li><span class='gray'>";
+        }
         echo "<a href='".__ROOT__."/wo/".$talkHistory['uid']."' target='_self'>";
         if ($talkHistory['uid'] == $userloginedrecord['uid']) {
         	echo "您自己";
@@ -56,7 +60,7 @@
 		if (!empty($talkHistory['image'])) {
         	echo "<p class='talk_history_ul_li_p'>".$emotionObj->transEmotion($talkHistory['content'])."<br /><a href='".$talkHistory['image']."' target='_target'><img src='".i_image_thumbnail($talkHistory['image'])."' style='max-width:150px;' /></a></p>";
 		} else {
-			echo "<p class='talk_history_ul_li_p'>".$talkHistory['deliver']." ".$emotionObj->transEmotion($talkHistory['content'])."</p>";
+			echo "<p class='talk_history_ul_li_p'>".$emotionObj->transEmotion($talkHistory['content'])."</p>";
 		}
         echo "</li>";
     endforeach;
