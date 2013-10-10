@@ -96,7 +96,7 @@ $().ready(function(){
 	              		$('#send_message_textarea').val('');
 	              		$('#image_upload_url').val('');
 	                    $('#image_upload_list_ul').empty();
-	                    $('#img_upload_form').slideDown('fast');
+	                    $('.img_upload_comment_form_div').fadeOut('fast');
 	              	}
 	            }
 	        });
