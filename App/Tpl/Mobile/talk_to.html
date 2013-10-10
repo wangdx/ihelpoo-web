@@ -9,7 +9,39 @@
         </h3>
     </div>
 <div data-role="content">
-	<textarea id="send_message_textarea"></textarea>
-    <a  data-role="button">发送</a>
+
+
+            <textarea id="send_message_textarea"></textarea>
+            <a id="send_message" data-role="button">发送</a>
+        	<input type="hidden" id="data_touid" value="<?php echo $toUserRecord['uid'] ?>"/>
+        	
+        	<p>
+            	<span class="post_icon" id="textareaicon" title="表情"></span> &nbsp;<span class="post_img" id="textareaimg" title="图片"></span>
+            </p>
+            <!-- emotionbox hide -->
+            <div id="emotionbox_item">
+                <p class="emotionbox_close_p">
+                    <a class="emotionbox_change_page bg_emotionbox_page_select" title="基本表情" value="1">基本表情</a>
+                    <a class="emotionbox_change_page" title="微博" value="2">微博</a>
+                    <a class="emotionbox_change_page" title="兔斯基" value="3">兔斯基</a>
+                </p>
+                <ul class="emotionbox_show_ul"></ul>
+                <span id="emotionbox_close" class="close_x">收起</span>
+            </div>
+            <!-- /emotionbox -->
+            <!-- image upload hide -->
+            <div class="img_upload_comment_form_div">
+                <span id="img_upload_comment_form_div_close" class="icon_quit" title="关闭"></span>
+                <form enctype="multipart/form-data" action="__ROOT__/file/imgupload" method="post" id="img_upload_form">
+                    <input id="upload_form_img_file" name="uploadedimg" type="file"/>
+                    <a class="btn f12" id="img_upload_btn">上传</a>
+                    <span class="imgajaxloading_span"></span>
+                </form>
+                <ul id="image_upload_list_ul"></ul>
+                <input type="hidden" id="image_upload_url" value=""/>
+            </div>
+            <!-- /image upload -->
+
+
 </div>
 <include file="Public:footermobile" />
