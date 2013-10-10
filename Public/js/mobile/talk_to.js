@@ -70,4 +70,33 @@ $().ready(function(){
     $('#img_upload_comment_form_div_close').live('click', function () {
         $('.img_upload_comment_form_div').fadeOut('fast');
     });
+    
+    /**
+     * send message
+     */
+    $('#send_message').click(function () {
+    	var image_upload_url = $('#image_upload_url').val();
+    	var send_message_textarea = $('#send_message_textarea').val();
+    	if (send_message_textarea =='') {
+    		ajaxInfo('悄悄话内容不能为空', 0 , 0);
+    	} else {
+	    	$.mobile.showPageLoadingMsg();
+	    	$.ajax({
+	            type: "POST",
+	            url: baseUrl+"talk/to",
+	            data: {'image_upload_url' : image_upload_url, 'send_message_textarea' : send_message_textarea },
+	            dataType: "json",
+	            success:function(msg){
+	            	$.mobile.hidePageLoadingMsg();
+	              	if (msg.status == 'error') {
+	              		ajaxInfo(msg.info, 0 , 0);
+	              	} else {
+	              		ajaxInfo('发送成功', 0 , 0);
+	              		$('#send_message_textarea').val('');
+	              	}
+	            }
+	        });
+    	}
+    });
+    
 });

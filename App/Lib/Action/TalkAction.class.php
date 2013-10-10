@@ -209,12 +209,12 @@ class TalkAction extends Action
                 ->select();
             $this->assign('talkLists', $talkList);
         }
-
+        
         /**
          * view
          */
-        $IUserLogin = D("IUserLogin");
-        $toUserRecord = $IUserLogin->userExists($toUserId);
+        $UserLogin = M("UserLogin");
+        $toUserRecord = $UserLogin->find($toUserId);
         if (!$toUserRecord['uid']) {
             redirect('/talk', 3, '用户不存在或者设置为不和陌生人聊天 :(...');
         }
@@ -247,13 +247,36 @@ class TalkAction extends Action
             $this->assign('userLoginSchoolInfo', $userLoginSchoolInfo);
         }
         
+        /**
+         * TODO 20131010
+         * mobile talk
+         */
+        if (!empty($_POST['send_message_textarea'])) {
+        	$messageContent = trim(addslashes(htmlspecialchars(strip_tags($_POST['send_message_textarea']))));
+        	if (empty($messageContent)) {
+        		$this->ajaxReturn(0, "内容不能为空", "error");
+        	}
+        	$imageUploadUrl = trim(addslashes(htmlspecialchars(strip_tags($_POST['image_upload_url']))));
+        	$newTalkData = array(
+        		'uid' => $userloginid,
+        		'touid' => $userloginid,
+        		'content' => $messageContent,
+        		'time' => time()
+        	);
+        	if (!empty($imageUploadUrl)) {
+        		$newTalkData['image'] = $imageUploadUrl;
+        	}
+        	$TalkList->add($newTalkData);
+        	$this->ajaxReturn(0, "发送成功", 'yes');
+        }
+        
         if(i_is_mobile()) {
         	$this->display('Mobile:talk_to');
     	} else {
     		$this->display();
     	}
     }
-
+    
     public function history()
     {
         $userloginid = session('userloginid');
@@ -263,8 +286,8 @@ class TalkAction extends Action
         /**
          *
          */
-        $IUserLogin = D("IUserLogin");
-        $toUserLogin = $IUserLogin->userExists($toUserId);
+        $UserLogin = M("UserLogin");
+        $toUserLogin = $UserLogin->find($toUserId);
         $this->assign('toUserLogin', $toUserLogin);
         $TalkContent = M("TalkContent");
 
@@ -373,8 +396,8 @@ class TalkAction extends Action
             $toUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         }
         if (!empty($toUserId)) {
-            $IUserLogin = D("IUserLogin");
-            $toUserLogin = $IUserLogin->userExists($toUserId);
+            $UserLogin = M("UserLogin");
+            $toUserLogin = $UserLogin->find($toUserId);
             $this->assign('toUserLogin', $toUserLogin);
         }
 
