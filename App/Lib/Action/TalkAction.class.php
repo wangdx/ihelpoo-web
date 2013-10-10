@@ -198,12 +198,13 @@ class TalkAction extends Action
         		'uid' => $userloginid,
         		'touid' => $messagetouid,
         		'content' => $messageContent,
+        		'deliver' => 0,
         		'time' => time()
         	);
         	if (!empty($imageUploadUrl)) {
         		$newTalkData['image'] = $imageUploadUrl;
         	}
-        	$TalkList->add($newTalkData);
+        	$TalkContent->add($newTalkData);
         	$this->ajaxReturn(0, "发送成功", 'yes');
         }
         
