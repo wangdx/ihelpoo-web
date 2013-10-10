@@ -4,9 +4,11 @@
         <a data-role="button" href="/wo/index/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
             小窝
         </a>
+        <?php if ($userLogin['uid'] != $userloginedrecord['uid']) { ?>
         <a data-role="button" href="/talk/to/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
             写悄悄话
         </a>
+        <?php } ?>
         <h3>
            帮助 <?php echo $userLogin['nickname']; ?>
         </h3>
