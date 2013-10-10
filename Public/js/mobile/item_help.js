@@ -61,7 +61,6 @@ $().ready(function(){
         var deleteReplyValue = $(this).attr('value');
     	var infohtml = "确定删除追问？";
     	$alreadyDeleteHelpreplyLi = $(this).parent().parent().parent();
-    	$alreadyDeleteHelpreplyLi.css("backgroundColor", "#FFFA85");
     	ajaxInfo(infohtml, 'helpreply', deleteReplyValue);
     });
     $('#delete_btn_yes').live('click', function(){
