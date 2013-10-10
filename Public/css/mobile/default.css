@@ -1189,6 +1189,9 @@ li{ list-style:none; }
 .i_h_c_describe_status{
     margin: 0 0 10px 80px;
 }
+.i_h_c_describe_info{
+    margin: 0 0 0 80px;
+}
 .i_h_c_content{
     background-color: #FFFFFF;
     border: 1px solid #EEEEEE;
