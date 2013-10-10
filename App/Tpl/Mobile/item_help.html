@@ -136,9 +136,9 @@
             <!-- 帮助流程2 挑选人回馈-->
             <?php
 		      	if ($sayRecord['uid'] == $userloginedrecord['uid']) {
-          			if("2" == $helpRecord['status']) {
-              		echo "<div class='i_h_c_thanks'><p class='i_h_c_thanks_info f12'><span class='icon_pump'></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>";
-            		echo " <form method='post' id='thanksForm'>" ?>
+          			if("2" == $helpRecord['status']) {  ?>
+              		<div class="i_h_c_thanks"><p class="i_h_c_thanks_info f12"><span class="icon_pump"></span>他们都帮助了你。如果问题解决了 选个最佳帮手 开始兑现回馈吧!</p>
+            		<form method="post" target="_self">
 		            <div id="checkboxes1" data-role="fieldcontain">
 			            <fieldset data-role="controlgroup" data-type="horizontal">
 			                <legend>
@@ -153,11 +153,14 @@
 			                <?php } ?>
 			            </fieldset>
 			        </div>
-                <p class='i_h_c_thanks_words f12 gray'><span class="icon_heart"></span>说点什么表示感谢吧!</p>
-                <textarea name="choosethanks"></textarea>
-                <input type="hidden" name="sid" value="<?php echo $helpRecord['sid'] ?>">
-                <input type="submit" value="感谢" class="system_notice" />
-                <?php echo "</form> </div> "; } } ?>
+	                <p class='i_h_c_thanks_words f12 gray'><span class="icon_heart"></span>说点什么表示感谢吧!</p>
+	                <textarea name="choosethanks"></textarea>
+	                <input type="hidden" name="sid" value="<?php echo $helpRecord['sid'] ?>">
+	                <input type="submit" value="感谢" class="system_notice" />
+	                </form>
+	                </div>
+					<?php } ?>
+				<?php } ?>
     </div>
     <?php } ?>
 </div>
