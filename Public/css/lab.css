@@ -58,8 +58,17 @@
     border-radius: 3px;
 }
 .maponline_ul li{
+    border: 1px dotted #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    margin: 10px;
     padding: 10px;
-    border-bottom: 1px solid #EEEEEE;
+}
+*+html .maponline_ul li{
+    display: inline;
+}
+*html .maponline_ul li{
+    display: inline;
 }
 .maponline_ul_dormitory{
     display: inline-block;
