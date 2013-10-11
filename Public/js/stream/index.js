@@ -618,7 +618,11 @@ $().ready(function(){
 	                        });
                     	} else {
                     		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
+	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){
+	                        		if (bStatus) {
+	                        			$('#infotextareacheck').slideDown().html("<span class='icon_right'></span>已经同步到微博").delay(1000).slideUp("fast");
+	                        		}
+	                        	},{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
 	                        });
                     	}
                     }
@@ -627,11 +631,19 @@ $().ready(function(){
                     	textareacontent = "#求助#" + textareacontent + " http://www.ihelpoo.com/item/help/" + msg.info;
                     	if (!uploadImageWeibo) {
 	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){
+	                        		if (bStatus) {
+	                        			$('#infotextareacheck').slideDown().html("<span class='icon_right'></span>已经同步到微博").delay(1000).slideUp("fast");
+	                        		}
+	                        	},{ status : textareacontent },{ method: 'post' });
 	                        });
                     	} else {
                     		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
+	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){
+	                        		if (bStatus) {
+	                        			$('#infotextareacheck').slideDown().html("<span class='icon_right'></span>已经同步到微博").delay(1000).slideUp("fast");
+	                        		}
+	                        	},{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
 	                        });
                     	}
                     }
