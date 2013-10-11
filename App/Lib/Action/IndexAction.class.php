@@ -261,8 +261,6 @@ class IndexAction extends Action {
         	$specialty = 0;
         }
         
-        var_dump($sex);
-        
         /**
          * set default url to ?new
          */
