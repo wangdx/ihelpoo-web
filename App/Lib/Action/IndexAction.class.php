@@ -223,6 +223,10 @@ class IndexAction extends Action {
     	$page = i_page_get_num();
         $count = 15;
         $offset = $count * $page;
+        
+        $_GET['sex'] = htmlentities($_GET['sex']);
+        $_GET['n'] = htmlentities($_GET['n']);
+        
         if (!empty($_GET['n'])) {
             if (preg_match("/[0-9]/", $_GET['n']) && $_GET['n'] > 0) {
                 $number = (int)$_GET['n'];
@@ -251,6 +255,7 @@ class IndexAction extends Action {
         if (!isset($_GET['w'])) {
             redirect('/index/mate?w=grade', 0, '缺少参数, 跳转到指定页面 :)...');
         }
+        $_GET['w'] = htmlentities($_GET['w']);
 
     	if ($_GET['w'] == "academy") {
 

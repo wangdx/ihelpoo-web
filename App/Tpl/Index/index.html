@@ -49,8 +49,9 @@ var _hmt = _hmt || [];
          <?php endforeach; ?>
       </ul>
       <p class="index_user_nums white">
-      <span class="icon_pump"></span> 目前共有 <span class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>我帮圈圈! <span class="f14 reb_back">内测中...</span>
-      <?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?>
+      <span class="icon_pump"></span> 目前共有 <span class="f16 reb_back fb fi"><?php echo $allUserNums ?></span> 位童鞋加入了<?php echo $schoolname; ?>我帮圈圈! 
+      <span class="f14 reb_back">内测中...QQ、微博登录暂时不能使用</span>
+      <!-- <?php if (!empty($indexSpreadInfoVaule)) { ?><span class="f14 reb_back"><?php echo $indexSpreadInfoVaule; ?></span><?php } ?> -->
       </p>
     </div>
 	<?php if (empty($userloginedrecord['uid'])) { ?>
@@ -122,13 +123,13 @@ var _hmt = _hmt || [];
   <p class="app_show_title_info_p"></p>
   <ul class="main_index_sub_ul">
   <li>
-    <a href="/app">
+    <a class="app_show_title" title="Android 内测调试中...马上上线:)">
 		<i class="icon_android"></i>
 		<span>Android</span>
 	</a>
   </li>
   <li>
-    <a class="app_show_title" title="iPhone 开发中...10月底上线:)">
+    <a class="app_show_title" title="iPhone 开发中...再等等吧">
 		<i class="icon_iphone"></i>
 		<span>iPhone</span>
 	</a>
