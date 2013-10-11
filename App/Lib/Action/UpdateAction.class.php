@@ -532,7 +532,7 @@ class UpdateAction extends Action {
     		$UserLogin = M("UserLogin");
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
-    				$isExistUserLogin = $UserLogin->where("email = $data[email]")->find();
+    				$isExistUserLogin = $UserLogin->where("email = '$data[email]'")->find();
     				if (empty($isExistUserLogin['uid'])) {
     					$data['nickname'] = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$data['nickname']);
     					$data['school'] = 1;
