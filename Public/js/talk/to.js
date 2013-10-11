@@ -172,7 +172,7 @@ function Chat(state) {
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
             url: cometdURL,
-            logLevel: 'debug'
+            logLevel: 'info'
         });
         $.cometd.handshake();
         $('#send_message_textarea').focus();
@@ -339,6 +339,10 @@ function Chat(state) {
                     $('#message_system_nums_a').children('span').html('+' + (num + 1));
                 }
             } else if (chat == '1') {
+                var to_uid = $('#data_touid').val();
+                if(to_uid == from){
+                    return;
+                }
                 $('#message_talk_nums_div').fadeIn('fast');
                 $('#message_talk_nums_img_icon').show().attr({'src': 'http://img.ihelpoo.cn/useralbum/' + from + '/' + imageThumb + '_m.jpg', 'title': fromUser})
                     .error(function () {

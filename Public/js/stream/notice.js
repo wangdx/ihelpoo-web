@@ -117,7 +117,6 @@ function Notice(state) {
                 $('#message_system_nums_a').children('span').html('+' + (num + 1));
             }
         } else if (chat == '1') {
-
             $('#message_talk_nums_div').show().fadeIn('fast');
             $('#message_talk_nums_img_icon').show().attr({'src': 'http://img.ihelpoo.cn/useralbum/'+from+'/'+imageThumb+'_m.jpg', 'title': fromUser})
                 .error(function(){$(this).unbind("error").attr("src", "/Public/image/common/0.jpg");});
