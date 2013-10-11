@@ -670,7 +670,8 @@ class UpdateAction extends Action {
     		$UserLogin = M("UserLogin");
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
-    				if (empty($data['email'])) {
+    				$recordUserLogin = $UserLogin->find($data['uid']);
+    				if (empty($data['email']) && empty($recordUserLogin['uid'])) {
     					$data['nickname'] = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$data['nickname']);
     					$data['school'] = 1;
     					$UserLogin->add($data);
