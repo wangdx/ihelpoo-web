@@ -93,13 +93,10 @@ class MessageAction extends Action
                 if(!empty($recordDiffusion['view'])){
                     $view = ' 并表示：'.$recordDiffusion['view'];
                 }
+                $detailId = $recordDiffusion['sid'];
             }
             $tpl = $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
-            if ($notice['format_id'] == 'diffusion' && !empty($recordDiffusion['view'])) {
-            	$content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $recordDiffusion['sid'], "a_view_info_sys");
-            } else {
-            	$content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $detailId, "a_view_info_sys");
-            }
+            $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $detailId, "a_view_info_sys");
             $content .= $view;
             $msgSysArray[] = array(
                 'deliver' => $redis->hGet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $notice['notice_id']),
