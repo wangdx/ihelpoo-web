@@ -224,11 +224,6 @@ class IndexAction extends Action {
         $count = 15;
         $offset = $count * $page;
         
-        $sex = (int)$_GET['sex'];
-        if (!is_int($sex)) {
-        	exit('what are you doing? Tanks for bless, by cho!');
-        }
-        
         $_GET['sex'] = htmlentities($_GET['sex']);
         $_GET['n'] = htmlentities($_GET['n']);
         $_GET['specialty'] = htmlentities($_GET['specialty']);
