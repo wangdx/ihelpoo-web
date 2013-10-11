@@ -610,7 +610,7 @@ $().ready(function(){
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
                     	if (uploadImageWeibo == 'undefined') {
 	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ alert(bStatus); },{ status : textareacontent },{ method: 'post' });
 	                        });
                     	} else {
                     		WB2.anyWhere(function(W){
