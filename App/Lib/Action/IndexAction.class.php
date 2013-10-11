@@ -224,6 +224,10 @@ class IndexAction extends Action {
         $count = 15;
         $offset = $count * $page;
         
+        $_GET['sex'] = htmlentities($_GET['sex']);
+        $_GET['n'] = htmlentities($_GET['n']);
+        $_GET['specialty'] = htmlentities($_GET['specialty']);
+        
         if (!empty($_GET['n'])) {
             if (preg_match("/[0-9]/", $_GET['n']) && $_GET['n'] > 0) {
                 $number = (int)$_GET['n'];
@@ -257,10 +261,8 @@ class IndexAction extends Action {
         	$specialty = 0;
         }
         
-        $_GET['sex'] = htmlentities($_GET['sex']);
-        $_GET['n'] = htmlentities($_GET['n']);
-        $_GET['specialty'] = htmlentities($_GET['specialty']);
-
+        var_dump($sex);
+        
         /**
          * set default url to ?new
          */
