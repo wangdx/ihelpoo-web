@@ -225,15 +225,15 @@ class IndexAction extends Action {
         $offset = $count * $page;
         
         $_GET['sex'] = htmlentities($_GET['sex']);
-        if (strlen($_GET['sex']) > 5) {
+        if (strlen($_GET['sex']) > 3) {
         	$_GET['sex'] = 0;
         }
         $_GET['n'] = htmlentities($_GET['n']);
-        if (strlen($_GET['n']) > 5) {
+        if (strlen($_GET['n']) > 3) {
         	$_GET['n'] = 0;
         }
         $_GET['specialty'] = htmlentities($_GET['specialty']);
-        if (strlen($_GET['specialty']) > 5) {
+        if (strlen($_GET['specialty']) > 6) {
         	$_GET['specialty'] = 0;
         }
         
