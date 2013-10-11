@@ -610,7 +610,11 @@ $().ready(function(){
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
                     	if (!uploadImageWeibo) {
 	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ alert(bStatus); },{ status : textareacontent },{ method: 'post' });
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){
+	                        		if (bStatus == 'true') {
+	                        			$('#infotextareacheck').slideDown("fast").html("<span class='icon_right'></span>已经同步到微博").delay(1000).slideUp("fast");
+	                        		}
+	                        	},{ status : textareacontent },{ method: 'post' });
 	                        });
                     	} else {
                     		WB2.anyWhere(function(W){
