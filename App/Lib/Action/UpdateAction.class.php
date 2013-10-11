@@ -651,7 +651,7 @@ class UpdateAction extends Action {
     
     /**
      * move user login weibo data
-     */
+    
     public function moveweibouserlogin()
     {
     	$page = i_page_get_num();
@@ -684,8 +684,9 @@ class UpdateAction extends Action {
     			redirect('/update/moveweibouserlogin?p='.$page, 1, 'while');
     		} 	
     	}
-    	//redirect('/update/moveweibouserinfo', 1, 'next');
+    	redirect('/update/moveweibouserinfo', 1, 'next');
     }
+     */
     
     
     public function moveweibouserinfo()
@@ -705,6 +706,7 @@ class UpdateAction extends Action {
     		
     		$UserInfo = M("UserInfo");
     		foreach ($datacontentArray as $data) {
+    			if ($data['uid'] == '14657') {
     			if (is_array($data)) {
     				if ($data['academy_op'] == '12') {
     					$data['academy_op'] = '13';
@@ -718,16 +720,17 @@ class UpdateAction extends Action {
     				if ($data['academy_op'] == '99') {
     					$data['academy_op'] = '0';
     				}
-    				$UserInfo->add($data);
+    				var_dump($data);
+    				//$UserInfo->add($data);
+    			}
     			}
     		}
     		
     		while ($handlednums < $total) {
     			++$page;
-    			redirect('/update/userinfo?p='.$page, 1, 'while');
+    			redirect('/update/moveweibouserinfo?p='.$page, 1, 'while');
     		} 	
     	}
-    	redirect('/update/userinvite', 1, 'next');
     }
     
     
