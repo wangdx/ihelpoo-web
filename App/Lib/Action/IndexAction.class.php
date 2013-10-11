@@ -256,6 +256,7 @@ class IndexAction extends Action {
             redirect('/index/mate?w=grade', 0, '缺少参数, 跳转到指定页面 :)...');
         }
         $_GET['w'] = htmlentities($_GET['w']);
+        $_GET['specialty'] = htmlentities($_GET['specialty']);
 
     	if ($_GET['w'] == "academy") {
 
