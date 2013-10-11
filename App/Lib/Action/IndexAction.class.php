@@ -226,13 +226,14 @@ class IndexAction extends Action {
         
         $_GET['sex'] = htmlentities($_GET['sex']);
         $_GET['n'] = htmlentities($_GET['n']);
+        $_GET['specialty'] = htmlentities($_GET['specialty']);
         
         if (!empty($_GET['n'])) {
             if (preg_match("/[0-9]/", $_GET['n']) && $_GET['n'] > 0) {
                 $number = (int)$_GET['n'];
             } else {
                 $number = 0;
-				exit('what are you doing? Tanks for bless, bye cho!');
+				exit('what are you doing? Tanks for bless, by cho!');
             }
         } else {
             $number = 0;
@@ -243,10 +244,21 @@ class IndexAction extends Action {
                 $sex = (int)$_GET['sex'];
             } else {
                 $sex = 0;
-				exit('what are you doing? Tanks for bless, bye cho!');
+				exit('what are you doing? Tanks for bless, by cho!');
             }
         } else {
             $sex = 0;
+        }
+        
+        if (!empty($_GET['specialty'])) {
+        	if (preg_match("/[0-9]/", $_GET['specialty']) && $_GET['specialty'] > 0) {
+        		$specialty = (int)$_GET['specialty'];
+        	} else {
+        		$specialty = 0;
+        		exit('what are you doing? Tanks for bless, by cho!');
+        	}
+        } else {
+        	$specialty = 0;
         }
 
         /**
@@ -256,7 +268,6 @@ class IndexAction extends Action {
             redirect('/index/mate?w=grade', 0, '缺少参数, 跳转到指定页面 :)...');
         }
         $_GET['w'] = htmlentities($_GET['w']);
-        $_GET['specialty'] = htmlentities($_GET['specialty']);
 
     	if ($_GET['w'] == "academy") {
 
@@ -267,16 +278,6 @@ class IndexAction extends Action {
     		$resultsSpecialty = $OpSpecialty->where("school = $recordSchoolInfo[id] AND academy = $number")->select();
     		$this->assign('resultsSpecialty',$resultsSpecialty);
             if (!empty($number)) {
-            	if (!empty($_GET['specialty'])) {
-            		if (preg_match("/[0-9]/", $_GET['specialty']) && $_GET['specialty'] > 0) {
-            			$specialty = (int)$_GET['specialty'];
-            		} else {
-            			$specialty = 0;
-            			exit('what are you doing? Tanks for bless, bye cho!');
-            		}
-            	} else {
-            		$specialty = 0;
-            	}
             	if (!empty($sex)) {
             		if (!empty($specialty)) {
             			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
