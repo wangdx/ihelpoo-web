@@ -608,9 +608,7 @@ $().ready(function(){
                     //weibo publish
                     if (weibo_is_publish == 'on') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	alert(uploadImageWeibo);
                     	if (!uploadImageWeibo) {
-                    		alert('is send');
 	                        WB2.anyWhere(function(W){
 	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ alert(bStatus); },{ status : textareacontent },{ method: 'post' });
 	                        });
@@ -623,7 +621,7 @@ $().ready(function(){
                     if (help_is_input == '1') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
                     	textareacontent = "#求助#" + textareacontent + " http://www.ihelpoo.com/item/help/" + msg.info;
-                    	if (uploadImageWeibo == 'undefined') {
+                    	if (!uploadImageWeibo) {
 	                        WB2.anyWhere(function(W){
 	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
 	                        });
