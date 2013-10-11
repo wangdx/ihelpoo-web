@@ -609,7 +609,7 @@ $().ready(function(){
                     if (weibo_is_publish == 'on') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
                     	alert(uploadImageWeibo);
-                    	if (uploadImageWeibo == 'undefined') {
+                    	if (uploadImageWeibo == '') {
                     		alert('is send');
 	                        WB2.anyWhere(function(W){
 	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ alert(bStatus); },{ status : textareacontent },{ method: 'post' });
