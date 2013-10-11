@@ -224,9 +224,9 @@ class IndexAction extends Action {
         $count = 15;
         $offset = $count * $page;
         
-        $_GET['sex'] = htmlspecialchars(htmlentities($_GET['sex']));
-        $_GET['n'] = htmlspecialchars(htmlentities($_GET['n']));
-        $_GET['specialty'] = htmlspecialchars(htmlentities($_GET['specialty']));
+        $_GET['sex'] = addslashes(htmlentities($_GET['sex']));
+        $_GET['n'] = htmlentities($_GET['n']);
+        $_GET['specialty'] = htmlentities($_GET['specialty']);
         
         if (!empty($_GET['n'])) {
             if (preg_match("/[0-9]/", $_GET['n']) && $_GET['n'] > 0) {
@@ -267,7 +267,7 @@ class IndexAction extends Action {
         if (!isset($_GET['w'])) {
             redirect('/index/mate?w=grade', 0, '缺少参数, 跳转到指定页面 :)...');
         }
-        $_GET['w'] = htmlspecialchars(htmlentities($_GET['w']));
+        $_GET['w'] = htmlentities($_GET['w']);
 
     	if ($_GET['w'] == "academy") {
 
