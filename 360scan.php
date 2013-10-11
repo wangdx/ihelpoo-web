@@ -1,5 +1,5 @@
 <?php
-define("WEBSCAN_KEY", "674d9ad67449f3fbb4af986b63b06f9d");
+define("WEBSCAN_KEY", "98856c0fb92c59a3890b27aee31000ea");
 date_default_timezone_set('GMT');
 ini_set('display_errors', '0');
 class scan{
