@@ -608,26 +608,26 @@ $().ready(function(){
                     //weibo publish
                     if (weibo_is_publish == 'on') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	if (uploadImageWeibo != 'undefined') {
+                    	if (uploadImageWeibo == 'undefined') {
 	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
 	                        });
                     	} else {
                     		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
+	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
 	                        });
                     	}
                     }
                     if (help_is_input == '1') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
                     	textareacontent = "#求助#" + textareacontent + " http://www.ihelpoo.com/item/help/" + msg.info;
-                    	if (uploadImageWeibo != 'undefined') {
+                    	if (uploadImageWeibo == 'undefined') {
 	                        WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
+	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
 	                        });
                     	} else {
                     		WB2.anyWhere(function(W){
-	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ },{ status : textareacontent },{ method: 'post' });
+	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
 	                        });
                     	}
                     }
