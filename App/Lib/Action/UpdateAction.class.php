@@ -7,7 +7,6 @@ class UpdateAction extends Action {
 
     protected function _initialize() {
         header("Content-Type:text/html; charset=utf-8");
-        exit('are you cho');
     }
     
     public function calculatefansnums()
@@ -649,6 +648,87 @@ class UpdateAction extends Action {
     	}
     	redirect('/update/movezzulicleandb', 1, 'next');
     }
+    
+    /**
+     * move user login weibo data
+     */
+    public function moveweibouserlogin()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://www.ihelpoo.com/updateversion4/userlogin?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		echo '迁移i_user_login +c school<br/>';
+    		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$UserLogin = M("UserLogin");
+    		foreach ($datacontentArray as $data) {
+    			if (is_array($data)) {
+    				if (empty($data['email'])) {
+    					$data['nickname'] = preg_replace('/[^a-zA-Z\x{4e00}-\x{9fa5}{0-9}_]/u','',$data['nickname']);
+    					$data['school'] = 1;
+    					$UserLogin->add($data);
+    				}
+    			}
+    		}
+    		
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/moveweibouserlogin?p='.$page, 1, 'while');
+    		} 	
+    	}
+    	//redirect('/update/moveweibouserinfo', 1, 'next');
+    }
+    
+    
+    public function moveweibouserinfo()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://www.ihelpoo.com/updateversion4/userinfo?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		echo '迁移i_user_info<br/>';
+    		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$UserInfo = M("UserInfo");
+    		foreach ($datacontentArray as $data) {
+    			if (is_array($data)) {
+    				if ($data['academy_op'] == '12') {
+    					$data['academy_op'] = '13';
+    				}
+    				if ($data['academy_op'] == '11') {
+    					$data['academy_op'] = '14';
+    				}
+    				if ($data['academy_op'] == '15') {
+    					$data['academy_op'] = '11';
+    				}
+    				if ($data['academy_op'] == '99') {
+    					$data['academy_op'] = '0';
+    				}
+    				$UserInfo->add($data);
+    			}
+    		}
+    		
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/userinfo?p='.$page, 1, 'while');
+    		} 	
+    	}
+    	redirect('/update/userinvite', 1, 'next');
+    }
+    
     
     /**	
      * zzuli
