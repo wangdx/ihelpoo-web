@@ -154,7 +154,7 @@ function mseeageNumsOnce() {
         },
         timeout: 10000,
         error: function () {
-            alert('圈圈亲，系统检测到您断网了!');
+            //alert('圈圈亲，系统检测到您断网了!');
             setTimeout('mseeageNumsOnce()', 1000);
         }
     });
