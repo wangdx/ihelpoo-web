@@ -608,7 +608,6 @@ $().ready(function(){
                     //weibo publish
                     if (weibo_is_publish == 'on') {
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
-                    	alert(uploadImageWeibo);
                     	if (uploadImageWeibo != 'undefined') {
 	                        WB2.anyWhere(function(W){
 	                        	W.parseCMD("/statuses/upload_url_text.json", function(sResult, bStatus){ },{ status : textareacontent, url : uploadImageWeibo },{ method: 'post' });
