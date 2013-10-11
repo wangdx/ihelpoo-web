@@ -89,13 +89,17 @@ class MessageAction extends Action
             $from_user = "<a href='" . __ROOT__ . "/wo/" . $notice['source_id'] . "' target='_self' class='getuserinfo' userid='" . $notice['source_id'] . "'>" . $fromUser['nickname'] . "</a> ";
             $detailId = $notice['detail_id'];
             if($notice['format_id'] == 'diffusiontoowner' || $notice['format_id'] == 'diffusion'){
-                $recordDiffusion = $RecordDiffusion->where("sid = '$notice[detail_id]' AND uid = $userloginid")->find();
+                $recordDiffusion = $RecordDiffusion->where("id = '$notice[detail_id]'")->find();
                 if(!empty($recordDiffusion['view'])){
                     $view = ' 并表示：'.$recordDiffusion['view'];
                 }
             }
             $tpl = $redis->hGet(C('R_Notice_Message_Template'), $notice['format_id']);
-            $content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $detailId, "a_view_info_sys");
+            if ($notice['format_id'] == 'diffusion' && !empty($recordDiffusion['view'])) {
+            	$content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $recordDiffusion['sid'], "a_view_info_sys");
+            } else {
+            	$content = sprintf("$tpl", $from_user, __ROOT__, $redis->hGet(C('R_Notice_Message_Link'), $notice['notice_type']), $detailId, "a_view_info_sys");
+            }
             $content .= $view;
             $msgSysArray[] = array(
                 'deliver' => $redis->hGet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $notice['notice_id']),
