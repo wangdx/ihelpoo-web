@@ -611,8 +611,8 @@ $().ready(function(){
                     	if (!uploadImageWeibo) {
 	                        WB2.anyWhere(function(W){
 	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){
-	                        		if (bStatus == 'true') {
-	                        			$('#infotextareacheck').slideDown("fast").html("<span class='icon_right'></span>已经同步到微博").delay(1000).slideUp("fast");
+	                        		if (bStatus) {
+	                        			$('#infotextareacheck').slideDown().html("<span class='icon_right'></span>已经同步到微博").delay(1000).slideUp("fast");
 	                        		}
 	                        	},{ status : textareacontent },{ method: 'post' });
 	                        });
