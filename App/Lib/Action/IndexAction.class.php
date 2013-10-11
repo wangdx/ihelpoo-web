@@ -229,9 +229,13 @@ class IndexAction extends Action {
         	$_GET['sex'] = 0;
         }
         $_GET['n'] = htmlentities($_GET['n']);
+        if (strlen($_GET['n']) > 5) {
+        	$_GET['n'] = 0;
+        }
         $_GET['specialty'] = htmlentities($_GET['specialty']);
-        
-        var_dump($_GET['sex']);
+        if (strlen($_GET['specialty']) > 5) {
+        	$_GET['specialty'] = 0;
+        }
         
         if (!empty($_GET['n'])) {
             if (preg_match("/[0-9]/", $_GET['n']) && $_GET['n'] > 0) {
