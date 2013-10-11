@@ -706,7 +706,6 @@ class UpdateAction extends Action {
     		
     		$UserInfo = M("UserInfo");
     		foreach ($datacontentArray as $data) {
-    			if ($data['uid'] == '14657') {
     			if (is_array($data)) {
     				if ($data['academy_op'] == '12') {
     					$data['academy_op'] = '13';
@@ -720,9 +719,10 @@ class UpdateAction extends Action {
     				if ($data['academy_op'] == '99') {
     					$data['academy_op'] = '0';
     				}
-    				var_dump($data);
-    				//$UserInfo->add($data);
-    			}
+    				$recordUserInfo = $UserInfo->find($data['uid']);
+    				if (empty($recordUserInfo['uid'])) {
+    					$UserInfo->add($data);
+    				}
     			}
     		}
     		
