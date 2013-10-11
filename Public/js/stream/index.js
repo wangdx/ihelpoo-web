@@ -607,6 +607,7 @@ $().ready(function(){
             	} else if (msg.status == "ok") {
                     //weibo publish
                     if (weibo_is_publish == 'on') {
+                    	alert('sh');
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
                     	if (uploadImageWeibo == 'undefined') {
 	                        WB2.anyWhere(function(W){
