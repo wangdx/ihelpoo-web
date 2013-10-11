@@ -101,7 +101,7 @@ class MessageAction extends Action
             $msgSysArray[] = array(
                 'deliver' => $redis->hGet(C('R_ACCOUNT'). C('R_MESSAGE') . $userloginid , $notice['notice_id']),
                 'content' => $content,
-                'time' => $notice['create_time'],
+                'time' => i_time($notice['create_time'])
             );
         }
 
