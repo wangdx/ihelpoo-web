@@ -607,9 +607,10 @@ $().ready(function(){
             	} else if (msg.status == "ok") {
                     //weibo publish
                     if (weibo_is_publish == 'on') {
-                    	alert('sh');
                     	var uploadImageWeibo = $('.upload_img_list:eq(0)').attr('url');
+                    	alert(uploadImageWeibo);
                     	if (uploadImageWeibo == 'undefined') {
+                    		alert('is send');
 	                        WB2.anyWhere(function(W){
 	                        	W.parseCMD("/statuses/update.json", function(sResult, bStatus){ alert(bStatus); },{ status : textareacontent },{ method: 'post' });
 	                        });
