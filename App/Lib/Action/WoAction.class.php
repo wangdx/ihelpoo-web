@@ -99,6 +99,19 @@ class WoAction extends Action {
         $UserRemark = M("UserRemark");
         $recordUserRemark = $UserRemark->where("uid = $userloginid AND ruid = $userId")->find();
         $this->assign('recordUserRemark', $recordUserRemark);
+        
+        /**
+         * update online status
+         */
+        $UserStatus = M("UserStatus");
+        $recordUserStatus = $UserStatus->find($userId);
+        if (60 < (time() - $recordUserStatus['last_active_ti'])) {
+        	$updateUserOnlineStatusData = array(
+	        	'uid' => $userId,
+	        	'online' => 0,
+        	);
+        	$UserLogin->save($updateUserOnlineStatusData);
+        }
     }
 
     public function _empty()

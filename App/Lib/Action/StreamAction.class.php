@@ -657,37 +657,6 @@ class StreamAction extends Action
         $this->assign('recordUserInfo', $recordUserInfo);
 
         /**
-         * show online user nums, refrash per 15 second
-         */
-        $WebStatus = M("WebStatus");
-        $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
-        if (15 < (time() - $recordWebStatus['time'])) {
-            $userOnlineObject = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")
-            ->join('i_user_status ON i_user_status.uid = i_user_login.uid')
-            ->field('i_user_login.uid,online,i_user_status.last_active_ti')
-            ->select();
-            $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
-            $newWebStats = array(
-                'sid' => $recordSchoolInfo['id'],
-                'online_nums' => $recordOnlineUserNums,
-                'time' => time(),
-            );
-            $WebStatus->save($newWebStats);
-            foreach ($userOnlineObject as $userOnlineOne) {
-	        	if (60 < (time() - $userOnlineOne['last_active_ti'])) {
-	        		$updateUserOnlineStatusData = array(
-	                    'uid' => $userOnlineOne['uid'],
-	            	    'online' => 0,
-	        		);
-	        		$UserLogin->save($updateUserOnlineStatusData);
-	        	}
-        	}
-        } else {
-            $recordOnlineUserNums = $recordWebStatus['online_nums'];
-        }
-        $this->assign('onlineUserNums', $recordOnlineUserNums);
-
-        /**
          * show user honor nums
          */
         $UserHonor = M("UserHonor");

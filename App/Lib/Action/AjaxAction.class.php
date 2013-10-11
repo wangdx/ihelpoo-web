@@ -388,6 +388,19 @@ class AjaxAction extends Action {
     				$recordOpDormitoryName = $recordOpDormitory['name'] == NULL ? '':$recordOpDormitory['name'];
     				$recordUserInfoIntroduction = $recordUserInfo['introduction'] == NULL ? '':$recordUserInfo['introduction'];
     				
+    				/**
+			         * update online status
+			         */
+			        $UserStatus = M("UserStatus");
+			        $recordUserStatus = $UserStatus->find($userid);
+			        if (60 < (time() - $recordUserStatus['last_active_ti'])) {
+			        	$updateUserOnlineStatusData = array(
+				        	'uid' => $userid,
+				        	'online' => 0,
+			        	);
+			        	$UserLogin->save($updateUserOnlineStatusData);
+			        }
+    				
     				Vendor('Ihelpoo.Ofunction');
     				$ofunction = new Ofunction();
     				$resultUserRemark['remark'] =  $ofunction->cut_str($resultUserRemark['remark'], 5);
@@ -399,7 +412,7 @@ class AjaxAction extends Action {
     					'sex' => $recordUserLogin['sex'],
     					'constellation' => i_constellation($recordUserLogin['birthday']),
     					'type' => $userType,
-    					'online' => $recordUserLogin['online'],
+    					'online' => $updateUserOnlineStatusData['online'],
     					'degree' => i_degree($recordUserLogin['active']),
     					'icon_url' => i_icon_check("$recordUserLogin[uid]", "$recordUserLogin[icon_url]", "s"),
     					'introduction' => $recordUserInfoIntroduction,
