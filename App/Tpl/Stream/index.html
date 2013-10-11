@@ -61,12 +61,7 @@
     </span>
     <br />
     <a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">等级: <span class="level<?php echo i_degree($userloginedrecord['active']) ?>"></span></a>
-    <?php if (!empty($totalUserHonorNums)) { ?>
-    	<br />
-		<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">荣誉:
-		<?php for ($i = 1; $i <= $totalUserHonorNums; $i++) { ?><span class="icon_star"></span><?php } ?>
-		</a>
-	<?php } ?>
+	<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">荣誉: <span class="icon_star"></span></a>
   </p>
   <ul class="s_r_ul_priority">
     <li><a href="__ROOT__/wo/quan/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">我圈</a> <span class="num f16 fb"><a href="__ROOT__/wo/quan/<?php echo $userloginedrecord['uid']; ?>">{$recordUserInfo['follow']}</a></span></li>
@@ -480,13 +475,12 @@
 			<p class="s_r_a_info_p">未实名呢 <a href="__ROOT__/setting/realfirst?step=1" class="fb">修改</a></p>
 		<?php } ?>
 		<a href="__ROOT__/lab/maponline" class="s_r_a_online_a f12" title="在线区域位置 人数">
-			<span class="online_dot"></span> 校园在线人数 <span class="fb">{$onlineUserNums}</span>
+			<span class="online_dot"></span> 校园区域在线详情
 		</a>
 		<ul class="stream_right_add_ul f12 black_l">
 			<li>
 				<a href="__ROOT__/message/active">
-					<span class="fb black_l">活跃:</span> <span class="fb f14 orange">{$userloginedrecord['active']}</span>
-					<?php if ($msgActiveNewNums) { echo "<span class='stream_new_active_nums_span'>".$msgActiveNewNums."</span> <span class='icon_new'></span>"; } ?>
+					<span class="fb black_l">活跃:</span> <span class="fb f14 orange">{$userloginedrecord['active']}</span><span class="icon_new"></span>
 				</a>
 			</li>
 			<li>

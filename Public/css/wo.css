@@ -153,6 +153,7 @@
     border-bottom: 1px dotted #CCC;
     position: relative;
     min-height: 50px;
+    overflow: hidden;
 }
 *html .wo_main_ul li{
     height: 80px;

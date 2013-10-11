@@ -406,6 +406,8 @@ class StreamAction extends Action
                 $this->ajaxReturn($tos, $sayLastInsertId, 'ok');
             }
         }
+        
+        $UserInfo = M("UserInfo");
 
         if (preg_match("/priority/iUs", $_SERVER["REQUEST_URI"])) {
             $requestWay = "priority";
@@ -524,8 +526,6 @@ class StreamAction extends Action
             $this->assign('groupUserRecord', $groupUserRecord);
         } else if ($requestWay == "specialty") {
             $specialtyId = (int)trim($_GET["_URL_"][3]);
-            //$isSetGroupListPriority = $UserPriority->where("pid = $groupUid")->select();
-            $UserInfo = M("UserInfo");
             $allSameSpecialtyUsers = $UserInfo->where("specialty_op = $specialtyId")->select();
             $allUserString = NULL;
             $allUserNums = 0;
@@ -643,56 +643,10 @@ class StreamAction extends Action
         $this->assign('recordSay', $recordSayArray);
 
         /**
-         * show new active nums
-         */
-        $MsgActive = M("MsgActive");
-        $msgActiveNewNums = $MsgActive->where("uid = $userloginid AND deliver = 0")->count();
-        $this->assign('msgActiveNewNums', $msgActiveNewNums);
-
-        /**
          * show user info
          */
-        $UserInfo = M("UserInfo");
         $recordUserInfo = $UserInfo->find($userloginid);
         $this->assign('recordUserInfo', $recordUserInfo);
-
-        /**
-         * show online user nums, refrash per 15 second
-         */
-        $WebStatus = M("WebStatus");
-        $recordWebStatus = $WebStatus->find($recordSchoolInfo['id']);
-        if (15 < (time() - $recordWebStatus['time'])) {
-            $userOnlineObject = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")
-            ->join('i_user_status ON i_user_status.uid = i_user_login.uid')
-            ->field('i_user_login.uid,online,i_user_status.last_active_ti')
-            ->select();
-            $recordOnlineUserNums = $UserLogin->where("online > 0 AND school = $recordSchoolInfo[id]")->count();
-            $newWebStats = array(
-                'sid' => $recordSchoolInfo['id'],
-                'online_nums' => $recordOnlineUserNums,
-                'time' => time(),
-            );
-            $WebStatus->save($newWebStats);
-            foreach ($userOnlineObject as $userOnlineOne) {
-	        	if (60 < (time() - $userOnlineOne['last_active_ti'])) {
-	        		$updateUserOnlineStatusData = array(
-	                    'uid' => $userOnlineOne['uid'],
-	            	    'online' => 0,
-	        		);
-	        		$UserLogin->save($updateUserOnlineStatusData);
-	        	}
-        	}
-        } else {
-            $recordOnlineUserNums = $recordWebStatus['online_nums'];
-        }
-        $this->assign('onlineUserNums', $recordOnlineUserNums);
-
-        /**
-         * show user honor nums
-         */
-        $UserHonor = M("UserHonor");
-        $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
-        $this->assign('totalUserHonorNums', $totalUserHonorNums);
 
         /**
          * user group view

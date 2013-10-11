@@ -58,7 +58,8 @@
     border-radius: 3px;
 }
 .maponline_ul li{
-    border: 1px dotted #EEEEEE;
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px dotted #DDDDDD;
     border-radius: 5px 5px 5px 5px;
     display: inline-block;
     margin: 10px;

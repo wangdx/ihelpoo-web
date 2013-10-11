@@ -397,6 +397,9 @@
     right: 10px;
 	top: 15px;
 }
+.msg_ul_system_content{
+    width: 670px;
+}
 .msg_icon{
 	position:absolute;
 	left: 10px;
