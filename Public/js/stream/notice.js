@@ -118,6 +118,7 @@ function Notice(state) {
             }
         } else if (chat == '1') {
             var to_uid = $('#data_touid').val();
+            console.log(to_uid + "----" +from);
             if(to_uid == from){
                 return;
             }
