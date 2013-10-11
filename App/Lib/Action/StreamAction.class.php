@@ -914,12 +914,11 @@ class StreamAction extends Action
         $RecordDiffusion = M("RecordDiffusion");
         $diffusionSidArray = explode("-", $_POST['diffusionSid']);
         $this->exitWhenDuplicated($RecordDiffusion, $userloginid, $diffusionSidArray);
-        //TODO for test temporarily
-//        $this->exitWhenSpamming($RecordDiffusion, $userloginid);
+        $this->exitWhenSpamming($RecordDiffusion, $userloginid);
         $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
-        $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionSidArray[1]);
+        $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionId);
         $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
-        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionSidArray[1], 'diffusiontoowner');
+        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionId, 'diffusiontoowner');
         $result = $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
         $this->ajaxReturn($result['data'], $result['info'], $result['status']);
         exit();
