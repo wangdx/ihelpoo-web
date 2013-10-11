@@ -733,6 +733,38 @@ class UpdateAction extends Action {
     	}
     }
     
+    public function moveweibouserstatus()
+    {
+    	$page = i_page_get_num();
+    	++$page;
+    	$url = "http://www.ihelpoo.com/updateversion4/userstatus?p=".$page;
+    	$datacontents = file_get_contents($url);
+    	$datacontentArray = json_decode($datacontents,TRUE);
+    	if (is_array($datacontentArray)) {
+    		$total = $datacontentArray['total'];
+    		$count = $datacontentArray['count'];
+    		$page = $datacontentArray['page'];
+    		$handlednums = $page * $count;
+    		echo '迁移i_user_status<br/>';
+    		echo $info = "总记录：".$total."，已处理：".$handlednums.", 当前页：".$page."...";
+    		
+    		$UserStatus = M("UserStatus");
+    		foreach ($datacontentArray as $data) {
+    			if (is_array($data)) {
+    				$recordUserStatus = $UserStatus->find($data['uid']);
+    				if (empty($recordUserStatus['uid'])) {
+    					$UserStatus->add($data);
+    				}
+    			}
+    		}
+    		
+    		while ($handlednums < $total) {
+    			++$page;
+    			redirect('/update/userstatus?p='.$page, 1, 'while');
+    		} 	
+    	}
+    }
+    
     
     /**	
      * zzuli
