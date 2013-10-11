@@ -1092,7 +1092,11 @@ class UpdateAction extends Action {
     		$UserPriority = M("UserPriority");
     		foreach ($datacontentArray as $data) {
     			if (is_array($data)) {
-    				$recordUserPriority = $UserPriority->where("(uid = $data[uid] AND pid = '$data[pid]') OR (uid = $data[uid] AND sid = '$data[sid]')")->find();
+    				if (!empty($data['pid'])) {
+    					$recordUserPriority = $UserPriority->where("uid = $data[uid] AND pid = '$data[pid]'")->find();
+    				} else if (!empty($data['sid'])) {
+    					$recordUserPriority = $UserPriority->where("uid = $data[uid] AND sid = '$data[sid]'")->find();
+    				}
     				if (empty($recordUserPriority['id'])) {
     					$data['id'] = '';
     					$UserPriority->add($data);
