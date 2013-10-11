@@ -117,6 +117,7 @@ function Notice(state) {
                 $('#message_system_nums_a').children('span').html('+' + (num + 1));
             }
         } else if (chat == '1') {
+            alert("test");
             var to_uid = $('#data_touid').val();
             console.log(to_uid + "----" +from);
             if(to_uid == from){
