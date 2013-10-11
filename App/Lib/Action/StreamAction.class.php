@@ -917,9 +917,9 @@ class StreamAction extends Action
         //TODO for test temporarily
 //        $this->exitWhenSpamming($RecordDiffusion, $userloginid);
         $diffusionId = $this->saveRecordDiffusion($userloginid, $diffusionSidArray, $RecordDiffusion);
-        $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionId);
+        $noticeIdForFollowers = $this->saveNoticeMessageForFollowers($diffusionSidArray, $userloginid, $diffusionSidArray[1]);
         $resultRecordSay = $this->increaseDiffusionsCountOfRecord($diffusionSidArray, $userloginid);
-        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionId, 'diffusiontoowner');
+        $noticeIdForOwner = $this->saveNoticeMessageForOwner($diffusionSidArray, $userloginid, $diffusionSidArray[1], 'diffusiontoowner');
         $result = $this->diffuse($userloginid, $noticeIdForOwner, $noticeIdForFollowers, $resultRecordSay['uid']);
         $this->ajaxReturn($result['data'], $result['info'], $result['status']);
         exit();
