@@ -224,7 +224,7 @@ class IndexAction extends Action {
         $count = 15;
         $offset = $count * $page;
         
-        $_GET['sex'] = htmlentities($_GET['sex']);
+        $_GET['sex'] = addslashes(strip_tags(htmlentities($_GET['sex'])));
         $_GET['n'] = htmlentities($_GET['n']);
         $_GET['specialty'] = htmlentities($_GET['specialty']);
         
