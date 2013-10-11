@@ -30,6 +30,8 @@
 	  echo "<li "; 
 	  echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
 	  echo "><p class='black_l msg_ul_system_content lh15'>";
+var_dump($msg);
+
       echo $msg['deliver'] == 1 ? "<span class='icon_words' title='已读'></span> " : "<span class='icon_new' title='未读'></span> ";
       echo $msg['content']."</p>";
       echo "<span class='msg_li_time'>".$msg['time']."</span>";
