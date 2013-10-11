@@ -205,11 +205,11 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 /*---*/
 .footer{ clear:both; width:980px; margin:0px auto 5px; text-align:center;}
 /*---*/
-.message{position: relative;  bottom: 5px; right: 3px; background-color: #FE6600; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
-.message_blue{position: relative; bottom: 5px; right: 2px; background-color: #6CCACD; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
-.message_green{position: relative; bottom: 5px; right: 2px; background-color: #9C0; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
-.message_yellow{position: relative; bottom: 5px; right: 2px; background-color: #FC0; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
-.message_gray{position: relative; bottom: 5px; right: 2px; background-color: #BBB; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
+.message{position: relative;  bottom: 0px; right: 3px; background-color: #FE6600; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
+.message_blue{position: relative; bottom: 0px; right: 2px; background-color: #6CCACD; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
+.message_green{position: relative; bottom: 0px; right: 2px; background-color: #9C0; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
+.message_yellow{position: relative; bottom: 0px; right: 2px; background-color: #FC0; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
+.message_gray{position: relative; bottom: 0px; right: 2px; background-color: #BBB; color: #FFF; padding:1px 5px; font-weight: bold; border-radius:3px;}
 
 .default_c{color: #6CCACD;}
 .beautiful_c{color: #15B6D7;}
