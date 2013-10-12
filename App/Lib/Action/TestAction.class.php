@@ -15,6 +15,7 @@ class TestAction extends Action {
     }
 
 }
-xhprof_disable();
+$xhprof_data = xhprof_disable();
+var_dump($xhprof_data);
 
 ?>
