@@ -7,10 +7,11 @@ class TestAction extends Action {
 
     protected function _initialize() {
         header("Content-Type:text/html; charset=utf-8");
-        exit();
+//        exit();
     }
     
     public function index() {
+        xhprof_enable();
     	$UserLogin = M("UserLogin");
     	$recordsUserLogin = $UserLogin->select();
     	foreach ($recordsUserLogin as $recordUserLogin) {
@@ -19,6 +20,7 @@ class TestAction extends Action {
 	    	$UserLogin->save($recordUserLogin);
 	    	echo $handledNickname."<br />";
     	}
+        xhprof_disable();
     	exit();
     	$RecordComment = M("RecordComment");
     	$recordId = 22088;
