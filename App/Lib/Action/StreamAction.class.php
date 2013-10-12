@@ -1,5 +1,6 @@
 <?php
 
+xhprof_enable();
 /**
  *
  * @author cho
@@ -1097,5 +1098,6 @@ class StreamAction extends Action
     }
 
 }
+$xhprof_data = xhprof_disable();
 
 ?>
