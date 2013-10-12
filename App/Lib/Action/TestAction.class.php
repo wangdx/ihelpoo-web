@@ -17,6 +17,10 @@ class TestAction extends Action {
 
 }
 $xhprof_data = xhprof_disable();
-var_dump($xhprof_data);
+include_once "./xhprof_lib/utils/xhprof_lib.php";
+include_once "./xhprof_lib/utils/xhprof_runs.php";
+$xhprof_runs = new XHProfRuns_Default();
+$run_id = $xhprof_runs->save_run($xhprof_data, 'xhprof');
+echo 'http://42.62.50.238/xhprof_html/index.php?run='.$run_id.'&source=xhprof';
 
 ?>
