@@ -617,7 +617,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     height:16px;
     width:100%;
     padding:10px 0;
-    background:url(../image/common/bg_nav.png?id=1) repeat-x 0px 0px;
+    background:url(http://static.ihelpoo.cn/img/skin/bg_nav.png) repeat-x 0px 0px;
     border-bottom:2px solid #C00;
     position: fixed; z-index:9999;
     top:0;
