@@ -134,23 +134,23 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *html .gradebef{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -385px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 
 /*---*/
-.post_icon{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
-.post_icon:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px 0; display:inline-block; cursor: pointer; }
-.post_img{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 -20px; display:inline-block; cursor: pointer; }
-.post_img:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -20px; display:inline-block; cursor: pointer; }
-.post_video{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -0 -40px; display:inline-block; cursor: pointer; }
-.post_video:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -40px; display:inline-block; cursor: pointer; }
-.post_at{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0 -60px; display:inline-block; cursor: pointer; }
-.post_at:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -60px; display:inline-block; cursor: pointer; }
-.post_link{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -40px -120px; display:inline-block; cursor: pointer; }
-.post_link:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -60px -120px; display:inline-block; cursor: pointer; }
-.post_appendix{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
-.post_appendix:hover{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -120px; display:inline-block; cursor: pointer; }
-.post_appendix_gray{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
-.post_colck{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -140px; display:inline-block; cursor: pointer; }
-.post_status{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -100px; display:inline-block; cursor: pointer; }
-.post_link_static{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -60px -120px; display:inline-block; }
-.post_img_static{ width: 18px; height: 18px; background:url(../image/common/poster.png) no-repeat -20px -20px; display:inline-block; }
+.post_icon{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
+.post_icon:hover{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px 0; display:inline-block; cursor: pointer; }
+.post_img{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat 0 -20px; display:inline-block; cursor: pointer; }
+.post_img:hover{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -20px; display:inline-block; cursor: pointer; }
+.post_video{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -0 -40px; display:inline-block; cursor: pointer; }
+.post_video:hover{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -40px; display:inline-block; cursor: pointer; }
+.post_at{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat 0 -60px; display:inline-block; cursor: pointer; }
+.post_at:hover{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -60px; display:inline-block; cursor: pointer; }
+.post_link{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -40px -120px; display:inline-block; cursor: pointer; }
+.post_link:hover{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -60px -120px; display:inline-block; cursor: pointer; }
+.post_appendix{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
+.post_appendix:hover{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -120px; display:inline-block; cursor: pointer; }
+.post_appendix_gray{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat 0px -120px; display:inline-block; cursor: pointer; }
+.post_colck{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -140px; display:inline-block; cursor: pointer; }
+.post_status{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -100px; display:inline-block; cursor: pointer; }
+.post_link_static{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -60px -120px; display:inline-block; }
+.post_img_static{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -20px; display:inline-block; }
 
 /*--- btn.png ---*/
 .btn_back{ width: 24px; height: 15px; background:url(../image/common/btn.png) no-repeat -24px -100px; display:inline-block; cursor: pointer; }
