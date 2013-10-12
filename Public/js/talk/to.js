@@ -290,7 +290,8 @@ function Chat(state) {
                 + chat + "<br>";
         }
 
-        $('#show_message_div').append(htmlIn);
+//        $('#show_message_div').append(htmlIn);
+        $(htmlIn).appendTo($('#show_message_div'));
         var boxHeight = $('#show_message_div').height();
         $('#show_message_div_outer').animate({scrollTop: boxHeight}, 800);
         $('#send_message_textarea').val('');
