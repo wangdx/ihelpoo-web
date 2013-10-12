@@ -570,7 +570,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 
 /*--- style---*/
-.input_style{    
+.input_style{
     -moz-transition: border 0.2s linear 0s, -moz-box-shadow 0.2s linear 0s;
     border: 1px solid #D0D0D0;
     color: #666666;
@@ -840,7 +840,7 @@ color:#FFFA85;
 }
 .lay_background{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 5px;
@@ -881,7 +881,7 @@ color:#FFFA85;
 }
 .lay_background_1{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg1.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg1.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 5px;
@@ -945,7 +945,7 @@ color:#FFFA85;
 }
 .lay_background_3{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg3.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg3.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 5px;
@@ -1015,7 +1015,7 @@ color:#FFFA85;
 }
 .lay_background_4{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg4.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg4.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 5px;
@@ -1055,7 +1055,7 @@ color:#FFFA85;
 }
 .lay_background_5{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg5.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg5.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 5px;
@@ -1088,7 +1088,7 @@ color:#FFFA85;
 }
 .lay_background_6{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg6.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg6.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 5px;
@@ -1124,7 +1124,7 @@ color:#FFFA85;
 }
 .lay_background_7{
     background-attachment: scroll;
-    background-image: url("../image/common/stream_topbg7.jpg");
+    background-image: url("http://static.ihelpoo.cn/img/skin/stream_topbg7.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     padding-top: 270px;
