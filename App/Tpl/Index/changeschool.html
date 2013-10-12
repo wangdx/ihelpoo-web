@@ -16,7 +16,7 @@
 	    <?php if (empty($schoolOpCity['1']['school'])) { ?>
 		    <?php $changeschoolurl = empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>
 		    <?php $changeschoolurl = 'http://'.$changeschoolurl; ?>
-		    <?php redirect($changeschoolurl, 0, '跳转页面 :)...'); ?>
+		    <?php //redirect($changeschoolurl, 0, '跳转页面 :)...'); ?>
 	    <?php } ?>
 	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" title="<?php echo !empty($school['domain_main']) ? '主域名:'.$school['domain_main'] : ''; ?> <?php echo !empty($school['domain']) ? '域名:'.$school['domain'] : ''; ?> <?php echo !empty($school['remark']) ? '说明:'.$school['remark'] : ''; ?>">
 		   <?php echo $school['school']; ?>
@@ -28,7 +28,16 @@
 	  <?php } ?>
 	  
 	  <ul class="school_list_ul">
-	  <li><p class="fb f14 school_list_ul_initial_p"><i class="ico_school"></i>已开通校园列表 <a href="/about/sns" class="red f12 fn">还没你们学校?</a></p></li>
+	  <li>
+	  	<p class="fb f14 school_list_ul_initial_p"><i class="ico_school"></i>已开通校园列表 
+	  	<a href="/about/sns" class="red f12 fn">还没你们学校?</a> 
+	  	<?php if ($_GET['status'] == '2') { ?>
+    		<a href="?status=1" class="red f12 fn">返回</a>
+    	<?php } else { ?>
+    		<a href="?status=2" class="red f12 fn">筹建中的学校</a>
+    	<?php } ?>
+	  	</p>
+	  </li>
 	  <?php foreach ($recordsSchoolInfo as $school) :?>
 	  	<?php $schoolUserNums = $userLogin->where("school = $school[id]")->count(); ?>
 	  	<?php if ($initialShow == $school['initial']) { ?>
