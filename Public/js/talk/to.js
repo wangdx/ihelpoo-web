@@ -248,7 +248,7 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
         var status = message.data.status;
-        var flag = 0;
+        var flag = -1;
 
 
         var curTo = $('#data_touid').val();

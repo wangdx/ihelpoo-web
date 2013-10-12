@@ -24,7 +24,7 @@ function Notice(state) {
     var _disconnecting;
     var _chatSubscription;
     var _membersSubscription;
-    var flag = 0;
+    var flag = -1;
 
     this.join = function (from, to) {
         _disconnecting = false;
