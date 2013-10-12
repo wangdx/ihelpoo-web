@@ -655,7 +655,7 @@ color:#FFFA85;
 .header_logo{
     width:170px;
     height:32px;
-    background:url(../image/common/logo_header.png) no-repeat 0px 0px;
+    background:url(http://static.ihelpoo.cn/img/logo/logo_header.png) no-repeat 0px 0px;
     display:block;
     position:absolute;
     left:0;
@@ -664,7 +664,7 @@ color:#FFFA85;
 .header_logo:hover{
     width:170px;
     height:32px;
-    background:url(../image/common/logo_header.png) no-repeat 0px -32px;
+    background:url(http://static.ihelpoo.cn/img/logo/logo_header.png) no-repeat 0px -32px;
     display:block;
     position:absolute;
     left:0;
@@ -832,7 +832,7 @@ color:#FFFA85;
     height:36px;
     width:36px;
     display:inline-block;
-    background:url(../image/common/logo_mi.png) no-repeat;
+    background:url(http://static.ihelpoo.cn/img/logo/logo_mi.png) no-repeat;
     float:left;
 }
 .footer .about p{
