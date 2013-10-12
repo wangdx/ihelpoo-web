@@ -243,7 +243,7 @@ li{ list-style:none; }
 
 
 .ico_setup{
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -804px -34px;
     height: 16px;
     width: 16px;
@@ -253,7 +253,7 @@ li{ list-style:none; }
     overflow: hidden;
 }
 .ico_msg{
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -821px 0;
     height: 16px;
     width: 16px;
@@ -306,7 +306,7 @@ li{ list-style:none; }
     outline: medium none;
     vertical-align: top;
     width: 25px;
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -126px -35px;
 }
 
@@ -320,7 +320,7 @@ li{ list-style:none; }
     float: left;
     display: inline-block;
     font-size: 0;
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
 }
 .ico_friendfeed{
     background-position: -467px -20px;
@@ -382,7 +382,7 @@ li{ list-style:none; }
     float: left;
     display: inline-block;
     font-size: 0;
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
 }
 .ico_gift{
     background-position: -668px -51px;
@@ -395,7 +395,7 @@ li{ list-style:none; }
 }
 
 .icon_hand{
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -957px -17px;
     cursor: pointer;
     height: 16px;
@@ -407,7 +407,7 @@ li{ list-style:none; }
 }
 
 .icon_feedctrall, .icon_feedctrblog, .icon_feedctrrefresh, .icon_feedctrset{
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     height: 14px;
     width: 16px;
     vertical-align: bottom;
@@ -429,7 +429,7 @@ li{ list-style:none; }
 }
 
 .icon_stateplay{
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -838px 0;
     height: 16px;
     width: 8px;
@@ -983,7 +983,7 @@ li{ list-style:none; }
     background-repeat: no-repeat;
     display: inline-block;
     font-size: 0;
-    background-image: url("../../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -957px 0;
 }
 #stream_index_view_select i{

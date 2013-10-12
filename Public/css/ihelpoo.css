@@ -299,7 +299,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 
 .ico_setup{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -804px -34px;
     height: 16px;
     width: 16px;
@@ -309,7 +309,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     overflow: hidden;
 }
 .ico_msg{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -821px 0;
     height: 16px;
     width: 16px;
@@ -362,7 +362,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     outline: medium none;
     vertical-align: top;
     width: 25px;
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -126px -35px;
 }
 
@@ -376,7 +376,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     float: left;
     display: inline-block;
     font-size: 0;
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
 }
 .ico_friendfeed{
     background-position: -467px -20px;
@@ -439,7 +439,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     float: left;
     display: inline-block;
     font-size: 0;
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
 }
 .ico_gift{
     background-position: -668px -51px;
@@ -452,7 +452,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 .icon_hand{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -957px -17px;
     cursor: pointer;
     height: 16px;
@@ -464,7 +464,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 .icon_feedctrall, .icon_feedctrblog, .icon_feedctrrefresh, .icon_feedctrset{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     height: 14px;
     width: 16px;
     vertical-align: bottom;
@@ -486,7 +486,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 }
 
 .icon_stateplay{
-    background-image: url("../image/common/icon_main.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/icon_main.png");
     background-position: -838px 0;
     height: 16px;
     width: 8px;
