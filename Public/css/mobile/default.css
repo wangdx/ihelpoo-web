@@ -49,41 +49,41 @@ li{ list-style:none; }
 .fl{ float:left; }
 .cb{ clear:both; }
 /*---*/
-.icon_write{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -15px; display:inline-block; vertical-align:text-bottom; }
-.icon_pump{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px 0; display:inline-block; vertical-align:text-bottom; }
-.icon_quit{ width:12px; height:12px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -76px -76px; display:inline-block; vertical-align:text-bottom; }
-.icon_function{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px 0; display:inline-block; vertical-align:top; }
-.icon_text{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -15px; display:inline-block; vertical-align:text-bottom; }
-.icon_mobile{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -75px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_plus{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_bplus{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
-.icon_bminus{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
-.icon_bplus_h{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
-.icon_recycle{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -15px; display:inline-block; vertical-align:text-bottom; }
-.icon_right{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_sigh{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_wrong{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_folder{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
-.icon_folder_close{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
-.icon_folder_lock{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_write{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -60px -15px; display:inline-block; vertical-align:text-bottom; }
+.icon_pump{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -60px 0; display:inline-block; vertical-align:text-bottom; }
+.icon_quit{ width:12px; height:12px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -76px -76px; display:inline-block; vertical-align:text-bottom; }
+.icon_function{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -45px 0; display:inline-block; vertical-align:top; }
+.icon_text{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0 -15px; display:inline-block; vertical-align:text-bottom; }
+.icon_mobile{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -75px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_plus{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -60px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_bplus{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
+.icon_bminus{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -60px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
+.icon_bplus_h{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -45px -60px; display:inline-block; vertical-align:bottom; margin-right:5px; }
+.icon_recycle{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px -15px; display:inline-block; vertical-align:text-bottom; }
+.icon_right{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_sigh{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -15px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_wrong{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -45px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_folder{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -15px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_folder_close{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0 -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_folder_lock{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px -60px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
 
-.icon_download{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_up{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -30px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
-.icon_heart{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px -15px; display:inline-block; vertical-align:bottom; }
-.icon_attention{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -60px -45px; display:inline-block; vertical-align:text-bottom; }
-.icon_garbage{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -75px -14px; display:inline-block; vertical-align:text-bottom; }
-.icon_listen{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -30px; display:inline-block; vertical-align:text-bottom; }
-.icon_search{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px 0; display:inline-block; vertical-align:bottom; }
-.icon_arrowupd{ width:15px; height:13px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -75px; display:inline-block; vertical-align:text-bottom; }
-.icon_notice{ width:20px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -90px; display:inline-block; vertical-align:text-bottom; }
-.icon_words{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -15px 0; display:inline-block; vertical-align:text-bottom; }
-.icon_star{ width:15px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 0; display:inline-block; vertical-align:text-bottom; }
+.icon_download{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -15px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_up{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0 -30px; display:inline-block; vertical-align:text-bottom; overflow:hidden; }
+.icon_heart{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -15px -15px; display:inline-block; vertical-align:bottom; }
+.icon_attention{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -60px -45px; display:inline-block; vertical-align:text-bottom; }
+.icon_garbage{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -75px -14px; display:inline-block; vertical-align:text-bottom; }
+.icon_listen{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px -30px; display:inline-block; vertical-align:text-bottom; }
+.icon_search{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px 0; display:inline-block; vertical-align:bottom; }
+.icon_arrowupd{ width:15px; height:13px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0 -75px; display:inline-block; vertical-align:text-bottom; }
+.icon_notice{ width:20px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px -90px; display:inline-block; vertical-align:text-bottom; }
+.icon_words{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -15px 0; display:inline-block; vertical-align:text-bottom; }
+.icon_star{ width:15px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0 0; display:inline-block; vertical-align:text-bottom; }
 /*---*/
-.icon_new{ width:26px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -30px -105px; display:inline-block; vertical-align:text-bottom; }
-.icon_recommend{ width:26px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat -45px -120px; display:inline-block; vertical-align:text-bottom; }
-.icon_hot{ width:32px; height:16px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0px -120px; display:inline-block; vertical-align:text-bottom; }
-.icon_contact{ width:30px; height:15px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0px -105px; display:inline-block; vertical-align:text-bottom; }
-.icon_qzone{ width:16px; height:16px; background:url(../../image/common/ihelpoo_icon.png) no-repeat 0 -180px; display:inline-block; vertical-align:top; margin-right:3px; }
+.icon_new{ width:26px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -30px -105px; display:inline-block; vertical-align:text-bottom; }
+.icon_recommend{ width:26px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat -45px -120px; display:inline-block; vertical-align:text-bottom; }
+.icon_hot{ width:32px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0px -120px; display:inline-block; vertical-align:text-bottom; }
+.icon_contact{ width:30px; height:15px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0px -105px; display:inline-block; vertical-align:text-bottom; }
+.icon_qzone{ width:16px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/ihelpoo_icon.png) no-repeat 0 -180px; display:inline-block; vertical-align:top; margin-right:3px; }
 .icon_weibo{ display:inline-block; vertical-align:top; margin-right:3px; }
 .icon_play{ display:inline-block; vertical-align:text-bottom; }
 /*---*/
