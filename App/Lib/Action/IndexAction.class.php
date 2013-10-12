@@ -88,7 +88,11 @@ class IndexAction extends Action {
     	$this->assign('schoolname',$recordSchoolInfo['school']);
     	
     	$SchoolInfo = M("SchoolInfo");
-    	$recordsSchoolInfo = $SchoolInfo->where("status = 1")->order("initial ASC")->select();
+    	if ($_GET['status'] == '2') {
+    		$recordsSchoolInfo = $SchoolInfo->where("status = 2")->order("initial ASC")->select();
+    	} else {
+    		$recordsSchoolInfo = $SchoolInfo->where("status = 1")->order("initial ASC")->select();
+    	}
         $this->assign('recordsSchoolInfo', $recordsSchoolInfo);
         
         if(i_is_mobile()) {
