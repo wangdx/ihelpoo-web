@@ -248,6 +248,7 @@ function Chat(state) {
         var imageThumb = message.data.imageThumb;
         var time = message.data.time;
         var status = message.data.status;
+        var flag = 0;
 
 
         var curTo = $('#data_touid').val();
@@ -450,19 +451,21 @@ function Chat(state) {
         if (_disconnecting) {
             _connected = false;
             _connectionClosed();
-            $.post(baseUrl + "ajax/updatestatus");
         }
         else {
             _wasConnected = _connected;
             _connected = message.successful === true;
             if (!_wasConnected && _connected) {
                 _connectionEstablished();
-                $.post(baseUrl + "ajax/updatestatus");
             }
             else if (_wasConnected && !_connected) {
                 _connectionBroken();
-                $.post(baseUrl + "ajax/updatestatus");
             }
+        }
+
+        if(++flag%45 == 0){
+            $.post(baseUrl + "ajax/updatestatus");
+            flag = 1;
         }
     }
 
