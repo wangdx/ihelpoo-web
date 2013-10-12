@@ -1,5 +1,6 @@
 <?php
 
+xhprof_enable();
 /**
  * 本页仅供测试
  */
@@ -11,10 +12,9 @@ class TestAction extends Action {
     }
     
     public function index() {
-        xhprof_enable();
-        xhprof_disable();
     }
 
 }
+xhprof_disable();
 
 ?>
