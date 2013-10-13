@@ -4,6 +4,7 @@ $().ready(function(){
 	});
 	var paras = {};
 	QC.api("get_info", paras).success(function(s){
+		alert(s.data.data.openid);
 		$.ajax({
 			type: "POST",
 			url: baseUrl + "user/loginqqaajax",
