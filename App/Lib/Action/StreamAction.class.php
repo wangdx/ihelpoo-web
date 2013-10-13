@@ -701,6 +701,7 @@ class StreamAction extends Action
     public function streamloading()
     {
     	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
     	$RecordSay = M("RecordSay");
         $UserLogin = M("UserLogin");
         $UserPriority = M("UserPriority");
