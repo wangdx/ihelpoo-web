@@ -733,6 +733,7 @@ $().ready(function(){
     	$(this).toggle(function () {
     		$diffusionRecordObj = $(this);
             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
+            $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box");
             if ($commentViewDivBox != '') {
             	$commentViewDivBox.slideUp("fast");
             	$(this).parent().find('.comment_button').attr({isclick: 'false'});
