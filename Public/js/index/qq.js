@@ -14,7 +14,7 @@ $().ready(function(){
 				"i_qq_user_birth_day" : s.data.data.birth_day ,
 				"i_qq_user_birth_month" : s.data.data.birth_month ,
 				"i_qq_user_birth_year" : s.data.data.birth_year ,
-				"i_qq_user_description" : s.data.data.tweetinfo[0].origtext
+				//"i_qq_user_description" : s.data.data.tweetinfo[0].origtext
 			},
 			dataType: 'json',
 			success:function(msg){
