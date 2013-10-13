@@ -665,7 +665,7 @@ $().ready(function(){
     /**
      * plus part
      */
-    $('.plus_button').click(function(){
+    $('.plus_button').live("click", function(){
         var $thisButton = $(this);
         var $region = $('#plus_view_region_'+$(this).attr('value'));
         $.ajax({
@@ -730,7 +730,7 @@ $().ready(function(){
         }
     );
     
-    $('.diffusion_view_btn').click(function(){
+    $('.diffusion_view_btn').live("click", function(){
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
         if ($diffusion_view == '说点什么吧...') {
         	$diffusion_view = '';
@@ -757,7 +757,7 @@ $().ready(function(){
         $('#infotextareacheck').slideUp('normal');
     });
     
-    $('.diffusion_view_textarea').focus(function(){
+    $('.diffusion_view_textarea').live("focus", function(){
     	$(this).next().text('扩散');
     	$(this).css({width: '350px', height: '30px'});
     	var textareaValue = $(this).val();
@@ -765,7 +765,7 @@ $().ready(function(){
     		$(this).val('');
     	}
     });
-    $('.diffusion_view_textarea').focusout(function(){
+    $('.diffusion_view_textarea').live("focusout", (function(){
     	var textareaValue = $(this).val();
     	if (textareaValue == '') {
     		$(this).val('说点什么吧...');
@@ -777,7 +777,7 @@ $().ready(function(){
     /**
      * ajax comment part
      */
-    $('.comment_button').click(function(){
+    $('.comment_button').live("click", function(){
     	var $this = $(this);
     	$commentViewDivBox = $this.parent().parent().find(".comment_view_div_box");
     	var commmentSid = $this.attr('value');
@@ -945,12 +945,12 @@ $().ready(function(){
     /**
      * video play
      */
-    $('.s_li_p_content_mv_img_p').click(function(){
+    $('.s_li_p_content_mv_img_p').live("click", function(){
     	$(this).hide();
     	$(this).parent().find('.s_li_p_content_mv_object_p').slideDown('fast');
     });
 
-    $('.s_li_p_content_mv_object_up').click(function(){
+    $('.s_li_p_content_mv_object_up').live("click", function(){
     	$(this).parent().hide();
     	$('.s_li_p_content_mv_img_p').show();
     });
