@@ -134,6 +134,10 @@ $().ready(function(){
 		$("#ajax_info_div_outer").hide();
     });
 	
+	if ("6.0" == $.browser.version || "7.0" == $.browser.version || "8.0" == $.browser.version) {
+		alert('您的web浏览器版本太低，请用网页版浏览');
+		window.location.href = baseUrl + "?changeviewtype=web";
+	}
 });
 
 function mseeageNumsOnce() {
