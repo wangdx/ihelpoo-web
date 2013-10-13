@@ -69,7 +69,7 @@ function i_ajax_msg($uid)
 function i_time($unixtime)
 {
 	if (empty($unixtime)) {
-		return '0';
+		return '';
 	}
     $now = time();
     $secondWidth = $now - $unixtime;
