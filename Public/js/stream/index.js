@@ -1007,6 +1007,16 @@ $().ready(function(){
 		    $(this).hide();
 		});
 	}
+	
+	/**
+	 * ajax loading steam
+	 */
+	$('.stream_list_link a').attr({'href':''});
+	$('.stream_list_link a').live("click", function(){
+    	$this = $(this);
+    	var page = $this.text();
+    	$(".stream_list_div").load("/streamloading/index/default/?p=" + page);
+    });
 });
 
 function attrListImgValue(){
