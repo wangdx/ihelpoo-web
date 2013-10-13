@@ -1016,6 +1016,7 @@ $().ready(function(){
     	$this = $(this);
     	var page = $this.text();
     	$(".stream_list_div").load(baseUrl + "/streamloading/index/default/?p=" + page);
+    	return false;
     });
 });
 
