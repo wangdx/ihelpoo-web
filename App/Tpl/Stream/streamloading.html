@@ -1,3 +1,11 @@
+<?php
+	Vendor('Ihelpoo.Videourlparser');
+    Vendor('Ihelpoo.Emotion');
+    $emotion = new Emotion();
+	Vendor('Ihelpoo.Ofunction');
+    $ofunction = new Ofunction();
+	$SchoolInfo = M("SchoolInfo");
+?>
   <!-- stream list -->
   <?php if($streamway == "time" || $streamway == "default") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
