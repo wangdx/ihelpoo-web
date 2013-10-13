@@ -75,6 +75,9 @@ class StreamAction extends Action
                 if (empty($content)) {
                 	$this->ajaxReturn(0, '内容不能为空', 'error');
                 }
+                if (strlen($content) > 255) {
+                	$this->ajaxReturn(0, '内容太长了', 'error');
+                }
                 $imageurls = htmlspecialchars(strtolower(trim($_POST["imageurls"])));
                 $videourl = trim($_POST["videourl"]);
                 $atusers = htmlspecialchars(addslashes(strtolower(trim($_POST["atusers"]))));
