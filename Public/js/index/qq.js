@@ -4,11 +4,9 @@ $().ready(function(){
 	});
 	var paras = {};
 	QC.api("get_info", paras).success(function(s){
-		alert(s.data.data.openid);
 		$.ajax({
 			type: "POST",
 			url: baseUrl + "user/loginqqaajax",
-			dataType: 'json',
 			data: {
 				"i_qq_user_id" : s.data.data.openid ,
 				"i_qq_user_name" : s.data.data.name ,
@@ -18,6 +16,7 @@ $().ready(function(){
 				"i_qq_user_birth_year" : s.data.data.birth_year ,
 				"i_qq_user_description" : s.data.data.tweetinfo[0].origtext
 			},
+			dataType: 'json',
 			success:function(msg){
 				if (msg.status == 'ok') {
 					window.location = baseUrl + msg.data;
@@ -26,6 +25,7 @@ $().ready(function(){
 				}
 			}
 		});
+		alert(s.data.data.openid);
 	})
 	.error(function(f){
 		alert("获取用户信息失败！");
