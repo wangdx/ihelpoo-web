@@ -507,7 +507,7 @@ class UserAction extends Action {
     		$qqUserBirthDay = $_POST['i_qq_user_birth_day'];
     		$qqUserBirthMonth = $_POST['i_qq_user_birth_month'];
     		$qqUserBirthYear = $_POST['i_qq_user_birth_year'];
-    		$qqUserDescription = $_POST['i_qq_user_description'];
+    		$qqUserDescription = '';
     		if (empty($qqUserBirthYear)) {
     			$qqUserBirthYear = 2012;
     		}
