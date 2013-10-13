@@ -740,8 +740,8 @@ $().ready(function(){
     	 }, 
     	 function(){ 
     		 $(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
-    	 }
-    );
+    	 });
+    });
     
     
     $('.diffusion_view_btn').live("click", function(){
