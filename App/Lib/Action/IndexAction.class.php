@@ -225,7 +225,7 @@ class IndexAction extends Action {
 
     	$UserLogin = M("UserLogin");
     	$UserInfo = M("UserInfo");
-    	$allUserNums = $UserLogin->where("school = $recordSchoolInfo[id] AND status != 0")->count();
+    	$allUserNums = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
     	$this->assign('allUserNums',$allUserNums);
 
     	$page = i_page_get_num();
