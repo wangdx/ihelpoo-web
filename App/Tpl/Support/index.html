@@ -47,11 +47,11 @@
 	<?php } else { ?>
 		<li><a href="__ROOT__/support?activity">活动模式及规范？</a></li>
 	<?php } ?>
-	<!-- <?php if (isset($_GET['changedns'])) { ?>
+	<?php if (isset($_GET['changedns'])) { ?>
 		<li><a href="__ROOT__/support?changedns" class="fb">偶尔不能访问圈圈？</a></li>
 	<?php } else { ?>
 		<li><a href="__ROOT__/support?changedns">偶尔不能访问圈圈？</a></li>
-	<?php } ?> -->
+	<?php } ?>
 </ul>
 <div class="support_content f12">
 <?php if (isset($_GET['level'])) { ?>
@@ -212,7 +212,7 @@
 <?php if (isset($_GET['changedns'])) { ?>
   <ul class="black_l">
     <li class="fb f14">偶尔不能访问我帮圈圈？</li>
-    <li class="f12">由于SAE电信DNS解析的问题，校园内部分用户访问我帮圈圈网站时会出现偶尔不能访问的问题。</li>
+    <li class="f12">由于校园DNS解析的问题，校园内部分用户访问我帮圈圈网站时会出现偶尔不能访问的问题。</li>
     <li class="f12">(1). windows用户直接下载我们提供的<a href="__PUBLIC__/other/ihelpooDNS.zip">“我帮圈圈ihelpoo稳定加速访问补丁”</a>，一键运行就可以了。<span class="red_l">(杀毒软件会提示这是木马程序，请点击“允许访问”)</span></li>
 	<li class="f12">(2). 其他系统如Mac，Linux请手动将DNS设置为<a href="http://baike.baidu.com/view/5971613.htm" target="_blank">8.8.8.8</a> （Google提供的免费DNS服务器的IP地址），当然windows用户也可以自己手动设置DNS 8.8.8.8</li>
 	<li class="f12">这样就能解决访问掉包问题，让速度飞起来 :)</li>
