@@ -730,6 +730,7 @@ $().ready(function(){
         }
     ); */
     $('.diffusion').live("click",function(){
+    	$this = $(this);
     	$(this).toggle(function () {
     		$diffusionRecordObj = $(this);
             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
