@@ -716,7 +716,7 @@ $().ready(function(){
     /**
      * diffusion part
      */
-    $('.diffusion').toggle(
+    $('.diffusion').live("toggle",
         function(){
         	$diffusionRecordObj = $(this);
             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
@@ -730,7 +730,7 @@ $().ready(function(){
         }
     );
     
-    $('.diffusion_view_btn').click(function(){
+    $('.diffusion_view_btn').live("click", function(){
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
         if ($diffusion_view == '说点什么吧...') {
         	$diffusion_view = '';
