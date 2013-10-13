@@ -28,7 +28,6 @@ $().ready(function(){
 				}
 			}
 		});
-		alert(s.data.data.openid);
 	})
 	.error(function(f){
 		alert("获取用户信息失败！");
