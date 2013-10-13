@@ -715,7 +715,7 @@ $().ready(function(){
     
     /**
      * diffusion part
-     */
+     *
     $('.diffusion').toggle(
         function(){
         	$diffusionRecordObj = $(this);
@@ -728,7 +728,21 @@ $().ready(function(){
         function(){
         	$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
         }
+    ); */
+    $('.diffusion').live("click",function(){
+    	 $(this).toggle(function(){
+    		 $diffusionRecordObj = $(this);
+             $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
+             if ($commentViewDivBox != '') {
+             	$commentViewDivBox.slideUp("fast");
+             	$(this).parent().find('.comment_button').attr({isclick: 'false'});
+             }
+    	 }, 
+    	 function(){ 
+    		 $(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
+    	 }
     );
+    
     
     $('.diffusion_view_btn').live("click", function(){
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
