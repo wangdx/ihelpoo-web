@@ -68,6 +68,9 @@ function i_ajax_msg($uid)
 
 function i_time($unixtime)
 {
+	if (empty($unixtime)) {
+		return '0';
+	}
     $now = time();
     $secondWidth = $now - $unixtime;
     if ($secondWidth < 60) {
