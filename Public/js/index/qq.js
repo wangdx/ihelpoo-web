@@ -20,6 +20,9 @@ $().ready(function(){
 			success:function(msg){
 				if (msg.status == 'ok') {
 					window.location = baseUrl + msg.data;
+				} else if (msg.status == 'step') {
+					alert(msg.info);
+					window.location = baseUrl + msg.data;
 				} else if (msg.status == 'wrong') {
 					alert(msg.info);
 				}
