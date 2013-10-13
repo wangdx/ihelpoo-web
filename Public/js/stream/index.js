@@ -1015,7 +1015,7 @@ $().ready(function(){
 	$('.stream_list_link a').live("click", function(){
     	$this = $(this);
     	var page = $this.text();
-    	$(".stream_list_div").load(baseUrl + "streamloading/index/default/?p=" + page);
+    	$(".stream_list_div").load(baseUrl + "/stream/streamloading/index/default/?p=" + page);
     	return false;
     });
 });
