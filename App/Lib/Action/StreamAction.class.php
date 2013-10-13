@@ -209,7 +209,12 @@ class StreamAction extends Action
                  */
                 Vendor('Ihelpoo.Browser');
                 $browserObj = new Browser();
-                $fromBrowser = $browserObj->getPlatform() . " " . $browserObj->getBrowser() . " " . $browserObj->getVersion();
+                $getBrowser = $browserObj->getBrowser();
+                if ($getBrowser == "IE" || $getBrowser == "Android") {
+                	$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser . " " . $browserObj->getVersion();
+                } else {
+                	$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser;
+                }
                 $sayType = $help_is;
                 if ($quietlyreleased == 'on') {
                     $fromBrowser = '悄悄发布';
