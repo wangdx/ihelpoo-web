@@ -700,6 +700,7 @@ class StreamAction extends Action
      */
     public function streamloading()
     {
+    	$userloginid = session('userloginid');
     	$RecordSay = M("RecordSay");
         $UserLogin = M("UserLogin");
         $UserPriority = M("UserPriority");
