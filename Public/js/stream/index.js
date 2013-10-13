@@ -765,7 +765,7 @@ $().ready(function(){
     		$(this).val('');
     	}
     });
-    $('.diffusion_view_textarea').live("focusout", (function(){
+    $('.diffusion_view_textarea').live("focusout", function(){
     	var textareaValue = $(this).val();
     	if (textareaValue == '') {
     		$(this).val('说点什么吧...');
