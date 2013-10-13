@@ -685,7 +685,7 @@ $().ready(function(){
     });
     
     var t_plus;
-    $(".plus_button").mouseenter(function(e){
+    $(".plus_button").live("mouseenter", function(e){
     	$this = $(this);
     	t=setTimeout(function(){
     		var sidString = $this.attr('value');
