@@ -392,7 +392,7 @@ class AjaxAction extends Action {
 			         */
 			        $UserStatus = M("UserStatus");
 			        $recordUserStatus = $UserStatus->find($userid);
-			        if (60 < (time() - $recordUserStatus['last_active_ti'])) {
+			        if (900 < (time() - $recordUserStatus['last_active_ti'])) {
 			        	$updateUserOnlineStatusData = array(
 				        	'uid' => $userid,
 				        	'online' => 0,
