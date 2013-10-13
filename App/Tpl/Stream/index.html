@@ -483,14 +483,14 @@
 				</a>
 			</li>
 			<li>
-				<a  class="gray f10" href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>">
+				<a  class="gray f10" href="/message/active">
 					<?php
 						$degreeRatioArray = i_degreeRatio($userloginedrecord['active']);
 						$degreeRatio = floor($degreeRatioArray['ratio'] * 100)."%";
 						echo "升级".$degreeRatio;
 					?>
 				</a>
-				<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>">
+				<a href="/message/active">
 					<div style="background:#DDD; width:100%; height:8px;border-radius:3px;" title="<?php echo $degreeRatioArray['start'].'~'.$degreeRatioArray['end'].' 升级进度'.$degreeRatio; ?>">
 			      		<div style="background:#09F; height:8px; float:left; border-radius:3px; width:<?php echo $degreeRatio; ?>"></div>
 			    	</div>
