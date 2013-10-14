@@ -5,7 +5,7 @@
 	$SchoolInfo = M("SchoolInfo");
 ?>
 <include file="Public:headermobile" />
-<script type="text/javascript" src="__PUBLIC__/js/mobile/stream_index.js"></script>
+<script type="text/javascript" src="http://static.ihelpoo.cn/js/mobile/stream_index.js"></script>
 <!-- Home -->
     <div data-theme="b" data-role="header" data-position="fixed">
         <a data-role="button" href="/stream/publish" target="_self" data-icon="edit" data-iconpos="left" class="ui-btn-left">
@@ -65,7 +65,7 @@
       		<a href="http://<?php echo $record['domain']; ?>/" target="_self" class="gray f12">(<?php echo $record['schoolname']; ?>)</a>
       	<?php } else { ?>
       		<?php if (!empty($record['name'])) { ?>
-      			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" target="_self" class="gray f12" title="ta的专业">[{$record['name']}]</a>
+      		    <a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" target="_self"><span class="f12 gray fn">[{$record['name']}]</span></a>
       		<?php } ?>
       	<?php } ?>
       <?php } else if ($record['type'] == '2') { ?>
