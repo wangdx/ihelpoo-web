@@ -207,7 +207,7 @@ function i_constellation($birthdate)
     } else if (823 <= $birthint && $birthint <= 922) {
         return "处女";
     } else if (923 <= $birthint && $birthint <= 1023) {
-        return "天枰";
+        return "天秤";
     } else if (1024 <= $birthint && $birthint <= 1122) {
         return "天蝎";
     } else if (1123 <= $birthint && $birthint <= 1221) {

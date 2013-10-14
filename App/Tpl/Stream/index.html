@@ -2,8 +2,6 @@
 	Vendor('Ihelpoo.Videourlparser');
     Vendor('Ihelpoo.Emotion');
     $emotion = new Emotion();
-	Vendor('Ihelpoo.Ofunction');
-    $ofunction = new Ofunction();
 	$SchoolInfo = M("SchoolInfo");
 ?>
 <include file="Public:header" />
@@ -51,7 +49,7 @@
       <img src="<?php echo i_icon_check($userloginedrecord['uid'], $userloginedrecord['icon_url'], 's') ?>" width="68" height="51" class="radius3" />
     </a>
     <span class="img_part_name">
-      <a href="__ROOT__/wo/<?php echo $userloginedrecord['uid']; ?>" class="f12 fb">
+      <a href="/setting" class="f12 fb">
         <?php echo $userloginedrecord['nickname'] ?>
       </a>
     </span>
@@ -61,6 +59,7 @@
     </span>
     <br />
     <a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">等级: <span class="level<?php echo i_degree($userloginedrecord['active']) ?>"></span></a>
+    <br />
 	<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>" class="f12 black_l">荣誉: <span class="icon_star"></span></a>
   </p>
   <ul class="s_r_ul_priority">
@@ -69,9 +68,9 @@
   </ul>
   <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
-    <li><a href="__ROOT__/stream/"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
-    <li><a href="__ROOT__/stream/index/priority"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
-    <li><a href="__ROOT__/stream/index/help"><i class="ico_specialcare"></i>看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a class="s_r_ul_ajax_loading_a" href="/stream/"><i class="ico_friendfeed"></i>校园动态<?php if($streamway == "time" || $streamway == "default") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a class="s_r_ul_ajax_loading_a" href="/stream/index/priority"><i class="ico_sharespace"></i>看我圈的<?php if($streamway == "priority") { ?><span class="dot_choose"></span><?php } ?></a></li>
+    <li><a class="s_r_ul_ajax_loading_a" href="/stream/index/help"><i class="ico_specialcare"></i>看帮助<?php if($streamway == "help") { ?><span class="dot_choose"></span><?php } ?></a></li>
   </ul>
   <div class="splitter_line_div"></div>
   <ul class="s_r_ul">
@@ -93,7 +92,7 @@
   	<?php if($userloginedrecord['type'] == '2') { ?>
   		<li>
   			<a href="__ROOT__/stream/index/group/<?php echo $userloginedrecord['uid']; ?>" title="<?php echo $userloginedrecord['nickname']; ?>">
-  				<i class="ico_school"></i> <?php echo $ofunction->cut_str($userloginedrecord['nickname'], 4); ?>
+  				<i class="ico_school"></i> <?php echo $userloginedrecord['nickname']; ?>
   				<?php if ($groupUserRecord['uid'] == $userloginedrecord['uid']) { ?>
   				<span class="dot_choose"></span>
   				<?php } ?>
@@ -104,9 +103,9 @@
   	<?php foreach ($pidGroupArray as $pidGroup) { ?>
   	    <?php if ($i < 3) { ?>
 	  	<?php if ($groupUserRecord['uid'] == $pidGroup['uid']) { ?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?><span class="dot_choose"></span></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $pidGroup['nickname']; ?><span class="dot_choose"></span></a></li>
 	  	<?php } else {?>
-	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $ofunction->cut_str($pidGroup['nickname'], 4); ?></a></li>
+	  		<li><a href="__ROOT__/stream/index/group/<?php echo $pidGroup['uid'] ?>" title="您圈(加入)的组织 <?php echo $pidGroup['nickname']; ?>"><i class="ico_school"></i> <?php echo $pidGroup['nickname']; ?></a></li>
 	  	<?php } ?>
 	  	<?php } $i++; ?>
   	<?php } ?>
@@ -204,7 +203,7 @@
 	    <?php if ($configIsLoginWeibo) { ?>
 	    <li class="f12 gray" id="weibo_publish_li"><span class="icon_pump"></span>
 	      <?php if (!empty($isAlreadyBind['uid'])) {?>
-	            数据会同步到新浪微博 <a id="standardSelector" title="弹出详细发布框"><span class="icon_function"></span><span class="icon_write"></span></a>
+	            同步到新浪微博 <a id="standardSelector" title="弹出详细发布框">弹出填写<span class="icon_write"></span></a>
 	      <?php } else { ?>
 	            <a href="__ROOT__/setting/bind" class="black_l"><span class="red_l">需绑定微博</span></a> <a id="standardSelector"></a>
 	      <?php } ?>
@@ -236,6 +235,7 @@
   <!-- /stream box -->
 
   <!-- stream list -->
+  <div class="stream_list_div">
   <?php if($streamway == "time" || $streamway == "default") { ?>
   	<p class="f12 black_l stream_list_ul_sort">
   		<?php if (!empty($userBirthday)) { echo '<img width="18" height="18" style="vertical-align: bottom;" title="蛋糕" src="/Public/image/emotion/qq69.gif" > 亲爱的'.$recordUserInfo['realname'].'，生日快乐:) '; } ?>
@@ -303,7 +303,7 @@
       		<a href="http://<?php echo $record['domain']; ?>/" target="_blank" class="gray f12" title="来自我帮圈圈<?php echo $record['schoolname']; ?>">(<?php echo $record['schoolname']; ?>)</a>
       	<?php } else { ?>
       		<?php if (!empty($record['name'])) { ?>
-      			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12" title="ta的专业">[{$record['name']}]</a>
+      			<a href="__ROOT__/stream/index/specialty/{$record['specialty_op']}" class="gray f12 s_li_p_user_specialty" title="ta的专业">[{$record['name']}]</a>
       		<?php } ?>
       	<?php } ?>
       <?php } else if ($record['type'] == '2') { ?>
@@ -398,7 +398,7 @@
           if ("3" == $record['from']) {
           	  echo "<span title='来自我帮圈圈Andriod客户端' class='pointer'>我帮圈圈Andriod</span>";
           } else {
-          	  echo "<span title='来自".$record['from']."' class='pointer'>".$ofunction->cut_str($record['from'],10)."</span>";
+          	  echo "<span title='来自".$record['from']."' class='pointer'>".$record['from']."</span>";
           }
       }
       ?>
@@ -455,6 +455,7 @@
   <div class="stream_list_link">
   <?php i_page_show("stream/index/".$streamway."/".$groupUserRecord['uid'].$specialtyId, 200); ?>
   </div>
+  </div>
   <!-- /stream list -->
 </div>
 <!-- right/ -->
@@ -484,14 +485,14 @@
 				</a>
 			</li>
 			<li>
-				<a  class="gray f10" href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>">
+				<a  class="gray f10" href="/message/active">
 					<?php
 						$degreeRatioArray = i_degreeRatio($userloginedrecord['active']);
 						$degreeRatio = floor($degreeRatioArray['ratio'] * 100)."%";
 						echo "升级".$degreeRatio;
 					?>
 				</a>
-				<a href="__ROOT__/wo/honor/<?php echo $userloginedrecord['uid']; ?>">
+				<a href="/message/active">
 					<div style="background:#DDD; width:100%; height:8px;border-radius:3px;" title="<?php echo $degreeRatioArray['start'].'~'.$degreeRatioArray['end'].' 升级进度'.$degreeRatio; ?>">
 			      		<div style="background:#09F; height:8px; float:left; border-radius:3px; width:<?php echo $degreeRatio; ?>"></div>
 			    	</div>
@@ -524,7 +525,7 @@
 
 </div>
 <div class="auto_load_div"></div>
-<div id="cursorfocus" style="display:none">⇧</div>
+<div id="cursorfocus" style="display:none"></div>
 <div class="user_info_div f12"></div>
 <div class="record_plus_div f12"></div>
 <div class="scroll_float_div">

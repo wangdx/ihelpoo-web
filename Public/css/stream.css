@@ -75,7 +75,7 @@
 }
 .s_r_ul li a{
     display: block;
-    padding: 5px 15px;
+    padding: 5px 33px 5px 15px;
     border-bottom: 0px solid #CCC;
 	position: relative;
 	color: #333333;
@@ -269,6 +269,13 @@
     color: #999;
     border: 1px solid #DDD;
 }
+.info_loading_page_p{
+    border-top:1px dotted #CCC;
+    padding: 10px;
+    font-size: 12px;
+    color: #A8A8A8;
+}
+
 .s_li_p_icon{
     width: 100px;
     position: absolute;

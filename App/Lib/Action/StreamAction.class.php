@@ -209,7 +209,12 @@ class StreamAction extends Action
                  */
                 Vendor('Ihelpoo.Browser');
                 $browserObj = new Browser();
-                $fromBrowser = $browserObj->getPlatform() . " " . $browserObj->getBrowser() . " " . $browserObj->getVersion();
+                $getBrowser = $browserObj->getBrowser();
+                if ($getBrowser == "IE" || $getBrowser == "Android") {
+                	$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser . " " . $browserObj->getVersion();
+                } else {
+                	$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser;
+                }
                 $sayType = $help_is;
                 if ($quietlyreleased == 'on') {
                     $fromBrowser = '悄悄发布';
@@ -693,6 +698,252 @@ class StreamAction extends Action
 //        echo 'http://42.62.50.238/xhprof_html/index.php?run='.$run_id.'&source=xhprof';
         $this->assign('test_URL', 'http://42.62.50.238/xhprof_html/index.php?run='.$run_id.'&source=xhprof');
 
+    }
+    
+    /**
+     * ajax loading for stream next page
+     */
+    public function streamloading()
+    {
+    	$userloginid = session('userloginid');
+    	$recordSchoolInfo = i_school_domain();
+    	$this->assign('thisschoolid', $recordSchoolInfo['id']);
+    	$RecordSay = M("RecordSay");
+        $UserLogin = M("UserLogin");
+        $UserPriority = M("UserPriority");
+        $UserInfo = M("UserInfo");
+        if (preg_match("/priority/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "priority";
+        } else if (preg_match("/shield/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "shield";
+        } else if (preg_match("/time/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "time";
+        } else if (preg_match("/index\/help/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "help";
+        } else if (preg_match("/index\/group/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "group";
+        } else if (preg_match("/index\/specialty/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "specialty";
+        } else {
+            $requestWay = "default";
+        }
+
+        /**
+         *
+         * show $count records every page
+         * $count int
+         * $offect int Equal current page * count
+         */
+        $page = i_page_get_num();
+        $count = 25;
+        $offset = $page * $count;
+
+        /**
+         *
+         * priority set; rules by i_user_priority
+         */
+        $pidString = NULL;
+        $sidString = NULL;
+        $allIdString = NULL;
+        $pidGroupArray = array();
+        $isSetPriority = $UserPriority->where("uid = $userloginid")->select();
+        if (!empty($isSetPriority)) {
+            foreach ($isSetPriority as $priorityRecord) {
+                if (!empty($priorityRecord['pid'])) {
+                    $pidString .= $priorityRecord['pid'] . ",";
+                    $allIdString .= $priorityRecord['pid'] . ",";
+
+                    /**
+                     * is set org priority
+                     */
+                    if ($priorityRecord['pid_type'] == 2) {
+                        $pidGroupArray[] = $UserLogin->where("uid = $priorityRecord[pid]")->field('uid,nickname')->find();
+                    }
+                } else if (!empty($priorityRecord['sid'])) {
+                    $sidString .= $priorityRecord['sid'] . ",";
+                    $allIdString .= $priorityRecord['sid'] . ",";
+                }
+            }
+        }
+
+        $timegaphalfyear = time() - 24 * 3600 * 90;
+        $select = $RecordSay;
+        if ($requestWay == "priority") {
+            if (!empty($pidString)) {
+                $pidString = substr($pidString, 0, -1);
+                $select->where("i_record_say.uid IN ($pidString) AND say_type != '9'");
+            } else {
+                $select->where("i_record_say.uid = 0");
+            }
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "priority";
+        } else if ($requestWay == "shield") {
+            if (!empty($sidString)) {
+                $sidString = substr($sidString, 0, -1);
+                $select->where("i_record_say.uid IN ($sidString) AND say_type != '9'");
+            } else {
+                $select->where("say_type != '9'");
+            }
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "shield";
+        } else if ($requestWay == "time") {
+            if (!empty($sidString)) {
+                $sidString = substr($sidString, 0, -1);
+                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            } else {
+                $select->where("say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            }
+            $select->order('i_record_say.time DESC');
+            $streamway = "time";
+        } else if ($requestWay == "help") {
+            if (!empty($sidString)) {
+                $sidString = substr($sidString, 0, -1);
+                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type = '1' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            } else {
+                $select->where("say_type = '1' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            }
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "help";
+        } else if ($requestWay == "group") {
+            $groupUid = (int)trim($_GET["_URL_"][3]);
+            $isSetGroupListPriority = $UserPriority->where("pid = $groupUid")->select();
+            $pidGroupString = NULL;
+            $pidGroupNums = 0;
+            if (!empty($isSetGroupListPriority)) {
+                foreach ($isSetGroupListPriority as $priorityRecord) {
+                    if (!empty($priorityRecord['uid'])) {
+                        $pidGroupString .= $priorityRecord['uid'] . ",";
+                        $pidGroupNums++;
+                    }
+                }
+            } else {
+                redirect('/stream', 3, '组织成员为空 3秒后页面跳转...');
+            }
+            $pidGroupString = substr($pidGroupString, 0, -1);
+            $select->where("i_record_say.uid IN ($pidGroupString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "group";
+            $this->assign('groupUserNums', $pidGroupNums);
+            $groupUserRecord = $UserLogin->find($groupUid);
+            $this->assign('groupUserRecord', $groupUserRecord);
+        } else if ($requestWay == "specialty") {
+            $specialtyId = (int)trim($_GET["_URL_"][3]);
+            $allSameSpecialtyUsers = $UserInfo->where("specialty_op = $specialtyId")->select();
+            $allUserString = NULL;
+            $allUserNums = 0;
+            if (!empty($allSameSpecialtyUsers)) {
+                foreach ($allSameSpecialtyUsers as $specialtyUsers) {
+                    if (!empty($specialtyUsers['uid'])) {
+                        $allUserString .= $specialtyUsers['uid'] . ",";
+                        $allUserNums++;
+                    }
+                }
+            } else {
+                redirect('/stream', 3, '还没有就读该专业的同学 3秒后页面跳转...');
+            }
+            $allUserString = substr($allUserString, 0, -1);
+            $select->where("i_record_say.uid IN ($allUserString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "specialty";
+            $this->assign('groupUserNums', $allUserNums);
+            $OpSpecialty = M("OpSpecialty");
+            $recordOpSpecialty = $OpSpecialty->where("id = $specialtyId")->find();
+            $this->assign('specialtyName', $recordOpSpecialty['name']);
+            $this->assign('specialtyId', $specialtyId);
+            $this->assign('academyId', $recordOpSpecialty['academy']);
+        } else {
+            if (!empty($sidString)) {
+                $sidString = substr($sidString, 0, -1);
+                $select->where("i_record_say.time > $timegaphalfyear AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            } else {
+                $select->where("i_record_say.time > $timegaphalfyear AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            }
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "default";
+        }
+        $recordSay = $select->join('i_user_login ON i_record_say.uid = i_user_login.uid')
+            ->join('i_user_info ON i_record_say.uid = i_user_info.uid')
+            ->join('i_op_specialty ON i_user_info.specialty_op = i_op_specialty.id')
+            ->join('i_school_info ON i_user_login.school = i_school_info.id')
+            ->join("i_user_remark ON i_record_say.uid = i_user_remark.ruid AND $userloginid = i_user_remark.uid")
+            ->field('i_record_say.sid,i_user_login.uid,say_type,content,image,url,i_user_login.school,comment_co,diffusion_co,hit_co,plus_co,i_record_say.time,from,last_comment_ti,school_id,nickname,sex,birthday,enteryear,type,online,active,icon_url,i_user_info.specialty_op,i_op_specialty.name,i_op_specialty.academy,i_school_info.id,i_school_info.school as schoolname,i_school_info.domain,i_school_info.domain_main,i_user_remark.remark')
+            ->limit($offset, $count)->select();
+        $userRecordSayUidBefore = NULL;
+        foreach ($recordSay as $record) {
+            $schooldomain = $record['domain_main'] == NULL ? $record['domain'] : $record['domain_main'];
+            if ($userRecordSayUidBefore == $record['uid']) {
+                $recordSayArray[] = array(
+                    'sid' => $record['sid'],
+                    'uid' => $record['uid'],
+                    'say_type' => $record['say_type'],
+                    'content' => stripslashes($record['content']),
+                    'image' => $record['image'],
+                    'url' => $record['url'],
+                    'school' => $record['school'],
+                    'school_record' => $record['school_id'],
+                    'comment_co' => $record['comment_co'],
+                    'diffusion_co' => $record['diffusion_co'],
+                    'hit_co' => $record['hit_co'],
+                    'plus_co' => $record['plus_co'],
+                    'time' => $record['time'],
+                    'from' => $record['from'],
+                    'last_comment_ti' => $record['last_comment_ti'],
+                    'nickname' => $record['nickname'],
+                    'sex' => $record['sex'],
+                    'birthday' => $record['birthday'],
+                    'enteryear' => $record['enteryear'],
+                    'type' => $record['type'],
+                    'online' => $record['online'],
+                    'active' => $record['active'],
+                    'icon_url' => $record['icon_url'],
+                    'specialty_op' => $record['specialty_op'],
+                    'name' => $record['name'],
+                    'academy' => $record['academy'],
+                    'schoolname' => $record['schoolname'],
+                    'domain' => $schooldomain,
+                    'remark' => $record['remark'],
+                    'repatenums' => 1,
+                );
+            } else {
+                $recordSayArray[] = array(
+                    'sid' => $record['sid'],
+                    'uid' => $record['uid'],
+                    'say_type' => $record['say_type'],
+                    'content' => stripslashes($record['content']),
+                    'image' => $record['image'],
+                    'url' => $record['url'],
+                    'school' => $record['school'],
+                    'school_record' => $record['school_id'],
+                    'comment_co' => $record['comment_co'],
+                    'diffusion_co' => $record['diffusion_co'],
+                    'hit_co' => $record['hit_co'],
+                    'plus_co' => $record['plus_co'],
+                    'time' => $record['time'],
+                    'from' => $record['from'],
+                    'last_comment_ti' => $record['last_comment_ti'],
+                    'nickname' => $record['nickname'],
+                    'sex' => $record['sex'],
+                    'birthday' => $record['birthday'],
+                    'enteryear' => $record['enteryear'],
+                    'type' => $record['type'],
+                    'online' => $record['online'],
+                    'active' => $record['active'],
+                    'icon_url' => $record['icon_url'],
+                    'specialty_op' => $record['specialty_op'],
+                    'name' => $record['name'],
+                    'academy' => $record['academy'],
+                    'schoolname' => $record['schoolname'],
+                    'domain' => $schooldomain,
+                    'remark' => $record['remark'],
+                    'repatenums' => 0
+                );
+            }
+            $userRecordSayUidBefore = $record['uid'];
+        }
+
+        $this->assign('streamway', $streamway);
+        $this->assign('recordSay', $recordSayArray);
+        $this->display();
     }
     
     /**

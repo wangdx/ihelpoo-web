@@ -1,0 +1,103 @@
+<include file="Public:header" />
+<link href="__PUBLIC__/css/stream.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="fav">
+  <p class="fav_info">微博统计 <span class="fn f12 gray">输入微博名称，获取前一天的效果统计数据，比如:我帮圈圈民院</span></p>
+  <ul class="fav_ul">
+      <li>
+      <form action="" method="post" id="transhelpform">
+      	微博uid:<input name="weibouid" id="weibouid" type="text" value="" />
+      	<a id="accountsubmit" class="f12 btn">确定</a>
+      </form>
+      </li>
+  </ul>
+  <div id="data_div"></div>
+</div>
+</div>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3008523433" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$().ready(function(){
+	$('#accountsubmit').click(function(){
+		var weibouid = $('#weibouid').val();
+		var datalist = '';
+		var eachcount = ';'
+		var repostscount = 0;
+		var commentscount = 0;
+		var attitudescount = 0;
+		var totalscore = 0;
+		var publishself = 0;
+		var publishother = 0;
+		var date = new Date()
+		var today = parseInt(date.getDate());
+		WB2.anyWhere(function(W){
+	    	W.parseCMD("/statuses/user_timeline.json", function(sResult, bStatus){
+	    	    if(bStatus == true) {
+	    	    	for(var i=0; i < sResult.statuses.length; i++)  
+	    	    	{
+	    	    		if (today == weibotime_get_day(sResult.statuses[i].created_at) + parseInt(1)) {
+		    	    		if (!sResult.statuses[i].retweeted_status) {
+		    	    			datalist += "<span class='green'>[原创]</span> " +sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
+			    	    		repostscount += sResult.statuses[i].reposts_count;
+			    	    		commentscount += sResult.statuses[i].comments_count;
+			    	    		attitudescount += sResult.statuses[i].attitudes_count;
+			    	    		publishself = parseInt(publishself) + parseInt(1);
+		    	    		} else {
+		    	    			datalist += "<span class='gray'>[转发]</span> " + sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
+			    	    		repostscount += sResult.statuses[i].reposts_count;
+			    	    		commentscount += sResult.statuses[i].comments_count;
+			    	    		attitudescount += sResult.statuses[i].attitudes_count;
+			    	    		publishother = parseInt(publishother) + parseInt(1);
+		    	    		}
+	    	    		}
+	    	    		
+	    	    	}
+	    	    	totalscore = parseInt(publishself) + parseFloat(publishother*0.5) + parseInt(repostscount) + parseInt(commentscount) + parseInt(attitudescount);
+	    	    	eachcount = '原创:<span class="fb">' + publishself + '</span> 转发:<span class="fb">' + publishother + '</span> 被转发:<span class="fb">'+repostscount+'</span> 评论:<span class="fb">'+commentscount+'</span> 赞:<span class="fb">'+attitudescount+'</span> 总分:原创*1+转发*0.5+被转发*1+评论*1+赞*1 = <span class="red fb">'+ totalscore+'</span>';
+	    	    	$("#data_div").html(eachcount + "<br /><br /><p class='f12'>" + datalist + "</p>");
+	    	    }
+	    	},{
+	    		screen_name : weibouid,
+	    		count : '40'
+	    	},{
+	    		method: 'get'
+	    	});
+	    });
+	});
+    
+	/**strtotime
+    WB2.anyWhere(function(W){
+    	W.parseCMD("/statuses/show.json", function(sResult, bStatus){
+    	    if(bStatus == true) {
+    	    	weibo_text = sResult.text;
+    	    	weibo_source = sResult.source;
+    	    	weibo_originalpic  = sResult.original_pic ;
+    	    	weibo_nickname = sResult.user.screen_name ;
+    	    }
+    	},{
+    		id  : '',
+    	},{
+    		method: 'get'
+    	});
+    });
+    
+    WB2.anyWhere(function(W){
+    	W.parseCMD("/comments/create.json", function(sResult, bStatus){
+    		if(bStatus == true) {
+    			
+    	    }
+    	},{
+    		id : '',
+    		comment : '',
+    		comment_ori : '1'
+    	},{
+    		method: 'post'
+    	});
+    });*/
+	function weibotime_get_day(datetime){
+	    var arr = datetime.split(" ");
+	    return parseInt(arr[2]);
+	} 
+});
+
+</script>
+<include file="Public:footer" />

@@ -138,12 +138,6 @@ $().ready(function(){
             }
         });
     });
-	
-	/**
-	 * TODO
-     * pull message
-     */
-    mseeageNums();
 
     var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
     var contentOk = 'no';
@@ -671,7 +665,7 @@ $().ready(function(){
     /**
      * plus part
      */
-    $('.plus_button').click(function(){
+    $('.plus_button').live("click", function(){
         var $thisButton = $(this);
         var $region = $('#plus_view_region_'+$(this).attr('value'));
         $.ajax({
@@ -691,7 +685,7 @@ $().ready(function(){
     });
     
     var t_plus;
-    $(".plus_button").mouseenter(function(e){
+    $(".plus_button").live("mouseenter", function(e){
     	$this = $(this);
     	t=setTimeout(function(){
     		var sidString = $this.attr('value');
@@ -721,7 +715,7 @@ $().ready(function(){
     
     /**
      * diffusion part
-     */
+     *
     $('.diffusion').toggle(
         function(){
         	$diffusionRecordObj = $(this);
@@ -734,9 +728,24 @@ $().ready(function(){
         function(){
         	$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
         }
-    );
+    ); */
+    $('.diffusion').live("click",function(){
+    	$this = $(this);
+    	$(this).toggle(function () {
+    		$diffusionRecordObj = $(this);
+            $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
+            $commentViewDivBox = $this.parent().parent().find(".comment_view_div_box");
+            if ($commentViewDivBox != '') {
+            	$commentViewDivBox.slideUp("fast");
+            	$(this).parent().find('.comment_button').attr({isclick: 'false'});
+            }
+    	},function () {
+    		$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
+    	}).trigger('click');
+    });
     
-    $('.diffusion_view_btn').click(function(){
+    
+    $('.diffusion_view_btn').live("click", function(){
         var $diffusion_view = $(this).parent().find('.diffusion_view_textarea').val();
         if ($diffusion_view == '说点什么吧...') {
         	$diffusion_view = '';
@@ -763,7 +772,7 @@ $().ready(function(){
         $('#infotextareacheck').slideUp('normal');
     });
     
-    $('.diffusion_view_textarea').focus(function(){
+    $('.diffusion_view_textarea').live("focus", function(){
     	$(this).next().text('扩散');
     	$(this).css({width: '350px', height: '30px'});
     	var textareaValue = $(this).val();
@@ -771,7 +780,7 @@ $().ready(function(){
     		$(this).val('');
     	}
     });
-    $('.diffusion_view_textarea').focusout(function(){
+    $('.diffusion_view_textarea').live("focusout", function(){
     	var textareaValue = $(this).val();
     	if (textareaValue == '') {
     		$(this).val('说点什么吧...');
@@ -783,7 +792,7 @@ $().ready(function(){
     /**
      * ajax comment part
      */
-    $('.comment_button').click(function(){
+    $('.comment_button').live("click", function(){
     	var $this = $(this);
     	$commentViewDivBox = $this.parent().parent().find(".comment_view_div_box");
     	var commmentSid = $this.attr('value');
@@ -951,12 +960,12 @@ $().ready(function(){
     /**
      * video play
      */
-    $('.s_li_p_content_mv_img_p').click(function(){
+    $('.s_li_p_content_mv_img_p').live("click", function(){
     	$(this).hide();
     	$(this).parent().find('.s_li_p_content_mv_object_p').slideDown('fast');
     });
 
-    $('.s_li_p_content_mv_object_up').click(function(){
+    $('.s_li_p_content_mv_object_up').live("click", function(){
     	$(this).parent().hide();
     	$('.s_li_p_content_mv_img_p').show();
     });
@@ -998,6 +1007,55 @@ $().ready(function(){
 		    $(this).hide();
 		});
 	}
+	
+	/**
+	 * ajax loading steam
+	 */
+	$('.stream_list_link a').live("click", function(){
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' title='加载中...请稍等' /></p>";
+		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
+    	$this = $(this);
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	return false;
+    });
+	
+	$('.s_r_ul_ajax_loading_a').live("click", function(){
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' title='加载中...请稍等' /></p>";
+		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
+    	$this = $(this);
+    	$('.s_r_ul_ajax_loading_a').find(".dot_choose").hide();
+    	$this.append("<span class='dot_choose'></span>");
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	return false;
+    });
+	
+	$('.stream_list_ul_sort a').live("click", function(){
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' title='加载中...请稍等' />加载中...请稍等</p>";
+		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
+    	$this = $(this);
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	return false;
+    });
+	
+	$('.s_li_p_user_specialty').live("click", function(){
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' />加载中...请稍等</p>";
+		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
+    	$this = $(this);
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	return false;
+    });
 });
 
 function attrListImgValue(){
@@ -1034,61 +1092,4 @@ function AddOnPos(FieldId, myValue)
 		myField.value = myValue;
 		myField.focus();
 	}
-}
-
-function mseeageNums() {
-	$.ajax({
-        type: "POST",
-        url: baseUrl + "ajax/getmessage",
-        global: false,
-        data:{acquireseconds: 'default'},
-        dataType: "json",
-        success:function(msg){
-        	if (msg.status == 'ok') {
-        		var acquiremilliseconds = msg.data.acquireSeconds;
-        		if (msg.data.messageSystemNums > 0) {
-        			$('#message_system_nums_a').show();
-        			$('#message_system_nums_a').children('span').html('+'+msg.data.messageSystemNums);
-        		} else {
-         			$('#message_system_nums_a').fadeOut('fast');
-         		}
-        		if (msg.data.messageCommentNums != 0) {
-        			$('#message_comment_nums_a').show();
-        			$('#message_comment_nums_a').children('span').html('+'+msg.data.messageCommentNums);
-        		} else {
-         			$('#message_comment_nums_a').fadeOut('fast');
-         		}
-        		if (msg.data.messageAtNums != 0) {
-        			$('#message_at_nums_a').show();
-        			$('#message_at_nums_a').children('span').html('@ +'+msg.data.messageAtNums);
-        		} else {
-         			$('#message_at_nums_a').fadeOut('fast');
-         		}
-        		if (msg.data.messageTalkNums != 0) {
-        			$('#message_talk_nums_div').fadeIn('fast');
-        			$('#message_talk_nums_img_icon').show().attr({'src': msg.data.lastTalkContentUserImg, 'title': msg.data.lastTalkContentUserNickname});
-        			$('#message_talk_nums_span_content').html(msg.data.lastTalkContent);
-        			$('#message_talk_nums_p_content_info').html('来自'+msg.data.lastTalkContentUserNickname+'...等的 <span class="f12 fb blue"> '+msg.data.messageTalkNums+'</span>条悄悄话');
-        			$('.message_talk_to_url').attr({ href: baseUrl + "talk/to/" + msg.data.lastTalkContentUserId });
-        		} else {
-        			$('#message_talk_nums_div').fadeOut('fast');
-        		}
-        		//setTimeout('mseeageNums()', acquiremilliseconds);
-        	} else {
-        		$("#change_skin_save").html("<span class='f12'><span class='icon_wrong'></span>" + msg.info + "</span>").delay(1000).fadeOut("slow");
-        	}
-        },
-        timeout: 10000,
-        error: function() {
-        	$('#message_talk_nums_div').fadeIn('fast');
-        	$('#message_talk_nums_img_icon').hide();
-			$('#message_talk_nums_span_content').html('<span class="red_l f12">圈圈亲，系统检测到您断网了!</span>');
-			$('#message_talk_nums_p_content_info').html('');
-			$('.message_talk_to_url').attr({ href: "", 'title': '与我帮圈圈服务器失去连接 :(' });
-//            setTimeout('mseeageNums()', 1000);
-        }
-    });
-	$('#message_talk_nums_span_close').click(function(){
-		$('#message_talk_nums_div').fadeOut('fast');
-	});
 }
