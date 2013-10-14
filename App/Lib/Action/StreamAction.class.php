@@ -727,6 +727,7 @@ class StreamAction extends Action
         } else {
             $requestWay = "default";
         }
+        var_dump($requestWay);
 
         /**
          *
