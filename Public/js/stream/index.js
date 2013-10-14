@@ -1019,8 +1019,8 @@ $().ready(function(){
     	var pagestring = $this.attr('href');
     	var iswholedomain = pagestring.match("ihelpoo");
     	if (iswholedomain == 'ihelpoo') {
-    		var pagestringhandle = pagestring.replace("/stream/","/stream/streamloading/");
-    		$(".stream_list_div").load(pagestring);
+    		alert(pagestring);
+    		window.location = pagestring;
     	} else {
     		var pagestringhandle = pagestring.substr(7);
     		$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
