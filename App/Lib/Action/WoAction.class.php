@@ -90,7 +90,7 @@ class WoAction extends Action {
          * show user honor nums
          */
         $UserHonor = M("UserHonor");
-        $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
+        $totalUserHonorNums = $UserHonor->where("uid = $userId")->count();
         $this->assign('totalUserHonorNums', $totalUserHonorNums);
         
         /**
@@ -170,7 +170,7 @@ class WoAction extends Action {
          * show user honor nums
          */
         $UserHonor = M("UserHonor");
-        $totalUserHonorNums = $UserHonor->where("uid = $userloginid")->count();
+        $totalUserHonorNums = $UserHonor->where("uid = $userId")->count();
         $this->assign('totalUserHonorNums', $totalUserHonorNums);
 
         /**
