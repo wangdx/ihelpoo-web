@@ -1017,7 +1017,7 @@ $().ready(function(){
     	$this = $(this);
     	var pagestring = $this.attr('href');
     	var pagestringhandle = pagestring.substr(7);
-    	$(".stream_list_div").load(baseUrl + "/stream/" + pagestringhandle);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
     	return false;
     });
 });
