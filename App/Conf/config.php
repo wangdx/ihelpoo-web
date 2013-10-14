@@ -25,7 +25,7 @@ $config = array(
 	'VERIFI_RECORD_TIME'=>'10',
 	'VERIFI_RECORD_UNMS'=>'3',
 	'VERIFI_COMMENT_UNMS'=>'60',
-	'VERIFI_COMMENT_TIME'=>'5',
+	'VERIFI_COMMENT_TIME'=>'8',
 	'IMAGE_STORAGE_URL'=>'http://img.ihelpoo.cn',
 );
 
