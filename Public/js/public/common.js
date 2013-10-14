@@ -207,7 +207,7 @@ $().ready(function () {
      * get userinfo
      */
     var t_userinfo;
-    $(".getuserinfo").live('mouseenter',function (e) {
+    $(".getuserinfo").live('mouseover',function (e) {
         $this = $(this);
         t_userinfo = setTimeout(function () {
             var userid = $this.attr('userid');
