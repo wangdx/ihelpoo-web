@@ -19,7 +19,7 @@
 	    <?php if (empty($schoolOpCity['1']['school'])) { ?>
 		    <?php $changeschoolurl = empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>
 		    <?php $changeschoolurl = 'http://'.$changeschoolurl; ?>
-		    <?php redirect($changeschoolurl, 0, '跳转页面 :)...'); ?>
+		    <?php //redirect($changeschoolurl, 0, '跳转页面 :)...'); ?>
 	    <?php } ?>
 	    <a href="http://<?php echo empty($school['domain_main']) ? $school['domain'] : $school['domain_main']; ?>" data-role="button" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
 		   <?php echo $school['school']; ?>
