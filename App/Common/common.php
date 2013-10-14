@@ -606,7 +606,7 @@ function i_get_image($recordImageField, $way = 'o')
                 if ("o" == $way) {
                     $imageRecordArray[] = $recordOutimg['rpath'];
                 } else if ("s" == $way) {
-                    if (preg_match("/upaiyun/", $recordOutimg['rpath'])) {
+                    if (preg_match("/img.ihelpoo.cn/", $recordOutimg['rpath'])) {
                         $imageRecordArray[] = preg_replace("/recordsay/", "thumb_recordsay", $recordOutimg['rpath']);
                     } else {
                         $imageRecordArray[] = $recordOutimg['rpath'];
