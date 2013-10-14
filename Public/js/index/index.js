@@ -19,7 +19,7 @@ $().ready(function(){
 		bgwidth = windowwidth;
 	}
 	$('#lay_bg').css({ width: bgwidth, height: bgheight});
-	$('#lay_bg_img').css({ width: bgwidth, height: bgheight}).fadeOut().fadeIn('fast');
+	$('#lay_bg_img').css({ width: bgwidth, height: bgheight}).fadeIn('fast');
 	$('.texture_background').css({ width: bgwidth, height: bgheight});
 	$(window).resize(function(){
 		loadBackground();
