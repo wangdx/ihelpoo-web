@@ -520,8 +520,18 @@ class UserAction extends Action {
     		$qqUserBirth = $qqUserBirthYear.'-'.$qqUserBirthMonth.'-'.$qqUserBirthDay;
     		$dateInfo = getdate();
             $enteryear = $dateInfo['year'];
-    		if (!empty($qqUserId) && !empty($qqUserName)) {
+    		if (!empty($qqUserId)) {
     			$isQqExist = $UserLoginQq->where("qq_uid = '$qqUserId'")->find();
+    			
+    			if (empty($qqUserName)) {
+    				$qqUserName = "qq用户".time();
+    			}
+    			if (empty($qqUserSex)) {
+    				$qqUserSex = 1;
+    			}
+    			if (empty($qqUserBirthDay) || empty($qqUserBirthMonth) || empty($qqUserBirthYear)) {
+    				$qqUserBirth = '1990-1-1';
+    			}
     			if (empty($isQqExist['uid'])) {
 	    			$email = $qqUserId.'@loginqq.com';
 	    			$password = rand(10000000, 99999999);
