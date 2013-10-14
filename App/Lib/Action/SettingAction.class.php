@@ -102,6 +102,10 @@ class SettingAction extends Action
                  */
 	            if ($usertype == 'default') {
 	            	$type = 1;
+	            } else if ($usertype == 'group') {
+	            	$type = 2;
+	            } else if ($usertype == 'business') {
+	            	$type = 3;
 	            } else if ($usertype == 'teacher') {
 	            	$type = 4;
 	            } else if ($usertype == 'postgraduate') {
