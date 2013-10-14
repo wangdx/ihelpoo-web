@@ -704,7 +704,7 @@ $().ready(function(){
         			}
                 }
             });
-    	},1000);
+    	},1500);
     }).mouseleave(function(){
     	clearTimeout(t_plus);
     	$('.record_plus_div').hover(function(){},
