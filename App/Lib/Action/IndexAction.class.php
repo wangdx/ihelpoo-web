@@ -29,6 +29,7 @@ class IndexAction extends Action {
         $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
         $this->assign('schoolid',$recordSchoolInfo['id']);
         $this->assign('schoolname',$recordSchoolInfo['school']);
+        $this->assign('recordSchoolInfo',$recordSchoolInfo);
         $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
     	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
     	$indexUserValueArray = explode(",", $indexUserValue);
