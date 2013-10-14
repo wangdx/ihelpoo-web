@@ -92,15 +92,15 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .icon_weibo{ display:inline-block; vertical-align:top; margin-right:3px; }
 .icon_play{ display:inline-block; vertical-align:text-bottom; }
 /*---*/
-.icon_index_mobile{ width:15px; height:18px; background:url(../image/common/index_btn.png) no-repeat 0px -100px; display:inline-block; vertical-align:text-bottom; }
-.icon_index_andriod{ width:15px; height:18px; background:url(../image/common/index_btn.png) no-repeat 0px -118px; display:inline-block; vertical-align:text-bottom; }
-.icon_index_wrong{ width:11px; height:11px; background:url(../image/common/index_btn.png) no-repeat -18px -154px; display:inline-block; vertical-align:text-bottom; }
+.icon_index_mobile{ width:15px; height:18px; background:url(http://static.ihelpoo.cn/img/icon/index_btn.png) no-repeat 0px -100px; display:inline-block; vertical-align:text-bottom; }
+.icon_index_andriod{ width:15px; height:18px; background:url(http://static.ihelpoo.cn/img/icon/index_btn.png) no-repeat 0px -118px; display:inline-block; vertical-align:text-bottom; }
+.icon_index_wrong{ width:11px; height:11px; background:url(http://static.ihelpoo.cn/img/icon/index_btn.png) no-repeat -18px -154px; display:inline-block; vertical-align:text-bottom; }
 /*---*/
-.icon_n_fans{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 0; display:inline-block; vertical-align:middle; }
-.icon_n_follow{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -16px; display:inline-block; vertical-align:middle; }
-.icon_n_msg{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -32px; display:inline-block; vertical-align:middle; }
-.icon_n_thumb{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -48px; display:inline-block; vertical-align:middle; }
-.icon_n_color{ width:18px; height:16px; background:url(../image/common/icon_n.png) no-repeat 0 -64px; display:inline-block; vertical-align:text-bottom; }
+.icon_n_fans{ width:18px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/icon_n.png) no-repeat 0 0; display:inline-block; vertical-align:middle; }
+.icon_n_follow{ width:18px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/icon_n.png) no-repeat 0 -16px; display:inline-block; vertical-align:middle; }
+.icon_n_msg{ width:18px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/icon_n.png) no-repeat 0 -32px; display:inline-block; vertical-align:middle; }
+.icon_n_thumb{ width:18px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/icon_n.png) no-repeat 0 -48px; display:inline-block; vertical-align:middle; }
+.icon_n_color{ width:18px; height:16px; background:url(http://static.ihelpoo.cn/img/icon/icon_n.png) no-repeat 0 -64px; display:inline-block; vertical-align:text-bottom; }
 /*---*/
 .circle_l_b{ background:#FFF; position:absolute; left:0; bottom:0px; height:1px; width:1px; display:block; }
 .circle_r_b{ background:#FFF; position:absolute; right:0; bottom:0px; height:1px; width:1px; display:block; }
@@ -120,18 +120,18 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .gradetea{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.png) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 .gradebef{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.png) no-repeat 0 -385px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 
-*html .grade1{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 0; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .grade2{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -35px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .grade3{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -70px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .grade4{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -105px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .grade5{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -140px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .grade6{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -175px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .gradeg{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -210px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .grades{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -245px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .gradegra{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -280px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .gradesen{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -315px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .gradetea{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
-*html .gradebef{ width:35px; height:35px; background:url(../image/common/grade.gif) no-repeat 0 -385px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade1{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 0; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade2{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -35px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade3{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -70px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade4{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -105px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade5{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -140px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grade6{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -175px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradeg{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -210px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .grades{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -245px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradegra{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -280px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradesen{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -315px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradetea{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -350px; display:inline-block; position: absolute; right: -2px; top: -2px; }
+*html .gradebef{ width:35px; height:35px; background:url(http://static.ihelpoo.cn/img/icon/grade.gif) no-repeat 0 -385px; display:inline-block; position: absolute; right: -2px; top: -2px; }
 
 /*---*/
 .post_icon{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
@@ -153,22 +153,22 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .post_img_static{ width: 18px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/poster.png) no-repeat -20px -20px; display:inline-block; }
 
 /*--- btn.png ---*/
-.btn_back{ width: 24px; height: 15px; background:url(../image/common/btn.png) no-repeat -24px -100px; display:inline-block; cursor: pointer; }
-.btn_back:hover{ width: 24px; height: 15px; background:url(../image/common/btn.png) no-repeat 0px -100px; display:inline-block; cursor: pointer; }
-.btn_more{ width: 24px; height: 12px; background:url(../image/common/btn.png) no-repeat -48px -75px; display:inline-block; cursor: pointer; margin-left: 10px; }
+.btn_back{ width: 24px; height: 15px; background:url(http://static.ihelpoo.cn/img/icon/btn.png) no-repeat -24px -100px; display:inline-block; cursor: pointer; }
+.btn_back:hover{ width: 24px; height: 15px; background:url(http://static.ihelpoo.cn/img/icon/btn.png) no-repeat 0px -100px; display:inline-block; cursor: pointer; }
+.btn_more{ width: 24px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/btn.png) no-repeat -48px -75px; display:inline-block; cursor: pointer; margin-left: 10px; }
 
 /*---*/
-.helpleaf{ width: 40px; height: 18px; background:url(../image/common/helpleaf.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
-.helpleaf:hover{ width: 40px; height: 18px; background:url(../image/common/helpleaf.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
-.helpleaf_select{ width: 40px; height: 18px; background:url(../image/common/helpleaf.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
+.helpleaf{ width: 40px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/helpleaf.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
+.helpleaf:hover{ width: 40px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/helpleaf.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
+.helpleaf_select{ width: 40px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/helpleaf.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
 /*---*/
-.btn_weibo{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
-.btn_weibo:hover{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
-.btn_weibo_select{ width: 24px; height: 18px; background:url(../image/common/weibo_select.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
+.btn_weibo{ width: 24px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/weibo_select.png) no-repeat 0px 0px; display:inline-block; cursor: pointer; }
+.btn_weibo:hover{ width: 24px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/weibo_select.png) no-repeat 0px -18px; display:inline-block; cursor: pointer; }
+.btn_weibo_select{ width: 24px; height: 18px; background:url(http://static.ihelpoo.cn/img/icon/weibo_select.png) no-repeat 0px -36px; display:inline-block; cursor: pointer; }
 
 /*---*/
 .sex1{
-    background: url("../image/common/sex.png") no-repeat scroll -1px -2px transparent;
+    background: url("http://static.ihelpoo.cn/img/icon/sex.png") no-repeat scroll -1px -2px transparent;
     display: inline-block;
     float: left;
     height: 18px;
@@ -176,7 +176,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     margin-right: 3px;
 }
 .sex2{
-    background: url("../image/common/sex.png") no-repeat scroll -22px -2px transparent;
+    background: url("http://static.ihelpoo.cn/img/icon/sex.png") no-repeat scroll -22px -2px transparent;
     display: inline-block;
     float: left;
     height: 18px;
@@ -234,8 +234,8 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 .btn_quan{padding: 3px 10px 3px 5px; border-radius:3px; color: #FFF; cursor: pointer; background-color: #FE6600; }
 .btn_quan:hover{color: #FFF; background-color: #999;  border-color:#7BD6F6; -moz-outline:4px solid #E2F5FB; -moz-outline-radius:8px; -webkit-box-shadow:0 0 10px rgba(123, 214, 246, .6); box-shadow:0 0 10px rgba(123, 214, 246, .6);}
 
-.login_status_online{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 0; display:inline-block; cursor: pointer; vertical-align: bottom; }
-.login_status_hidden{ width: 16px; height: 16px; background:url(../image/common/login_status.png) no-repeat 0 -16px; display:inline-block; cursor: pointer; vertical-align: bottom; }
+.login_status_online{ width: 16px; height: 16px; background:url(http://static.ihelpoo.cn/img/icon/login_status.png) no-repeat 0 0; display:inline-block; cursor: pointer; vertical-align: bottom; }
+.login_status_hidden{ width: 16px; height: 16px; background:url(http://static.ihelpoo.cn/img/icon/login_status.png) no-repeat 0 -16px; display:inline-block; cursor: pointer; vertical-align: bottom; }
 /*--css3---*/
 .radius3{border-radius:3px;}
 .radius5{border-radius:5px;}
@@ -258,23 +258,23 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 *html .circle_l_t{ height:0px; width:0px; display:block; }
 *html .circle_r_t{ height:0px; width:0px; display:block; }
 /*---*/
-*html .sex1{ width: 20px; height: 20px; background:url(../image/common/sex.gif) no-repeat 0px 0px; display:inline-block; }
-*html .sex2{ width: 20px; height: 20px; background:url(../image/common/sex.gif) no-repeat -20px 0px; display:inline-block; }
+*html .sex1{ width: 20px; height: 20px; background:url(http://static.ihelpoo.cn/img/icon/sex.gif) no-repeat 0px 0px; display:inline-block; }
+*html .sex2{ width: 20px; height: 20px; background:url(http://static.ihelpoo.cn/img/icon/sex.gif) no-repeat -20px 0px; display:inline-block; }
 /*---*/
-*html .online0{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.gif) no-repeat 0px -15px; display:inline-block; }
-*html .online1{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.gif) no-repeat 0px 0px; display:inline-block; }
-*html .online2{ width: 40px; height: 12px; background:url(../image/common/onlinestatus.gif) no-repeat 0px -15px; display:inline-block; }
+*html .online0{ width: 40px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/onlinestatus.gif) no-repeat 0px -15px; display:inline-block; }
+*html .online1{ width: 40px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/onlinestatus.gif) no-repeat 0px 0px; display:inline-block; }
+*html .online2{ width: 40px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/onlinestatus.gif) no-repeat 0px -15px; display:inline-block; }
 /*---*/
-*html .level1{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px 0px; display:inline-block; }
-*html .level2{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -15px; display:inline-block; }
-*html .level3{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -30px; display:inline-block; }
-*html .level4{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -45px; display:inline-block; }
-*html .level5{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -60px; display:inline-block; }
-*html .level6{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -75px; display:inline-block; }
-*html .level7{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -90px; display:inline-block; }
-*html .level8{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -105px; display:inline-block; }
-*html .level9{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -120px; display:inline-block; }
-*html .level10{ width: 12px; height: 12px; background:url(../image/common/level.gif) no-repeat 0px -135px; display:inline-block; }
+*html .level1{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px 0px; display:inline-block; }
+*html .level2{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -15px; display:inline-block; }
+*html .level3{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -30px; display:inline-block; }
+*html .level4{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -45px; display:inline-block; }
+*html .level5{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -60px; display:inline-block; }
+*html .level6{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -75px; display:inline-block; }
+*html .level7{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -90px; display:inline-block; }
+*html .level8{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -105px; display:inline-block; }
+*html .level9{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -120px; display:inline-block; }
+*html .level10{ width: 12px; height: 12px; background:url(http://static.ihelpoo.cn/img/icon/level.gif) no-repeat 0px -135px; display:inline-block; }
 
 /*--- paging ---*/
 .s_l_l_a{ display: inline-block; padding: 3px 0; width: 30px; text-align: center; border: 1px solid #CCC; color: #999; font-size: 12px;}
@@ -501,31 +501,31 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
     display: inline-block;
 }
 .icon_iphone {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/index_login.png");
     background-position: -58px -71px;
     height: 28px;
     width: 28px;
 }
 .icon_ipad {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/index_login.png");
     background-position: -58px -100px;
     height: 28px;
     width: 28px;
 }
 .icon_android {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/index_login.png");
     background-position: -87px -42px;
     height: 28px;
     width: 28px;
 }
 .icon_windowsphone {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/index_login.png");
     background-position: -87px -100px;
     height: 28px;
     width: 28px;
 }
 .icon_mobileother {
-    background-image: url("../image/common/index_login.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/index_login.png");
     background-position: -87px -71px;
     height: 28px;
     width: 28px;
@@ -533,7 +533,7 @@ body{ background-color:#FFF; color:#333; font-size:14px; font-family:tahoma,Helv
 
 
 .icon_hover_top_mate, .icon_hover_top_group, .icon_hover_top_business, .icon_hover_top_help, .icon_hover_top_activity, .icon_hover_top_teacher, .icon_hover_top_ranking, .icon_hover_top_senior, .icon_hover_top_postgraduate, .icon_hover_top_app {
-    background-image: url("../image/common/hover_top.png");
+    background-image: url("http://static.ihelpoo.cn/img/icon/hover_top.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     vertical-align: middle;
@@ -673,7 +673,7 @@ color:#FFFA85;
 *html .header_logo{
     width:135px;
     height:32px;
-    background:url(../image/common/logo_header.gif) no-repeat 0px 0px;
+    background:url(http://static.ihelpoo.cn/img/icon/logo_header.gif) no-repeat 0px 0px;
     display:block;
     position:absolute;
     left:0;
@@ -682,7 +682,7 @@ color:#FFFA85;
 *html .header_logo:hover{
     width:135px;
     height:32px;
-    background:url(../image/common/logo_header.gif) no-repeat 0px 0px;
+    background:url(http://static.ihelpoo.cn/img/icon/logo_header.gif) no-repeat 0px 0px;
     display:block;
     position:absolute;
     left:0;
@@ -1137,13 +1137,13 @@ color:#FFFA85;
 
 
 /*--- back top ---*/
-.back_top_img{ width: 35px; height: 35px; background:url(../image/common/back-top.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
-.back_top_img:hover{ width: 35px; height: 35px; background:url(../image/common/back-top.png) no-repeat -35px 0; display:inline-block; cursor: pointer; }
+.back_top_img{ width: 35px; height: 35px; background:url(http://static.ihelpoo.cn/img/icon/back-top.png) no-repeat 0 0; display:inline-block; cursor: pointer; }
+.back_top_img:hover{ width: 35px; height: 35px; background:url(http://static.ihelpoo.cn/img/icon/back-top.png) no-repeat -35px 0; display:inline-block; cursor: pointer; }
 
 /*--- mall sall status ---*/
-.itemstatus_sold{ width:40px; height:40px; background:url(../image/common/salestatus.gif) no-repeat 0 0; display:inline-block; position: absolute; right: 0; top: 0; }
-.itemstatus_new{ width:40px; height:40px; background:url(../image/common/salestatus.gif) no-repeat 0 -80px; display:inline-block; position: absolute; right: 0; top: 0; }
-.itemstatus_secondhand{ width:40px; height:40px; background:url(../image/common/salestatus.gif) no-repeat 0 -120px; display:inline-block; position: absolute; right: 0; top: 0; }
+.itemstatus_sold{ width:40px; height:40px; background:url(http://static.ihelpoo.cn/img/icon/salestatus.gif) no-repeat 0 0; display:inline-block; position: absolute; right: 0; top: 0; }
+.itemstatus_new{ width:40px; height:40px; background:url(http://static.ihelpoo.cn/img/icon/salestatus.gif) no-repeat 0 -80px; display:inline-block; position: absolute; right: 0; top: 0; }
+.itemstatus_secondhand{ width:40px; height:40px; background:url(http://static.ihelpoo.cn/img/icon/salestatus.gif) no-repeat 0 -120px; display:inline-block; position: absolute; right: 0; top: 0; }
 
 /*--- fliter ---*/
 .fliter_gray{ -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: gray; }
