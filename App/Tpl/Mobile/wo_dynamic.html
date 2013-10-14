@@ -2,7 +2,6 @@
 	Vendor('Ihelpoo.Videourlparser');
     Vendor('Ihelpoo.Emotion');
     $emotion = new Emotion();
-	$SchoolInfo = M("SchoolInfo");
 ?>
 <include file="Public:headermobile" />
 <script type="text/javascript" src="__PUBLIC__/js/mobile/wo_index.js"></script>
@@ -177,10 +176,6 @@
     </div>
     <div class="s_li_user_time f12 gray">
        <?php echo i_time($record['time']); ?> 
-        <?php if ($record['school_record'] != $thisschoolid) { ?>
-	      <?php $recordSaySchoolInfo = $SchoolInfo->find($record['school_record']); ?>
-	      		<a href="http://<?php echo $recordSaySchoolInfo['domain_main'] == NULL ? $recordSaySchoolInfo['domain'] : $recordSaySchoolInfo['domain_main']; ?>/" target="_self" class="gray f12" title="此信息发布在我帮圈圈<?php echo $recordSaySchoolInfo['school']; ?>"><?php echo $recordSaySchoolInfo['school']; ?></a>
-	      <?php } ?>
 	      <?php
 	      if (!empty($record['from'])) {
           if ("3" == $record['from']) {
