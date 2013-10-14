@@ -1032,6 +1032,16 @@ $().ready(function(){
     	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
     	return false;
     });
+	
+	$('.stream_list_ul_sort a').live("click", function(){
+		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '加载中...请稍等'});
+		$(".stream_list_div").html($infoLoading);
+    	$this = $(this);
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	return false;
+    });
 });
 
 function attrListImgValue(){
