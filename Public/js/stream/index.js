@@ -1020,6 +1020,17 @@ $().ready(function(){
     	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
     	return false;
     });
+	
+	/**$('.s_r_ul_ajax_loading_a').live("click", function(){
+		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '加载中...请稍等'});
+		$(".stream_list_div").html($infoLoading);
+    	$this = $(this);
+    	$this.append("<span class='dot_choose'></span>");
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	return false;
+    }); */
 });
 
 function attrListImgValue(){
