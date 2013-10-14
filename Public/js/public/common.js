@@ -277,7 +277,7 @@ $().ready(function () {
                     }
                 }
             });
-        }, 1000);
+        }, 1500);
     }).mouseleave(function (e) {
         clearTimeout(t_userinfo);
         $('.user_info_div').hover(
