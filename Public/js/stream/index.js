@@ -1011,13 +1011,13 @@ $().ready(function(){
 	/**
 	 * ajax loading steam
 	 */
-	$('.stream_list_link a').attr({'value': $(this).attr('href')});
 	$('.stream_list_link a').live("click", function(){
 		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '加载中...请稍等'});
 		$(".stream_list_div").html($infoLoading);
     	$this = $(this);
-    	var page = $this.text();
-    	$(".stream_list_div").load(baseUrl + "/stream/streamloading/index/default/?p=" + page);
+    	var pagestring = $this.attr('href');
+    	var pagestringhandle = pagestring.substr(7);
+    	$(".stream_list_div").load(baseUrl + "/stream/" + pagestringhandle);
     	return false;
     });
 });
