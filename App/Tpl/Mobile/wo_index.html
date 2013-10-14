@@ -15,6 +15,10 @@
         <a data-role="button" href="/talk/to/<?php echo $userLogin['uid']; ?>" target="_self" data-icon="edit" data-iconpos="right" class="ui-btn-right">
             写悄悄话
         </a>
+        <?php } else { ?>
+        <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
+            设置
+        </a>
         <?php } ?>
         <h3>
             <?php echo $userLogin['nickname']; ?>的记录
