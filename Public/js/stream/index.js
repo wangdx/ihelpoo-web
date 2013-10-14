@@ -1011,7 +1011,7 @@ $().ready(function(){
 	/**
 	 * ajax loading steam
 	 */
-	var $infoLoadingPage = "<p class='info_loading_page_p'><img src='" + baseUrl + "Public/image/common/ajax_wait.gif' class='pointer' /></p>";
+	var $infoLoadingPage = "<p class='info_loading_page_p'><img src='" + baseUrl + "Public/image/common/ajax_wait.gif' class='pointer' /> 加载中, 请稍等...</p>";
 	$('.stream_list_link a').live("click", function(){
 		$(".stream_list_div").html($infoLoadingPage);
 		$(".user_info_div").hide();
