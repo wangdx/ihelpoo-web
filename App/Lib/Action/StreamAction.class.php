@@ -707,6 +707,7 @@ class StreamAction extends Action
     {
     	$userloginid = session('userloginid');
     	$recordSchoolInfo = i_school_domain();
+    	$this->assign('thisschoolid', $recordSchoolInfo['id']);
     	$RecordSay = M("RecordSay");
         $UserLogin = M("UserLogin");
         $UserPriority = M("UserPriority");

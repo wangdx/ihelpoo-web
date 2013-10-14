@@ -1011,9 +1011,9 @@ $().ready(function(){
 	/**
 	 * ajax loading steam
 	 */
-	$('.stream_list_link a').attr({'href':''});
+	$('.stream_list_link a').attr({'value': $(this).attr('href')});
 	$('.stream_list_link a').live("click", function(){
-		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '提交中...请稍等'});
+		var $infoLoading = $('<img/>').attr({'src': baseUrl + 'Public/image/common/ajax_wait.gif', 'title': '加载中...请稍等'});
 		$(".stream_list_div").html($infoLoading);
     	$this = $(this);
     	var page = $this.text();
