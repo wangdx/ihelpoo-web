@@ -727,7 +727,6 @@ class StreamAction extends Action
         } else {
             $requestWay = "default";
         }
-        var_dump($requestWay);
 
         /**
          *
@@ -806,7 +805,7 @@ class StreamAction extends Action
             $select->order('i_record_say.last_comment_ti DESC');
             $streamway = "help";
         } else if ($requestWay == "group") {
-            $groupUid = (int)trim($_GET["_URL_"][3]);
+            $groupUid = (int)trim($_GET["_URL_"][4]);
             $isSetGroupListPriority = $UserPriority->where("pid = $groupUid")->select();
             $pidGroupString = NULL;
             $pidGroupNums = 0;
@@ -828,7 +827,7 @@ class StreamAction extends Action
             $groupUserRecord = $UserLogin->find($groupUid);
             $this->assign('groupUserRecord', $groupUserRecord);
         } else if ($requestWay == "specialty") {
-            $specialtyId = (int)trim($_GET["_URL_"][3]);
+            $specialtyId = (int)trim($_GET["_URL_"][4]);
             $allSameSpecialtyUsers = $UserInfo->where("specialty_op = $specialtyId")->select();
             $allUserString = NULL;
             $allUserNums = 0;
