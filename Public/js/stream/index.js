@@ -1018,7 +1018,6 @@ $().ready(function(){
     	$this = $(this);
     	var pagestring = $this.attr('href');
     	var iswholedomain = pagestring.match("ihelpoo");
-    	alert(pagestring);
     	if (iswholedomain == 'ihelpoo') {
     		$(".stream_list_div").load(pagestring);
     	} else {
