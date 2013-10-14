@@ -422,6 +422,7 @@
     border-radius:3px;
     padding:20px;
     display:none;
+    overflow: hidden;
 }
 .comment_view_div_box_ul{
     margin-bottom: 10px;
