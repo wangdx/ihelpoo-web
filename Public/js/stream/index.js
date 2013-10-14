@@ -685,7 +685,7 @@ $().ready(function(){
     });
     
     var t_plus;
-    $(".plus_button").live("mouseenter", function(e){
+    $(".plus_button").live("mouseover", function(e){
     	$this = $(this);
     	t=setTimeout(function(){
     		var sidString = $this.attr('value');
@@ -704,7 +704,7 @@ $().ready(function(){
         			}
                 }
             });
-    	},1500);
+    	},1000);
     }).mouseleave(function(){
     	clearTimeout(t_plus);
     	$('.record_plus_div').hover(function(){},
