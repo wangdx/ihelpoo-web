@@ -1012,8 +1012,9 @@ $().ready(function(){
 	 * ajax loading steam
 	 */
 	$('.stream_list_link a').live("click", function(){
-		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' title='加载中...请稍等' /></p>";
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' title='加载中...请稍等' /></p>";
 		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
     	$this = $(this);
     	var pagestring = $this.attr('href');
     	var pagestringhandle = pagestring.substr(7);
@@ -1022,8 +1023,9 @@ $().ready(function(){
     });
 	
 	$('.s_r_ul_ajax_loading_a').live("click", function(){
-		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' title='加载中...请稍等' /></p>";
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' title='加载中...请稍等' /></p>";
 		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
     	$this = $(this);
     	$('.s_r_ul_ajax_loading_a').find(".dot_choose").hide();
     	$this.append("<span class='dot_choose'></span>");
@@ -1034,8 +1036,9 @@ $().ready(function(){
     });
 	
 	$('.stream_list_ul_sort a').live("click", function(){
-		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' title='加载中...请稍等' /></p>";
+		var $infoLoadingPage = "<p class='info_loading_page_p'><img src='Public/image/common/ajax_wait.gif' class='pointer' title='加载中...请稍等' /></p>";
 		$(".stream_list_div").html($infoLoadingPage);
+		$(".user_info_div").hide();
     	$this = $(this);
     	var pagestring = $this.attr('href');
     	var pagestringhandle = pagestring.substr(7);
