@@ -1019,7 +1019,6 @@ $().ready(function(){
     	var pagestring = $this.attr('href');
     	var iswholedomain = pagestring.match("ihelpoo");
     	if (iswholedomain == 'ihelpoo') {
-    		alert(pagestring);
     		window.location = pagestring;
     	} else {
     		var pagestringhandle = pagestring.substr(7);
@@ -1045,8 +1044,13 @@ $().ready(function(){
 		$(".user_info_div").hide();
     	$this = $(this);
     	var pagestring = $this.attr('href');
-    	var pagestringhandle = pagestring.substr(7);
-    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	var iswholedomain = pagestring.match("ihelpoo");
+    	if (iswholedomain == 'ihelpoo') {
+    		window.location = pagestring;
+    	} else {
+    		var pagestringhandle = pagestring.substr(7);
+    		$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	}
     	return false;
     });
 	
@@ -1055,8 +1059,13 @@ $().ready(function(){
 		$(".user_info_div").hide();
     	$this = $(this);
     	var pagestring = $this.attr('href');
-    	var pagestringhandle = pagestring.substr(7);
-    	$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	var iswholedomain = pagestring.match("ihelpoo");
+    	if (iswholedomain == 'ihelpoo') {
+    		window.location = pagestring;
+    	} else {
+    		var pagestringhandle = pagestring.substr(7);
+    		$(".stream_list_div").load(baseUrl + "stream/streamloading" + pagestringhandle);
+    	}
     	return false;
     });
 });
