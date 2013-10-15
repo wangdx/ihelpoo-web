@@ -147,6 +147,7 @@ $().ready(function(){
             		alert(msg.info);
             	} else if (msg.status == "ok") {
                     ajaxInfo('发布成功', 0, 0);
+                    $('#s_t_textarea').val('');
                 } else {
                     alert('something wrong');
                 }
