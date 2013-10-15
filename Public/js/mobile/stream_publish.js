@@ -146,7 +146,7 @@ $().ready(function(){
             	} else if (msg.status == "error") {
             		alert(msg.info);
             	} else if (msg.status == "ok") {
-                    window.location = baseUrl + 'stream';
+                    ajaxInfo('发布成功', 0, 0);
                 } else {
                     alert('something wrong');
                 }
