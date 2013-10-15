@@ -463,8 +463,8 @@ class RooterAction extends Action {
     		$domain_main = $_POST['domain_main'];
     		$remark = $_POST['remark'];
     		$status = (int)$_POST['status'];
-    		if ($status > 1) {
-    			$status = 1;
+    		if ($status > 5) {
+    			$status = 5;
     		}
     		if (!empty($id)) {
     			
