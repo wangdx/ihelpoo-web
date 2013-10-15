@@ -26,7 +26,7 @@ $().ready(function(){
 	            type: "POST",
 	            url: baseUrl + "setting/bind",
 	            data: {
-	            	"weibo_user_id" : weibo_user_id,
+	            	"weibo_user_id" : weibo_user_id
 	            },
 	            dataType: "json",
 	            success:function(msg){
