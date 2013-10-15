@@ -35,8 +35,6 @@ class StreamAction extends Action
 
     public function index()
     {
-
-        xhprof_enable();
         $userloginid = session('userloginid');
         $recordSchoolInfo = i_school_domain();
         $title = "信息流 个人中心 - " . $recordSchoolInfo['school'];
@@ -496,9 +494,9 @@ class StreamAction extends Action
         } else if ($requestWay == "time") {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
-                $select->where("i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+                $select->where("i_record_say.time > $timegaphalfyear AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
             } else {
-                $select->where("say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+                $select->where("i_record_say.time > $timegaphalfyear AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
             }
             $select->order('i_record_say.time DESC');
             $streamway = "time";
@@ -689,15 +687,6 @@ class StreamAction extends Action
     	} else {
     		$this->display();
     	}
-
-        $xhprof_data = xhprof_disable();
-        include_once "./xhprof_lib/utils/xhprof_lib.php";
-        include_once "./xhprof_lib/utils/xhprof_runs.php";
-        $xhprof_runs = new XHProfRuns_Default();
-        $run_id = $xhprof_runs->save_run($xhprof_data, 'xhprof');
-//        echo 'http://42.62.50.238/xhprof_html/index.php?run='.$run_id.'&source=xhprof';
-        $this->assign('test_URL', 'http://42.62.50.238/xhprof_html/index.php?run='.$run_id.'&source=xhprof');
-
     }
     
     /**
