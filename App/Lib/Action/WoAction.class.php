@@ -599,11 +599,14 @@ class WoAction extends Action {
     				 * delete
     				 */
     				$urlFilename = str_ireplace("$imageStorageUrl", "", $deleteAlbumRecordUrl);
-    				$urlThumbFilename = str_ireplace("goods", "thumb_goods", $urlFilename);
+    				if (preg_match("/goodscontent/", $urlFilename)) {
+    					$urlThumb2Filename = str_ireplace("goodscontent", "thumb_goodscontent", $urlFilename);
+    					$upyun->delete($urlThumb2Filename);
+    				} else {
+    					$urlThumbFilename = str_ireplace("goods", "thumb_goods", $urlFilename);
+    					$upyun->delete($urlThumbFilename);
+    				}
     				$isStorageDeleteFlag = $upyun->delete($urlFilename);
-    				$upyun->delete($urlThumbFilename);
-    				$urlThumb2Filename = str_ireplace("goodscontent", "thumb_goodscontent", $urlFilename);
-    				$storage->delete("public", $urlThumb2Filename);
     				if ($isStorageDeleteFlag) {
     					$UserAlbum->where("id = $deleteImageId AND uid = $userloginid")->delete();
     					$this->ajaxReturn(0,'删除成功,3秒后页面跳转','ok');
