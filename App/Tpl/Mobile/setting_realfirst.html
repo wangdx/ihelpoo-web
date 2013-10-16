@@ -1,0 +1,32 @@
+<include file="Public:headermobile" />
+<!-- Home -->
+    <div data-theme="b" data-role="header">
+        <a data-role="button" href="/stream" target="_self" data-icon="home" data-iconpos="left" class="ui-btn-left">
+            首页
+        </a>
+        <a data-role="button" href="/setting" target="_self" data-icon="grid" data-iconpos="left" class="ui-btn-right">
+            设置
+        </a>
+        <h3>
+            我帮圈圈欢迎您
+        </h3>
+    </div>
+    <div data-role="content">
+    <div class="realfirst">
+  	<p class="real_explain f12 black_l"><span class="icon_pump"></span> 填写真实姓名 <?php if ($_GET['step'] == 1) { ?>(真实姓名不会公布,别人请求得到您同意后才能查看!)<?php } ?></p>
+    <?php
+        if ($_GET['step'] == 1) {
+        	echo "<form method='post'>";
+            if (!empty($recordUserInfo['realname_re'])) { 
+                echo "<ul><li>已经匹配真实姓名: ".$recordUserInfo['realname']." <a href='".__ROOT__."/user/realnamemf' class='f12'>申请修改</a></li>";
+            } else {
+                echo "<li class='realfirst_first_li'>真实姓名:<input type='text' name='realname' value='".$recordUserInfo['realname']."' /><input type='submit' value='确定' /></li></ul>";
+            }
+            echo "</form>";
+        } else if ($_GET['step'] == 2) {
+            echo "<p class='realfirst_second_else_p'>请继续填写您的联系方式等信息 <a href='".__ROOT__."/setting'>确定</a></p>";
+        }
+    ?>
+	</div>
+    </div>
+<include file="Public:footermobile" />
