@@ -14,19 +14,21 @@
     <div data-role="content">
     <div class="realfirst">
   	<p class="real_explain f12 black_l"><span class="icon_pump"></span> 填写真实姓名 <?php if ($_GET['step'] == 1) { ?>(真实姓名不会公布,别人请求得到您同意后才能查看!)<?php } ?></p>
+    <p class='realfirst_second_else_p'>
     <?php
         if ($_GET['step'] == 1) {
         	echo "<form method='post'>";
             if (!empty($recordUserInfo['realname_re'])) { 
-                echo "<ul><li>已经匹配真实姓名: ".$recordUserInfo['realname']." <a href='".__ROOT__."/user/realnamemf' class='f12'>申请修改</a></li>";
+                echo "已经匹配真实姓名: ".$recordUserInfo['realname']." <a href='".__ROOT__."/user/realnamemf' class='f12'>申请修改</a>";
             } else {
-                echo "<li class='realfirst_first_li'>真实姓名:<input type='text' name='realname' value='".$recordUserInfo['realname']."' /><input type='submit' value='确定' /></li></ul>";
+                echo "真实姓名:<input type='text' name='realname' value='".$recordUserInfo['realname']."' /><input type='submit' value='确定' />";
             }
             echo "</form>";
         } else if ($_GET['step'] == 2) {
-            echo "<p class='realfirst_second_else_p'>请继续填写您的联系方式等信息 <a href='".__ROOT__."/setting'>确定</a></p>";
+            echo "请继续填写您的联系方式等信息 <a href='".__ROOT__."/setting'>确定</a>";
         }
     ?>
+    </p>
 	</div>
     </div>
 <include file="Public:footermobile" />
