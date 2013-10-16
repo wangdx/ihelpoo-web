@@ -44,6 +44,24 @@ $().ready(function(){
 	    		type:'3,3',
 	    		callback : {
 	    			login:function(o){
+	    				$.ajax({
+	    			        type: "POST",
+	    			        url: baseUrl + "user/loginweibo",
+	    			        data: {
+	    			        	"i_w_user_id" : o.id ,
+	    			        	"i_w_user_name" : o.name ,
+	    			        	"i_w_user_sex" : o.gender ,
+	    			        	"i_w_user_description" : o.description
+	    			        },
+	    			        dataType: 'json',
+	    			        success:function(msg){
+	    			            if (msg.status == 'step') {
+									alert(msg.info);
+								} else if (msg.status == 'wrong') {
+									alert(msg.info);
+								}
+	    			        }
+	    			    });
 	    				$(".loginbox_email_bg").hide();
 	    				$(".loginbox_password_bg").hide();
 	    				$("#qqLoginBtn").hide();
