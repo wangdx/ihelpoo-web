@@ -46,6 +46,8 @@ $().ready(function(){
 	    			login:function(o){
 	    				$(".loginbox_email_bg").hide();
 	    				$(".loginbox_password_bg").hide();
+	    				$("#qqLoginBtn").hide();
+	    				$(".loginbox_more").hide();
 	    				$(".loginbox_select").html("<a href='/stream'>进入首页</a>");
 	    				$(".loginbox_submit").slideUp('fast');
 	    				$(".loginbox_weibo_qq").slideDown('fast');
