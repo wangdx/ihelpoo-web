@@ -48,7 +48,7 @@ $().ready(function(){
 	    				$(".loginbox_password_bg").hide();
 	    				$("#qqLoginBtn").hide();
 	    				$(".loginbox_more").hide();
-	    				$(".loginbox_select").html("<a href='/stream'>进入首页</a>");
+	    				$(".loginbox_select").html("<a href='/stream' class='f14'>进入首页</a>");
 	    				$(".loginbox_submit").slideUp('fast');
 	    				$(".loginbox_weibo_qq").slideDown('fast');
 	    				alert("你已经通过微博登录");
