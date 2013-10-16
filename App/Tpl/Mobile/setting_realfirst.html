@@ -17,7 +17,7 @@
     <p class='realfirst_second_else_p'>
     <?php
         if ($_GET['step'] == 1) {
-        	echo "<form method='post'>";
+        	echo "<form method='post' target='_self'>";
             if (!empty($recordUserInfo['realname_re'])) { 
                 echo "已经匹配真实姓名: ".$recordUserInfo['realname']." <a href='".__ROOT__."/user/realnamemf' class='f12'>申请修改</a>";
             } else {
@@ -25,7 +25,7 @@
             }
             echo "</form>";
         } else if ($_GET['step'] == 2) {
-            echo "请继续填写您的联系方式等信息 <a href='".__ROOT__."/setting'>确定</a>";
+            echo "请继续填写您的联系方式等信息 <a href='".__ROOT__."/setting' target='_self'>确定</a>";
         }
     ?>
     </p>
