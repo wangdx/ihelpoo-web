@@ -610,7 +610,11 @@ class SettingAction extends Action
             $UserInfo->save($updateUserInfoReal);
             redirect('/setting/realfirst?step=2', 0, '继续填充...');
         }
-        $this->display();
+        if(i_is_mobile()) {
+        	$this->display('Mobile:setting_realfirst');
+    	} else {
+    		$this->display();
+    	}
     }
 
     public function fillaccount()
