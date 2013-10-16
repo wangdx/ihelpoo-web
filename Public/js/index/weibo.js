@@ -37,5 +37,22 @@ $().ready(function(){
 	    		}
 	    	});
 	    });
+	} else {
+		WB2.anyWhere(function(W){
+	    	W.widget.connectButton({
+	    		id: "wb_connect_btn",
+	    		type:'3,3',
+	    		callback : {
+	    			login:function(o){
+	    				$(".loginbox_weibo_qq").slideDown('fast');
+	    				alert("你已经通过微博登录");
+	    			},
+	    			logout:function(){
+	    			    //退出后的回调函数
+	    				window.location = baseUrl + 'user/quit';
+	    			}
+	    		}
+	    	});
+	    });
 	}
 });
