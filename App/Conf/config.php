@@ -9,7 +9,7 @@ $config = array(
 	'URL_CASE_INSENSITIVE'=>true,
     'URL_HTML_SUFFIX'=>'.html',
     'DB_PREFIX'=>'i_',
-	'TMPL_EXCEPTION_FILE'=>'./App/Tpl/Public/error.html',
+	//'TMPL_EXCEPTION_FILE'=>'./App/Tpl/Public/error.html',
 
 	'MAIL_ADDRESS'=>'info@ihelpoo.com', //email
 	'MAIL_SMTP'=>'smtp.exmail.qq.com',
@@ -26,7 +26,7 @@ $config = array(
 	'VERIFI_RECORD_UNMS'=>'3',
 	'VERIFI_COMMENT_UNMS'=>'60',
 	'VERIFI_COMMENT_TIME'=>'8',
-	//'IMAGE_STORAGE_URL'=>'http://img.ihelpoo.cn',
+	'IMAGE_STORAGE_URL'=>'http://img.ihelpoo.cn',
 );
 
 return array_merge($config,$ooconfig);
