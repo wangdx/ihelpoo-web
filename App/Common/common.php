@@ -490,7 +490,7 @@ function i_page_show($urlstring, $total, $connectionMode = "?")
                 $i++;
             }
             if ($total > 10) {
-                echo "<a href='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' class='s_l_l_a' title='more'>...</a> ";
+                echo "<a href='" . __ROOT__ . "/" . $urlstring . $connectionMode . "p=" . $i . "' class='s_l_l_a'>下一页</a> ";
             }
         } else {
             while ($i <= $total) {
