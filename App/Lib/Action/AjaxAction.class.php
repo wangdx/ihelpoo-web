@@ -594,6 +594,7 @@ class AjaxAction extends Action {
         			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
         			$fh = fopen($imageTmpName, 'rb');
         			$fileName = 'recordsay'.time().'.'.$imageOldNameArray[1];
+        			$fileName = strtolower($fileName);
         			$storageTempFilename = '/useralbum/'.$userloginid.'/'.$fileName;
         			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
         			fclose($fh);
@@ -681,6 +682,7 @@ class AjaxAction extends Action {
         			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
         			$fh = fopen($imageTmpName, 'rb');
         			$fileName = 'talk'.time().'.'.$imageOldNameArray[1];
+        			$fileName = strtolower($fileName);
         			$storageTempFilename = '/useralbum/'.$userloginid.'/'.$fileName;
         			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
         			fclose($fh);
