@@ -45,7 +45,7 @@ $().ready(function(){
 				url: baseUrl + "user/loginqqaajax",
 				data: {
 					"i_qq_user_id" : s.data.data.openid ,
-					"i_qq_user_name" : o.nickname ,
+					"i_qq_user_name" : s.data.data.nickname ,
 					"i_qq_user_sex" : s.data.data.sex ,
 					"i_qq_user_birth_day" : s.data.data.birth_day ,
 					"i_qq_user_birth_month" : s.data.data.birth_month ,
