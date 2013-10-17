@@ -6,8 +6,8 @@ $().ready(function(){
 		});
 		var paras = {};
 		QC.api("get_user_info", paras).success(function(o){
+			alert(o.nickname);
 			QC.api("get_info", paras).success(function(s){
-				alert(o.nickname);
 				/*$.ajax({
 					type: "POST",
 					url: baseUrl + "user/loginqqaajax",
