@@ -1,6 +1,6 @@
 $().ready(function(){
 	var isqqlogin = QC.Login.check();
-	if (!islogin) {
+	if (!isqqlogin) {
 		QC.Login({
 			btnId:"qqLoginBtn" 
 		});
