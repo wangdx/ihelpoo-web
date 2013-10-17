@@ -5,8 +5,8 @@ $().ready(function(){
 			btnId:"qqLoginBtn" 
 		});
 		var paras = {};
-		QC.api("get_user_info", paras).success(function(o){
-			alert(o.nickname);
+		QC.api("get_user_info", paras).success(function(s){
+			alert(s.nickname);
 			QC.api("get_info", paras).success(function(s){
 				/*$.ajax({
 					type: "POST",
