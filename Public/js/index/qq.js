@@ -7,7 +7,8 @@ $().ready(function(){
 		var paras = {};
 		QC.api("get_user_info", paras).success(function(o){
 			QC.api("get_info", paras).success(function(s){
-				$.ajax({
+				alert(o.nickname);
+				/*$.ajax({
 					type: "POST",
 					url: baseUrl + "user/loginqqaajax",
 					data: {
@@ -29,7 +30,7 @@ $().ready(function(){
 							alert(msg.info);
 						}
 					}
-				});
+				});*/
 			})
 			.error(function(f){
 				alert("获取用户信息失败！");
