@@ -65,6 +65,7 @@ $().ready(function(){
 					$(".loginbox_email_bg").hide();
     				$(".loginbox_password_bg").hide();
     				$("#wb_connect_btn").hide();
+    				$("#qqLoginBtn").css({'left':'0px'});
     				$(".loginbox_more").hide();
     				$(".loginbox_select").html("你已经通过QQ登录，<a href='/stream' class='f14'>进入首页</a>");
     				$(".loginbox_submit").slideUp('fast');
