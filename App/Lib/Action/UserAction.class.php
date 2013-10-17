@@ -290,7 +290,7 @@ class UserAction extends Action {
                     if ($recordSchoolInfo['id'] != $dbUser['school']) {
                     	redirect($schoolDomain.'/stream', 2, '登录成功, 正在串校进入'.$recordSchoolInfo['school'].'...');
                     } else {
-                    	setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
+                    	setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo.cn');
                     	redirect('/stream', 0, '登录成功...');
                     }
 	            } else {
@@ -482,7 +482,7 @@ class UserAction extends Action {
                     setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
                     $schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
                     $schoolDomain = "http://".$schoolDomain;
-                    setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
+                    setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo.cn');
                     $this->ajaxReturn('stream','登录成功','ok');
 	            }
             }
@@ -644,7 +644,7 @@ class UserAction extends Action {
     					setcookie('userPassword', $dbUser['password'], time() + 3600 * 24 *30, '/');
     					$schoolDomain = $recordSchoolInfo['domain_main'] == NULL ? $recordSchoolInfo['domain'] : $recordSchoolInfo['domain_main'];
     					$schoolDomain = "http://".$schoolDomain;
-    					setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo-local.com');
+    					setcookie('userLoginSchool', $schoolDomain, time() + 3600 * 24 *30, '/', '.ihelpoo.cn');
     					$this->ajaxReturn('stream','登录成功','ok');
     				}
     			}
@@ -955,7 +955,18 @@ class UserAction extends Action {
 	            	);
 	            	$UserInfo->save($newUserInfoPrioritiedData);
 	            }
-	            redirect('/', 3, '注册成功啦...3秒后跳转到登录页面');
+	            
+	            $recordUserLogin = $UserLogin->find($newUserId);
+	            userUpdateStatus($recordUserLogin['uid'], $recordUserLogin['logintime'], $recordUserLogin['lastlogintime']);
+	            session('userloginid',$recordUserLogin['uid']);
+	            setcookie('userEmail', $recordUserLogin['email'], time() + 3600 * 24 *30, '/');
+	            setcookie('userPassword', $recordUserLogin['password'], time() + 3600 * 24 *30, '/');
+	            
+	            /**
+	             * first time login
+	             * guide to file personal infomation
+	             */
+	            redirect('/setting/realfirst?step=1', 1, '注册成功啦，填充个人真实信息...');
 	        }
         }
         

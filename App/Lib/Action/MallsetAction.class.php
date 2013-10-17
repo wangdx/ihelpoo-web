@@ -141,6 +141,7 @@ class MallsetAction extends Action {
     				$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
     				$fh = fopen($imageTmpName, 'rb');
     				$shoplogoname = 'logo'.$userloginid.time().'.jpg';
+    				$shoplogoname = strtolower($shoplogoname);
     				$storageTempFilename = '/shop/'.$userloginid.'/'.$shoplogoname;
     				$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
     				fclose($fh);
@@ -694,6 +695,7 @@ class MallsetAction extends Action {
         			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
         			$fh = fopen($imageTmpName, 'rb');
         			$shopitemname = 'goodscontent'.time().'.jpg';
+        			$shopitemname = strtolower($shopitemname);
         			$storageTempFilename = '/shop/'.$userloginid.'/'.$shopitemname;
         			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
         			fclose($fh);

@@ -1980,14 +1980,12 @@ class SchooladminAction extends Action {
     			 * new reply
     			 * send msg to rooter
     			 */
-    			$SchoolWebmaster = M("SchoolWebmaster");
-		    	$recordSchoolWebmaster = $SchoolWebmaster->where("sid = $recordDataSuggestion[school_id]")->join('i_user_login ON i_school_webmaster.uid = i_user_login.uid')
-		    	->field("i_user_login.uid,i_user_login.email,i_user_login.nickname")
-		    	->select();
+    			$AdminUser = M("AdminUser");
+		    	$recordAdminUser = $AdminUser->select();
 		    	$emailtitle = "建议回复";
 		    	$emailcontent = "我帮圈圈".$recordSchoolInfo['school']."校园团队回复了用户建议:<br />“".$recordDataSuggestion['suggestion']."”。<br />请内部工作人员对该建议及时回复并做好相关处理工作。<a href='http://".$recordSchoolInfoDomain."/about/suggestion'>详情</a>";;
-		    	foreach ($recordSchoolWebmaster as $schoolWebmaster) {
-		    		i_send($schoolWebmaster['email'], $emailtitle, $emailcontent);
+		    	foreach ($recordAdminUser as $adminUser) {
+		    		i_send($adminUser['email'], $emailtitle, $emailcontent);
 		    	}
 		    	
 		    	if (!empty($recordDataSuggestion['uid'])) {
