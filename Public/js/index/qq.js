@@ -39,6 +39,10 @@ $().ready(function(){
 			alert("获取用户信息失败！");
 		});
 	} else {
+		QC.Login({
+			btnId:"qqLoginBtn" 
+		});
+		var paras = {};
 		QC.api("get_info", paras).success(function(s){
 			$.ajax({
 				type: "POST",
