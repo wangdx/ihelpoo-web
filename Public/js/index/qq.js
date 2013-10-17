@@ -7,13 +7,12 @@ $().ready(function(){
 		var paras = {};
 		QC.api("get_user_info", paras).success(function(o){
 			QC.api("get_info", paras).success(function(s){
-				alert(o.data.nickname);
-				/*$.ajax({
+				$.ajax({
 					type: "POST",
 					url: baseUrl + "user/loginqqaajax",
 					data: {
 						"i_qq_user_id" : s.data.data.openid ,
-						"i_qq_user_name" : o.nickname ,
+						"i_qq_user_name" : o.data.nickname ,
 						"i_qq_user_sex" : s.data.data.sex ,
 						"i_qq_user_birth_day" : s.data.data.birth_day ,
 						"i_qq_user_birth_month" : s.data.data.birth_month ,
@@ -30,7 +29,7 @@ $().ready(function(){
 							alert(msg.info);
 						}
 					}
-				});*/
+				});
 			})
 			.error(function(f){
 				alert("获取用户信息失败！");
