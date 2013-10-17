@@ -426,7 +426,7 @@ class UserAction extends Action {
                  * send account password message.
                  */
                 $TalkContent = M("TalkContent");
-                $postSendContent = '系统为您分配了我帮圈圈登录账号:'.$email.' 密码为:'.$password.'。为方便保证独立账号登录，希望您能及时重新设置账号密码:)';
+                $postSendContent = '系统为您分配了我帮圈圈登录账号:'.$email.' 密码为:'.$password.'。为方便保证独立账号登录，希望您能及时重新设置账号和密码:)';
                 $dataTalkContent = array(
 		            'id' => '',
 		            'uid' => '10000',
@@ -593,7 +593,7 @@ class UserAction extends Action {
 	                 * send account password message.
 	                 */
 	                $TalkContent = M("TalkContent");
-	                $postSendContent = '系统为您分配了我帮圈圈登录账号:'.$email.' 密码为:'.$password.'。为方便保证独立账号登录，希望您能及时重新设置账号密码:)';
+	                $postSendContent = '系统为您分配了我帮圈圈登录账号:'.$email.' 密码为:'.$password.'。为方便保证独立账号登录，希望您能及时重新设置账号和密码:)';
 	                $dataTalkContent = array(
 		                'id' => '',
 		                'uid' => '10000',
