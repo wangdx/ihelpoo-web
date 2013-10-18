@@ -65,7 +65,7 @@ $().ready(function(){
 		} else if (mallset_add_good_nums == '') {
 			alert('商品数目不能为空');
 		} else {
-			$("#add_commodity_button").click();
+			$("#add_commodity_submit").click();
 		}
 	});
 });
