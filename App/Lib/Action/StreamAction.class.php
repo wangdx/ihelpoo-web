@@ -73,7 +73,7 @@ class StreamAction extends Action
                 if (empty($content)) {
                 	$this->ajaxReturn(0, '内容不能为空', 'error');
                 }
-                if (mb_strlen($content,'utf8') > 222) {
+                if (mb_strlen($content,'utf8') > 250) {
                 	$this->ajaxReturn(0, '内容太长了', 'error');
                 }
                 $imageurls = htmlspecialchars(strtolower(trim($_POST["imageurls"])));
