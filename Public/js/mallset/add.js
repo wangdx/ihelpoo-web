@@ -48,4 +48,24 @@ $().ready(function(){
 		        'table', 'hr', 'link', 'unlink']
 		});
 	});
+	
+	$("#add_commodity_button").click(function(){
+		var image = $("#image").val();
+		var mallset_add_name = $("#mallset_add_name").val();
+		var mallset_add_price = $("#mallset_add_price").val();
+		var mallset_add_good_nums = $("#mallset_add_good_nums").val();
+		if (image == '') {
+			alert('商品缩略图不能为空');
+		} else if (mallset_add_name == '') {
+			alert('商品名称不能为空');
+		} else if (mallset_add_price == '') {
+			alert('商品价格不能为空');
+		} else if (isNaN(mallset_add_price)) {
+			alert('商品价格必须是整数');
+		} else if (mallset_add_good_nums == '') {
+			alert('商品数目不能为空');
+		} else {
+			$("#add_commodity_button").submit();
+		}
+	});
 });
