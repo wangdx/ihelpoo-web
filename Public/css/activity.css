@@ -173,7 +173,7 @@
     padding: 5px;
     border: 1px dotted #CCC;
     border-radius: 3px;
-    margin: 0 5px 5px 0;
+    margin: 10px 0;
 }
 *+html .activity_item_join_div_pater_ul li{
     display: inline;
