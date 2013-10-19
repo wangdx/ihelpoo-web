@@ -201,10 +201,13 @@
     top: 10px;
 }
 .activity_item_join_ul_user_p{
-    margin-left: 80px;
+    margin-left: 70px;
 }
 .factivity_item_join_ul_user_info_p{
-    margin-left: 80px;
+    margin-left: 70px;
+}
+.factivity_item_join_ul_user_choose_p{
+    margin-left: 70px;
 }
 
 /*--- itemnotice ---*/
