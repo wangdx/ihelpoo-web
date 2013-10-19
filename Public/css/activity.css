@@ -226,6 +226,9 @@
     font-size: 12px;
     color: #A8A8A8;
 }
+.activity_item_join_ul_user_info_p .btn{
+    color: #6CCACD;
+}
 .activity_item_join_ul_time_span{
     position: absolute;
     right: 10px;
@@ -253,7 +256,7 @@
     margin-right: 10px;
 }
 .activity_partner_btn{
-    background: none repeat scroll 0 0 #15B6D7;
+    background: none repeat scroll 0 0 #6CCACD;
     border-radius: 5px 5px 5px 5px;
     color: #FFFFFF;
     padding: 10px 50px;
