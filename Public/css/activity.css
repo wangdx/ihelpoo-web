@@ -172,7 +172,9 @@
 }
 .activity_item_join_ul li{
     padding: 10px;
-    border-bottom: 1px solid #EEE;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+    background: #F5F5F5;
 }
 .activity_item_join_div_pater_ul{
     margin: 10px 0;
@@ -183,7 +185,6 @@
     border: 1px dotted #CCC;
     border-radius: 3px;
     margin: 0 5px 5px 0;
-    position: relative;
 }
 *+html .activity_item_join_div_pater_ul li{
     display: inline;
@@ -191,8 +192,16 @@
 *html .activity_item_join_div_pater_ul li{
     display: inline;
 }
+.activity_item_join_ul_user_img_a{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
 .activity_item_join_ul_user_p{
-    
+    margin-left: 80px;
+}
+.factivity_item_join_ul_user_info_p{
+    margin-left: 80px;
 }
 
 /*--- itemnotice ---*/
