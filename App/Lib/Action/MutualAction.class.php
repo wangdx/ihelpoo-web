@@ -116,6 +116,7 @@ class MutualAction extends Action
             );
             $isShieldDataInserted = $UserPriority->add($shieldInsertData);
             
+            $MsgActive = M("MsgActive");
             $handleUserLogin = $UserLogin->find($userloginid);
             $msgActiveArray = array(
 	            'id' => '',
@@ -140,7 +141,6 @@ class MutualAction extends Action
 	            /**
 	             * msg active
 	             */
-	            $MsgActive = M("MsgActive");
 	            $alreadyMinActive = $MsgActive->where("uid = $shieldUid AND way = 'min'")->order('time DESC')->find();
 	            if (empty($alreadyMinActive['id']) || (time() - $alreadyMinActive['time'] > 86400)) {
 	                $msgActiveArray = array(
