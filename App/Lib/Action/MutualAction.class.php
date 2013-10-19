@@ -132,7 +132,7 @@ class MutualAction extends Action
             
             $handleUserLoginData = array(
 	            'uid' => $userloginid,
-	            'acitve' => $handleUserLogin['active'] - 3,
+	            'active' => $handleUserLogin['active'] - 3,
             );
             $UserLogin->save($handleUserLoginData);
 
@@ -163,7 +163,7 @@ class MutualAction extends Action
 	                
 	                $userLoginData = array(
 	                	'uid' => $shieldUid,
-	                	'acitve' => $userLogin['active'] - 5,
+	                	'active' => $userLogin['active'] - 5,
 	                );
 	                $UserLogin->save($userLoginData);
 	            }
