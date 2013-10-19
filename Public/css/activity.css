@@ -173,6 +173,9 @@
 }
 .activity_item_join_div{
 }
+.activity_item_join_div_info_p{
+    margin-top: 15px;
+}
 .activity_item_join_div_pater_ul{
     margin: 10px 0;
     padding: 10px;
@@ -183,9 +186,9 @@
 .activity_item_join_div_pater_ul li{
     display: inline-block;
     padding: 5px;
-    border: 1px dotted #CCC;
+    border: 1px solid #EEE;
     border-radius: 3px;
-    margin: 0 6px 6px 0;
+    margin: 0 7px 7px 0;
     background-color: #FFF;
 }
 *+html .activity_item_join_div_pater_ul li{

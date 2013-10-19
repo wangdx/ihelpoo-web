@@ -85,7 +85,7 @@
 	<?php if (!empty($recordsActivityUser)) { ?>
 	<div class="activity_item_join_div">
 		<?php if ($recordActivityItem['run_type'] == '2' && !empty($parterUserArray)) { ?>
-		<p class="f12"><span class="icon_heart"></span> 已经拥有Partner :)</p>
+		<p class="activity_item_join_div_info_p"><span class="icon_heart"></span> 已经拥有Partner :)</p>
 		<ul class="activity_item_join_div_pater_ul">
 			<?php foreach ($parterUserArray as $parterUser) { ?>
 			<?php $uidUserLogin = $UserLogin->find($parterUser['uid']); ?>
@@ -101,7 +101,7 @@
 			<?php } ?>
 		</ul>
 		<?php } ?>
-		<p class="f12"><span class="icon_pump"></span> 他们参加了这个活动，快来加入吧 :)</p>
+		<p class="activity_item_join_div_info_p"><span class="icon_pump"></span> 他们参加了这个活动，快来加入吧 :)</p>
 		<ul class="activity_item_join_ul">
 		<?php foreach ($recordsActivityUser as $activityUser) { ?>
 			<li>
