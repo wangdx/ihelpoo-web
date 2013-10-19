@@ -160,6 +160,9 @@
     padding: 8px 10px;
 }
 .activity_item_ul_subject_div{
+    padding: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #EEE;
 }
 .activity_item_ul_subject_div_p{
     margin: 10px 0;
