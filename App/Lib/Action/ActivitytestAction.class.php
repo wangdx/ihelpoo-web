@@ -652,11 +652,11 @@ class ActivitytestAction extends Action {
     		}
     		$lotterydrawActivityUser = array_rand($recordsActivityUser,$usernumbers);
     		if (is_int($lotterydrawActivityUser)) {
-    			$userids = "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawActivityUser]['uid']."'>".$recordsActivityUser[$lotterydrawActivityUser]['nickname']."</a>";
+    			$userids = "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawActivityUser]['uid']."' class='getuserinfo'>".$recordsActivityUser[$lotterydrawActivityUser]['nickname']."</a>";
     		} else {
     			$userids = NULL;
 	    		foreach ($lotterydrawActivityUser as $lotterydrawid){
-	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
+	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."' class='getuserinfo'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
 	    		}
     		}
 
