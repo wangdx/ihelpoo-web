@@ -9,7 +9,7 @@
 </script>
 <?php }?>
 <?php if ($recordActivityItem['run_type'] == '2' ) { $UserLogin = M("UserLogin"); } ?>
-<link href="http://static.ihelpoo.cn/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
 	<ul class="activity_nav_ul">
 		<li><a href="__ROOT__/activity">活动首页</a></li>
@@ -100,14 +100,15 @@
 			<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>" >
 			    <img src="<?php echo i_icon_check($activityUser['uid'], $activityUser['icon_url'], 's'); ?>" height="40" class="i_c_l_u_li_img radius3" />
 			</a>
-			<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>"><?php echo $activityUser['nickname']; ?> <span class="sex<?php echo $activityUser['sex'] ?>"></span></a>
+			<p class="activity_item_join_ul_user_p">
+				<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>"><?php echo $activityUser['nickname']; ?> <span class="sex<?php echo $activityUser['sex'] ?>"></span></a>
+				<span class="f12 gray">
+					(<a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="真实联系方式" class="f12">联系方式</a> | <a href="__ROOT__/talk/to/<?php echo $activityUser['uid']; ?>" class="悄悄话聊天" class="f12">悄悄话</a>)
+				</span>
+			</p>
 			<span class="f12 gray">
-				(<a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="真实联系方式" class="f12">联系方式</a> | <a href="__ROOT__/talk/to/<?php echo $activityUser['uid']; ?>" class="悄悄话聊天" class="f12">悄悄话</a>)
-			</span>
-			<span class="f12 gray">
-			<?php
-			 if ($recordActivityItem['run_type'] == '2' ) {
-			 if ($activityUser['invite_status'] == '1') { ?>
+			<?php if ($recordActivityItem['run_type'] == '2' ) { ?>
+			<?php if ($activityUser['invite_status'] == '1') { ?>
 				<span class="icon_pump"></span>已收到Partner邀请
 			<?php } else if ($activityUser['invite_status'] == '2') { ?>
 				<span class="icon_right"></span>已有Partner
@@ -119,7 +120,7 @@
 				<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
 			<?php } else { ?>
 				<?php if ($activityUser['invite_status'] != 2) { ?>
-				<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=select&parter=<?php echo $activityUser['uid']; ?>&nickname=<?php echo $activityUser['nickname']; ?>">选他为Partner</a>
+				<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=select&parter=<?php echo $activityUser['uid']; ?>&nickname=<?php echo $activityUser['nickname']; ?>" class="btn f12">选他为Partner</a>
 				<?php } ?>
 			<?php } ?>
 			<?php } ?>

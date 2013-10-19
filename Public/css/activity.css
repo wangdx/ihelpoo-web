@@ -182,12 +182,17 @@
     padding: 5px;
     border: 1px dotted #CCC;
     border-radius: 3px;
+    margin: 0 5px 5px 0;
+    position: relative;
 }
 *+html .activity_item_join_div_pater_ul li{
     display: inline;
 }
 *html .activity_item_join_div_pater_ul li{
     display: inline;
+}
+.activity_item_join_ul_user_p{
+    
 }
 
 /*--- itemnotice ---*/
