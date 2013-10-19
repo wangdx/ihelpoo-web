@@ -154,13 +154,14 @@
     margin: 15px 0;
 }
 .activity_item_ul li{
-    padding: 5px;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    margin: 10px 0;
+    padding: 8px 10px;
 }
 .activity_item_ul_content_div{
-    padding: 10px;
-    border: 1px dotted #BBB;
-    margin: 5px 0;
-    line-height: 150%;
+    line-height: 130%;
+    margin: 20px;
 }
 .activity_item_join_div{
     padding: 5px;
