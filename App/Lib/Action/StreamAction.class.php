@@ -559,6 +559,7 @@ class StreamAction extends Action
             $this->assign('specialtyId', $specialtyId);
             $this->assign('academyId', $recordOpSpecialty['academy']);
         } else if ($requestWay == "grade") {
+        	$number = (int)trim($_GET["_URL_"][3]);
         	$thisyear = getdate();
         	if ($thisyear['mon'] > 8) {
         		$num = $thisyear['year'] - $number + 1;
