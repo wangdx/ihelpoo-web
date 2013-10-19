@@ -47,6 +47,19 @@
 	</div>
 	<?php } ?>
 	
+	<?php if ($_GET['action'] == 'selectrandom') { ?>
+	<div class="activity_item_notive">
+		<p>你将请求随机与一位同学成为Parter</p>
+		<p>1. 只能随机挑选一人为Parter，系统随机匹配，不准反悔哦，确定即视作你将放弃与其他参与者成为Parter的机会</p>
+		<p>2. 等待对方同意，如果同意则你们成为此次活动的Parter，如果对方拒绝你可以再请求与其他参与者成为Parter</p>
+		<p></p>
+		<p>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandomsure" class="btn_red f12 system_notice">确定</a>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
+		</p>
+	</div>
+	<?php } ?>
+	
 	<ul class="activity_item_ul">
 		<?php if ($recordActivityItem['status'] == 0) { ?>
 			<li class="f12 red"><span class="icon_pump"></span> 状态:等待审核</li>
@@ -82,7 +95,7 @@
 		<div class="activity_item_btn_div">
 			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn activity_join_btn">我要参加</a>
 			<?php if ($recordActivityItem['run_type'] == '2') { ?>
-			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn activity_partner_btn">随机选Partner</a>
+			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandom" class="btn activity_partner_btn">随机选Partner</a>
 			<?php } ?>
 			<a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn activity_comment_btn">评论互动</a>
 		</div>
