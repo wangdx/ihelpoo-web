@@ -170,6 +170,7 @@
     padding: 10px;
     border: 1px solid #EEE;
     border-radius: 5px;
+    background: #F5F5F5;
 }
 .activity_item_join_div_pater_ul li{
     display: inline-block;
@@ -177,6 +178,7 @@
     border: 1px dotted #CCC;
     border-radius: 3px;
     margin: 0 5px 5px 0;
+    background-color: #FFF;
 }
 *+html .activity_item_join_div_pater_ul li{
     display: inline;
