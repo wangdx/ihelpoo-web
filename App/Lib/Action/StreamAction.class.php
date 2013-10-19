@@ -574,6 +574,7 @@ class StreamAction extends Action
             }
             $select->order('i_record_say.last_comment_ti DESC');
             $streamway = "grade";
+            $this->assign('gradeNum', $number);
         } else {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
@@ -876,6 +877,7 @@ class StreamAction extends Action
             }
             $select->order('i_record_say.last_comment_ti DESC');
             $streamway = "grade";
+            $this->assign('gradeNum', $number);
         } else {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
