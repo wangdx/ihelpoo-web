@@ -54,13 +54,13 @@
 			<li class="f12 red"><span class="icon_attention"></span> 状态:审核未通过</li>
 		<?php } ?>
 		<li>
-			<span class="">主&#12288;&#12288;题:</span> <?php echo $recordActivityItem['subject']; ?>
+			<span class="">主&#12288;&#12288;题:</span> <span class="f16 black fb"><?php echo $recordActivityItem['subject']; ?></span>
 			<?php if ($userloginedrecord['uid'] == $recordActivityItem['sponsor_uid']) { ?>
-				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>" title="给活动参与者发布通知">发布通知</a> 
+				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>" title="给活动参与者发布通知" class="fr">发布通知</a> 
 			<?php } else { ?>
-				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>">查看活动通知</a> 
+				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>" class="fr">查看活动通知</a> 
 			<?php } ?>
-			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>">抽奖</a>
+			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>" class="fr">抽奖</a>
 		</li>
 		<li>
 			<span class="">主&#12288;&#12288;办:</span> <a href="__ROOT__/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
