@@ -159,6 +159,11 @@
     margin: 10px 0;
     padding: 8px 10px;
 }
+.activity_item_ul_subject_div{
+}
+.activity_item_ul_subject_div_p{
+    margin: 10px 0;
+}
 .activity_item_ul_content_div{
     line-height: 130%;
     margin: 10px;

@@ -54,7 +54,7 @@
 			<li class="f12 red"><span class="icon_attention"></span> 状态:审核未通过</li>
 		<?php } ?>
 		<li>
-			<span class="">主&#12288;&#12288;题:</span> <span class="f16 black fb"><?php echo $recordActivityItem['subject']; ?></span>
+			<span class="f16 black fb"><?php echo $recordActivityItem['subject']; ?></span>
 			<span class="fr">
 			<?php if ($userloginedrecord['uid'] == $recordActivityItem['sponsor_uid']) { ?>
 				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>" title="给活动参与者发布通知">发布通知</a> 
@@ -63,13 +63,19 @@
 			<?php } ?>
 			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>">抽奖</a>
 			</span>
+			<div class="activity_item_ul_subject_div">
+				<p class="activity_item_ul_subject_div_p">
+					<span class="">主&#12288;&#12288;办:</span> <a href="__ROOT__/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="getuserinfo" userid="<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
+					<a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
+				</p>
+				<p>
+					<span class="">活动时间:</span> <span class="black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span> <span class="blue fb">星期<?php echo date('N', $recordActivityItem['activity_ti']); ?></span>
+				</p>
+				<p>
+					<span class="">参加人数:</span> <span class="f14 orange"><?php echo $recordActivityItem['join_num']; ?></span> <span class="f12 gray">(人气<?php echo $recordActivityItem['hit']; ?>)</span>
+				</p>
+			</div>	
 		</li>
-		<li>
-			<span class="">主&#12288;&#12288;办:</span> <a href="__ROOT__/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="getuserinfo" userid="<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
-			<a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
-		</li>
-		<li><span class="">活动时间:</span> <span class="black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span> <span class="blue fb">星期<?php echo date('N', $recordActivityItem['activity_ti']); ?></span></li>
-		<li><span class="">参加人数:</span> <span class="f14 orange"><?php echo $recordActivityItem['join_num']; ?></span> <span class="f12 gray">(人气<?php echo $recordActivityItem['hit']; ?>)</span></li>
 		<li><div class="activity_item_ul_content_div"><?php echo stripslashes($recordActivityItem['content']); ?></div></li>
 		<?php if (empty($_GET['action'])) { ?>
 		<li><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn f12">我要参加</a> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn f12">评论</a></li>
