@@ -108,20 +108,20 @@
 			</p>
 			<p class="factivity_item_join_ul_user_info_p">
 				<?php if ($recordActivityItem['run_type'] == '2' ) { ?>
-					<?php if ($activityUser['uid'] == $userloginedrecord['uid']) { ?>
-						<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
-					<?php } else { ?>
-						<?php if ($activityUser['invite_status'] != 2) { ?>
-						<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=select&parter=<?php echo $activityUser['uid']; ?>&nickname=<?php echo $activityUser['nickname']; ?>" class="btn f12">选他为Partner</a>
-						<?php } ?>
-					<?php } ?>
-					
 					<?php if ($activityUser['invite_status'] == '1') { ?>
 						<span class="icon_pump"></span>已收到Partner邀请
 					<?php } else if ($activityUser['invite_status'] == '2') { ?>
 						<span class="icon_right"></span>已有Partner
 					<?php } else { ?>
 						<span class="icon_heart"></span>等待此次活动Partner 
+					<?php } ?>
+					
+					<?php if ($activityUser['uid'] == $userloginedrecord['uid']) { ?>
+						<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
+					<?php } else { ?>
+						<?php if ($activityUser['invite_status'] != 2) { ?>
+						<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=select&parter=<?php echo $activityUser['uid']; ?>&nickname=<?php echo $activityUser['nickname']; ?>" class="btn f12">选ta为Partner</a>
+						<?php } ?>
 					<?php } ?>
 				<?php } ?>
 			</p>
