@@ -211,6 +211,7 @@
     background: #F5F5F5;
     position: relative;
     margin: 10px;
+    min-height: 40px;
 }
 .activity_item_join_ul_user_img_a{
     position: absolute;
