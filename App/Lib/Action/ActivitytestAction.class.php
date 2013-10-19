@@ -6,7 +6,7 @@
  * @email admin@tvery.com 121670155@qq.com
  *
  */
-class ActivityAction extends Action {
+class ActivitytestAction extends Action {
 
     protected function _initialize()
     {
