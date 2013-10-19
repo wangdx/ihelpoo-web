@@ -314,6 +314,9 @@
     padding: 5px;
     border-bottom: 1px dotted #DDD;
 }
+.activity_itemnotice_list_div_ul li a{
+    margin-right: 10px;
+}
 .activity_itemnotice_userlist_div{
     margin: 20px 0px;
     border: 1px solid #DDD;
