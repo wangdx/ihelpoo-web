@@ -242,6 +242,12 @@
     color: #FFFFFF;
     padding: 10px 50px;
 }
+.activity_comment_btn{
+    background: none repeat scroll 0 0 #CCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    padding: 10px 50px;
+}
 
 /*--- itemnotice ---*/
 .activity_itemnotice_info_div{
