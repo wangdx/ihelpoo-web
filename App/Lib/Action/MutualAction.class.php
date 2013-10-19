@@ -115,12 +115,24 @@ class MutualAction extends Action
                 'time' => time(),
             );
             $isShieldDataInserted = $UserPriority->add($shieldInsertData);
+            
+            $msgActiveArray = array(
+	            'id' => '',
+	            'uid' => $userloginid,
+	            'total' => $userLogin['active'],
+	            'change' => 5,
+	            'way' => 'min',
+	            'reason' => '屏蔽他人，消耗活跃5',
+	            'time' => time(),
+	            'deliver' => 0,
+            );
+            $MsgActive->add($msgActiveArray);
 
             /**
              * send system message to prioritied user
              */
             $alreadyShieldNums = $UserPriority->where("sid = $shieldUid")->count();
-            if ($alreadyShieldNums >= 2) {
+            if ($alreadyShieldNums >= 3) {
             	//TODO bounce notice message
 	            i_savenotice('10000', $shieldUid, 'mutual/shield', '');
 	
@@ -143,7 +155,7 @@ class MutualAction extends Action
 	                $MsgActive->add($msgActiveArray);
 	            }
             }
-            redirect('/wo/' . $shieldUid, 3, '屏蔽成功，3秒后页面跳转');
+            redirect('/wo/' . $shieldUid, 3, '屏蔽成功，您自己也消耗了5活跃，3秒后页面跳转');
         }
         $this->display();
     }
