@@ -83,11 +83,11 @@
 			<?php $uidUserLogin = $UserLogin->find($parterUser['uid']); ?>
 			<?php $partneruidUserLogin = $UserLogin->find($parterUser['partner_uid']); ?>
 			<li>
-				<a href="__ROOT__/wo/<?php echo $uidUserLogin['uid']; ?>">
+				<a href="__ROOT__/wo/<?php echo $uidUserLogin['uid']; ?>" class="getuserinfo" userid="<?php echo $uidUserLogin['uid']; ?>">
 					<img src="<?php echo i_icon_check($uidUserLogin['uid'], $uidUserLogin['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" title="<?php echo $uidUserLogin['nickname']; ?>" />
 				</a>
 				<span class="icon_plus"></span>
-				<a href="__ROOT__/wo/<?php echo $partneruidUserLogin['uid']; ?>">
+				<a href="__ROOT__/wo/<?php echo $partneruidUserLogin['uid']; ?>" class="getuserinfo" userid="<?php echo $partneruidUserLogin['uid']; ?>">
 					<img src="<?php echo i_icon_check($partneruidUserLogin['uid'], $partneruidUserLogin['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" title="<?php echo $partneruidUserLogin['nickname']; ?>" />
 				</a>
 			<?php } ?>
