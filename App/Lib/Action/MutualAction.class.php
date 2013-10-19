@@ -129,6 +129,12 @@ class MutualAction extends Action
 	            'deliver' => 0,
             );
             $MsgActive->add($msgActiveArray);
+            
+            $handleUserLoginData = array(
+	            'uid' => $userloginid,
+	            'acitve' => $handleUserLogin['active'] - 3,
+            );
+            $UserLogin->save($handleUserLoginData);
 
             /**
              * send system message to prioritied user
@@ -154,6 +160,12 @@ class MutualAction extends Action
 	                    'deliver' => 0,
 	                );
 	                $MsgActive->add($msgActiveArray);
+	                
+	                $userLoginData = array(
+	                	'uid' => $shieldUid,
+	                	'acitve' => $userLogin['active'] - 5,
+	                );
+	                $UserLogin->save($userLoginData);
 	            }
             }
             redirect('/wo/' . $shieldUid, 3, '屏蔽成功，您自己也消耗了3活跃，3秒后页面跳转');
