@@ -61,7 +61,7 @@ class MutualAction extends Action
             $userBeShielded = $UserPriority->where("sid = $userloginid")->count();
             $this->assign('beShieldedNums', $userBeShielded);
         } else {
-            $IUserLogin = D("IUserLogin");
+            $UserLogin = M("UserLogin");
 
             /**
              * operational part ; insert & delete shield data
@@ -70,7 +70,7 @@ class MutualAction extends Action
             if (empty($shieldUid)) {
                 redirect('/wo', 3, 'shield uid arguement is NULL');
             }
-            $userLogin = $IUserLogin->userExists($shieldUid);
+            $userLogin = $UserLogin->find($shieldUid);
             if (empty($userLogin)) {
                 redirect('/wo', 3, 'user is not exist');
             }
@@ -116,13 +116,14 @@ class MutualAction extends Action
             );
             $isShieldDataInserted = $UserPriority->add($shieldInsertData);
             
+            $handleUserLogin = $UserLogin->find($userloginid);
             $msgActiveArray = array(
 	            'id' => '',
 	            'uid' => $userloginid,
-	            'total' => $userLogin['active'],
-	            'change' => 5,
+	            'total' => $handleUserLogin['active'],
+	            'change' => 3,
 	            'way' => 'min',
-	            'reason' => '屏蔽他人，消耗活跃5',
+	            'reason' => '屏蔽他人，消耗3活跃',
 	            'time' => time(),
 	            'deliver' => 0,
             );
@@ -132,7 +133,7 @@ class MutualAction extends Action
              * send system message to prioritied user
              */
             $alreadyShieldNums = $UserPriority->where("sid = $shieldUid")->count();
-            if ($alreadyShieldNums >= 3) {
+            if ($alreadyShieldNums >= 2) {
             	//TODO bounce notice message
 	            i_savenotice('10000', $shieldUid, 'mutual/shield', '');
 	
@@ -148,14 +149,14 @@ class MutualAction extends Action
 	                    'total' => $userLogin['active'],
 	                    'change' => 5,
 	                    'way' => 'min',
-	                    'reason' => '被人屏蔽了，请注意言行，被扣除5活跃 (每天最多扣5活跃)',
+	                    'reason' => '被人屏蔽了，被扣除5活跃 (每天最多扣5活跃)',
 	                    'time' => time(),
 	                    'deliver' => 0,
 	                );
 	                $MsgActive->add($msgActiveArray);
 	            }
             }
-            redirect('/wo/' . $shieldUid, 3, '屏蔽成功，您自己也消耗了5活跃，3秒后页面跳转');
+            redirect('/wo/' . $shieldUid, 3, '屏蔽成功，您自己也消耗了3活跃，3秒后页面跳转');
         }
         $this->display();
     }
