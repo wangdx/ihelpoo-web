@@ -566,12 +566,21 @@ class StreamAction extends Action
         	} else {
         		$num = $thisyear['year'] - $number;
         	}
-            if (!empty($sidString)) {
-                $sidString = substr($sidString, 0, -1);
-                $select->where("i_user_login.enteryear = $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
-            } else {
-                $select->where("i_user_login.enteryear = $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
-            }
+        	if ($number == 5) {
+	            if (!empty($sidString)) {
+	                $sidString = substr($sidString, 0, -1);
+	                $select->where("i_user_login.enteryear <= $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            } else {
+	                $select->where("i_user_login.enteryear <= $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            }
+        	} else {
+        		if (!empty($sidString)) {
+	                $sidString = substr($sidString, 0, -1);
+	                $select->where("i_user_login.enteryear = $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            } else {
+	                $select->where("i_user_login.enteryear = $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            }
+        	}
             $select->order('i_record_say.last_comment_ti DESC');
             $streamway = "grade";
             $this->assign('gradeNum', $number);
@@ -869,12 +878,21 @@ class StreamAction extends Action
         	} else {
         		$num = $thisyear['year'] - $number;
         	}
-            if (!empty($sidString)) {
-                $sidString = substr($sidString, 0, -1);
-                $select->where("i_user_login.enteryear = $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
-            } else {
-                $select->where("i_user_login.enteryear = $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
-            }
+        	if ($number == 5) {
+	            if (!empty($sidString)) {
+	                $sidString = substr($sidString, 0, -1);
+	                $select->where("i_user_login.enteryear <= $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            } else {
+	                $select->where("i_user_login.enteryear <= $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            }
+        	} else {
+        		if (!empty($sidString)) {
+	                $sidString = substr($sidString, 0, -1);
+	                $select->where("i_user_login.enteryear = $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            } else {
+	                $select->where("i_user_login.enteryear = $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+	            }
+        	}
             $select->order('i_record_say.last_comment_ti DESC');
             $streamway = "grade";
             $this->assign('gradeNum', $number);
