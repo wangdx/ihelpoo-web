@@ -428,6 +428,8 @@ class StreamAction extends Action
             $requestWay = "group";
         } else if (preg_match("/index\/specialty/iUs", $_SERVER["REQUEST_URI"])) {
             $requestWay = "specialty";
+        } else if (preg_match("/index\/grade/iUs", $_SERVER["REQUEST_URI"])) {
+            $requestWay = "grade";
         } else {
             $requestWay = "default";
         }
@@ -556,6 +558,21 @@ class StreamAction extends Action
             $this->assign('specialtyName', $recordOpSpecialty['name']);
             $this->assign('specialtyId', $specialtyId);
             $this->assign('academyId', $recordOpSpecialty['academy']);
+        } else if ($requestWay == "grade") {
+        	$thisyear = getdate();
+        	if ($thisyear['mon'] > 8) {
+        		$num = $thisyear['year'] - $number + 1;
+        	} else {
+        		$num = $thisyear['year'] - $number;
+        	}
+            if (!empty($sidString)) {
+                $sidString = substr($sidString, 0, -1);
+                $select->where("i_user_login.enteryear = $num AND i_record_say.uid NOT IN ($sidString) AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            } else {
+                $select->where("i_user_login.enteryear = $num AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
+            }
+            $select->order('i_record_say.last_comment_ti DESC');
+            $streamway = "grade";
         } else {
             if (!empty($sidString)) {
                 $sidString = substr($sidString, 0, -1);
