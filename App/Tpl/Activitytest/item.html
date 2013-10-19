@@ -67,7 +67,7 @@
 			<a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
 		</li>
 		<li><span class="black_l">活动时间:</span> <span class="black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?></span> <span class="blue fb">星期<?php echo date('N', $recordActivityItem['activity_ti']); ?></span></li>
-		<li><span class="black_l">参加人数:</span> <span class="f14 orange"><?php echo $recordActivityItem['join_num']; ?></span> <span class="f12 gray">人气:<?php echo $recordActivityItem['hit']; ?></span></li>
+		<li><span class="black_l">参加人数:</span> <span class="f14 orange"><?php echo $recordActivityItem['join_num']; ?></span> <span class="f12 gray">(人气<?php echo $recordActivityItem['hit']; ?>)</span></li>
 		<li><div class="activity_item_ul_content_div"><?php echo stripslashes($recordActivityItem['content']); ?></div></li>
 		<?php if (empty($_GET['action'])) { ?>
 		<li><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn f12">我要参加</a> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn f12">评论</a></li>
