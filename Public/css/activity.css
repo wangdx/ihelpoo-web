@@ -165,17 +165,6 @@
 .activity_item_join_div{
     padding: 5px;
 }
-.activity_item_join_ul{
-    border: 1px solid #DDD;
-    border-radius: 3px;
-    margin: 10px 0;
-}
-.activity_item_join_ul li{
-    padding: 10px;
-    border: 1px solid #EEE;
-    border-radius: 5px;
-    background: #F5F5F5;
-}
 .activity_item_join_div_pater_ul{
     margin: 10px 0;
 }
@@ -191,6 +180,19 @@
 }
 *html .activity_item_join_div_pater_ul li{
     display: inline;
+}
+
+.activity_item_join_ul{
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    margin: 10px 0;
+}
+.activity_item_join_ul li{
+    padding: 10px;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+    background: #F5F5F5;
+    position: relative;
 }
 .activity_item_join_ul_user_img_a{
     position: absolute;
