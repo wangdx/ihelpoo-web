@@ -78,7 +78,7 @@
 		</li>
 		<li><div class="activity_item_ul_content_div"><?php echo stripslashes($recordActivityItem['content']); ?></div></li>
 		<?php if (empty($_GET['action'])) { ?>
-		<li><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn f12">我要参加</a> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn f12">评论</a></li>
+		<li><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="activity_join_btn">我要参加</a> <a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn activity_comment_btn f12">评论互动</a></li>
 		<?php } ?>
 	</ul>
 	
