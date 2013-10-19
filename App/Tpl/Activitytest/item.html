@@ -106,7 +106,7 @@
 					(<a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="真实联系方式" class="f12">联系方式</a> | <a href="__ROOT__/talk/to/<?php echo $activityUser['uid']; ?>" class="悄悄话聊天" class="f12">悄悄话</a>)
 				</span>
 			</p>
-			<p class="factivity_item_join_ul_user_info_p">
+			<p class="activity_item_join_ul_user_info_p">
 				<?php if ($recordActivityItem['run_type'] == '2' ) { ?>
 					<?php if ($activityUser['invite_status'] == '1') { ?>
 						<span class="icon_pump"></span>已收到Partner邀请
@@ -125,7 +125,7 @@
 					<?php } ?>
 				<?php } ?>
 			</p>
-			<span class="gray f12 fr"><?php echo i_time($activityUser['time']); ?></span>
+			<span class="activity_item_join_ul_time_span"><?php echo i_time($activityUser['time']); ?></span>
 			</li>
 		<?php } ?>
 		</ul>
