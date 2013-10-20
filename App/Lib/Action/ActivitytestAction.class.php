@@ -146,6 +146,111 @@ class ActivitytestAction extends Action {
 
     	$this->display();
     }
+    
+    /**
+     *
+     * Ajax action, build for kindediter
+     * upload image file
+     */
+    public function addupload()
+    {
+    	$userloginid = session('userloginid');
+    	$UserAlbum = M("UserAlbum");
+    	if ($this->isPost()) {
+
+    		/**
+    		 * album default size controll
+    		 */
+    		$totalAlbumSize = $UserAlbum->where("uid = $userloginid")->sum('size');
+    		$UserLogin = M("UserLogin");
+    		$recordUserLogin = $UserLogin->find($userloginid);
+    		$userLevel = i_degree($recordUserLogin['active']);
+    		$totalAlbumDefaultSize = i_configure_album_size($userLevel);
+    		if ($totalAlbumSize >= $totalAlbumDefaultSize) {
+    			$this->ajaxReturn(0,'相册容量不够了,请联系我帮圈圈扩容','error');
+    		}
+
+    		if (!empty($_FILES["imgFile"])) {
+        		if ($_FILES["imgFile"]["error"] > 0) {
+        			$this->ajaxReturn(0,'上传图片失败, info'.$_FILES["imgFile"]["error"],'error');
+        			$data['message'] = '上传图片失败, info'.$_FILES["imgFile"]["error"];
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+        		} else {
+        			$imageOldName = $_FILES["imgFile"]["name"];
+        			$imageType = $_FILES["imgFile"]["type"];
+        			$imageType = trim($imageType);
+        			$imageSize = $_FILES["imgFile"]["size"];
+        			$imageTmpName = $_FILES["imgFile"]["tmp_name"];
+        		}
+
+        		$tempRealSize = getimagesize($_FILES["imgFile"]["tmp_name"]);
+    			$imageRealWidth = $tempRealSize['0'];
+    			$imageRealHeight = $tempRealSize['1'];
+    			if ($imageRealWidth < 10 || $imageRealHeight < 10 ) {
+    				$data['message'] = '上传图片也太小了吧';
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+    			}
+        		if ($imageSize > 2670016) {
+        			$data['message'] = '上传图片太大, 最大能上传单张 2.5MB';
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+        		}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
+        			
+        			/**
+        			 * storage in upyun
+        			 */
+        			Vendor('Ihelpoo.Upyun');
+        			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        			$fh = fopen($imageTmpName, 'rb');
+        			$activityitem = 'item'.time().'.jpg';
+        			$activityitem = strtolower($activityitem);
+        			$storageTempFilename = '/activity/'.$userloginid.'/'.$activityitem;
+        			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
+        			fclose($fh);
+        			$imageStorageUrl = image_storage_url();
+        			$newfilepath = $imageStorageUrl.$storageTempFilename;
+
+        			$opts = array(
+        			UpYun::X_GMKERL_TYPE    => 'fix_max',
+        			UpYun::X_GMKERL_VALUE   => 150,
+        			UpYun::X_GMKERL_QUALITY => 95,
+        			UpYun::X_GMKERL_UNSHARP => True
+        			);
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageThumbTempFilename = '/activity/'.$userloginid.'/thumb_'.$activityitem;
+        			$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
+        			fclose($fh);
+        			 
+        			/**
+        			 * insert into i_user_album
+        			 * 5 for activity
+        			 */
+        			$newAlbumIconData = array(
+        				'uid' => $userloginid,
+        				'type' => 5,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'time' => time()
+        			);
+        			$UserAlbum->add($newAlbumIconData);
+
+        			/**
+        			 * ajax return
+        			 */
+        			$data['url'] = $newfilepath;
+        			$data['error'] = 0;
+        			$this->ajaxReturn($data,'JSON');
+        		} else {
+        			$data['message'] = '上传图片格式错误, 目前仅支持.jpg .png .gif';
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+        		}
+        		exit();
+        	}
+        }
+    }
 
 	public function item()
     {

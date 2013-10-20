@@ -682,8 +682,8 @@ class MallsetAction extends Action {
         			$data['error'] = 1;
         			$this->ajaxReturn($data,'JSON');
     			}
-        		if ($imageSize > 3670016) {
-        			$data['message'] = '上传图片太大, 最大能上传单张 3.5MB';
+        		if ($imageSize > 2670016) {
+        			$data['message'] = '上传图片太大, 最大能上传单张 2.5MB';
         			$data['error'] = 1;
         			$this->ajaxReturn($data,'JSON');
         		}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
