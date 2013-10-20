@@ -38,7 +38,6 @@
 				<a href="__ROOT__/activity/item/<?php echo $activityItem['aid']; ?>" class="f14">
 					<?php echo $activityItem['subject']; ?>
 				</a> 
-				<?php if (!empty($_GET['self'])) { ?>
 				<span class="activity_lists_ul_li_sponsor_span">
 					<i class="ico_friendfeed" title="主办方"></i>主办方:
 					<a href="__ROOT__/wo/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
@@ -51,7 +50,6 @@
 						<i class="ico_favourite"></i>参加人数:<span class="f12 fb black_l"><?php echo empty($activityItem['join_num']) ? '0' : $activityItem['join_num']; ?></span> 
 					</span>
 				</span>
-				<?php } ?>
 				<span class="activity_lists_ul_li_hit_span">
 					<i class="icon_up"></i><span class="f12 gray">人气:<?php echo $activityItem['hit']; ?></span>
 				</span>
