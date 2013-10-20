@@ -674,6 +674,15 @@ class ActivityAction extends Action {
     			redirect('/activity/item/'.$activityid, 3, '选择Parter成功 :) 3秒后页面跳转...');
     		}
     	}
+    	
+    	/**
+    	 * partner show
+    	 */
+    	$isHasParterActivityUsers = $ActivityUser->where("aid = $recordActivityItem[aid] AND uid = '$userloginid' AND partner_uid !=''")
+    	->join('i_user_login ON i_activity_user.partner_uid = i_user_login.uid')
+    	->field('id,aid,partner_uid,invite_status,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+    	->find();
+    	$this->assign('isHasParterActivityUsers', $isHasParterActivityUsers);
 
     	/**
     	 * activity info
