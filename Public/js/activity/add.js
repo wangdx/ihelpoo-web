@@ -1,7 +1,7 @@
 $().ready(function(){
 	var editor;
 	KindEditor.ready(function(K) {
-		editor = K.create('textarea[name="detail"]', {
+		editor = K.create('textarea[name="content"]', {
 			uploadJson : baseUrl + 'activitytest/addupload',
 			width : '780px',
 			height : '350px',
