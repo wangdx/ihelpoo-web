@@ -273,18 +273,8 @@
     margin-right: 10px;
     margin-right: 10px;
 }
-.activity_share_btn{
-    background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px 5px 5px 5px;
-    color: #333333;
-    font-size: 12px;
-    padding: 10px 50px;
-    margin-right: 10px;
-    margin-right: 10px;
-    position: absolute;
-    right: -10px;
-    top: 5px;
+.activity_share_p{
+
 }
 /*--- itemnotice ---*/
 .activity_itemnotice_info_div{

@@ -99,7 +99,26 @@
 			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandom" class="btn activity_partner_btn">随机选Partner</a>
 			<?php } ?>
 			<a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn activity_comment_btn">评论互动</a>
-			<a class="btn activity_share_btn" id="share_this_activity" activityid="<?php echo $recordActivityItem['sid']; ?>">邀请分享</a>
+			<p class="activity_share_p">
+				<!-- JiaThis Button BEGIN -->
+				<div class="jiathis_style_32x32">
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_renren"></a>
+				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+				</div>
+				<script type="text/javascript" >
+				var jiathis_config={
+					url:"http://<?php echo $_SERVER['HTTP_HOST']; ?>/activitytest/item/<?php echo $recordActivityItem['aid']; ?>",
+					summary:"",
+					title:"我们学校组织的 “<?php echo $recordActivityItem['subject']; ?>” 这个活动好玩，小伙伴们来参加啊~",
+					hideMore:false
+				}
+				</script>
+				<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+				<!-- JiaThis Button END -->
+			</p>
 		</div>
 	<?php } ?>
 	<?php if (!empty($recordsActivityUser)) { ?>
