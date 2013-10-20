@@ -414,8 +414,12 @@ class ActivityAction extends Action {
     				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
     			}
     			$ActivityUserinvite = M("ActivityUserinvite");
+    			
     			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' AND invite_status != '2' ORDER BY RAND() LIMIT 1";
     			$recordRandUser = $ActivityUser->query($searchRandUserSql);
+    			
+    			var_dump($recordRandUser);
+    			exit();
     			$parteruid = (int)$recordRandUser[0]['uid'];
     			if (!empty($parteruid)) {
     				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
