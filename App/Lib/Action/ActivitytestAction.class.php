@@ -96,7 +96,7 @@ class ActivitytestAction extends Action {
     		$day = (int)substr($activity_ti,8,2);
     		$activity_time = mktime(0,0,0,$month,$day,$year);
     		if ($activity_time < (time() + 259200)) {
-    			redirect('/activity/add/', 3, '活动时间不能少于当前时间:( 3秒后页面跳转...');
+    			redirect('/activity/add/', 3, '活动时间不能少于当前时间+3天筹备宣传时间 :( 3秒后页面跳转...');
     		}
     		if (empty($content)) {
     			redirect('/activity/add/', 3, '活动内容不能为空! 3秒后页面跳转...');
