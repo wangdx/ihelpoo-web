@@ -16,6 +16,14 @@ $().ready(function(){
 	});
 	
 	$("#activity_submit_btn_a").click(function(){
-		$("#activity_submit_btn").click();
+		var subject = $("#subject").val();
+		var activity_ti = $("#activity_ti").val();
+		if (subject == '') {
+			alert('活动主题不能为空');
+		} else if (activity_ti == '') {
+			alert('活动时间不能为空');
+		} else {
+			$("#activity_submit_btn").click();
+		}
 	});
 });
