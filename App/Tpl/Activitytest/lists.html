@@ -16,11 +16,11 @@
 		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
 	</ul>
 	<?php } ?>
-	<div class="activity_lists_mine_nav">
+	<div class="activity_lists_mine_nav f12">
 		<?php if ($getSelf == 'sponsor') { ?>
-			<a href="__ROOT__/activity/lists?self=sponsor" class="fb f12 btn">我主办的</a> <a href="__ROOT__/activity/lists?self=mine">我参与的</a>
+			<a href="__ROOT__/activity/lists?self=sponsor" class="btn">我主办的</a> &nbsp; <a href="__ROOT__/activity/lists?self=mine">我参与的</a>
 		<?php } else if ($getSelf == 'mine') { ?>
-			<a href="__ROOT__/activity/lists?self=sponsor">我主办的</a> <a href="__ROOT__/activity/lists?self=mine" class="fb f12 btn">我参与的</a>
+			<a href="__ROOT__/activity/lists?self=sponsor">我主办的</a> &nbsp; <a href="__ROOT__/activity/lists?self=mine" class="btn">我参与的</a>
 		<?php } ?>
 	</div>
 	<?php if (!empty($recordsActivityItem)) { ?>
