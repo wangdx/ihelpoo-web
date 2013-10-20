@@ -631,6 +631,10 @@ class ActivityAction extends Action {
     			redirect('/activity/item/'.$activityid, 3, '选择Parter成功 :) 3秒后页面跳转...');
     		}
     	}
+    	
+    	if (!empty($_GET['refuseid'])) {
+    		
+    	}
 
     	/**
     	 * activity info
