@@ -361,6 +361,20 @@ class ActivitytestAction extends Action {
         	}
         	$this->assign('parterUserArray', $parterUserArray);
         }
+        
+        /**
+         * show join sex nums
+         */
+        $joinBoyNums = $ActivityUser->where("aid = $recordActivityItem[aid] AND sex = 1")
+    	->join('i_user_login ON i_activity_user.uid = i_user_login.uid')
+    	->field('id,aid,i_activity_user.uid,partner_uid,invite_status,time,nickname,sex')
+    	->count();
+    	$joinGirlNums = $ActivityUser->where("aid = $recordActivityItem[aid] AND sex = 2")
+    	->join('i_user_login ON i_activity_user.uid = i_user_login.uid')
+    	->field('id,aid,i_activity_user.uid,partner_uid,invite_status,time,nickname,sex')
+    	->count();
+    	$this->assign('joinBoyNums',$joinBoyNums);
+    	$this->assign('joinGirlNums',$joinGirlNums);
 
     	$this->display();
     }
