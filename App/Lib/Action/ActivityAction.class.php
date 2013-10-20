@@ -400,7 +400,7 @@ class ActivityAction extends Action {
 
     				/**
     				 * send msg system
-    				 * "邀请你成为他的活动Parter!";
+    				 * "邀请你成为他的活动Partner!";
     				 * TODO ajax, bounce
     				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
