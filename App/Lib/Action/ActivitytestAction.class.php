@@ -299,7 +299,7 @@ class ActivitytestAction extends Action {
     				 * TODO ajax, bounce
     				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
-    				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
+    				redirect('/activity/parterinvite/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
     		
@@ -354,11 +354,11 @@ class ActivitytestAction extends Action {
 
     				/**
     				 * send msg system
-    				 * "邀请你成为他的活动Parter!";
+    				 * "通过系统随机分配，邀请你成为他的活动Partner!";
     				 * TODO ajax, bounce
     				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
-    				redirect('/activity/item/'.$activityid, 3, '成功随机选择Parter 等待对方确认 :) 3秒后页面跳转...');
+    				redirect('/activity/parterinvite/'.$activityid, 3, '成功随机选择Partner 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
     	}
@@ -531,10 +531,17 @@ class ActivitytestAction extends Action {
     	/**
     	 * activity info
     	 */
-    	$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.uid = $userloginid AND aid = $activityid")
-    	->join('i_user_login ON i_activity_userinvite.invite_uid = i_user_login.uid')
-    	->field('id,aid,i_activity_userinvite.uid,i_activity_userinvite.invite_uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
-    	->select();
+    	if (!empty($_GET['invite'])) {
+    		$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.invite_uid = $userloginid AND aid = $activityid")
+	    	->join('i_user_login ON i_activity_userinvite.uid = i_user_login.uid')
+	    	->field('id,aid,i_activity_userinvite.uid,i_activity_userinvite.invite_uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+	    	->select();
+    	} else {
+	    	$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.uid = $userloginid AND aid = $activityid")
+	    	->join('i_user_login ON i_activity_userinvite.invite_uid = i_user_login.uid')
+	    	->field('id,aid,i_activity_userinvite.uid,i_activity_userinvite.invite_uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+	    	->select();
+    	}
     	$this->assign('recordsActivityUserinvite',$recordsActivityUserinvite);
     	$this->display();
     }
