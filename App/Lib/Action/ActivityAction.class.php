@@ -658,16 +658,13 @@ class ActivityAction extends Action {
     			/**
     			 * send message to sponsor
     			 */
-    			$UserLogin = M("UserLogin");
-    			$recordUserLogin = $UserLogin->where("uid = $userloginid")->find();
 
-                i_savenotice($recordUserLogin['uid'], $inviteuserid, 'system/activity:partner', '');
+                i_savenotice($$userloginid, $inviteuserid, 'system/activity:partner', '');
 
     			/**
     			 * send message to jioner
     			 */
-    			$recordInviteUserLogin = $UserLogin->where("uid = $inviteuserid")->find();
-                i_savenotice($recordInviteUserLogin['uid'], $userloginid, 'system/activity:partner', '');
+                i_savenotice($inviteuserid, $userloginid, 'system/activity:partner', '');
 
     			redirect('/activity/item/'.$activityid, 3, '选择Parter成功 :) 3秒后页面跳转...');
     		}
@@ -677,6 +674,7 @@ class ActivityAction extends Action {
     	 * partner show
     	 */
     	$isParterActivityUsers = $ActivityUser->where("aid = $recordActivityItem[aid] AND uid = '$userloginid' AND partner_uid !=''")->find();
+    	$UserLogin = M("UserLogin");
     	$isHasParterActivityUsers = $UserLogin->find($isParterActivityUsers['partner_uid']);
     	$this->assign('isHasParterActivityUsers', $isHasParterActivityUsers);
 
