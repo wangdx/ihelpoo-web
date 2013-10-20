@@ -311,9 +311,6 @@ class ActivitytestAction extends Action {
     			
     			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' ORDER BY RAND() LIMIT 1";
     			$recordRandUser = $ActivityUser->query($searchRandUserSql);
-    			var_dump($recordRandUser[0]);
-    			exit();
-
     			$parteruid = (int)$recordRandUser[0]['uid'];
     			if (!empty($parteruid)) {
     				$ActivityUserinvite = M("ActivityUserinvite");
@@ -333,7 +330,7 @@ class ActivitytestAction extends Action {
 
     				$recordActivityUserinvite = $ActivityUserinvite->where("uid = $parteruid AND aid = $activityid AND invite_uid = $userloginid")->find();
     				if (!empty($recordActivityUserinvite['id'])) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经选择对方为Parter 等待对方确认 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经随机选择了一个Parter 等待对方确认 :) 3秒后页面跳转...');
     				}
 
     				$newActivityUserinviteData = array(
@@ -361,7 +358,7 @@ class ActivitytestAction extends Action {
     				 * TODO ajax, bounce
     				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
-    				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
+    				redirect('/activity/item/'.$activityid, 3, '成功随机选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
     	}
