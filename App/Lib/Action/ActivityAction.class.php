@@ -417,9 +417,6 @@ class ActivityAction extends Action {
     			
     			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' AND invite_status != '2' ORDER BY RAND() LIMIT 1";
     			$recordRandUser = $ActivityUser->query($searchRandUserSql);
-    			
-    			var_dump($recordRandUser);
-    			exit();
     			$parteruid = (int)$recordRandUser[0]['uid'];
     			if (!empty($parteruid)) {
     				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
