@@ -20,24 +20,43 @@
 	</div>
 	<?php } ?>
 	
-	<?php if (!empty($recordsActivityUserinvite)) { ?>
-	<div class="f12"><span class="icon_pump"></span>邀请列表，请选择其中一位作为Partner</div>
-	<ul class="activity_itemnotice_list_div_ul">
-	<?php foreach($recordsActivityUserinvite as $activityUserinvite) { ?>
-		<li>
-			<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>">
-				<img src="<?php echo i_icon_check($activityUserinvite['invite_uid'], $activityUserinvite['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" />
-			</a>	
-			<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>" class="f12">
-				<?php echo $activityUserinvite['nickname']; ?>
-			</a>
-			<span class="f12 gray" title="邀请时间"><?php i_time($activityUserinvite['time']); ?></span>
-			<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?action=accept&id=<?php echo $activityUserinvite['id']; ?>&nickname=<?php echo $activityUserinvite['nickname']; ?>">接受请求</a>
-		</li>
-	<?php } ?>
-	</ul>
+	<?php if (!empty($_GET['invite'])) { ?>
+		<?php if (!empty($activityUserinvite)) { ?>
+		<div class="f12"><span class="icon_pump"></span>邀请列表，你发出的邀请</div>
+		<ul class="activity_itemnotice_list_div_ul">
+			<li>
+				<a href="__ROOT__/wo/<?php echo $activityUserinvite['uid']; ?>">
+					<img src="<?php echo i_icon_check($activityUserinvite['uid'], $activityUserinvite['icon_url'], 'm'); ?>" height="75" class="i_c_l_u_li_img radius3" />
+				</a>
+				<a href="__ROOT__/wo/<?php echo $activityUserinvite['uid']; ?>" class="f12">
+					<?php echo $activityUserinvite['nickname']; ?>
+				</a>
+				<span class="f12 gray" title="">邀请ta的时间: <?php i_time($activityUserinvite['time']); ?></span>
+			</li>
+		</ul>
+		<?php } else { ?>
+		<div><span class="icon_pump"></span> :( 你还没有发出过邀请...</div>
+		<?php } ?>
 	<?php } else { ?>
-	<div><span class="icon_pump"></span> :( 你还没有收到此次活动的邀请...</div>
+		<?php if (!empty($recordsActivityUserinvite)) { ?>
+		<div class="f12"><span class="icon_pump"></span>邀请列表，请选择其中一位作为Partner</div>
+		<ul class="activity_itemnotice_list_div_ul">
+		<?php foreach($recordsActivityUserinvite as $activityUserinvite) { ?>
+			<li>
+				<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>">
+					<img src="<?php echo i_icon_check($activityUserinvite['invite_uid'], $activityUserinvite['icon_url'], 's'); ?>" height="35" class="i_c_l_u_li_img radius3" />
+				</a>
+				<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>" class="f12">
+					<?php echo $activityUserinvite['nickname']; ?>
+				</a>
+				<span class="f12 gray" title="邀请时间"><?php i_time($activityUserinvite['time']); ?></span>
+				<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?action=accept&id=<?php echo $activityUserinvite['id']; ?>&nickname=<?php echo $activityUserinvite['nickname']; ?>">接受请求</a>
+			</li>
+		<?php } ?>
+		</ul>
+		<?php } else { ?>
+		<div><span class="icon_pump"></span> :( 你还没有收到此次活动的邀请...</div>
+		<?php } ?>
 	<?php } ?>
 </div>
 <include file="Public:footer" />

@@ -535,14 +535,16 @@ class ActivitytestAction extends Action {
     		$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.invite_uid = $userloginid AND aid = $activityid")
 	    	->join('i_user_login ON i_activity_userinvite.uid = i_user_login.uid')
 	    	->field('id,aid,i_user_login.uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
-	    	->select();
+	    	->find();
+	    	$this->assign('activityUserinvite',$recordsActivityUserinvite);
     	} else {
 	    	$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.uid = $userloginid AND aid = $activityid")
 	    	->join('i_user_login ON i_activity_userinvite.invite_uid = i_user_login.uid')
 	    	->field('id,aid,i_activity_userinvite.uid,i_activity_userinvite.invite_uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	    	->select();
+	    	$this->assign('recordsActivityUserinvite',$recordsActivityUserinvite);
     	}
-    	$this->assign('recordsActivityUserinvite',$recordsActivityUserinvite);
+    	
     	$this->display();
     }
 
