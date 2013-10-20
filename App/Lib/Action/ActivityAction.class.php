@@ -677,6 +677,7 @@ class ActivityAction extends Action {
     	var_dump($isParterActivityUsers);
     	$UserLogin = M("UserLogin");
     	$isHasParterActivityUsers = $UserLogin->find($isParterActivityUsers['partner_uid']);
+    	var_dump($isHasParterActivityUsers);
     	$this->assign('isHasParterActivityUsers', $isHasParterActivityUsers);
 
     	/**
