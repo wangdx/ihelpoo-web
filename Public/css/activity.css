@@ -147,6 +147,13 @@
     margin: 15px 0;
     display: none;
 }
+.activity_item_notive_show{
+    border: 1px solid #CC0000;
+    background: #FFFA85;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
 .activity_item_notive p{
     padding: 3px 0;
     font-size: 12px;

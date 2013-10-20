@@ -1899,7 +1899,7 @@ class SchooladminAction extends Action {
 	             * send mail
 	             */
 	            $emailObj->activityVerify($recordUserLogin['email'], $recordUserLogin['nickname'], $msgContent, $aid, $recordActivityItem['subject']);
-	            
+                
                 /**
     			 * webmaster user operating record
     			 */

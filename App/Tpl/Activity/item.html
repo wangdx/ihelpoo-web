@@ -34,7 +34,7 @@
     });
 </script>
 <?php if ($recordActivityItem['run_type'] == '2' ) { $UserLogin = M("UserLogin"); } ?>
-<link href="http://static.ihelpoo.cn/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
 	<ul class="activity_nav_ul">
 		<li><a href="__ROOT__/activity">活动首页</a></li>
@@ -52,7 +52,7 @@
 	</div>
 
 	<?php if ($userinfolack) { ?>
-	<div class="activity_item_notive">
+	<div class="activity_item_notive_show">
 		<span class="red fb">你的个人资料不完善，请填写完整手机号和QQ号码，再参与活动:)<span class="icon_write"></span></span>
 		<a href="/setting/" class="f12">马上填写</a> 
 	</div>
