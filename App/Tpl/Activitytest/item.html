@@ -172,9 +172,9 @@
 			</a>
 			<p class="activity_item_join_ul_user_p">
 				<a href="__ROOT__/wo/<?php echo $activityUser['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUser['uid']; ?>"><?php echo $activityUser['nickname']; ?> <span class="sex<?php echo $activityUser['sex'] ?>"></span></a>
-				<a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="f12 gray">(真实联系方式)</a>
 			</p>
 			<p class="activity_item_join_ul_user_info_p">
+			    <a href="__ROOT__/mutual/rc/<?php echo $activityUser['uid']; ?>" class="f12 gray">[真实联系方式]</a> 
 				<?php if ($recordActivityItem['run_type'] == '2' ) { ?>
 					<?php if ($activityUser['invite_status'] == '1') { ?>
 						<span class="icon_pump"></span>已收到Partner邀请
@@ -183,7 +183,6 @@
 					<?php } else { ?>
 						<span class="icon_heart"></span>等待此次活动Partner 
 					<?php } ?>
-					
 					<?php if ($activityUser['uid'] == $userloginedrecord['uid']) { ?>
 						<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
 					<?php } else { ?>
