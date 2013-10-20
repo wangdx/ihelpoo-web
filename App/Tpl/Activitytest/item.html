@@ -17,7 +17,6 @@
 		<li><a href="__ROOT__/activity/add">我要举办</a></li>
 		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
 	</ul>
-	<?php if ($_GET['action'] == 'jion') { ?>
 	<div class="activity_item_notive" id="activity_item_notive_join">
 		<p>1. 注意人身财产安全。</p>
 		<p>2. 遵守活动规则，遵纪守法，行为合符道德。</p>
@@ -25,7 +24,6 @@
 		<p><span class="red">是否同意?</span> <span class="icon_write"></span></p>
 		<p><br /><a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jionagree" class="btn_red f12">是</a> <a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">否</a></p>
 	</div>
-	<?php } ?>
 
 	<?php if ($userinfolack) { ?>
 	<div class="activity_item_notive">
@@ -34,7 +32,6 @@
 	</div>
 	<?php } ?>
 
-	<?php if ($_GET['action'] == 'select') { ?>
 	<div class="activity_item_notive" id="activity_item_notive_select_partner">
 		<p>你将请求与 <a href="" target="_blank" id="activity_item_notive_select_partner_a"></a> 成为Partner</p>
 		<p>1. 只能挑选一人为Parter，确定即视作你将放弃与其他参与者成为Partner的机会</p>
@@ -45,9 +42,7 @@
 			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
 		</p>
 	</div>
-	<?php } ?>
 	
-	<?php if ($_GET['action'] == 'selectrandom') { ?>
 	<div class="activity_item_notive" id="activity_item_notive_select_partner_random">
 		<p>你将请求随机与一位同学成为Parter</p>
 		<p>1. 只能随机挑选一人为Parter，系统随机匹配，不准反悔哦，好运，确定即视作你将放弃与其他参与者成为Parter的机会</p>
@@ -58,7 +53,6 @@
 			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
 		</p>
 	</div>
-	<?php } ?>
 	
 	<ul class="activity_item_ul">
 		<?php if ($recordActivityItem['status'] == 0) { ?>
