@@ -309,12 +309,12 @@ class ActivitytestAction extends Action {
     				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
     			}
     			
-    			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' ORDER BY RAND() LIMIT 1";
+    			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' ORDER BY RAND() LIMIT 1";
     			$recordRandUser = $ActivityUser->query($searchRandUserSql);
     			var_dump($recordRandUser[0]);
     			exit();
 
-    			$parteruid = (int)$_GET['parter'];
+    			$parteruid = (int)$recordRandUser[0]['uid'];
     			if (!empty($parteruid)) {
     				$ActivityUserinvite = M("ActivityUserinvite");
 
