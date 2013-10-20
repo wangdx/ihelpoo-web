@@ -283,8 +283,8 @@
     margin-right: 10px;
     margin-right: 10px;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: -10px;
+    top: 5px;
 }
 /*--- itemnotice ---*/
 .activity_itemnotice_info_div{
