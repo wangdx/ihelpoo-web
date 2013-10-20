@@ -678,7 +678,7 @@ class ActivityAction extends Action {
     	/**
     	 * partner show
     	 */
-    	$isHasParterActivityUsers = $ActivityUser->where("aid = $recordActivityItem[aid] AND uid = '$userloginid' AND partner_uid !=''")
+    	$isHasParterActivityUsers = $ActivityUser->where("aid = $recordActivityItem[aid] AND i_user_login.uid = '$userloginid' AND partner_uid !=''")
     	->join('i_user_login ON i_activity_user.partner_uid = i_user_login.uid')
     	->field('id,aid,partner_uid,invite_status,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
     	->find();
