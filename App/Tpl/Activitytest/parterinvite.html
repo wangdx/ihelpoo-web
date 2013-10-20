@@ -20,16 +20,17 @@
 	</div>
 	<?php } ?>
 	
-	<?php if (!empty($_GET['invite'])) { ?>
-	<a href="?invite=true" class="btn">发出的邀请</a> 
-	<a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>">收到的邀请</a>
-	<?php } else { ?>
-	<a href="?invite=true">发出的邀请</a> 
-	<a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>" class="btn">收到的邀请</a>
-	<?php } ?>
+	<div class="f12 activity_parterinvite_info__div" >
+		<?php if (!empty($_GET['invite'])) { ?>
+		<a href="?invite=true" class="btn">发出的邀请</a> 
+		<a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>">收到的邀请</a>
+		<?php } else { ?>
+		<a href="?invite=true">发出的邀请</a> 
+		<a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>" class="btn">收到的邀请</a>
+		<?php } ?>
+	</div>
 	<?php if (!empty($_GET['invite'])) { ?>
 		<?php if (!empty($activityUserinvite)) { ?>
-		<div class="f12"><span class="icon_pump"></span> 你发出的邀请</div>
 		<ul class="activity_itemnotice_list_div_ul">
 			<li>
 				<a href="__ROOT__/wo/<?php echo $activityUserinvite['uid']; ?>">

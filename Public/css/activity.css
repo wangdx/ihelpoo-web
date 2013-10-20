@@ -348,3 +348,11 @@
 .activity_itemnotice_userlist_div_ul li{
     display: inline-block;
 }
+
+/*--- parterinvite ---*/
+.activity_parterinvite_info__div{
+    margin: 10px 0;
+    border: 1px solid #EEE;
+    padding: 10px;
+    border-radius: 5px;
+}
