@@ -147,7 +147,7 @@
 	<?php if (!empty($recordsActivityUser)) { ?>
 	<div class="activity_item_join_div">
 		<?php if ($recordActivityItem['run_type'] == '2' && !empty($parterUserArray)) { ?>
-		<p class="activity_item_join_div_info_p"><span class="icon_heart"></span> 已经拥有Partner :)</p>
+		<p class="activity_item_join_div_info_p"><span class="icon_heart"></span> 已经拥有Partner :) <a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>">你的Partner</a></p>
 		<ul class="activity_item_join_div_pater_ul">
 			<?php foreach ($parterUserArray as $parterUser) { ?>
 			<?php $uidUserLogin = $UserLogin->find($parterUser['uid']); ?>
