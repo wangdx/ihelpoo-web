@@ -76,11 +76,11 @@
 			<?php } ?>
 			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>">抽奖</a>
 			</span>
-			<div class="activity_item_ul_subject_div">
+			<div class="activity_item_ul_subject_div f12">
 				<p class="activity_item_ul_subject_div_p">
 					<span class="">主&#12288;&#12288;办:</span> 
-					<a href="/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="getuserinfo" userid="<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
-					<a href="/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
+					<a href="/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="getuserinfo f14" userid="<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
+					<a href="/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>"><span class="icon_text"></span>真实联系方式</a>
 				</p>
 				<p class="activity_item_ul_subject_div_p">
 					<span class="">活动时间:</span> <?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?> 星期<?php echo date('N', $recordActivityItem['activity_ti']); ?>
