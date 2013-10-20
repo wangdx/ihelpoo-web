@@ -30,7 +30,7 @@
 				<span class="f14 blue fi"><?php if ($dayGap == 0) { echo "今天"; } else if ($dayGap > 0) { echo $dayGap."天后"; } ?></span>
 				<span class="f12 gray">(星期<?php echo date('N', $recordActivityItem['activity_ti']); ?>)</span>
 			</li>
-			<li><span class="f12 gray">参加人数:</span> <span class="f14 fb black_l"><?php echo $recordActivityItem['join_num']; ?></span> <span class="gray f12">(人气 <?php echo $recordActivityItem['hit']; ?>)</span></li>
+			<li><span class="f12 gray">参加人数:</span> <span class="f14 fb black_l"><?php echo $recordActivityItem['join_num']; ?></span> <span class="gray f12">(人气<?php echo $recordActivityItem['hit']; ?>)</span></li>
 			<li><span class="f12 gray">大致内容:</span> <?php echo $ofunction->cut_str(strip_tags($recordActivityItem['content']), 200); ?></li>
 			<?php if (!empty($recordsActivityUser)) { ?>
 				<li><span class="f12 gray">他们参加了:</span>
