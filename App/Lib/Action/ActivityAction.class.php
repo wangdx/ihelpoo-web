@@ -565,11 +565,33 @@ class ActivityAction extends Action {
     	/**
     	 * accept handle
     	 */
+    	if (!empty($_GET['refuseid'])) {
+    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
+    		if (!empty($acceptActivityUserinvite['id'])) {
+    			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
+    			$accept2ActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $inviteuserid")->find();
+    			$accept2UpdateActivityUserArray = array(
+	    			'id' => $accept2ActivityUser['id'],
+	    			'partner_uid' => 0,
+	    			'invite_status' => 0,
+    			);
+    			$ActivityUser->save($accept2UpdateActivityUserArray);
+
+    			/**
+    			 * from to 婉拒了和你成为Partner，你可以去重新选择Partner了
+    			 * TODO add
+    			 * send message
+    			 */
+                i_savenotice($userloginid, $inviteuserid, 'system/activity:partnerrefuse', '');
+    			redirect('/activity/item/'.$activityid, 3, '已经婉拒请求 :) 3秒后页面跳转...');
+    		}
+    	}
+    	
     	if (!empty($_GET['acceptid'])) {
     		if ($recordActivityUser['invite_status'] == 2) {
     			redirect('/activity/parterinvite/'.$activityid, 3, '您已经有了活动Parter，不能太贪心噢 :D 3秒后页面跳转...');
     		}
-    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
+    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['refuseid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			$acceptActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $userloginid")->find();
@@ -587,7 +609,29 @@ class ActivityAction extends Action {
 	    			'invite_status' => 2,
     			);
     			$ActivityUser->save($accept2UpdateActivityUserArray);
-
+    			
+    			/**
+    			 * free all other partner
+    			 */
+    			$resultsActivityUser = $ActivityUser->where("partner_uid = $inviteuserid OR partner_uid = $userloginid")->select();
+    			if (!empty($resultsActivityUser)) {
+    				foreach ($resultsActivityUser as $resultActivityUser) {
+    					$freeActivityUserPartnerArray = array(
+			    			'id' => $resultActivityUser['id'],
+			    			'partner_uid' => 0,
+			    			'invite_status' => 0,
+		    			);
+		    			$ActivityUser->save($freeActivityUserPartnerArray);
+		    			
+		    			/**
+		    			 * from to 
+		    			 * TODO add
+		    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
+		    			 */
+		    			i_savenotice(10000, $resultActivityUser['uid'], 'system/activity:partnernew', '');
+    				}
+    			}
+    			
     			/**
     			 * change user info
     			 */
@@ -630,10 +674,6 @@ class ActivityAction extends Action {
 
     			redirect('/activity/item/'.$activityid, 3, '选择Parter成功 :) 3秒后页面跳转...');
     		}
-    	}
-    	
-    	if (!empty($_GET['refuseid'])) {
-    		
     	}
 
     	/**
