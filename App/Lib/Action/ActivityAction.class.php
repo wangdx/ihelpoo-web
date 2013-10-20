@@ -624,7 +624,6 @@ class ActivityAction extends Action {
 		    			$ActivityUser->save($freeActivityUserPartnerArray);
 		    			
 		    			/**
-		    			 * from to 
 		    			 * TODO add
 		    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
 		    			 */
