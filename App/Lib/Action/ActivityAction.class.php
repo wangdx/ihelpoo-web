@@ -359,25 +359,25 @@ class ActivityAction extends Action {
     		if ($getAction == "selectsure") {
     			$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     			if (empty($recordActivityUser['id'])) {
-    				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
+    				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Partner:) 3秒后页面跳转...');
     			}
     			$parteruid = (int)$_GET['parter'];
     			if (!empty($parteruid)) {
     				$ActivityUserinvite = M("ActivityUserinvite");
     				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     				if ($recordSelfActivityUser['invite_status'] == 2) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经有了Parter了哦 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经有了Partner了哦 :) 3秒后页面跳转...');
     				}
     				$recordSingleActivityUserinvite = $ActivityUserinvite->where("aid = $activityid AND invite_uid = $userloginid")->find();
     				if (!empty($recordSingleActivityUserinvite['id'])) {
     					$recordSingleActivityUser = $ActivityUser->where("aid = $activityid AND uid = $recordSingleActivityUserinvite[uid]")->find();
     				}
     				if ($recordSingleActivityUser['invite_status'] == 1) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经选择了一个Parter 对方拒绝后才能选择第二个 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择了一个Partner 对方拒绝后才能选择第二个 :) 3秒后页面跳转...');
     				}
     				$recordActivityUserinvite = $ActivityUserinvite->where("uid = $parteruid AND aid = $activityid AND invite_uid = $userloginid")->find();
     				if (!empty($recordActivityUserinvite['id'])) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经选择对方为Parter 等待对方确认 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择对方为Partner 等待对方确认 :) 3秒后页面跳转...');
     				}
     				$newActivityUserinviteData = array(
     					'id' => '',
@@ -404,14 +404,14 @@ class ActivityAction extends Action {
     				 * TODO ajax, bounce
     				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
-    				redirect('/activity/parterinvite/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
+    				redirect('/activity/parterinvite/'.$activityid, 3, '成功选择Partner 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
     		
     		if ($getAction == "selectrandomsure") {
     			$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     			if (empty($recordActivityUser['id'])) {
-    				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
+    				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Partner:) 3秒后页面跳转...');
     			}
     			$ActivityUserinvite = M("ActivityUserinvite");
     			
@@ -421,7 +421,7 @@ class ActivityAction extends Action {
     			if (!empty($parteruid)) {
     				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     				if ($recordSelfActivityUser['invite_status'] == 2) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经有了Parter了哦 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经有了Partner了哦 :) 3秒后页面跳转...');
     				}
 
     				$recordSingleActivityUserinvite = $ActivityUserinvite->where("aid = $activityid AND invite_uid = $userloginid")->find();
@@ -429,12 +429,12 @@ class ActivityAction extends Action {
     					$recordSingleActivityUser = $ActivityUser->where("aid = $activityid AND uid = $recordSingleActivityUserinvite[uid]")->find();
     				}
     				if ($recordSingleActivityUser['invite_status'] == 1) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经选择了一个Parter 对方拒绝后才能选择第二个 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择了一个Partner 对方拒绝后才能选择第二个 :) 3秒后页面跳转...');
     				}
 
     				$recordActivityUserinvite = $ActivityUserinvite->where("uid = $parteruid AND aid = $activityid AND invite_uid = $userloginid")->find();
     				if (!empty($recordActivityUserinvite['id'])) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经随机选择了一个Parter 等待对方确认 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经随机选择了一个Partner 等待对方确认 :) 3秒后页面跳转...');
     				}
 
     				$newActivityUserinviteData = array(
