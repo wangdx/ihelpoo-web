@@ -31,7 +31,7 @@
 				<a href="__ROOT__/wo/<?php echo $activityUserinvite['uid']; ?>" class="f12">
 					<?php echo $activityUserinvite['nickname']; ?>
 				</a>
-				<span class="f12 gray" title="">邀请ta的时间: <?php i_time($activityUserinvite['time']); ?></span>
+				<span class="f12 gray" title="">邀请ta的时间: <?php echo i_time($activityUserinvite['time']); ?></span>
 			</li>
 		</ul>
 		<?php } else { ?>
@@ -49,7 +49,7 @@
 				<a href="__ROOT__/wo/<?php echo $activityUserinvite['invite_uid']; ?>" class="f12">
 					<?php echo $activityUserinvite['nickname']; ?>
 				</a>
-				<span class="f12 gray" title="邀请时间"><?php i_time($activityUserinvite['time']); ?></span>
+				<span class="f12 gray" title="邀请时间"><?php echo i_time($activityUserinvite['time']); ?></span>
 				<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?action=accept&id=<?php echo $activityUserinvite['id']; ?>&nickname=<?php echo $activityUserinvite['nickname']; ?>">接受请求</a>
 			</li>
 		<?php } ?>
