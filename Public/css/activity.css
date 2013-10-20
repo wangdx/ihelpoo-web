@@ -272,7 +272,16 @@
     margin-right: 10px;
     margin-right: 10px;
 }
-
+.share_this_activity{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    color: #333333;
+    font-size: 12px;
+    padding: 10px 50px;
+    margin-right: 10px;
+    margin-right: 10px;
+}
 /*--- itemnotice ---*/
 .activity_itemnotice_info_div{
     padding: 10px;
