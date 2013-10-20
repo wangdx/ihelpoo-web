@@ -252,13 +252,69 @@ class ActivitytestAction extends Action {
     		 * choose parter
     		 */
     		if ($getAction == "selectsure") {
-
     			$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     			if (empty($recordActivityUser['id'])) {
     				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
     			}
+    			$parteruid = (int)$_GET['parter'];
+    			if (!empty($parteruid)) {
+    				$ActivityUserinvite = M("ActivityUserinvite");
+    				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
+    				if ($recordSelfActivityUser['invite_status'] == 2) {
+    					redirect('/activity/item/'.$activityid, 3, '你已经有了Parter了哦 :) 3秒后页面跳转...');
+    				}
+    				$recordSingleActivityUserinvite = $ActivityUserinvite->where("aid = $activityid AND invite_uid = $userloginid")->find();
+    				if (!empty($recordSingleActivityUserinvite['id'])) {
+    					$recordSingleActivityUser = $ActivityUser->where("aid = $activityid AND uid = $recordSingleActivityUserinvite[uid]")->find();
+    				}
+    				if ($recordSingleActivityUser['invite_status'] == 1) {
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择了一个Parter 对方拒绝后才能选择第二个 :) 3秒后页面跳转...');
+    				}
+    				$recordActivityUserinvite = $ActivityUserinvite->where("uid = $parteruid AND aid = $activityid AND invite_uid = $userloginid")->find();
+    				if (!empty($recordActivityUserinvite['id'])) {
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择对方为Parter 等待对方确认 :) 3秒后页面跳转...');
+    				}
+    				$newActivityUserinviteData = array(
+    					'id' => '',
+    					'aid' => $activityid,
+    					'uid' => $parteruid,
+    					'invite_uid' => $userloginid,
+    					'time' => time(),
+    				);
+    				$ActivityUserinvite->add($newActivityUserinviteData);
 
-    			$parteruid = $_GET['parter'];
+    				/**
+    				 * update ActivityUser invite_status
+    				 */
+    				$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $parteruid")->find();
+    				$updateActivityUserInvitestatus = array(
+    					'id' => $recordActivityUser['id'],
+    					'invite_status' => 1,
+    				);
+    				$ActivityUser->save($updateActivityUserInvitestatus);
+
+    				/**
+    				 * send msg system
+    				 * "邀请你成为他的活动Parter!";
+    				 * TODO ajax, bounce
+    				 */
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
+    				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
+    			}
+    		}
+    		
+    		if ($getAction == "selectrandomsure") {
+    			$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
+    			if (empty($recordActivityUser['id'])) {
+    				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
+    			}
+    			
+    			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = $activityid ORDER BY RAND() LIMIT 1";
+    			$recordRandUser = $ActivityUser->query($searchRandUserSql);
+    			var_dump($ActivityUser[0]);
+    			exit();
+
+    			$parteruid = (int)$_GET['parter'];
     			if (!empty($parteruid)) {
     				$ActivityUserinvite = M("ActivityUserinvite");
 
@@ -302,8 +358,9 @@ class ActivitytestAction extends Action {
     				/**
     				 * send msg system
     				 * "邀请你成为他的活动Parter!";
+    				 * TODO ajax, bounce
     				 */
-                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);//TODO ajax, bounce
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
     				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
