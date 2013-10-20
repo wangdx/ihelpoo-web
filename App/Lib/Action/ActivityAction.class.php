@@ -674,6 +674,7 @@ class ActivityAction extends Action {
     	 * partner show
     	 */
     	$isParterActivityUsers = $ActivityUser->where("aid = $recordActivityItem[aid] AND uid = '$userloginid' AND partner_uid !=''")->find();
+    	var_dump($isParterActivityUsers);
     	$UserLogin = M("UserLogin");
     	$isHasParterActivityUsers = $UserLogin->find($isParterActivityUsers['partner_uid']);
     	$this->assign('isHasParterActivityUsers', $isHasParterActivityUsers);
