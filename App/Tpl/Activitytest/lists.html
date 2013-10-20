@@ -38,7 +38,7 @@
 				<a href="__ROOT__/activity/item/<?php echo $activityItem['aid']; ?>" class="f14">
 					<?php echo $activityItem['subject']; ?>
 				</a> 
-				<?php if (empty($_GET['self'])) { ?>
+				<?php if (!empty($_GET['self'])) { ?>
 				<span class="activity_lists_ul_li_sponsor_span">
 					<i class="ico_friendfeed" title="主办方"></i>主办方:
 					<a href="__ROOT__/wo/<?php echo $activityItem['sponsor_uid']; ?>" target="_blank">
