@@ -126,11 +126,14 @@
     left: 75px;
     top: -15px;
 }
-.activity_add_submit{
+#activity_submit_btn{
+    display: none;
+}
+#activity_submit_btn_a{
     position: relative;
     left: 75px;
-    font-size: 14px;
     color: #666;
+    font-size: 12px;
 }
 .activity_add_select{
     color: #666;
