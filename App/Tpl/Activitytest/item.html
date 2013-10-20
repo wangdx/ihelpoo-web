@@ -78,11 +78,12 @@
 			</span>
 			<div class="activity_item_ul_subject_div">
 				<p class="activity_item_ul_subject_div_p">
-					<span class="">主&#12288;&#12288;办:</span> <a href="__ROOT__/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="getuserinfo" userid="<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
-					<a href="__ROOT__/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
+					<span class="">主&#12288;&#12288;办:</span> 
+					<a href="/wo/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="getuserinfo" userid="<?php echo $recordActivityItem['sponsor_uid']; ?>"><?php echo $recordActivityItem['nickname']; ?></a> 
+					<a href="/mutual/rc/<?php echo $recordActivityItem['sponsor_uid']; ?>" class="f12"><span class="icon_text"></span>真实联系方式</a>
 				</p>
 				<p class="activity_item_ul_subject_div_p">
-					<span class="">活动时间:</span> <span class="black_l"><?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?> 星期<?php echo date('N', $recordActivityItem['activity_ti']); ?></span>
+					<span class="">活动时间:</span> <?php echo date('Y-m-d', $recordActivityItem['activity_ti']); ?> 星期<?php echo date('N', $recordActivityItem['activity_ti']); ?>
 				</p>
 				<p class="activity_item_ul_subject_div_p">
 					<span class="">参加人数:</span> <span class="f14 red"><?php echo $recordActivityItem['join_num']; ?></span> <span class="f12 gray fr"><i class="icon_up"></i>人气<?php echo $recordActivityItem['hit']; ?></span>
