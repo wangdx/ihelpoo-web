@@ -1,11 +1,6 @@
 <include file="Public:header" />
-<?php if ($_GET['action'] == 'select') { ?>
-<script>
+<script script type="text/javascript">
     $(function(){
-        $('.system_notice').click(function(){
-            //notice.send('system', '<?php echo $_GET["parter"]; ?>');
-        });
-        
         $('.activity_join_btn').click(function(){
         	$('#activity_item_notive_join').slideDown("normal");
         	$('.activity_item_btn_div').slideUp("fast");
@@ -24,10 +19,8 @@
         	$('.activity_item_notive').slideUp("fast");
         	$('.activity_item_btn_div').slideDown("fast");
         });
-        
     });
 </script>
-<?php }?>
 <?php if ($recordActivityItem['run_type'] == '2' ) { $UserLogin = M("UserLogin"); } ?>
 <link href="__PUBLIC__/css/activity.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <div class="main">
