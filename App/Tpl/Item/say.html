@@ -54,7 +54,7 @@
 		  	</span>
 		  	<input type="hidden" name="sid" id="recordsid" value="<?php echo $sayRecord['sid'] ?>" />
 			<div class="i_content_p lh15">
-		    	<?php echo $emotion->transEmotion(i_content(strip_tags($sayRecord['content'],"<a><span>"))); ?>
+		    	<?php echo $emotion->transEmotion(strip_tags($sayRecord['content'],"<a><span>")); ?>
 				<?php
 			  		if (!empty($sayRecord['url'])) {
           				echo "<a href='".$sayRecord['url']."' target='_blank'><span class='post_video'></span></a>";
