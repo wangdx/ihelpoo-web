@@ -534,7 +534,7 @@ class ActivitytestAction extends Action {
     	if (!empty($_GET['invite'])) {
     		$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.invite_uid = $userloginid AND aid = $activityid")
 	    	->join('i_user_login ON i_activity_userinvite.uid = i_user_login.uid')
-	    	->field('id,aid,i_user_login.uid,i_activity_userinvite.time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+	    	->field('id,aid,i_user_login.uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
 	    	->find();
 	    	$this->assign('activityUserinvite',$recordsActivityUserinvite);
     	} else {
