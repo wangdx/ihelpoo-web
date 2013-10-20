@@ -566,7 +566,7 @@ class ActivityAction extends Action {
     	 * accept handle
     	 */
     	if (!empty($_GET['refuseid'])) {
-    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
+    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['refuseid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			$accept2ActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $inviteuserid")->find();
@@ -591,7 +591,7 @@ class ActivityAction extends Action {
     		if ($recordActivityUser['invite_status'] == 2) {
     			redirect('/activity/parterinvite/'.$activityid, 3, '您已经有了活动Parter，不能太贪心噢 :D 3秒后页面跳转...');
     		}
-    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['refuseid']);
+    		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			$acceptActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $userloginid")->find();
