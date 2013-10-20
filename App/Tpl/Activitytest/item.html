@@ -17,6 +17,20 @@
         	$('.activity_item_notive').slideUp("fast");
         	$('.activity_item_btn_div').slideDown("fast");
         });
+        
+        $('.choose_partner_a').click(function(){
+        	$this = $(this);
+        	var userid =  $this.attr("userid");
+        	var targeturl =  $this.attr("url");
+        	var nickname =  $this.attr("nickname");
+        	$('#activity_item_notive_select_partner_a').attr({'href':'/wo/'+userid});
+        	$('#activity_item_notive_select_partner_a').text(nickname);
+        	$('#activity_item_notive_select_partner_sure_a').attr({'href':targeturl});
+        	$('#activity_item_notive_select_partner_random').slideDown("normal");
+        	$('.activity_item_btn_div').slideUp("fast");
+            $('html,body').animate({scrollTop: '0px'}, 800);
+        });
+        
     });
 </script>
 <?php if ($recordActivityItem['run_type'] == '2' ) { $UserLogin = M("UserLogin"); } ?>
@@ -50,7 +64,7 @@
 		<p>2. 等待对方同意，如果同意则你们成为此次活动的Partner，如果对方拒绝你可以再请求与其他参与者成为Partner</p>
 		<p></p>
 		<p>
-			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12 system_notice">确定</a>
+			<a href="" id="activity_item_notive_select_partner_sure_a" class="btn_red f12">确定</a>
 			<a id="activity_item_btn_cancel" class="btn f12">取消</a>
 		</p>
 	</div>
@@ -61,7 +75,7 @@
 		<p>2. 等待对方同意，如果同意则你们成为此次活动的Parter，如果对方拒绝你可以再请求与其他参与者成为Parter</p>
 		<p></p>
 		<p>
-			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandomsure" class="btn_red f12 system_notice">确定</a>
+			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandomsure" class="btn_red f12">确定</a>
 			<a id="activity_item_btn_cancel" class="btn f12">取消</a>
 		</p>
 	</div>
@@ -176,7 +190,7 @@
 						<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
 					<?php } else { ?>
 						<?php if ($activityUser['invite_status'] != 2) { ?>
-						<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=select&parter=<?php echo $activityUser['uid']; ?>&nickname=<?php echo $activityUser['nickname']; ?>" class="btn f12">选为Partner</a>
+						<a class="choose_partner_a" userid="<?php echo $activityUser['uid']; ?>" url="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $activityUser['uid']; ?>" nickname="<?php echo $activityUser['nickname']; ?>" class="btn f12">选为Partner</a>
 						<?php } ?>
 					<?php } ?>
 				<?php } ?>
