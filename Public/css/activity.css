@@ -246,6 +246,7 @@
 }
 .activity_item_btn_div{
     padding: 15px 0;
+    position: relative;
 }
 .activity_join_btn{
     background: none repeat scroll 0 0 #F60;
@@ -281,6 +282,9 @@
     padding: 10px 50px;
     margin-right: 10px;
     margin-right: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 /*--- itemnotice ---*/
 .activity_itemnotice_info_div{
