@@ -612,7 +612,6 @@ class ActivityAction extends Action {
     			
     			/**
     			 * free all other partner
-    			 */
     			$resultsActivityUser = $ActivityUser->where("partner_uid = $inviteuserid OR partner_uid = $userloginid")->select();
     			if (!empty($resultsActivityUser)) {
     				foreach ($resultsActivityUser as $resultActivityUser) {
@@ -623,13 +622,12 @@ class ActivityAction extends Action {
 		    			);
 		    			$ActivityUser->save($freeActivityUserPartnerArray);
 		    			
-		    			/**
-		    			 * TODO add
+		    			 *
 		    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
-		    			 */
+		    			 *
 		    			i_savenotice(10000, $resultActivityUser['uid'], 'system/activity:partnernew', '');
     				}
-    			}
+    			} */
     			
     			/**
     			 * change user info
