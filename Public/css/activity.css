@@ -140,10 +140,10 @@
 
 /*--- item ---*/
 .activity_item_notive{
-    border: 2px solid #C00;
+    border: 1px solid #CC0000;
     background: #FFFA85;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     margin: 15px 0;
 }
 .activity_item_notive p{

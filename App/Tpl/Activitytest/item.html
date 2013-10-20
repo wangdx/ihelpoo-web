@@ -5,6 +5,26 @@
         $('.system_notice').click(function(){
             notice.send('system', '<?php echo $_GET["parter"]; ?>');
         });
+        
+        $('.activity_join_btn').click(function(){
+        	$('#activity_item_notive_join').slideDown("normal");
+        	$('.activity_item_btn_div').slideUp("fast");
+        	var bodyHeight = $("body").height();
+            $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+        });
+        
+        $('.activity_partner_btn').click(function(){
+        	$('#activity_item_notive_select_partner_random').slideDown("normal");
+        	$('.activity_item_btn_div').slideUp("fast");
+        	var bodyHeight = $("body").height();
+            $('html,body').animate({scrollTop: bodyHeight + 'px'}, 800);
+        });
+        
+        $('#activity_item_btn_cancel').click(function(){
+        	$('.activity_item_notive').slideUp("fast");
+        	$('.activity_item_btn_div').slideDown("fast");
+        });
+        
     });
 </script>
 <?php }?>
@@ -22,7 +42,8 @@
 		<p>2. 遵守活动规则，遵纪守法，行为合符道德。</p>
 		<p>3. 需要提供您的真实联系方式，例如QQ、手机号等。</p>
 		<p><span class="red">是否同意?</span> <span class="icon_write"></span></p>
-		<p><br /><a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jionagree" class="btn_red f12">是</a> <a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">否</a></p>
+		<p><br /><a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jionagree" class="btn_red f12">是</a>
+		<a id="activity_item_btn_cancel" class="btn f12">否</a></p>
 	</div>
 
 	<?php if ($userinfolack) { ?>
@@ -39,7 +60,7 @@
 		<p></p>
 		<p>
 			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $_GET['parter']; ?>" class="btn_red f12 system_notice">确定</a>
-			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
+			<a id="activity_item_btn_cancel" class="btn f12">取消</a>
 		</p>
 	</div>
 	
@@ -50,7 +71,7 @@
 		<p></p>
 		<p>
 			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandomsure" class="btn_red f12 system_notice">确定</a>
-			<a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">取消</a>
+			<a id="activity_item_btn_cancel" class="btn f12">取消</a>
 		</p>
 	</div>
 	
@@ -91,9 +112,9 @@
 	</ul>
 	<?php if (empty($_GET['action'])) { ?>
 		<div class="activity_item_btn_div">
-			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jion" class="btn activity_join_btn">我要参加</a>
+			<a class="btn activity_join_btn">我要参加</a>
 			<?php if ($recordActivityItem['run_type'] == '2') { ?>
-			<a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectrandom" class="btn activity_partner_btn">随机选Partner</a>
+			<a class="btn activity_partner_btn">随机选Partner</a>
 			<?php } ?>
 			<a href="__ROOT__/item/say/<?php echo $recordActivityItem['sid']; ?>" class="btn activity_comment_btn">评论互动</a>
 			<div class="activity_share_div">
