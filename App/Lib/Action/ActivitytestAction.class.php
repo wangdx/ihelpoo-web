@@ -95,7 +95,7 @@ class ActivitytestAction extends Action {
     		$month = (int)substr($activity_ti,5,2);
     		$day = (int)substr($activity_ti,8,2);
     		$activity_time = mktime(0,0,0,$month,$day,$year);
-    		if ($activity_time < (time() - 86400)) {
+    		if ($activity_time < (time() + 259200)) {
     			redirect('/activity/add/', 3, '活动时间不能少于当前时间:( 3秒后页面跳转...');
     		}
     		if (empty($content)) {
