@@ -190,7 +190,7 @@
 						<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $activityUser['uid']; ?>">Partner邀请处理</a>
 					<?php } else { ?>
 						<?php if ($activityUser['invite_status'] != 2) { ?>
-						<a class="choose_partner_a" userid="<?php echo $activityUser['uid']; ?>" url="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $activityUser['uid']; ?>" nickname="<?php echo $activityUser['nickname']; ?>" class="btn f12">选为Partner</a>
+						<a class="choose_partner_a btn f12" userid="<?php echo $activityUser['uid']; ?>" url="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=selectsure&parter=<?php echo $activityUser['uid']; ?>" nickname="<?php echo $activityUser['nickname']; ?>">选为Partner</a>
 						<?php } ?>
 					<?php } ?>
 				<?php } ?>
