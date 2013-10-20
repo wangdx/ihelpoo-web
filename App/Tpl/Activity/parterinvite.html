@@ -5,6 +5,7 @@
         $('#activity_item_btn_cancel').live('click', function(){
         	$('.activity_item_notive').slideUp("fast");
         	$('.activity_item_btn_div').slideDown("fast");
+        	$('.parterinvite_accept_a').show();
         });
         
         $('.parterinvite_accept_a').click(function(){
@@ -16,7 +17,7 @@
         	$('#activity_item_parterinvite_a').text(nickname);
         	$('#activity_item_parterinvite_sure_a').attr({'href':targeturl});
         	$('#activity_item_notive').slideDown("normal");
-        	$this.slideUp("fast");
+        	$this.hide();
             $('html,body').animate({scrollTop: '0px'}, 800);
         });
         
