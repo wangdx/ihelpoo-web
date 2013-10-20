@@ -413,15 +413,11 @@ class ActivityAction extends Action {
     			if (empty($recordActivityUser['id'])) {
     				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
     			}
-    			
-    			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' ORDER BY RAND() LIMIT 1";
+    			$ActivityUserinvite = M("ActivityUserinvite");
+    			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' AND invite_status != '2' ORDER BY RAND() LIMIT 1";
     			$recordRandUser = $ActivityUser->query($searchRandUserSql);
-    			var_dump($recordRandUser);
-    			exit();
     			$parteruid = (int)$recordRandUser[0]['uid'];
     			if (!empty($parteruid)) {
-    				$ActivityUserinvite = M("ActivityUserinvite");
-
     				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     				if ($recordSelfActivityUser['invite_status'] == 2) {
     					redirect('/activity/item/'.$activityid, 3, '你已经有了Parter了哦 :) 3秒后页面跳转...');
