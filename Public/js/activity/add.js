@@ -8,11 +8,10 @@ $().ready(function(){
 			items : [
 		        'source', '|', 'undo', 'redo', '|', 'preview', 'template', 
 		        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-		        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-		        'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+		        'justifyfull', 'insertorderedlist', 'insertunorderedlist','|', 'fullscreen', '/',
 		        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-		        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 
-		        'table', 'hr', 'link', 'unlink']
+		        'italic', 'underline', 'removeformat', '|', 'image', 
+		        'table', 'link', 'unlink']
 		});
 	});
 });
