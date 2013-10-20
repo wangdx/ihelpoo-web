@@ -8,7 +8,7 @@
 		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
 	</ul>
 	<div class="activity_itemnotice_info_div">
-		关于活动 <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>">“<?php echo $recordActivityItem['subject']; ?>”</a>(<?php echo $recordActivityItem['tun_type'] == '1' ? '正常模式' : 'Parter模式'; ?>) 你收到的邀请
+		关于活动 <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>">“<?php echo $recordActivityItem['subject']; ?>”</a>(<?php echo $recordActivityItem['tun_type'] == '1' ? '正常模式' : 'Parter模式'; ?>) 你的邀请
 	</div>
 	<?php if ($_GET['action'] == 'accept') { ?>
 	<div class="activity_item_notive">
@@ -20,6 +20,13 @@
 	</div>
 	<?php } ?>
 	
+	<?php if (!empty($_GET['invite'])) { ?>
+	<a href="?invite=true" class="btn">发出的邀请</a> 
+	<a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>">收到的邀请</a>
+	<?php } else { ?>
+	<a href="?invite=true">发出的邀请</a> 
+	<a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>" class="btn">收到的邀请</a>
+	<?php } ?>
 	<?php if (!empty($_GET['invite'])) { ?>
 		<?php if (!empty($activityUserinvite)) { ?>
 		<div class="f12"><span class="icon_pump"></span> 你发出的邀请</div>
