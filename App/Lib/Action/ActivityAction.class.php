@@ -461,7 +461,7 @@ class ActivityAction extends Action {
     				 * "通过系统随机分配，邀请你成为他的活动Partner!";
     				 * TODO ajax, bounce
     				 */
-                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:inviterandom', $activityid);
     				redirect('/activity/parterinvite/'.$activityid, 3, '成功随机选择Partner 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
