@@ -273,8 +273,10 @@
     margin-right: 10px;
     margin-right: 10px;
 }
-.activity_share_p{
-
+.activity_share_div{
+    position: absolute;
+    right: 0;
+    top: 5px;
 }
 /*--- itemnotice ---*/
 .activity_itemnotice_info_div{
