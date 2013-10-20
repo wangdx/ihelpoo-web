@@ -159,6 +159,11 @@
     margin: 10px 0;
     padding: 8px 10px;
 }
+.activity_item_ul_title_li{
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+}
 .activity_item_ul_subject_div{
     padding: 0 5px;
     margin-top: 10px;

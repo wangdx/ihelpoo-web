@@ -66,7 +66,7 @@
 		<?php } else if ($recordActivityItem['status'] == 2) { ?>
 			<li class="f12 red"><span class="icon_attention"></span> 状态:审核未通过</li>
 		<?php } ?>
-		<li>
+		<li class="activity_item_ul_title_li">
 			<span class="f16 black fb"><?php echo $recordActivityItem['subject']; ?></span>
 			<span class="fr">
 			<?php if ($userloginedrecord['uid'] == $recordActivityItem['sponsor_uid']) { ?>
