@@ -145,6 +145,7 @@
     padding: 10px;
     border-radius: 5px;
     margin: 15px 0;
+    display: none;
 }
 .activity_item_notive p{
     padding: 3px 0;
