@@ -160,17 +160,17 @@
     padding: 8px 10px;
 }
 .activity_item_ul .activity_item_ul_title_li{
-    background-color: #DFF0D8;
-    border: 1px solid #D6E9C6;
+    background-color: #F5F5F5;
+    border: 1px solid #EEE;
     color: #999999;
 }
 .activity_item_ul_title_li a{
-    color: #468847;
+    color: #333;
 }
 .activity_item_ul_subject_div{
     padding: 0 5px;
     margin-top: 10px;
-    border-top: 1px solid #D6E9C6;
+    border-top: 1px solid #EEE;
 }
 .activity_item_ul_subject_div_p{
     margin: 10px 0;
