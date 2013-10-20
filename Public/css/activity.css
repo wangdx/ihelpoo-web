@@ -151,6 +151,9 @@
     padding: 3px 0;
     font-size: 12px;
 }
+.activity_item_notive .btn_red{
+    margin-right: 10px;
+}
 .activity_item_ul{
     margin: 15px 0;
 }
