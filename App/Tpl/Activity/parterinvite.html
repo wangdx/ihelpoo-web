@@ -42,10 +42,10 @@
 	
 	<?php if (!empty($isHasParterActivityUsers)) { ?>
 	<div class="f12 activity_parterinvite_info_div" >
-		<a href="__ROOT__/wo/<?php echo $isHasParterActivityUsers['partner_uid']; ?>" class="getuserinfo" userid="<?php echo $isHasParterActivityUsers['partner_uid']; ?>">
-			<img src="<?php echo i_icon_check($isHasParterActivityUsers['partner_uid'], $isHasParterActivityUsers['icon_url'], 'm'); ?>" height="75" class="i_c_l_u_li_img radius3" />
+		<a href="__ROOT__/wo/<?php echo $isHasParterActivityUsers['uid']; ?>" class="getuserinfo" userid="<?php echo $isHasParterActivityUsers['uid']; ?>">
+			<img src="<?php echo i_icon_check($isHasParterActivityUsers['uid'], $isHasParterActivityUsers['icon_url'], 'm'); ?>" height="75" class="i_c_l_u_li_img radius3" />
 		</a>
-		<a href="__ROOT__/wo/<?php echo $isHasParterActivityUsers['partner_uid']; ?>" class="f12 getuserinfo" userid="<?php echo $isHasParterActivityUsers['partner_uid']; ?>">
+		<a href="__ROOT__/wo/<?php echo $isHasParterActivityUsers['uid']; ?>" class="f12 getuserinfo" userid="<?php echo $isHasParterActivityUsers['uid']; ?>">
 			<?php echo $isHasParterActivityUsers['nickname']; ?>
 		</a>
 		和你已经成为此次活动的Partner，Good luck :)
