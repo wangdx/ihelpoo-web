@@ -112,7 +112,7 @@
 				var jiathis_config={
 					url:"http://<?php echo $_SERVER['HTTP_HOST']; ?>/activitytest/item/<?php echo $recordActivityItem['aid']; ?>",
 					summary:"",
-					title:"我们学校组织的 “<?php echo $recordActivityItem['subject']; ?>” 这个活动好玩，小伙伴们来参加啊~",
+					title:"<?php echo $schoolname; ?>的“<?php echo $recordActivityItem['subject']; ?>”这个活动好玩，小伙伴们来参加啊~ 星期<?php echo date('N', $recordActivityItem['activity_ti']); ?>举办，已经有<?php echo $recordActivityItem['join_num']; ?>加入了，<?php echo $recordActivityItem['hit']; ?>人表示观望~",
 					hideMore:false
 				}
 				</script>
