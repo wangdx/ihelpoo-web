@@ -391,7 +391,7 @@ class ActivityAction extends Action {
     				/**
     				 * update ActivityUser invite_status
     				 */
-    				$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $parteruid")->find();
+    				$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     				$updateActivityUserInvitestatus = array(
     					'id' => $recordActivityUser['id'],
     					'invite_status' => 1,
