@@ -23,7 +23,7 @@
         	var userid =  $this.attr("userid");
         	var targeturl =  $this.attr("url");
         	var nickname =  $this.attr("nickname");
-        	$('#activity_item_notive_select_partner_a').attr({'href':'/wo/'+userid});
+        	$('#activity_item_notive_select_partner_a').attr({'href':'/wo/'+userid, 'userid':userid});
         	$('#activity_item_notive_select_partner_a').text(nickname);
         	$('#activity_item_notive_select_partner_sure_a').attr({'href':targeturl});
         	$('#activity_item_notive_select_partner').slideDown("normal");
@@ -59,7 +59,7 @@
 	<?php } ?>
 
 	<div class="activity_item_notive" id="activity_item_notive_select_partner">
-		<p>你将请求与 <a href="" target="_blank" id="activity_item_notive_select_partner_a"></a> 成为Partner</p>
+		<p>你将请求与 <a href="" target="_blank" id="activity_item_notive_select_partner_a" class="getuserinfo"></a> 成为Partner</p>
 		<p>1. 只能挑选一人为Parter，确定即视作你将放弃与其他参与者成为Partner的机会</p>
 		<p>2. 等待对方同意，如果同意则你们成为此次活动的Partner，如果对方拒绝你可以再请求与其他参与者成为Partner</p>
 		<p></p>
