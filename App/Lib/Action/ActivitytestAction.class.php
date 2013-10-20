@@ -463,7 +463,7 @@ class ActivitytestAction extends Action {
     	 */
     	if (!empty($_GET['acceptid'])) {
     		if ($recordActivityUser['invite_status'] == 2) {
-    			redirect('/activity/item/'.$activityid, 3, '您已经有了活动Parter，不能太贪心噢 :D 3秒后页面跳转...');
+    			redirect('/activity/parterinvite/'.$activityid, 3, '您已经有了活动Parter，不能太贪心噢 :D 3秒后页面跳转...');
     		}
     		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
