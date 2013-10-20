@@ -30,7 +30,7 @@
 		<?php if (!empty($recordsActivityLotterydraw)) { 
 		foreach ($recordsActivityLotterydraw as $activityLotterydraw) { ?>
 			<li>
-				<?php echo $activityLotterydraw['userids']; ?> <span class="f12 gray">时间 <?php echo i_time($activityLotterydraw['time']); ?></span> 
+				<?php echo $activityLotterydraw['userids']; ?> <span class="f12 gray fr">时间 <?php echo i_time($activityLotterydraw['time']); ?></span> 
 			</li>
 		<?php } } ?>
 		</ul>
@@ -50,4 +50,5 @@
 		</ul>
 	</div>
 </div>
+<div class="user_info_div f12"></div>
 <include file="Public:footer" />

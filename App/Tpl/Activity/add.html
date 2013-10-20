@@ -8,7 +8,7 @@
 		<li><a href="__ROOT__/activity/lists?self=mine">我的活动</a></li>
 	</ul>
 <div class="activity_add_info_div">
-	添加新活动 <a href="__ROOT__/support?activity" class="gray f12">组织活动规范</a><span class="icon_sigh"></span>
+	添加新活动 <a href="__ROOT__/support?activity" target="_blank" class="gray f12">组织活动规范</a><span class="icon_sigh"></span>
 	<?php if (!empty($editActivityItem['aid'])) { ?>
 	 <span class="f12 red">编辑修改提交后，该活动将暂停，重新进入审核流程...</span>
 	<?php } ?>
@@ -22,7 +22,7 @@
     </li>
     <li>
       <span class="activity_add_title">活动时间:</span>
-      <input id="activity_ti" class="activity_add_input input_style" type="text" name="activity_ti" value="<?php echo $editActivityItem['activity_ti'] == NULL ? date('Y-m-d', time()) : date('Y-m-d', $editActivityItem['activity_ti']); ?>" />
+      <input id="activity_ti" class="activity_add_input input_style" type="text" name="activity_ti" value="<?php echo $editActivityItem['activity_ti'] == NULL ? date('Y-m-d', (time() + 345600)) : date('Y-m-d', $editActivityItem['activity_ti']); ?>" />
       <span class="gray f12">格式时间事例 2012-03-01</span>
     </li>
     <li>
@@ -36,14 +36,15 @@
 			<option value='2'>Partner模式</option>
 		<?php } ?>
       </select>
-      <a href="__ROOT__/support?activity" class="gray f12">关于活动模式</a> <span class="icon_sigh"></span>
+      <a href="__ROOT__/support?activity" target="_blank" class="gray f12">关于活动模式</a> <span class="icon_sigh"></span>
     </li>
     <li>
       <span class="activity_add_title">内&#12288;&#12288;容:</span>
       <div class="textarea_content_div">
       	<textarea id="content" name="content"><?php echo stripslashes($editActivityItem['content']); ?></textarea>
       </div>
-      <input id="submit" class="activity_add_submit" type="submit" value="确定" />
+      <input id="activity_submit_btn" class="activity_add_submit" type="submit" value="ok" />
+      <a id="activity_submit_btn_a" class="btn">确定</a>
     </li>
 </ul>
 </form>

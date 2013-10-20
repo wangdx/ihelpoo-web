@@ -95,8 +95,8 @@ class ActivityAction extends Action {
     		$month = (int)substr($activity_ti,5,2);
     		$day = (int)substr($activity_ti,8,2);
     		$activity_time = mktime(0,0,0,$month,$day,$year);
-    		if ($activity_time < (time() - 86400)) {
-    			redirect('/activity/add/', 3, '活动时间不能少于当前时间:( 3秒后页面跳转...');
+    		if ($activity_time < (time() + 259200)) {
+    			redirect('/activity/add/', 3, '活动时间不能少于当前时间+3天筹备宣传时间 :( 3秒后页面跳转...');
     		}
     		if (empty($content)) {
     			redirect('/activity/add/', 3, '活动内容不能为空! 3秒后页面跳转...');
@@ -145,6 +145,111 @@ class ActivityAction extends Action {
     	}
 
     	$this->display();
+    }
+    
+    /**
+     *
+     * Ajax action, build for kindediter
+     * upload image file
+     */
+    public function addupload()
+    {
+    	$userloginid = session('userloginid');
+    	$UserAlbum = M("UserAlbum");
+    	if ($this->isPost()) {
+
+    		/**
+    		 * album default size controll
+    		 */
+    		$totalAlbumSize = $UserAlbum->where("uid = $userloginid")->sum('size');
+    		$UserLogin = M("UserLogin");
+    		$recordUserLogin = $UserLogin->find($userloginid);
+    		$userLevel = i_degree($recordUserLogin['active']);
+    		$totalAlbumDefaultSize = i_configure_album_size($userLevel);
+    		if ($totalAlbumSize >= $totalAlbumDefaultSize) {
+    			$this->ajaxReturn(0,'相册容量不够了,请联系我帮圈圈扩容','error');
+    		}
+
+    		if (!empty($_FILES["imgFile"])) {
+        		if ($_FILES["imgFile"]["error"] > 0) {
+        			$this->ajaxReturn(0,'上传图片失败, info'.$_FILES["imgFile"]["error"],'error');
+        			$data['message'] = '上传图片失败, info'.$_FILES["imgFile"]["error"];
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+        		} else {
+        			$imageOldName = $_FILES["imgFile"]["name"];
+        			$imageType = $_FILES["imgFile"]["type"];
+        			$imageType = trim($imageType);
+        			$imageSize = $_FILES["imgFile"]["size"];
+        			$imageTmpName = $_FILES["imgFile"]["tmp_name"];
+        		}
+
+        		$tempRealSize = getimagesize($_FILES["imgFile"]["tmp_name"]);
+    			$imageRealWidth = $tempRealSize['0'];
+    			$imageRealHeight = $tempRealSize['1'];
+    			if ($imageRealWidth < 10 || $imageRealHeight < 10 ) {
+    				$data['message'] = '上传图片也太小了吧';
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+    			}
+        		if ($imageSize > 2670016) {
+        			$data['message'] = '上传图片太大, 最大能上传单张 2.5MB';
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+        		}  else if ($imageType == 'image/jpeg' || $imageType == 'image/pjpeg' || $imageType == 'image/gif' || $imageType == 'image/x-png' || $imageType == 'image/png') {
+        			
+        			/**
+        			 * storage in upyun
+        			 */
+        			Vendor('Ihelpoo.Upyun');
+        			$upyun = new UpYun('ihelpoo', 'image', 'ihelpoo2013');
+        			$fh = fopen($imageTmpName, 'rb');
+        			$activityitem = 'item'.time().'.jpg';
+        			$activityitem = strtolower($activityitem);
+        			$storageTempFilename = '/activity/'.$userloginid.'/'.$activityitem;
+        			$rsp = $upyun->writeFile($storageTempFilename, $fh, True);
+        			fclose($fh);
+        			$imageStorageUrl = image_storage_url();
+        			$newfilepath = $imageStorageUrl.$storageTempFilename;
+
+        			$opts = array(
+        			UpYun::X_GMKERL_TYPE    => 'fix_max',
+        			UpYun::X_GMKERL_VALUE   => 150,
+        			UpYun::X_GMKERL_QUALITY => 95,
+        			UpYun::X_GMKERL_UNSHARP => True
+        			);
+        			$fh = fopen($imageTmpName, 'rb');
+        			$storageThumbTempFilename = '/activity/'.$userloginid.'/thumb_'.$activityitem;
+        			$rsp = $upyun->writeFile($storageThumbTempFilename, $fh, True, $opts);
+        			fclose($fh);
+        			 
+        			/**
+        			 * insert into i_user_album
+        			 * 5 for activity
+        			 */
+        			$newAlbumIconData = array(
+        				'uid' => $userloginid,
+        				'type' => 5,
+        				'url' => $newfilepath,
+        				'size' => $imageSize,
+        				'time' => time()
+        			);
+        			$UserAlbum->add($newAlbumIconData);
+
+        			/**
+        			 * ajax return
+        			 */
+        			$data['url'] = $newfilepath;
+        			$data['error'] = 0;
+        			$this->ajaxReturn($data,'JSON');
+        		} else {
+        			$data['message'] = '上传图片格式错误, 目前仅支持.jpg .png .gif';
+        			$data['error'] = 1;
+        			$this->ajaxReturn($data,'JSON');
+        		}
+        		exit();
+        	}
+        }
     }
 
 	public function item()
@@ -252,13 +357,66 @@ class ActivityAction extends Action {
     		 * choose parter
     		 */
     		if ($getAction == "selectsure") {
-
     			$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
     			if (empty($recordActivityUser['id'])) {
     				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
     			}
+    			$parteruid = (int)$_GET['parter'];
+    			if (!empty($parteruid)) {
+    				$ActivityUserinvite = M("ActivityUserinvite");
+    				$recordSelfActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
+    				if ($recordSelfActivityUser['invite_status'] == 2) {
+    					redirect('/activity/item/'.$activityid, 3, '你已经有了Parter了哦 :) 3秒后页面跳转...');
+    				}
+    				$recordSingleActivityUserinvite = $ActivityUserinvite->where("aid = $activityid AND invite_uid = $userloginid")->find();
+    				if (!empty($recordSingleActivityUserinvite['id'])) {
+    					$recordSingleActivityUser = $ActivityUser->where("aid = $activityid AND uid = $recordSingleActivityUserinvite[uid]")->find();
+    				}
+    				if ($recordSingleActivityUser['invite_status'] == 1) {
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择了一个Parter 对方拒绝后才能选择第二个 :) 3秒后页面跳转...');
+    				}
+    				$recordActivityUserinvite = $ActivityUserinvite->where("uid = $parteruid AND aid = $activityid AND invite_uid = $userloginid")->find();
+    				if (!empty($recordActivityUserinvite['id'])) {
+    					redirect('/activity/item/'.$activityid, 3, '你已经选择对方为Parter 等待对方确认 :) 3秒后页面跳转...');
+    				}
+    				$newActivityUserinviteData = array(
+    					'id' => '',
+    					'aid' => $activityid,
+    					'uid' => $parteruid,
+    					'invite_uid' => $userloginid,
+    					'time' => time(),
+    				);
+    				$ActivityUserinvite->add($newActivityUserinviteData);
 
-    			$parteruid = $_GET['parter'];
+    				/**
+    				 * update ActivityUser invite_status
+    				 */
+    				$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $parteruid")->find();
+    				$updateActivityUserInvitestatus = array(
+    					'id' => $recordActivityUser['id'],
+    					'invite_status' => 1,
+    				);
+    				$ActivityUser->save($updateActivityUserInvitestatus);
+
+    				/**
+    				 * send msg system
+    				 * "邀请你成为他的活动Parter!";
+    				 * TODO ajax, bounce
+    				 */
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
+    				redirect('/activity/parterinvite/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
+    			}
+    		}
+    		
+    		if ($getAction == "selectrandomsure") {
+    			$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
+    			if (empty($recordActivityUser['id'])) {
+    				redirect('/activity/item/'.$activityid, 3, '需要先加入此次活动, 才能选择Parter:) 3秒后页面跳转...');
+    			}
+    			
+    			$searchRandUserSql = "SELECT * FROM i_activity_user WHERE aid = '$activityid' AND uid != '$userloginid' ORDER BY RAND() LIMIT 1";
+    			$recordRandUser = $ActivityUser->query($searchRandUserSql);
+    			$parteruid = (int)$recordRandUser[0]['uid'];
     			if (!empty($parteruid)) {
     				$ActivityUserinvite = M("ActivityUserinvite");
 
@@ -277,7 +435,7 @@ class ActivityAction extends Action {
 
     				$recordActivityUserinvite = $ActivityUserinvite->where("uid = $parteruid AND aid = $activityid AND invite_uid = $userloginid")->find();
     				if (!empty($recordActivityUserinvite['id'])) {
-    					redirect('/activity/item/'.$activityid, 3, '你已经选择对方为Parter 等待对方确认 :) 3秒后页面跳转...');
+    					redirect('/activity/item/'.$activityid, 3, '你已经随机选择了一个Parter 等待对方确认 :) 3秒后页面跳转...');
     				}
 
     				$newActivityUserinviteData = array(
@@ -301,10 +459,11 @@ class ActivityAction extends Action {
 
     				/**
     				 * send msg system
-    				 * "邀请你成为他的活动Parter!";
+    				 * "通过系统随机分配，邀请你成为他的活动Partner!";
+    				 * TODO ajax, bounce
     				 */
-                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);//TODO ajax, bounce
-    				redirect('/activity/item/'.$activityid, 3, '成功选择Parter 等待对方确认 :) 3秒后页面跳转...');
+                    i_savenotice($userloginid, $parteruid, 'activity/item-para:invite', $activityid);
+    				redirect('/activity/parterinvite/'.$activityid, 3, '成功随机选择Partner 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
     	}
@@ -361,6 +520,20 @@ class ActivityAction extends Action {
         	}
         	$this->assign('parterUserArray', $parterUserArray);
         }
+        
+        /**
+         * show join sex nums
+         */
+        $joinBoyNums = $ActivityUser->where("aid = $recordActivityItem[aid] AND sex = 1")
+    	->join('i_user_login ON i_activity_user.uid = i_user_login.uid')
+    	->field('id,aid,i_activity_user.uid,partner_uid,invite_status,time,nickname,sex')
+    	->count();
+    	$joinGirlNums = $ActivityUser->where("aid = $recordActivityItem[aid] AND sex = 2")
+    	->join('i_user_login ON i_activity_user.uid = i_user_login.uid')
+    	->field('id,aid,i_activity_user.uid,partner_uid,invite_status,time,nickname,sex')
+    	->count();
+    	$this->assign('joinBoyNums',$joinBoyNums);
+    	$this->assign('joinGirlNums',$joinGirlNums);
 
     	$this->display();
     }
@@ -395,7 +568,7 @@ class ActivityAction extends Action {
     	 */
     	if (!empty($_GET['acceptid'])) {
     		if ($recordActivityUser['invite_status'] == 2) {
-    			redirect('/activity/item/'.$activityid, 3, '您已经有了活动Parter，不能太贪心噢 :D 3秒后页面跳转...');
+    			redirect('/activity/parterinvite/'.$activityid, 3, '您已经有了活动Parter，不能太贪心噢 :D 3秒后页面跳转...');
     		}
     		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
@@ -463,11 +636,20 @@ class ActivityAction extends Action {
     	/**
     	 * activity info
     	 */
-    	$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.uid = $userloginid AND aid = $activityid")
-    	->join('i_user_login ON i_activity_userinvite.invite_uid = i_user_login.uid')
-    	->field('id,aid,i_activity_userinvite.uid,i_activity_userinvite.invite_uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
-    	->select();
-    	$this->assign('recordsActivityUserinvite',$recordsActivityUserinvite);
+    	if (!empty($_GET['invite'])) {
+    		$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.invite_uid = $userloginid AND aid = $activityid")
+	    	->join('i_user_login ON i_activity_userinvite.uid = i_user_login.uid')
+	    	->field('id,aid,i_user_login.uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+	    	->find();
+	    	$this->assign('activityUserinvite',$recordsActivityUserinvite);
+    	} else {
+	    	$recordsActivityUserinvite = $ActivityUserinvite->where("i_activity_userinvite.uid = $userloginid AND aid = $activityid")
+	    	->join('i_user_login ON i_activity_userinvite.invite_uid = i_user_login.uid')
+	    	->field('id,aid,i_activity_userinvite.uid,i_activity_userinvite.invite_uid,time,nickname,sex,birthday,enteryear,type,online,active,icon_url')
+	    	->select();
+	    	$this->assign('recordsActivityUserinvite',$recordsActivityUserinvite);
+    	}
+    	
     	$this->display();
     }
 
@@ -652,11 +834,11 @@ class ActivityAction extends Action {
     		}
     		$lotterydrawActivityUser = array_rand($recordsActivityUser,$usernumbers);
     		if (is_int($lotterydrawActivityUser)) {
-    			$userids = "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawActivityUser]['uid']."'>".$recordsActivityUser[$lotterydrawActivityUser]['nickname']."</a>";
+    			$userids = "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawActivityUser]['uid']."' class='getuserinfo'>".$recordsActivityUser[$lotterydrawActivityUser]['nickname']."</a>";
     		} else {
     			$userids = NULL;
 	    		foreach ($lotterydrawActivityUser as $lotterydrawid){
-	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
+	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."' class='getuserinfo'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
 	    		}
     		}
 
