@@ -23,14 +23,14 @@
 		<p>2. 遵守活动规则，遵纪守法，行为合符道德。</p>
 		<p>3. 需要提供您的真实联系方式，例如QQ、手机号等。</p>
 		<p><span class="red">是否同意?</span> <span class="icon_write"></span></p>
-		<p><br /><a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jionagree" class="btn_red f12">是</a> <a href="__ROOT__/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">否</a></p>
+		<p><br /><a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>?action=jionagree" class="btn_red f12">是</a> <a href="/activity/item/<?php echo $recordActivityItem['aid']; ?>" class="btn f12">否</a></p>
 	</div>
 	<?php } ?>
 
 	<?php if ($userinfolack) { ?>
 	<div class="activity_item_notive">
 		<span class="red fb">你的个人资料不完善，请填写完整手机号和QQ号码，再参与活动:)<span class="icon_write"></span></span>
-		<a href="__ROOT__/setting/" class="f12">马上填写</a> 
+		<a href="/setting/" class="f12">马上填写</a> 
 	</div>
 	<?php } ?>
 
