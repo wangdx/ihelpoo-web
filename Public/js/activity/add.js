@@ -14,4 +14,8 @@ $().ready(function(){
 		        'table', 'link', 'unlink']
 		});
 	});
+	
+	$("#activity_submit_btn_a").click(function(){
+		$("#activity_submit_btn").click();
+	});
 });
