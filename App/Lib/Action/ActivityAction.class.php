@@ -391,7 +391,7 @@ class ActivityAction extends Action {
     				/**
     				 * update ActivityUser invite_status
     				 */
-    				$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $userloginid")->find();
+    				$recordActivityUser = $ActivityUser->where("aid = $activityid AND uid = $parteruid")->find();
     				$updateActivityUserInvitestatus = array(
     					'id' => $recordActivityUser['id'],
     					'invite_status' => 1,
@@ -566,6 +566,9 @@ class ActivityAction extends Action {
     	 * accept handle
     	 */
     	if (!empty($_GET['refuseid'])) {
+    		if ($recordActivityUser['invite_status'] == 2) {
+    			redirect('/activity/parterinvite/'.$activityid, 3, '您已经有了活动Parter，不能变心噢 :D 3秒后页面跳转...');
+    		}
     		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['refuseid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];

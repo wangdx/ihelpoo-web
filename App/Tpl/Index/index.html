@@ -3,12 +3,9 @@
 <head>
 <title>{$title}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<?php if ($_GET['login'] == 'new') {
-    setcookie('userEmail', NULL, time() - 1, '/');
-    setcookie('userPassword', NULL, time() - 1, '/');
-	setcookie('userLoginstatus', NULL, time() - 1, '/');
-    echo "<meta http-equiv='refresh' content='0; url=".__ROOT__."?' />";
-} ?>
+<meta name="keywords" content="我帮圈圈,ihelpoo.cn,ihelpoo.com,校园帮助主题设计完网站,<?php echo $schoolname; ?>,<?php echo $schoolname; ?>我帮圈圈,我帮圈圈<?php echo $schoolname; ?>" />
+<meta name="description" content="我帮圈圈以校园划圈的高校校园帮助主题社交网站" />
+<meta name="application-name" content="我帮圈圈"/>
 <link href="http://static.ihelpoo.cn/css/ihelpoo.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <link href="http://static.ihelpoo.cn/css/index.css?id=1" media="screen" rel="stylesheet" type="text/css" />
 <style type="text/css">
@@ -23,6 +20,13 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+<?php
+if ($_GET['login'] == 'new') {
+    setcookie('userEmail', NULL, time() - 1, '/');
+    setcookie('userPassword', NULL, time() - 1, '/');
+	setcookie('userLoginstatus', NULL, time() - 1, '/');
+    echo "<meta http-equiv='refresh' content='0; url=".__ROOT__."?' />";
+} ?>
 </head>
 <body>
 <div class="texture_background">
