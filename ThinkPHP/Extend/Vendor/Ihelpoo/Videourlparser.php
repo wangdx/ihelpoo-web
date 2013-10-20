@@ -99,7 +99,8 @@ class VideoUrlParser
             $data = self::_parseSohu($url);
             break;
         case 'v.qq.com':
-            $data = self::_parseQq($url);
+            //$data = self::_parseQq($url);
+            $data = false;
             break;
         default:
             $data = false;
