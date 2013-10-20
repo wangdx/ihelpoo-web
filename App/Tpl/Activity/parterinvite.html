@@ -58,7 +58,7 @@
 					<?php echo $activityUserinvite['nickname']; ?>
 				</a>
 				<span class="f12 gray" title="邀请时间"><?php echo i_time($activityUserinvite['time']); ?></span>
-				<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?action=accept&id=<?php echo $activityUserinvite['id']; ?>&nickname=<?php echo $activityUserinvite['nickname']; ?>">接受请求</a>
+				<a href="__ROOT__/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?action=accept&id=<?php echo $activityUserinvite['id']; ?>&nickname=<?php echo $activityUserinvite['nickname']; ?>" class="btn f12">接受请求</a>
 			</li>
 		<?php } ?>
 		</ul>
