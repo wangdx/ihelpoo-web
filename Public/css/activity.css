@@ -154,6 +154,10 @@
 .activity_item_notive .btn_red{
     margin-right: 10px;
 }
+.activity_item_notive .btn{
+    padding: 5px 15px;
+    background-color: #DDD;
+}
 .activity_item_ul{
     margin: 15px 0;
 }
