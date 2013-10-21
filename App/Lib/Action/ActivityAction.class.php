@@ -621,14 +621,7 @@ class ActivityAction extends Action {
     			if (!empty($resultsActivityUserinvite)) {
     				foreach ($resultsActivityUserinvite as $resultActivityUserinvite) {
     					if ($resultActivityUserinvite['invite_uid'] == $inviteuserid || $resultActivityUserinvite['invite_uid'] == $userloginid) {
-	    					
 			    			
-			    			//$ActivityUser->save($freeActivityUserPartnerArray);
-			    			
-			    			/**
-			    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
-			    			 */
-			    			//i_savenotice(10000, $resultActivityUser['uid'], 'system/activity:partnernew', '');
     					} else {
     						$resultActivityUser = $ActivityUser->where("aid = $resultActivityUserinvite[aid] AND uid = $resultActivityUserinvite[invite_uid]")->find();
 	    					$freeActivityUserPartnerArray = array(
@@ -637,7 +630,14 @@ class ActivityAction extends Action {
 				    			'invite_status' => 0,
 			    			);
 			    			var_dump($resultActivityUserinvite);
-			    			var_dump($freeActivityUserPartnerArray);
+			    			var_dump($resultActivityUser);
+			    			
+			    			//$ActivityUser->save($freeActivityUserPartnerArray);
+			    			
+			    			/**
+			    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
+			    			 */
+			    			//i_savenotice(10000, $resultActivityUser['invite_uid'], 'system/activity:partnernew', '');
     					}
     				}
     			}
