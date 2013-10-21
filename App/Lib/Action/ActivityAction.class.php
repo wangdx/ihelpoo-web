@@ -614,7 +614,7 @@ class ActivityAction extends Action {
     		if (!empty($acceptActivityUserinvite['id'])) {
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			
-    			$resultsActivityUserinvite = $ActivityUserinvite->where("uid = $inviteuserid OR uid = $userloginid")->select();
+    			$resultsActivityUserinvite = $ActivityUserinvite->where("(uid = $inviteuserid OR uid = $userloginid) AND aid = $activityid")->select();
     			var_dump($resultsActivityUserinvite);
     			exit();
     			
