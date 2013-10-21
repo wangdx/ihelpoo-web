@@ -681,7 +681,7 @@ class ActivityAction extends Action {
     			 */
                 i_savenotice($inviteuserid, $userloginid, 'system/activity:partner', '');
 
-    			redirect('/activity/item/'.$activityid, 3, '选择Parter成功 :) 3秒后页面跳转...');
+    			redirect('/activity/item/'.$activityid, 3, '选择Partner成功 :) 3秒后页面跳转...');
     		}
     	}
     	
