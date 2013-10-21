@@ -629,19 +629,16 @@ class ActivityAction extends Action {
 				    			'partner_uid' => 0,
 				    			'invite_status' => 0,
 			    			);
-			    			var_dump($resultActivityUserinvite);
-			    			var_dump($resultActivityUser);
 			    			
-			    			//$ActivityUser->save($freeActivityUserPartnerArray);
+			    			$ActivityUser->save($freeActivityUserPartnerArray);
 			    			
 			    			/**
 			    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
 			    			 */
-			    			//i_savenotice(10000, $resultActivityUser['invite_uid'], 'system/activity:partnernew', '');
+			    			i_savenotice(10000, $resultActivityUser['uid'], 'system/activity:partnernew', '');
     					}
     				}
     			}
-    			exit();
     			
     			$acceptActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $userloginid")->find();
     			$acceptUpdateActivityUserArray = array(
