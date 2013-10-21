@@ -913,7 +913,7 @@ class ActivityAction extends Action {
     		} else {
     			$userids = NULL;
 	    		foreach ($lotterydrawActivityUser as $lotterydrawid){
-	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."' class='getuserinfo' userid='".$recordsActivityUser[$lotterydrawActivityUser]['uid']."'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
+	    			$userids .= "<a href='".__ROOT__."/wo/".$recordsActivityUser[$lotterydrawid]['uid']."' class='getuserinfo' userid='".$recordsActivityUser[$lotterydrawid]['uid']."'>".$recordsActivityUser[$lotterydrawid]['nickname']."</a> ";
 	    		}
     		}
 
