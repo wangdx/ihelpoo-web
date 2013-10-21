@@ -80,7 +80,7 @@ class ActivityAction extends Action {
     		$subject = trim(addslashes(htmlspecialchars(strip_tags($_POST["subject"]))));
     		$activity_ti = trim(htmlspecialchars(strip_tags($_POST["activity_ti"])));
     		$run_type = (int)trim(htmlspecialchars(strip_tags($_POST["run_type"])));
-    		if (!empty($run_type)) {
+    		if (empty($run_type)) {
     			$run_type = 1;
     		}
     		$content = trim(addslashes($_POST["content"]));
