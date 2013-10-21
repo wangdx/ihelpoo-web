@@ -83,8 +83,6 @@ class ActivityAction extends Action {
     		if (empty($run_type)) {
     			$run_type = 1;
     		}
-    		var_dump($run_type);
-    		exit();
     		$content = trim(addslashes($_POST["content"]));
     		if (empty($subject)) {
     			redirect('/activity/add/', 3, '活动主题不能为空! 3秒后页面跳转...');
@@ -124,6 +122,7 @@ class ActivityAction extends Action {
 	    			'aid' => '',
 	    			'status' => 0,
 	    			'subject' => $subject,
+	    			'run_type' => $run_type,
 	    			'sponsor_uid' => $userloginid,
 	    			'activity_ti' => $activity_time,
 	    			'content' => $content,
