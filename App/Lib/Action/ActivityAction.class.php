@@ -80,6 +80,9 @@ class ActivityAction extends Action {
     		$subject = trim(addslashes(htmlspecialchars(strip_tags($_POST["subject"]))));
     		$activity_ti = trim(htmlspecialchars(strip_tags($_POST["activity_ti"])));
     		$run_type = (int)trim(htmlspecialchars(strip_tags($_POST["run_type"])));
+    		if (!empty($run_type)) {
+    			$run_type = 1;
+    		}
     		$content = trim(addslashes($_POST["content"]));
     		if (empty($subject)) {
     			redirect('/activity/add/', 3, '活动主题不能为空! 3秒后页面跳转...');
