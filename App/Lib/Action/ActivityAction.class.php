@@ -612,11 +612,12 @@ class ActivityAction extends Action {
     		}
     		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
+    			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
+    			
     			$resultsActivityUserinvite = $ActivityUserinvite->where("uid = $inviteuserid OR uid = $userloginid")->select();
     			var_dump($resultsActivityUserinvite);
     			exit();
     			
-    			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			$acceptActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $userloginid")->find();
     			$acceptUpdateActivityUserArray = array(
 	    			'id' => $acceptActivityUser['id'],
