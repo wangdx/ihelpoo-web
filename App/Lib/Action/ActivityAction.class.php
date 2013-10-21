@@ -474,7 +474,7 @@ class ActivityAction extends Action {
     				 * TODO ajax, bounce
     				 */
                     i_savenotice($userloginid, $parteruid, 'activity/item-para:inviterandom', $activityid);
-    				redirect('/activity/parterinvite/'.$activityid, 3, '成功随机选择Partner 等待对方确认 :) 3秒后页面跳转...');
+    				redirect('/activity/parterinvite/'.$activityid.'?invite=true', 3, '成功随机选择Partner 等待对方确认 :) 3秒后页面跳转...');
     			}
     		}
     	}
