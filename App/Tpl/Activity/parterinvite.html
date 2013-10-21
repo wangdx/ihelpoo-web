@@ -61,8 +61,9 @@
 		<?php } ?>
 	</div>
 	<?php if (!empty($_GET['invite'])) { ?>
-		<?php if (!empty($activityUserinvite)) { ?>
+		<?php if (!empty($recordsActivityUserinvite)) { ?>
 		<ul class="activity_itemnotice_list_div_ul">
+		    <?php foreach($recordsActivityUserinvite as $activityUserinvite) { ?>
 			<li>
 				<a href="__ROOT__/wo/<?php echo $activityUserinvite['uid']; ?>" class="getuserinfo" userid="<?php echo $activityUserinvite['uid']; ?>">
 					<img src="<?php echo i_icon_check($activityUserinvite['uid'], $activityUserinvite['icon_url'], 'm'); ?>" height="75" class="i_c_l_u_li_img radius3" />
@@ -72,6 +73,7 @@
 				</a>
 				<span class="f12 gray" title="">邀请ta的时间: <?php echo i_time($activityUserinvite['time']); ?></span>
 			</li>
+			<?php } ?>
 		</ul>
 		<?php } else { ?>
 		<div class="f12"><span class="icon_pump"></span> :( 你还没有发出过邀请...</div>
