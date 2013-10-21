@@ -614,20 +614,6 @@ class ActivityAction extends Action {
     		if (!empty($acceptActivityUserinvite['id'])) {
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			
-    			$resultsActivityUserinvite = $ActivityUserinvite->where("(uid = $inviteuserid OR uid = $userloginid) AND aid = $activityid")->select();
-    		foreach ($resultsActivityUserinvite as $resultActivityUserinvite) {
-    					if ($resultActivityUserinvite['invite_uid'] == $inviteuserid || $resultActivityUserinvite['invite_uid'] == $userloginid) {
-	    					$resultActivityUser = $ActivityUser->where("aid = $resultActivityUserinvite[aid] AND uid = $resultActivityUserinvite[invite_uid]")->find();
-	    					$freeActivityUserPartnerArray = array(
-				    			'id' => $resultActivityUser['id'],
-				    			'partner_uid' => 0,
-				    			'invite_status' => 0,
-			    			);
-			    			var_dump($freeActivityUserPartnerArray);
-    					}
-    				}
-    			exit();
-    			
     			$acceptActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $userloginid")->find();
     			$acceptUpdateActivityUserArray = array(
 	    			'id' => $acceptActivityUser['id'],
@@ -647,6 +633,7 @@ class ActivityAction extends Action {
     			/**
     			 * free all other partner
     			 */
+    			$resultsActivityUserinvite = $ActivityUserinvite->where("(uid = $inviteuserid OR uid = $userloginid) AND aid = $activityid")->select();
     			if (!empty($resultsActivityUserinvite)) {
     				foreach ($resultsActivityUserinvite as $resultActivityUserinvite) {
     					if ($resultActivityUserinvite['invite_uid'] == $inviteuserid || $resultActivityUserinvite['invite_uid'] == $userloginid) {
