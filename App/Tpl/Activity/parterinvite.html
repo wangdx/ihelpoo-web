@@ -90,7 +90,7 @@
 					<?php echo $activityUserinvite['nickname']; ?>
 				</a>
 				<span class="f12 gray" title="邀请时间"><?php echo i_time($activityUserinvite['time']); ?></span>
-				<?php $recordActivityUser = $ActivityUser->where("aid = $recordActivityItem[aid] AND uid = $activityUserinvite[uid]")->find(); ?>
+				<?php $recordActivityUser = $ActivityUser->where("aid = $recordActivityItem[aid] AND uid = $activityUserinvite[invite_uid]")->find(); ?>
 				<?php var_dump($recordActivityUser); ?>
 					<a url="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?acceptid=<?php echo $activityUserinvite['id']; ?>" nickname="<?php echo $activityUserinvite['nickname']; ?>" userid="<?php echo $userloginedrecord['uid']; ?>" class="parterinvite_accept_a btn f12">接受请求</a>
 					<a url="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>/<?php echo $userloginedrecord['uid']; ?>?refuseid=<?php echo $activityUserinvite['id']; ?>" nickname="<?php echo $activityUserinvite['nickname']; ?>" userid="<?php echo $userloginedrecord['uid']; ?>" class="parterinvite_accept_a btn f12">婉拒</a>
