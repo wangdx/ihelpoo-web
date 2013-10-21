@@ -95,6 +95,9 @@
 				<span class="icon_plus"></span><a href="__ROOT__/activity/itemnotice/<?php echo $recordActivityItem['aid']; ?>">查看活动通知</a> 
 			<?php } ?>
 			<span class="icon_plus"></span><a href="__ROOT__/activity/lotterydraw/<?php echo $recordActivityItem['aid']; ?>">抽奖</a>
+			<?php if ($recordActivityItem['run_type'] == '2') { ?>
+				<span class="icon_plus"></span><a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>">你的Partner</a>
+			<?php } ?>
 			</span>
 			<div class="activity_item_ul_subject_div f12">
 				<p class="activity_item_ul_subject_div_p">
@@ -147,7 +150,7 @@
 	<?php if (!empty($recordsActivityUser)) { ?>
 	<div class="activity_item_join_div">
 		<?php if ($recordActivityItem['run_type'] == '2' && !empty($parterUserArray)) { ?>
-		<p class="activity_item_join_div_info_p"><span class="icon_heart"></span> 已经拥有Partner :) <a href="/activity/parterinvite/<?php echo $recordActivityItem['aid']; ?>">你的Partner</a></p>
+		<p class="activity_item_join_div_info_p"><span class="icon_heart"></span> 已经拥有Partner :) </p>
 		<ul class="activity_item_join_div_pater_ul">
 			<?php foreach ($parterUserArray as $parterUser) { ?>
 			<?php $uidUserLogin = $UserLogin->find($parterUser['uid']); ?>
