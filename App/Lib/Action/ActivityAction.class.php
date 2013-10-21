@@ -611,6 +611,10 @@ class ActivityAction extends Action {
     		}
     		$acceptActivityUserinvite = $ActivityUserinvite->find($_GET['acceptid']);
     		if (!empty($acceptActivityUserinvite['id'])) {
+    			$resultsActivityUserinvite = $ActivityUserinvite->where("uid = $inviteuserid OR uid = $userloginid")->select();
+    			var_dump($resultsActivityUserinvite);
+    			exit();
+    			
     			$inviteuserid = $acceptActivityUserinvite['invite_uid'];
     			$acceptActivityUser = $ActivityUser->where("aid = $acceptActivityUserinvite[aid] AND uid = $userloginid")->find();
     			$acceptUpdateActivityUserArray = array(
@@ -630,22 +634,25 @@ class ActivityAction extends Action {
     			
     			/**
     			 * free all other partner
-    			$resultsActivityUser = $ActivityUser->where("partner_uid = $inviteuserid OR partner_uid = $userloginid")->select();
-    			if (!empty($resultsActivityUser)) {
-    				foreach ($resultsActivityUser as $resultActivityUser) {
-    					$freeActivityUserPartnerArray = array(
-			    			'id' => $resultActivityUser['id'],
-			    			'partner_uid' => 0,
-			    			'invite_status' => 0,
-		    			);
-		    			$ActivityUser->save($freeActivityUserPartnerArray);
-		    			
-		    			 *
-		    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
-		    			 *
-		    			i_savenotice(10000, $resultActivityUser['uid'], 'system/activity:partnernew', '');
+    			 */
+    			if (!empty($resultsActivityUserinvite)) {
+    				foreach ($resultsActivityUserinvite as $resultActivityUserinvite) {
+    					if ($resultActivityUserinvite['invite_uid'] == $inviteuserid || $resultActivityUserinvite['invite_uid'] == $userloginid) {
+	    					$resultActivityUser = $ActivityUser->where("aid = $resultActivityUserinvite[aid] AND uid = $resultActivityUserinvite[invite_uid]")->find();
+	    					$freeActivityUserPartnerArray = array(
+				    			'id' => $resultActivityUser['id'],
+				    			'partner_uid' => 0,
+				    			'invite_status' => 0,
+			    			);
+			    			$ActivityUser->save($freeActivityUserPartnerArray);
+			    			
+			    			/**
+			    			 * 你请求的Partner已经选择了其他的搭档，你也可以重新选择Partner了
+			    			 */
+			    			i_savenotice(10000, $resultActivityUser['uid'], 'system/activity:partnernew', '');
+    					}
     				}
-    			} */
+    			}
     			
     			/**
     			 * change user info
