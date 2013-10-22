@@ -37,9 +37,9 @@ $(function () {
         $('#data_uid').val(state.from);
         $('#data_touid').val(state.to);
     }
-    
+
     /**
-     * add talklist user 
+     * add talklist user
      */
     $('#add_talklist_user').click(function () {
     	var data_touid = $('#data_touid').val();
@@ -57,7 +57,7 @@ $(function () {
             }
         });
     });
-    
+
 });
 
 function prepareUI() {
@@ -133,7 +133,7 @@ function prepareUI() {
     $('#img_upload_comment_form_div_close').live('click', function () {
         $('.img_upload_comment_form_div').fadeOut('fast');
     });
-    
+
     /**
      * enter keydown submit
      */
@@ -386,26 +386,12 @@ function Chat(state) {
     }
 
     function _connectionInitialized() {
-        // first time connection for this client, so subscribe tell everybody.
         $.cometd.batch(function () {
             _subscribe();
-            $.cometd.publish('/chat/p2p', {   //TODO this should be a system service
-                from: _from,
-                membership: 'join',
-                chat: _from + ' has joined'
-            });
         });
     }
 
     function _connectionEstablished() {
-        // connection establish (maybe not for first time), so just
-        // tell local user and update membership
-//        _self.receive({
-//            data: {
-//                from: 'system',
-//                chat: 'Connection to Server Opened'
-//            }
-//        });
         $.cometd.publish('/service/members', {
             from: _from,
             room: '/chat/p2p'
@@ -413,12 +399,6 @@ function Chat(state) {
     }
 
     function _connectionBroken() {
-        _self.receive({
-            data: {
-                user: 'system',
-                chat: 'Connection to Server Broken'
-            }
-        });
         toDeliver();
         $('#members').empty();
     }
@@ -438,19 +418,9 @@ function Chat(state) {
         );
     }
 
-    function _connectionClosed() {
-        _self.receive({
-            data: {
-                user: 'system',
-                chat: 'Connection to Server Closed'
-            }
-        });
-    }
-
     function _metaConnect(message) {
         if (_disconnecting) {
             _connected = false;
-            _connectionClosed();
         }
         else {
             _wasConnected = _connected;
