@@ -832,6 +832,7 @@ class UserAction extends Action {
 	            	'priority' => '4',
 	                'logintime' => time(),
 	            	'creat_ti' => time(),
+	            	'online' => '1',
 	            	'icon_fl' => 0,
 	            	'school' => $school
 	            );
