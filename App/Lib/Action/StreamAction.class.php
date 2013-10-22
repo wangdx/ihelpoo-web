@@ -125,7 +125,9 @@ class StreamAction extends Action
                      * show verification code ; nums/times low;
                      */
                     $verificationNumsRule = C('VERIFI_RECORD_UNMS');
-                    $userInsertAll = $RecordSay->where("uid = $userloginid AND time > $recordUserLogin[logintime]")->order("time DESC")->count();
+                    if (!empty($recordUserLogin['logintime'])) {
+                    	$userInsertAll = $RecordSay->where("uid = $userloginid AND time > $recordUserLogin[logintime]")->order("time DESC")->count();
+                    }
                     if ($userInsertAll >= $verificationNumsRule) {
 
                         /**

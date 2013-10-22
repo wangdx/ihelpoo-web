@@ -830,6 +830,7 @@ class UserAction extends Action {
 	            	'enteryear' => $enteryear,
 	            	'type' => $type,
 	            	'priority' => '4',
+	                'logintime' => time(),
 	            	'creat_ti' => time(),
 	            	'icon_fl' => 0,
 	            	'school' => $school
