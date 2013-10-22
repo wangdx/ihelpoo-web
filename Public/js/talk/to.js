@@ -389,11 +389,6 @@ function Chat(state) {
         // first time connection for this client, so subscribe tell everybody.
         $.cometd.batch(function () {
             _subscribe();
-            $.cometd.publish('/chat/p2p', {   //TODO this should be a system service
-                from: _from,
-                membership: 'join',
-                chat: _from + ' has joined'
-            });
         });
     }
 
