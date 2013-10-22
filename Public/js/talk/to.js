@@ -379,7 +379,33 @@ function Chat(state) {
         _membersSubscription = null;
     }
 
+    function _subscribe() {
+        _chatSubscription = $.cometd.subscribe('/chat/p2p', _self.receive);
+        _membersSubscription = $.cometd.subscribe('/members/p2p', _self.members);
+        _chatSubscription = $.cometd.subscribe('/notice/p2p', _self.pull);
+    }
+
+    function _connectionInitialized() {
+        // first time connection for this client, so subscribe tell everybody.
+        $.cometd.batch(function () {
+            _subscribe();
+            $.cometd.publish('/chat/p2p', {   //TODO this should be a system service
+                from: _from,
+                membership: 'join',
+                chat: _from + ' has joined'
+            });
+        });
+    }
+
     function _connectionEstablished() {
+        // connection establish (maybe not for first time), so just
+        // tell local user and update membership
+//        _self.receive({
+//            data: {
+//                from: 'system',
+//                chat: 'Connection to Server Opened'
+//            }
+//        });
         $.cometd.publish('/service/members', {
             from: _from,
             room: '/chat/p2p'
@@ -387,6 +413,12 @@ function Chat(state) {
     }
 
     function _connectionBroken() {
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Broken'
+            }
+        });
         toDeliver();
         $('#members').empty();
     }
@@ -404,6 +436,15 @@ function Chat(state) {
                 }
             }
         );
+    }
+
+    function _connectionClosed() {
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Closed'
+            }
+        });
     }
 
     function _metaConnect(message) {
@@ -427,6 +468,14 @@ function Chat(state) {
             flag = 1;
         }
     }
+
+    function _metaHandshake(message) {
+        if (message.successful) {
+            _connectionInitialized();
+        }
+    }
+
+    $.cometd.addListener('/meta/handshake', _metaHandshake);
     $.cometd.addListener('/meta/connect', _metaConnect);
 
 // Restore the state, if present

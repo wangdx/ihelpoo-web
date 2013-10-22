@@ -154,7 +154,27 @@ function Notice(state) {
         _membersSubscription = $.cometd.subscribe('/users/p2p', _self.members);
     }
 
+    function _connectionInitialized() {
+        // first time connection for this client, so subscribe tell everybody.
+        $.cometd.batch(function () {
+            _subscribe();
+            $.cometd.publish('/notice/p2p', {   //TODO this should be a system service
+                from: _from,
+                membership: 'join',
+                chat: _from + ' has joined'
+            });
+        });
+    }
+
     function _connectionEstablished() {
+        // connection establish (maybe not for first time), so just
+        // tell local user and update membership
+//        _self.receive({
+//            data: {
+//                from: 'system',
+//                chat: 'Connection to Server Opened'
+//            }
+//        });
         $.cometd.publish('/service/users', {
             from: _to,
             room: '/notice/p2p'
@@ -162,13 +182,29 @@ function Notice(state) {
     }
 
     function _connectionBroken() {
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Broken'
+            }
+        });
         $('#members').empty();
+    }
+
+    function _connectionClosed() {
+        _self.receive({
+            data: {
+                user: 'system',
+                chat: 'Connection to Server Closed'
+            }
+        });
     }
 
     function _metaConnect(message) {
         //TODO ajax user last activity
         if (_disconnecting) {
             _connected = false;
+            _connectionClosed();
         }
         else {
             _wasConnected = _connected;
@@ -188,6 +224,13 @@ function Notice(state) {
 
     }
 
+    function _metaHandshake(message) {
+        if (message.successful) {
+            _connectionInitialized();
+        }
+    }
+
+    $.cometd.addListener('/meta/handshake', _metaHandshake);
     $.cometd.addListener('/meta/connect', _metaConnect);
 
 // Restore the state, if present
