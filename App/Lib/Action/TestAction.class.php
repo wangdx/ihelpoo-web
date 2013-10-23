@@ -10,15 +10,7 @@ class TestAction extends Action {
     }
     
     public function index() {
-    	Vendor('Ihelpoo.Browsertest');
-    	$browserObj = new Browser();
-    	$getBrowser = $browserObj->getBrowser();
-    	if ($getBrowser == "IE" || $getBrowser == "Android") {
-    		$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser . " " . $browserObj->getVersion();
-    	} else {
-    		$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser;
-    	}
-    	echo $fromBrowser;
+    	
     }
 
 }

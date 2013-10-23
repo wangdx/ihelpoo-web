@@ -655,10 +655,22 @@ $().ready(function(){
     /**
      * enter keydown submit
      */
+    var $ctrlenterbtn = null;
+    $('#s_t_textarea').focus(function(){
+    	$ctrlenterbtn = $('#s_t_submit');
+    });
+    $('.comment_view_div_box_reply_textarea').live("focus", (function(){
+    	$ctrlenterbtn = $(this).parent().find('.comment_reply_submit');
+    });
+    $('.comment_view_div_box_replyinner_textarea').live("focus", function(){
+    	$ctrlenterbtn = $(this).parent().find('.comment_reply_submit');
+    });
     $(window).keydown(function(e){
     	if(e.keyCode == 13 && e.ctrlKey) {
-    		$('#s_t_submit').click();
-    		document.body.focus();
+    		if ($ctrlenterbtn != null) {
+	    		$ctrlenterbtn.click();
+	    		document.body.focus();
+    		}
     	}
     });
 
