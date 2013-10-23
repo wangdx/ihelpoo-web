@@ -562,6 +562,9 @@ $().ready(function(){
         var textareacontent = $('#s_t_textarea').val() + ' ';
         var help_is_input = $('#help_is_input').val();
         var weibo_is_publish = $('#weibo_is_publish').val();
+        var totalatnums = (textareacontent.split('@')).length - parseInt(1);
+        alert(totalatnums);
+        return false;
 
         //store image data in input dom
         var upload_img_url_data = attrListImgValue();
