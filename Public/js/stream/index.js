@@ -846,6 +846,8 @@ $().ready(function(){
 	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
 	        if (atresult != '') {
 	        	var atusers = atresult.toString();
+	        } else {
+	        	var atusers = atresult;
 	        }
 	        $.ajax({
 	            type: "POST",
