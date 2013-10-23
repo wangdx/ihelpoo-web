@@ -19,6 +19,8 @@ class TestAction extends Action {
     		$fromBrowser = $browserObj->getPlatform() . " " . $getBrowser;
     	}
     	echo $fromBrowser;
+    	echo "< br />";
+    	echo $_SERVER['HTTP_USER_AGENT'];
     }
 
 }
