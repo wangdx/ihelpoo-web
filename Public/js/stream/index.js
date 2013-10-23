@@ -844,7 +844,7 @@ $().ready(function(){
 	        var textareacontent = textareacontentdata;
 	        var imageurl = '';
 	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
-	        if (atresult != '') {
+	        if (atresult != null) {
 	        	var atusers = atresult.toString();
 	        } else {
 	        	var atusers = atresult;
