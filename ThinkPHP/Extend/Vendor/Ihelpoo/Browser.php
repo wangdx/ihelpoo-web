@@ -182,6 +182,12 @@
 		const BROWSER_GALEON = 'Galeon';                          // http://galeon.sourceforge.net/ (DEPRECATED)
 		const BROWSER_NETPOSITIVE = 'NetPositive';                // http://en.wikipedia.org/wiki/NetPositive (DEPRECATED)
 		const BROWSER_PHOENIX = 'Phoenix';                        // http://en.wikipedia.org/wiki/History_of_Mozilla_Firefox (DEPRECATED)
+		const BROWSER_QQ = 'QQ浏览器';
+		const BROWSER_LIEBAO = '猎豹浏览器';
+		const BROWSER_SOUGOU = '搜狗浏览器';
+		const BROWSER_360 = '360浏览器';
+		const BROWSER_AOYOU = '遨游浏览器';
+		const BROWSER_SJZC = '世界之窗';
 
 		const PLATFORM_UNKNOWN = 'unknown';
 		const PLATFORM_WINDOWS = 'Windows';
@@ -364,6 +370,17 @@
 				//     before Safari
 				// (5) Netscape 9+ is based on Firefox so Netscape checks
 				//     before FireFox are necessary
+				// (6) china's shell browser should add by cho
+				
+			    // add by cho
+			    $this->checkBrowserQQ() ||
+			    $this->checkBrowserLieBao() ||
+			    $this->checkBrowserSouGou() ||
+			    $this->checkBrowser360() ||
+			    $this->checkBrowserAoYou() ||
+			    $this->checkBrowserSJZC() ||
+			    
+			    //
 				$this->checkBrowserWebTv() ||
 				$this->checkBrowserInternetExplorer() ||
 				$this->checkBrowserOpera() ||
@@ -985,6 +1002,57 @@
 			    }
 			    $this->setMobile(true);
 			    $this->setBrowser(self::BROWSER_ANDROID);
+			    return true;
+		    }
+		    return false;
+	    }
+	    
+	    /**
+	     * check china's Browser
+	     */
+	    protected function checkBrowserQQ() {
+		    if( stripos($this->_agent,'QQBrowser') !== false ) {
+			    $this->setBrowser(self::BROWSER_QQ);
+			    return true;
+		    }
+		    return false;
+	    }
+	    
+	    protected function checkBrowserLieBao() {
+		    if( stripos($this->_agent,'LBBROWSER') !== false ) {
+			    $this->setBrowser(self::BROWSER_LIEBAO);
+			    return true;
+		    }
+		    return false;
+	    }
+	    
+	    protected function checkBrowserSouGou() {
+		    if( stripos($this->_agent,'MetaSr') !== false ) {
+			    $this->setBrowser(self::BROWSER_SOUGOU);
+			    return true;
+		    }
+		    return false;
+	    }
+	    
+	    protected function checkBrowser360() {
+		    if( stripos($this->_agent,'360SE') !== false || stripos($this->_agent,'360EE') !== false  ) {
+			    $this->setBrowser(self::BROWSER_360);
+			    return true;
+		    }
+		    return false;
+	    }
+	    
+	    protected function checkBrowserAoYou() {
+		    if( stripos($this->_agent,'Maxthon') !== false ) {
+			    $this->setBrowser(self::BROWSER_AOYOU);
+			    return true;
+		    }
+		    return false;
+	    }
+	    
+	    protected function checkBrowserSJZC() {
+		    if( stripos($this->_agent,'theworld') !== false ) {
+			    $this->setBrowser(self::BROWSER_SJZC);
 			    return true;
 		    }
 		    return false;
