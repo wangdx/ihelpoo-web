@@ -502,7 +502,7 @@ class StreamAction extends Action
             } else {
                 $select->where("i_record_say.time > $timegaphalfyear AND say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
             }
-            $select->order('i_record_say.time DESC');
+            $select->order('i_record_say.sid DESC');
             $streamway = "time";
         } else if ($requestWay == "help") {
             if (!empty($sidString)) {
@@ -814,7 +814,7 @@ class StreamAction extends Action
             } else {
                 $select->where("say_type != '9' AND i_record_say.school_id = $recordSchoolInfo[id]");
             }
-            $select->order('i_record_say.time DESC');
+            $select->order('i_record_say.sid DESC');
             $streamway = "time";
         } else if ($requestWay == "help") {
             if (!empty($sidString)) {
