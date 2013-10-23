@@ -887,7 +887,8 @@ class ItemAction extends Action {
 					       			'touid' => $atUserRecord['uid'],
 					       			'fromuid' => $userloginid,
 				       				'sid' => $sid,
-					       			'cid' => $affetcedHelpreply,
+				       				'cid' => 0,
+					       			'hid' => $affetcedHelpreply,
 					       			'time' => time(),
 					       			'deliver' => 0
 		        				);

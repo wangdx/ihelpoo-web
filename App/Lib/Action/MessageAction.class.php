@@ -237,9 +237,9 @@ class MessageAction extends Action
          */
         $MsgAt = M("MsgAt");
         $recordsMsgAt = $MsgAt->where("touid = $userloginid")
-            ->join('i_user_login ON i_msg_at.fromuid = i_user_login.uid')
-            ->field('id,touid,fromuid,sid,cid,hid,aid,time,deliver,uid,nickname,icon_url')
-            ->limit($offset, $count)->order('time DESC')->select();
+        ->join('i_user_login ON i_msg_at.fromuid = i_user_login.uid')
+        ->field('id,touid,fromuid,sid,cid,hid,aid,time,deliver,uid,nickname,icon_url')
+        ->limit($offset, $count)->order('time DESC')->select();
 
         $RecordSay = M("RecordSay");
         $RecordComment = M("RecordComment");
