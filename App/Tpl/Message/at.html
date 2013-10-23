@@ -31,7 +31,7 @@
   <ul class="msg_com_ul">
   <?php
 	  foreach ($msgarray as $msg):
-      $itemtype = empty($msg['hid']) 'say' : 'help';
+      $itemtype = empty($msg['hid']) ? 'say' : 'help';
 	  echo "<li ";
       echo $msg['deliver'] == 1 ? NULL : "class='msg_notread'";
       echo ">";
