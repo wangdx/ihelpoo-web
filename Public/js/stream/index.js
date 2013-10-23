@@ -563,8 +563,6 @@ $().ready(function(){
         var help_is_input = $('#help_is_input').val();
         var weibo_is_publish = $('#weibo_is_publish').val();
         var totalatnums = ((textareacontent.split('@')).length - parseInt(1)) * parseInt(29);
-        alert(totalatnums);
-        return false;
 
         //store image data in input dom
         var upload_img_url_data = attrListImgValue();
@@ -580,7 +578,7 @@ $().ready(function(){
         $('#infotextareacheck').slideDown("fast").html($infoLoading);
         
         if (textareacontent.length > 0) {
-        	var letterlimits = 222 - textareacontent.length;
+        	var letterlimits = 222 - textareacontent.length - totalatnums;
         	if (letterlimits >= 0) {
         		contentOk = 'yes';
         	}
