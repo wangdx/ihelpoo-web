@@ -178,6 +178,7 @@ $().ready(function(){
     	var textareacontent = $('#s_t_textarea').val();
     	var currentcontent = $(this).insertAtCaret();
     	var contentlength = currentcontent.length;
+    	var totalatnums = ((textareacontent.split('@')).length - parseInt(1)) * parseInt(29);
         lastletter = currentcontent.substr(contentlength - 1);
         if (atswitch == 'on') {
 
@@ -253,7 +254,7 @@ $().ready(function(){
         }
 
         if (textareacontent.length > 0) {
-        	var letterlimit = 222 - textareacontent.length;
+        	var letterlimit = 222 - textareacontent.length - totalatnums;
         	if (letterlimit >= 0) {
         		$('.s_l_textarea_info').html('还能输入<span class="blue">' + letterlimit + '</span>个字');
         		contentOk = 'yes';
@@ -562,7 +563,6 @@ $().ready(function(){
         var textareacontent = $('#s_t_textarea').val() + ' ';
         var help_is_input = $('#help_is_input').val();
         var weibo_is_publish = $('#weibo_is_publish').val();
-        var totalatnums = ((textareacontent.split('@')).length - parseInt(1)) * parseInt(29);
 
         //store image data in input dom
         var upload_img_url_data = attrListImgValue();
@@ -578,7 +578,7 @@ $().ready(function(){
         $('#infotextareacheck').slideDown("fast").html($infoLoading);
         
         if (textareacontent.length > 0) {
-        	var letterlimits = 222 - textareacontent.length - totalatnums;
+        	var letterlimits = 222 - textareacontent.length;
         	if (letterlimits >= 0) {
         		contentOk = 'yes';
         	}
