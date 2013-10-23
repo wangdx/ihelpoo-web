@@ -217,7 +217,7 @@ $().ready(function(){
      */
     $('#help_content_from_btn').click(function(){
     	var $this = $(this);
-        var help_content_from_textarea = $('#help_content_from_textarea').val();
+        var help_content_from_textarea = $('#help_content_from_textarea').val() + " ";
         var atpattern = /@[^@]+?(?=[\s:：(),。])/g;
         var atresult = help_content_from_textarea.match(atpattern);
         $('#atusers').val(atresult);
@@ -225,7 +225,7 @@ $().ready(function(){
         var s = "<a class=\"getuserinfo\">$1</a>";
         var textareacontentdata = help_content_from_textarea.replace(re, s);
         $("#textareacontent").val(textareacontentdata);
-        if (textareacontentdata == '') {
+        if (textareacontentdata == " ") {
         	ajaxInfo('帮助内容不能为空');
         } else if (textareacontentdata.length > 222) {
         	ajaxInfo('帮助内容太长了 不能超过222个字符');
