@@ -844,7 +844,6 @@ $().ready(function(){
 	        var imageurl = '';
 	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
 	        var atusers = atresult;
-	        alert(atresult);
 	        $.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/sayajax",
