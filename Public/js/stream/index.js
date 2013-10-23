@@ -844,7 +844,9 @@ $().ready(function(){
 	        var textareacontent = textareacontentdata;
 	        var imageurl = '';
 	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
-	        var atusers = atresult.toString();
+	        if (atresult != '') {
+	        	var atusers = atresult.toString();
+	        }
 	        $.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/sayajax",
