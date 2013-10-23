@@ -562,7 +562,7 @@ $().ready(function(){
         var textareacontent = $('#s_t_textarea').val() + ' ';
         var help_is_input = $('#help_is_input').val();
         var weibo_is_publish = $('#weibo_is_publish').val();
-        var totalatnums = (textareacontent.split('@')).length - parseInt(1);
+        var totalatnums = ((textareacontent.split('@')).length - parseInt(1)) * parseInt(29);
         alert(totalatnums);
         return false;
 
