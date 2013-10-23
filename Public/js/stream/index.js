@@ -727,20 +727,7 @@ $().ready(function(){
     
     /**
      * diffusion part
-     *
-    $('.diffusion').toggle(
-        function(){
-        	$diffusionRecordObj = $(this);
-            $(this).parent().parent().find('.diffusion_view_div_box').slideDown('fast');
-            if ($commentViewDivBox != '') {
-            	$commentViewDivBox.slideUp("fast");
-            	$(this).parent().find('.comment_button').attr({isclick: 'false'});
-            }
-        },
-        function(){
-        	$(this).parent().parent().find('.diffusion_view_div_box').slideUp('fast');
-        }
-    ); */
+     */
     $('.diffusion').live("click",function(){
     	$this = $(this);
     	$(this).toggle(function () {
@@ -857,6 +844,8 @@ $().ready(function(){
 	        var imageurl = '';
 	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
 	        var atusers = atresult;
+	        alert(atresult);
+	        return false;
 	        $.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/sayajax",
