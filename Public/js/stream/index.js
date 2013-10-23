@@ -659,7 +659,7 @@ $().ready(function(){
     $('#s_t_textarea').focus(function(){
     	$ctrlenterbtn = $('#s_t_submit');
     });
-    $('.comment_view_div_box_reply_textarea').live("focus", (function(){
+    $('.comment_view_div_box_reply_textarea').live("focus", function(){
     	$ctrlenterbtn = $(this).parent().find('.comment_reply_submit');
     });
     $('.comment_view_div_box_replyinner_textarea').live("focus", function(){
