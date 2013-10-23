@@ -845,7 +845,6 @@ $().ready(function(){
 	        var verificationcode = $this.parent().find(".comment_reply_verification_streamcode").attr("value");
 	        var atusers = atresult;
 	        alert(atresult);
-	        return false;
 	        $.ajax({
 	            type: "POST",
 	            url: baseUrl + "item/sayajax",
