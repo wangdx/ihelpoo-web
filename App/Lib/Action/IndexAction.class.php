@@ -81,67 +81,6 @@ class IndexAction extends Action {
     	}
     }
     
-    public function indexcopy()
-    {
-    	$userloginid = session('userloginid');
-        $UserLogin = M("UserLogin");
-        $SchoolSystem = M("SchoolSystem");
-        $recordSchoolInfo = i_school_domain();
-        $this->assign('title','我帮圈圈 '.$recordSchoolInfo['school'].' 帮助主题社交网站');
-        $this->assign('schoolid',$recordSchoolInfo['id']);
-        $this->assign('schoolname',$recordSchoolInfo['school']);
-        $this->assign('recordSchoolInfo',$recordSchoolInfo);
-        $recordSchoolSystem = $SchoolSystem->where("sid = $recordSchoolInfo[id]")->order("time DESC")->find();
-    	$indexUserValue = '9999,'.$recordSchoolSystem['index_user'];
-    	$indexUserValueArray = explode(",", $indexUserValue);
-        $indexUserValueArray = array_unique($indexUserValueArray);
-        $i = 0;
-        foreach ($indexUserValueArray as $valueIn) {
-        	$valueIn = (int)$valueIn;
-        	if (!empty($valueIn) && $i < 22) {
-        		$sqlValueString .= $valueIn.",";
-        		$i++;
-        	}
-        }
-        $sqlValueString = substr($sqlValueString, 0, -1);
-    	$allUser = $UserLogin->where("uid IN ($sqlValueString)")->order('logintime DESC')->select();
-    	$this->assign('allUser',$allUser);
-		$allUserNums = $UserLogin->where("school = $recordSchoolInfo[id]")->count();
-    	$this->assign('allUserNums',$allUserNums);
-    	
-    	/**
-    	 * login fast user icon
-    	 */
-    	if (!empty($_COOKIE['userEmail'])) {
-    		$userCookieEmail = trim(addslashes(htmlspecialchars(strip_tags($_COOKIE['userEmail']))));
-    		$cookieUserLogin = $UserLogin->where("email = '$userCookieEmail'")->field("uid,email,nickname,icon_url")->find();
-    		$this->assign('cookieUserLogin',$cookieUserLogin);
-    	}
-    	
-    	/**
-         * index_spread_info
-         */
-        $indexSpreadInfoVaule = stripslashes($recordSchoolSystem['index_spread_info']);
-        $this->assign('indexSpreadInfoVaule',$indexSpreadInfoVaule);
-        
-        /**
-         * index background image
-         */
-        $indexbgimg = $recordSchoolSystem['image_index'];
-        $this->assign('indexbgimg',$indexbgimg);
-        
-        /**
-         * is login weibo & qq
-         */
-        $this->assign('configIsLoginWeibo',C('IS_LOGIN_WEIBO'));
-        $this->assign('configIsLoginQq',C('IS_LOGIN_QQ'));
-        if(i_is_mobile()) {
-        	$this->display('Mobile:index_index');
-    	} else {
-    		$this->display();
-    	}
-    }
-    
     public function school()
     {
     	$title = "我帮圈圈 帮助主题社交网站 开通校园列表";
