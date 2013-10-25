@@ -62,6 +62,14 @@ lable{
 *html .main_index_logo_right{
     display: none;
 }
+.main_index_activity_right{
+    position: absolute;
+    right: 0;
+    top: 15px;
+    background-image: url('../image/common/index_activity.png');
+    width: 501px;
+    height: 59px;
+}
 .main_index_nav{
     padding: 10px 0;
 }
