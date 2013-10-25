@@ -575,6 +575,7 @@ class MallAction extends Action {
     			->limit($offset,$count)
     			->select();
     			$resultsRecordCommodityassessArray = NULL;
+    			$commodityassessbuyway = "";
     			foreach ($resultsRecordCommodityassess as $commodityassess) {
     				if ($commodityassess['buyway'] == 1) {
 						$commodityassessbuyway = "免费送货上门";
