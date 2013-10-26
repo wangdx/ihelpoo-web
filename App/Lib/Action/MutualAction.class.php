@@ -300,10 +300,10 @@ class MutualAction extends Action
         $withUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         $IUserLogin = D("IUserLogin");
         $userLogin = $IUserLogin->userExists($withUserId);
-        exit("code...");
         if (!$userLogin) {
             exit("user is not exits");
         }
+        
         $this->assign('userLogin', $userLogin);
         $recordUserChangeinfo = $UserChangeinfo->where("uid = $withUserId AND withid = $userloginid")->find();
         if ($recordUserChangeinfo) {
@@ -329,6 +329,18 @@ class MutualAction extends Action
                 $this->assign('city', $city['name']);
             }
         }
+        
+        
+        if ($_COOKIE['userRealConnectTimes'] > 5) {
+        	redirect('/stream', 3, '操作次数过多，休息休息再来吧...');
+        }
+
+        if (!empty($_COOKIE['userRealConnectTimes'])) {
+        	$userRealConnectTimes = $_COOKIE['userRealConnectTimes'] + 1;
+        } else {
+        	$userRealConnectTimes = 0;
+        }
+        setcookie('userRealConnectTimes', $userRealConnectTimes, time() + 3600 * 12, '/');
 
         /**
          * info system message
@@ -370,7 +382,18 @@ class MutualAction extends Action
                  */
                 i_savenotice($userloginid, $postWithid, 'mutual/rc-option:ok', $userloginid);
             } else if ("no" == $_POST["option"]) {
+            	
+            	$mutualRealConnectString = $userloginid.$postWithid;
+        	
+            	/**
+            	 * send msg one time
+            	 */
+            	if ($_COOKIE['userRcTime'] == $mutualRealConnectString) {
+            		redirect('/stream', 3, '会话已经过期...');
+            	}
+            	
                 i_savenotice($userloginid, $postWithid, 'mutual/rc-option:no', $userloginid);
+                setcookie('userRcTime', $mutualRealConnectString, time() + 3600 * 24 * 30, '/');
             }
         }
         $this->display();
