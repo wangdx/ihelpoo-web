@@ -300,6 +300,7 @@ class MutualAction extends Action
         $withUserId = (int)htmlspecialchars(trim($_GET["_URL_"][2]));
         $IUserLogin = D("IUserLogin");
         $userLogin = $IUserLogin->userExists($withUserId);
+        exit("code...");
         if (!$userLogin) {
             exit("user is not exits");
         }
@@ -336,7 +337,6 @@ class MutualAction extends Action
         if (isset($_GET['require'])) {
             i_savenotice($userloginid, $withUserId, 'mutual/rc-para:?please', $userloginid);
         }
-
 
         /**
          * accept show real connect info
