@@ -331,7 +331,7 @@ class MutualAction extends Action
         }
         
         
-        if ($_COOKIE['userRealConnectTimes'] > 5) {
+        if ($_COOKIE['userRealConnectTimes'] > 6) {
         	redirect('/stream', 3, '操作次数过多，休息休息再来吧...');
         }
 
@@ -341,9 +341,6 @@ class MutualAction extends Action
         	$userRealConnectTimes = 1;
         }
         setcookie('userRealConnectTimes', $userRealConnectTimes, time() + 3600 * 24, '/');
-        
-        var_dump($_COOKIE['userRealConnectTimes']);
-        var_dump($userRealConnectTimes);
 
         /**
          * info system message
