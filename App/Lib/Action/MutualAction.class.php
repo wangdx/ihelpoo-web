@@ -338,9 +338,9 @@ class MutualAction extends Action
         if (!empty($_COOKIE['userRealConnectTimes'])) {
         	$userRealConnectTimes = $_COOKIE['userRealConnectTimes'] + 1;
         } else {
-        	$userRealConnectTimes = 0;
+        	$userRealConnectTimes = 1;
         }
-        setcookie('userRealConnectTimes', $userRealConnectTimes, time() + 3600 * 12, '/');
+        setcookie('userRealConnectTimes', $mutualRealConnectString, time() + 3600 * 24, '/');
         
         var_dump($_COOKIE['userRealConnectTimes']);
         var_dump($userRealConnectTimes);
