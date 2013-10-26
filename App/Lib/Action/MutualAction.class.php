@@ -340,7 +340,7 @@ class MutualAction extends Action
         } else {
         	$userRealConnectTimes = 1;
         }
-        setcookie('userRealConnectTimes', $mutualRealConnectString, time() + 3600 * 24, '/');
+        setcookie('userRealConnectTimes', $userRealConnectTimes, time() + 3600 * 24, '/');
         
         var_dump($_COOKIE['userRealConnectTimes']);
         var_dump($userRealConnectTimes);
