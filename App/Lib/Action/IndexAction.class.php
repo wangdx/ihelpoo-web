@@ -69,6 +69,10 @@ class IndexAction extends Action {
         $indexbgimg = $recordSchoolSystem['image_index'];
         $this->assign('indexbgimg',$indexbgimg);
         
+        if ($_SERVER['HTTP_HOST'] == 'hue.ihelpoo.com') {
+        	redirect('http://hue.ihelpoo.cn', 0, '跳转页面 :)...');
+        }
+        
         /**
          * is login weibo & qq
          */
