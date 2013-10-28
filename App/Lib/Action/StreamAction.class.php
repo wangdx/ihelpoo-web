@@ -1247,9 +1247,9 @@ class StreamAction extends Action
     public function exitIfDiffuseMoreThanThresholdWithinHalfDay($RecordDiffusion, $userloginid, $threshold)
     {
         $time12hour = time() - 43200;
-        $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();
+        $userDiffusion12hourAll = $RecordDiffusion->where("uid = $userloginid AND time > $time12hour")->order("time DESC")->count();// FIXME order by?
         if ($userDiffusion12hourAll >= $threshold) {
-            $this->ajaxReturn("", "你扩散了太多消息，休息休息再来吧 :)<br>每12小时最多扩散3条", "0");;
+            $this->ajaxReturn("", "你扩散了太多消息，休息休息再来吧 :)<br>每12小时最多扩散3条", "0");
             exit();
         }
     }
