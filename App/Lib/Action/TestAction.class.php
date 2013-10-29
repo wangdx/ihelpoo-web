@@ -17,7 +17,7 @@ class TestAction extends Action {
     	 */
     	
     	$UserAlbum = M("UserAlbum");
-    	$recordsUserAlbum = $UserAlbum->where("`url` LIKE '%sinaapp%'")->limit(1)->order('id ASC')->select();
+    	$recordsUserAlbum = $UserAlbum->where("`url` LIKE '%sinaapp%'")->limit(1000)->order('id ASC')->select();
     	foreach ($recordsUserAlbum as $recordUserAlbum) {
 	    	if (preg_match("/ihelpoo-public.stor.sinaapp.com/", $recordUserAlbum['url'])) {
 	            $urlThumbFilename = str_ireplace("ihelpoo-public.stor.sinaapp.com", "img.ihelpoo.cn", $recordUserAlbum['url']);
@@ -25,7 +25,8 @@ class TestAction extends Action {
 	    			'id' => $recordUserAlbum['id'],
 	    			'url' => $urlThumbFilename
 	    		);
-	    		$UserAlbum->save($newAlbumData);
+	    		$id = $UserAlbum->save($newAlbumData);
+	    		echo $id."ok<br />";
 	        }
     	}
     	
