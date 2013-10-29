@@ -10,6 +10,15 @@ class TestAction extends Action {
     }
     
     public function index() {
+    	/**
+    	 * important change old image url
+    	 * i_user_album
+    	 * i_school_album
+    	 */
+    	
+    	$UserAlbum = M("UserAlbum");
+    	$recordUserAlbum = $UserAlbum->where("user link %sinaapp%")->select();
+    	var_dump($recordUserAlbum);
     	
     }
 
