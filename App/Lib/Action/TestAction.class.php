@@ -19,14 +19,15 @@ class TestAction extends Action {
     	$UserAlbum = M("UserAlbum");
     	$recordsUserAlbum = $UserAlbum->where("`url` LIKE '%sinaapp%'")->limit(1000)->order('id ASC')->select();
     	foreach ($recordsUserAlbum as $recordUserAlbum) {
-	    	if (preg_match("/ihelpoo-public.stor.sinaapp.com/", $recordUserAlbum['url'])) {
-	            $urlThumbFilename = str_ireplace("ihelpoo-public.stor.sinaapp.com", "img.ihelpoo.cn", $recordUserAlbum['url']);
+	    	if (preg_match("/ihelpoo.b0.upaiyun.com/", $recordUserAlbum['url'])) {
+	            echo $urlThumbFilename = str_ireplace("ihelpoo.b0.upaiyun.com", "img.ihelpoo.cn", $recordUserAlbum['url']);
 	    		$newAlbumData = array(
 	    			'id' => $recordUserAlbum['id'],
 	    			'url' => $urlThumbFilename
 	    		);
-	    		$id = $UserAlbum->save($newAlbumData);
-	    		echo $id."ok<br />";
+	    		echo "<br />";
+	    		//$id = $UserAlbum->save($newAlbumData);
+	    		//echo $id."ok<br />";
 	        }
     	}
     	
