@@ -16,8 +16,8 @@ class TestAction extends Action {
     	 * i_school_album
     	 */
     	
-    	$UserAlbum = M("UserAlbum");
-    	$recordsUserAlbum = $UserAlbum->where("`url` LIKE '%sinaapp%'")->limit(1000)->order('id ASC')->select();
+    	$SchoolAlbum = M("SchoolAlbum");
+    	$recordsUserAlbum = $SchoolAlbum->where("`url` LIKE '%sinaapp%'")->limit(1000)->order('id ASC')->select();
     	foreach ($recordsUserAlbum as $recordUserAlbum) {
 	    	if (preg_match("/ihelpoo.b0.upaiyun.com/", $recordUserAlbum['url'])) {
 	            echo $urlThumbFilename = str_ireplace("ihelpoo.b0.upaiyun.com", "img.ihelpoo.cn", $recordUserAlbum['url']);
