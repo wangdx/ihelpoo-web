@@ -25,9 +25,8 @@ class TestAction extends Action {
 	    			'id' => $recordUserAlbum['id'],
 	    			'url' => $urlThumbFilename
 	    		);
-	    		echo "<br />";
-	    		//$id = $UserAlbum->save($newAlbumData);
-	    		//echo $id."ok<br />";
+	    		$id = $SchoolAlbum->save($newAlbumData);
+	    		echo $id."ok<br />";
 	        }
     	}
     	
