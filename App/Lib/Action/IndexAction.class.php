@@ -302,28 +302,28 @@ class IndexAction extends Action {
             if (!empty($number)) {
             	if (!empty($sex)) {
             		if (!empty($specialty)) {
-            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
-            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty  AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
+            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty  AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
             		} else {
-            			$totalusers = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
-            			$userList = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
+            			$totalusers = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND i_user_login.sex = $sex AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
             		}
             	} else {
             		if (!empty($specialty)) {
-            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
-            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
+            			$totalusers = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND specialty_op = $specialty AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
             		} else {
-            			$totalusers = $UserInfo->where("academy_op = $number AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
-            			$userList = $UserInfo->where("academy_op = $number AND (i_user_login.type = 1 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
+            			$totalusers = $UserInfo->where("academy_op = $number AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")->join('i_user_login ON i_user_info.uid = i_user_login.uid')->count();
+            			$userList = $UserInfo->where("academy_op = $number AND (i_user_login.type = 1 OR i_user_login.type = 2 OR i_user_login.type = 4 OR i_user_login.type = 5) AND i_user_login.school = $recordSchoolInfo[id]")
             			->join('i_user_login ON i_user_info.uid = i_user_login.uid')
             			->order('i_user_login.icon_fl DESC, i_user_login.online DESC')
             			->limit($offset, $count)->select();
