@@ -17,7 +17,7 @@ class TestAction extends Action {
     	 */
     	
     	$UserAlbum = M("UserAlbum");
-    	$recordUserAlbum = $UserAlbum->where("url LINK %sinaapp%")->select();
+    	$recordUserAlbum = $UserAlbum->where("`url` LINK '%sinaapp%'")->select();
     	var_dump($recordUserAlbum);
     	
     }
