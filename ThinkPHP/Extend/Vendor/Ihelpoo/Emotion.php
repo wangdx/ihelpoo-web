@@ -6,11 +6,11 @@ class Emotion{
 		$patternQQ['3'] = '/\[色\]/';
 		$patternQQ['4'] = '/\[发呆\]/';
 		$patternQQ['5'] = '/\[得意\]/';
-		$patternQQ['6'] = '/\[流泪\]/';
+		$patternQQ['6'] = '/\[大哭\]/';
 		$patternQQ['7'] = '/\[害羞\]/';
 		$patternQQ['8'] = '/\[闭嘴\]/';
 		$patternQQ['9'] = '/\[睡\]/';
-		$patternQQ['10'] = '/\[大哭\]/';
+		$patternQQ['10'] = '/\[流泪\]/';
 		$patternQQ['11'] = '/\[尴尬\]/';
 		$patternQQ['12'] = '/\[发怒\]/';
 		$patternQQ['13'] = '/\[调皮\]/';
@@ -37,7 +37,7 @@ class Emotion{
 		$patternQQ['34'] = '/\[嘘\]/';
 		$patternQQ['35'] = '/\[晕\]/';
 		$patternQQ['36'] = '/\[折磨\]/';
-		$patternQQ['37'] = '/\[哀\]/';
+		$patternQQ['37'] = '/\[衰\]/';
 		$patternQQ['38'] = '/\[骷髅\]/';
 		$patternQQ['39'] = '/\[敲打\]/';
 		$patternQQ['40'] = '/\[再见\]/';
@@ -155,7 +155,7 @@ class Emotion{
 		$patternWB['16'] = '/\[懒得理你\]/';
 		$patternWB['17'] = '/\[w右哼哼\]/';
 		$patternWB['18'] = '/\[w左哼哼\]/';
-		$patternWB['19'] = '/\[w哀\]/';
+		$patternWB['19'] = '/\[w衰\]/';
 		$patternWB['20'] = '/\[w委屈\]/';
 		$patternWB['21'] = '/\[打哈欠\]/';
 		$patternWB['22'] = '/\[抱抱\]/';
@@ -267,11 +267,11 @@ class Emotion{
 		$replacementQQ['3'] = '<img src="'.$baseUrl.'qq3.gif" title="色" height="24" width="24" />';
 		$replacementQQ['4'] = '<img src="'.$baseUrl.'qq4.gif" title="发呆" height="24" width="24" />';
 		$replacementQQ['5'] = '<img src="'.$baseUrl.'qq5.gif" title="得意" height="24" width="24" />';
-		$replacementQQ['6'] = '<img src="'.$baseUrl.'qq6.gif" title="流泪" height="24" width="24" />';
+		$replacementQQ['6'] = '<img src="'.$baseUrl.'qq6.gif" title="大哭" height="24" width="24" />';
 		$replacementQQ['7'] = '<img src="'.$baseUrl.'qq7.gif" title="害羞" height="24" width="24" />';
 		$replacementQQ['8'] = '<img src="'.$baseUrl.'qq8.gif" title="闭嘴" height="24" width="24" />';
 		$replacementQQ['9'] = '<img src="'.$baseUrl.'qq9.gif" title="睡" height="24" width="24" />';
-		$replacementQQ['10'] = '<img src="'.$baseUrl.'qq10.gif" title="大哭" height="24" width="24" />';
+		$replacementQQ['10'] = '<img src="'.$baseUrl.'qq10.gif" title="流泪" height="24" width="24" />';
 		$replacementQQ['11'] = '<img src="'.$baseUrl.'qq11.gif" title="尴尬" height="24" width="24" />';
 		$replacementQQ['12'] = '<img src="'.$baseUrl.'qq12.gif" title="发怒" height="24" width="24" />';
 		$replacementQQ['13'] = '<img src="'.$baseUrl.'qq13.gif" title="调皮" height="24" width="24" />';
@@ -298,7 +298,7 @@ class Emotion{
 		$replacementQQ['34'] = '<img src="'.$baseUrl.'qq34.gif" title="嘘" height="24" width="24" />';
 		$replacementQQ['35'] = '<img src="'.$baseUrl.'qq35.gif" title="晕" height="24" width="24" />';
 		$replacementQQ['36'] = '<img src="'.$baseUrl.'qq36.gif" title="折磨" height="24" width="24" />';
-		$replacementQQ['37'] = '<img src="'.$baseUrl.'qq37.gif" title="哀" height="24" width="24" />';
+		$replacementQQ['37'] = '<img src="'.$baseUrl.'qq37.gif" title="衰" height="24" width="24" />';
 		$replacementQQ['38'] = '<img src="'.$baseUrl.'qq38.gif" title="骷髅" height="24" width="24" />';
 		$replacementQQ['39'] = '<img src="'.$baseUrl.'qq39.gif" title="敲打" height="24" width="24" />';
 		$replacementQQ['40'] = '<img src="'.$baseUrl.'qq40.gif" title="再见" height="24" width="24" />';
@@ -416,7 +416,7 @@ class Emotion{
 		$replacementWB['16'] = '<img src="'.$baseUrl.'wb16.gif" title="懒得理你" height="22" width="22" />';
 		$replacementWB['17'] = '<img src="'.$baseUrl.'wb17.gif" title="w右哼哼" height="22" width="22" />';
 		$replacementWB['18'] = '<img src="'.$baseUrl.'wb18.gif" title="w左哼哼" height="22" width="22" />';
-		$replacementWB['19'] = '<img src="'.$baseUrl.'wb19.gif" title="w哀" height="22" width="22" />';
+		$replacementWB['19'] = '<img src="'.$baseUrl.'wb19.gif" title="w衰" height="22" width="22" />';
 		$replacementWB['20'] = '<img src="'.$baseUrl.'wb20.gif" title="w委屈" height="22" width="22" />';
 		$replacementWB['21'] = '<img src="'.$baseUrl.'wb21.gif" title="打哈欠" height="22" width="22" />';
 		$replacementWB['22'] = '<img src="'.$baseUrl.'wb22.gif" title="抱抱" height="22" width="22" />';
@@ -556,11 +556,11 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'qq3.gif" title="色" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq4.gif" title="发呆" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq5.gif" title="得意" height="24" width="24" />';
-			$emotionString .= '<img src="'.$baseUrl.'qq6.gif" title="流泪" height="24" width="24" />';
+			$emotionString .= '<img src="'.$baseUrl.'qq6.gif" title="大哭" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq7.gif" title="害羞" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq8.gif" title="闭嘴" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq9.gif" title="睡" height="24" width="24" />';
-			$emotionString .= '<img src="'.$baseUrl.'qq10.gif" title="大哭" height="24" width="24" />';
+			$emotionString .= '<img src="'.$baseUrl.'qq10.gif" title="流泪" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq11.gif" title="尴尬" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq12.gif" title="发怒" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq13.gif" title="调皮" height="24" width="24" />';
@@ -591,7 +591,7 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'qq34.gif" title="嘘" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq35.gif" title="晕" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq36.gif" title="折磨" height="24" width="24" />';
-			$emotionString .= '<img src="'.$baseUrl.'qq37.gif" title="哀" height="24" width="24" />';
+			$emotionString .= '<img src="'.$baseUrl.'qq37.gif" title="衰" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq38.gif" title="骷髅" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq39.gif" title="敲打" height="24" width="24" />';
 			$emotionString .= '<img src="'.$baseUrl.'qq40.gif" title="再见" height="24" width="24" />';
@@ -727,7 +727,7 @@ class Emotion{
 			$emotionString .= '<li>';
 			$emotionString .= '<img src="'.$baseUrl.'wb17.gif" title="w右哼哼" height="22" width="22" />';
 			$emotionString .= '<img src="'.$baseUrl.'wb18.gif" title="w左哼哼" height="22" width="22" />';
-			$emotionString .= '<img src="'.$baseUrl.'wb19.gif" title="w哀" height="22" width="22" />';
+			$emotionString .= '<img src="'.$baseUrl.'wb19.gif" title="w衰" height="22" width="22" />';
 			$emotionString .= '<img src="'.$baseUrl.'wb20.gif" title="w委屈" height="22" width="22" />';
 			$emotionString .= '<img src="'.$baseUrl.'wb21.gif" title="打哈欠" height="22" width="22" />';
 			$emotionString .= '<img src="'.$baseUrl.'wb22.gif" title="抱抱" height="22" width="22" />';
