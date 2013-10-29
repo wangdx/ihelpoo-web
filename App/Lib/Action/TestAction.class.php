@@ -17,11 +17,15 @@ class TestAction extends Action {
     	 */
     	
     	$UserAlbum = M("UserAlbum");
-    	$recordsUserAlbum = $UserAlbum->where("`url` LIKE '%sinaapp%'")->limit(100)->select();
+    	$recordsUserAlbum = $UserAlbum->where("`url` LIKE '%sinaapp%'")->limit(1)->order('id ASC')->select();
     	foreach ($recordsUserAlbum as $recordUserAlbum) {
 	    	if (preg_match("/ihelpoo-public.stor.sinaapp.com/", $recordUserAlbum['url'])) {
 	            $urlThumbFilename = str_ireplace("ihelpoo-public.stor.sinaapp.com", "img.ihelpoo.cn", $recordUserAlbum['url']);
-	    		echo $urlThumbFilename."<br />";
+	    		$newAlbumData = array(
+	    			'id' => $recordUserAlbum['id'],
+	    			'url' => $urlThumbFilename
+	    		);
+	    		$UserAlbum->save($newAlbumData);
 	        }
     	}
     	
