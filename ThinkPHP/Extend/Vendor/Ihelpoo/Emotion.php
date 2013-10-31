@@ -1067,6 +1067,7 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'go59.gif" title="go陪我玩" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go60.gif" title="go亲亲" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go61.gif" title="go添" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go62.gif" title="go吐" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go63.gif" title="go委屈" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go64.gif" title="go吸奶" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go65.gif" title="go喜欢你" height="28" width="28" />';
