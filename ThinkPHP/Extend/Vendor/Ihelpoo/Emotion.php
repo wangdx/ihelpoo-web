@@ -277,10 +277,7 @@ class Emotion{
 		$patternGO['15'] = '/\[go可爱\]/';
 		$patternGO['16'] = '/\[go抠鼻\]/';
 		$patternGO['17'] = '/\[go困\]/';
-		$patternGO['18'] = '/\[go路过右\]/';
-		$patternGO['19'] = '/\[go路过中\]/';
 		$patternGO['20'] = '/\[go路过\]/';
-		$patternGO['21'] = '/\[go路过左\]/';
 		$patternGO['22'] = '/\[go目瞪口呆\]/';
 		$patternGO['23'] = '/\[go难过\]/';
 		$patternGO['24'] = '/\[go乞讨\]/';
@@ -314,10 +311,7 @@ class Emotion{
 		$patternGO['52'] = '/\[go流口水\]/';
 		$patternGO['53'] = '/\[go流泪\]/';
 		$patternGO['54'] = '/\[go奶嘴\]/';
-		$patternGO['55'] = '/\[go爬爬\]/';
-		$patternGO['56'] = '/\[go爬爬a\]/';
-		$patternGO['57'] = '/\[go爬爬b\]/';
-		$patternGO['58'] = '/\[go爬爬c\]/';
+		$patternGO['56'] = '/\[go爬爬\]/';
 		$patternGO['59'] = '/\[go陪我玩\]/';
 		$patternGO['60'] = '/\[go亲亲\]/';
 		$patternGO['61'] = '/\[go添\]/';
@@ -330,7 +324,6 @@ class Emotion{
 		$patternGO['68'] = '/\[go再见\]/';
 		$patternGO['69'] = '/\[go抓抓\]/';
 		$patternGO['70'] = '/\[goWC\]/';
-		
 		
 		$replacementQQ['1'] = '<img src="'.$baseUrl.'qq1.gif" title="微笑" height="24" width="24" />';
 		$replacementQQ['2'] = '<img src="'.$baseUrl.'qq2.gif" title="撇嘴" height="24" width="24" />';
@@ -607,7 +600,7 @@ class Emotion{
 		$replacementGO['15'] = '<img src="'.$baseUrl.'go15.gif" title="go可爱" height="28" width="28" />';
 		$replacementGO['16'] = '<img src="'.$baseUrl.'go16.gif" title="go抠鼻" height="28" width="28" />';
 		$replacementGO['17'] = '<img src="'.$baseUrl.'go17.gif" title="go困" height="28" width="28" />';
-		$replacementGO['20'] = '<img src="'.$baseUrl.'go20.gif" title="go路过" height="28" width="28" />';
+		$replacementGO['20'] = '<img src="'.$baseUrl.'go21.gif" title="go路过" height="28" width="28" />';
 		$replacementGO['22'] = '<img src="'.$baseUrl.'go22.gif" title="go目瞪口呆" height="28" width="28" />';
 		$replacementGO['23'] = '<img src="'.$baseUrl.'go23.gif" title="go难过" height="28" width="28" />';
 		$replacementGO['24'] = '<img src="'.$baseUrl.'go24.gif" title="go乞讨" height="28" width="28" />';
@@ -641,10 +634,7 @@ class Emotion{
 		$replacementGO['52'] = '<img src="'.$baseUrl.'go52.gif" title="go流口水" height="28" width="28" />';
 		$replacementGO['53'] = '<img src="'.$baseUrl.'go53.gif" title="go流泪" height="28" width="28" />';
 		$replacementGO['54'] = '<img src="'.$baseUrl.'go54.gif" title="go奶嘴" height="28" width="28" />';
-		$replacementGO['55'] = '<img src="'.$baseUrl.'go55.gif" title="go爬爬" height="28" width="28" />';
-		$replacementGO['56'] = '<img src="'.$baseUrl.'go56.gif" title="go爬爬a" height="28" width="28" />';
-		$replacementGO['57'] = '<img src="'.$baseUrl.'go57.gif" title="go爬爬b" height="28" width="28" />';
-		$replacementGO['58'] = '<img src="'.$baseUrl.'go58.gif" title="go爬爬c" height="28" width="28" />';
+		$replacementGO['56'] = '<img src="'.$baseUrl.'go56.gif" title="go爬爬" height="28" width="28" />';
 		$replacementGO['59'] = '<img src="'.$baseUrl.'go59.gif" title="go陪我玩" height="28" width="28" />';
 		$replacementGO['60'] = '<img src="'.$baseUrl.'go60.gif" title="go亲亲" height="28" width="28" />';
 		$replacementGO['61'] = '<img src="'.$baseUrl.'go61.gif" title="go添" height="28" width="28" />';
@@ -1011,6 +1001,19 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'go14.gif" title="go菊花" height="28" width="28" />';
 			$emotionString .= '</li>';
 			$emotionString .= '<li>';
+			$emotionString .= '<img src="'.$baseUrl.'go15.gif" title="go可爱" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go16.gif" title="go抠鼻" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go17.gif" title="go困" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go21.gif" title="go路过" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go22.gif" title="go目瞪口呆" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go23.gif" title="go难过" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go24.gif" title="go乞讨" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go25.gif" title="go饶舌" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go26.gif" title="go色" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go27.gif" title="go衰" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go28.gif" title="go睡" height="28" width="28" />';
+			$emotionString .= '</li>';
+			$emotionString .= '<li>';
 			$emotionString .= '<img src="'.$baseUrl.'go29.gif" title="go睡了" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go30.gif" title="go偷笑" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go31.gif" title="go微笑" height="28" width="28" />';
@@ -1039,16 +1042,12 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'go52.gif" title="go流口水" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go53.gif" title="go流泪" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go54.gif" title="go奶嘴" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go55.gif" title="go爬爬" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go56.gif" title="go爬爬a" height="28" width="28" />';
+			$emotionString .= '<img src="'.$baseUrl.'go56.gif" title="go爬爬" height="28" width="28" />';
 			$emotionString .= '</li>';
 			$emotionString .= '<li>';
-			$emotionString .= '<img src="'.$baseUrl.'go57.gif" title="go爬爬b" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go58.gif" title="go爬爬c" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go59.gif" title="go陪我玩" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go60.gif" title="go亲亲" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go61.gif" title="go添" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go62.gif" title="go吐" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go63.gif" title="go委屈" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go64.gif" title="go吸奶" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go65.gif" title="go喜欢你" height="28" width="28" />';
@@ -1057,19 +1056,6 @@ class Emotion{
 			$emotionString .= '<img src="'.$baseUrl.'go68.gif" title="go再见" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go69.gif" title="go抓抓" height="28" width="28" />';
 			$emotionString .= '<img src="'.$baseUrl.'go70.gif" title="goWC" height="28" width="28" />';
-			$emotionString .= '</li>';
-			$emotionString .= '<li>';
-			$emotionString .= '<img src="'.$baseUrl.'go15.gif" title="go可爱" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go16.gif" title="go抠鼻" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go17.gif" title="go困" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go20.gif" title="go路过" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go22.gif" title="go目瞪口呆" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go23.gif" title="go难过" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go24.gif" title="go乞讨" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go25.gif" title="go饶舌" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go26.gif" title="go色" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go27.gif" title="go衰" height="28" width="28" />';
-			$emotionString .= '<img src="'.$baseUrl.'go28.gif" title="go睡" height="28" width="28" />';
 			$emotionString .= '</li>';
 		}
 		return $emotionString;
