@@ -46,8 +46,8 @@ if ($_GET['login'] == 'new') {
       <ul class="index_user_facewall">
          <?php foreach ($allUser as $user) : ?>
          <li>
-           <a href="__ROOT__/wo/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?>">
-             <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="92" height="69" />
+           <a href="/wo/<?php echo $user['uid'] ?>">
+             <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="92" height="69" alt="<?php echo $user['nickname'] ?>" />
            </a>
          </li>
          <?php endforeach; ?>
@@ -71,7 +71,7 @@ if ($_GET['login'] == 'new') {
 			<p class="index_loginfast_div_name_p">
 				<a href="__ROOT__/user/loginfast" class="fb" title="<?php echo $cookieUserLogin['email']; ?>"><?php echo $cookieUserLogin['nickname']; ?> <span class="f12 fn black_l">(<?php if ($_COOKIE['userLoginstatus'] == '2') { echo "潜水登录"; } else { echo "正常登录"; } ?>)</span></a>
 			</p>
-			<p class="index_loginfast_div_registe_p"><a href="__ROOT__/user/register" class="white f12">注册账号</a></p>
+			<p class="index_loginfast_div_registe_p"><a href="/user/register" class="white f12">注册账号</a></p>
 		</div>
 	<?php } else { ?>
 	    <div class="mim_loginbox">
