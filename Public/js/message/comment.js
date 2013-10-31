@@ -110,7 +110,7 @@ $().ready(function(){
         var imgtitlemarkin = '[' + imgtitle + ']';
         var textareanow = $replytextarea.val() + imgtitlemarkin;
         $replytextarea.val(textareanow);
-        $replytextarea.focus();
+        moveEnd($replytextarea);
         $(".replyemotionbox").fadeOut('fast');
         return false;
     });
@@ -121,3 +121,16 @@ $().ready(function(){
         $(".emotionbox_show_ul_inner").empty().load(baseUrl + "other/loademotion" + "?page=" + $page);
     });
 });
+function moveEnd(obj){
+    obj.focus();
+    var len = obj.value.length;
+    if (document.selection) {
+        var sel = obj.createTextRange();
+        sel.moveStart('character',len);
+        sel.collapse();
+        sel.select();
+    } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
+        obj.selectionStart = obj.selectionEnd = len;
+    }
+
+} 
