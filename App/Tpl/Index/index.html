@@ -46,7 +46,7 @@ if ($_GET['login'] == 'new') {
       <ul class="index_user_facewall">
          <?php foreach ($allUser as $user) : ?>
          <li>
-           <a href="/wo/<?php echo $user['uid'] ?>">
+           <a href="/wo/<?php echo $user['uid'] ?>" title="<?php echo $user['nickname'] ?>">
              <img src='<?php echo i_icon_check("$user[uid]", "$user[icon_url]"); ?>' width="92" height="69" alt="<?php echo $user['nickname'] ?>" />
            </a>
          </li>
