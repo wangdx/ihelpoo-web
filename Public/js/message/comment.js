@@ -69,6 +69,22 @@ $().ready(function(){
     });
     
     /**
+     * enter keydown submit
+     */
+    var $ctrlenterbtn = null;
+    $('.comment_view_div_box_replyinner_textarea').live("focus", function(){
+    	$ctrlenterbtn = $(this).parent().find('.comment_reply_submit');
+    });
+    $(window).keydown(function(e){
+    	if(e.keyCode == 13 && e.ctrlKey) {
+    		if ($ctrlenterbtn != null) {
+	    		$ctrlenterbtn.click();
+	    		document.body.focus();
+    		}
+    	}
+    });
+    
+    /**
      * icon reply part 
      */
     $(".comment_textareaicon_replyinner").live('click', function(e){
@@ -94,6 +110,7 @@ $().ready(function(){
         var imgtitlemarkin = '[' + imgtitle + ']';
         var textareanow = $replytextarea.val() + imgtitlemarkin;
         $replytextarea.val(textareanow);
+        $replytextarea.focus();
         $(".replyemotionbox").fadeOut('fast');
         return false;
     });

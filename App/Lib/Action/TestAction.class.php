@@ -15,7 +15,7 @@ class TestAction extends Action {
     	 * i_user_album
     	 * i_school_album
     	 */
-    	
+    	exit();
     	$SchoolAlbum = M("SchoolAlbum");
     	$recordsUserAlbum = $SchoolAlbum->where("`url` LIKE '%upaiyun%'")->limit(1000)->order('id ASC')->select();
     	foreach ($recordsUserAlbum as $recordUserAlbum) {
