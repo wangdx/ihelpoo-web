@@ -110,7 +110,7 @@ $().ready(function(){
         var imgtitlemarkin = '[' + imgtitle + ']';
         var textareanow = $replytextarea.val() + imgtitlemarkin;
         $replytextarea.val(textareanow);
-        moveEnd($replytextarea);
+        $replytextarea.focus();
         $(".replyemotionbox").fadeOut('fast');
         return false;
     });
