@@ -21,6 +21,8 @@ class SettingAction extends Action
             $this->assign('schoolname', $recordSchoolInfo['school']);
             $configIsLoginWeibo = C('IS_LOGIN_WEIBO');
 	        $this->assign('configIsLoginWeibo', $configIsLoginWeibo);
+	        $configIsLoginQq = C('IS_LOGIN_QQ');
+	        $this->assign('configIsLoginQq', $configIsLoginQq);
         } else {
             redirect('/user/notlogin', 0, '你还没有登录呢...');
         }
