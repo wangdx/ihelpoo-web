@@ -13,10 +13,11 @@ class TestAction extends Action {
     	
     	$email = $_GET['email'];
     	echo $email;
-    	if (ereg("/^[a-z]([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i; ", $email)){
-    		echo "Your email address is correct!";
+    	
+    	if (preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)$/',$email)){
+    		echo " Your email address is correct!";
     	} else {
-    		echo "Please try again!";
+    		echo " Please try again!";
     	}
     	
     	/**
