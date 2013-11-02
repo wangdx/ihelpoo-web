@@ -597,7 +597,7 @@ class SettingAction extends Action
             $this->assign('isAlreadyBind', $recordUserLoginQq['qq_uid']);
         }
         if (!empty($_POST['qq_user_id'])) {
-            $isbindUserLoginQq = $recordUserLoginQq->where("qq_uid = $_POST[qq_user_id]")->find();
+            $isbindUserLoginQq = $UserLoginQq->where("qq_uid = $_POST[qq_user_id]")->find();
             if (!empty($isbindUserLoginQq['uid'])) {
                 $this->ajaxReturn(0, '这个QQ已经绑定了账号，请选择另一个QQ', 'wrong');
             }
