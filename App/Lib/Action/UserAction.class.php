@@ -1190,7 +1190,7 @@ class UserAction extends Action {
         	} else {
         		$info = $IUserLogin->getError();
         		if ($info = 'emailwrong') {
-        			$info = "格式错误";
+        			$info = "邮箱或手机号格式错误";
         			$status = "wrong";
         			if (preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/", $email)){
         				$info = "手机登录";
