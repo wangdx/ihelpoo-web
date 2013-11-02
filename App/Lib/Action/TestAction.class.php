@@ -14,11 +14,13 @@ class TestAction extends Action {
     	$email = $_GET['email'];
     	echo $email;
     	
-    	if (preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)$/',$email)){
+    	if (preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$email)){
     		echo " Your email address is correct!";
     	} else {
     		echo " Please try again!";
     	}
+    	//preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)$/',$email)
+    	
     	
     	/**
     	 * important change old image url
