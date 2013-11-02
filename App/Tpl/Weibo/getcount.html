@@ -34,7 +34,7 @@ $().ready(function(){
 	    	    if(bStatus == true) {
 	    	    	for(var i=0; i < sResult.statuses.length; i++)  
 	    	    	{
-	    	    		if (today == weibotime_get_day(sResult.statuses[i].created_at) + parseInt(1)) {
+	    	    		//if (today == weibotime_get_day(sResult.statuses[i].created_at) + parseInt(1)) {
 		    	    		if (!sResult.statuses[i].retweeted_status) {
 		    	    			datalist += "<span class='green'>[原创]</span> " +sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
 			    	    		repostscount += sResult.statuses[i].reposts_count;
@@ -48,7 +48,7 @@ $().ready(function(){
 			    	    		attitudescount += sResult.statuses[i].attitudes_count;
 			    	    		publishother = parseInt(publishother) + parseInt(1);
 		    	    		}
-	    	    		}
+	    	    		//}
 	    	    		
 	    	    	}
 	    	    	totalscore = parseInt(publishself) + parseFloat(publishother*0.5) + parseInt(repostscount) + parseInt(commentscount) + parseInt(attitudescount);
@@ -57,7 +57,7 @@ $().ready(function(){
 	    	    }
 	    	},{
 	    		screen_name : weibouid,
-	    		count : '40'
+	    		count : '500'
 	    	},{
 	    		method: 'get'
 	    	});
