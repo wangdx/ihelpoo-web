@@ -10,6 +10,14 @@ class TestAction extends Action {
     }
     
     public function index() {
+    	
+    	$email = $_GET['email'];
+    	if (ereg("/^[a-z]([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i; ", $email)){
+    		echo "Your email address is correct!";
+    	} else {
+    		echo "Please try again!";
+    	}
+    	
     	/**
     	 * important change old image url
     	 * i_user_album
