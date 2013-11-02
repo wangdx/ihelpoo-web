@@ -27,7 +27,7 @@ $().ready(function(){
 	
 	$('#email').focus(function(){
 		var emailvalue = $('#email').val();
-		if (emailvalue == '邮箱') {
+		if (emailvalue == '邮箱/手机号') {
 			$('#email').val('');
 		}
 	});
