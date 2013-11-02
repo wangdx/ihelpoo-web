@@ -586,6 +586,33 @@ class SettingAction extends Action
         }
         $this->display();
     }
+    
+    public function bindqq()
+    {
+        $this->assign('title', '绑定QQ');
+        $userloginid = session('userloginid');
+        $UserLoginQq = M("UserLoginQq");
+        $recordUserLoginQq = $UserLoginQq->where("uid = $userloginid")->find();
+        if (!empty($recordUserLoginQq['uid'])) {
+            $this->assign('isAlreadyBind', $recordUserLoginQq['qq_uid']);
+        }
+        if (!empty($_POST['qq_user_id'])) {
+            $isbindUserLoginQq = $recordUserLoginQq->where("qq_uid = $_POST[qq_user_id]")->find();
+            if (!empty($isbindUserLoginQq['uid'])) {
+                $this->ajaxReturn(0, '这个QQ已经绑定了账号，请选择另一个QQ', 'wrong');
+            }
+
+            $bindData = array(
+                'uid' => $userloginid,
+                'qq_uid' => $_POST['qq_user_id'],
+            );
+            $isBind = $UserLoginQq->add($bindData);
+            if ($isBind) {
+                $this->ajaxReturn(0, '绑定成功', 'ok');
+            }
+        }
+        $this->display();
+    }
 
     public function realfirst()
     {
