@@ -237,16 +237,19 @@ class UserAction extends Action {
     	if ($this->isPost()) {
 	    	$UserLogin = M("UserLogin");
 	        $validate = array(
-	            array('email', 'email', '邮箱格式不对'),
+	            array('email', 'require', '邮箱/手机号不能为空'),
 	            array('password', 'require', '密码不能为空'),
 	        );
 	        $UserLogin->setProperty("_validate", $validate);
 	        $result = $UserLogin->create();
 	        if (!$result) {
 	            $loginerror = $UserLogin->getError();
-	            redirect('/', 2, $loginerror.'，请重新登录，3秒后页面跳转...');
+	            redirect('/', 2, $loginerror.'，请重新登录，2秒后页面跳转...');
 	        } else {
-	            $email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
+	        	$email = trim(addslashes(htmlspecialchars(strip_tags($_POST["email"]))));
+	        	if (!(preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$email) || preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel)$/',$email))) {
+	        		redirect('/', 2, '邮箱/手机号格式错误，请重新登录，2秒后页面跳转...');
+	        	}
 	            $password = trim(addslashes(htmlspecialchars(strip_tags($_POST["password"]))));//strip_tags
 	            $loginstatus = trim(strip_tags($_POST["login_status"]));
 	            $rememberpassword = trim(strip_tags($_POST["remember_password"]));
@@ -1172,12 +1175,12 @@ class UserAction extends Action {
         if ($this->isPost()) {
         	$IUserLogin = D("IUserLogin");
         	$validate = array(
-        		array('email', 'email', '邮箱格式不对'),
+        		array('email', 'email', 'emailwrong'),
         	);
         	$IUserLogin->setProperty("_validate", $validate);
         	$result = $IUserLogin->create();
+        	$email = htmlspecialchars(strtolower(trim($_POST["email"])));
         	if ($result) {
-        		$email = htmlspecialchars(strtolower(trim($_POST["email"])));
         		$userExist = $IUserLogin->userExists($email);
         		$status = "ok";
         		if (!empty($userExist['uid'])) {
@@ -1186,7 +1189,14 @@ class UserAction extends Action {
         		}
         	} else {
         		$info = $IUserLogin->getError();
-        		$status = "wrong";
+        		if ($info = 'emailwrong') {
+        			$info = "格式错误";
+        			$status = "wrong";
+        			if (preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/", $email)){
+        				$info = "手机登录";
+        				$status = "mobile";
+        			}
+        		}
         	}
             $this->ajaxReturn(0,$info,$status);
         }

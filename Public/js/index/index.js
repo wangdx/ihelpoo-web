@@ -51,6 +51,8 @@ $().ready(function(){
                         $('#logininfo').fadeOut();
                     } else if ('wrong' == msg.status) {
                         $('#logininfo').fadeIn().html('× ' + msg.info);
+                    } else if ('mobile' == msg.status) {
+                    	$('#logininfo').fadeOut();
                     }
                 }
             });

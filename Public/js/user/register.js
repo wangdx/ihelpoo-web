@@ -24,6 +24,8 @@ $().ready(function(){
                         $('#emailinfo').html('× ' + msg.info);
                     } else if ('wrong' == msg.status) {
                         $('#emailinfo').html('× ' + msg.info);
+                    } else if ('mobile' == msg.status) {
+                        $('#emailinfo').html('× 网页注册不能是手机号');
                     }
                 }
             });
