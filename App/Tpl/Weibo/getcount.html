@@ -29,6 +29,7 @@ $().ready(function(){
 		var publishother = 0;
 		var date = new Date()
 		var today = parseInt(date.getDate());
+		alert(today);
 		WB2.anyWhere(function(W){
 	    	W.parseCMD("/statuses/user_timeline.json", function(sResult, bStatus){
 	    	    if(bStatus == true) {
