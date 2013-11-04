@@ -76,6 +76,11 @@
 .mi_div_intro li{
 	padding: 3px;
 }
+.share_btn_div{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 .download_btn{
     position: absolute;
 	left: 570px;
