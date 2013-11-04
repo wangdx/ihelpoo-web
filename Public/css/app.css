@@ -90,3 +90,11 @@
 .download_btn:hover{
 	background: url(../image/mobile/download_button.png) no-repeat 0px -66px;
 }
+.app_download_icon_div{
+    background: url(../image/common/app_download_icon.png) no-repeat 0px 0px;
+    width: 100px;
+    height: 300px;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
