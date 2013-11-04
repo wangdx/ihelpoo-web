@@ -17,6 +17,26 @@
     </ul>
     <!-- <a href="http://download.ihelpoo.cn/apps/ihelpoo_v1.0.0.apk"><span class="download_btn"></span></a>
      -->
+    <div class="share_btn_div">
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style_32x32">
+		<a class="jiathis_button_qzone"></a>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_tqq"></a>
+		<a class="jiathis_button_renren"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+		</div>
+		<script type="text/javascript" >
+		var jiathis_config={
+			url:"http://<?php echo $_SERVER['HTTP_HOST']; ?>/user/register/<?php echo $userloginedrecord['uid']; ?>",
+			summary:"",
+			title:"<?php echo $schoolname; ?>专属社交网站 我帮圈圈 新版本上线啦，欢迎大家加入我帮圈圈。吐槽你想吐槽的，感慨你愿意感慨的，帮助你乐意帮助的，交往你感觉对头的，学长学姐学弟学妹都会在这里，还差你呢~ ",
+			hideMore:false
+		}
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+	</div>
   </div>
 </div>
 </div>
