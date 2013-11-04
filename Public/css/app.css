@@ -13,7 +13,7 @@
 	margin-right: 5px;
 }
 .mi_div_main{
-    height: 590px;
+    height: 600px;
     position: relative;
     text-align: center;
     width: 100%;
@@ -91,7 +91,7 @@
 .app_download_icon_div{
     background: url(../image/common/app_download_icon.png) no-repeat 0px 0px;
     width: 350px;
-    height: 560px;
+    height: 570px;
     position: absolute;
     left: 150px;
 }
