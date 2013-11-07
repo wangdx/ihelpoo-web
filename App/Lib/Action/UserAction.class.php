@@ -632,9 +632,9 @@ class UserAction extends Action {
 		             * fillaccount
 		             */
 		            session('userloginid',$lastInsertUid);
-		            $this->ajaxReturn('stream','QQ注册登录成功...','step');
-    			} else {
-    				$qqUserLogin = $UserLogin->find($isQqExist['uid']);
+                    $this->ajaxReturn('stream','QQ注册登录成功...','step');
+                } else {
+                    $qqUserLogin = $UserLogin->find($isQqExist['uid']);
     				$IUserLogin = D("IUserLogin");
     				$dbUser = $IUserLogin->userVerification($qqUserLogin['email'], $qqUserLogin['password'], 1);
     				if (is_array($dbUser)) {
