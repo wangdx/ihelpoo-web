@@ -27,7 +27,7 @@ $().ready(function(){
 	
 	$('#email').focus(function(){
 		var emailvalue = $('#email').val();
-		if (emailvalue == '邮箱') {
+		if (emailvalue == '邮箱/手机号') {
 			$('#email').val('');
 		}
 	});
@@ -51,6 +51,8 @@ $().ready(function(){
                         $('#logininfo').fadeOut();
                     } else if ('wrong' == msg.status) {
                         $('#logininfo').fadeIn().html('× ' + msg.info);
+                    } else if ('mobile' == msg.status) {
+                    	$('#logininfo').fadeOut();
                     }
                 }
             });
@@ -148,7 +150,7 @@ $().ready(function(){
 	    			        dataType: 'json',
 	    			        success:function(msg){
 	    			            if (msg.status == 'ok') {
-									window.location = baseUrl + '/stream';
+									window.location = baseUrl + 'stream';
 								} else if (msg.status == 'step') {
 									alert(msg.info);
 									window.location = baseUrl + msg.data;

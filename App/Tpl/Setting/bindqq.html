@@ -1,0 +1,40 @@
+<include file="Public:header" />
+<link href="http://static.ihelpoo.cn/css/setting.css?id=1" media="screen" rel="stylesheet" type="text/css" />
+<div class="main">
+<div class="s_left f12">
+  <ul>
+    <li><a href="__ROOT__/setting"><span class="icon_text"></span> 个人资料</a></li>
+    <li><a href="__ROOT__/setting/ps"><span class="icon_write"></span> 修改密码</a></li>
+    <li><a href="__ROOT__/setting/icon"><span class="icon_heart"></span> 修改头像</a></li>
+    <?php if ($configIsLoginWeibo) { ?><li><a href="__ROOT__/setting/bind"><span class="icon_plus"></span> 绑定微博</a></li><?php } ?>
+    <li><a href="__ROOT__/setting/bindqq" class="bg_orange"><span class="icon_plus"></span> 绑定QQ</a></li>
+  </ul>
+</div>
+<div class="s_right">
+<ul class="s_bind_ul f12 black_l">
+  <li class="fb black">说明</li>
+  <li>1. 绑定成功后，可以用你的QQ直接登录我帮圈圈这个账号。</li>
+</ul>
+<ul class="s_bind_ul f12 black_l">
+  <li class="fb black">步骤</li>
+  <li>1. 先登录你想绑定的QQ。</li>
+  <li>2. 点击“确认绑定”。</li>
+  <li>3. 绑定成功。</li>
+</ul>
+<div class="s_bind_div">
+<?php if (!empty($isAlreadyBind)) { ?>
+  <span class="icon_right"></span> 你已经绑定了QQ <span class="f12 gray"><?php echo $isAlreadyBind; ?></span>
+<?php } else { ?>
+  <p class="fb bind_title">开始绑定QQ</p>
+  <a id="qqLoginBtn"></a>
+  <p class="bind_info"></p>
+  <input id="qq_user_id" type="hidden" />
+  <a class="btn f12" id="bind_qq_btn">确认绑定</a>
+<?php } ?>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="100506408" data-redirecturi="" charset="utf-8"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true"></script>
+<script type="text/javascript" src="http://static.ihelpoo.cn/js/setting/qq.js"></script>
+<include file="Public:footer" />

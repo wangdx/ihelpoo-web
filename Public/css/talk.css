@@ -98,6 +98,7 @@
     position: absolute;
     left: 30px;
     top: 40px;
+    overflow: hidden;
 }
 .user_talk_info_ul li{
     padding-bottom: 5px;

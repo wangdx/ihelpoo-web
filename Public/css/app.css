@@ -13,8 +13,7 @@
 	margin-right: 5px;
 }
 .mi_div_main{
-    background: url("../image/mobile/bg.png") repeat scroll -20px -50px #EEEEEE;
-    height: 500px;
+    height: 600px;
     position: relative;
     text-align: center;
     width: 100%;
@@ -35,15 +34,14 @@
 .download_ios_code_p{
     color: #999;
     font-size: 12px;
-    left: 400px;
+    left: 570px;
     position: absolute;
-    top: 280px
+    top: 210px;
 }
 .download_ios_code_p_img{
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     display: block;
-    margin-bottom: 5px;
 }
 
 .mi_div_intro_andriod{
@@ -70,7 +68,7 @@
 
 .mi_div_intro{
 	position: absolute;
-	left: 720px;
+	left: 570px;
 	top: 90px;
 	text-align: left;
 	color: #666;
@@ -78,10 +76,15 @@
 .mi_div_intro li{
 	padding: 3px;
 }
+.share_btn_div{
+    position: absolute;
+    right: 165px;
+    top: 30px;
+}
 .download_btn{
     position: absolute;
-	left: 700px;
-	top: 300px;
+	left: 570px;
+	top: 400px;
 	background: url(../image/mobile/download_button.png) no-repeat 0px 0px;
 	width: 200px;
 	height: 66px;
@@ -89,4 +92,11 @@
 }
 .download_btn:hover{
 	background: url(../image/mobile/download_button.png) no-repeat 0px -66px;
+}
+.app_download_icon_div{
+    background: url(../image/common/app_download_icon.png) no-repeat 0px 0px;
+    width: 350px;
+    height: 570px;
+    position: absolute;
+    left: 150px;
 }

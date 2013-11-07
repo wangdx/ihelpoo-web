@@ -34,19 +34,37 @@ $().ready(function(){
 	    	    if(bStatus == true) {
 	    	    	for(var i=0; i < sResult.statuses.length; i++)  
 	    	    	{
-	    	    		if (today == weibotime_get_day(sResult.statuses[i].created_at) + parseInt(1)) {
-		    	    		if (!sResult.statuses[i].retweeted_status) {
-		    	    			datalist += "<span class='green'>[原创]</span> " +sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
-			    	    		repostscount += sResult.statuses[i].reposts_count;
-			    	    		commentscount += sResult.statuses[i].comments_count;
-			    	    		attitudescount += sResult.statuses[i].attitudes_count;
-			    	    		publishself = parseInt(publishself) + parseInt(1);
-		    	    		} else {
-		    	    			datalist += "<span class='gray'>[转发]</span> " + sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
-			    	    		repostscount += sResult.statuses[i].reposts_count;
-			    	    		commentscount += sResult.statuses[i].comments_count;
-			    	    		attitudescount += sResult.statuses[i].attitudes_count;
-			    	    		publishother = parseInt(publishother) + parseInt(1);
+	    	    		if ( today < weibotime_get_day(sResult.statuses[i].created_at)) {
+		    	    		if (today + parseInt(31) <= weibotime_get_day(sResult.statuses[i].created_at) + parseInt(7)) {
+			    	    		if (!sResult.statuses[i].retweeted_status) {
+			    	    			datalist += "<span class='green'>[原创]</span> " +sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
+				    	    		repostscount += sResult.statuses[i].reposts_count;
+				    	    		commentscount += sResult.statuses[i].comments_count;
+				    	    		attitudescount += sResult.statuses[i].attitudes_count;
+				    	    		publishself = parseInt(publishself) + parseInt(1);
+			    	    		} else {
+			    	    			datalist += "<span class='gray'>[转发]</span> " + sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
+				    	    		repostscount += sResult.statuses[i].reposts_count;
+				    	    		commentscount += sResult.statuses[i].comments_count;
+				    	    		attitudescount += sResult.statuses[i].attitudes_count;
+				    	    		publishother = parseInt(publishother) + parseInt(1);
+			    	    		}
+		    	    		}
+	    	    		} else {
+	    	    			if (today <= parseInt(7) + weibotime_get_day(sResult.statuses[i].created_at)) {
+			    	    		if (!sResult.statuses[i].retweeted_status) {
+			    	    			datalist += "<span class='green'>[原创]</span> " +sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
+				    	    		repostscount += sResult.statuses[i].reposts_count;
+				    	    		commentscount += sResult.statuses[i].comments_count;
+				    	    		attitudescount += sResult.statuses[i].attitudes_count;
+				    	    		publishself = parseInt(publishself) + parseInt(1);
+			    	    		} else {
+			    	    			datalist += "<span class='gray'>[转发]</span> " + sResult.statuses[i].created_at + " 转发:" + sResult.statuses[i].reposts_count + " 评论:" + sResult.statuses[i].comments_count + " 赞:" + sResult.statuses[i].attitudes_count + " " + sResult.statuses[i].text + "<br />";
+				    	    		repostscount += sResult.statuses[i].reposts_count;
+				    	    		commentscount += sResult.statuses[i].comments_count;
+				    	    		attitudescount += sResult.statuses[i].attitudes_count;
+				    	    		publishother = parseInt(publishother) + parseInt(1);
+			    	    		}
 		    	    		}
 	    	    		}
 	    	    		
@@ -57,7 +75,7 @@ $().ready(function(){
 	    	    }
 	    	},{
 	    		screen_name : weibouid,
-	    		count : '40'
+	    		count : '200'
 	    	},{
 	    		method: 'get'
 	    	});
