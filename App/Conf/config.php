@@ -9,8 +9,6 @@ $config = array(
 	'URL_CASE_INSENSITIVE'=>true,
     'URL_HTML_SUFFIX'=>'.html',
     'DB_PREFIX'=>'i_',
-    'LOG_RECORD'=>false,
-	'LOG_LEVEL'=>'EMERG,ALERT,CRIT,ERR',
 	//'TMPL_EXCEPTION_FILE'=>'./App/Tpl/Public/error.html',
 
 	'MAIL_ADDRESS'=>'info@ihelpoo.com', //email
