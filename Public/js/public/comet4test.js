@@ -35,7 +35,7 @@ function Notice(state) {
             return;
         }
 
-        var cometdURL = location.protocol + "//" + "comet.ihelpoo.cn/c2/cometd2";
+        var cometdURL = location.protocol + "//" + "localhost:8080/c2/cometd2";
 
         $.cometd.websocketEnabled = true;
         $.cometd.configure({
