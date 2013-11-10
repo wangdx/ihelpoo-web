@@ -158,11 +158,11 @@ function Notice(state) {
         // first time connection for this client, so subscribe tell everybody.
         $.cometd.batch(function () {
             _subscribe();
-            $.cometd.publish('/notice/p2p', {   //TODO this should be a system service
-                from: _from,
-                membership: 'join',
-                chat: _from + ' has joined'
-            });
+//            $.cometd.publish('/notice/p2p', {   //TODO this should be a system service
+//                from: _from,
+//                membership: 'join',
+//                chat: _from + ' has joined'
+//            });
         });
     }
 
@@ -217,7 +217,7 @@ function Notice(state) {
             }
         }
 
-        if(++flag%45 == 0){
+        if(++flag%15 == 0){
             $.post(baseUrl + "ajax/updatestatus");
             flag = 1;
         }
