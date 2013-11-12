@@ -179,11 +179,6 @@ function Chat(state) {
 
     this.leave = function () {
         $.cometd.batch(function () {
-            $.cometd.publish('/chat/p2p', {
-                from: _from,
-                membership: 'leave',
-                chat: _from + ' has left'
-            });
             _unsubscribe();
         });
         $.cometd.disconnect();
