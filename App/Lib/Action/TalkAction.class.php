@@ -12,7 +12,6 @@ class TalkAction extends Action
     protected function _initialize()
     {
         $userloginid = session('userloginid');
-        redirect('/stream', 3, '悄悄话努力修复bug中...');
         if (!empty($userloginid)) {
             i_db_update_activetime($userloginid);
             $UserLogin = M("UserLogin");
@@ -56,6 +55,7 @@ class TalkAction extends Action
             redirect('/user/notlogin', 0, '你还没有登录呢...');
         }
         header("Content-Type:text/html; charset=utf-8");
+        redirect('/stream', 3, '悄悄话努力修复bug中...');
     }
 
     public function index()
