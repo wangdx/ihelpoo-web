@@ -12,6 +12,7 @@ class TalkAction extends Action
     protected function _initialize()
     {
         $userloginid = session('userloginid');
+        redirect('/stream', 3, '悄悄话努力修复bug中...');
         if (!empty($userloginid)) {
             i_db_update_activetime($userloginid);
             $UserLogin = M("UserLogin");
