@@ -671,10 +671,10 @@ function i_send($to, $subject, $body)
     $redis = new Redis();
     $redis->pconnect(C('REDIS_HOST'), C('REDIS_PORT'));
 
-    $redis->incr(C('MAIL_COUNTER'));
     $redis->lPush(C('MAIL_QUEUE_TO'), $to);
     $redis->lPush(C('MAIL_QUEUE_SUBJECT'), $subject);
     $redis->lPush(C('MAIL_QUEUE_BODY'), $body);
+    $redis->incr(C('MAIL_COUNTER'));
 }
 
 /**
